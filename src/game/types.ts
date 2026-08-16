@@ -15,6 +15,8 @@ export const CellType = {
   MouseHole: 'mouse_hole', // 鼠洞（胜利目标）
   ButterSpot: 'butter_spot',
   Pile: 'pile',           // 杂货堆 — 固定障碍物
+  Wall: 'wall',           // 墙 — 固定障碍物（编辑器绘制，与 Pile 行为一致但视觉不同）
+  Void: 'void',           // 虚空 / 地图之外 — 不可通行，编辑器可自由绘制
 } as const;
 export type CellType = (typeof CellType)[keyof typeof CellType];
 

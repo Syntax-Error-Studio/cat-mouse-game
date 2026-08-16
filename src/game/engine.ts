@@ -135,7 +135,13 @@ function hasBox(r: number, c: number, board: Board): boolean {
 }
 
 function hasPile(r: number, c: number, board: Board): boolean {
-  return board[r][c].type === CellType.Pile;
+  const t = board[r][c].type;
+  return t === CellType.Pile || t === CellType.Wall;
+}
+
+/** 固定障碍物：墙与杂物堆，均不可通行、不可被推动（与箱子不同）。 */
+function isFixedObstacle(type: CellType): boolean {
+  return type === CellType.Pile || type === CellType.Wall;
 }
 
 function hasButterAt(r: number, c: number, butterPositions: { r: number; c: number }[]): boolean {
@@ -148,6 +154,18 @@ function isTunnelBlocked(r: number, c: number, blockedTunnels: { r: number; c: n
 
 function cloneBoard(board: Board): Board {
   return board.map(row => row.map(cell => ({ ...cell })));
+}
+
+/**
+ * 解析通道位置：优先使用自定义地图提供的 tunnelCorners；
+ * 未提供时回落到棋盘四角（原默认行为，保证现有玩法不变）。
+ * 空数组表示"无通道"。
+ */
+function getTunnelCorners(config: GameConfig): { r: number; c: number; label: string }[] {
+  if (config.tunnelCorners && config.tunnelCorners.length > 0) {
+    return config.tunnelCorners.map(t => ({ r: t.r, c: t.c, label: t.label ?? '' }));
+  }
+  return makeTunnelCorners(config.boardSize);
 }
 
 // --- Board generation ---
@@ -187,6 +205,13 @@ function generatePilePositions(
 }
 
 function createInitialBoard(config: GameConfig, tunnelCorners: { r: number; c: number }[]): Board {
+  // 自定义地图：地形已由编辑器绘制，直接克隆使用（跳过随机生成）
+  if (config.customTerrain && config.customTerrain.length > 0) {
+    return config.customTerrain.map(row =>
+      row.map(t => ({ type: t, piece: undefined, hasButter: t === CellType.ButterSpot } as CellData)),
+    );
+  }
+
   const board: Board = Array.from({ length: config.boardSize }, () =>
     Array.from({ length: config.boardSize }, () => makeCell())
   );
@@ -251,7 +276,7 @@ function generateButterPositions(
     while (attempts++ < 100) {
       const r = rand();
       const c = rand();
-      if (isMouseHole(r, c, config.mouseHole) || isTunnelCorner(r, c, tunnelCorners) || hasBox(r, c, board) || hasPile(r, c, board)) continue;
+      if (isMouseHole(r, c, config.mouseHole) || isTunnelCorner(r, c, tunnelCorners) || hasBox(r, c, board) || hasPile(r, c, board) || board[r][c].type === CellType.Void) continue;
       if (trapPos && r === trapPos.r && c === trapPos.c) continue;
       if (hasButterAt(r, c, positions)) continue;
       // Distance from mouse and cat
@@ -286,6 +311,7 @@ function generateSingleButterPosition(
     if (isTunnelCorner(r, c, tunnelCorners)) continue;
     if (hasBox(r, c, board)) continue;
     if (hasPile(r, c, board)) continue;
+    if (board[r][c].type === CellType.Void) continue;
     if (existingButters.some(b => b.r === r && b.c === c)) continue;
     if (trapPos && r === trapPos.r && c === trapPos.c) continue;
     // Non-initial: closer to hole is OK
@@ -313,7 +339,7 @@ function sanitizeItemOverlaps(state: GameEngineState): GameEngineState {
   if (trapIdx < 0) return state;
 
   const { config, board } = state;
-  const tc = makeTunnelCorners(config.boardSize);
+  const tc = getTunnelCorners(config);
   // Remove overlapping butter
   const newButters = [...state.butterPositions];
   newButters.splice(trapIdx, 1);
@@ -330,7 +356,7 @@ function sanitizeItemOverlaps(state: GameEngineState): GameEngineState {
 // --- Public API ---
 
 export function createInitialState(config: GameConfig = DEFAULT_CONFIG): GameEngineState {
-  const tunnelCorners = makeTunnelCorners(config.boardSize);
+  const tunnelCorners = getTunnelCorners(config);
   const board = createInitialBoard(config, tunnelCorners);
 
   const mouseStart = config.mouseStart;
@@ -339,7 +365,20 @@ export function createInitialState(config: GameConfig = DEFAULT_CONFIG): GameEng
   board[mouseStart.r][mouseStart.c] = { ...board[mouseStart.r][mouseStart.c], piece: PieceType.Mouse };
   board[catStart.r][catStart.c] = { ...board[catStart.r][catStart.c], piece: PieceType.Cat };
 
-  const butterPositions = generateButterPositions(config, board, tunnelCorners, mouseStart, catStart, null);
+  // 黄油：自定义地图从地形中的黄油点（ButterSpot）直接读取；否则按数量随机生成
+  let butterPositions: { r: number; c: number }[];
+  if (config.customTerrain && config.customTerrain.length > 0) {
+    butterPositions = [];
+    for (let r = 0; r < board.length; r++) {
+      for (let c = 0; c < board[r].length; c++) {
+        if (board[r][c].hasButter) butterPositions.push({ r, c });
+      }
+    }
+  } else if (config.butterPositions && config.butterPositions.length > 0) {
+    butterPositions = config.butterPositions.filter(p => board[p.r]?.[p.c]?.type === CellType.Empty);
+  } else {
+    butterPositions = generateButterPositions(config, board, tunnelCorners, mouseStart, catStart, null);
+  }
 
   return {
     board,
@@ -375,7 +414,7 @@ export function mouseMove(state: GameEngineState, direction: Direction): GameEng
   const nr = pos.r + direction.dr;
   const nc = pos.c + direction.dc;
   const { config } = state;
-  const tunnelCorners = makeTunnelCorners(config.boardSize);
+  const tunnelCorners = getTunnelCorners(config);
 
   if (!isInBounds(nr, nc, config.boardSize)) return state;
 
@@ -387,7 +426,10 @@ export function mouseMove(state: GameEngineState, direction: Direction): GameEng
   if (targetCell.type === CellType.Box) return state;
 
   // Can't move into pile
-  if (targetCell.type === CellType.Pile) return state;
+  if (isFixedObstacle(targetCell.type)) return state;
+
+  // Can't move into void (地图之外)
+  if (targetCell.type === CellType.Void) return state;
 
   // Can't move into cat
   if (state.catPosition.r === nr && state.catPosition.c === nc) return state;
@@ -453,9 +495,16 @@ export function mouseMove(state: GameEngineState, direction: Direction): GameEng
     }
 
     // Multiple exits — ask player to choose
+    // 先把鼠实际移动到通道入口，使 board / mousePosition 与玩家视觉一致，
+    // 避免外部选择出口时清错格子。
+    const choiceBoard = cloneBoard(state.board);
+    choiceBoard[pos.r][pos.c] = { ...choiceBoard[pos.r][pos.c], piece: undefined };
+    choiceBoard[nr][nc] = { ...choiceBoard[nr][nc], piece: PieceType.Mouse };
     return {
       ...state,
+      board: choiceBoard,
       blockedTunnels: state.blockedTunnels,
+      mousePosition: { r: nr, c: nc },
       mouseMovesLeft: 0,
       phase: GamePhase.ChoosingTunnelExit,
       tunnelExitChoices: exits,
@@ -590,7 +639,7 @@ export function catMove(state: GameEngineState, direction: Direction): GameEngin
   const nr = pos.r + direction.dr;
   const nc = pos.c + direction.dc;
   const { config } = state;
-  const tunnelCorners = makeTunnelCorners(config.boardSize);
+  const tunnelCorners = getTunnelCorners(config);
 
   if (!isInBounds(nr, nc, config.boardSize)) return state;
 
@@ -604,7 +653,10 @@ export function catMove(state: GameEngineState, direction: Direction): GameEngin
   if (hasButterAt(nr, nc, state.butterPositions)) return state;
 
   // Cat can't move into pile
-  if (state.board[nr][nc].type === CellType.Pile) return state;
+  if (isFixedObstacle(state.board[nr][nc].type)) return state;
+
+  // Cat can't move into void (地图之外)
+  if (state.board[nr][nc].type === CellType.Void) return state;
 
   // Check if there's a box to push
   if (hasBox(nr, nc, state.board)) {
@@ -618,6 +670,7 @@ export function catMove(state: GameEngineState, direction: Direction): GameEngin
     if (state.mousePosition.r === destR && state.mousePosition.c === destC) return state;
     if (hasBox(destR, destC, state.board)) return state;
     if (hasPile(destR, destC, state.board)) return state;
+    if (state.board[destR][destC].type === CellType.Void) return state;
     if (hasButterAt(destR, destC, state.butterPositions)) return state;
     if (state.trapPosition?.r === destR && state.trapPosition?.c === destC) return state;
 
@@ -684,7 +737,7 @@ export function catPlaceTrap(state: GameEngineState): GameEngineState {
 
   if (!isInBounds(r, c, config.boardSize)) return state;
   if (isMouseHole(r, c, config.mouseHole)) return state;
-  if (isTunnelCorner(r, c, makeTunnelCorners(config.boardSize))) return state;
+  if (isTunnelCorner(r, c, getTunnelCorners(config))) return state;
   if (state.blockedTunnels.some(t => t.r === r && t.c === c)) return state;
   if (board[r][c].type !== CellType.Empty) return state;
   if (hasButterAt(r, c, state.butterPositions)) return state;
@@ -806,7 +859,7 @@ function bfsCatPathToStand(
   state: GameEngineState,
 ): Point[] | null {
   const boardSize = state.config.boardSize;
-  const tunnelCorners = makeTunnelCorners(boardSize);
+  const tunnelCorners = getTunnelCorners(state.config);
   const visited = new Set<string>();
   const queue: { p: Point; path: Point[] }[] = [{ p: start, path: [start] }];
   visited.add(pointKey(start));
@@ -827,7 +880,7 @@ function bfsCatPathToStand(
       if (isTunnelCorner(nr, nc, tunnelCorners)) continue;
       if (state.blockedTunnels.some(t => t.r === nr && t.c === nc)) continue;
       if (state.board[nr][nc].type === CellType.Box) continue;
-      if (state.board[nr][nc].type === CellType.Pile) continue;
+      if (isFixedObstacle(state.board[nr][nc].type)) continue;
       if (hasButterAt(nr, nc, state.butterPositions)) continue;
       if (state.mousePosition.r === nr && state.mousePosition.c === nc) continue;
 
@@ -886,7 +939,7 @@ function chooseHardTrapStandCell(
 
   // Collect candidate cells: all reachable non-obstacle cells on the board.
   const boardSize = state.config.boardSize;
-  const tunnelCorners = makeTunnelCorners(boardSize);
+  const tunnelCorners = getTunnelCorners(state.config);
   const candidates: { r: number; c: number; catDist: number; catPath: Point[] }[] = [];
   const seen = new Set<string>();
 
@@ -899,7 +952,7 @@ function chooseHardTrapStandCell(
       if (isMouseHole(r, c, state.config.mouseHole)) continue;
       if (isTunnelCorner(r, c, tunnelCorners)) continue;
       if (state.board[r][c].type === CellType.Box) continue;
-      if (state.board[r][c].type === CellType.Pile) continue;
+      if (isFixedObstacle(state.board[r][c].type)) continue;
       if (hasButterAt(r, c, state.butterPositions)) continue;
       if (r === state.mousePosition.r && c === state.mousePosition.c) continue;
       if (state.blockedTunnels.some(t => t.r === r && t.c === c)) continue;
@@ -1046,7 +1099,7 @@ function findNearestHolePathForHard(
 /** Get legal cells adjacent to mouse hole — safe ambush points for the cat. */
 function getMouseHoleGateCells(state: GameEngineState): Point[] {
   const { config, board } = state;
-  const tunnelCorners = makeTunnelCorners(config.boardSize);
+  const tunnelCorners = getTunnelCorners(config);
   const holeCells = getMouseHoleCells(config);
   const result: Point[] = [];
   const seen = new Set<string>();
@@ -1060,7 +1113,7 @@ function getMouseHoleGateCells(state: GameEngineState): Point[] {
       if (isTunnelCorner(r, c, tunnelCorners)) continue;
       if (state.blockedTunnels.some(t => t.r === r && t.c === c)) continue;
       if (board[r][c].type === CellType.Box) continue;
-      if (board[r][c].type === CellType.Pile) continue;
+      if (isFixedObstacle(board[r][c].type)) continue;
       if (hasButterAt(r, c, state.butterPositions)) continue;
 
       const k = `${r},${c}`;
@@ -1181,7 +1234,7 @@ function bfsDistanceAvoidPoint(
   avoid: Point,
 ): number | null {
   const boardSize = config.boardSize;
-  const tunnelCorners = makeTunnelCorners(boardSize);
+  const tunnelCorners = getTunnelCorners(config);
   const startKey = pointKey(start);
   const targetKey = pointKey(target);
 
@@ -1215,7 +1268,7 @@ function bfsDistanceAvoidPoint(
         if (isTunnelCorner(nr, nc, tunnelCorners)) continue;
         if (hasButterAt(nr, nc, butterPositions) && !isTarget) continue;
         if (cell.type === CellType.Box) continue;
-        if (cell.type === CellType.Pile) continue;
+        if (isFixedObstacle(cell.type)) continue;
         if (blockedTunnels.some(t => t.r === nr && t.c === nc)) continue;
 
         visited.add(nk);
@@ -1345,10 +1398,10 @@ function findMouseHoleEntryGateFromPlan(plan: MousePlan, state: GameEngineState)
     if (isMouseHole(cur.r, cur.c, state.config.mouseHole)) {
       // prev is the cell just before entering the hole — the real entry gate.
       if (isMouseHole(prev.r, prev.c, state.config.mouseHole)) return null;
-      if (isTunnelCorner(prev.r, prev.c, makeTunnelCorners(state.config.boardSize))) return null;
+      if (isTunnelCorner(prev.r, prev.c, getTunnelCorners(state.config))) return null;
       if (state.blockedTunnels.some(t => t.r === prev.r && t.c === prev.c)) return null;
       if (state.board[prev.r][prev.c].type === CellType.Box) return null;
-      if (state.board[prev.r][prev.c].type === CellType.Pile) return null;
+      if (isFixedObstacle(state.board[prev.r][prev.c].type)) return null;
       if (hasButterAt(prev.r, prev.c, state.butterPositions)) return null;
       return prev;
     }
@@ -1460,7 +1513,7 @@ function bfsPath(
   butterPositions: { r: number; c: number }[],
 ): Point[] | null {
   const boardSize = config.boardSize;
-  const tunnelCorners = makeTunnelCorners(boardSize);
+  const tunnelCorners = getTunnelCorners(config);
   const key = (p: Point) => `${p.r},${p.c}`;
 
   if (start.r === target.r && start.c === target.c) return [start];
@@ -1488,7 +1541,9 @@ function bfsPath(
         const isTarget = nr === target.r && nc === target.c;
         if (hasButterAt(nr, nc, butterPositions) && !isTarget) continue;
         if (cell.type === CellType.Box) continue;
-        if (cell.type === CellType.Pile) continue;
+        if (isFixedObstacle(cell.type)) continue;
+        // Void = 地图之外，不可通行（自定义地图编辑器可自由绘制）
+        if (cell.type === CellType.Void) continue;
         // Traps are passable (cat can walk onto them to pick up)
         if (blockedTunnels.some(t => t.r === nr && t.c === nc)) continue;
 
@@ -1525,7 +1580,7 @@ function bfsDistance(
   butterPositions: { r: number; c: number }[],
 ): number | null {
   const boardSize = config.boardSize;
-  const tunnelCorners = makeTunnelCorners(boardSize);
+  const tunnelCorners = getTunnelCorners(config);
   const startKey = `${start.r},${start.c}`;
   const targetKey = `${target.r},${target.c}`;
 
@@ -1556,7 +1611,9 @@ function bfsDistance(
         const isTarget = nr === target.r && nc === target.c;
         if (hasButterAt(nr, nc, butterPositions) && !isTarget) continue;
         if (cell.type === CellType.Box) continue;
-        if (cell.type === CellType.Pile) continue;
+        if (isFixedObstacle(cell.type)) continue;
+        // Void = 地图之外，不可通行（自定义地图编辑器可自由绘制）
+        if (cell.type === CellType.Void) continue;
         // Traps are passable (cat can walk onto them to pick up)
         if (blockedTunnels.some(t => t.r === nr && t.c === nc)) continue;
 
@@ -1580,7 +1637,7 @@ function countOpenCorridors(r: number, c: number, board: Board, config: GameConf
     const nc = c + d.dc;
     if (!isInBounds(nr, nc, config.boardSize)) continue;
     if (board[nr][nc].type === CellType.Box) continue;
-    if (board[nr][nc].type === CellType.Pile) continue;
+    if (isFixedObstacle(board[nr][nc].type)) continue;
     count++;
   }
   return count;
@@ -1652,7 +1709,7 @@ function simulateCatMove(
   if (mousePos.r === destR && mousePos.c === destC) return null;
   // Must match catMove exactly: cannot push into another box / pile / butter / trap.
   if (board[destR][destC].type === CellType.Box) return null;
-  if (board[destR][destC].type === CellType.Pile) return null;
+  if (isFixedObstacle(board[destR][destC].type)) return null;
   if (hasButterAt(destR, destC, butterPositions)) return null;
   if (trapPosition && trapPosition.r === destR && trapPosition.c === destC) return null;
 
@@ -1689,7 +1746,7 @@ function computeCatBoxAdjacency(
     if (!isInBounds(destR, destC, config.boardSize)) continue;
     if (isMouseHole(destR, destC, config.mouseHole)) continue;
     if (board[destR][destC].type === CellType.Box) continue;
-    if (board[destR][destC].type === CellType.Pile) continue;
+    if (isFixedObstacle(board[destR][destC].type)) continue;
     if (hasButterAt(destR, destC, butterPositions)) continue;
 
     pushable.push({ boxR: br, boxC: bc, pushDir: d, destR, destC });
@@ -1704,7 +1761,7 @@ function catAiEasy(state: GameEngineState): GameEngineState | null {
   const catPos = state.catPosition;
   const mousePos = state.mousePosition;
   const { config } = state;
-  const tunnelCorners = makeTunnelCorners(config.boardSize);
+  const tunnelCorners = getTunnelCorners(config);
 
   // Collect truly valid move directions (must match catMove filters)
   const validDirs = DIRECTIONS.filter(d => {
@@ -1714,7 +1771,7 @@ function catAiEasy(state: GameEngineState): GameEngineState | null {
     if (isMouseHole(nr, nc, config.mouseHole)) return false;
     if (isTunnelCorner(nr, nc, tunnelCorners)) return false;
     if (hasButterAt(nr, nc, state.butterPositions)) return false;
-    if (state.board[nr][nc].type === CellType.Pile) return false;
+    if (isFixedObstacle(state.board[nr][nc].type)) return false;
     return true;
   });
 
@@ -1776,7 +1833,7 @@ function catAiEasy(state: GameEngineState): GameEngineState | null {
     if (state.mousePosition.r === destR && state.mousePosition.c === destC) continue;
     if (state.board[destR][destC].type === CellType.Box &&
         !(state.mousePosition.r === destR && state.mousePosition.c === destC)) continue;
-    if (state.board[destR][destC].type === CellType.Pile) continue;
+    if (isFixedObstacle(state.board[destR][destC].type)) continue;
     if (hasButterAt(destR, destC, state.butterPositions)) continue;
     if (state.trapPosition?.r === destR && state.trapPosition?.c === destC) continue;
     // Only consider pushes that get the cat closer to the mouse
@@ -1812,7 +1869,7 @@ function catAiMedium(state: GameEngineState): GameEngineState | null {
   const mousePos = state.mousePosition;
   const { config } = state;
   const boardSize = config.boardSize;
-  const tunnelCorners = makeTunnelCorners(boardSize);
+  const tunnelCorners = getTunnelCorners(config);
 
   // Detect last move direction to prevent oscillation
   const lastLog = state.catActionLog?.[state.catActionLog.length - 1] || '';
@@ -1882,7 +1939,7 @@ function catAiMedium(state: GameEngineState): GameEngineState | null {
     if (isMouseHole(nr, nc, config.mouseHole)) continue;
     if (isTunnelCorner(nr, nc, tunnelCorners)) continue;
     if (hasButterAt(nr, nc, state.butterPositions)) continue;
-    if (state.board[nr][nc].type === CellType.Pile) continue;
+    if (isFixedObstacle(state.board[nr][nc].type)) continue;
 
     const sim = simulateCatMove(catPos, nr, nc, state.board, config, mousePos, state.butterPositions, state.trapPosition);
     if (!sim) continue;
@@ -1982,7 +2039,7 @@ function catAiMedium(state: GameEngineState): GameEngineState | null {
       if (isMouseHole(nr, nc, config.mouseHole)) continue;
       if (isTunnelCorner(nr, nc, tunnelCorners)) continue;
       if (hasButterAt(nr, nc, state.butterPositions)) continue;
-      if (state.board[nr][nc].type === CellType.Pile) continue;
+      if (isFixedObstacle(state.board[nr][nc].type)) continue;
 
       // Penalize reversing last direction to prevent oscillation
       if (lastDir && (d.dr === -lastDir.dr && d.dc === -lastDir.dc)) continue;
@@ -2097,7 +2154,7 @@ function catAiHard(state: GameEngineState): GameEngineState | null {
   const mousePos = state.mousePosition;
   const { config } = state;
   const boardSize = config.boardSize;
-  const tunnelCorners = makeTunnelCorners(boardSize);
+  const tunnelCorners = getTunnelCorners(config);
 
   // === IMMEDIATE CATCH: if cat can reach mouse within remaining moves, do it ===
   {
@@ -2426,7 +2483,7 @@ function catAiHard(state: GameEngineState): GameEngineState | null {
     if (isMouseHole(nr, nc, config.mouseHole)) continue;
     if (isTunnelCorner(nr, nc, tunnelCorners)) continue;
     if (hasButterAt(nr, nc, state.butterPositions)) continue;
-    if (state.board[nr][nc].type === CellType.Pile) continue;
+    if (isFixedObstacle(state.board[nr][nc].type)) continue;
 
     const sim = simulateCatMove(catPos, nr, nc, state.board, config, mousePos, state.butterPositions, state.trapPosition);
     if (!sim) continue;
@@ -3032,7 +3089,7 @@ function catAiHard(state: GameEngineState): GameEngineState | null {
       if (isMouseHole(nr, nc, config.mouseHole)) continue;
       if (isTunnelCorner(nr, nc, tunnelCorners)) continue;
       if (hasButterAt(nr, nc, state.butterPositions)) continue;
-      if (state.board[nr][nc].type === CellType.Pile) continue;
+      if (isFixedObstacle(state.board[nr][nc].type)) continue;
 
       // Penalize reversing last direction to prevent oscillation
       if (lastDir && (d.dr === -lastDir.dr && d.dc === -lastDir.dc)) continue;
@@ -3166,12 +3223,12 @@ function isLegalCatDirection(state: GameEngineState, d: Direction): boolean {
   const nr = catPos.r + d.dr;
   const nc = catPos.c + d.dc;
   const { config } = state;
-  const tunnelCorners = makeTunnelCorners(config.boardSize);
+  const tunnelCorners = getTunnelCorners(config);
   if (!isInBounds(nr, nc, config.boardSize)) return false;
   if (isMouseHole(nr, nc, config.mouseHole)) return false;
   if (isTunnelCorner(nr, nc, tunnelCorners)) return false;
   if (hasButterAt(nr, nc, state.butterPositions)) return false;
-  if (state.board[nr][nc].type === CellType.Pile) return false;
+  if (isFixedObstacle(state.board[nr][nc].type)) return false;
 
   // If target is a box, check push destination is legal (mirrors catMove box-push logic)
   if (state.board[nr][nc].type === CellType.Box) {
@@ -3338,7 +3395,7 @@ export function computeCatAiTrajectory(state: GameEngineState): CatAiStep[] | nu
 
     if (wasPushingBox) {
       const boxDest = { r: to.r + dr, c: to.c + dc };
-      const tunnelCorners = makeTunnelCorners(current.config.boardSize);
+      const tunnelCorners = getTunnelCorners(current.config);
       const pushedToTunnel = tunnelCorners.some(t => t.r === boxDest.r && t.c === boxDest.c);
       detail = pushedToTunnel ? '推箱堵通道' : '推箱';
     }

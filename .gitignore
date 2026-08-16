@@ -6,6 +6,7 @@ test-results/
 
 .claude/
 .codely-cli/
+.workbuddy/
 
 .env
 .env.local

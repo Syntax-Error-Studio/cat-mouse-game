@@ -1,4 +1,4 @@
-import { CellType, GamePhase, PieceType, makeTunnelCorners, GameMode } from '../game/types';
+import { CellType, GamePhase, PieceType, GameMode } from '../game/types';
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 
 type BoardCell = { type: CellType; piece?: PieceType; hasButter: boolean };
@@ -30,6 +30,10 @@ interface BoardProps {
   gameOverDismissed: boolean; // Whether game over overlay is dismissed
   onGameOverDismiss?: () => void; // Called when user clicks "关闭" on game over overlay
   config: { boardSize: number; difficulty: string; gameMode: string; boxCount: number; butterCount: number }; // Config snapshot for feedback
+  hideCat?: boolean; // 教程基础阶段：隐藏猫
+  showSidePanel?: boolean;   // 是否显示右侧信息栏（教程模式关闭）
+  showRestartButton?: boolean; // 是否显示「重新开始」按钮（教程模式关闭）
+  showKeyboardHint?: boolean;  // 是否显示键盘提示（教程模式关闭）
 }
 
 const SPRITE: Record<string, string> = {
@@ -50,7 +54,8 @@ export const Board: React.FC<BoardProps> = ({
   mouseHasButter, mouseSkillActive, catMovesLeft, mouseMovesLeft,
   trapPosition, catTrapsRemaining, currentPlayer, phase, gameMode, blockedTunnels, message,
   onMove, onSkill, onTrap, onRestart, onChooseExit, tunnelExitChoices,
-  catActionLog = [], gameEventLog = [], onGameOverDismiss, gameOverDismissed, config,
+  catActionLog = [], gameEventLog = [], onGameOverDismiss, gameOverDismissed, config, hideCat = false,
+  showSidePanel = true, showRestartButton = true, showKeyboardHint = true,
 }) => {
   const isMouseTurn = phase === GamePhase.Playing && currentPlayer === PieceType.Mouse;
   const isCatTurn = phase === GamePhase.Playing && currentPlayer === PieceType.Cat;
@@ -59,7 +64,24 @@ export const Board: React.FC<BoardProps> = ({
   const isGameOver = phase === GamePhase.CatWins || phase === GamePhase.MouseWins;
   const boardRows = board.length;
   const boardCols = board.length > 0 ? board[0].length : boardRows;
-  const tunnelCorners = makeTunnelCorners(boardRows);
+  // 隧道位置直接从棋盘读取（支持自定义地图把通道画在任意位置），四角通道保留方向箭头标签
+  const tunnelCorners = (() => {
+    const corners: { r: number; c: number; label: string }[] = [];
+    const dirLabel: Record<string, string> = {
+      '0,0': '左上',
+      [`0,${boardCols - 1}`]: '右上',
+      [`${boardRows - 1},0`]: '左下',
+      [`${boardRows - 1},${boardCols - 1}`]: '右下',
+    };
+    for (let r = 0; r < boardRows; r++) {
+      for (let c = 0; c < boardCols; c++) {
+        if (board[r]?.[c]?.type === CellType.Tunnel) {
+          corners.push({ r, c, label: dirLabel[`${r},${c}`] ?? `通道${corners.length + 1}` });
+        }
+      }
+    }
+    return corners;
+  })();
   const isTunnelBlocked = (r: number, c: number) => (blockedTunnels || []).some(t => t.r === r && t.c === c);
 
   // ---- Feedback modal state ----
@@ -223,27 +245,29 @@ export const Board: React.FC<BoardProps> = ({
   // ---- Render helpers ----
 
   const renderCell = (cell: BoardCell, r: number, c: number) => {
+    // Check what entity is on this cell (used for bg + icons)
+    const isButter = butterPositions.some(b => b.r === r && b.c === c);
+    const isTrap = trapPosition?.r === r && trapPosition?.c === c;
+
     let bg = '#f0e6d3';
 
     // Cell type background
     if (cell.type === CellType.Box) { bg = '#8B6914'; }
     else if (cell.type === CellType.MouseHole) { bg = '#7c2d12'; }
     else if (cell.type === CellType.Trap) { bg = '#cc4444'; }
-    else if (cell.type === CellType.ButterSpot) { bg = '#fef08a'; }
+    else if (cell.type === CellType.ButterSpot) { bg = isButter ? '#fef08a' : '#f0e6d3'; }
     else if (cell.type === CellType.Tunnel) {
       bg = mouseHasButter && !mouseSkillActive ? '#86efac' : '#22c55e';
       if (isTunnelBlocked(r, c)) bg = '#555555';
     }
     else if (trapPosition?.r === r && trapPosition?.c === c) { bg = '#fecaca'; }
     else if (cell.type === CellType.Pile) { bg = '#6b4226'; }
+    else if (cell.type === CellType.Wall) { bg = '#4b5563'; }   // 墙：灰砖色，固定障碍
+    else if (cell.type === CellType.Void) { bg = '#111827'; }   // 虚空：深色，表示地图之外
 
     // Tunnel arrow label
     const tunnelLabel = tunnelCorners.find(t => t.r === r && t.c === c);
     const tunnelArrow = tunnelLabel ? { '左上': '↘', '右上': '↙', '左下': '↗', '右下': '↖' }[tunnelLabel.label] : '';
-
-    // Check what entity is on this cell
-    const isButter = butterPositions.some(b => b.r === r && b.c === c);
-    const isTrap = trapPosition?.r === r && trapPosition?.c === c;
 
     return (
       <div
@@ -271,6 +295,9 @@ export const Board: React.FC<BoardProps> = ({
         {isTrap && <img src={SPRITE.trap} alt="陷阱" style={cellImgStyle} />}
         {cell.type === CellType.Tunnel && !tunnelArrow && <img src={SPRITE.tunnel} alt="快速通道" style={cellImgStyle} />}
         {cell.type === CellType.Tunnel && tunnelArrow && <img src={SPRITE.tunnel} alt="快速通道" style={cellImgStyle} />}
+        {cell.type === CellType.MouseHole && <span style={{ fontSize: '1.3em' }}>🕳️</span>}
+        {cell.type === CellType.Wall && <span style={{ fontSize: '1.3em' }}>🧱</span>}
+        {cell.type === CellType.Void && <span style={{ fontSize: '1.05em', opacity: 0.35 }}>🌫️</span>}
         {cell.type === CellType.Empty && tunnelArrow && <span style={{ opacity: 0.4 }}>{tunnelArrow}</span>}
       </div>
     );
@@ -299,7 +326,7 @@ export const Board: React.FC<BoardProps> = ({
 
   // ---- Controls ----
   const controls = [
-    { label: '🔄 重新开始', onClick: onRestart, bg: '#374151' },
+    ...(showRestartButton ? [{ label: '🔄 重新开始', onClick: onRestart, bg: '#374151' }] : []),
     ...(isMouseTurn && mouseHasButter && !mouseSkillActive ? [{
       label: '🔥 消耗黄油激活技能（空格）', onClick: onSkill, bg: '#dc2626',
     }] : []),
@@ -372,9 +399,11 @@ export const Board: React.FC<BoardProps> = ({
           </div>
 
           {/* Cat piece overlay */}
-          <div style={pieceStyle(catPosition.r, catPosition.c)}>
-            <img src={SPRITE.cat} alt="猫" style={cellImgStyle} />
-          </div>
+          {!hideCat && (
+            <div style={pieceStyle(catPosition.r, catPosition.c)}>
+              <img src={SPRITE.cat} alt="猫" style={cellImgStyle} />
+            </div>
+          )}
         </div>
 
         {/* Tunnel exit choices */}
@@ -407,9 +436,11 @@ export const Board: React.FC<BoardProps> = ({
         </div>
 
         {/* Keyboard hints */}
-        <div style={{ fontSize: '0.7rem', color: '#6b7280', textAlign: 'center' }}>
-          <div>{keyHint}</div>
-        </div>
+        {showKeyboardHint && (
+          <div style={{ fontSize: '0.7rem', color: '#6b7280', textAlign: 'center' }}>
+            <div>{keyHint}</div>
+          </div>
+        )}
 
         {/* Game Over Overlay */}
         {isGameOver && !gameOverDismissed && (
@@ -573,9 +604,11 @@ export const Board: React.FC<BoardProps> = ({
           </div>
 
           {/* Cat piece overlay */}
-          <div style={pieceStyle(catPosition.r, catPosition.c)}>
-            <img src={SPRITE.cat} alt="猫" style={cellImgStyle} />
-          </div>
+          {!hideCat && (
+            <div style={pieceStyle(catPosition.r, catPosition.c)}>
+              <img src={SPRITE.cat} alt="猫" style={cellImgStyle} />
+            </div>
+          )}
         </div>
 
         {/* Controls */}
@@ -592,12 +625,15 @@ export const Board: React.FC<BoardProps> = ({
         </div>
 
         {/* Keyboard hints */}
-        <div style={{ fontSize: '0.8rem', color: '#6b7280', textAlign: 'center', lineHeight: '1.6' }}>
-          <div>{keyHint}</div>
-        </div>
+        {showKeyboardHint && (
+          <div style={{ fontSize: '0.8rem', color: '#6b7280', textAlign: 'center', lineHeight: '1.6' }}>
+            <div>{keyHint}</div>
+          </div>
+        )}
       </div>
 
       {/* Right: Side Panel (HUD + Info) */}
+      {showSidePanel && (
       <div style={{
         display: 'flex', flexDirection: 'column', gap: '1.25rem',
         minWidth: '320px', maxWidth: '380px',
@@ -823,6 +859,7 @@ export const Board: React.FC<BoardProps> = ({
           </div>
         )}
       </div>
+      )}
     </div>
   );
 };

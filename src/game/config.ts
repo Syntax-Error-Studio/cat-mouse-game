@@ -3,7 +3,7 @@
 // 可配置的游戏参数：棋盘大小、箱子数、黄油数、起点位置等
 // ============================================================
 
-import type { GameMode, Difficulty } from './types';
+import type { GameMode, Difficulty, CellType } from './types';
 
 export interface GameConfig {
   boardSize: number;
@@ -13,6 +13,7 @@ export interface GameConfig {
   pileCount?: number;                         // 杂货堆数量
   pilePositions?: { r: number; c: number }[]; // 若提供则忽略 pileCount
   butterCount: number;
+  butterPositions?: { r: number; c: number }[]; // 若提供则使用固定黄油位置
   mouseStart: { r: number; c: number };
   catStart: { r: number; c: number };
   mouseBaseMoves: number;
@@ -21,6 +22,9 @@ export interface GameConfig {
   catBaseMoves: number;
   gameMode: GameMode;
   difficulty: Difficulty;
+  // --- 自定义地图（编辑器产出）---
+  customTerrain?: CellType[][];               // 若提供，直接作为棋盘（已含 箱/桩/通道/鼠洞/虚空），跳过随机生成
+  tunnelCorners?: { r: number; c: number; label?: string }[]; // 自定义通道位置；空数组=无通道
 }
 
 export const DEFAULT_CONFIG: GameConfig = {
