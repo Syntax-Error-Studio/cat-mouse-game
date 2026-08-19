@@ -12,6 +12,7 @@ import {
 } from '../game/engine';
 import { PieceType, GamePhase, GameMode, Difficulty } from '../game/types';
 import type { GameConfig } from '../game/config';
+import { chooseTunnelExit } from '../game/rules/tunnels';
 import { Board } from '../components/Board';
 import { DebugInfo } from '../components/DebugInfo';
 import { MenuButton } from '../components/MenuButton';
@@ -191,29 +192,10 @@ export function GamePage() {
 
   const handleChooseTunnelExit = useCallback((r: number, c: number) => {
     setGameState(prev => {
-      if (prev.phase !== GamePhase.ChoosingTunnelExit) return prev;
-      const isValidChoice = (prev.tunnelExitChoices || []).some(t => t.r === r && t.c === c);
-      if (!isValidChoice) return prev;
-
-      const newBoard = prev.board.map(row => row.map(cell => ({ ...cell })));
-      newBoard[prev.mousePosition.r][prev.mousePosition.c] = {
-        ...newBoard[prev.mousePosition.r][prev.mousePosition.c],
-        piece: undefined,
-      };
-      newBoard[r][c] = { ...newBoard[r][c], piece: PieceType.Mouse };
-
-      const afterTeleport: GameData = {
-        ...prev,
-        board: newBoard,
-        blockedTunnels: prev.blockedTunnels,
-        mousePosition: { r, c },
-        mouseMovesLeft: 0,
-        phase: GamePhase.Playing,
-        currentPlayer: PieceType.Mouse,
-        message: `🧀 鼠通过快速通道传送到 (${r},${c})，轮到猫行动。`,
-        tunnelExitChoices: [],
-      };
-
+      // Delegate to the shared rule kernel — single source of truth for tunnel
+      // exit landing (used by GamePage, TutorialPage and the future Search Simulator).
+      const afterTeleport = chooseTunnelExit(prev, r, c);
+      if (afterTeleport === prev) return prev; // invalid choice / wrong phase → no-op
       if (prev.gameMode === GameMode.Single) {
         return runCatAi(endTurn(afterTeleport));
       }

@@ -10,6 +10,7 @@ import {
   getDirectionByKey,
 } from '../game/engine';
 import { PieceType, GamePhase, CellType } from '../game/types';
+import { chooseTunnelExit as chooseTunnelExitRule } from '../game/rules/tunnels';
 import {
   PHASE_A_CONFIG,
   PHASE_B_CONFIG,
@@ -153,25 +154,10 @@ export function TutorialPage() {
   const chooseTunnelExit = useCallback((r: number, c: number) => {
     setGameState((prev) => {
       if (prev.phase !== GamePhase.ChoosingTunnelExit) return prev;
-      const valid = (prev.tunnelExitChoices || []).some((t) => t.r === r && t.c === c);
-      if (!valid) return prev;
-      const nb = prev.board.map((row) => row.map((cell) => ({ ...cell })));
-      // engine 已将鼠落到通道入口，mousePosition 即入口坐标
-      nb[prev.mousePosition.r][prev.mousePosition.c] = {
-        ...nb[prev.mousePosition.r][prev.mousePosition.c],
-        piece: undefined,
-      };
-      nb[r][c] = { ...nb[r][c], piece: PieceType.Mouse };
-      const afterExit: GameData = {
-        ...prev,
-        board: nb,
-        mousePosition: { r, c },
-        mouseMovesLeft: 0,
-        phase: GamePhase.Playing,
-        currentPlayer: PieceType.Mouse,
-        message: `🧀 鼠通过快速通道传送到 (${r},${c})`,
-        tunnelExitChoices: [],
-      };
+      // Delegate to the shared rule kernel — single source of truth for tunnel
+      // exit landing (used by GamePage, TutorialPage and the future Search Simulator).
+      const afterExit = chooseTunnelExitRule(prev, r, c);
+      if (afterExit === prev) return prev; // invalid choice → no-op
       // 传送完毕后必须正式结束回合，把行动权交给猫，否则会出现“鼠回合 0 步”卡死。
       return endTurn(afterExit);
     });

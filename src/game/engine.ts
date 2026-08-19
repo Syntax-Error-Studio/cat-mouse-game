@@ -11,10 +11,27 @@ import {
   Difficulty as DifficultyConst,
   PieceType,
   DIRECTIONS,
-  makeTunnelCorners,
 } from './types';
 import type { GameConfig } from './config';
 import { DEFAULT_CONFIG, generateBoxPositions } from './config';
+// Single-source tunnel kernel: the engine's single-exit path reuses the same
+// chooseTunnelExit implementation as the UI, tutorial, and Search Simulator.
+// rules/tunnels.ts imports engine only as `import type` (erased at runtime), so
+// this is a one-way engine -> rules edge with no runtime cycle.
+import { chooseTunnelExit } from './rules/tunnels';
+// Shared tunnel-geometry kernel (Phase E1): corner resolution, blocked/usable
+// predicates, exit-set computation and mouse-hole gate cells live in ONE place
+// (rules/tunnelRules.ts) used by the runtime, the Search Simulator and the
+// evaluator. It imports engine only as `import type` (erased at runtime), so
+// this is a one-way engine -> rules edge with no runtime cycle.
+import {
+  getTunnelCorners,
+  isTunnelCornerCell,
+  isTunnelUsable,
+  getTunnelExits,
+  getMouseHoleGateCells,
+  getMouseHoleCells,
+} from './rules/tunnelRules';
 
 // --- Local types ---
 
@@ -26,7 +43,10 @@ type CellData = {
 
 type Board = CellData[][];
 
-type GameEngineState = {
+// Exported so the shared rule kernel (src/game/rules/*) and the test suite can
+// reference the exact engine state shape without copying it. Structure/semantics
+// are unchanged — this is purely a visibility change for the AI refactor.
+export type GameEngineState = {
   board: Board;
   config: GameConfig;
   gameMode: GameMode;
@@ -105,7 +125,7 @@ function makeCell(type: CellType = CellType.Empty, piece?: PieceType): CellData 
 }
 
 function isTunnelCorner(r: number, c: number, tunnelCorners: { r: number; c: number }[]): boolean {
-  return tunnelCorners.some(t => t.r === r && t.c === c);
+  return isTunnelCornerCell(r, c, tunnelCorners);
 }
 
 function isMouseHole(r: number, c: number, mouseHole: { r: number; c: number; size: number }): boolean {
@@ -113,17 +133,6 @@ function isMouseHole(r: number, c: number, mouseHole: { r: number; c: number; si
     r >= mouseHole.r && r < mouseHole.r + mouseHole.size &&
     c >= mouseHole.c && c < mouseHole.c + mouseHole.size
   );
-}
-
-/** Return all cells of the 2x2 mouse hole. */
-function getMouseHoleCells(config: GameConfig): Point[] {
-  const cells: Point[] = [];
-  for (let dr = 0; dr < config.mouseHole.size; dr++) {
-    for (let dc = 0; dc < config.mouseHole.size; dc++) {
-      cells.push({ r: config.mouseHole.r + dr, c: config.mouseHole.c + dc });
-    }
-  }
-  return cells;
 }
 
 function isInBounds(r: number, c: number, boardSize: number): boolean {
@@ -148,10 +157,6 @@ function hasButterAt(r: number, c: number, butterPositions: { r: number; c: numb
   return butterPositions.some(b => b.r === r && b.c === c);
 }
 
-function isTunnelBlocked(r: number, c: number, blockedTunnels: { r: number; c: number }[]): boolean {
-  return blockedTunnels.some(t => t.r === r && t.c === c);
-}
-
 function cloneBoard(board: Board): Board {
   return board.map(row => row.map(cell => ({ ...cell })));
 }
@@ -160,14 +165,10 @@ function cloneBoard(board: Board): Board {
  * 解析通道位置：优先使用自定义地图提供的 tunnelCorners；
  * 未提供时回落到棋盘四角（原默认行为，保证现有玩法不变）。
  * 空数组表示"无通道"。
+ * (Phase E1: re-export of the shared rules/tunnelRules kernel — the runtime,
+ *  Search Simulator and evaluator all resolve corners identically.)
  */
-function getTunnelCorners(config: GameConfig): { r: number; c: number; label: string }[] {
-  if (config.tunnelCorners && config.tunnelCorners.length > 0) {
-    return config.tunnelCorners.map(t => ({ r: t.r, c: t.c, label: t.label ?? '' }));
-  }
-  return makeTunnelCorners(config.boardSize);
-}
-
+export { getTunnelCorners };
 // --- Board generation ---
 
 /** Generate pile positions randomly, avoiding special cells */
@@ -292,7 +293,46 @@ function generateButterPositions(
   return positions;
 }
 
-/** Generate a single replacement butter (one-for-one consumption) */
+/**
+ * Enumerate EVERY legal butter spawn cell for a one-for-one regeneration.
+ *
+ * Pure / deterministic: NO Math.random. Returns the full candidate set so the
+ * Search Simulator can model butter regeneration as an honest CHANCE node
+ * (one outcome per candidate, equal weight) instead of a single hidden random
+ * draw. The real game samples ONE of these via `generateSingleButterPosition`.
+ */
+export function enumerateButterSpawns(
+  config: GameConfig,
+  board: Board,
+  tunnelCorners: { r: number; c: number }[],
+  mousePos: { r: number; c: number },
+  catPos: { r: number; c: number },
+  existingButters: { r: number; c: number }[],
+  trapPos: { r: number; c: number } | null,
+): { r: number; c: number }[] {
+  const valid: { r: number; c: number }[] = [];
+  for (let r = 1; r <= config.boardSize - 2; r++) {
+    for (let c = 1; c <= config.boardSize - 2; c++) {
+      if (isMouseHole(r, c, config.mouseHole)) continue;
+      if (isTunnelCorner(r, c, tunnelCorners)) continue;
+      if (hasBox(r, c, board)) continue;
+      if (hasPile(r, c, board)) continue;
+      if (board[r][c].type === CellType.Void) continue;
+      if (existingButters.some(b => b.r === r && b.c === c)) continue;
+      if (trapPos && r === trapPos.r && c === trapPos.c) continue;
+      // Non-initial: closer to hole is OK
+      const distToHole = Math.abs(r - config.mouseHole.r) + Math.abs(c - config.mouseHole.c);
+      if (distToHole < 3) continue;
+      // Keep away from pieces
+      if (Math.abs(r - mousePos.r) + Math.abs(c - mousePos.c) < 3) continue;
+      if (Math.abs(r - catPos.r) + Math.abs(c - catPos.c) < 3) continue;
+      valid.push({ r, c });
+    }
+  }
+  return valid;
+}
+
+/** Sample ONE legal butter spawn cell (real game uses this; random draw). */
 function generateSingleButterPosition(
   config: GameConfig,
   board: Board,
@@ -302,27 +342,11 @@ function generateSingleButterPosition(
   existingButters: { r: number; c: number }[],
   trapPos: { r: number; c: number } | null,
 ): { r: number; c: number } | null {
-  const rand = () => Math.floor(Math.random() * (config.boardSize - 2)) + 1;
-
-  for (let i = 0; i < 100; i++) {
-    const r = rand();
-    const c = rand();
-    if (isMouseHole(r, c, config.mouseHole)) continue;
-    if (isTunnelCorner(r, c, tunnelCorners)) continue;
-    if (hasBox(r, c, board)) continue;
-    if (hasPile(r, c, board)) continue;
-    if (board[r][c].type === CellType.Void) continue;
-    if (existingButters.some(b => b.r === r && b.c === c)) continue;
-    if (trapPos && r === trapPos.r && c === trapPos.c) continue;
-    // Non-initial: closer to hole is OK
-    const distToHole = Math.abs(r - config.mouseHole.r) + Math.abs(c - config.mouseHole.c);
-    if (distToHole < 3) continue;
-    // Keep away from pieces
-    if (Math.abs(r - mousePos.r) + Math.abs(c - mousePos.c) < 3) continue;
-    if (Math.abs(r - catPos.r) + Math.abs(c - catPos.c) < 3) continue;
-    return { r, c };
-  }
-  return null;
+  const valid = enumerateButterSpawns(
+    config, board, tunnelCorners, mousePos, catPos, existingButters, trapPos,
+  );
+  if (valid.length === 0) return null;
+  return valid[Math.floor(Math.random() * valid.length)];
 }
 
 /**
@@ -405,102 +429,91 @@ export function createInitialState(config: GameConfig = DEFAULT_CONFIG): GameEng
 
 // --- Mouse move ---
 
-export function mouseMove(state: GameEngineState, direction: Direction): GameEngineState {
-  state = sanitizeItemOverlaps(state);
-  if (state.phase !== GamePhase.Playing || state.currentPlayer !== PieceType.Mouse) return state;
-  if (state.mouseMovesLeft <= 0) return state;
+/**
+ * Result of the deterministic mouse-step core (see `applyMouseStepCore`).
+ * `moved` is false when the step is illegal/blocked (the returned `state` is
+ * the unchanged input, possibly with a "blocked" message). `pickedButter`
+ * means a butter was consumed and removed (but NOT yet regenerated — that is
+ * deferred to the caller). `tunnelPending` means the mouse entered a tunnel
+ * and is now awaiting an exit choice (phase === ChoosingTunnelExit).
+ * `trapFlipped` means stepping on the trap already handed the turn to the cat.
+ * `won` means the mouse reached the hole carrying butter.
+ */
+export interface MouseStepCore {
+  state: GameEngineState;
+  moved: boolean;
+  pickedButter: boolean;
+  trapFlipped: boolean;
+  tunnelPending: boolean;
+  won: boolean;
+}
+
+function noStep(state: GameEngineState, message?: string): MouseStepCore {
+  return {
+    state: message ? { ...state, message } : state,
+    moved: false,
+    pickedButter: false,
+    trapFlipped: false,
+    tunnelPending: false,
+    won: false,
+  };
+}
+
+/**
+ * Deterministic core of a mouse step.
+ *
+ * Performs the move, tunnel entry, trap, win, and butter PICKUP (removal) —
+ * but does NOT regenerate butter, does NOT call `endTurn`, and does NOT run
+ * the `sanitizeItemOverlaps` pass. This is the single source of truth for the
+ * mouse's transition. The real `mouseMove` and the Search Simulator's
+ * `mouseStep` both build on it, so they can never silently diverge.
+ */
+function applyMouseStepCore(state: GameEngineState, direction: Direction): MouseStepCore {
+  if (state.phase !== GamePhase.Playing || state.currentPlayer !== PieceType.Mouse) {
+    return noStep(state);
+  }
+  if (state.mouseMovesLeft <= 0) return noStep(state);
 
   const pos = state.mousePosition;
   const nr = pos.r + direction.dr;
   const nc = pos.c + direction.dc;
   const { config } = state;
-  const tunnelCorners = getTunnelCorners(config);
 
-  if (!isInBounds(nr, nc, config.boardSize)) return state;
+  if (!isInBounds(nr, nc, config.boardSize)) return noStep(state);
 
   const targetCell = state.board[nr][nc];
 
-  state = logEvent(state, `MOUSE_MOVE from=(${pos.r},${pos.c}) to=(${nr},${nc}) moves=${state.mouseMovesLeft} butter=${state.mouseHasButter} skill=${state.mouseSkillActive} target=${targetCell.type}`);
-
-  // Can't move into box
-  if (targetCell.type === CellType.Box) return state;
-
-  // Can't move into pile
-  if (isFixedObstacle(targetCell.type)) return state;
-
-  // Can't move into void (地图之外)
-  if (targetCell.type === CellType.Void) return state;
-
-  // Can't move into cat
-  if (state.catPosition.r === nr && state.catPosition.c === nc) return state;
+  // Can't move into box / pile / void / cat
+  if (targetCell.type === CellType.Box) return noStep(state);
+  if (isFixedObstacle(targetCell.type)) return noStep(state);
+  if (targetCell.type === CellType.Void) return noStep(state);
+  if (state.catPosition.r === nr && state.catPosition.c === nc) return noStep(state);
 
   // Tunnel: can only enter if NOT carrying butter
   if (targetCell.type === CellType.Tunnel) {
-    // Check if this tunnel entrance is blocked by a box
-    if (isTunnelBlocked(nr, nc, state.blockedTunnels)) {
-      state = logEvent(state, `MOUSE_TUNNEL_ATTEMPT at=(${pos.r},${pos.c}) butter=${state.mouseHasButter} skill=${state.mouseSkillActive} allowed=false reason=tunnel_blocked`);
-      return { ...state, message: '🚫 这个快速通道被箱子堵住了！' };
+    if (!isTunnelUsable(state, nr, nc)) {
+      return noStep(state, '🚫 这个快速通道被箱子堵住了！');
     }
     if (state.mouseHasButter) {
-      state = logEvent(state, `MOUSE_TUNNEL_ATTEMPT at=(${pos.r},${pos.c}) butter=${state.mouseHasButter} skill=${state.mouseSkillActive} allowed=false reason=carrying_butter`);
-      return { ...state, message: '🚫 携带黄油不能进传送通道！先放技能或放下黄油' };
+      return noStep(state, '🚫 携带黄油不能进传送通道！先放技能或放下黄油');
     }
-    state = logEvent(state, `MOUSE_TUNNEL_ATTEMPT at=(${pos.r},${pos.c}) butter=${state.mouseHasButter} skill=${state.mouseSkillActive} allowed=true`);
-    // Gather reachable exits (opposite corners not blocked by box)
-    const exits: { r: number; c: number; label: string }[] = [];
-    for (const corner of tunnelCorners) {
-      // Not the cell we just stepped onto
-      if (corner.r === nr && corner.c === nc) continue;
-      if (state.board[corner.r][corner.c].type === CellType.Box) continue;
-      // Skip blocked tunnels
-      if (isTunnelBlocked(corner.r, corner.c, state.blockedTunnels)) continue;
-      const ARROW_MAP: Record<string, string> = {
-        '左上': '↘', '右上': '↙', '左下': '↗', '右下': '↖',
-      };
-      const label = ARROW_MAP[corner.label] || corner.label;
-      exits.push({ r: corner.r, c: corner.c, label });
-    }
-
-    // Bug 2: Also offer "stay here" — teleport back to the current tunnel cell
-    const stayLabel = '↺ 原地';
-    exits.unshift({ r: nr, c: nc, label: stayLabel });
+    // Exit set computed by the shared tunnel-geometry kernel (same list the
+    // evaluator and Search Simulator see — never a third copy).
+    const exits = getTunnelExits(state, nr, nc);
+    // Bug 2: also offer "stay here" — teleport back to the current tunnel cell
+    exits.unshift({ r: nr, c: nc, label: '↺ 原地' });
 
     if (exits.length === 0) {
-      return { ...state, message: '🚫 所有传送出口都被箱子堵住了！' };
+      return noStep(state, '🚫 所有传送出口都被箱子堵住了！');
     }
 
-    if (exits.length === 1) {
-      // Only one exit — teleport immediately, then end mouse turn
-      const exit = exits[0];
-      const newBoard = cloneBoard(state.board);
-      newBoard[pos.r][pos.c] = { ...newBoard[pos.r][pos.c], piece: undefined };
-      newBoard[exit.r][exit.c] = { ...newBoard[exit.r][exit.c], piece: PieceType.Mouse };
-
-      state = logEvent(state, `MOUSE_TUNNEL_EXIT from=(${pos.r},${pos.c}) to=(${exit.r},${exit.c}) before player=${state.currentPlayer} moves=${state.mouseMovesLeft} skill=${state.mouseSkillActive}`);
-
-      const finalState: GameEngineState = {
-        ...state,
-        board: newBoard,
-        blockedTunnels: state.blockedTunnels,
-        mousePosition: exit,
-        mouseMovesLeft: 0,
-        phase: GamePhase.Playing,
-        currentPlayer: PieceType.Mouse,
-        message: `🧀 鼠通过快速通道传送到 (${exit.r},${exit.c})，轮到猫行动。`,
-        tunnelExitChoices: [],
-      };
-
-      state = logEvent(state, `MOUSE_TUNNEL_EXIT_AFTER player=${finalState.currentPlayer} moves=${finalState.mouseMovesLeft} skill=${finalState.mouseSkillActive}`);
-      return endTurn(finalState);
-    }
-
-    // Multiple exits — ask player to choose
-    // 先把鼠实际移动到通道入口，使 board / mousePosition 与玩家视觉一致，
-    // 避免外部选择出口时清错格子。
+    // Set up the ChoosingTunnelExit state on the entrance cell. The actual
+    // teleport is performed by the shared chooseTunnelExit kernel (used by the
+    // real game's single-exit path below, the UI, and the Search Simulator).
     const choiceBoard = cloneBoard(state.board);
     choiceBoard[pos.r][pos.c] = { ...choiceBoard[pos.r][pos.c], piece: undefined };
     choiceBoard[nr][nc] = { ...choiceBoard[nr][nc], piece: PieceType.Mouse };
-    return {
+    const choosingState: GameEngineState = {
       ...state,
       board: choiceBoard,
       blockedTunnels: state.blockedTunnels,
@@ -510,65 +523,55 @@ export function mouseMove(state: GameEngineState, direction: Direction): GameEng
       tunnelExitChoices: exits,
       message: '🚇 选择传送出口（点击格子或按键 1/2/3...）',
     };
+    return { state: choosingState, moved: true, pickedButter: false, trapFlipped: false, tunnelPending: true, won: false };
   }
 
-  // Trap
+  // Trap: stepping on the trap ends the mouse turn immediately (currentPlayer flips to Cat)
   if (state.trapPosition?.r === nr && state.trapPosition?.c === nc) {
-    state = logEvent(state, `MOUSE_TRAP_HIT at=(${nr},${nc}) movesBefore=${state.mouseMovesLeft} turn=cat`);
     const newBoard = cloneBoard(state.board);
     newBoard[pos.r][pos.c] = { ...newBoard[pos.r][pos.c], piece: undefined };
     newBoard[nr][nc] = { ...newBoard[nr][nc], piece: PieceType.Mouse };
-
-    return {
+    const trapState: GameEngineState = {
       ...state,
       board: newBoard,
       mousePosition: { r: nr, c: nc },
       trapPosition: null,
-      mouseMovesLeft: 0, // 踩陷阱直接损失所有剩余步数
+      mouseMovesLeft: 0, // 踩陷阱直接损失全部剩余步数
       phase: GamePhase.Playing,
       currentPlayer: PieceType.Cat,
       message: '💀 踩到捕鼠夹！损失全部剩余步数并结束本回合！',
     };
+    return { state: trapState, moved: true, pickedButter: false, trapFlipped: true, tunnelPending: false, won: false };
   }
 
   // Normal move
-  let s = state;
-  const newBoard = cloneBoard(s.board);
+  const newBoard = cloneBoard(state.board);
   newBoard[pos.r][pos.c] = { ...newBoard[pos.r][pos.c], piece: undefined };
   newBoard[nr][nc] = { ...newBoard[nr][nc], piece: PieceType.Mouse };
 
-  // Pick up butter
-  let newButterPositions = s.butterPositions;
-  let newHasButter = s.mouseHasButter;
-  let consumedButterIndex = -1;
-
+  // Pick up butter (removal only — regeneration is deferred to the caller)
+  let newButterPositions = state.butterPositions;
+  let newHasButter = state.mouseHasButter;
+  let pickedButter = false;
+  let pickedIndex = -1;
   for (let i = 0; i < newButterPositions.length; i++) {
     if (newButterPositions[i].r === nr && newButterPositions[i].c === nc) {
-      consumedButterIndex = i;
+      pickedButter = true;
+      pickedIndex = i;
       break;
     }
   }
-
-  if (consumedButterIndex >= 0) {
-    s = logEvent(s, `MOUSE_PICK_BUTTER at=(${nr},${nc}) before butter=${s.mouseHasButter} skill=${s.mouseSkillActive} moves=${s.mouseMovesLeft}`);
+  if (pickedButter) {
     newButterPositions = [...newButterPositions];
-    newButterPositions.splice(consumedButterIndex, 1);
+    newButterPositions.splice(pickedIndex, 1);
     newHasButter = true;
-    // One-for-one butter regeneration (C# prototype behavior)
-    const newButter = generateSingleButterPosition(
-      config, newBoard, tunnelCorners,
-      { r: nr, c: nc }, s.catPosition, newButterPositions,
-      s.trapPosition,
-    );
-    if (newButter) newButterPositions.push(newButter);
-    s = logEvent(s, `  after butter=${newHasButter} skill=${s.mouseSkillActive} movesLeft=${s.mouseMovesLeft} butterCount=${newButterPositions.length}`);
   }
 
-  // Check win: mouse hole + has butter (any skill state — skill+pick-up also counts)
+  // Win: mouse hole + has butter (any skill state — skill+pick-up also counts)
   if (targetCell.type === CellType.MouseHole && newHasButter) {
-    s = logEvent(s, `MOUSE_WIN at=(${nr},${nc}) movesLeft=${s.mouseMovesLeft}`);
-    return {
-      ...s, board: newBoard,
+    const winState: GameEngineState = {
+      ...state,
+      board: newBoard,
       mousePosition: { r: nr, c: nc },
       butterPositions: newButterPositions,
       mouseHasButter: false,
@@ -576,37 +579,88 @@ export function mouseMove(state: GameEngineState, direction: Direction): GameEng
       phase: GamePhase.MouseWins,
       message: '🎉 鼠获胜！成功把黄油带回鼠洞！',
     };
+    return { state: winState, moved: true, pickedButter, trapFlipped: false, tunnelPending: false, won: true };
   }
 
-  // If mouse walked into mouse hole without butter or with skill active, just a normal move
-
-  const movesLeft = s.mouseMovesLeft - 1;
-
-  let finalState: GameEngineState = {
-    ...s,
+  const movesLeft = state.mouseMovesLeft - 1;
+  const normalState: GameEngineState = {
+    ...state,
     board: newBoard,
     mousePosition: { r: nr, c: nc },
     butterPositions: newButterPositions,
     mouseHasButter: newHasButter,
     mouseMovesLeft: movesLeft,
-    message: movesLeft > 0
-      ? `鼠移动 — 剩余 ${movesLeft} 步`
-      : `鼠步数用完，轮到猫`,
+    message: movesLeft > 0 ? `鼠移动 — 剩余 ${movesLeft} 步` : `鼠步数用完，轮到猫`,
   };
-
-  // Auto-end turn when mouse runs out of moves (and not waiting for tunnel choice)
-  if (
-    finalState.phase === GamePhase.Playing &&
-    finalState.currentPlayer === PieceType.Mouse &&
-    finalState.mouseMovesLeft <= 0 &&
-    finalState.tunnelExitChoices.length === 0
-  ) {
-    return endTurn(finalState);
-  }
-
-  return finalState;
+  return { state: normalState, moved: true, pickedButter, trapFlipped: false, tunnelPending: false, won: false };
 }
 
+/**
+ * Finish a mouse step: auto-end the turn when the mouse runs out of moves.
+ * The trap case already flipped `currentPlayer` to Cat inside the core, so it
+ * is left untouched. Shared by the real `mouseMove` and the Search Simulator,
+ * so the turn-finalization rule is defined exactly once.
+ */
+function finalizeTurnAfterMouseStep(state: GameEngineState): GameEngineState {
+  if (state.phase !== GamePhase.Playing) return state; // MouseWins / ChoosingTunnelExit
+  if (state.currentPlayer === PieceType.Cat) return state; // trap flipped the actor
+  if (state.mouseMovesLeft <= 0 && state.tunnelExitChoices.length === 0) {
+    return endTurn(state);
+  }
+  return state;
+}
+
+export function mouseMove(state: GameEngineState, direction: Direction): GameEngineState {
+  state = sanitizeItemOverlaps(state);
+  const core = applyMouseStepCore(state, direction);
+  if (!core.moved) return core.state;
+  if (core.won) return core.state;
+
+  let s = core.state;
+
+  // Single-source tunnel: the shared kernel performs the teleport. The real
+  // game auto-resolves a single exit (no player choice) and then ends the turn.
+  if (core.tunnelPending) {
+    if (s.tunnelExitChoices.length === 1) {
+      const exit = s.tunnelExitChoices[0];
+      return endTurn(chooseTunnelExit(s, exit.r, exit.c));
+    }
+    return s; // multi-exit: wait for the player's choice
+  }
+
+  // One-for-one butter regeneration (C# prototype behavior) — real game draws
+  // ONE random spawn via Math.random. The Search Simulator defers this and
+  // enumerates ALL spawns as a chance node (see mouseStepDeterministic).
+  if (core.pickedButter) {
+    const tunnelCorners = getTunnelCorners(s.config);
+    const newButter = generateSingleButterPosition(
+      s.config, s.board, tunnelCorners, s.mousePosition, s.catPosition, s.butterPositions, s.trapPosition,
+    );
+    if (newButter) s = { ...s, butterPositions: [...s.butterPositions, newButter] };
+  }
+
+  return finalizeTurnAfterMouseStep(s);
+}
+
+/**
+ * Deterministic mouse step used by the Search Simulator.
+ *
+ * Identical to `mouseMove` EXCEPT butter regeneration is DEFERRED: the mouse
+ * still picks up the butter (removed from the board, `mouseHasButter = true`)
+ * but no new butter is spawned here. The simulator enumerates the possible
+ * spawns via `enumerateButterSpawns` and models them as a CHANCE node — so the
+ * search never calls Math.random and never sees a single hidden random draw.
+ * Turn finalization (trap / moves-exhausted) is identical to the real game.
+ */
+export function mouseStepDeterministic(state: GameEngineState, direction: Direction): GameEngineState {
+  const core = applyMouseStepCore(state, direction);
+  if (!core.moved) return core.state;
+  if (core.won) return core.state;
+  if (core.tunnelPending) return core.state; // single-exit teleport is handled by chooseTunnelExit in the search
+  return finalizeTurnAfterMouseStep(core.state);
+}
+
+// --- Mouse skill (spacebar) ---
 // --- Mouse skill (spacebar) ---
 
 export function mouseSkill(state: GameEngineState): GameEngineState {
@@ -1094,36 +1148,6 @@ function findNearestHolePathForHard(
   }
 
   return bestPath;
-}
-
-/** Get legal cells adjacent to mouse hole — safe ambush points for the cat. */
-function getMouseHoleGateCells(state: GameEngineState): Point[] {
-  const { config, board } = state;
-  const tunnelCorners = getTunnelCorners(config);
-  const holeCells = getMouseHoleCells(config);
-  const result: Point[] = [];
-  const seen = new Set<string>();
-
-  for (const hc of holeCells) {
-    for (const d of DIRECTIONS) {
-      const r = hc.r + d.dr;
-      const c = hc.c + d.dc;
-      if (!isInBounds(r, c, config.boardSize)) continue;
-      if (isMouseHole(r, c, config.mouseHole)) continue;
-      if (isTunnelCorner(r, c, tunnelCorners)) continue;
-      if (state.blockedTunnels.some(t => t.r === r && t.c === c)) continue;
-      if (board[r][c].type === CellType.Box) continue;
-      if (isFixedObstacle(board[r][c].type)) continue;
-      if (hasButterAt(r, c, state.butterPositions)) continue;
-
-      const k = `${r},${c}`;
-      if (seen.has(k)) continue;
-      seen.add(k);
-      result.push({ r, c });
-    }
-  }
-
-  return result;
 }
 
 /** Build a ranked list of mouse tactical plans. */
@@ -1864,7 +1888,10 @@ function catAiEasy(state: GameEngineState): GameEngineState | null {
 
 // --- MEDIUM AI ---
 
-function catAiMedium(state: GameEngineState): GameEngineState | null {
+// Preserved as a historical baseline for the AI refactor. No longer wired into the
+// difficulty switch (Medium now uses catAiHard); kept exported so it remains a
+// reference/regression baseline and is not flagged as unused.
+export function catAiMedium(state: GameEngineState): GameEngineState | null {
   const catPos = state.catPosition;
   const mousePos = state.mousePosition;
   const { config } = state;
@@ -3204,13 +3231,16 @@ export function catAiMove(state: GameEngineState): GameEngineState | null {
 
   const difficulty = state.config.difficulty || DifficultyConst.Easy;
 
-  if (difficulty === DifficultyConst.Hard) {
-    return catAiHard(state);
+  // Phase A difficulty remap (architectural AI refactor, see plan):
+  //   Easy   -> catAiEasy  (unchanged: basic chaser)
+  //   Medium -> catAiHard  (promote current Hard heuristic to Medium)
+  //   Hard   -> catAiHard  (TEMPORARY FALLBACK until Search AI lands in Phase F;
+  //                         catAiSearch will replace this branch when ready)
+  // Old catAiMedium is preserved as a baseline (exported, no longer called here).
+  if (difficulty === DifficultyConst.Easy) {
+    return catAiEasy(state);
   }
-  if (difficulty === DifficultyConst.Medium) {
-    return catAiMedium(state);
-  }
-  return catAiEasy(state);
+  return catAiHard(state);
 }
 
 export function getDirectionByKey(key: string): Direction | null {
