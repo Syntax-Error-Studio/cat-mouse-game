@@ -32,6 +32,14 @@ import {
   getMouseHoleGateCells,
   getMouseHoleCells,
 } from './rules/tunnelRules';
+// F1B-1: the ONLY ai runtime import in the engine is the tiny Hard turn-planner
+// strategy. The planner tree (expectiminimax / evaluation / simulator) imports
+// engine ONLY as `import type` (erased), so no engine -> searchHard ->
+// searchRules -> engine runtime cycle can form. `searchRules.ts` (the test-side
+// binding) is deliberately NEVER imported by engine.
+import { planHardCatTurn } from './ai/hardTurnPlanner';
+import type { RuleSet, SearchAction } from './ai/searchTypes';
+import { DEFAULT_SEARCH_CONFIG } from './ai/searchConfig';
 
 // --- Local types ---
 
@@ -80,6 +88,15 @@ function logAction(state: GameEngineState, msg: string): GameEngineState {
   const log = [...(state.catActionLog || []), msg];
   if (log.length > 150) log.shift();
   return { ...state, catActionLog: log };
+}
+
+/**
+ * F1B-4: explicit, non-silent record of a Search-to-legacy fallback.
+ * Returns the (unchanged) state with the message appended to the cat log so
+ * production/benchmark can audit that a fallback happened and why.
+ */
+function logFallback(state: GameEngineState, msg: string): GameEngineState {
+  return logAction({ ...state, message: msg }, msg);
 }
 
 /** Append a game event to the mouse event log (max 200 entries) */
@@ -3224,6 +3241,53 @@ function catAiHard(state: GameEngineState): GameEngineState | null {
 
 // --- Main entry point ---
 
+/**
+ * F1B-1/3: engine-side RuleSet factory — the depedency-injected adapter for
+ * the Search AI. It references (by closure) the REAL engine transition
+ * functions; NO rules are copied. This is what the Hard turn planner consumes
+ * (`planHardCatTurn(state, { rules: createEngineRuleSet(), ... })`).
+ *
+ * Kept OUTSIDE ai/searchRules.ts on purpose: engine must not import that
+ * module (its `defaultRuleSet` top-level reads engine functions at module
+ * init, which would form a runtime cycle once engine imports the planner).
+ */
+export function createEngineRuleSet(): RuleSet {
+  return {
+    mouseStep: mouseStepDeterministic,
+    catMove,
+    mouseSkill,
+    catPlaceTrap,
+    chooseTunnelExit,
+    endTurn,
+    enumerateButterSpawns: (state) => enumerateButterSpawns(
+      state.config,
+      state.board,
+      getTunnelCorners(state.config),
+      state.mousePosition,
+      state.catPosition,
+      state.butterPositions,
+      state.trapPosition,
+    ),
+    buildButterChance: (state) => {
+      const cells = enumerateButterSpawns(
+        state.config,
+        state.board,
+        getTunnelCorners(state.config),
+        state.mousePosition,
+        state.catPosition,
+        state.butterPositions,
+        state.trapPosition,
+      );
+      if (cells.length === 0) return null;
+      const weight = 1 / cells.length;
+      return cells.map((c) => ({
+        state: { ...state, butterPositions: [...state.butterPositions, c] },
+        weight,
+      }));
+    },
+  };
+}
+
 export function catAiMove(state: GameEngineState): GameEngineState | null {
   state = sanitizeItemOverlaps(state);
   if (state.currentPlayer !== PieceType.Cat || state.phase !== GamePhase.Playing) return null;
@@ -3231,14 +3295,23 @@ export function catAiMove(state: GameEngineState): GameEngineState | null {
 
   const difficulty = state.config.difficulty || DifficultyConst.Easy;
 
-  // Phase A difficulty remap (architectural AI refactor, see plan):
-  //   Easy   -> catAiEasy  (unchanged: basic chaser)
-  //   Medium -> catAiHard  (promote current Hard heuristic to Medium)
-  //   Hard   -> catAiHard  (TEMPORARY FALLBACK until Search AI lands in Phase F;
-  //                         catAiSearch will replace this branch when ready)
-  // Old catAiMedium is preserved as a baseline (exported, no longer called here).
+  // Difficulty routing (F1B-5): Easy → catAiEasy, Medium → legacy catAiHard,
+  // Hard → Expectiminimax Search planner (step 0 of the plan; the trajectory
+  // uses the full plan in one search — see computeCatAiTrajectory).
+  // Old catAiMedium is preserved as a baseline (exported, no longer called).
   if (difficulty === DifficultyConst.Easy) {
     return catAiEasy(state);
+  }
+  if (difficulty === DifficultyConst.Hard) {
+    const plan = planHardCatTurn(state, { rules: createEngineRuleSet(), timeBudgetMs: DEFAULT_SEARCH_CONFIG.timeBudgetMsPerCatTurn });
+    const first = plan.plan[0] ?? plan.bestAction;
+    if (first) {
+      if (first.type === 'catStep') return catMove(state, first.direction);
+      if (first.type === 'catPlaceTrap') return catPlaceTrap(state);
+      // chooseTunnel / mouseStep / mouseSkill are not valid cat actions.
+    }
+    // No plan / fallback: log explicitly, then legacy heuristic step.
+    logFallback(state, `SEARCH_FALLBACK reason=no_hard_plan (plan len ${plan.plan.length}, completedDepth ${plan.completedDepth})`);
   }
   return catAiHard(state);
 }
@@ -3313,6 +3386,27 @@ export function computeCatAiTrajectory(state: GameEngineState): CatAiStep[] | nu
     current = { ...current, catMovesLeft: current.config.catBaseMoves };
   }
 
+  // F1B-3/4: Hard difficulty plans ONE main search for the WHOLE turn, then
+  // executes the principal-line plan step-by-step (with per-action validation;
+  // invalid/empty plan -> explicit SEARCH_FALLBACK to the legacy heuristic).
+  const isHardTurn = (current.config.difficulty || DifficultyConst.Easy) === DifficultyConst.Hard;
+  let hardPlanIdx = 0;
+  let hardPlanActions: SearchAction[] | null = null;
+  if (isHardTurn) {
+    const planned = planHardCatTurn(current, {
+      rules: createEngineRuleSet(),
+      timeBudgetMs: DEFAULT_SEARCH_CONFIG.timeBudgetMsPerCatTurn,
+    });
+    if (planned.hasSolution && planned.plan.length > 0) {
+      hardPlanActions = planned.plan;
+    } else {
+      current = logFallback(
+        current,
+        `SEARCH_FALLBACK reason=no_hard_plan completedDepth=${planned.completedDepth} attemptedDepth=${planned.attemptedDepth}`,
+      );
+    }
+  }
+
   let stuckCount = 0; // Track consecutive no-move iterations to prevent infinite loops
   const maxStuck = 5;
   let safety = 0;
@@ -3326,7 +3420,39 @@ export function computeCatAiTrajectory(state: GameEngineState): CatAiStep[] | nu
     }
     const from = { ...current.catPosition };
     const catMovesLeftBefore = current.catMovesLeft;
-    const nextState = catAiMove(current);
+
+    // Plan-driven step (Hard) OR legacy single step (Easy/Medium/Hard-fallback).
+    let nextState: GameEngineState | null;
+    if (hardPlanActions && hardPlanIdx < hardPlanActions.length) {
+      const action = hardPlanActions[hardPlanIdx++];
+      const applied = applyPlanCatAction(current, action);
+      if (!applied.valid) {
+        // F1B-4: plan/state mismatch → explicit, non-silent fallback: the rest
+        // of this turn uses the legacy heuristic (no deadlock).
+        current = logFallback(
+          current,
+          `SEARCH_FALLBACK reason=plan_action_invalid action=${action.type}`,
+        );
+        hardPlanActions = null; // fall back to legacy for the rest of the turn
+        nextState = catAiMove(current);
+      } else {
+        nextState = applied.state;
+      }
+    } else if (hardPlanActions && hardPlanIdx >= hardPlanActions.length) {
+      // F1B-4: the plan ran out BEFORE the cat turn ended (the plan was shorter
+      // than the remaining cat moves, e.g. a truncated principal line). This is
+      // an EXPLICIT, non-silent fallback: log it, then let the legacy AI finish
+      // the rest of the turn without deadlock. Behavior is identical to the
+      // other fallback paths — only the reason differs (audit requirement).
+      current = logFallback(
+        current,
+        `SEARCH_FALLBACK reason=plan_exhausted plan_len=${hardPlanActions.length} remaining_moves=${current.catMovesLeft}`,
+      );
+      hardPlanActions = null; // fall back to legacy for the rest of the turn
+      nextState = catAiMove(current);
+    } else {
+      nextState = catAiMove(current);
+    }
 
     // AI returned null — cat is truly stuck (no valid moves at all).
     // Force a move toward the mouse using BFS as last resort.
@@ -3444,6 +3570,45 @@ export function computeCatAiTrajectory(state: GameEngineState): CatAiStep[] | nu
   }
 
   return steps;
+}
+
+/**
+ * F1B-4: apply ONE planned cat action through the REAL engine transition
+ * (catMove / catPlaceTrap), validating it against the CURRENT state.
+ *
+ * Returns `{ state, valid }`:
+ *   - catStep      → engine `catMove`; valid iff the move really produced a
+ *                    game-affecting change (legal direction, no-op rejected).
+ *   - catPlaceTrap → engine `catPlaceTrap`; valid iff the trap was really
+ *                    placed (trap added / count decremented).
+ *   - any other action type → invalid (not a cat action; plan corruption).
+ *
+ * This is the "before state consistent with plan expectation" check: applying
+ * the plan action through the REAL engine on the CURRENT actual state either
+ * succeeds (state matched the plan) or is a no-op (mismatch → fallback).
+ */
+function applyPlanCatAction(
+  state: GameEngineState,
+  action: SearchAction,
+): { state: GameEngineState; valid: boolean } {
+  if (action.type === 'catStep') {
+    const next = catMove(state, action.direction);
+    const changed =
+      next.catPosition.r !== state.catPosition.r ||
+      next.catPosition.c !== state.catPosition.c ||
+      next.catMovesLeft < state.catMovesLeft ||
+      next.phase !== state.phase;
+    return { state: next, valid: changed };
+  }
+  if (action.type === 'catPlaceTrap') {
+    const next = catPlaceTrap(state);
+    const placed =
+      next.trapPosition !== null ||
+      next.catTrapsRemaining < state.catTrapsRemaining;
+    return { state: next, valid: placed };
+  }
+  // mouseStep / mouseSkill / chooseTunnel are NOT legal cat actions.
+  return { state, valid: false };
 }
 
 /**

@@ -5,7 +5,6 @@ import { generateLegalSearchActions } from './legalActions';
 import { simulateSearchAction } from './simulator';
 import { stateKey, TranspositionTable } from './transposition';
 import type { TTEntry } from './transposition';
-import { defaultRuleSet } from './searchRules';
 
 /**
  * ============================================================================
@@ -440,6 +439,23 @@ export interface SearchContext {
    * must NOT change any value / mate / bestAction.
    */
   useMoveOrdering: boolean;
+  /**
+   * F1B-2: when true, the search records the best action chosen at EVERY
+   * decided node (keyed by stateKey) into `planBranches`. This is a
+   * per-search PRINCIPAL-LINE decision log — populated by the actual search
+   * decisions, NOT the TT (the TT remains a disposable performance cache).
+   * After the search completes, `buildCatTurnPlan` walks the log from the
+   * root along the still-Cat principal line to obtain the current cat turn's
+   * plan. Off by default so Phase C/D0–D4 behavior is byte-identical.
+   */
+  capturePlan?: boolean;
+  /**
+   * F1B-2: transient decision log (stateKey → best action chosen by the
+   * current search). Lives on the context so it is shared across iterative
+   * deepening iterations within ONE call, but it is a per-call record — never
+   * persisted, never used to change values.
+   */
+  planBranches: Map<string, SearchAction>;
 }
 
 /** Standard return shape for the root search entry point. */
@@ -455,6 +471,10 @@ export interface SearchBestActionResult {
    * fully-resolved answer from a truncated one without re-deriving it. Read-only.
    */
   completed: boolean;
+  /** F1B-2: principal-line plan for the CURRENT cat turn, derived from this
+   *  search's own decisions (stateKey → bestAction log), walking while the
+   *  actor stays Cat. Empty when plan capture is off or no Cat actions remain. */
+  catTurnPlan: SearchAction[];
   diagnostics: SearchDiagnostics;
 }
 
@@ -502,7 +522,7 @@ export interface InternalSearchResult {
 // ---------------------------------------------------------------------------
 
 export function createSearchContext(
-  rules: RuleSet = defaultRuleSet,
+  rules: RuleSet,
   maxNodes = 200_000,
   useTranspositionTable = false,
   useAlphaBetaPruning = false,
@@ -515,6 +535,7 @@ export function createSearchContext(
     useTT: useTranspositionTable,
     useAlphaBeta: useAlphaBetaPruning,
     useMoveOrdering,
+    planBranches: new Map<string, SearchAction>(),
     diagnostics: {
       nodes: 0,
       chanceNodes: 0,
@@ -958,6 +979,13 @@ function searchActions(
     completed: allCompleted,
     cacheable: allCompleted && allCacheable,
   };
+  // F1B-2: record the decided best action for THIS node (state-keyed) when
+  // plan capture is on. This is the actual search's principal-line decision —
+  // the walker later follows exactly these state→action edges from the root
+  // while the actor remains Cat. NOT a TT write; purely a per-search log.
+  if (ctx.capturePlan && bestAction !== null) {
+    ctx.planBranches.set(stateKey(state), bestAction);
+  }
   return { result, bestAction };
 }
 
@@ -1226,6 +1254,50 @@ function runFixedSearch(
   return { result, bestAction };
 }
 
+/**
+ * F1B-2: walk the per-search decision log (`ctx.planBranches`) from `state`
+ * along the principal line while the actor is still the CAT, producing the
+ * current cat turn's plan.
+ *
+ * Semantics:
+ *   - follows `stateKey(state) → bestAction` edges recorded by the ACTUAL
+ *     search (never the TT);
+ *   - each step is re-simulated through the REAL rules to advance to the
+ *     successor state (legality is re-confirmed at execution time by the
+ *     trajectory, not assumed here);
+ *   - stops immediately when the successor switches to Mouse, reaches a
+ *     terminal, or when the log has no entry for the next state;
+ *   - zero-cost actions (catPlaceTrap, push via catStep, trap reclaim via
+ *     catStep) naturally keep the same cat turn alive, so
+ *     `[catPlaceTrap, catStep, …]` is a valid plan.
+ */
+export function buildCatTurnPlan(
+  state: GameEngineState,
+  ctx: SearchContext,
+  maxLength = 8,
+): SearchAction[] {
+  const plan: SearchAction[] = [];
+  let cur = state;
+  // Prevent pathological cycles in the log walk (safety valve only):
+  const seen = new Set<string>();
+  while (plan.length < maxLength) {
+    if (cur.phase !== GamePhase.Playing || cur.currentPlayer !== PieceType.Cat) break;
+    const key = stateKey(cur);
+    if (seen.has(key)) break;
+    seen.add(key);
+    const action = ctx.planBranches.get(key);
+    if (!action) break;
+    plan.push(action);
+    const trans = simulateSearchAction(cur, action, ctx.rules);
+    if (trans.kind === 'chance') break; // cat actions are deterministic; safety
+    const next = trans.state;
+    // Stop when the cat's turn hands off to the mouse, or the game ends.
+    if (next.phase !== GamePhase.Playing || next.currentPlayer !== PieceType.Cat) break;
+    cur = next;
+  }
+  return plan;
+}
+
 export function searchBestAction(
   state: GameEngineState,
   depthTurns: number,
@@ -1234,8 +1306,11 @@ export function searchBestAction(
   resetDiagnostics(ctx.diagnostics);
 
   const nodeCount = { count: 0 };
+  // F1B-2: record plan decisions for this fixed-depth search.
+  if (ctx.capturePlan) ctx.planBranches = new Map<string, SearchAction>();
   const { result, bestAction } = runFixedSearch(state, depthTurns, ctx, nodeCount);
-  return { action: bestAction, value: result.value, mate: result.mate, completed: result.completed, diagnostics: ctx.diagnostics };
+  const catTurnPlan = ctx.capturePlan ? buildCatTurnPlan(state, ctx) : [];
+  return { action: bestAction, value: result.value, mate: result.mate, completed: result.completed, diagnostics: ctx.diagnostics, catTurnPlan };
 }
 
 // ===========================================================================
@@ -1346,6 +1421,9 @@ export interface IterativeSearchResult {
    *  completed. The returned answer still comes from the deepest COMPLETED
    *  depth (or an explicit incomplete/fallback state if none completed). */
   deadlineExceeded: boolean;
+  /** F1B-2: principal-line plan for the current cat turn, from the deepest
+   *  COMPLETED iteration's actual search decisions. Empty when none completed. */
+  catTurnPlan: SearchAction[];
   diagnostics: IterativeSearchDiagnostics;
   /** One entry per attempted depth (oldest first). */
   iterations: IterationDiagnostic[];
@@ -1376,11 +1454,15 @@ export function searchBestActionIterative(
   // depth — a mid-depth abort is possible, not just an inter-iteration one).
   if (opts.deadlineMs !== undefined) ctx.deadlineMs = opts.deadlineMs;
   if (opts.now) ctx.now = opts.now;
+  // F1B-2: capture the principal-line decisions so the returned catTurnPlan
+  // comes from THIS search (never the TT).
+  ctx.capturePlan = true;
 
   // ONE shared node counter for the whole deepening loop → the global budget.
   const nodeCount = { count: 0 };
   const iterations: IterationDiagnostic[] = [];
   let lastCompleted: { value: number; mate: MateSide; bestAction: SearchAction | null } | null = null;
+  let lastCatTurnPlan: SearchAction[] = [];
   let completedDepth = 0;
   let attemptedDepth = 0;
   let budgetExhausted = false;
@@ -1389,6 +1471,10 @@ export function searchBestActionIterative(
   for (let d = 1; d <= opts.maxDepthTurns; d++) {
     attemptedDepth = d;
     const nodesBefore = ctx.diagnostics.nodes;
+    // F1B-2: a fresh decision log per iteration. Completed iterations snapshot
+    // their principal line; an incomplete (truncated) iteration is discarded,
+    // so its partial writes never leak into the final plan.
+    ctx.planBranches = new Map<string, SearchAction>();
     const { result, bestAction } = runFixedSearch(state, d, ctx, nodeCount);
     const nodesUsed = ctx.diagnostics.nodes - nodesBefore;
     iterations.push({
@@ -1404,13 +1490,17 @@ export function searchBestActionIterative(
       // completed result — they are all mathematically full searches.
       lastCompleted = { value: result.value, mate: result.mate, bestAction };
       completedDepth = d;
+      // F1B-2: a COMPLETED iteration owns its full principal line; keep it.
+      lastCatTurnPlan = buildCatTurnPlan(state, ctx);
     } else {
-      // Incomplete (node-budget OR wall-clock truncated). NEVER use it; stop
-      // deepening. Distinguish the abort cause so callers can tell a deadline
-      // timeout from a node-budget exhaustion (F1A-2).
+      // Incomplete (node-budget OR wall-clock truncated). NEVER use the
+      // truncated iteration's own result; the answer (and the plan) keeps
+      // coming from the deepest COMPLETED iteration (F1B-2/F1B-3). Distinguish
+      // the abort cause so callers can tell a deadline timeout from a
+      // node-budget exhaustion (F1A-2).
       if (ctx.diagnostics.deadlineCutoffs > 0) deadlineExceeded = true;
       else budgetExhausted = true;
-      break;
+      break; // do NOT clear lastCatTurnPlan (it holds the completed depth's plan)
     }
   }
 
@@ -1428,6 +1518,7 @@ export function searchBestActionIterative(
     completed: completedDepth >= 1,
     budgetExhausted,
     deadlineExceeded,
+    catTurnPlan: lastCatTurnPlan,
     diagnostics: {
       completedDepth,
       attemptedDepth,
