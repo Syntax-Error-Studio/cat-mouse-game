@@ -8,6 +8,7 @@ import { makeTunnelCorners } from '../game/types';
 import { useMemo, useState } from 'react';
 import type { HardSearchDebug } from '../game/ai/hardTurnPlanner';
 import type { HardSearchHistoryEntry } from '../game/ai/hardHistory';
+import { hardHistorySnapshotJson } from '../game/ai/hardHistory';
 import type { SearchAction } from '../game/ai/searchTypes';
 import type { Direction } from '../game/types';
 
@@ -106,6 +107,7 @@ function formatHardSearchHistory(h: HardSearchHistoryEntry[]): string {
       `ROOT_VALUE=${e.production.rootValue} mate=${e.production.mate ?? 'null'}`,
       `PLAN: ${e.production.plan.map(actionLabel).join(' → ') || '(empty)'}`,
       `EXEC: endState=${e.execution?.endStateKey ?? 'null'} matched=${e.execution?.matchedPlan ?? 'n/a'}`,
+      `SNAPSHOT_JSON=${hardHistorySnapshotJson(e)}`,
     );
   }
   return lines.join('\n');

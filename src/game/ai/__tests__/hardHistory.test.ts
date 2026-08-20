@@ -10,6 +10,7 @@ import {
   pushHardHistory,
   makeHardHistoryEntry,
   snapshotsEqual,
+  hardHistorySnapshotJson,
   HARD_HISTORY_LIMIT,
   type HardRootSnapshot,
   type HardSearchHistoryEntry,
@@ -196,6 +197,35 @@ test('G0.2: snapshotsEqual deep-compares exactly', () => {
   expect(snapshotsEqual(a, b)).toBe(true);
   const c = captureHardRoot({ ...root, catPosition: { r: 2, c: 2 } });
   expect(snapshotsEqual(a, c)).toBe(false);
+});
+
+test('G0.2: SNAPSHOT_JSON export → parse → restore → exact stateKey round-trip', () => {
+  const root = richRoot();
+  const entry = makeHardHistoryEntry(root, 4, dummyProd());
+
+  // The DebugInfo "one-click copy" produces `SNAPSHOT_JSON=<...>` from the
+  // LIVE captured snapshot (never re-derived from stateKey).
+  const exported = hardHistorySnapshotJson(entry);
+
+  // The export is a complete, machine-readable JSON snapshot (no board elided).
+  const parsed = JSON.parse(exported) as HardRootSnapshot;
+  expect(Array.isArray(parsed.board)).toBe(true);
+  expect(parsed.board.length).toBe(root.board.length);
+  expect(parsed.config.boardSize).toBe(root.config.boardSize);
+  expect(parsed.mousePosition).toEqual(root.mousePosition);
+  expect(parsed.catTrapsRemaining).toBe(root.catTrapsRemaining);
+  expect(parsed.butterPositions).toEqual(root.butterPositions);
+  expect(parsed.tunnelExitChoices).toEqual(root.tunnelExitChoices);
+
+  // Parse → restore → round-trip: stateKey + game-affecting equality must
+  // match the captured originals exactly.
+  const restored = restoreHardRoot(parsed);
+  expect(stateKey(restored)).toBe(entry.stateKey);
+  expect(stateKey(restored)).toBe(stateKey(root));
+  expect(gameAffectingEqual(restored, root)).toBe(true);
+
+  // And the export is truly the captured snapshot (deep), not a re-derivation.
+  expect(JSON.parse(exported)).toEqual(entry.root);
 });
 
 /** trims false TS-unsafe usage in this file */

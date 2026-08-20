@@ -171,3 +171,19 @@ export function makeHardHistoryEntry(
     execution: { plan: prod.plan, endStateKey: null, matchedPlan: false },
   };
 }
+
+/**
+ * Machine-readable EXACT snapshot export for one history entry.
+ *
+ * Serializes the DEEP-COPIED game-affecting snapshot (all fields
+ * `restoreHardRoot` needs: board/cells, positions, moves, butter, trap,
+ * catTrapsRemaining, mouseHasButter, mouseSkillActive, blockedTunnels,
+ * tunnelExitChoices, currentPlayer/phase, config). The output is a single
+ * JSON object — NOT derived from `stateKey` — and can be JSON.parsed and fed
+ * to `restoreHardRoot` for an exact stateKey round-trip (G0.2).
+ */
+export function hardHistorySnapshotJson(e: HardSearchHistoryEntry): string {
+  // The snapshot stored in `e.root` is already a deep copy (captureHardRoot);
+  // re-serialize from it directly so no live reference leaks into the text.
+  return JSON.stringify(e.root);
+}
