@@ -39,6 +39,9 @@ import {
 // binding) is deliberately NEVER imported by engine.
 import { planHardCatTurn } from './ai/hardTurnPlanner';
 import type { HardSearchDebug } from './ai/hardTurnPlanner';
+import type { HardSearchHistoryEntry } from './ai/hardHistory';
+import { pushHardHistory, makeHardHistoryEntry } from './ai/hardHistory';
+import { stateKey } from './ai/transposition';
 import type { RuleSet, SearchAction } from './ai/searchTypes';
 import { DEFAULT_SEARCH_CONFIG } from './ai/searchConfig';
 
@@ -84,6 +87,10 @@ export type GameEngineState = {
    *  (rendered by the UI debug panel with a copy button). Debug-only; EXCLUDED
    *  from gameAffectingEqual/stateKey so it never affects search or TT. */
   lastHardSearch: HardSearchDebug | null;
+  /** G0.2: bounded debug history of recent Hard cat-turn roots (exact deep
+   *  snapshots) for offline point-of-no-return forensics. Debug-only; EXCLUDED
+   *  from gameAffectingEqual/stateKey/TT — never affects AI decisions. */
+  hardSearchHistory: HardSearchHistoryEntry[];
 };
 
 // --- Helpers ---
@@ -447,6 +454,7 @@ export function createInitialState(config: GameConfig = DEFAULT_CONFIG): GameEng
     catActionLog: [],
     gameEventLog: [],
     lastHardSearch: null,
+    hardSearchHistory: [],
   };
 }
 
@@ -3399,17 +3407,36 @@ export function computeCatAiTrajectory(state: GameEngineState): CatAiStep[] | nu
   const isHardTurn = (current.config.difficulty || DifficultyConst.Easy) === DifficultyConst.Hard;
   let hardPlanIdx = 0;
   let hardPlanActions: SearchAction[] | null = null;
+  let pendingHistoryEntry: HardSearchHistoryEntry | null = null;
+  // G0.2: 1-based turn index kept on the state (debug only).
+  const hardTurnNo = (current.hardSearchHistory?.length ?? 0) + 1;
   if (isHardTurn) {
     const planned = planHardCatTurn(current, {
       rules: createEngineRuleSet(),
       timeBudgetMs: DEFAULT_SEARCH_CONFIG.timeBudgetMsPerCatTurn,
     });
     // F1B (HARD_SEARCH debug): persist the debug record onto the state so the
-    // UI debug panel can render it (with copy). Debug-only field — excluded
-    // from gameAffectingEqual / stateKey, so it never affects search or TT.
+    // UI debug panel can render it (with copy). Debug-only — excluded from
+    // gameAffectingEqual / stateKey.
     current = { ...current, lastHardSearch: planned.debug };
     if (planned.hasSolution && planned.plan.length > 0) {
       hardPlanActions = planned.plan;
+      // G0.2: record the EXACT root snapshot + production diagnostics into
+      // the bounded history (deep copy; never affects the search). Defensive:
+      // only when a real iterative-search result exists (tests may inject a
+      // minimal HardTurnPlan without the search object).
+      if (planned.search) {
+        pendingHistoryEntry = makeHardHistoryEntry(current, hardTurnNo, {
+          completedDepth: planned.completedDepth,
+          attemptedDepth: planned.attemptedDepth,
+          nodes: planned.search.diagnostics ? planned.search.diagnostics.totalNodes : 0,
+          elapsedMs: planned.elapsedMs ?? 0,
+          rootValue: planned.search.value,
+          mate: planned.search.mate,
+          plan: planned.plan,
+          rootValues: planned.search.rootActions ?? [],
+        });
+      }
     } else {
       current = logFallback(
         current,
@@ -3578,6 +3605,28 @@ export function computeCatAiTrajectory(state: GameEngineState): CatAiStep[] | nu
 
     steps.push({ state: nextState, from, to, detail });
     current = nextState;
+  }
+
+  // G0.2: fill the execution link of the pending history entry with the actual
+  // end-of-cat-turn stateKey (post-plan, before the separate endTurn), and
+  // attach the bounded history onto the returned final state.
+  if (pendingHistoryEntry) {
+    const finalExecState = steps.length > 0 ? steps[steps.length - 1].state : current;
+    pendingHistoryEntry.execution = {
+      plan: pendingHistoryEntry.production.plan,
+      endStateKey: stateKey(finalExecState),
+      matchedPlan: !steps.some((st) =>
+        st.state.catActionLog.some((m) => m.includes('SEARCH_FALLBACK')),
+      ),
+    };
+    const history = pushHardHistory(
+      (current.hardSearchHistory ?? []).filter((e) => e.turn !== pendingHistoryEntry!.turn),
+      pendingHistoryEntry,
+    );
+    current = { ...current, hardSearchHistory: history };
+    if (steps.length > 0) {
+      steps[steps.length - 1] = { ...steps[steps.length - 1], state: { ...steps[steps.length - 1].state, hardSearchHistory: history } };
+    }
   }
 
   return steps;

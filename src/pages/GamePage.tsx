@@ -394,6 +394,7 @@ export function GamePage() {
           gameEventLog={debugState.gameEventLog}
           difficulty={debugState.config.difficulty}
           hardSearch={debugState.lastHardSearch}
+          hardSearchHistory={debugState.hardSearchHistory}
         />
       )}
     </div>

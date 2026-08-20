@@ -7,6 +7,7 @@ import { CellType, GamePhase, PieceType, GameMode } from '../game/types';
 import { makeTunnelCorners } from '../game/types';
 import { useMemo, useState } from 'react';
 import type { HardSearchDebug } from '../game/ai/hardTurnPlanner';
+import type { HardSearchHistoryEntry } from '../game/ai/hardHistory';
 import type { SearchAction } from '../game/ai/searchTypes';
 import type { Direction } from '../game/types';
 
@@ -34,6 +35,8 @@ interface DebugInfoProps {
   difficulty: string;
   /** HARD_SEARCH debug record produced by the Search AI's last Hard turn. */
   hardSearch: HardSearchDebug | null | undefined;
+  /** G0.2: bounded history of recent Hard roots for offline forensics. */
+  hardSearchHistory: HardSearchHistoryEntry[] | null | undefined;
 }
 
 /** One-line label for a SearchAction (e.g. "catStep →", "catPlaceTrap"). */
@@ -84,12 +87,36 @@ function formatHardSearch(h: HardSearchDebug): string {
   ].join('\n');
 }
 
+/** Format the full HARD_SEARCH_HISTORY block (copyable, bounded 20). */
+function formatHardSearchHistory(h: HardSearchHistoryEntry[]): string {
+  if (!h || h.length === 0) return '[HARD_SEARCH_HISTORY] (empty)';
+  const lines: string[] = ['[HARD_SEARCH_HISTORY]'];
+  for (const e of h) {
+    lines.push(
+      '',
+      `Turn #${e.turn}`,
+      `STATE_KEY=${e.stateKey}`,
+      `cat=(${e.root.catPosition.r},${e.root.catPosition.c})`,
+      `mouse=(${e.root.mousePosition.r},${e.root.mousePosition.c})`,
+      `butter=${e.root.mouseHasButter} skill=${e.root.mouseSkillActive}`,
+      `catMoves=${e.root.catMovesLeft} mouseMoves=${e.root.mouseMovesLeft}`,
+      `trap=${e.root.trapPosition ? `(${e.root.trapPosition.r},${e.root.trapPosition.c})` : 'none'} remain=${e.root.catTrapsRemaining}`,
+      `tunnelExitChoices=${e.root.tunnelExitChoices.length}`,
+      `SEARCH: cDepth=${e.production.completedDepth} aDepth=${e.production.attemptedDepth} nodes=${e.production.nodes} elapsedMs=${e.production.elapsedMs.toFixed(1)}`,
+      `ROOT_VALUE=${e.production.rootValue} mate=${e.production.mate ?? 'null'}`,
+      `PLAN: ${e.production.plan.map(actionLabel).join(' → ') || '(empty)'}`,
+      `EXEC: endState=${e.execution?.endStateKey ?? 'null'} matched=${e.execution?.matchedPlan ?? 'n/a'}`,
+    );
+  }
+  return lines.join('\n');
+}
+
 export const DebugInfo: React.FC<DebugInfoProps> = ({
   board, catPosition, mousePosition, butterPositions,
   mouseHasButter, mouseSkillActive, catMovesLeft, mouseMovesLeft,
   trapPosition, catTrapsRemaining, currentPlayer, phase, message,
   gameMode, blockedTunnels, tunnelExitChoices, catActionLog, gameEventLog, difficulty,
-  hardSearch,
+  hardSearch, hardSearchHistory,
 }) => {
   const [copied, setCopied] = useState(false);
 
@@ -120,7 +147,8 @@ export const DebugInfo: React.FC<DebugInfoProps> = ({
     `msg="${message}"\n\n[BOARD]\n${boardDump}\n\n[AI_LOG]\n` +
     (catActionLog.length ? catActionLog.join('\n') : '(empty)') +
     '\n\n[GAME_EVENT_LOG]\n' +
-    (gameEventLog.length ? gameEventLog.join('\n') : '(empty)');
+    (gameEventLog.length ? gameEventLog.join('\n') : '(empty)') +
+    '\n\n' + formatHardSearchHistory(hardSearchHistory ?? []);
 
   const copyAll = () => {
     if (navigator.clipboard?.writeText) {
