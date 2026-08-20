@@ -456,6 +456,14 @@ export interface SearchContext {
    * persisted, never used to change values.
    */
   planBranches: Map<string, SearchAction>;
+  /**
+   * F1B (HARD_SEARCH debug): when `capturePlan` is on, the ROOT action values
+   * of the deepest COMPLETED iteration are recorded here during the search
+   * (each root candidate's stepped value + mate), with NO extra search cost —
+   * the values are already computed by the root MAX loop. Used by the
+   * production Hard debug panel (TOP ROOT ACTIONS). Reset per search call.
+   */
+  rootValues: { action: SearchAction; value: number; mate: MateSide }[];
 }
 
 /** Standard return shape for the root search entry point. */
@@ -536,6 +544,7 @@ export function createSearchContext(
     useAlphaBeta: useAlphaBetaPruning,
     useMoveOrdering,
     planBranches: new Map<string, SearchAction>(),
+    rootValues: [],
     diagnostics: {
       nodes: 0,
       chanceNodes: 0,
@@ -911,6 +920,12 @@ function searchActions(
       cacheable: childRes.cacheable,
       bound: childRes.bound,
     };
+    // F1B (HARD_SEARCH debug): at the ROOT of a capture-enabled search, record
+    // each root action's stepped value + mate for the TOP ROOT ACTIONS panel.
+    // This reuses values the search already computed — no extra search cost.
+    if (ctx.capturePlan && ply === 0) {
+      ctx.rootValues.push({ action: pa.action, value: candidate.value, mate: candidate.mate });
+    }
     // Selection: strict improvement, OR an exact tie broken by ORIGINAL legal
     // order. This guarantees ordering ON/OFF pick the SAME bestAction on ties.
     if (best === null) {
@@ -1307,7 +1322,10 @@ export function searchBestAction(
 
   const nodeCount = { count: 0 };
   // F1B-2: record plan decisions for this fixed-depth search.
-  if (ctx.capturePlan) ctx.planBranches = new Map<string, SearchAction>();
+  if (ctx.capturePlan) {
+    ctx.planBranches = new Map<string, SearchAction>();
+    ctx.rootValues = [];
+  }
   const { result, bestAction } = runFixedSearch(state, depthTurns, ctx, nodeCount);
   const catTurnPlan = ctx.capturePlan ? buildCatTurnPlan(state, ctx) : [];
   return { action: bestAction, value: result.value, mate: result.mate, completed: result.completed, diagnostics: ctx.diagnostics, catTurnPlan };
@@ -1424,6 +1442,9 @@ export interface IterativeSearchResult {
   /** F1B-2: principal-line plan for the current cat turn, from the deepest
    *  COMPLETED iteration's actual search decisions. Empty when none completed. */
   catTurnPlan: SearchAction[];
+  /** F1B (HARD_SEARCH debug): root action values of the deepest COMPLETED
+   *  iteration (from the actual search, no extra cost). Empty when off/none. */
+  rootActions: { action: SearchAction; value: number; mate: MateSide }[];
   diagnostics: IterativeSearchDiagnostics;
   /** One entry per attempted depth (oldest first). */
   iterations: IterationDiagnostic[];
@@ -1463,6 +1484,7 @@ export function searchBestActionIterative(
   const iterations: IterationDiagnostic[] = [];
   let lastCompleted: { value: number; mate: MateSide; bestAction: SearchAction | null } | null = null;
   let lastCatTurnPlan: SearchAction[] = [];
+  let lastRootValues: { action: SearchAction; value: number; mate: MateSide }[] = [];
   let completedDepth = 0;
   let attemptedDepth = 0;
   let budgetExhausted = false;
@@ -1475,6 +1497,7 @@ export function searchBestActionIterative(
     // their principal line; an incomplete (truncated) iteration is discarded,
     // so its partial writes never leak into the final plan.
     ctx.planBranches = new Map<string, SearchAction>();
+    ctx.rootValues = [];
     const { result, bestAction } = runFixedSearch(state, d, ctx, nodeCount);
     const nodesUsed = ctx.diagnostics.nodes - nodesBefore;
     iterations.push({
@@ -1492,6 +1515,8 @@ export function searchBestActionIterative(
       completedDepth = d;
       // F1B-2: a COMPLETED iteration owns its full principal line; keep it.
       lastCatTurnPlan = buildCatTurnPlan(state, ctx);
+      // F1B (HARD_SEARCH debug): keep the completed depth's root action values.
+      lastRootValues = ctx.rootValues.slice();
     } else {
       // Incomplete (node-budget OR wall-clock truncated). NEVER use the
       // truncated iteration's own result; the answer (and the plan) keeps
@@ -1519,6 +1544,7 @@ export function searchBestActionIterative(
     budgetExhausted,
     deadlineExceeded,
     catTurnPlan: lastCatTurnPlan,
+    rootActions: lastRootValues,
     diagnostics: {
       completedDepth,
       attemptedDepth,

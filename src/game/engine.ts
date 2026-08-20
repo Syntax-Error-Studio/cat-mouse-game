@@ -38,6 +38,7 @@ import {
 // searchRules -> engine runtime cycle can form. `searchRules.ts` (the test-side
 // binding) is deliberately NEVER imported by engine.
 import { planHardCatTurn } from './ai/hardTurnPlanner';
+import type { HardSearchDebug } from './ai/hardTurnPlanner';
 import type { RuleSet, SearchAction } from './ai/searchTypes';
 import { DEFAULT_SEARCH_CONFIG } from './ai/searchConfig';
 
@@ -79,6 +80,10 @@ export type GameEngineState = {
   catActionLog: string[];
   // Debug: mouse game event log
   gameEventLog: string[];
+  /** HARD_SEARCH debug record from the most recent Hard turn planner call
+   *  (rendered by the UI debug panel with a copy button). Debug-only; EXCLUDED
+   *  from gameAffectingEqual/stateKey so it never affects search or TT. */
+  lastHardSearch: HardSearchDebug | null;
 };
 
 // --- Helpers ---
@@ -441,6 +446,7 @@ export function createInitialState(config: GameConfig = DEFAULT_CONFIG): GameEng
     tunnelExitChoices: [],
     catActionLog: [],
     gameEventLog: [],
+    lastHardSearch: null,
   };
 }
 
@@ -3304,6 +3310,7 @@ export function catAiMove(state: GameEngineState): GameEngineState | null {
   }
   if (difficulty === DifficultyConst.Hard) {
     const plan = planHardCatTurn(state, { rules: createEngineRuleSet(), timeBudgetMs: DEFAULT_SEARCH_CONFIG.timeBudgetMsPerCatTurn });
+    state = { ...state, lastHardSearch: plan.debug };
     const first = plan.plan[0] ?? plan.bestAction;
     if (first) {
       if (first.type === 'catStep') return catMove(state, first.direction);
@@ -3397,6 +3404,10 @@ export function computeCatAiTrajectory(state: GameEngineState): CatAiStep[] | nu
       rules: createEngineRuleSet(),
       timeBudgetMs: DEFAULT_SEARCH_CONFIG.timeBudgetMsPerCatTurn,
     });
+    // F1B (HARD_SEARCH debug): persist the debug record onto the state so the
+    // UI debug panel can render it (with copy). Debug-only field — excluded
+    // from gameAffectingEqual / stateKey, so it never affects search or TT.
+    current = { ...current, lastHardSearch: planned.debug };
     if (planned.hasSolution && planned.plan.length > 0) {
       hardPlanActions = planned.plan;
     } else {

@@ -1,7 +1,7 @@
 import type { GameEngineState } from '../engine';
 import type { RuleSet, SearchAction } from './searchTypes';
-import { searchBestActionIterative, type IterativeSearchResult } from './expectiminimax';
-import { evaluateForCat } from './evaluation';
+import { searchBestActionIterative, type IterativeSearchResult, type MateSide } from './expectiminimax';
+import { evaluateForCat, evaluateForCatDetailed } from './evaluation';
 
 /**
  * ============================================================================
@@ -52,6 +52,41 @@ export interface HardTurnPlan {
   budgetFired: boolean;
   /** Internal iterative-search result (diagnostics, iterations, values). */
   search: IterativeSearchResult;
+  /** Wall-clock spent on the single main search for this turn (ms). */
+  elapsedMs: number;
+  /** HARD_SEARCH debug record (rendered by the UI debug panel with copy). */
+  debug: HardSearchDebug;
+}
+
+/** EVAL ROOT breakdown shown in the HARD_SEARCH debug panel. */
+export interface HardSearchEvalRoot {
+  mouseGoalThreat: number;
+  /** Two-stage mouse win route distance (null = no complete route). */
+  mouseWinRoute: string;
+  holeControl: number;
+  /** Cat→mouse path distance (null = unreachable). */
+  captureDistance: string;
+  voronoi: number;
+  trapControl: number;
+  tunnelControl: number;
+  tempo: number;
+  total: number;
+}
+
+/** The per-Hard-turn debug record (persisted into the game state + UI). */
+export interface HardSearchDebug {
+  cat: { r: number; c: number };
+  mouse: { r: number; c: number };
+  mouseHasButter: boolean;
+  completedDepth: number;
+  attemptedDepth: number;
+  nodes: number;
+  elapsedMs: number;
+  rootValue: number;
+  mate: MateSide;
+  plan: SearchAction[];
+  rootActions: { action: SearchAction; value: number; mate: MateSide }[];
+  evalRoot: HardSearchEvalRoot;
 }
 
 /** Options for one Hard cat-turn plan. `rules` is INJECTED by the caller (engine). */
@@ -85,7 +120,8 @@ export function planHardCatTurn(
   opts: HardTurnPlanOptions,
 ): HardTurnPlan {
   const now = opts.now ?? (typeof performance !== 'undefined' ? () => performance.now() : () => Date.now());
-  const deadlineMs = now() + opts.timeBudgetMs;
+  const t0 = now();
+  const deadlineMs = t0 + opts.timeBudgetMs;
 
   const search = searchBestActionIterative(state, {
     rules: opts.rules,
@@ -98,9 +134,26 @@ export function planHardCatTurn(
     deadlineMs,
     now,
   });
+  const elapsedMs = now() - t0;
+
+  const plan = search.catTurnPlan;
+  const debug: HardSearchDebug = {
+    cat: { r: state.catPosition.r, c: state.catPosition.c },
+    mouse: { r: state.mousePosition.r, c: state.mousePosition.c },
+    mouseHasButter: state.mouseHasButter,
+    completedDepth: search.completedDepth,
+    attemptedDepth: search.attemptedDepth,
+    nodes: search.diagnostics.totalNodes,
+    elapsedMs,
+    rootValue: search.value,
+    mate: search.mate,
+    plan,
+    rootActions: search.rootActions,
+    evalRoot: buildEvalRoot(state),
+  };
 
   return {
-    plan: search.catTurnPlan,
+    plan,
     bestAction: search.bestAction,
     completedDepth: search.completedDepth,
     attemptedDepth: search.attemptedDepth,
@@ -108,5 +161,42 @@ export function planHardCatTurn(
     deadlineFired: search.deadlineExceeded,
     budgetFired: search.budgetExhausted,
     search,
+    elapsedMs,
+    debug,
   };
+}
+
+/** EVAL_ROOT breakdown of the ROOT state (via evaluateForCatDetailed). */
+function buildEvalRoot(state: GameEngineState): HardSearchEvalRoot {
+  try {
+    const b = evaluateForCatDetailed(state);
+    return {
+      mouseGoalThreat: b.contributions.mouseGoalThreat,
+      mouseWinRoute: b.features.mouseWinRouteDistance === null
+        ? 'unreachable'
+        : String(b.features.mouseWinRouteDistance),
+      holeControl: b.contributions.holeControl,
+      captureDistance: b.features.catMouseDistance === null
+        ? 'unreachable'
+        : String(b.features.catMouseDistance),
+      voronoi: b.contributions.voronoiBalance,
+      trapControl: b.contributions.trapControl,
+      tunnelControl: b.contributions.tunnelControl,
+      tempo: b.contributions.tempo,
+      total: b.total,
+    };
+  } catch {
+    // The debug panel must never take the game down.
+    return {
+      mouseGoalThreat: NaN,
+      mouseWinRoute: 'n/a',
+      holeControl: NaN,
+      captureDistance: 'n/a',
+      voronoi: NaN,
+      trapControl: NaN,
+      tunnelControl: NaN,
+      tempo: NaN,
+      total: NaN,
+    };
+  }
 }

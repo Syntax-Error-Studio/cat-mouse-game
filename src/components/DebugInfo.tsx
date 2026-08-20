@@ -5,7 +5,10 @@
 
 import { CellType, GamePhase, PieceType, GameMode } from '../game/types';
 import { makeTunnelCorners } from '../game/types';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
+import type { HardSearchDebug } from '../game/ai/hardTurnPlanner';
+import type { SearchAction } from '../game/ai/searchTypes';
+import type { Direction } from '../game/types';
 
 type BoardCell = { type: CellType; piece?: PieceType; hasButter: boolean };
 
@@ -29,6 +32,56 @@ interface DebugInfoProps {
   catActionLog: string[];
   gameEventLog: string[];
   difficulty: string;
+  /** HARD_SEARCH debug record produced by the Search AI's last Hard turn. */
+  hardSearch: HardSearchDebug | null | undefined;
+}
+
+/** One-line label for a SearchAction (e.g. "catStep →", "catPlaceTrap"). */
+function actionLabel(a: SearchAction): string {
+  if (a.type === 'catStep') return `catStep ${(a.direction as Direction).key}`;
+  return a.type;
+}
+
+/** Format the [HARD_SEARCH] debug block as plain text (copyable). */
+function formatHardSearch(h: HardSearchDebug): string {
+  const planLines = h.plan.length
+    ? h.plan.map((a) => `  ${actionLabel(a)}`).join('\n')
+    : '  (empty plan)';
+  const rootActions = (h.rootActions ?? [])
+    .slice()
+    .sort((a, b) => b.value - a.value)
+    .map((ra, i) => `  ${i + 1}. ${actionLabel(ra.action).replace('catStep ', '')} value=${ra.value.toFixed(1)} mate=${ra.mate ?? 'null'}`)
+    .join('\n');
+  return [
+    `cat=(${h.cat.r},${h.cat.c})`,
+    `mouse=(${h.mouse.r},${h.mouse.c})`,
+    `mouseHasButter=${h.mouseHasButter}`,
+    '',
+    `completedDepth=${h.completedDepth}`,
+    `attemptedDepth=${h.attemptedDepth}`,
+    `nodes=${h.nodes}`,
+    `elapsedMs=${h.elapsedMs.toFixed(1)}`,
+    '',
+    `rootValue=${h.rootValue}`,
+    `mate=${h.mate ?? 'null'}`,
+    '',
+    'PLAN:',
+    planLines,
+    '',
+    'TOP ROOT ACTIONS:',
+    rootActions || '  (none)',
+    '',
+    'EVAL ROOT:',
+    `  mouseGoalThreat=${h.evalRoot.mouseGoalThreat}`,
+    `  mouseWinRoute=${h.evalRoot.mouseWinRoute}`,
+    `  holeControl=${h.evalRoot.holeControl}`,
+    `  captureDistance=${h.evalRoot.captureDistance}`,
+    `  voronoi=${h.evalRoot.voronoi}`,
+    `  trapControl=${h.evalRoot.trapControl}`,
+    `  tunnelControl=${h.evalRoot.tunnelControl}`,
+    `  tempo=${h.evalRoot.tempo}`,
+    `  total=${h.evalRoot.total}`,
+  ].join('\n');
 }
 
 export const DebugInfo: React.FC<DebugInfoProps> = ({
@@ -36,7 +89,55 @@ export const DebugInfo: React.FC<DebugInfoProps> = ({
   mouseHasButter, mouseSkillActive, catMovesLeft, mouseMovesLeft,
   trapPosition, catTrapsRemaining, currentPlayer, phase, message,
   gameMode, blockedTunnels, tunnelExitChoices, catActionLog, gameEventLog, difficulty,
+  hardSearch,
 }) => {
+  const [copied, setCopied] = useState(false);
+
+  // ---- Build the full plain-text dump (for the copy button) ----
+  const boardDump = board.map((row, r) =>
+    row.map((cell, c) => {
+      if (r === catPosition.r && c === catPosition.c) return 'C';
+      if (r === mousePosition.r && c === mousePosition.c) return 'M';
+      if (cell.type === CellType.Box) return 'X';
+      if (cell.type === CellType.Pile) return '#';
+      if (cell.type === CellType.Tunnel) return 'T';
+      if (cell.type === CellType.MouseHole) return 'H';
+      if (butterPositions.some(b => b.r === r && b.c === c)) return 'B';
+      if (trapPosition?.r === r && trapPosition?.c === c) return 'R';
+      return '.';
+    }).join('')
+  ).join('\n');
+
+  const hardSearchText = hardSearch ? formatHardSearch(hardSearch) : '[HARD_SEARCH] none';
+
+  const fullDebugText =
+    '[HARD_SEARCH]\n' + hardSearchText +
+    '\n\n[STATE]\n' +
+    `cat=(${catPosition.r},${catPosition.c}) mouse=(${mousePosition.r},${mousePosition.c})\n` +
+    `catMoves=${catMovesLeft} mouseMoves=${mouseMovesLeft}\n` +
+    `butter=${mouseHasButter} skill=${mouseSkillActive} trap=${trapPosition ? `(${trapPosition.r},${trapPosition.c})` : 'none'}\n` +
+    `trapRemain=${catTrapsRemaining} phase=${phase} difficulty=${difficulty}\n` +
+    `msg="${message}"\n\n[BOARD]\n${boardDump}\n\n[AI_LOG]\n` +
+    (catActionLog.length ? catActionLog.join('\n') : '(empty)') +
+    '\n\n[GAME_EVENT_LOG]\n' +
+    (gameEventLog.length ? gameEventLog.join('\n') : '(empty)');
+
+  const copyAll = () => {
+    if (navigator.clipboard?.writeText) {
+      navigator.clipboard.writeText(fullDebugText).then(() => setCopied(true)).catch(() => setCopied(false));
+    } else {
+      setCopied(false);
+    }
+    setTimeout(() => setCopied(false), 1500);
+  };
+
+  const copyHardSearch = () => {
+    if (navigator.clipboard?.writeText && hardSearch) {
+      navigator.clipboard.writeText('[HARD_SEARCH]\n' + hardSearchText).then(() => setCopied(true)).catch(() => setCopied(false));
+    }
+    setTimeout(() => setCopied(false), 1500);
+  };
+
   const boardSize = board.length;
   const tunnelCorners = makeTunnelCorners(boardSize);
 
@@ -199,7 +300,53 @@ export const DebugInfo: React.FC<DebugInfoProps> = ({
         marginBottom: '0.5rem',
       }}>
         🔧 Debug (AI diagnostic)
+        <button
+          onClick={(e) => { e.preventDefault(); e.stopPropagation(); copyAll(); }}
+          style={{
+            marginLeft: '0.75rem',
+            fontSize: '0.7rem',
+            padding: '0.1rem 0.5rem',
+            borderRadius: '0.4rem',
+            border: '1px solid #4ec9b0',
+            background: 'transparent',
+            color: '#4ec9b0',
+            cursor: 'pointer',
+          }}
+        >
+          {copied ? '✅ 已复制' : '📋 一键复制全部调试信息'}
+        </button>
       </summary>
+
+      {/* === HARD_SEARCH DEBUG (Search AI last turn) === */}
+      <div style={{ border: '1px solid #3b3b3b', borderRadius: '0.5rem', padding: '0.5rem', marginTop: '0.5rem', background: '#161616' }}>
+        <div style={{ color: '#c586c0', fontWeight: 'bold', fontSize: '0.75rem' }}>
+          [HARD_SEARCH]
+          {hardSearch && (
+            <button
+              onClick={(e) => { e.stopPropagation(); copyHardSearch(); }}
+              style={{
+                float: 'right',
+                fontSize: '0.65rem',
+                padding: '0 0.4rem',
+                borderRadius: '0.3rem',
+                border: '1px solid #c586c0',
+                background: 'transparent',
+                color: '#c586c0',
+                cursor: 'pointer',
+              }}
+            >
+              📋 复制
+            </button>
+          )}
+        </div>
+        {hardSearch ? (
+          <pre style={{ margin: '0.3rem 0 0', fontSize: '0.65rem', lineHeight: '1.4', color: '#d4d4d4', whiteSpace: 'pre-wrap' }}>
+            {formatHardSearch(hardSearch)}
+          </pre>
+        ) : (
+          <div style={{ color: '#666', fontSize: '0.65rem', marginTop: '0.2rem' }}>no Hard search this turn (Easy/Medium or not yet run)</div>
+        )}
+      </div>
 
       {/* === SECTION 1: CRITICAL DIAGNOSTICS === */}
       <div style={{ color: '#569cd6', fontWeight: 'bold', marginTop: '0.5rem' }}>【CRITICAL】</div>

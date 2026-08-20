@@ -13,6 +13,7 @@ import { searchBestActionIterative } from '../expectiminimax';
 import { defaultRuleSet } from '../searchRules';
 import type { RuleSet } from '../searchTypes';
 import { simulateSearchAction } from '../simulator';
+import { gameAffectingEqual } from '../stateCompare';
 
 // ===========================================================================
 // F1B-7 — Hard Production Integration (A–J)
@@ -416,4 +417,52 @@ test('F1B-7-J. Deterministic: same state+budget → identical plan', () => {
   expect(a.plan).toEqual(b.plan);
   expect(a.bestAction).toEqual(b.bestAction);
   expect(a.search.value).toBe(b.search.value);
+});
+
+// ---------------------------------------------------------------------------
+// K. HARD_SEARCH debug record (produced per Hard turn; Excluded from search)
+// ---------------------------------------------------------------------------
+
+test('F1B-7-K. planHardCatTurn produces the HARD_SEARCH debug record', () => {
+  const s = captureRow('hard');
+  const r = hardTurnPlannerModule.planHardCatTurn(s, { rules: defaultRuleSet, timeBudgetMs: 100, now: () => 10 });
+  const d = r.debug;
+  // State snapshot + search summary.
+  expect(d.cat).toEqual(s.catPosition);
+  expect(d.mouse).toEqual(s.mousePosition);
+  expect(d.mouseHasButter).toBe(s.mouseHasButter);
+  expect(d.completedDepth).toBe(r.completedDepth);
+  expect(d.attemptedDepth).toBe(r.attemptedDepth);
+  expect(d.nodes).toBeGreaterThan(0);
+  expect(d.elapsedMs).toBe(0); // fake clock: now() constant → 0ms elapsed
+  expect(d.rootValue).toBe(r.search.value);
+  expect(d.mate).toBe(r.search.mate);
+  // PLAN + TOP ROOT ACTIONS.
+  expect(d.plan).toEqual(r.plan);
+  expect(d.rootActions.length).toBeGreaterThan(0);
+  for (const ra of d.rootActions) {
+    expect(typeof ra.value).toBe('number');
+    expect(ra.action.type === 'catStep' || ra.action.type === 'catPlaceTrap').toBe(true);
+  }
+  // EVAL ROOT breakdown populated.
+  const er = d.evalRoot;
+  expect(Number.isFinite(er.total)).toBe(true);
+  expect(Number.isFinite(er.mouseGoalThreat)).toBe(true);
+  expect(typeof er.mouseWinRoute).toBe('string');
+  expect(Number.isFinite(er.holeControl)).toBe(true);
+  expect(Number.isFinite(er.trapControl)).toBe(true);
+  expect(Number.isFinite(er.tunnelControl)).toBe(true);
+  expect(Number.isFinite(er.tempo)).toBe(true);
+});
+
+test('F1B-7-K2. trajectory persists lastHardSearch (UI debug) without affecting search equality', () => {
+  const s = captureRow('hard');
+  const traj = computeCatAiTrajectory(s);
+  expect(traj).not.toBeNull();
+  // The state that the UI renders carries the debug record from the Hard plan.
+  const carried = traj!.some((st) => st.state.lastHardSearch !== null && st.state.lastHardSearch !== undefined);
+  expect(carried).toBe(true);
+  // And a debug field never changes the game-affecting identity used by search.
+  const withDebug = { ...s, lastHardSearch: s.lastHardSearch ?? null };
+  expect(gameAffectingEqual(s, withDebug)).toBe(true);
 });

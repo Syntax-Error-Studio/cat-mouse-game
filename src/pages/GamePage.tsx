@@ -393,6 +393,7 @@ export function GamePage() {
           catActionLog={debugState.catActionLog}
           gameEventLog={debugState.gameEventLog}
           difficulty={debugState.config.difficulty}
+          hardSearch={debugState.lastHardSearch}
         />
       )}
     </div>
