@@ -35,6 +35,39 @@ import { defaultRuleSet } from './searchRules';
 export const MATE_SCORE = 1_000_000;
 
 /**
+ * F1A-2: how often the wall-clock deadline is sampled. Calling `now()` on
+ * EVERY node would make the clock a hot spot for no benefit; sampling once
+ * per 64 nodes keeps a mid-depth abort bounded (≤64 nodes past the deadline)
+ * at negligible cost. This is deliberately a simple constant — NOT a tuned
+ * performance parameter (per the F1A spec).
+ */
+export const DEADLINE_CHECK_INTERVAL = 64;
+
+/**
+ * F1A-2: the default monotonic clock. `performance.now()` where available
+ * (modern browsers + Node ≥ 16), otherwise `Date.now()` as a fallback. A
+ * monotonic base is what a wall-clock timeout needs; tests inject their own
+ * `now` for deterministic replays.
+ */
+function defaultNow(): number {
+  return typeof performance !== 'undefined' ? performance.now() : Date.now();
+}
+
+/**
+ * F1A-2: true iff the wall-clock deadline (ctx.deadlineMs) has passed on the
+ * current sample. Returns false when no deadline is configured. The sample is
+ * taken only every `DEADLINE_CHECK_INTERVAL` nodes (the caller has already
+ * matched the interval against the shared node counter), so the clock is not
+ * a per-node hot spot.
+ */
+function deadlineReached(ctx: SearchContext, nodeCount: { count: number }): boolean {
+  if (ctx.deadlineMs === undefined) return false;
+  if (nodeCount.count % DEADLINE_CHECK_INTERVAL !== 0) return false;
+  const clock = ctx.now ?? defaultNow;
+  return clock() >= ctx.deadlineMs;
+}
+
+/**
  * Design invariant (NOT used for stepping anymore): leaf/heuristic values are
  * bounded by a few hundred, while a genuine forced mate is reported as
  * `±MATE_SCORE` minus its distance. `MATE_DISTANCE_GUARD` was the safety margin
@@ -149,28 +182,73 @@ export function preferResult(
   return maximizing ? cmp > 0 : cmp < 0;
 }
 
-/** Step a score up ONE tree edge toward its parent (mirrors stepChildForParent). */
-function stepScore(score: SearchScore): SearchScore {
-  if (score.mate === 'cat') return { value: score.value - 1, mate: 'cat' };
-  if (score.mate === 'mouse') return { value: score.value + 1, mate: 'mouse' };
+/**
+ * Real GAME-TIME cost of one primitive `SearchAction`, measured in "one cat
+ * step / one mouse step" units. This is the ONLY place that decides how much a
+ * search edge advances the mate distance (F1A-3).
+ *
+ *   catStep      → 1   (a real cat move consumes one cat move)
+ *   mouseStep    → 1   (a real mouse move consumes one mouse move)
+ *   catPlaceTrap → 0   (placing a trap consumes NO move — GAMEPLAY §4.3)
+ *   mouseSkill   → 0   (skill activation consumes butter, not moves — §3.3)
+ *   chooseTunnel → 0   (the exit choice itself is free; the mouse already paid
+ *                       with the steps to reach the tunnel — §3.4)
+ *
+ * A CHANCE node is not a SearchAction: it adds no cost of its own (the
+ * underlying mouseStep that triggered the butter regeneration is billed by
+ * `mouseStep → 1` at the parent edge).
+ *
+ * Every SearchAction must be listed explicitly; the exhaustive switch makes
+ * a future action type a compile-time decision instead of a silent default.
+ */
+export function mateActionCost(action: SearchAction): number {
+  switch (action.type) {
+    case 'catStep':
+      return 1;
+    case 'mouseStep':
+      return 1;
+    case 'catPlaceTrap':
+      return 0;
+    case 'mouseSkill':
+      return 0;
+    case 'chooseTunnel':
+      return 0;
+  }
+}
+
+/**
+ * Step a score up ONE tree edge toward its parent, by the REAL GAME-TIME cost
+ * of the edge's action (`mateActionCost`), NOT by a hard-coded ±1 per tree
+ * edge (F1A-3).
+ *
+ *   cat mate  → −cost   (one cost-unit closer to the terminal)
+ *   mouse mate→ +cost
+ *   non-mate  → unchanged
+ */
+function stepScore(score: SearchScore, cost = 1): SearchScore {
+  if (score.mate === 'cat') return { value: score.value - cost, mate: 'cat' };
+  if (score.mate === 'mouse') return { value: score.value + cost, mate: 'mouse' };
   return score;
 }
 
 /** Inverse of `stepScore` — express a parent-space score in its child's space. */
-function unstepScore(score: SearchScore): SearchScore {
-  if (score.mate === 'cat') return { value: score.value + 1, mate: 'cat' };
-  if (score.mate === 'mouse') return { value: score.value - 1, mate: 'mouse' };
+function unstepScore(score: SearchScore, cost = 1): SearchScore {
+  if (score.mate === 'cat') return { value: score.value + cost, mate: 'cat' };
+  if (score.mate === 'mouse') return { value: score.value - cost, mate: 'mouse' };
   return score;
 }
 
 /**
- * Propagate a child's value up ONE tree edge to its parent.
+ * Propagate a child's value up ONE tree edge to its parent, charging the edge's
+ * REAL game-time cost (`mateActionCost`), defaulting to 1 for compatibility
+ * with plain per-edge calculations (F1A-3).
  *
  * Terminal scores are node-local: `±MATE_SCORE` at the terminal (distance 0).
- * Each tree edge adjusts the value by ±1 so the score ALWAYS encodes the
- * distance from the CURRENT node to the terminal — NOT the number of plies
- * walked from the root. This makes a node's value path-independent, hence
- * TT-safe.
+ * Each tree edge adjusts the value by the REAL cost of the action (catStep=1,
+ * mouseStep=1, catPlaceTrap=0, mouseSkill=0, chooseTunnel=0) so the score
+ * ALWAYS encodes the distance in game-time from the CURRENT node to the
+ * terminal — NOT the number of search plies walked from the root. This makes a
+ * node's value path-independent, hence TT-safe.
  *
  * The step is driven by the child's EXPLICIT `mate` classification, NOT by the
  * magnitude of the value. A value is only stepped when it is a genuine
@@ -178,41 +256,44 @@ function unstepScore(score: SearchScore): SearchScore {
  * node whose expectation happens to fall inside the mate band (e.g. a 50/50 mix
  * of "mate now" and "no mate") from being misread as a forced mate.
  *
- *   child.mate === 'cat'   → parent one edge closer to root → −1
- *   child.mate === 'mouse' → parent one edge closer to root → +1
+ *   child.mate === 'cat'   → parent: value − cost
+ *   child.mate === 'mouse' → parent: value + cost
  *   child.mate === null    → not a forced mate → no step (raw value)
  */
-export function stepChildForParent(child: InternalSearchResult): number {
-  return stepScore({ value: child.value, mate: child.mate }).value;
+export function stepChildForParent(child: InternalSearchResult, cost = 1): number {
+  return stepScore({ value: child.value, mate: child.mate }, cost).value;
 }
 
 /**
- * Step a bound up ONE tree edge toward its parent.
+ * Step a bound up ONE tree edge toward its parent, by the edge's real
+ * game-time cost (default 1 — the D2-B round-trip proof uses plain ±1 edges).
  * @see stepChildForParent — this is the bound-shaped counterpart used by the
  *      Alpha-Beta proof that `step(unstep(bound))` round-trips (D2-B).
  */
-export function stepBoundForParent(bound: ScoreBound): ScoreBound {
+export function stepBoundForParent(bound: ScoreBound, cost = 1): ScoreBound {
   if (bound.kind !== 'score') return bound;
-  return { kind: 'score', score: stepScore(bound.score) };
+  return { kind: 'score', score: stepScore(bound.score, cost) };
 }
 
 /**
  * Inverse of `stepBoundForParent`: express a parent-space Alpha-Beta window
- * bound in its child's score space.
+ * bound in its child's score space, charging the edge's real game-time cost
+ * (`mateActionCost`; defaults to 1).
  *
- *   cat mate   → value + 1   (parent = child − 1, so child = parent + 1)
- *   mouse mate → value − 1   (parent = child + 1, so child = parent − 1)
+ *   cat mate   → value + cost   (parent = child − cost, so child = parent + cost)
+ *   mouse mate → value − cost   (parent = child + cost, so child = parent − cost)
  *   non-mate   → unchanged
  *   ±∞         → unchanged
  *
- * Because the child returns a value one mate-distance closer to the terminal,
- * the parent's window must be re-expressed one step away before being handed to
- * the child, otherwise a cat-mate window would mis-rank a child's value. The
- * mate category is preserved, so `step(unstep(bound))` round-trips exactly.
+ * Because the child returns a value one real-time step closer to the terminal,
+ * the parent's window must be re-expressed before being handed to the child,
+ * otherwise a cat-mate window would mis-rank a child's value. The mate
+ * category is preserved, so `step(unstep(bound))` round-trips exactly at any
+ * cost.
  */
-export function unstepBoundForChild(bound: ScoreBound): ScoreBound {
+export function unstepBoundForChild(bound: ScoreBound, cost = 1): ScoreBound {
   if (bound.kind !== 'score') return bound;
-  return { kind: 'score', score: unstepScore(bound.score) };
+  return { kind: 'score', score: unstepScore(bound.score, cost) };
 }
 
 /**
@@ -258,6 +339,9 @@ export interface SearchDiagnostics {
   leafNodes: number;
   /** Times the maxNodes safety budget was hit. */
   budgetCutoffs: number;
+  /** F1A-2: times the wall-clock deadline (deadlineMs) was hit. Reuses the
+   *  same abort semantics as the node budget (completed=false, uncached). */
+  deadlineCutoffs: number;
   /** Times a Playing state with movesLeft>0 had zero legal actions
    *  (RULE_EDGE_CASE_NO_LEGAL_ACTIONS — see requirement #8). */
   noLegalActionNodes: number;
@@ -308,6 +392,27 @@ export interface SearchContext {
    * or zero-cost depth accounting).
    */
   leafEvaluator?: (state: GameEngineState) => number;
+  /**
+   * F1A-2: WALL-CLOCK deadline (absolute monotonic timestamp in the same
+   * time-base as `now`). When set, the search aborts the CURRENT depth on
+   * `now() >= deadlineMs` using the exact same abort pathway as the maxNodes
+   * safety budget (returns completed=false, uncached static eval, never an
+   * EXACT TT entry). The deadline can interrupt a running depth — it is NOT
+   * only checked between iterative-deepening iterations.
+   *
+   * To spread `now()` calls, the clock is sampled once per
+   * `DEADLINE_CHECK_INTERVAL` nodes (see below) instead of every node.
+   * Production callers typically compute `deadlineMs = now() + budgetMs`.
+   * Tests inject a FAKE `now` clock for deterministic replays.
+   */
+  deadlineMs?: number;
+  /**
+   * F1A-2: monotonic clock used to evaluate `deadlineMs`. Default
+   * `performance.now()` (a monotonic clock where available); falls back to
+   * `Date.now()`. Tests inject a fake clock to make the wall-clock deadline
+   * deterministic.
+   */
+  now?: () => number;
   diagnostics: SearchDiagnostics;
   /**
    * Phase D1 EXACT transposition table. One table per context; never shared
@@ -418,6 +523,7 @@ export function createSearchContext(
       terminalNodes: 0,
       leafNodes: 0,
       budgetCutoffs: 0,
+      deadlineCutoffs: 0,
       noLegalActionNodes: 0,
       ttProbes: 0,
       ttHits: 0,
@@ -445,6 +551,7 @@ function resetDiagnostics(d: SearchDiagnostics): void {
   d.terminalNodes = 0;
   d.leafNodes = 0;
   d.budgetCutoffs = 0;
+  d.deadlineCutoffs = 0;
   d.noLegalActionNodes = 0;
   d.ttProbes = 0;
   d.ttHits = 0;
@@ -765,14 +872,19 @@ function searchActions(
   let cutOff = false;
   let firstIdx = true;
   for (const pa of prepared) {
-    const childAlpha = unstepBoundForChild(alpha);
-    const childBeta = unstepBoundForChild(beta);
+    // F1A-3: the alpha-beta window and the resulting value are stepped by the
+    // REAL game-time cost of THIS specific action (mateActionCost), not a
+    // hard-coded ±1 per tree edge. A 0-cost action (catPlaceTrap, mouseSkill,
+    // chooseTunnel) therefore leaves the mate distance untouched.
+    const edgeCost = mateActionCost(pa.action);
+    const childAlpha = unstepBoundForChild(alpha, edgeCost);
+    const childBeta = unstepBoundForChild(beta, edgeCost);
     const childRes = valueOfAction(pa.transition, state, depthTurns, ctx, path, nodeCount, ply + 1, childAlpha, childBeta);
-    // Propagate the child's value up one tree edge. The ±1 step is driven by
-    // the child's EXPLICIT mate classification (see stepChildForParent); a
-    // non-mate child is not stepped.
+    // Propagate the child's value up one tree edge by the edge's real cost.
+    // The step is driven by the child's EXPLICIT mate classification (see
+    // stepChildForParent); a non-mate child is not stepped.
     const candidate: InternalSearchResult = {
-      value: stepChildForParent(childRes),
+      value: stepChildForParent(childRes, edgeCost),
       mate: childRes.mate,
       completed: childRes.completed,
       cacheable: childRes.cacheable,
@@ -973,6 +1085,19 @@ function _search(
       return { value: evaluateLeaf(state, ctx), completed: false, cacheable: false, mate: null, bound: 'exact' };
     }
 
+    // 4b. F1A-2 wall-clock deadline — SAME abort semantics as the maxNodes
+    //     budget (static eval, completed=false, NOT cacheable, never an EXACT
+    //     TT entry). This sits INSIDE `_search`, so the deadline can interrupt
+    //     a RUNNING depth — it is not checked only between iterative-deepening
+    //     iterations. The clock is sampled every `DEADLINE_CHECK_INTERVAL`
+    //     nodes (see deadlineReached). A cost has already been paid for the
+    //     node that reaches the deadline, so this is a soft stop, not a hard
+    //     preemption — exactly the abort contract the node budget has.
+    if (deadlineReached(ctx, nodeCount)) {
+      ctx.diagnostics.deadlineCutoffs++;
+      return { value: evaluateLeaf(state, ctx), completed: false, cacheable: false, mate: null, bound: 'exact' };
+    }
+
     // 5. EXACT transposition-table probe (Phase D1). Must come AFTER the
     //    repetition guard (②) and the budget guard (④): a path-dependent
     //    repetition result must never be bypassed by a cached EXACT entry, and
@@ -999,22 +1124,28 @@ function _search(
 }
 
 /**
- * Public value entry point. Returns the search value from the CAT's
- * perspective (higher = better for cat). MAX when it is the cat's turn,
- * MIN when it is the mouse's turn. CHANCE nodes are expanded internally.
+ * NOTE (F1A-1): There is deliberately NO public `searchValue(state, depth,
+ * ctx): number` entry point anymore.
+ *
+ * F0-hard-integration-audit.md §2.1 proved that a "returns a plain number"
+ * API silently drops the `completed` flag: once the shared node budget is
+ * exhausted, callers receive a static-eval fallback and CANNOT tell it apart
+ * from a genuine full-depth value. Every earlier benchmark (f0bench.mts)
+ * mis-ranked its oracle because of exactly this footgun.
+ *
+ * Consumers MUST go through an API that keeps `completed` (and `mate`)
+ * visible:
+ *   - `searchResult(state, depthTurns, ctx)`        → InternalSearchResult
+ *   - `searchBestAction(state, depthTurns, ctx)`    → SearchBestActionResult
+ *   - `searchBestActionIterative(state, opts)`      → IterativeSearchResult
+ * Reading `.value` off one of those is fine; there is no number-only path
+ * that hides truncation. A new test asserts the module no longer exports a
+ * plain-number search entry point (`<no bare-number searchValue>`).
  */
-export function searchValue(
-  state: GameEngineState,
-  depthTurns: number,
-  ctx: SearchContext,
-): number {
-  return searchResult(state, depthTurns, ctx).value;
-}
 
 /**
- * Full internal result entry point (value + completed + cacheable). Prepared
- * for the Phase D transposition table and iterative deepening; the plain
- * `searchValue` above just reads `.value`.
+ * Full internal result entry point (state + completed + cacheable). Prepared
+ * for the Phase D transposition table and iterative deepening.
  */
 export function searchResult(
   state: GameEngineState,
@@ -1126,8 +1257,13 @@ export function searchBestAction(
 //   * Rollback to the LAST COMPLETED iteration. A budget-truncated deeper
 //     iteration is NEVER used; the returned answer comes from the deepest
 //     completed depth.
-//   * No aspiration window (every root is full-window), no early mate stop, no
-//     wall-clock timeout — per the D4 spec.
+//   * Optional F1A-2 wall-clock deadline: ONE shared `deadlineMs` across ALL
+//     iterations, sampled inside `_search` (can interrupt a RUNNING depth).
+//     The truncated iteration is discarded the same way a node-budget
+//     truncation is, and `deadlineExceeded` reports the abort cause.
+//   * No aspiration window (every root is full-window), no early mate stop —
+//     per the D4 spec. Wall-clock timeout IS supported since F1A-2 (see
+//     `IterativeSearchOptions.deadlineMs`).
 
 /** Options for the iterative-deepening entry point. */
 export interface IterativeSearchOptions {
@@ -1141,6 +1277,20 @@ export interface IterativeSearchOptions {
   useMoveOrdering?: boolean;
   /** Optional deterministic leaf evaluator (same role as SearchContext.leafEvaluator). */
   leafEvaluator?: (state: GameEngineState) => number;
+  /**
+   * F1A-2: WALL-CLOCK deadline for the WHOLE iterative search (one shared
+   * deadline across all depths, mirroring the one shared node budget). See
+   * `SearchContext.deadlineMs` for the exact semantics — an absolute monotonic
+   * timestamp in the time-base of `now`. A deadline can interrupt a RUNNING
+   * depth (the check lives inside `_search`), not just between iterations; the
+   * aborted depth is discarded and the deepest COMPLETED depth is returned.
+   */
+  deadlineMs?: number;
+  /**
+   * F1A-2: clock used to evaluate `deadlineMs` (default `performance.now()`).
+   * Tests inject a FAKE clock for deterministic timeouts.
+   */
+  now?: () => number;
 }
 
 /** Per-iteration result, for inspection / diagnostics. */
@@ -1164,6 +1314,9 @@ export interface IterativeSearchDiagnostics {
   /** Total nodes consumed across ALL iterations (the global budget spend). */
   totalNodes: number;
   budgetExhausted: boolean;
+  /** F1A-2: true iff the search stopped because the wall-clock deadline
+   *  (deadlineMs) fired before the last attempted depth completed. */
+  deadlineExceeded: boolean;
   // Cumulative counters from the shared context (sum across iterations):
   ttHits: number;
   ttExactHits: number;
@@ -1188,6 +1341,11 @@ export interface IterativeSearchResult {
   /** True iff the iterative search stopped early because the global node
    *  budget was exhausted before completing the last attempted depth. */
   budgetExhausted: boolean;
+  /** F1A-2: True iff the iterative search stopped early because the
+   *  wall-clock deadline (deadlineMs) fired before the last attempted depth
+   *  completed. The returned answer still comes from the deepest COMPLETED
+   *  depth (or an explicit incomplete/fallback state if none completed). */
+  deadlineExceeded: boolean;
   diagnostics: IterativeSearchDiagnostics;
   /** One entry per attempted depth (oldest first). */
   iterations: IterationDiagnostic[];
@@ -1213,6 +1371,11 @@ export function searchBestActionIterative(
     opts.useMoveOrdering ?? false,
   );
   if (opts.leafEvaluator) ctx.leafEvaluator = opts.leafEvaluator;
+  // F1A-2: one shared wall-clock deadline across ALL iterations (the deadline
+  // lives on the shared context, so `_search` samples `now()` during every
+  // depth — a mid-depth abort is possible, not just an inter-iteration one).
+  if (opts.deadlineMs !== undefined) ctx.deadlineMs = opts.deadlineMs;
+  if (opts.now) ctx.now = opts.now;
 
   // ONE shared node counter for the whole deepening loop → the global budget.
   const nodeCount = { count: 0 };
@@ -1221,6 +1384,7 @@ export function searchBestActionIterative(
   let completedDepth = 0;
   let attemptedDepth = 0;
   let budgetExhausted = false;
+  let deadlineExceeded = false;
 
   for (let d = 1; d <= opts.maxDepthTurns; d++) {
     attemptedDepth = d;
@@ -1241,8 +1405,11 @@ export function searchBestActionIterative(
       lastCompleted = { value: result.value, mate: result.mate, bestAction };
       completedDepth = d;
     } else {
-      // Incomplete (node-budget truncated). NEVER use it; stop deepening.
-      budgetExhausted = true;
+      // Incomplete (node-budget OR wall-clock truncated). NEVER use it; stop
+      // deepening. Distinguish the abort cause so callers can tell a deadline
+      // timeout from a node-budget exhaustion (F1A-2).
+      if (ctx.diagnostics.deadlineCutoffs > 0) deadlineExceeded = true;
+      else budgetExhausted = true;
       break;
     }
   }
@@ -1260,12 +1427,14 @@ export function searchBestActionIterative(
     attemptedDepth,
     completed: completedDepth >= 1,
     budgetExhausted,
+    deadlineExceeded,
     diagnostics: {
       completedDepth,
       attemptedDepth,
       iterationCount: iterations.length,
       totalNodes: d.nodes,
       budgetExhausted,
+      deadlineExceeded,
       ttHits: d.ttHits,
       ttExactHits: d.ttExactHits,
       ttDepthMismatches: d.ttDepthMismatches,

@@ -7,14 +7,13 @@ import {
 } from '../../engine';
 import type { GameConfig } from '../../config';
 import { GamePhase, PieceType, CellType, DIRECTIONS, type Direction } from '../../types';
-import type { RuleSet } from '../searchTypes';
+import type { RuleSet, SearchAction } from '../searchTypes';
 import { defaultRuleSet } from '../searchRules';
 import { simulateSearchAction } from '../simulator';
 import { generateLegalSearchActions } from '../legalActions';
 import { stateKey, TranspositionTable } from '../transposition';
 import type { TTEntry } from '../transposition';
 import {
-  searchValue,
   searchBestAction,
   searchResult,
   createSearchContext,
@@ -25,6 +24,8 @@ import {
   minBound,
   unstepBoundForChild,
   stepBoundForParent,
+  mateActionCost,
+  stepChildForParent,
   searchBestActionIterative,
   type IterativeSearchResult,
   type IterationDiagnostic,
@@ -162,7 +163,7 @@ test('A. Cat forced win across multiple atomic steps stays MAX', () => {
   };
 
   const ctx = createSearchContext(defaultRuleSet, 1_000_000);
-  const v = searchValue(s, 1, ctx); // ONE cat turn = up to 4 steps
+  const v = searchResult(s, 1, ctx).value; // ONE cat turn = up to 4 steps
 
   // Cat catches in 3 steps. If each step wrongly consumed a turn, depth would
   // hit 0 after step 1 and no catch would be found (value would be a tiny
@@ -204,7 +205,7 @@ test('B. Mouse forced win — cat evaluates this as a loss', () => {
   };
 
   const ctx = createSearchContext(defaultRuleSet, 1_000_000);
-  const v = searchValue(s, 2, ctx); // enough turns for the forced mouse win
+  const v = searchResult(s, 2, ctx).value; // enough turns for the forced mouse win
 
   // Mouse reaches the hole regardless of the cat's single move → MouseWins.
   expect(isForcedMate(v)).toBe(true);
@@ -391,7 +392,7 @@ test('E2. Skill enables a forced win: carry A -> skill -> pick B -> enter hole',
   };
 
   const ctx = createSearchContext(defaultRuleSet, 1_000_000);
-  const withSkill = searchValue(s, 1, ctx); // ONE mouse turn; skill extends it
+  const withSkill = searchResult(s, 1, ctx).value; // ONE mouse turn; skill extends it
   // A genuine forced mouse win is a very large negative, near -MATE_SCORE.
   expect(isForcedMate(withSkill)).toBe(true);
   expect(withSkill).toBeLessThan(0);
@@ -400,7 +401,7 @@ test('E2. Skill enables a forced win: carry A -> skill -> pick B -> enter hole',
   // Without the skill available, the mouse cannot reach the hole in one turn.
   const sNoSkill = { ...s, mouseSkillActive: true };
   const ctx2 = createSearchContext(defaultRuleSet, 1_000_000);
-  const withoutSkill = searchValue(sNoSkill, 1, ctx2);
+  const withoutSkill = searchResult(sNoSkill, 1, ctx2).value;
   expect(withoutSkill).toBeGreaterThan(withSkill); // clearly not a forced loss
   // No mate is reachable within the single turn when the skill is unavailable.
   expect(Math.abs(withoutSkill)).toBeLessThan(MATE_SCORE - 1000);
@@ -438,7 +439,7 @@ test('F. Cat trap placement is zero-cost (same MAX turn, no depth decrement)', (
 
   const ctx = createSearchContext(defaultRuleSet, 1_000_000);
   ctx.leafEvaluator = leafF;
-  const v = searchValue(s, 1, ctx);
+  const v = searchResult(s, 1, ctx).value;
 
   // +100 requires placing the trap AND moving to GOAL, all in one cat turn.
   // If trap wrongly consumed the turn, only the trap (no move) would be
@@ -488,7 +489,7 @@ test('G. Chance expected value: 0.25*100 + 0.75*(-20) = 10', () => {
 
   const ctx = createSearchContext(gRules, 1_000_000);
   ctx.leafEvaluator = leafG;
-  const v = searchValue(s, 1, ctx);
+  const v = searchResult(s, 1, ctx).value;
 
   expect(v).toBe(10); // exact expectation
 });
@@ -524,7 +525,7 @@ test('H. Chance node does not consume an extra turn depth', () => {
 
   const ctx = createSearchContext(defaultRuleSet, 1_000_000);
   ctx.leafEvaluator = leafH;
-  const v = searchValue(s, 1, ctx);
+  const v = searchResult(s, 1, ctx).value;
 
   // If the chance node consumed an extra turn, the post-butter mouse moves
   // would never be explored (depth 0 leaf at (3,5) → 0). Reaching GOAL (-100)
@@ -569,7 +570,7 @@ test('I. Repetition safety — identical complete state on the path terminates',
   };
 
   const ctx = createSearchContext(loopRules, 10_000_000);
-  const v = searchValue(s, 10, ctx);
+  const v = searchResult(s, 10, ctx).value;
 
   expect(Number.isFinite(v)).toBe(true);
   expect(ctx.diagnostics.repetitions).toBeGreaterThan(0);
@@ -593,7 +594,7 @@ test('J. No-legal-action edge case — no invented win/loss, returns static eval
   };
 
   const ctx = createSearchContext(defaultRuleSet, 1_000_000);
-  const v = searchValue(s, 3, ctx);
+  const v = searchResult(s, 3, ctx).value;
 
   expect(Number.isFinite(v)).toBe(true);
   expect(ctx.diagnostics.noLegalActionNodes).toBeGreaterThan(0);
@@ -776,9 +777,9 @@ test('D0. mate score is node-local: same state via different path lengths → sa
   // P2 reaches S in 2 steps → two extra layers → MATE_SCORE - 4.
   const P2 = catCorridor({ r: 1, c: 1 }); // (1,1)→(1,2)→(1,3)→(1,4)→(1,5)
 
-  const vS = searchValue(S, 20, createSearchContext(noTrapRuleSet, 1_000_000));
-  const vP1 = searchValue(P1, 20, createSearchContext(noTrapRuleSet, 1_000_000));
-  const vP2 = searchValue(P2, 20, createSearchContext(noTrapRuleSet, 1_000_000));
+  const vS = searchResult(S, 20, createSearchContext(noTrapRuleSet, 1_000_000)).value;
+  const vP1 = searchResult(P1, 20, createSearchContext(noTrapRuleSet, 1_000_000)).value;
+  const vP2 = searchResult(P2, 20, createSearchContext(noTrapRuleSet, 1_000_000)).value;
 
   // S's node-local value is identical whether S is the root (vS) or embedded
   // one/two layers deeper (it still contributes MATE_SCORE - 2 inside P1/P2).
@@ -795,8 +796,8 @@ test('D0. cat prefers faster wins and delays losses (mate-distance semantics)', 
   // --- Faster win preferred ---
   const win1 = catCorridor({ r: 1, c: 4 }); // catch in 1 step: (1,4)→(1,5)
   const win2 = catCorridor({ r: 1, c: 3 }); // catch in 2 steps: (1,3)→(1,4)→(1,5)
-  const vWin1 = searchValue(win1, 20, createSearchContext(noTrapRuleSet, 1_000_000));
-  const vWin2 = searchValue(win2, 20, createSearchContext(noTrapRuleSet, 1_000_000));
+  const vWin1 = searchResult(win1, 20, createSearchContext(noTrapRuleSet, 1_000_000)).value;
+  const vWin2 = searchResult(win2, 20, createSearchContext(noTrapRuleSet, 1_000_000)).value;
   expect(vWin1).toBe(MATE_SCORE - 1);
   expect(vWin2).toBe(MATE_SCORE - 2);
   expect(vWin1).toBeGreaterThan(vWin2); // sooner win is better for the cat
@@ -820,8 +821,8 @@ test('D0. cat prefers faster wins and delays losses (mate-distance semantics)', 
   };
   const loss1 = mkLoss({ r: 7, c: 7 }); // 1 step to hole (7,8)
   const loss2 = mkLoss({ r: 7, c: 6 }); // 2 steps to hole (7,8)
-  const vLoss1 = searchValue(loss1, 20, createSearchContext(defaultRuleSet, 1_000_000));
-  const vLoss2 = searchValue(loss2, 20, createSearchContext(defaultRuleSet, 1_000_000));
+  const vLoss1 = searchResult(loss1, 20, createSearchContext(defaultRuleSet, 1_000_000)).value;
+  const vLoss2 = searchResult(loss2, 20, createSearchContext(defaultRuleSet, 1_000_000)).value;
   expect(vLoss1).toBe(-MATE_SCORE + 1);
   expect(vLoss2).toBe(-MATE_SCORE + 2);
   expect(vLoss2).toBeGreaterThan(vLoss1); // a more-delayed loss is better for the cat
@@ -1531,7 +1532,7 @@ test('D1-Purity. recursive deepFreeze: searching a frozen state throws no read-o
   }
 });
 
-test('D1-Purity. searchValue / searchBestAction leave the input root byte-identical (TT OFF and ON)', () => {
+test('D1-Purity. searchResult / searchBestAction leave the input root byte-identical (TT OFF and ON)', () => {
   const builders: { name: string; make: () => GameEngineState; rule: RuleSet }[] = [
     { name: 'cat turn', make: () => openArena({ cat: { r: 4, c: 4 }, mouse: { r: 6, c: 6 } }), rule: noTrapRuleSet },
     {
@@ -1548,7 +1549,8 @@ test('D1-Purity. searchValue / searchBestAction leave the input root byte-identi
       const root = b.make();
       const before = structuredClone(root);
       const keyBefore = stateKey(root);
-      searchValue(root, 2, createSearchContext(b.rule, BIG, useTT));
+      const searched = searchResult(root, 2, createSearchContext(b.rule, BIG, useTT));
+      expect(searched.completed).toBe(true); // purity fixture runs fully
       expect(root).toEqual(before);
       expect(stateKey(root)).toBe(keyBefore);
 
@@ -2132,9 +2134,9 @@ test('D2-K. Regression: AB defaults OFF; Phase C/D0/D1 values unchanged with zer
   // The canonical Phase-C/D0 mate-distance ladder still holds exactly.
   const c2 = createSearchContext(noTrapRuleSet, BIG);
   const c3 = createSearchContext(noTrapRuleSet, BIG);
-  expect(searchValue(catCorridor({ r: 1, c: 4 }), 20, c1)).toBe(MATE_SCORE - 1);
-  expect(searchValue(catCorridor({ r: 1, c: 3 }), 20, c2)).toBe(MATE_SCORE - 2);
-  expect(searchValue(catCorridor({ r: 1, c: 1 }), 20, c3)).toBe(MATE_SCORE - 4);
+  expect(searchResult(catCorridor({ r: 1, c: 4 }), 20, c1).value).toBe(MATE_SCORE - 1);
+  expect(searchResult(catCorridor({ r: 1, c: 3 }), 20, c2).value).toBe(MATE_SCORE - 2);
+  expect(searchResult(catCorridor({ r: 1, c: 1 }), 20, c3).value).toBe(MATE_SCORE - 4);
   for (const c of [c1, c2, c3]) {
     expect(c.diagnostics.alphaBetaCutoffs).toBe(0);
     expect(c.diagnostics.alphaBetaMaxCutoffs).toBe(0);
@@ -2909,4 +2911,374 @@ test('D4-BENCH. Iterative overhead vs direct depth3 + budget→maxDepth sweep', 
 
   for (const r of rows) expect(r.totalNodes).toBeLessThanOrEqual(r.b);
   expect(rows[rows.length - 1].completedDepth).toBe(sweepDepth);
+});
+
+// ===========================================================================
+// F1A-3. Mate distance is charged by REAL game-time cost (mateActionCost),
+//         not by "one tree edge = one layer" (F0.1 §3.4 cause B).
+// ===========================================================================
+
+// ===========================================================================
+// F1A-3. Mate distance is charged by REAL game-time cost (mateActionCost),
+//         not by "one tree edge = one layer" (F0.1 §3.4 cause B).
+// ===========================================================================
+
+/** Cat to move on a walled board; returns a cat-turn Playing state with the
+ *  given number of remaining traps (mirrors the f01fixtures makeCatToMove). */
+function catTurnState(
+  mouse: { r: number; c: number },
+  cat: { r: number; c: number },
+  open: { r: number; c: number }[],
+  traps: number,
+): GameEngineState {
+  let s = setPieces(createInitialState(cleanConfig()), mouse, cat);
+  s = wallOff(s, open);
+  return {
+    ...s,
+    currentPlayer: PieceType.Cat,
+    catMovesLeft: 4,
+    mouseMovesLeft: 4,
+    phase: GamePhase.Playing,
+    mouseHasButter: false,
+    trapPosition: null,
+    catTrapsRemaining: traps,
+  };
+}
+
+test('F1A-3. mateActionCost: real moves cost 1, zero-move actions cost 0', () => {
+  expect(mateActionCost({ type: 'catStep', direction: dir('ArrowRight') })).toBe(1);
+  expect(mateActionCost({ type: 'mouseStep', direction: dir('ArrowRight') })).toBe(1);
+  // GAMEPLAY §4.3: placing a trap consumes NO step.
+  expect(mateActionCost({ type: 'catPlaceTrap' })).toBe(0);
+  // GAMEPLAY §3.3: activating the skill consumes butter, not a move.
+  expect(mateActionCost({ type: 'mouseSkill' })).toBe(0);
+  // GAMEPLAY §3.4: the tunnel exit choice is free (the mouse already paid the
+  // steps to reach the tunnel).
+  expect(mateActionCost({ type: 'chooseTunnel', r: 0, c: 0 })).toBe(0);
+});
+
+test('F1A-3. stepChildForParent charges the edge action cost (0 / 1), and step/unstep round-trip at any cost', () => {
+  // A real move advances the mate distance by exactly 1.
+  const child = mkRes(MATE_SCORE - 1, 'cat');
+  expect(stepChildForParent(child, 1)).toBe(MATE_SCORE - 2);
+  // A zero-cost action (catPlaceTrap / mouseSkill / chooseTunnel) advances the
+  // mate distance by 0 — it must NOT inject a phantom −1 per tree edge.
+  expect(stepChildForParent(child, 0)).toBe(MATE_SCORE - 1);
+  // Mouse-side mirror: a 0-cost action must not inflate the loss depth either.
+  const mouseChild = mkRes(-MATE_SCORE + 1, 'mouse');
+  expect(stepChildForParent(mouseChild, 0)).toBe(-MATE_SCORE + 1);
+  expect(stepChildForParent(mouseChild, 1)).toBe(-MATE_SCORE + 2);
+
+  // The Alpha-Beta window inverse still round-trips at cost 0/1 exactly.
+  expect(unstepBoundForChild(sb(MATE_SCORE - 3, 'cat'), 0)).toEqual(sb(MATE_SCORE - 3, 'cat'));
+  expect(unstepBoundForChild(sb(MATE_SCORE - 3, 'cat'), 1)).toEqual(sb(MATE_SCORE - 2, 'cat'));
+  for (const cost of [0, 1]) {
+    for (const b of [NEG, POS, sb(MATE_SCORE, 'cat'), sb(-MATE_SCORE, 'mouse'), sb(42, null)]) {
+      expect(stepBoundForParent(unstepBoundForChild(b, cost), cost)).toEqual(b);
+      expect(unstepBoundForChild(stepBoundForParent(b, cost), cost)).toEqual(b);
+    }
+  }
+});
+
+/** Short key for one SearchAction (mirrors f01fixtures.actionKeyOf). */
+function actionKeyOf(a: SearchAction): string {
+  return a.type === 'catStep' ? `step:${a.direction!.key}` : a.type;
+}
+
+/**
+ * Evaluate every root action of `state` like the benchmark oracle does: each
+ * action gets its OWN fresh context (no shared-budget collapse) and the
+ * parent edge is stepped by `mateActionCost`. Returns {key, value, mate}.
+ */
+function evalRootActions(state: GameEngineState, rules: RuleSet): { key: string; value: number; mate: MateSide }[] {
+  const actions = generateLegalSearchActions(state, rules);
+  return actions.map((a) => {
+    const c = createSearchContext(rules, 1_000_000, true, true, true);
+    const tr = simulateSearchAction(state, a, rules);
+    const cost = mateActionCost(a);
+    if (tr.kind === 'deterministic') {
+      const switched = state.currentPlayer !== tr.state.currentPlayer;
+      const r = searchResult(tr.state, 6 - (switched ? 1 : 0), c);
+      return { key: actionKeyOf(a), value: stepChildForParent(r, cost), mate: r.mate };
+    }
+    let total = 0;
+    const switched = state.currentPlayer !== tr.outcomes[0].state.currentPlayer;
+    for (const o of tr.outcomes) {
+      total += o.weight * searchResult(o.state, 6 - (switched ? 1 : 0), createSearchContext(rules, 1_000_000, true, true, true)).value;
+    }
+    return { key: actionKeyOf(a), value: stepChildForParent({ value: total, completed: true, cacheable: true, mate: null, bound: 'exact' }, cost), mate: null };
+  });
+}
+
+test('F1A-3. catPlaceTrap no longer costs a phantom mate layer: production trap fixtures (F0.1 §3.4 regression)', () => {
+  // The A-mateWin "trap == best − 1" cases from F0.1 (§3.4). These are the
+  // same geometries (1-wide lane, cat to move, mouse at lane end). After the
+  // fix, the zero-cost trap must score EQUAL to the best real cat-step on the
+  // same fixture (same game-time distance), never best − 1.
+  const laneCells = (r: number) =>
+    [{ r, c: 1 }, { r, c: 2 }, { r, c: 3 }, { r, c: 4 }, { r, c: 5 }];
+  const trapCases: { name: string; note?: string; build: () => GameEngineState }[] = [
+    { name: 'immediateCatch1', build: () => catTurnState({ r: 1, c: 5 }, { r: 1, c: 4 }, laneCells(1), 1) },
+    { name: 'immediateCatch2', build: () => catTurnState({ r: 1, c: 5 }, { r: 1, c: 3 }, laneCells(1), 1) },
+    { name: 'corridorMate2', note: 'geometrically equal to immediateCatch2 (F0 continuity)', build: () => catTurnState({ r: 1, c: 5 }, { r: 1, c: 3 }, laneCells(1), 1) },
+  ];
+  for (const fx of trapCases) {
+    const s = fx.build();
+    const evs = evalRootActions(s, defaultRuleSet);
+    const trap = evs.find((e) => e.key === 'catPlaceTrap');
+    const steps = evs.filter((e) => e.key.startsWith('step:'));
+    expect(trap).toBeDefined(); // the tactic must be a legal root action
+    const bestStep = Math.max(...steps.map((e) => e.value));
+    // The trap is a 0-cost action: same game-time distance to the forced
+    // mate, so it must score the SAME as the best real cat-step on this
+    // fixture. Before F1A-3 every one of these was exactly best − 1.
+    expect(trap!.value).toBe(bestStep);
+  }
+});
+
+test('F1A-3. faster real move still preferred; slower real loss still delayable (regression)', () => {
+  // Faster win preferred: direct 1-step catch > 2-step catch, charged by real
+  // cat moves (not by search-tree plies).
+  const vW1 = searchResult(catCorridor({ r: 1, c: 4 }), 6, createSearchContext(noTrapRuleSet, 1_000_000)).value;
+  const vW2 = searchResult(catCorridor({ r: 1, c: 3 }), 6, createSearchContext(noTrapRuleSet, 1_000_000)).value;
+  expect(vW1).toBe(MATE_SCORE - 1);
+  expect(vW2).toBe(MATE_SCORE - 2);
+  expect(vW1).toBeGreaterThan(vW2);
+
+  // Delaying a forced loss with a REAL mouse step is still valued correctly
+  // (more-delayed loss > sooner loss), charged by real mouse moves.
+  const laneCells7 = [{ r: 7, c: 6 }, { r: 7, c: 7 }, { r: 7, c: 8 }, { r: 0, c: 0 }];
+  const loss = (mouse: { r: number; c: number }): GameEngineState => {
+    let s = setPieces(createInitialState(cleanConfig()), mouse, { r: 0, c: 0 });
+    s = wallOff(s, laneCells7);
+    return {
+      ...s,
+      currentPlayer: PieceType.Mouse,
+      mouseMovesLeft: 4,
+      catMovesLeft: 4,
+      phase: GamePhase.Playing,
+      mouseHasButter: true, // carrying butter → entering the hole wins
+    };
+  };
+  const vLoss1 = searchResult(loss({ r: 7, c: 7 }), 6, createSearchContext(defaultRuleSet, 1_000_000)).value;
+  const vLoss2 = searchResult(loss({ r: 7, c: 6 }), 6, createSearchContext(defaultRuleSet, 1_000_000)).value;
+  expect(vLoss1).toBe(-MATE_SCORE + 1);
+  expect(vLoss2).toBe(-MATE_SCORE + 2);
+  expect(vLoss2).toBeGreaterThan(vLoss1); // more-delayed real loss is better for the cat
+});
+
+// ===========================================================================
+// F1A-1. The `searchValue` completion footgun is gone.
+// ===========================================================================
+//
+// F0-hard-integration-audit.md §2.1: `searchValue(state, depth, ctx): number`
+// silently dropped `completed`. Once the shared node budget was exhausted, a
+// child action collapsed into a static leaf evaluation and callers could not
+// tell — the F0 oracle mis-ranked actions because the "depth-6" scale was
+// uneven. The API was removed and every consumer migrated to
+// `searchResult(...).value` / `searchBestAction(...)`.
+
+test('F1A-1. no bare-number public search entry point remains (searchValue is gone)', async () => {
+  // `searchValue` must NOT be re-exported: type-level, the module no longer
+  // offers a "plain number, completed dropped" API (importing it would fail to
+  // compile). Runtime guard: the namespace must not carry it at all.
+  const mod = await vi.importActual<Record<string, unknown>>('../expectiminimax');
+  expect(typeof mod.searchValue).toBe('undefined');
+  expect(typeof mod.searchValue).not.toBe('function');
+});
+
+test('F1A-1. an incomplete (budget-truncated) search cannot masquerade as a complete plain value', () => {
+  // Any value-taking entry point MUST surface `completed=false` instead of
+  // returning a number that looks like a full-depth answer.
+  const s = openArena({ cat: { r: 4, c: 4 }, mouse: { r: 6, c: 6 } });
+
+  // (1) searchResult: completed=false + value is a static-eval fallback.
+  const ctxRes = createSearchContext(noTrapRuleSet, 1, false); // tiny budget
+  const r = searchResult(s, 3, ctxRes);
+  expect(ctxRes.diagnostics.budgetCutoffs).toBeGreaterThan(0);
+  expect(r.completed).toBe(false);
+  expect(r.cacheable).toBe(false);
+
+  // (2) searchBestAction: same search, same honesty.
+  const ctxAct = createSearchContext(noTrapRuleSet, 1);
+  const rAct = searchBestAction(s, 3, ctxAct);
+  expect(ctxAct.diagnostics.budgetCutoffs).toBeGreaterThan(0);
+  expect(rAct.completed).toBe(false);
+  // Both are the same static-eval fallback (not a dressed-up complete answer).
+  expect(Math.abs(rAct.value)).toBeLessThan(MATE_SCORE / 2);
+
+  // (3) iterative: an un-completed depth1 must NOT be dressed up as complete;
+  // the wrapper reports completedDepth=0 / completed=false / bestAction=null.
+  const rIt = searchBestActionIterative(s, {
+    rules: noTrapRuleSet,
+    maxDepthTurns: 3,
+    maxNodes: 1,
+    useTT: false,
+    useAlphaBeta: false,
+    useMoveOrdering: false,
+  });
+  expect(rIt.completedDepth).toBe(0);
+  expect(rIt.completed).toBe(false);
+  expect(rIt.bestAction).toBeNull();
+
+  // (4) The truncation must also be visible through a FULL search when the
+  //     budget is tight enough to cut the root subtree but not the root itself.
+  const s2 = openArena({ cat: { r: 4, c: 4 }, mouse: { r: 6, c: 6 } });
+  const ctx2 = createSearchContext(noTrapRuleSet, 2, true);
+  const r2 = searchResult(s2, 3, ctx2);
+  expect(ctx2.diagnostics.budgetCutoffs).toBeGreaterThan(0);
+  expect(r2.completed).toBe(false);
+});
+
+// ===========================================================================
+// F1A-2. Real wall-clock deadline (deadlineMs + injectable `now` clock).
+// ===========================================================================
+//
+// Semantics (per the F1A spec):
+//   - `deadlineMs` is an ABSOLUTE monotonic timestamp in the time-base of
+//     `now()`. Production default `now = performance.now()`; tests inject a
+//     fake clock for deterministic timeouts.
+//   - The check lives INSIDE `_search`, so a deadline can interrupt a RUNNING
+//     depth (not merely between iterative-deepening iterations).
+//   - Abort reuses the maxNodes path: attempted depth → completed=false, the
+//     incomplete depth's partial root result is discarded, and the deepest
+//     COMPLETED depth's result is returned; if even depth-1 does not complete
+//     we return an explicit incomplete/fallback state.
+//   - No incomplete node is written to the TT; already-completed independent
+//     subtrees stay valid (their entries are untouched).
+
+/** A controllable fake clock: tests advance `t` explicitly. */
+function fakeClock(initial = 0): { t: number; now: () => number } {
+  const clock = { t: initial };
+  return { ...clock, now: () => clock.t };
+}
+
+test('F1A-2-A. deadline fires in the middle of a depth: current depth incomplete, result not used', () => {
+  // openArena depth-3 search needs > a handful of nodes; a deadline sampled
+  // immediately (clock already at the deadline) must abort at the FIRST node.
+  const s = openArena({ cat: { r: 4, c: 4 }, mouse: { r: 6, c: 6 } });
+  const clock = fakeClock(1_000); // already past any deadline we set
+  const ctx = createSearchContext(noTrapRuleSet, 1_000_000, false);
+  ctx.deadlineMs = 500;
+  ctx.now = clock.now;
+  const r = searchResult(s, 3, ctx);
+  expect(ctx.diagnostics.deadlineCutoffs).toBeGreaterThan(0);
+  expect(r.completed).toBe(false); // the running depth was aborted mid-way
+  expect(r.cacheable).toBe(false);
+  expect(Math.abs(r.value)).toBeLessThan(MATE_SCORE / 2); // static-eval fallback, not a full value
+});
+
+test('F1A-2-B/C. deadline mid-depth-2: attemptedDepth > completedDepth; answer = last completed depth', () => {
+  const s = openArena({ cat: { r: 4, c: 4 }, mouse: { r: 6, c: 6 } });
+  // A fake clock that advances 1ms per SAMPLE. The clock is sampled once per
+  // DEADLINE_CHECK_INTERVAL=64 nodes: sample #1 at node 0 (t=1), #2 at node 0+64
+  // (t=2). Depth-1 of the arena is small (well under 64 nodes), so it fully
+  // completes before the deadline; depth-2 needs far more than 64 nodes, so the
+  // second sample (t=2) fires while depth-2 is still running → attempted>completed.
+  let samples = 0;
+  const r = searchBestActionIterative(s, {
+    rules: noTrapRuleSet,
+    maxDepthTurns: 3,
+    maxNodes: 1_000_000,
+    useTT: false,
+    useAlphaBeta: false,
+    useMoveOrdering: false,
+    deadlineMs: 2, // after the 2nd clock sample the deadline has passed
+    now: () => ++samples,
+  });
+  expect(samples).toBeGreaterThanOrEqual(2); // the clock was really sampled
+  expect(r.deadlineExceeded).toBe(true);
+  expect(r.budgetExhausted).toBe(false);
+  // (B) attempted depth is deeper than the deepest completed depth.
+  expect(r.attemptedDepth).toBeGreaterThan(r.completedDepth);
+  // The last attempted iteration was truncated mid-depth.
+  expect(r.iterations[r.iterations.length - 1].completed).toBe(false);
+  // Depth 1 fully completed → it is the deepest completed depth.
+  expect(r.completedDepth).toBe(1);
+
+  // (C) The returned answer IS the last fully-completed depth's (depth-1) —
+  //     never the partial depth-2 result.
+  const direct1 = searchBestAction(s, 1, createSearchContext(noTrapRuleSet, 1_000_000));
+  expect(r.value).toBe(direct1.value);
+  expect(r.mate).toBe(direct1.mate);
+  expect(r.bestAction).toEqual(direct1.action);
+});
+
+test('F1A-2-D. partial root best does NOT leak into the returned answer', () => {
+  const s = openArena({ cat: { r: 4, c: 4 }, mouse: { r: 6, c: 6 } });
+  let samples = 0;
+  const r = searchBestActionIterative(s, {
+    rules: noTrapRuleSet,
+    maxDepthTurns: 3,
+    maxNodes: 1_000_000,
+    useTT: false,
+    useAlphaBeta: false,
+    useMoveOrdering: false,
+    deadlineMs: 2,
+    now: () => ++samples,
+  });
+  // The deadline aborts depth-2; its partial root best must NOT be used.
+  const direct1 = searchBestAction(s, 1, createSearchContext(noTrapRuleSet, 1_000_000));
+  expect(r.bestAction).toEqual(direct1.action);
+  expect(r.value).toBe(direct1.value);
+  expect(r.mate).toBe(direct1.mate);
+  expect(r.completedDepth).toBe(1);
+  expect(r.attemptedDepth).toBe(2);
+});
+
+test('F1A-2-E. an incomplete node is NOT written to the TT; completed subtrees survive', () => {
+  // With a tiny deadline the root subtree cannot complete → no root EXACT
+  // entry may appear in the shared table.
+  const s = openArena({ cat: { r: 4, c: 4 }, mouse: { r: 6, c: 6 } });
+  const clock = fakeClock(1_000);
+  const ctxTT = createSearchContext(noTrapRuleSet, 1_000_000, true);
+  ctxTT.deadlineMs = 500;
+  ctxTT.now = clock.now;
+  const r = searchResult(s, 3, ctxTT);
+  expect(r.completed).toBe(false);
+  expect(ctxTT.diagnostics.deadlineCutoffs).toBeGreaterThan(0);
+  // The root state may not be stored as an EXACT entry built on a truncated
+  // subtree (storeTT gate requires completed && cacheable).
+  expect(ctxTT.tt.get(stateKey(s))).toBeUndefined();
+  expect(ctxTT.diagnostics.ttStores).toBe(0);
+});
+
+test('F1A-2-F. maxNodes abort and deadline abort behave identically (same abort semantics)', () => {
+  // (1) Same fixture; one run killed by maxNodes=1, one by deadline fired at
+  //     the very first sample. Both report completed=false, cacheable=false,
+  //     uncached, static-eval fallback.
+  const s = openArena({ cat: { r: 4, c: 4 }, mouse: { r: 6, c: 6 } });
+  const byBudget = searchResult(s, 3, createSearchContext(noTrapRuleSet, 1));
+  const clock = fakeClock(1_000);
+  const ctxByDeadline = createSearchContext(noTrapRuleSet, 1_000_000);
+  ctxByDeadline.deadlineMs = 500;
+  ctxByDeadline.now = clock.now;
+  const byDeadline = searchResult(s, 3, ctxByDeadline);
+  expect(byBudget.completed).toBe(false);
+  expect(byDeadline.completed).toBe(false);
+  expect(byBudget.cacheable).toBe(false);
+  expect(byDeadline.cacheable).toBe(false);
+  // Both are the static-eval fallback (bounded, not a mate).
+  expect(Math.abs(byBudget.value)).toBeLessThan(MATE_SCORE / 2);
+  expect(Math.abs(byDeadline.value)).toBeLessThan(MATE_SCORE / 2);
+
+  // (2) Iterative wrapper reports the abort cause distinctly:
+  const budgetIt = searchBestActionIterative(s, {
+    rules: noTrapRuleSet, maxDepthTurns: 3, maxNodes: 1,
+    useTT: false, useAlphaBeta: false, useMoveOrdering: false,
+  });
+  expect(budgetIt.budgetExhausted).toBe(true);
+  expect(budgetIt.deadlineExceeded).toBe(false);
+  expect(budgetIt.completed).toBe(false);
+  const clockIt = fakeClock(1_000);
+  const deadIt = searchBestActionIterative(s, {
+    rules: noTrapRuleSet, maxDepthTurns: 3, maxNodes: 1_000_000,
+    useTT: false, useAlphaBeta: false, useMoveOrdering: false,
+    deadlineMs: 500, now: clockIt.now,
+  });
+  expect(deadIt.deadlineExceeded).toBe(true);
+  expect(deadIt.budgetExhausted).toBe(false);
+  expect(deadIt.completed).toBe(false);
+  expect(deadIt.completedDepth).toBe(0);
+  expect(deadIt.attemptedDepth).toBe(1);
 });
