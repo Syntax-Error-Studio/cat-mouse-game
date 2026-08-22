@@ -5,6 +5,7 @@ import { generateLegalSearchActions } from './legalActions';
 import { simulateSearchAction } from './simulator';
 import { stateKey, TranspositionTable } from './transposition';
 import type { TTEntry } from './transposition';
+import { forcedLossTieBreak } from './forcedLossTieBreak';
 
 /**
  * ============================================================================
@@ -1517,6 +1518,15 @@ export function searchBestActionIterative(
       lastCatTurnPlan = buildCatTurnPlan(state, ctx);
       // F1B (HARD_SEARCH debug): keep the completed depth's root action values.
       lastRootValues = ctx.rootValues.slice();
+      // G0.3A: forced-loss resistance tie-break — if the root is a proven
+      // mouse-mate AND multiple root actions have the EXACT same primary
+      // SearchScore, select the plan with the fewest reversals/revisits.
+      // This is a PLAN-SELECTION side channel: it does NOT modify value/mate/
+      // bound/TT/alpha-beta. It only changes which catTurnPlan is returned.
+      const tieBrokenPlan = forcedLossTieBreak(state, ctx, lastRootValues);
+      if (tieBrokenPlan !== null && tieBrokenPlan.length > 0) {
+        lastCatTurnPlan = tieBrokenPlan;
+      }
     } else {
       // Incomplete (node-budget OR wall-clock truncated). NEVER use the
       // truncated iteration's own result; the answer (and the plan) keeps
