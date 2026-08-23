@@ -1438,7 +1438,7 @@ test('D1-inv. root EXACT entry missing bestAction is NOT trusted; full search ru
   const S = boxedForcedMate(); // mate-in-1, a genuine cacheable root
   const ctx = createSearchContext(noTrapRuleSet, BIG, true);
   // Poison the table with a bogus EXACT entry for S that lacks bestAction.
-  ctx.tt.set(stateKey(S), { depthTurns: 6, value: 12345, mate: 'cat', bestAction: undefined });
+  ctx.tt.set(stateKey(S), { depthTurns: 6, value: 12345, mate: 'cat', bestAction: undefined, extensionsRemaining: 0 });
 
   const r = searchBestAction(S, 6, ctx);
   // The poisoned sentinel value must NOT leak out — a real search runs and
