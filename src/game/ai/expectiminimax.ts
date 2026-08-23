@@ -6,6 +6,7 @@ import { simulateSearchAction } from './simulator';
 import { stateKey, TranspositionTable } from './transposition';
 import type { TTEntry } from './transposition';
 import { forcedLossTieBreak } from './forcedLossTieBreak';
+import { classifyGoalThreat } from './threatClassifier';
 
 /**
  * ============================================================================
@@ -378,6 +379,23 @@ export interface SearchDiagnostics {
   orderingChangedFirstMove: number;
   /** Phase D3 (optional): Alpha-Beta cutoffs triggered on the FIRST action. */
   firstMoveCutoffCount: number;
+  /** G0.3B: times a threat extension was triggered at a depth-horizon leaf. */
+  extensionsTriggered: number;
+  /** G0.3B: nodes searched inside an extended subtree. */
+  extendedNodes: number;
+  /** G0.3B: depth-horizon leaves classified as critical (whether extended or not). */
+  criticalLeaves: number;
+  /** G0.3B: extensions aborted by deadline or node budget (partial result discarded). */
+  extensionAbortCount: number;
+  /**
+   * G0.3B: MAXIMUM extension depth consumed beyond the nominal horizon on any
+   * single path (0..maxThreatExtensions). This is NOT the absolute effective
+   * turn depth — it measures how many extra turn-switch credits a critical
+   * leaf actually used before the extension budget ran out. `completedDepth`
+   * still reports the nominal iterative depth; this field is the extension
+   * overhead beyond it.
+   */
+  extensionDepthReached: number;
 }
 
 /** Context handed to the search. */
@@ -465,6 +483,62 @@ export interface SearchContext {
    * production Hard debug panel (TOP ROOT ACTIONS). Reset per search call.
    */
   rootValues: { action: SearchAction; value: number; mate: MateSide }[];
+  /**
+   * G0.3B: maximum selective threat-extension credits per search path. When
+   * > 0, the search may extend beyond the nominal depth horizon on states
+   * classified as `critical` by the threat classifier, consuming one credit
+   * per extension. Default 0 = no extension (identical to pre-G0.3B behavior).
+   */
+  maxThreatExtensions: number;
+  /**
+   * G0.3B: when true (default), threat-aware move ordering is active at
+   * MAX/MIN nodes when the state is classified near/critical. When false, the
+   * ordering falls back to the pure Phase D3 tactical score only (identical
+   * to pre-G0.3B behavior). This is a pure search-ORDER switch — it must NEVER
+   * change value/mate at fixed depth.
+   */
+  useThreatOrdering: boolean;
+  /**
+   * G0.3C: optional per-search profiler. When set, the search records
+   * cumulative call counts and wall-clock time for each hot-path operation
+   * (stateKey, legalActions, transition, evaluate, TT probe/store, ordering
+   * sort). Production leaves this `undefined` — every probe site uses
+   * optional-chaining (`ctx.profiler?.`), so the JIT treats it as a
+   * never-taken branch with effectively zero overhead.
+   */
+  profiler?: SearchProfiler;
+  /**
+   * G0.3C: per-search evaluation cache (stateKey → evaluateForCat result).
+   * When set, evaluateLeaf checks this map before calling the evaluator.
+   * evaluateForCat is pure, so the cache is sound. Lives on the context
+   * (per-search, bounded, never persisted). Production enables it;
+   * profiler/offline runs leave it undefined.
+   */
+  evalCache?: Map<string, number>;
+}
+
+/**
+ * G0.3C: diagnostic-only profiler accumulators. Lives on the SearchContext
+ * so it is per-search (never global, never persisted). The search does NOT
+ * use these counters for any decision — they are write-only diagnostics.
+ */
+export interface SearchProfiler {
+  stateKeyCalls: number;
+  stateKeyMs: number;
+  legalActionsCalls: number;
+  legalActionsMs: number;
+  transitionCalls: number;
+  transitionMs: number;
+  evaluateCalls: number;
+  evaluateMs: number;
+  ttProbeCalls: number;
+  ttStoreCalls: number;
+  orderingSortCalls: number;
+  orderingSortMs: number;
+  /** Unique leaf stateKeys seen by the evaluator (for dedup analysis). */
+  leafStateKeys: Set<string>;
+  /** How many times evaluateLeaf was called with a previously-seen stateKey. */
+  repeatedLeafEvals: number;
 }
 
 /** Standard return shape for the root search entry point. */
@@ -536,6 +610,8 @@ export function createSearchContext(
   useTranspositionTable = false,
   useAlphaBetaPruning = false,
   useMoveOrdering = false,
+  maxThreatExtensions = 0,
+  useThreatOrdering = true,
 ): SearchContext {
   return {
     rules,
@@ -546,6 +622,9 @@ export function createSearchContext(
     useMoveOrdering,
     planBranches: new Map<string, SearchAction>(),
     rootValues: [],
+    maxThreatExtensions,
+    useThreatOrdering,
+    evalCache: new Map<string, number>(), // G0.3C: per-search eval memoization
     diagnostics: {
       nodes: 0,
       chanceNodes: 0,
@@ -570,6 +649,11 @@ export function createSearchContext(
       tacticalFirstMoveCount: 0,
       orderingChangedFirstMove: 0,
       firstMoveCutoffCount: 0,
+      extensionsTriggered: 0,
+      extendedNodes: 0,
+      criticalLeaves: 0,
+      extensionAbortCount: 0,
+      extensionDepthReached: 0,
     },
   };
 }
@@ -598,6 +682,11 @@ function resetDiagnostics(d: SearchDiagnostics): void {
   d.tacticalFirstMoveCount = 0;
   d.orderingChangedFirstMove = 0;
   d.firstMoveCutoffCount = 0;
+  d.extensionsTriggered = 0;
+  d.extendedNodes = 0;
+  d.criticalLeaves = 0;
+  d.extensionAbortCount = 0;
+  d.extensionDepthReached = 0;
 }
 
 // ---------------------------------------------------------------------------
@@ -620,7 +709,42 @@ export function defaultLeafEval(state: GameEngineState): number {
   return score;
 }
 
-function evaluateLeaf(state: GameEngineState, ctx: SearchContext): number {
+/**
+ * G0.3C: per-search evaluation cache. Maps stateKey → evaluateForCat result.
+ * Lives on the SearchContext so it is per-search (never global, never
+ * persisted). evaluateForCat is a PURE function of the game-affecting state,
+ * so caching by stateKey is sound: the same state always yields the same
+ * value. The cache is bounded (entries evicted when exceeding
+ * EVAL_CACHE_MAX_SIZE to avoid unbounded memory on very deep searches).
+ */
+const EVAL_CACHE_MAX_SIZE = 50_000;
+
+function evaluateLeaf(state: GameEngineState, ctx: SearchContext, key?: string): number {
+  // G0.3C: per-search evaluation memoization. evaluateForCat is pure, so the
+  // same stateKey always yields the same value. The caller passes the key it
+  // already computed (from _search's repetition check / TT probe) to avoid a
+  // redundant stateKey call here.
+  const cache = ctx.evalCache;
+  if (cache) {
+    const k = key ?? stateKey(state);
+    const cached = cache.get(k);
+    if (cached !== undefined) return cached;
+    const v = ctx.leafEvaluator ? ctx.leafEvaluator(state) : defaultLeafEval(state);
+    if (cache.size < EVAL_CACHE_MAX_SIZE) cache.set(k, v);
+    return v;
+  }
+  // Profiler path (no cache, instrumented).
+  const p = ctx.profiler;
+  if (p) {
+    const t0 = performance.now();
+    const k = key ?? stateKey(state);
+    if (p.leafStateKeys.has(k)) p.repeatedLeafEvals++;
+    else p.leafStateKeys.add(k);
+    const v = ctx.leafEvaluator ? ctx.leafEvaluator(state) : defaultLeafEval(state);
+    p.evaluateCalls++;
+    p.evaluateMs += performance.now() - t0;
+    return v;
+  }
   return ctx.leafEvaluator ? ctx.leafEvaluator(state) : defaultLeafEval(state);
 }
 
@@ -673,21 +797,20 @@ function manhattan(
  * returns null without touching `ttProbes`, so disabling TT is indistinguishable
  * from the Phase C/D0 code path.
  */
-function probeTT(ctx: SearchContext, key: string, depthTurns: number): TTEntry | null {
+function probeTT(ctx: SearchContext, key: string, depthTurns: number, extensionsRemaining: number): TTEntry | null {
   if (!ctx.useTT) return null;
+  if (ctx.profiler) ctx.profiler.ttProbeCalls++; // G0.3C: diagnostic only
   ctx.diagnostics.ttProbes++;
   const entry = ctx.tt.get(key);
   if (!entry) return null;
   // An entry for the SAME state key was found (regardless of depth).
   ctx.diagnostics.ttHits++;
-  if (entry.depthTurns === depthTurns) {
-    // Exact depth match → genuine EXACT reuse of the full node result.
+  if (entry.depthTurns === depthTurns && entry.extensionsRemaining === extensionsRemaining) {
+    // Exact depth + extension-context match → genuine EXACT reuse.
     ctx.diagnostics.ttExactHits++;
     return entry;
   }
-  // Key matched but depth did NOT → this is NOT an exact reuse (the cached
-  // value belongs to a different remaining depth), so it must not be returned
-  // as a node result. Record it so D1 can assert the strict-match policy.
+  // Key matched but depth and/or extension context did NOT → not an exact reuse.
   ctx.diagnostics.ttDepthMismatches++;
   return null;
 }
@@ -702,27 +825,21 @@ function storeTT(
   ctx: SearchContext,
   key: string,
   depthTurns: number,
+  extensionsRemaining: number,
   result: InternalSearchResult,
   bestAction?: SearchAction,
 ): void {
   if (!ctx.useTT) return;
   if (!result.completed || !result.cacheable) return;
-  // Phase D2 (D2.5 not yet): the EXACT-only TT may ONLY store nodes whose value
-  // is the genuine full minimax value. An Alpha-Beta cutoff produces a
-  // 'lower'/'upper' bound, NOT an exact value — storing it would hand a later
-  // probe a wrong (over-/under-shot) exact entry. So gate on `bound ===
-  // 'exact'` in addition to completed/cacheable.
   if (result.bound !== 'exact') return;
-  // Replacement policy (D1 — one entry per state, no 2-D table yet): a deeper
-  // entry is strictly more informative than a shallower one, so keep the
-  // existing entry when it is deeper. Overwrite only when the new depth is
-  // >= the old. EXACT reuse still requires an *exact* depth match (see
-  // probeTT), so this policy is purely a cache-quality heuristic and never
-  // affects correctness.
+  if (ctx.profiler) ctx.profiler.ttStoreCalls++; // G0.3C: diagnostic only
   const existing = ctx.tt.get(key);
+  // Replacement: prefer deeper depth, then more extension credits (more info).
   if (existing && existing.depthTurns > depthTurns) return;
+  if (existing && existing.depthTurns === depthTurns && existing.extensionsRemaining > extensionsRemaining) return;
   ctx.tt.set(key, {
     depthTurns,
+    extensionsRemaining,
     value: result.value,
     mate: result.mate,
     bestAction,
@@ -781,6 +898,12 @@ function primaryNextState(t: SearchTransitionResult): GameEngineState {
  *   immediate MouseWins → -1e6   (worst for cat)
  *   otherwise           → 10 · (closeness gained)   (cat closer = good)
  *
+ * G0.3B: when the current state is classified as a goal-scoring threat
+ * (critical or near), a threat-aware component is added based on the REAL BFS
+ * mouseWinRoute change (not Manhattan). This makes the ordering prioritize
+ * threat-relevant moves (cat blocks the route, mouse shortens it) without
+ * changing the search value.
+ *
  * For a MIN (mouse) node the caller flips the sort direction, so "worst for
  * cat" (e.g. a mouse escape) is searched first. This is intentionally small and
  * pure — NOT the Legacy Hard weight system.
@@ -788,13 +911,29 @@ function primaryNextState(t: SearchTransitionResult): GameEngineState {
 function computeOrderingScore(
   state: GameEngineState,
   transition: SearchTransitionResult,
+  threat?: { urgency: 'none' | 'near' | 'critical'; winRoute: number | null },
 ): number {
   const next = primaryNextState(transition);
   if (next.phase === GamePhase.CatWins) return 1_000_000;
   if (next.phase === GamePhase.MouseWins) return -1_000_000;
   const before = manhattan(state.catPosition, state.mousePosition);
   const after = manhattan(next.catPosition, next.mousePosition);
-  return (before - after) * 10;
+  let score = (before - after) * 10;
+
+  // G0.3B: threat-aware ordering. When the current state has a real
+  // goal-scoring threat, prioritize actions that change the REAL win route
+  // (BFS, not Manhattan). This is an ORDERING KEY only — never enters value.
+  if (threat && threat.urgency !== 'none') {
+    const nextThreat = classifyGoalThreat(next);
+    const currentRoute = threat.winRoute ?? 9999;
+    const nextRoute = nextThreat.winRoute ?? 9999;
+    // Positive routeDelta = mouse got farther from hole = good for cat.
+    const routeDelta = nextRoute - currentRoute;
+    const weight = threat.urgency === 'critical' ? 500 : 100;
+    score += routeDelta * weight;
+  }
+
+  return score;
 }
 
 /**
@@ -832,15 +971,18 @@ function searchActions(
   ply: number,
   alpha: ScoreBound,
   beta: ScoreBound,
+  extensionsRemaining: number,
+  key: string,
 ): { result: InternalSearchResult; bestAction: SearchAction | null } {
-  const actions = generateLegalSearchActions(state, ctx.rules);
+  const p2 = ctx.profiler;
+  const actions = p2 ? (() => { const t0 = performance.now(); const a = generateLegalSearchActions(state, ctx.rules); p2.legalActionsCalls++; p2.legalActionsMs += performance.now() - t0; return a; })() : generateLegalSearchActions(state, ctx.rules);
   if (actions.length === 0) {
     // RULE_EDGE_CASE_NO_LEGAL_ACTIONS (requirement #8): Playing, movesLeft>0,
     // but fully boxed in. Do NOT invent a win/loss; return static eval.
     ctx.diagnostics.noLegalActionNodes++;
     ctx.diagnostics.leafNodes++;
     return {
-      result: { value: evaluateLeaf(state, ctx), completed: true, cacheable: true, mate: null, bound: 'exact' },
+      result: { value: evaluateLeaf(state, ctx, key), completed: true, cacheable: true, mate: null, bound: 'exact' },
       bestAction: null,
     };
   }
@@ -852,15 +994,21 @@ function searchActions(
   // re-simulates inside valueOfAction.
   const prepared: PreparedAction[] = actions.map((action, i) => ({
     action,
-    transition: simulateSearchAction(state, action, ctx.rules),
+    transition: p2 ? (() => { const t0 = performance.now(); const tr = simulateSearchAction(state, action, ctx.rules); p2.transitionCalls++; p2.transitionMs += performance.now() - t0; return tr; })() : simulateSearchAction(state, action, ctx.rules),
     orderingScore: 0,
     originalIndex: i,
   }));
 
+  // G0.3B: compute threat classification ONCE for the current state, used
+  // for threat-aware move ordering. Only when threat ordering is enabled
+  // (BASELINE isolation: useThreatOrdering=false → pure D3 ordering, exactly
+  // pre-G0.3B behavior).
+  const threat = ctx.useMoveOrdering && ctx.useThreatOrdering ? classifyGoalThreat(state) : undefined;
+
   const orderingOn = ctx.useMoveOrdering && prepared.length > 1;
   if (orderingOn) {
     for (const pa of prepared) {
-      pa.orderingScore = computeOrderingScore(state, pa.transition);
+      pa.orderingScore = computeOrderingScore(state, pa.transition, threat);
     }
     // First priority: a TT bestAction hint. Even on a depth MISMATCH the cached
     // VALUE must not be reused (probeTT already enforces that), but the move is
@@ -873,18 +1021,19 @@ function searchActions(
         if (idx >= 0) ttFirstIndex = idx;
       }
     }
-    prepared.sort((a, b) => {
+    const sortFn = (a: PreparedAction, b: PreparedAction) => {
       if (ttFirstIndex >= 0) {
         const aT = a.originalIndex === ttFirstIndex ? 1 : 0;
         const bT = b.originalIndex === ttFirstIndex ? 1 : 0;
         if (aT !== bT) return bT - aT; // TT hint to the front
       }
-      // Tactical: MAX wants high cat-goodness first; MIN wants low first.
       const dir = maximizing ? -1 : 1;
       const diff = dir * (a.orderingScore - b.orderingScore);
       if (diff !== 0) return diff;
       return a.originalIndex - b.originalIndex; // stable tie-break
-    });
+    };
+    if (p2) { const t0 = performance.now(); prepared.sort(sortFn); p2.orderingSortCalls++; p2.orderingSortMs += performance.now() - t0; }
+    else prepared.sort(sortFn);
     const firstOriginal = prepared[0].originalIndex;
     if (firstOriginal !== 0) ctx.diagnostics.orderingChangedFirstMove++;
     if (ttFirstIndex >= 0 && firstOriginal === ttFirstIndex) ctx.diagnostics.ttFirstMoveCount++;
@@ -910,7 +1059,7 @@ function searchActions(
     const edgeCost = mateActionCost(pa.action);
     const childAlpha = unstepBoundForChild(alpha, edgeCost);
     const childBeta = unstepBoundForChild(beta, edgeCost);
-    const childRes = valueOfAction(pa.transition, state, depthTurns, ctx, path, nodeCount, ply + 1, childAlpha, childBeta);
+    const childRes = valueOfAction(pa.transition, state, depthTurns, ctx, path, nodeCount, ply + 1, childAlpha, childBeta, extensionsRemaining);
     // Propagate the child's value up one tree edge by the edge's real cost.
     // The step is driven by the child's EXPLICIT mate classification (see
     // stepChildForParent); a non-mate child is not stepped.
@@ -972,26 +1121,6 @@ function searchActions(
     value: best!.value,
     mate: best!.mate,
     bound: boundType,
-    // `completed` / `cacheable` are NOT conflated with the Alpha-Beta cutoff
-    // (D2 requirement #11). A cutoff is algorithmic PRUNING, not a search
-    // ABORT, so it never by itself sets completed = false; the flags keep their
-    // original meaning and are aggregated over the actions ACTUALLY searched
-    // (the loop breaks on cutoff, so `allCompleted`/`allCacheable` already
-    // describe exactly that subset).
-    //
-    // Deliberately NOT `cutOff ? true : allCompleted`: forcing completed=true
-    // on a cutoff would HIDE a budget-truncated child from every ancestor, and
-    // an ancestor could then be stored as a TT EXACT entry built on a truncated
-    // (unsound) value. Reporting honestly keeps the budget semantics of Phase
-    // C/D0/D1 byte-for-byte intact (see D2-J).
-    //
-    // A cutoff node is barred from the EXACT TT by `bound != 'exact'` ALONE
-    // (see storeTT) — that is the single, sufficient gate. Leaving `cacheable`
-    // honest means a cut-off child does not needlessly poison its parent: the
-    // parent may still be stored when the parent's OWN bound is 'exact', which
-    // is sound because a node marked 'exact' provably holds the true minimax
-    // value (a 'lower' child forces the parent to cut off, and an 'upper' child
-    // can never be the parent's best — so 'exact' is never mislabelled).
     completed: allCompleted,
     cacheable: allCompleted && allCacheable,
   };
@@ -1015,13 +1144,14 @@ function valueOfAction(
   ply: number,
   alpha: ScoreBound = NEG_INF,
   beta: ScoreBound = POS_INF,
+  extensionsRemaining: number = 0,
 ): InternalSearchResult {
   if (transition.kind === 'deterministic') {
     const next = transition.state;
     const switched = state.currentPlayer !== next.currentPlayer;
     const nd = depthTurns - (switched ? 1 : 0);
     // Pass the (already child-space) window down to the successor.
-    return _search(next, nd, ctx, path, nodeCount, ply, alpha, beta);
+    return _search(next, nd, ctx, path, nodeCount, ply, alpha, beta, extensionsRemaining);
   }
 
   // CHANCE node. The value is the expectation over all outcomes.
@@ -1057,7 +1187,7 @@ function valueOfAction(
   }
   for (const o of outcomes) {
     // FULL WINDOW for every outcome — no pruning across a random node.
-    const cr = _search(o.state, nd, ctx, path, nodeCount, ply, NEG_INF, POS_INF);
+    const cr = _search(o.state, nd, ctx, path, nodeCount, ply, NEG_INF, POS_INF, extensionsRemaining);
     total += o.weight * cr.value;
     if (!cr.completed) allCompleted = false;
     if (!cr.cacheable) allCacheable = false;
@@ -1079,13 +1209,15 @@ function _search(
   ply: number,
   alpha: ScoreBound = NEG_INF,
   beta: ScoreBound = POS_INF,
+  extensionsRemaining: number = 0,
 ): InternalSearchResult {
   // Repetition safety: if this exact game-affecting state already appears on
   // the CURRENT recursion path, we have a cycle. Return a static evaluation
   // and do NOT recurse (prevents infinite loops). This is NOT a game draw —
   // GAMEPLAY defines no repetition = draw, so we never alter the real phase.
   // The value depends on the current path, so it is NOT cacheable.
-  const key = stateKey(state);
+  const p = ctx.profiler;
+  const key = p ? (() => { const t0 = performance.now(); const k = stateKey(state); p.stateKeyCalls++; p.stateKeyMs += performance.now() - t0; return k; })() : stateKey(state);
 
   // 1. Terminal (real win/loss) — always exact, dominates everything. Checked
   //    BEFORE the repetition guard (②): a terminal is a sink (no children), so
@@ -1109,7 +1241,7 @@ function _search(
   //    path, so it is NOT cacheable.
   if (path.has(key)) {
     ctx.diagnostics.repetitions++;
-    return { value: evaluateLeaf(state, ctx), completed: true, cacheable: false, mate: null, bound: 'exact' };
+    return { value: evaluateLeaf(state, ctx, key), completed: true, cacheable: false, mate: null, bound: 'exact' };
   }
   path.add(key);
   try {
@@ -1117,54 +1249,110 @@ function _search(
 
     // 3. Depth limit (in turns) → static eval. Deterministic for the state,
     //    so cacheable (the TT will treat it as a depth-bound, not exact).
+    //    G0.3B: selective threat extension — when the search reaches its
+    //    nominal depth horizon but the state is a CRITICAL goal-scoring
+    //    threat, grant up to `maxThreatExtensions` additional turn-switch
+    //    credits to search deeper along that tactical line. This is NOT a
+    //    global depth+1 — it is per-leaf, only on critical states, and each
+    //    extension consumes one credit. The full legal action set is still
+    //    searched (no tactical pruning).
     if (depthTurns <= 0) {
+      if (extensionsRemaining > 0 && ctx.maxThreatExtensions > 0) {
+        const threat = classifyGoalThreat(state);
+        if (threat.urgency === 'critical') {
+          ctx.diagnostics.criticalLeaves++;
+          // Extend: search one more turn with one fewer credit.
+          ctx.diagnostics.extensionsTriggered++;
+          ctx.diagnostics.extendedNodes++;
+          // Track effective extension depth: how many extension credits
+          // have been consumed on this path. This is in TURN-equivalent
+          // units (not raw ply count, which includes same-actor steps).
+          const extUsed = ctx.maxThreatExtensions - extensionsRemaining + 1;
+          if (extUsed > ctx.diagnostics.extensionDepthReached) {
+            ctx.diagnostics.extensionDepthReached = extUsed;
+          }
+          // Fall through to the normal search with depthTurns=1 and reduced credits.
+          // The extension is still subject to deadline/maxNodes (checked below).
+          // If the extension is aborted by budget/deadline, the partial result
+          // is discarded (completed=false, not cached).
+          const extResult = _searchInner(state, 1, ctx, path, nodeCount, ply, alpha, beta, extensionsRemaining - 1, key);
+          if (!extResult.completed) {
+            ctx.diagnostics.extensionAbortCount++;
+          }
+          return extResult;
+        } else {
+          // Non-critical leaf — normal static eval.
+          ctx.diagnostics.leafNodes++;
+          return { value: evaluateLeaf(state, ctx, key), completed: true, cacheable: true, mate: null, bound: 'exact' };
+        }
+      }
       ctx.diagnostics.leafNodes++;
-      return { value: evaluateLeaf(state, ctx), completed: true, cacheable: true, mate: null, bound: 'exact' };
+      return { value: evaluateLeaf(state, ctx, key), completed: true, cacheable: true, mate: null, bound: 'exact' };
     }
 
-    // 4. Hard safety budget → static eval (avoid search explosion). This is an
-    //    APPROXIMATE, truncated value — NOT completed, NOT cacheable.
-    if (nodeCount.count >= ctx.maxNodes) {
-      ctx.diagnostics.budgetCutoffs++;
-      return { value: evaluateLeaf(state, ctx), completed: false, cacheable: false, mate: null, bound: 'exact' };
-    }
-
-    // 4b. F1A-2 wall-clock deadline — SAME abort semantics as the maxNodes
-    //     budget (static eval, completed=false, NOT cacheable, never an EXACT
-    //     TT entry). This sits INSIDE `_search`, so the deadline can interrupt
-    //     a RUNNING depth — it is not checked only between iterative-deepening
-    //     iterations. The clock is sampled every `DEADLINE_CHECK_INTERVAL`
-    //     nodes (see deadlineReached). A cost has already been paid for the
-    //     node that reaches the deadline, so this is a soft stop, not a hard
-    //     preemption — exactly the abort contract the node budget has.
-    if (deadlineReached(ctx, nodeCount)) {
-      ctx.diagnostics.deadlineCutoffs++;
-      return { value: evaluateLeaf(state, ctx), completed: false, cacheable: false, mate: null, bound: 'exact' };
-    }
-
-    // 5. EXACT transposition-table probe (Phase D1). Must come AFTER the
-    //    repetition guard (②) and the budget guard (④): a path-dependent
-    //    repetition result must never be bypassed by a cached EXACT entry, and
-    //    a budget-exhausted node must not pretend completion through a lookup.
-    //    Only an EXACT depthTurns match is reused (no LOWER/UPPER bounds yet).
-    const hit = probeTT(ctx, key, depthTurns);
-    if (hit) {
-      return { value: hit.value, mate: hit.mate, completed: true, cacheable: true, bound: 'exact' };
-    }
-
-    // 6. Action loop (MAX/MIN + optional Alpha-Beta). Delegated to searchActions
-    //    so the interior node and the root share ONE loop definition. The node
-    //    counter is bumped HERE (before the loop), matching Phase C/D0/D1
-    //    budget-accounting exactly: the budget guard (④) sees the pre-increment
-    //    count, then this node is counted once.
-    nodeCount.count++;
-    ctx.diagnostics.nodes++;
-    const { result, bestAction } = searchActions(state, depthTurns, ctx, path, nodeCount, ply, alpha, beta);
-    storeTT(ctx, key, depthTurns, result, bestAction ?? undefined);
-    return result;
+    return _searchInner(state, depthTurns, ctx, path, nodeCount, ply, alpha, beta, extensionsRemaining, key);
   } finally {
     path.delete(key);
   }
+}
+
+/**
+ * Inner search after terminal/repetition/depth checks. Extracted so the
+ * threat-extension path can fall through to the same node-expansion logic.
+ */
+function _searchInner(
+  state: GameEngineState,
+  depthTurns: number,
+  ctx: SearchContext,
+  path: Set<string>,
+  nodeCount: { count: number },
+  ply: number,
+  alpha: ScoreBound,
+  beta: ScoreBound,
+  extensionsRemaining: number,
+  key: string,
+): InternalSearchResult {
+
+  // 4. Hard safety budget → static eval (avoid search explosion). This is an
+  //    APPROXIMATE, truncated value — NOT completed, NOT cacheable.
+  if (nodeCount.count >= ctx.maxNodes) {
+    ctx.diagnostics.budgetCutoffs++;
+    return { value: evaluateLeaf(state, ctx, key), completed: false, cacheable: false, mate: null, bound: 'exact' };
+  }
+
+  // 4b. F1A-2 wall-clock deadline — SAME abort semantics as the maxNodes
+  //     budget (static eval, completed=false, NOT cacheable, never an EXACT
+  //     TT entry). This sits INSIDE `_search`, so the deadline can interrupt
+  //     a RUNNING depth — it is not checked only between iterative-deepening
+  //     iterations. The clock is sampled every `DEADLINE_CHECK_INTERVAL`
+  //     nodes (see deadlineReached). A cost has already been paid for the
+  //     node that reaches the deadline, so this is a soft stop, not a hard
+  //     preemption — exactly the abort contract the node budget has.
+  if (deadlineReached(ctx, nodeCount)) {
+    ctx.diagnostics.deadlineCutoffs++;
+    return { value: evaluateLeaf(state, ctx, key), completed: false, cacheable: false, mate: null, bound: 'exact' };
+  }
+
+  // 5. EXACT transposition-table probe (Phase D1). Must come AFTER the
+  //    repetition guard (②) and the budget guard (④): a path-dependent
+  //    repetition result must never be bypassed by a cached EXACT entry, and
+  //    a budget-exhausted node must not pretend completion through a lookup.
+  //    Only an EXACT depthTurns + extensionsRemaining match is reused.
+  const hit = probeTT(ctx, key, depthTurns, extensionsRemaining);
+  if (hit) {
+    return { value: hit.value, mate: hit.mate, completed: true, cacheable: true, bound: 'exact' };
+  }
+
+  // 6. Action loop (MAX/MIN + optional Alpha-Beta). Delegated to searchActions
+  //    so the interior node and the root share ONE loop definition. The node
+  //    counter is bumped HERE (before the loop), matching Phase C/D0/D1
+  //    budget-accounting exactly: the budget guard (④) sees the pre-increment
+  //    count, then this node is counted once.
+  nodeCount.count++;
+  ctx.diagnostics.nodes++;
+  const { result, bestAction } = searchActions(state, depthTurns, ctx, path, nodeCount, ply, alpha, beta, extensionsRemaining, key);
+  storeTT(ctx, key, depthTurns, extensionsRemaining, result, bestAction ?? undefined);
+  return result;
 }
 
 /**
@@ -1198,7 +1386,7 @@ export function searchResult(
 ): InternalSearchResult {
   const path = new Set<string>();
   const nodeCount = { count: 0 };
-  return _search(state, depthTurns, ctx, path, nodeCount, 0, NEG_INF, POS_INF);
+  return _search(state, depthTurns, ctx, path, nodeCount, 0, NEG_INF, POS_INF, ctx.maxThreatExtensions);
 }
 
 /**
@@ -1240,9 +1428,10 @@ function runFixedSearch(
     };
   }
 
+  const rootKey = stateKey(state);
   const actions = generateLegalSearchActions(state, ctx.rules);
   if (actions.length === 0) {
-    const value = evaluateLeaf(state, ctx);
+    const value = evaluateLeaf(state, ctx, rootKey);
     return {
       result: { value, completed: true, cacheable: false, mate: null, bound: 'exact' },
       bestAction: null,
@@ -1252,8 +1441,7 @@ function runFixedSearch(
   // Phase D1: EXACT TT probe at the root. Reuses a prior full-depth result for
   // this exact state + depthTurns (e.g. from another search sharing this
   // context's table). Falls through to a full search on miss / mismatch.
-  const rootKey = stateKey(state);
-  const rootHit = probeTT(ctx, rootKey, depthTurns);
+  const rootHit = probeTT(ctx, rootKey, depthTurns, ctx.maxThreatExtensions);
   // A playable EXACT entry MUST carry the best action for this node. Without it
   // we cannot return a complete answer, so we fall through to a full search
   // rather than pretend completion from a partial entry.
@@ -1265,8 +1453,8 @@ function runFixedSearch(
   }
 
   const path = new Set<string>();
-  const { result, bestAction } = searchActions(state, depthTurns, ctx, path, nodeCount, 0, NEG_INF, POS_INF);
-  if (bestAction !== null) storeTT(ctx, rootKey, depthTurns, result, bestAction);
+  const { result, bestAction } = searchActions(state, depthTurns, ctx, path, nodeCount, 0, NEG_INF, POS_INF, ctx.maxThreatExtensions, rootKey);
+  if (bestAction !== null) storeTT(ctx, rootKey, depthTurns, ctx.maxThreatExtensions, result, bestAction);
   return { result, bestAction };
 }
 
@@ -1385,6 +1573,19 @@ export interface IterativeSearchOptions {
    * Tests inject a FAKE clock for deterministic timeouts.
    */
   now?: () => number;
+  /**
+   * G0.3B: maximum selective threat-extension credits per search path.
+   * When > 0, the search may extend beyond the nominal depth horizon on
+   * states classified as `critical` by the threat classifier. Default 0
+   * = no extension (identical to pre-G0.3B behavior).
+   */
+  maxThreatExtensions?: number;
+  /**
+   * G0.3B: when true (default), threat-aware move ordering is active.
+   * When false, ordering falls back to pure Phase D3 tactical score only
+   * (BASELINE isolation for real-snapshot A/B).
+   */
+  useThreatOrdering?: boolean;
 }
 
 /** Per-iteration result, for inspection / diagnostics. */
@@ -1420,6 +1621,21 @@ export interface IterativeSearchDiagnostics {
   ttFirstMoveCount: number;
   tacticalFirstMoveCount: number;
   firstMoveCutoffCount: number;
+  /** G0.3B: times a threat extension was triggered. */
+  extensionsTriggered: number;
+  /** G0.3B: nodes searched inside an extended subtree. */
+  extendedNodes: number;
+  /** G0.3B: depth-horizon leaves classified as critical. */
+  criticalLeaves: number;
+  /** G0.3B: extensions aborted by deadline/budget. */
+  extensionAbortCount: number;
+  /**
+   * G0.3B: maximum extension depth consumed beyond the nominal horizon on any
+   * single path (0..maxThreatExtensions). NOT the absolute effective turn
+   * depth — `completedDepth` remains the nominal iterative depth; this is the
+   * extra depth granted to critical leaves.
+   */
+  maxExtensionDepth: number;
 }
 
 export interface IterativeSearchResult {
@@ -1469,6 +1685,8 @@ export function searchBestActionIterative(
     opts.useTT ?? false,
     opts.useAlphaBeta ?? false,
     opts.useMoveOrdering ?? false,
+    opts.maxThreatExtensions ?? 0,
+    opts.useThreatOrdering ?? true,
   );
   if (opts.leafEvaluator) ctx.leafEvaluator = opts.leafEvaluator;
   // F1A-2: one shared wall-clock deadline across ALL iterations (the deadline
@@ -1570,6 +1788,11 @@ export function searchBestActionIterative(
       ttFirstMoveCount: d.ttFirstMoveCount,
       tacticalFirstMoveCount: d.tacticalFirstMoveCount,
       firstMoveCutoffCount: d.firstMoveCutoffCount,
+      extensionsTriggered: d.extensionsTriggered,
+      extendedNodes: d.extendedNodes,
+      criticalLeaves: d.criticalLeaves,
+      extensionAbortCount: d.extensionAbortCount,
+      maxExtensionDepth: d.extensionDepthReached,
     },
     iterations,
   };

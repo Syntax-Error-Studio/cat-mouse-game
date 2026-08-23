@@ -748,6 +748,21 @@ export function bfsCatDistance(state: GameEngineState, targets: RC[]): number | 
   return bfsDistance(state.catPosition, targets, (r, c) => catNeighbors(state, r, c));
 }
 
+/**
+ * G0.3B: Carrying-mode mouse→hole distance using the SAME real BFS route
+ * logic as the evaluator (orthogonal-only, no tunnels — mirrors the rule
+ * that carrying butter forbids tunnel entry). Returns null when the mouse
+ * cannot reach any hole cell in carrying mode (blocked route).
+ *
+ * This is the shared route helper the threat classifier reuses — NOT a
+ * duplicate BFS algorithm.
+ */
+export function mouseCarryingDistanceToHole(state: GameEngineState): number | null {
+  const targets = mouseHoleCells(state);
+  if (targets.length === 0) return null;
+  return bfsDistance(state.mousePosition, targets, (r, c) => mouseOrthogonal(state, r, c));
+}
+
 // Retain the legacy terminal constants for callers/tests that referenced them;
 // they are NOT used inside the heuristic (terminal scoring is the search's job).
 export const WIN_SCORE = 1e9;

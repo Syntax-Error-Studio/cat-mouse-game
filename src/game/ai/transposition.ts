@@ -84,6 +84,15 @@ export function stateKey(state: GameEngineState): string {
  */
 export interface TTEntry {
   depthTurns: number;
+  /**
+   * G0.3B: threat-extension credits that were available when this entry was
+   * stored. A search with extensionsRemaining=2 may explore deeper along
+   * critical-threat lines than one with extensionsRemaining=0, so the same
+   * (state, depthTurns) can yield different values depending on this context.
+   * The probe requires an EXACT match to prevent cross-context pollution.
+   * Default 0 = no extension context (identical to pre-G0.3B behavior).
+   */
+  extensionsRemaining: number;
   value: number;
   mate: 'cat' | 'mouse' | null;
   bestAction?: SearchAction;

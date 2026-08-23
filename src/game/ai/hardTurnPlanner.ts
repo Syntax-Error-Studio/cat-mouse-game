@@ -87,6 +87,13 @@ export interface HardSearchDebug {
   plan: SearchAction[];
   rootActions: { action: SearchAction; value: number; mate: MateSide }[];
   evalRoot: HardSearchEvalRoot;
+  /** G0.3B: threat-aware search diagnostics. */
+  extensionsTriggered: number;
+  extendedNodes: number;
+  criticalLeaves: number;
+  extensionAbortCount: number;
+  /** G0.3B: max extension credits consumed beyond nominal horizon on any path. */
+  maxExtensionDepth: number;
 }
 
 /** Options for one Hard cat-turn plan. `rules` is INJECTED by the caller (engine). */
@@ -133,6 +140,11 @@ export function planHardCatTurn(
     leafEvaluator: opts.leafEvaluator ?? evaluateForCat,
     deadlineMs,
     now,
+    // G0.3B FINAL: selective threat extension FAILED real-snapshot validation
+    // (REAL Turn5: completedDepth 1→0, empty-plan fallback 10/20). Production
+    // is rolled back to 0 credits; the extension machinery stays in the code
+    // base for experiments/forensics only (see G0.3B report).
+    maxThreatExtensions: 0,
   });
   const elapsedMs = now() - t0;
 
@@ -150,6 +162,11 @@ export function planHardCatTurn(
     plan,
     rootActions: search.rootActions,
     evalRoot: buildEvalRoot(state),
+    extensionsTriggered: search.diagnostics.extensionsTriggered,
+    extendedNodes: search.diagnostics.extendedNodes,
+    criticalLeaves: search.diagnostics.criticalLeaves,
+    extensionAbortCount: search.diagnostics.extensionAbortCount,
+    maxExtensionDepth: search.diagnostics.maxExtensionDepth,
   };
 
   return {

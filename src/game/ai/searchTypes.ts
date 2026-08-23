@@ -98,6 +98,8 @@ export interface TTEntry {
   bestAction?: SearchAction;
   /** Human-readable note for diagnostics only (excluded from identity). */
   note?: string;
+  /** G0.3B: extension context discriminator (default 0 = no extension). */
+  extensionsRemaining?: number;
 }
 
 /** Search configuration parameters (defaults in searchConfig.ts). */
