@@ -6,6 +6,7 @@ import { simulateSearchAction } from './simulator';
 import { stateKey, TranspositionTable } from './transposition';
 import type { TTEntry } from './transposition';
 import { forcedLossTieBreak } from './forcedLossTieBreak';
+import { extractBestCatTurnPlan, type EqualPrimaryGraph } from './planQuality';
 import { classifyGoalThreat } from './threatClassifier';
 
 /**
@@ -515,6 +516,13 @@ export interface SearchContext {
    * profiler/offline runs leave it undefined.
    */
   evalCache?: Map<string, number>;
+  /**
+   * G0.3E-R2: equal-primary action graph. Per-search, per-iteration metadata.
+   * Records ALL fully-resolved primary-equal actions at cat MAX nodes within
+   * the root cat turn. Used by the post-search context-aware plan extractor.
+   * Does NOT participate in search mathematics (value/mate/alpha/beta/TT).
+   */
+  equalPrimaryGraph?: EqualPrimaryGraph;
 }
 
 /**
@@ -625,6 +633,7 @@ export function createSearchContext(
     maxThreatExtensions,
     useThreatOrdering,
     evalCache: new Map<string, number>(), // G0.3C: per-search eval memoization
+    equalPrimaryGraph: new Map(), // G0.3E-R2: per-search equal-primary graph
     diagnostics: {
       nodes: 0,
       chanceNodes: 0,
@@ -973,6 +982,7 @@ function searchActions(
   beta: ScoreBound,
   extensionsRemaining: number,
   key: string,
+  inRootCatTurn: boolean,
 ): { result: InternalSearchResult; bestAction: SearchAction | null } {
   const p2 = ctx.profiler;
   const actions = p2 ? (() => { const t0 = performance.now(); const a = generateLegalSearchActions(state, ctx.rules); p2.legalActionsCalls++; p2.legalActionsMs += performance.now() - t0; return a; })() : generateLegalSearchActions(state, ctx.rules);
@@ -1044,6 +1054,11 @@ function searchActions(
   let best: InternalSearchResult | null = null;
   let bestAction: SearchAction | null = null;
   let bestOriginalIndex = -1;
+  // G0.3E-R2: track equal-primary actions for the graph. At cat MAX nodes
+  // in the root cat turn, collect ALL actions whose primary result exactly
+  // equals the best. This is non-authoritative metadata — it does NOT
+  // influence search selection (which uses pure stable order).
+  // G0.3E-R2: equal-primary tracking is now lazy (firstEqualAction + equalActionsList).
   // Conservative aggregation: a node is cacheable ONLY if EVERY searched action
   // completed AND was cacheable. If any action hits a repetition guard or a
   // budget cutoff, the node must NOT be stored as an EXACT entry.
@@ -1051,18 +1066,15 @@ function searchActions(
   let allCacheable = true;
   let cutOff = false;
   let firstIdx = true;
+  // G0.3E-R2: lazy equal-primary tracking. Only allocate when a tie is
+  // actually detected. On the common case (no tie), this is zero-cost.
+  let firstEqualAction: SearchAction | null = null;
+  let equalActionsList: SearchAction[] | null = null;
   for (const pa of prepared) {
-    // F1A-3: the alpha-beta window and the resulting value are stepped by the
-    // REAL game-time cost of THIS specific action (mateActionCost), not a
-    // hard-coded ±1 per tree edge. A 0-cost action (catPlaceTrap, mouseSkill,
-    // chooseTunnel) therefore leaves the mate distance untouched.
     const edgeCost = mateActionCost(pa.action);
     const childAlpha = unstepBoundForChild(alpha, edgeCost);
     const childBeta = unstepBoundForChild(beta, edgeCost);
-    const childRes = valueOfAction(pa.transition, state, depthTurns, ctx, path, nodeCount, ply + 1, childAlpha, childBeta, extensionsRemaining);
-    // Propagate the child's value up one tree edge by the edge's real cost.
-    // The step is driven by the child's EXPLICIT mate classification (see
-    // stepChildForParent); a non-mate child is not stepped.
+    const childRes = valueOfAction(pa.transition, state, depthTurns, ctx, path, nodeCount, ply + 1, childAlpha, childBeta, extensionsRemaining, inRootCatTurn);
     const candidate: InternalSearchResult = {
       value: stepChildForParent(childRes, edgeCost),
       mate: childRes.mate,
@@ -1070,9 +1082,6 @@ function searchActions(
       cacheable: childRes.cacheable,
       bound: childRes.bound,
     };
-    // F1B (HARD_SEARCH debug): at the ROOT of a capture-enabled search, record
-    // each root action's stepped value + mate for the TOP ROOT ACTIONS panel.
-    // This reuses values the search already computed — no extra search cost.
     if (ctx.capturePlan && ply === 0) {
       ctx.rootValues.push({ action: pa.action, value: candidate.value, mate: candidate.mate });
     }
@@ -1082,13 +1091,37 @@ function searchActions(
       best = candidate;
       bestAction = pa.action;
       bestOriginalIndex = pa.originalIndex;
+      // G0.3E-R2: track first action (lazy — no array allocation yet).
+      if (inRootCatTurn && maximizing && candidate.completed) {
+        firstEqualAction = pa.action;
+        equalActionsList = null;
+      }
     } else {
       const better = preferResult(candidate, best, maximizing);
       const tied = compareSearchScore(candidate, best) === 0;
-      if (better || (tied && pa.originalIndex < bestOriginalIndex)) {
+      if (better) {
         best = candidate;
         bestAction = pa.action;
         bestOriginalIndex = pa.originalIndex;
+        // G0.3E-R2: reset — new strict best.
+        if (inRootCatTurn && maximizing && candidate.completed) {
+          firstEqualAction = pa.action;
+          equalActionsList = null;
+        }
+      } else if (tied) {
+        // G0.3E-R2: lazy collection — only allocate on first tie.
+        if (inRootCatTurn && maximizing && candidate.completed) {
+          if (equalActionsList === null) {
+            equalActionsList = [firstEqualAction!, pa.action];
+          } else {
+            equalActionsList.push(pa.action);
+          }
+        }
+        if (pa.originalIndex < bestOriginalIndex) {
+          best = candidate;
+          bestAction = pa.action;
+          bestOriginalIndex = pa.originalIndex;
+        }
       }
     }
     allCompleted = allCompleted && childRes.completed;
@@ -1124,6 +1157,12 @@ function searchActions(
     completed: allCompleted,
     cacheable: allCompleted && allCacheable,
   };
+  // G0.3E-R2: record equal-primary graph node for cat MAX in root cat turn.
+  // Only record if the node fully resolved (allCompleted) and there was a tie.
+  if (inRootCatTurn && maximizing && allCompleted && equalActionsList && equalActionsList.length > 1 && ctx.equalPrimaryGraph) {
+    const graphKey = `${key}\x00${depthTurns}`;
+    ctx.equalPrimaryGraph.set(graphKey, { state, equalActions: equalActionsList });
+  }
   // F1B-2: record the decided best action for THIS node (state-keyed) when
   // plan capture is on. This is the actual search's principal-line decision —
   // the walker later follows exactly these state→action edges from the root
@@ -1145,13 +1184,16 @@ function valueOfAction(
   alpha: ScoreBound = NEG_INF,
   beta: ScoreBound = POS_INF,
   extensionsRemaining: number = 0,
+  inRootCatTurn: boolean = false,
 ): InternalSearchResult {
   if (transition.kind === 'deterministic') {
     const next = transition.state;
     const switched = state.currentPlayer !== next.currentPlayer;
     const nd = depthTurns - (switched ? 1 : 0);
+    // G0.3E-R1: inRootCatTurn stays true only if the cat didn't switch to mouse.
+    const childInRootCatTurn = inRootCatTurn && !switched;
     // Pass the (already child-space) window down to the successor.
-    return _search(next, nd, ctx, path, nodeCount, ply, alpha, beta, extensionsRemaining);
+    return _search(next, nd, ctx, path, nodeCount, ply, alpha, beta, extensionsRemaining, childInRootCatTurn);
   }
 
   // CHANCE node. The value is the expectation over all outcomes.
@@ -1169,6 +1211,8 @@ function valueOfAction(
   const switched =
     outcomes.length > 0 && state.currentPlayer !== outcomes[0].state.currentPlayer;
   const nd = depthTurns - (switched ? 1 : 0);
+  // G0.3E-R1: chance nodes are always mouse outcomes → not in root cat turn.
+  const childInRootCatTurn = false;
   let total = 0;
   let allCompleted = true;
   let allCacheable = true;
@@ -1187,7 +1231,7 @@ function valueOfAction(
   }
   for (const o of outcomes) {
     // FULL WINDOW for every outcome — no pruning across a random node.
-    const cr = _search(o.state, nd, ctx, path, nodeCount, ply, NEG_INF, POS_INF, extensionsRemaining);
+    const cr = _search(o.state, nd, ctx, path, nodeCount, ply, NEG_INF, POS_INF, extensionsRemaining, childInRootCatTurn);
     total += o.weight * cr.value;
     if (!cr.completed) allCompleted = false;
     if (!cr.cacheable) allCacheable = false;
@@ -1210,6 +1254,7 @@ function _search(
   alpha: ScoreBound = NEG_INF,
   beta: ScoreBound = POS_INF,
   extensionsRemaining: number = 0,
+  inRootCatTurn: boolean = false,
 ): InternalSearchResult {
   // Repetition safety: if this exact game-affecting state already appears on
   // the CURRENT recursion path, we have a cycle. Return a static evaluation
@@ -1275,7 +1320,7 @@ function _search(
           // The extension is still subject to deadline/maxNodes (checked below).
           // If the extension is aborted by budget/deadline, the partial result
           // is discarded (completed=false, not cached).
-          const extResult = _searchInner(state, 1, ctx, path, nodeCount, ply, alpha, beta, extensionsRemaining - 1, key);
+          const extResult = _searchInner(state, 1, ctx, path, nodeCount, ply, alpha, beta, extensionsRemaining - 1, key, inRootCatTurn);
           if (!extResult.completed) {
             ctx.diagnostics.extensionAbortCount++;
           }
@@ -1290,7 +1335,7 @@ function _search(
       return { value: evaluateLeaf(state, ctx, key), completed: true, cacheable: true, mate: null, bound: 'exact' };
     }
 
-    return _searchInner(state, depthTurns, ctx, path, nodeCount, ply, alpha, beta, extensionsRemaining, key);
+    return _searchInner(state, depthTurns, ctx, path, nodeCount, ply, alpha, beta, extensionsRemaining, key, inRootCatTurn);
   } finally {
     path.delete(key);
   }
@@ -1311,6 +1356,7 @@ function _searchInner(
   beta: ScoreBound,
   extensionsRemaining: number,
   key: string,
+  inRootCatTurn: boolean,
 ): InternalSearchResult {
 
   // 4. Hard safety budget → static eval (avoid search explosion). This is an
@@ -1340,6 +1386,9 @@ function _searchInner(
   //    Only an EXACT depthTurns + extensionsRemaining match is reused.
   const hit = probeTT(ctx, key, depthTurns, extensionsRemaining);
   if (hit) {
+    // G0.3E-R1: TT hit returns numeric result only — no sidecar. The plan
+    // sidecar is NOT part of TT truth. The caller will get an undefined
+    // sidecar, which is treated as "no plan-quality info available".
     return { value: hit.value, mate: hit.mate, completed: true, cacheable: true, bound: 'exact' };
   }
 
@@ -1350,7 +1399,7 @@ function _searchInner(
   //    count, then this node is counted once.
   nodeCount.count++;
   ctx.diagnostics.nodes++;
-  const { result, bestAction } = searchActions(state, depthTurns, ctx, path, nodeCount, ply, alpha, beta, extensionsRemaining, key);
+  const { result, bestAction } = searchActions(state, depthTurns, ctx, path, nodeCount, ply, alpha, beta, extensionsRemaining, key, inRootCatTurn);
   storeTT(ctx, key, depthTurns, extensionsRemaining, result, bestAction ?? undefined);
   return result;
 }
@@ -1386,7 +1435,7 @@ export function searchResult(
 ): InternalSearchResult {
   const path = new Set<string>();
   const nodeCount = { count: 0 };
-  return _search(state, depthTurns, ctx, path, nodeCount, 0, NEG_INF, POS_INF, ctx.maxThreatExtensions);
+  return _search(state, depthTurns, ctx, path, nodeCount, 0, NEG_INF, POS_INF, ctx.maxThreatExtensions, state.currentPlayer === PieceType.Cat);
 }
 
 /**
@@ -1453,7 +1502,7 @@ function runFixedSearch(
   }
 
   const path = new Set<string>();
-  const { result, bestAction } = searchActions(state, depthTurns, ctx, path, nodeCount, 0, NEG_INF, POS_INF, ctx.maxThreatExtensions, rootKey);
+  const { result, bestAction } = searchActions(state, depthTurns, ctx, path, nodeCount, 0, NEG_INF, POS_INF, ctx.maxThreatExtensions, rootKey, state.currentPlayer === PieceType.Cat);
   if (bestAction !== null) storeTT(ctx, rootKey, depthTurns, ctx.maxThreatExtensions, result, bestAction);
   return { result, bestAction };
 }
@@ -1514,9 +1563,18 @@ export function searchBestAction(
   if (ctx.capturePlan) {
     ctx.planBranches = new Map<string, SearchAction>();
     ctx.rootValues = [];
+    ctx.equalPrimaryGraph = new Map();
   }
   const { result, bestAction } = runFixedSearch(state, depthTurns, ctx, nodeCount);
-  const catTurnPlan = ctx.capturePlan ? buildCatTurnPlan(state, ctx) : [];
+  // G0.3E-R2: context-aware plan extraction (mate=null only).
+  let catTurnPlan: SearchAction[] = [];
+  if (ctx.capturePlan) {
+    catTurnPlan = buildCatTurnPlan(state, ctx);
+    if (result.mate === null && ctx.equalPrimaryGraph && ctx.equalPrimaryGraph.size > 0) {
+      const extracted = extractBestCatTurnPlan(state, ctx.rules, ctx.equalPrimaryGraph, ctx.planBranches);
+      if (extracted.length > 0) catTurnPlan = extracted;
+    }
+  }
   return { action: bestAction, value: result.value, mate: result.mate, completed: result.completed, diagnostics: ctx.diagnostics, catTurnPlan };
 }
 
@@ -1704,6 +1762,8 @@ export function searchBestActionIterative(
   let lastCompleted: { value: number; mate: MateSide; bestAction: SearchAction | null } | null = null;
   let lastCatTurnPlan: SearchAction[] = [];
   let lastRootValues: { action: SearchAction; value: number; mate: MateSide }[] = [];
+  let lastPlanBranches: Map<string, SearchAction> = new Map();
+  let lastCompletedGraph: EqualPrimaryGraph = new Map();
   let completedDepth = 0;
   let attemptedDepth = 0;
   let budgetExhausted = false;
@@ -1717,6 +1777,7 @@ export function searchBestActionIterative(
     // so its partial writes never leak into the final plan.
     ctx.planBranches = new Map<string, SearchAction>();
     ctx.rootValues = [];
+    ctx.equalPrimaryGraph = new Map(); // G0.3E-R2: fresh graph per iteration
     const { result, bestAction } = runFixedSearch(state, d, ctx, nodeCount);
     const nodesUsed = ctx.diagnostics.nodes - nodesBefore;
     iterations.push({
@@ -1733,17 +1794,15 @@ export function searchBestActionIterative(
       lastCompleted = { value: result.value, mate: result.mate, bestAction };
       completedDepth = d;
       // F1B-2: a COMPLETED iteration owns its full principal line; keep it.
+      // G0.3E-R2: plan reconstructed from planBranches (pure stable-order).
       lastCatTurnPlan = buildCatTurnPlan(state, ctx);
       // F1B (HARD_SEARCH debug): keep the completed depth's root action values.
       lastRootValues = ctx.rootValues.slice();
-      // G0.3A: forced-loss resistance tie-break — if the root is a proven
-      // mouse-mate AND multiple root actions have the EXACT same primary
-      // SearchScore, select the plan with the fewest reversals/revisits.
-      // This is a PLAN-SELECTION side channel: it does NOT modify value/mate/
-      // bound/TT/alpha-beta. It only changes which catTurnPlan is returned.
-      const tieBrokenPlan = forcedLossTieBreak(state, ctx, lastRootValues);
-      if (tieBrokenPlan !== null && tieBrokenPlan.length > 0) {
-        lastCatTurnPlan = tieBrokenPlan;
+      // G0.3A/G0.3E-R2: tie-break is deferred to AFTER the loop.
+      // Save the completed iteration's graph + planBranches.
+      lastPlanBranches = new Map(ctx.planBranches);
+      if (ctx.equalPrimaryGraph) {
+        lastCompletedGraph = new Map(ctx.equalPrimaryGraph);
       }
     } else {
       // Incomplete (node-budget OR wall-clock truncated). NEVER use the
@@ -1761,6 +1820,26 @@ export function searchBestActionIterative(
   const finalValue = lastCompleted ? lastCompleted.value : 0;
   const finalMate = lastCompleted ? lastCompleted.mate : null;
   const finalAction = lastCompleted ? lastCompleted.bestAction : null;
+
+  // G0.3A/G0.3E-R2: apply plan-quality selection ONCE, after the loop.
+  if (lastCompleted) {
+    ctx.planBranches = lastPlanBranches;
+    if (finalMate === 'mouse') {
+      // G0.3A: forced-loss tie-break (reversal → revisit → boundaryEval → stable).
+      const tieBrokenPlan = forcedLossTieBreak(state, ctx, lastRootValues);
+      if (tieBrokenPlan !== null && tieBrokenPlan.length > 0) {
+        lastCatTurnPlan = tieBrokenPlan;
+      }
+    } else if (finalMate === null) {
+      // G0.3E-R2: context-aware plan extraction using equal-primary graph.
+      // Replaces the old generalTieBreak (root-level only) with a DP that
+      // correctly handles prefix-dependent reversal at interior nodes.
+      const extractedPlan = extractBestCatTurnPlan(state, ctx.rules, lastCompletedGraph, lastPlanBranches);
+      if (extractedPlan.length > 0) {
+        lastCatTurnPlan = extractedPlan;
+      }
+    }
+  }
 
   return {
     bestAction: finalAction,
