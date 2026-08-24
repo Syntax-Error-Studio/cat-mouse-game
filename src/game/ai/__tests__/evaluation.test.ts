@@ -27,6 +27,8 @@ import {
 } from '../expectiminimax';
 import { defaultRuleSet } from '../searchRules';
 import { EVALUATION_CORPUS } from './evaluationCorpus';
+import { restoreHardRoot } from '../hardHistory';
+import { GAME1_T2_SNAPSHOT } from './g1t2Fixture';
 import type { RuleSet } from '../searchTypes';
 
 const BIG = 1_000_000;
@@ -784,4 +786,128 @@ test('E1-M. board sizes 5 / 10 / 20 stay bounded and normalized', () => {
       expect(b.features.holeControlMargin).toBeLessThanOrEqual(n);
     }
   }
+});
+
+// ===========================================================================
+// G0.3H — Carrying Evaluation Correctness (butterRace fix, H-1..H-5)
+// ===========================================================================
+// Reconstruct the PRE-FIX (baseline) total from the FIXED module: the only
+// code change is zeroing butterRace when carrying, so features are identical
+// and baseline = fixedTotal + (carrying ? oldButterRace : 0).
+function reconstructedBaselineTotal(s: GameEngineState): number {
+  const d = evaluateForCatDetailed(s);
+  let total = d.total;
+  if (d.features.mouseHasButter && d.features.mouseButterDistance !== null) {
+    const oldBR =
+      (d.features.mouseButterDistance / s.config.boardSize) * DEFAULT_EVALUATION_WEIGHTS.butterRace;
+    total = d.total + oldBR;
+    if (total > HEURISTIC_LIMIT) total = HEURISTIC_LIMIT;
+    else if (total < -HEURISTIC_LIMIT) total = -HEURISTIC_LIMIT;
+  }
+  return total;
+}
+
+test('H-1. carrying state (mouseHasButter=true) → butterRace contribution is exactly 0', () => {
+  const s = base({
+    cat: RC(1, 2),
+    mouse: RC(8, 8),
+    open: ALL_OPEN,
+    patch: (st) => ({ ...st, mouseHasButter: true, butterPositions: [{ r: 1, c: 1 }] }),
+  });
+  const d = evaluateForCatDetailed(s);
+  expect(d.features.mouseHasButter).toBe(true);
+  expect(d.features.mouseButterDistance).not.toBeNull();
+  // The fix: a carrying mouse has no goal meaning for other/re-spawned butters.
+  expect(d.contributions.butterRace).toBe(0);
+});
+
+test('H-2. toggling mouseHasButter false→true must remove (not add) the butterRace reward', () => {
+  const mk = (carry: boolean) =>
+    base({
+      cat: RC(1, 2),
+      mouse: RC(5, 5),
+      open: ALL_OPEN,
+      patch: (st) => ({ ...st, mouseHasButter: carry, butterPositions: [{ r: 8, c: 8 }] }),
+    });
+  const sFalse = mk(false);
+  const sTrue = mk(true);
+  const bFalse = evaluateForCatDetailed(sFalse);
+  const bTrue = evaluateForCatDetailed(sTrue);
+  expect(bFalse.features.mouseButterDistance).not.toBeNull();
+  const oldBR =
+    (bFalse.features.mouseButterDistance! / sFalse.config.boardSize) * DEFAULT_EVALUATION_WEIGHTS.butterRace;
+  // non-carrying keeps the original formula
+  expect(bFalse.contributions.butterRace).toBeCloseTo(oldBR, 6);
+  expect(bFalse.contributions.butterRace).not.toBe(0);
+  // carrying zeroes it — the reward is removed, never added
+  expect(bTrue.contributions.butterRace).toBe(0);
+  expect(bTrue.contributions.butterRace).toBeLessThan(bFalse.contributions.butterRace);
+});
+
+test('H-3. non-carrying state (mouseHasButter=false) keeps the original butterRace formula', () => {
+  const s = base({
+    cat: RC(1, 2),
+    mouse: RC(4, 4),
+    open: ALL_OPEN,
+    patch: (st) => ({ ...st, butterPositions: [{ r: 8, c: 8 }] }),
+  });
+  const d = evaluateForCatDetailed(s);
+  expect(d.features.mouseHasButter).toBe(false);
+  expect(d.features.mouseButterDistance).not.toBeNull();
+  const expected = (d.features.mouseButterDistance! / s.config.boardSize) * DEFAULT_EVALUATION_WEIGHTS.butterRace;
+  expect(d.contributions.butterRace).toBeCloseTo(expected, 6);
+  // the fix must NOT have zeroed the non-carrying term
+  expect(d.contributions.butterRace).not.toBe(0);
+});
+
+test('H-4. GAME1 T2 exact fixture — carrying over-reward removed, baseline reproduced', () => {
+  const root = restoreHardRoot(GAME1_T2_SNAPSHOT);
+  const d = evaluateForCatDetailed(root);
+  // Gameplay fact: this root has the mouse already carrying butter.
+  expect(d.features.mouseHasButter).toBe(true);
+  // THE FIX: butterRace contribution is 0 at the carrying root.
+  expect(d.contributions.butterRace).toBe(0);
+  // Exact proven numbers from G0.3G / g03h-output.txt (boardSize=10, weight=700):
+  const oldBR = (d.features.mouseButterDistance! / root.config.boardSize) * DEFAULT_EVALUATION_WEIGHTS.butterRace;
+  expect(oldBR).toBeCloseTo(630, 5); // 9/10*700 — the pre-fix spurious reward
+  // FIXED root eval (no spurious reward) and reconstructed BASELINE (pre-fix):
+  expect(d.total).toBeCloseTo(-7.11, 2);
+  const baseline = reconstructedBaselineTotal(root);
+  expect(baseline).toBeCloseTo(622.89, 2); // pre-fix root total (g03h: 622.89)
+  expect(baseline - d.total).toBeCloseTo(oldBR, 5); // the only delta is butterRace
+  // Control: if the mouse were NOT carrying, the SAME position must NOT be
+  // zeroed and must follow the original formula on its own (non-carrying) distance.
+  // (A carrying mouse's BFS map excludes tunnel entry, so the distance feature
+  // legitimately differs from the carrying case — compare via the formula.)
+  const dFalse = evaluateForCatDetailed({ ...root, mouseHasButter: false });
+  if (dFalse.features.mouseButterDistance !== null) {
+    const exp =
+      (dFalse.features.mouseButterDistance / root.config.boardSize) * DEFAULT_EVALUATION_WEIGHTS.butterRace;
+    expect(dFalse.contributions.butterRace).toBeCloseTo(exp, 6);
+    expect(dFalse.contributions.butterRace).not.toBe(0); // fix did NOT zero non-carrying
+  } else {
+    expect(dFalse.contributions.butterRace).toBe(0);
+  }
+  // The production leaf (used by the planner) reflects the fix.
+  expect(evaluateForCat(root)).toBe(d.total);
+});
+
+test('H-5. non-carrying corpus is byte-identical — the fix never fires for it', () => {
+  let checked = 0;
+  for (const c of EVALUATION_CORPUS) {
+    if (c.state.mouseHasButter) continue;
+    const s = c.state;
+    const d = evaluateForCatDetailed(s);
+    // branch must NOT fire: butterRace is the normal value (or 0 only if no butter)
+    if (d.features.mouseButterDistance === null) {
+      expect(d.contributions.butterRace).toBe(0);
+    } else {
+      const expected = (d.features.mouseButterDistance / s.config.boardSize) * DEFAULT_EVALUATION_WEIGHTS.butterRace;
+      expect(d.contributions.butterRace).toBeCloseTo(expected, 6);
+    }
+    // leaf identical to reconstructed baseline (which == fixed for non-carrying)
+    expect(reconstructedBaselineTotal(s)).toBeCloseTo(evaluateForCat(s), 9);
+    checked++;
+  }
+  expect(checked).toBeGreaterThanOrEqual(10);
 });

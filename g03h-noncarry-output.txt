@@ -1,0 +1,6 @@
+=== G0.3H §4 — non-carrying states fully unaffected ===
+
+collected 34 non-carrying corpus states
+
+RESULT: checked=34 leafMismatch=0 branchTriggered=0
+=> PASS: non-carrying states are byte-identical (leaf) and the fix never fires for them; fixed-depth search is bit-identical by construction (identical leaf function).

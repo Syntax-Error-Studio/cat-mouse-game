@@ -640,10 +640,14 @@ function scoreFeatures(
         : -(weights.mouseGoalThreat / f.mouseGoalDistance);
 
   // butterRace: mouse farther from butter is better for the cat.
-  const butterRace =
+  // When the mouse already carries butter, other/re-spawned butters have no
+  // goal meaning (it only needs to reach the hole) → zero the term. G0.3H:
+  // this removes the +770 over-reward seen at the GAME1 T2 boundary in G0.3G.
+  let butterRace =
     f.mouseButterDistance === null
       ? 0
       : (f.mouseButterDistance / boardSize) * weights.butterRace;
+  if (f.mouseHasButter) butterRace = 0;
 
   // confinement: reachable-area ratios ([-1,1]).
   const area = boardSize * boardSize;

@@ -1,0 +1,48 @@
+=== G0.3H §5 — performance (production planner, 20 runs/root) ===
+
+real Turn3/4/5 roots available (restored): 1#3(carry), 2#3(carry), 2#4(carry), 2#5(carry), 3#3(carry), 3#4(carry), 5#3, 5#4(carry), 5#5(carry)
+
+## 1#3 (mouseHasButter=true)
+  FIXED   completedDepth avg=1.95 [1×1 2×19]  nodes avg=1587 (704-1728)  ms avg=103.31 (100.92790000000001-104.91070000000002)  fallback=0/20
+  BASELN  completedDepth avg=1.40 [1×12 2×8]  nodes avg=877 (256-1728)  ms avg=105.84 (101.63329999999996-114.41179999999986)  fallback=0/20
+  Δms (BASELN-FIXED) = 2.538  -> NO systematic regression
+
+## 2#3 (mouseHasButter=true)
+  FIXED   completedDepth avg=1.00 [1×20]  nodes avg=269 (256-320)  ms avg=126.18 (116.25759999999991-135.45979999999963)  fallback=0/20
+  BASELN  completedDepth avg=1.00 [1×20]  nodes avg=262 (256-320)  ms avg=128.34 (115.16270000000077-144.35210000000006)  fallback=0/20
+  Δms (BASELN-FIXED) = 2.160  -> NO systematic regression
+
+## 2#4 (mouseHasButter=true)
+  FIXED   completedDepth avg=1.65 [1×7 2×13]  nodes avg=426 (320-512)  ms avg=116.51 (105.38040000000001-125.17419999999947)  fallback=0/20
+  BASELN  completedDepth avg=1.00 [1×20]  nodes avg=355 (256-448)  ms avg=113.91 (104.55769999999939-129.25940000000082)  fallback=0/20
+  Δms (BASELN-FIXED) = -2.601  -> NO systematic regression
+
+## 2#5 (mouseHasButter=true)
+  FIXED   completedDepth avg=1.05 [1×19 2×1]  nodes avg=470 (384-640)  ms avg=107.23 (102.19050000000061-113.79770000000099)  fallback=0/20
+  BASELN  completedDepth avg=1.00 [1×20]  nodes avg=454 (320-576)  ms avg=107.30 (102.91979999999967-112.89939999999842)  fallback=0/20
+  Δms (BASELN-FIXED) = 0.067  -> NO systematic regression
+
+## 3#3 (mouseHasButter=true)
+  FIXED   completedDepth avg=1.00 [1×20]  nodes avg=314 (256-384)  ms avg=111.74 (102.452699999998-120.83239999999932)  fallback=0/20
+  BASELN  completedDepth avg=1.00 [1×20]  nodes avg=285 (192-384)  ms avg=115.96 (104.4893000000011-132.45590000000084)  fallback=0/20
+  Δms (BASELN-FIXED) = 4.226  -> NO systematic regression
+
+## 3#4 (mouseHasButter=true)
+  FIXED   completedDepth avg=1.45 [1×11 2×9]  nodes avg=525 (384-640)  ms avg=108.79 (101.68549999999959-117.27089999999953)  fallback=0/20
+  BASELN  completedDepth avg=1.85 [1×3 2×17]  nodes avg=611 (448-896)  ms avg=109.93 (104.53680000000168-114.73549999999886)  fallback=0/20
+  Δms (BASELN-FIXED) = 1.141  -> NO systematic regression
+
+## 5#3 (mouseHasButter=false)
+  FIXED   completedDepth avg=1.00 [1×20]  nodes avg=294 (256-320)  ms avg=124.92 (101.2452000000012-144.3231999999989)  fallback=0/20
+  BASELN  completedDepth avg=1.00 [1×20]  nodes avg=243 (128-320)  ms avg=117.53 (102.97940000000017-138.41119999999864)  fallback=0/20
+  Δms (BASELN-FIXED) = -7.392  -> REGRESSION?
+
+## 5#4 (mouseHasButter=true)
+  FIXED   completedDepth avg=1.00 [1×20]  nodes avg=298 (256-384)  ms avg=116.55 (104.56339999999909-133.9867000000013)  fallback=0/20
+  BASELN  completedDepth avg=1.00 [1×20]  nodes avg=326 (256-384)  ms avg=111.87 (103.91859999999724-119.96019999999407)  fallback=0/20
+  Δms (BASELN-FIXED) = -4.674  -> NO systematic regression
+
+## 5#5 (mouseHasButter=true)
+  FIXED   completedDepth avg=1.00 [1×20]  nodes avg=326 (256-384)  ms avg=111.86 (102.11230000000069-122.11049999999523)  fallback=0/20
+  BASELN  completedDepth avg=1.00 [1×20]  nodes avg=317 (256-384)  ms avg=108.87 (102.22849999999744-116.46440000000439)  fallback=0/20
+  Δms (BASELN-FIXED) = -2.997  -> NO systematic regression

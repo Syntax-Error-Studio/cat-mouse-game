@@ -1,0 +1,99 @@
+=== G0.3H — Carrying Evaluation Correctness (butterRace fix verify) ===
+BASELINE reconstructed from FIXED module (pre-fix butterRace=+old when carrying).
+weights.butterRace = 700, HEURISTIC_LIMIT = 10000
+
+
+############################################################
+## GAME1 T2  (root key 1#2, mouseHasButter=true)
+############################################################
+GAME1 T2: cat=(3,3) mouse=(2,9) butter=true trap=(2,3) catMoves=4 mouseMoves=0
+production PLAN: catStep ArrowUp → catStep ArrowRight → catStep ArrowRight → catPlaceTrap → catStep ArrowLeft
+
+--- [root] evaluateForCatDetailed breakdown (FIXED vs BASELINE) ---
+FIXED   total=-7.11  butterRace=0.00 (==0 when carrying)  clamped=false
+BASELN  total=622.89  butterRace=630.00  (reconstructed pre-fix)
+Δ(butterRace) = 630.00  Δ(total) = 630.00  (only this term changes)
+features: mouseButterDistance=9 mouseHasButter=true mouseGoalDistance=5 catMouseDistance=7 holeControlMargin=6
+contributions (FIXED, all others unchanged by design): capturePressure=-630.00  mouseGoalThreat=-220.00  butterRace=0.00  confinement=-55.00  mobility=0.00  trapControl=240.00  tunnelControl=0.00  holeControl=300.00  voronoiBalance=157.89  tempo=200.00
+
+--- [d1] search root value / mate / best action (FIXED vs BASELINE) ---
+FIXED   d1: rootValue=-109.7368 mate-tie=[ArrowUp] bestPlan=[ArrowUp] returnsToRoot=false
+BASELN  d1: rootValue=660.2632 mate-tie=[ArrowUp] bestPlan=[ArrowUp] returnsToRoot=false
+ΔrootValue(d1) = 770.0000
+  [FIXED per-action @d1]
+    ArrowUp     value=   -109.7368 mate=null  completed=true plan=[ArrowUp] returnsToRoot=false
+    ArrowDown   value=   -292.2368 mate=null  completed=true plan=[ArrowDown] returnsToRoot=false
+    ArrowLeft   value=   -294.6053 mate=null  completed=true plan=[ArrowLeft] returnsToRoot=false
+    ArrowRight  value=   -294.3421 mate=null  completed=true plan=[ArrowRight] returnsToRoot=false
+
+--- [d2] search root value / mate / best action (FIXED vs BASELINE) ---
+FIXED   d2: rootValue=-724.5263 mate-tie=[ArrowUp] bestPlan=[ArrowUp] returnsToRoot=false
+BASELN  d2: rootValue=-679.7895 mate-tie=[ArrowUp] bestPlan=[ArrowUp] returnsToRoot=false
+ΔrootValue(d2) = 44.7368
+  [FIXED per-action @d2]
+    ArrowUp     value=   -724.5263 mate=null  completed=true plan=[ArrowUp] returnsToRoot=false
+    ArrowDown   value=   -799.7895 mate=null  completed=true plan=[ArrowDown] returnsToRoot=false
+    ArrowLeft   value=   -799.7895 mate=null  completed=true plan=[ArrowLeft] returnsToRoot=false
+    ArrowRight  value=   -799.7895 mate=null  completed=true plan=[ArrowRight] returnsToRoot=false
+
+--- [d3] search root value / mate / best action (FIXED vs BASELINE) ---
+FIXED   d3: rootValue=-959.7895 mate-tie=[ArrowUp] bestPlan=[ArrowUp] returnsToRoot=false
+BASELN  d3: rootValue=-959.7895 mate-tie=[ArrowUp] bestPlan=[ArrowUp] returnsToRoot=false
+ΔrootValue(d3) = 0.0000
+  [FIXED per-action @d3]
+    ArrowUp     value=   -959.7895 mate=null  completed=true plan=[ArrowUp] returnsToRoot=false
+    ArrowDown   value=  -1019.7895 mate=null  completed=true plan=[ArrowDown] returnsToRoot=false
+    ArrowLeft   value=  -1019.7895 mate=null  completed=true plan=[ArrowLeft] returnsToRoot=false
+    ArrowRight  value=  -1019.7895 mate=null  completed=true plan=[ArrowRight] returnsToRoot=false
+
+############################################################
+## GAME3 T3  (root key 3#3, mouseHasButter=true)
+############################################################
+GAME3 T3: cat=(2,2) mouse=(4,7) butter=true trap=(2,1) catMoves=4 mouseMoves=0
+production PLAN: catStep ArrowLeft → catStep ArrowUp → catPlaceTrap → catStep ArrowDown → catStep ArrowRight
+
+--- [root] evaluateForCatDetailed breakdown (FIXED vs BASELINE) ---
+FIXED   total=-263.21  butterRace=0.00 (==0 when carrying)  clamped=false
+BASELN  total=226.79  butterRace=490.00  (reconstructed pre-fix)
+Δ(butterRace) = 490.00  Δ(total) = 490.00  (only this term changes)
+features: mouseButterDistance=7 mouseHasButter=true mouseGoalDistance=4 catMouseDistance=7 holeControlMargin=7
+contributions (FIXED, all others unchanged by design): capturePressure=-630.00  mouseGoalThreat=-275.00  butterRace=0.00  confinement=-44.00  mobility=0.00  trapControl=120.00  tunnelControl=0.00  holeControl=350.00  voronoiBalance=15.79  tempo=200.00
+
+--- [d1] search root value / mate / best action (FIXED vs BASELINE) ---
+FIXED   d1: rootValue=-433.6842 mate-tie=[ArrowDown] bestPlan=[ArrowDown] returnsToRoot=false
+BASELN  d1: rootValue=56.3158 mate-tie=[ArrowDown] bestPlan=[ArrowDown] returnsToRoot=false
+ΔrootValue(d1) = 490.0000
+  [FIXED per-action @d1]
+    ArrowUp     value=   -585.2632 mate=null  completed=true plan=[ArrowUp] returnsToRoot=false
+    ArrowDown   value=   -433.6842 mate=null  completed=true plan=[ArrowDown] returnsToRoot=false
+    ArrowLeft   value=   -465.2632 mate=null  completed=true plan=[ArrowLeft] returnsToRoot=false
+    ArrowRight  value=   -585.2632 mate=null  completed=true plan=[ArrowRight] returnsToRoot=false
+
+--- [d2] search root value / mate / best action (FIXED vs BASELINE) ---
+FIXED   d2: rootValue=-922.4211 mate-tie=[ArrowDown] bestPlan=[ArrowDown] returnsToRoot=false
+BASELN  d2: rootValue=-669.7105 mate-tie=[ArrowLeft] bestPlan=[ArrowLeft] returnsToRoot=false
+ΔrootValue(d2) = 252.7105
+  [FIXED per-action @d2]
+    ArrowUp     value=  -1030.9211 mate=null  completed=true plan=[ArrowUp] returnsToRoot=false
+    ArrowDown   value=   -922.4211 mate=null  completed=true plan=[ArrowDown] returnsToRoot=false
+    ArrowLeft   value=  -1030.9211 mate=null  completed=true plan=[ArrowLeft] returnsToRoot=false
+    ArrowRight  value=  -1030.9211 mate=null  completed=true plan=[ArrowRight] returnsToRoot=false
+
+--- [d3] search root value / mate / best action (FIXED vs BASELINE) ---
+FIXED   d3: rootValue=-1046.1053 mate-tie=[ArrowLeft] bestPlan=[ArrowLeft] returnsToRoot=false
+BASELN  d3: rootValue=-918.2105 mate-tie=[ArrowRight] bestPlan=[ArrowRight] returnsToRoot=false
+ΔrootValue(d3) = 127.8947
+  [FIXED per-action @d3]
+    ArrowUp     value=  -1141.3158 mate=null  completed=true plan=[ArrowUp] returnsToRoot=false
+    ArrowDown   value=  -1071.9474 mate=null  completed=true plan=[ArrowDown] returnsToRoot=false
+    ArrowLeft   value=  -1046.1053 mate=null  completed=true plan=[ArrowLeft] returnsToRoot=false
+    ArrowRight  value=  -1141.3158 mate=null  completed=true plan=[ArrowRight] returnsToRoot=false
+
+
+############################################################
+## GAME1 T2 — core acceptance (over-inflation drop)
+############################################################
+FIXED  d1 rootValue (reconstructed via search) — see table above; FIXED root eval total=-7.11
+BASELN d1 root eval total=622.89
+=> butterRace over-reward removed at root: Δ=630.00 (butter no longer rewards cat when carrying)
+=> other features/contributions UNCHANGED (only butterRace contribution differs).
