@@ -8,6 +8,7 @@ import type { TTEntry } from './transposition';
 import { forcedLossTieBreak } from './forcedLossTieBreak';
 import { extractBestCatTurnPlan, type EqualPrimaryGraph } from './planQuality';
 import { classifyGoalThreat } from './threatClassifier';
+import { computeInterception } from './interceptionGeometry';
 
 /**
  * ============================================================================
@@ -67,6 +68,26 @@ function deadlineReached(ctx: SearchContext, nodeCount: { count: number }): bool
   if (nodeCount.count % DEADLINE_CHECK_INTERVAL !== 0) return false;
   const clock = ctx.now ?? defaultNow;
   return clock() >= ctx.deadlineMs;
+}
+
+/**
+ * G0.4F-2B-1.9L — bounded diagnostic frontier sampling (default OFF; hook
+ * undefined → zero behavior change). Called ONLY at sites that already have a
+ * computed leaf value (`leafValue`), so it NEVER re-invokes the evaluator and
+ * NEVER changes search behavior. `owner` is the sampled node's actor (the
+ * parent caller knows it); chance nodes pass owner='chance' with their weight.
+ * A hard cap (`frontierCap`) bounds samples per search to protect memory.
+ */
+function maybeFrontierSample(
+  ctx: SearchContext,
+  sample: Omit<FrontierSample, 'h1Value'>,
+  leafValue: number,
+): void {
+  const hook = ctx.frontierHook;
+  if (!hook) return;
+  if (ctx.frontierCap !== undefined && (ctx.frontierSamples ?? 0) >= ctx.frontierCap) return;
+  ctx.frontierSamples = (ctx.frontierSamples ?? 0) + 1;
+  hook({ ...sample, h1Value: leafValue });
 }
 
 /**
@@ -380,6 +401,9 @@ export interface SearchDiagnostics {
   orderingChangedFirstMove: number;
   /** Phase D3 (optional): Alpha-Beta cutoffs triggered on the FIRST action. */
   firstMoveCutoffCount: number;
+  /** G0.4F-2B-1.9L: last alpha-beta cutoff detail (diagnostic-only; undefined
+   *  when cutoffProbe is OFF or no cutoff occurred). */
+  lastCutoff?: { ply: number; maximizing: boolean; rank: number; depthTurns: number };
   /** G0.3B: times a threat extension was triggered at a depth-horizon leaf. */
   extensionsTriggered: number;
   /** G0.3B: nodes searched inside an extended subtree. */
@@ -397,6 +421,19 @@ export interface SearchDiagnostics {
    * overhead beyond it.
    */
   extensionDepthReached: number;
+  /** G0.3S: interception-quiescence trigger checks made at depth horizon. */
+  interceptionTriggerChecks: number;
+  /** G0.3S: geometry calls (prefilter passed → full A+B+C geometry). */
+  interceptionGeometryCalls: number;
+  /** G0.3S: leaves whose interception geometry fired the trigger (attempted). */
+  interceptionTriggeredLeaves: number;
+  /** G0.3S: leaves actually extended (trigger fired AND credit available). */
+  interceptionExtendedLeaves: number;
+  /** G0.3S: nodes consumed by interception-extended subtrees. */
+  interceptionExtraNodes: number;
+  /** G0.3S: maximum extra turn-depth consumed by interception extension on any
+   *  single path (0..interceptionQuiescence.extraDepthTurns). */
+  interceptionMaxExtraDepth: number;
 }
 
 /** Context handed to the search. */
@@ -500,6 +537,51 @@ export interface SearchContext {
    */
   useThreatOrdering: boolean;
   /**
+   * G0.3S: forensic-only interception quiescence. When enabled, a depth-horizon
+   * leaf is NOT statically evaluated when the cheap A+B+C interception geometry
+   * (interceptionGeometry.ts) classifies the state as an "cat lost the
+   * interception race" trigger (prefilter: playing + mouse-to-move + carrying
+   * butter; then interceptableRouteRatio==0 ∧ bestInterceptMargin>0). Instead
+   * the search extends `extraDepthTurns` more turns along that line, consuming
+   * one credit per extension (maxExtensionsPerPath caps credits per path).
+   * Default undefined = disabled → byte-identical to pre-G0.3S behavior.
+   *
+   * TT identity: the extension consumes a credit, so the extended subtree is
+   * keyed with depthTurns=extraDepthTurns and extensionsRemaining=credits-1 —
+   * the EXISTING G0.3B `extensionsRemaining` discriminator (probeTT/storeTT),
+   * which is proven not to collide with normal leaves (depth 0 entries are
+   * never exact-stored as depth>0). G0.3B threat extensions and interception
+   * extensions use the same machinery but distinct triggers; when
+   * maxThreatExtensions=0 (production) and interception disabled, nothing
+   * changes.
+   */
+  interceptionQuiescence?: {
+    enabled: boolean;
+    extraDepthTurns: number;
+    maxExtensionsPerPath: number;
+  };
+  /** G0.3S: hooks interception-quiescence diagnostics on extension fire. */
+  interceptionExtraNodeHook?: (n: number) => void;
+  /**
+   * G0.4F-2B-1.9L — optional frontier sampler (default undefined = OFF).
+   * Called at depth-horizon leaves and budget/deadline cutoffs with bounded
+   * diagnostic samples. Purely observational.
+   */
+  frontierHook?: (s: FrontierSample) => void;
+  /**
+   * G0.4F-2B-1.9L — hard cap on frontier samples per search (prevents
+   * unbounded memory). 0/undefined = unlimited (diagnostic only).
+   */
+  frontierCap?: number;
+  /** G0.4F-2B-1.9L — internal sample counter (diagnostic only). */
+  frontierSamples?: number;
+  /**
+   * G0.4F-2B-1.9L — optional cutoff sampler (default undefined = OFF).
+   * When true, records the LAST alpha-beta cutoff detail into
+   * ctx.diagnostics.lastCutoff. Purely write-only.
+   */
+  cutoffProbe?: boolean;
+  /**
    * G0.3C: optional per-search profiler. When set, the search records
    * cumulative call counts and wall-clock time for each hot-path operation
    * (stateKey, legalActions, transition, evaluate, TT probe/store, ordering
@@ -547,6 +629,28 @@ export interface SearchProfiler {
   leafStateKeys: Set<string>;
   /** How many times evaluateLeaf was called with a previously-seen stateKey. */
   repeatedLeafEvals: number;
+}
+
+/**
+ * G0.4F-2B-1.9L — bounded diagnostic frontier sample (§8).
+ * Captured at depth-horizon leaves and budget/deadline cutoffs when
+ * `IterativeSearchOptions.frontierHook` is set. Purely observational.
+ */
+export interface FrontierSample {
+  /** Full stateKey of the sampled state. */
+  stateKey: string;
+  /** Turn owner at the sampled node. */
+  owner: 'cat' | 'mouse' | 'chance';
+  /** Which site captured the sample. */
+  site: 'leaf' | 'budget' | 'deadline';
+  /** Turn depth remaining at the sample. */
+  depthRemaining: number;
+  /** H1 leaf value (frozen evaluator) — computed once, reused, never injected. */
+  h1Value: number;
+  /** Terminal phase if any ('' when playing). */
+  terminal: '' | 'cat_wins' | 'mouse_wins' | 'choosing_tunnel_exit';
+  /** Chance weight (1 for deterministic/MAX/MIN nodes). */
+  chanceWeight: number;
 }
 
 /** Standard return shape for the root search entry point. */
@@ -663,6 +767,12 @@ export function createSearchContext(
       criticalLeaves: 0,
       extensionAbortCount: 0,
       extensionDepthReached: 0,
+      interceptionTriggerChecks: 0,
+      interceptionGeometryCalls: 0,
+      interceptionTriggeredLeaves: 0,
+      interceptionExtendedLeaves: 0,
+      interceptionExtraNodes: 0,
+      interceptionMaxExtraDepth: 0,
     },
   };
 }
@@ -696,6 +806,12 @@ function resetDiagnostics(d: SearchDiagnostics): void {
   d.criticalLeaves = 0;
   d.extensionAbortCount = 0;
   d.extensionDepthReached = 0;
+  d.interceptionTriggerChecks = 0;
+  d.interceptionGeometryCalls = 0;
+  d.interceptionTriggeredLeaves = 0;
+  d.interceptionExtendedLeaves = 0;
+  d.interceptionExtraNodes = 0;
+  d.interceptionMaxExtraDepth = 0;
 }
 
 // ---------------------------------------------------------------------------
@@ -734,16 +850,25 @@ function evaluateLeaf(state: GameEngineState, ctx: SearchContext, key?: string):
   // already computed (from _search's repetition check / TT probe) to avoid a
   // redundant stateKey call here.
   const cache = ctx.evalCache;
+  const p = ctx.profiler; // G0.4F-2B-1.9L: profiler coexists with evalCache
   if (cache) {
     const k = key ?? stateKey(state);
     const cached = cache.get(k);
-    if (cached !== undefined) return cached;
+    if (cached !== undefined) {
+      if (p) p.repeatedLeafEvals++;
+      return cached;
+    }
+    const t0 = p ? performance.now() : 0;
     const v = ctx.leafEvaluator ? ctx.leafEvaluator(state) : defaultLeafEval(state);
     if (cache.size < EVAL_CACHE_MAX_SIZE) cache.set(k, v);
+    if (p) {
+      p.evaluateCalls++;
+      p.evaluateMs += performance.now() - t0;
+      if (!p.leafStateKeys.has(k)) p.leafStateKeys.add(k);
+    }
     return v;
   }
   // Profiler path (no cache, instrumented).
-  const p = ctx.profiler;
   if (p) {
     const t0 = performance.now();
     const k = key ?? stateKey(state);
@@ -1134,6 +1259,10 @@ function searchActions(
           ctx.diagnostics.alphaBetaCutoffs++;
           ctx.diagnostics.alphaBetaMaxCutoffs++;
           if (firstIdx) ctx.diagnostics.firstMoveCutoffCount++;
+          // G0.4F-2B-1.9L: cutoff probe (diagnostic-only, default OFF).
+          if (ctx.cutoffProbe) {
+            ctx.diagnostics.lastCutoff = { ply, maximizing: true, rank: pa.originalIndex, depthTurns };
+          }
           break;
         }
       } else {
@@ -1143,6 +1272,10 @@ function searchActions(
           ctx.diagnostics.alphaBetaCutoffs++;
           ctx.diagnostics.alphaBetaMinCutoffs++;
           if (firstIdx) ctx.diagnostics.firstMoveCutoffCount++;
+          // G0.4F-2B-1.9L: cutoff probe (diagnostic-only, default OFF).
+          if (ctx.cutoffProbe) {
+            ctx.diagnostics.lastCutoff = { ply, maximizing: false, rank: pa.originalIndex, depthTurns };
+          }
           break;
         }
       }
@@ -1325,14 +1458,64 @@ function _search(
             ctx.diagnostics.extensionAbortCount++;
           }
           return extResult;
-        } else {
-          // Non-critical leaf — normal static eval.
-          ctx.diagnostics.leafNodes++;
-          return { value: evaluateLeaf(state, ctx, key), completed: true, cacheable: true, mate: null, bound: 'exact' };
+        }
+      // Non-critical leaf — normal static eval.
+      ctx.diagnostics.leafNodes++;
+      const nonCritLeaf = evaluateLeaf(state, ctx, key);
+      maybeFrontierSample(ctx, {
+        stateKey: key,
+        owner: state.currentPlayer === PieceType.Cat ? 'cat' : 'mouse',
+        site: 'leaf',
+        depthRemaining: 0,
+        terminal: '',
+        chanceWeight: 1,
+      }, nonCritLeaf);
+      return { value: nonCritLeaf, completed: true, cacheable: true, mate: null, bound: 'exact' };
+    }
+
+      // G0.3S: interception quiescence — forensic-only. When the cheap A+B+C
+      // interception geometry fires (cat lost the gate/interception race on
+      // every mouse route), search extraDepthTurns more turns instead of a
+      // static leaf eval, consuming one credit per extension.
+      if (extensionsRemaining > 0 && ctx.interceptionQuiescence?.enabled) {
+        ctx.diagnostics.interceptionTriggerChecks++;
+        const geo = computeInterception(state);
+        if (geo.prefilter) ctx.diagnostics.interceptionGeometryCalls++;
+        if (geo.trigger) {
+          ctx.diagnostics.interceptionTriggeredLeaves++;
+          // credit budget still available?
+          const credit = extensionsRemaining - 1;
+          const cap = ctx.interceptionQuiescence.maxExtensionsPerPath;
+          const budgetOk = cap > 0 && extensionsRemaining <= cap;
+          if (budgetOk) {
+            ctx.diagnostics.interceptionExtendedLeaves++;
+            const extra = Math.max(1, ctx.interceptionQuiescence.extraDepthTurns);
+            const extDepthUsed = ctx.interceptionQuiescence.extraDepthTurns - extra + 1;
+            ctx.diagnostics.interceptionMaxExtraDepth = Math.max(ctx.diagnostics.interceptionMaxExtraDepth, extDepthUsed);
+            const nodesBefore = nodeCount.count;
+            const extResult = _searchInner(state, extra, ctx, path, nodeCount, ply, alpha, beta, credit, key, inRootCatTurn);
+            const extraNodes = nodeCount.count - nodesBefore;
+            ctx.diagnostics.interceptionExtraNodes += extraNodes;
+            ctx.interceptionExtraNodeHook?.(extraNodes);
+            if (!extResult.completed) {
+              ctx.diagnostics.extensionAbortCount++;
+            }
+            return extResult;
+          }
         }
       }
+
       ctx.diagnostics.leafNodes++;
-      return { value: evaluateLeaf(state, ctx, key), completed: true, cacheable: true, mate: null, bound: 'exact' };
+      const horizonLeaf = evaluateLeaf(state, ctx, key);
+      maybeFrontierSample(ctx, {
+        stateKey: key,
+        owner: state.currentPlayer === PieceType.Cat ? 'cat' : 'mouse',
+        site: 'leaf',
+        depthRemaining: 0,
+        terminal: '',
+        chanceWeight: 1,
+      }, horizonLeaf);
+      return { value: horizonLeaf, completed: true, cacheable: true, mate: null, bound: 'exact' };
     }
 
     return _searchInner(state, depthTurns, ctx, path, nodeCount, ply, alpha, beta, extensionsRemaining, key, inRootCatTurn);
@@ -1363,7 +1546,16 @@ function _searchInner(
   //    APPROXIMATE, truncated value — NOT completed, NOT cacheable.
   if (nodeCount.count >= ctx.maxNodes) {
     ctx.diagnostics.budgetCutoffs++;
-    return { value: evaluateLeaf(state, ctx, key), completed: false, cacheable: false, mate: null, bound: 'exact' };
+    const budgetLeaf = evaluateLeaf(state, ctx, key);
+    maybeFrontierSample(ctx, {
+      stateKey: key,
+      owner: state.currentPlayer === PieceType.Cat ? 'cat' : 'mouse',
+      site: 'budget',
+      depthRemaining: depthTurns,
+      terminal: '',
+      chanceWeight: 1,
+    }, budgetLeaf);
+    return { value: budgetLeaf, completed: false, cacheable: false, mate: null, bound: 'exact' };
   }
 
   // 4b. F1A-2 wall-clock deadline — SAME abort semantics as the maxNodes
@@ -1376,7 +1568,16 @@ function _searchInner(
   //     preemption — exactly the abort contract the node budget has.
   if (deadlineReached(ctx, nodeCount)) {
     ctx.diagnostics.deadlineCutoffs++;
-    return { value: evaluateLeaf(state, ctx, key), completed: false, cacheable: false, mate: null, bound: 'exact' };
+    const dlLeaf = evaluateLeaf(state, ctx, key);
+    maybeFrontierSample(ctx, {
+      stateKey: key,
+      owner: state.currentPlayer === PieceType.Cat ? 'cat' : 'mouse',
+      site: 'deadline',
+      depthRemaining: depthTurns,
+      terminal: '',
+      chanceWeight: 1,
+    }, dlLeaf);
+    return { value: dlLeaf, completed: false, cacheable: false, mate: null, bound: 'exact' };
   }
 
   // 5. EXACT transposition-table probe (Phase D1). Must come AFTER the
@@ -1425,6 +1626,18 @@ function _searchInner(
  */
 
 /**
+ * G0.3S: initial extension credits for a search path.
+ *   - G0.3B threat extension wins when maxThreatExtensions>0 (unchanged).
+ *   - Otherwise interception quiescence seeds maxExtensionsPerPath credits.
+ *   - Both disabled → 0 (byte-identical to pre-G0.3B).
+ */
+function initialExtensions(ctx: SearchContext): number {
+  if (ctx.maxThreatExtensions > 0) return ctx.maxThreatExtensions;
+  if (ctx.interceptionQuiescence?.enabled) return ctx.interceptionQuiescence.maxExtensionsPerPath;
+  return 0;
+}
+
+/**
  * Full internal result entry point (state + completed + cacheable). Prepared
  * for the Phase D transposition table and iterative deepening.
  */
@@ -1435,7 +1648,8 @@ export function searchResult(
 ): InternalSearchResult {
   const path = new Set<string>();
   const nodeCount = { count: 0 };
-  return _search(state, depthTurns, ctx, path, nodeCount, 0, NEG_INF, POS_INF, ctx.maxThreatExtensions, state.currentPlayer === PieceType.Cat);
+  const seed = initialExtensions(ctx);
+  return _search(state, depthTurns, ctx, path, nodeCount, 0, NEG_INF, POS_INF, seed, state.currentPlayer === PieceType.Cat);
 }
 
 /**
@@ -1490,7 +1704,8 @@ function runFixedSearch(
   // Phase D1: EXACT TT probe at the root. Reuses a prior full-depth result for
   // this exact state + depthTurns (e.g. from another search sharing this
   // context's table). Falls through to a full search on miss / mismatch.
-  const rootHit = probeTT(ctx, rootKey, depthTurns, ctx.maxThreatExtensions);
+  const seedExt = initialExtensions(ctx);
+  const rootHit = probeTT(ctx, rootKey, depthTurns, seedExt);
   // A playable EXACT entry MUST carry the best action for this node. Without it
   // we cannot return a complete answer, so we fall through to a full search
   // rather than pretend completion from a partial entry.
@@ -1502,8 +1717,8 @@ function runFixedSearch(
   }
 
   const path = new Set<string>();
-  const { result, bestAction } = searchActions(state, depthTurns, ctx, path, nodeCount, 0, NEG_INF, POS_INF, ctx.maxThreatExtensions, rootKey, state.currentPlayer === PieceType.Cat);
-  if (bestAction !== null) storeTT(ctx, rootKey, depthTurns, ctx.maxThreatExtensions, result, bestAction);
+  const { result, bestAction } = searchActions(state, depthTurns, ctx, path, nodeCount, 0, NEG_INF, POS_INF, seedExt, rootKey, state.currentPlayer === PieceType.Cat);
+  if (bestAction !== null) storeTT(ctx, rootKey, depthTurns, seedExt, result, bestAction);
   return { result, bestAction };
 }
 
@@ -1547,6 +1762,47 @@ export function buildCatTurnPlan(
     // Stop when the cat's turn hands off to the mouse, or the game ends.
     if (next.phase !== GamePhase.Playing || next.currentPlayer !== PieceType.Cat) break;
     cur = next;
+  }
+  return plan;
+}
+
+/**
+ * G0.4F-2B-1.6 (M3-lite) — finalize a COMPLETED iteration's cat turn plan using
+ * the SAME postprocessing the production planner applies to the deepest
+ * completed depth (forced-loss tie-break / context-aware equal-primary
+ * extraction). This guarantees that `previousCompletedPlan` equals exactly the
+ * plan production would have emitted IF the search had stopped at that depth —
+ * so the guard's rescue candidate is a true "previous depth" plan, never a raw
+ * planBranches walk.
+ *
+ * `iter` holds the snapshots captured when that depth completed (built plan,
+ * planBranches, equal-primary graph, rootValues, primary mate). ctx is reused
+ * for the helper calls but `ctx.planBranches` is restored afterwards.
+ */
+export function finalizeCompletedIterationPlan(
+  state: GameEngineState,
+  ctx: SearchContext,
+  iter: {
+    mate: MateSide;
+    builtPlan: SearchAction[];
+    rootValues: { action: SearchAction; value: number; mate: MateSide }[];
+    planBranches: Map<string, SearchAction>;
+    graph: EqualPrimaryGraph;
+  },
+): SearchAction[] {
+  let plan = iter.builtPlan.slice();
+  if (iter.mate === 'mouse') {
+    const savedBranches = ctx.planBranches;
+    ctx.planBranches = iter.planBranches;
+    try {
+      const tieBroken = forcedLossTieBreak(state, ctx, iter.rootValues);
+      if (tieBroken !== null && tieBroken.length > 0) plan = tieBroken;
+    } finally {
+      ctx.planBranches = savedBranches;
+    }
+  } else if (iter.mate === null) {
+    const extracted = extractBestCatTurnPlan(state, ctx.rules, iter.graph, iter.planBranches);
+    if (extracted.length > 0) plan = extracted;
   }
   return plan;
 }
@@ -1644,6 +1900,42 @@ export interface IterativeSearchOptions {
    * (BASELINE isolation for real-snapshot A/B).
    */
   useThreatOrdering?: boolean;
+  /**
+   * G0.3S: forensic-only interception quiescence option. When set, the search
+   * context enables the interception-geometry extension at the depth horizon
+   * (see SearchContext.interceptionQuiescence). Default undefined = disabled.
+   */
+  interceptionQuiescence?: {
+    enabled: boolean;
+    extraDepthTurns: number;
+    maxExtensionsPerPath: number;
+  };
+  /** G0.3S: optional hook receiving extra nodes consumed by each extension. */
+  interceptionExtraNodeHook?: (n: number) => void;
+  /**
+   * G0.4F-2B-1.9L — optional diagnostic-only profiler (default undefined =
+   * OFF, zero behavior change). Injected into the SearchContext so offline
+   * forensics can measure stateKey/legalActions/transition/evaluate/TT/
+   * ordering costs. Purely write-only; never changes value/mate/bestAction.
+   */
+  profiler?: SearchProfiler;
+  /**
+   * G0.4F-2B-1.9L — optional frontier sampler (default undefined = OFF).
+   * Called at depth-horizon leaves / budget / deadline cutoffs with a bounded
+   * diagnostic sample. Purely observational; never changes search behavior.
+   */
+  frontierHook?: (s: FrontierSample) => void;
+  /**
+   * G0.4F-2B-1.9L — hard cap on frontier samples per search (prevents
+   * unbounded memory). 0/undefined = unlimited. Diagnostic only.
+   */
+  frontierCap?: number;
+  /**
+   * G0.4F-2B-1.9L — optional cutoff sampler (default undefined = OFF). When
+   * set, records the LAST alpha-beta cutoff's ply / layer / move rank into
+   * SearchDiagnostics.lastCutoff. Purely write-only.
+   */
+  cutoffProbe?: boolean;
 }
 
 /** Per-iteration result, for inspection / diagnostics. */
@@ -1694,6 +1986,23 @@ export interface IterativeSearchDiagnostics {
    * extra depth granted to critical leaves.
    */
   maxExtensionDepth: number;
+  /** G0.3S: interception-quiescence trigger checks made at depth horizon. */
+  interceptionTriggerChecks: number;
+  /** G0.3S: geometry calls (prefilter passed). */
+  interceptionGeometryCalls: number;
+  /** G0.3S: leaves whose interception geometry fired the trigger. */
+  interceptionTriggeredLeaves: number;
+  /** G0.3S: leaves actually extended (credit available). */
+  interceptionExtendedLeaves: number;
+  /** G0.3S: nodes consumed by interception-extended subtrees. */
+  interceptionExtraNodes: number;
+  /** G0.3S: maximum extra turn-depth consumed on any path. */
+  interceptionMaxExtraDepth: number;
+  /** G0.4F-2B-1.9L: frontier samples captured (diagnostic; 0 when OFF). */
+  frontierSamples: number;
+  /** G0.4F-2B-1.9L: last alpha-beta cutoff detail (diagnostic; undefined when
+   *  cutoffProbe is OFF or no cutoff occurred). */
+  lastCutoff?: { ply: number; maximizing: boolean; rank: number; depthTurns: number };
 }
 
 export interface IterativeSearchResult {
@@ -1717,6 +2026,17 @@ export interface IterativeSearchResult {
   /** F1B-2: principal-line plan for the current cat turn, from the deepest
    *  COMPLETED iteration's actual search decisions. Empty when none completed. */
   catTurnPlan: SearchAction[];
+  /** G0.4F-2B-1.6 (M3-lite): depth strictly below the deepest completed one
+   *  (i.e. deepest-1 when completedDepth>=2). Captured from the SAME single
+   *  iterative-deepening search — no second main search. 0 when none. */
+  previousCompletedDepth: number;
+  /** G0.4F-2B-1.6: final (postprocessed — forced-loss tie-break / equal-primary
+   *  extraction) catTurnPlan of the previous completed depth. Empty when
+   *  previousCompletedDepth===0. */
+  previousCompletedPlan: SearchAction[];
+  /** G0.4F-2B-1.6: primary score (value / mate) of the previous completed depth. */
+  previousCompletedValue: number;
+  previousCompletedMate: MateSide;
   /** F1B (HARD_SEARCH debug): root action values of the deepest COMPLETED
    *  iteration (from the actual search, no extra cost). Empty when off/none. */
   rootActions: { action: SearchAction; value: number; mate: MateSide }[];
@@ -1747,6 +2067,17 @@ export function searchBestActionIterative(
     opts.useThreatOrdering ?? true,
   );
   if (opts.leafEvaluator) ctx.leafEvaluator = opts.leafEvaluator;
+  // G0.3S: forensic-only interception quiescence option.
+  if (opts.interceptionQuiescence) {
+    ctx.interceptionQuiescence = opts.interceptionQuiescence;
+    ctx.interceptionExtraNodeHook = opts.interceptionExtraNodeHook;
+  }
+  // G0.4F-2B-1.9L: diagnostic-only profiler / frontier / cutoff probes
+  // (all default undefined = OFF; zero behavior change).
+  if (opts.profiler) ctx.profiler = opts.profiler;
+  if (opts.frontierHook) ctx.frontierHook = opts.frontierHook;
+  if (opts.frontierCap !== undefined) ctx.frontierCap = opts.frontierCap;
+  if (opts.cutoffProbe !== undefined) ctx.cutoffProbe = opts.cutoffProbe;
   // F1A-2: one shared wall-clock deadline across ALL iterations (the deadline
   // lives on the shared context, so `_search` samples `now()` during every
   // depth — a mid-depth abort is possible, not just an inter-iteration one).
@@ -1764,6 +2095,15 @@ export function searchBestActionIterative(
   let lastRootValues: { action: SearchAction; value: number; mate: MateSide }[] = [];
   let lastPlanBranches: Map<string, SearchAction> = new Map();
   let lastCompletedGraph: EqualPrimaryGraph = new Map();
+  // G0.4F-2B-1.6 (M3-lite): snapshot of the SECOND-deepest completed iteration
+  // (its depth, primary score, built plan, planBranches, graph, rootValues) so
+  // the guard can rescue with the "previous completed depth" plan WITHOUT a
+  // second main search. Captured when a deeper depth completes.
+  let prevCompleted: {
+    depth: number; value: number; mate: MateSide;
+    builtPlan: SearchAction[]; rootValues: { action: SearchAction; value: number; mate: MateSide }[];
+    planBranches: Map<string, SearchAction>; graph: EqualPrimaryGraph;
+  } | null = null;
   let completedDepth = 0;
   let attemptedDepth = 0;
   let budgetExhausted = false;
@@ -1789,6 +2129,20 @@ export function searchBestActionIterative(
       bestAction,
     });
     if (result.completed) {
+      // G0.4F-2B-1.6: BEFORE overwriting, stash the previous (second-deepest)
+      // completed iteration. lastCompleted/lastCatTurnPlan/lastPlanBranches/
+      // lastCompletedGraph/lastRootValues hold the deepest-so-far data.
+      if (lastCompleted) {
+        prevCompleted = {
+          depth: completedDepth,
+          value: lastCompleted.value,
+          mate: lastCompleted.mate,
+          builtPlan: lastCatTurnPlan.slice(),
+          rootValues: lastRootValues,
+          planBranches: lastPlanBranches,
+          graph: lastCompletedGraph,
+        };
+      }
       // Trust ONLY completed iterations. Keep overwriting with the deeper
       // completed result — they are all mathematically full searches.
       lastCompleted = { value: result.value, mate: result.mate, bestAction };
@@ -1841,6 +2195,21 @@ export function searchBestActionIterative(
     }
   }
 
+  // G0.4F-2B-1.6: finalize the PREVIOUS completed depth's plan using the SAME
+  // postprocessing semantics (forced-loss tie-break / equal-primary extraction)
+  // so previousCompletedPlan equals what the production would have output IF
+  // the search had stopped at that depth.
+  let prevDepth = 0;
+  let prevPlan: SearchAction[] = [];
+  let prevValue = 0;
+  let prevMate: MateSide = null;
+  if (prevCompleted) {
+    prevDepth = prevCompleted.depth;
+    prevValue = prevCompleted.value;
+    prevMate = prevCompleted.mate;
+    prevPlan = finalizeCompletedIterationPlan(state, ctx, prevCompleted);
+  }
+
   return {
     bestAction: finalAction,
     value: finalValue,
@@ -1851,6 +2220,10 @@ export function searchBestActionIterative(
     budgetExhausted,
     deadlineExceeded,
     catTurnPlan: lastCatTurnPlan,
+    previousCompletedDepth: prevDepth,
+    previousCompletedPlan: prevPlan,
+    previousCompletedValue: prevValue,
+    previousCompletedMate: prevMate,
     rootActions: lastRootValues,
     diagnostics: {
       completedDepth,
@@ -1872,6 +2245,14 @@ export function searchBestActionIterative(
       criticalLeaves: d.criticalLeaves,
       extensionAbortCount: d.extensionAbortCount,
       maxExtensionDepth: d.extensionDepthReached,
+      interceptionTriggerChecks: d.interceptionTriggerChecks,
+      interceptionGeometryCalls: d.interceptionGeometryCalls,
+      interceptionTriggeredLeaves: d.interceptionTriggeredLeaves,
+      interceptionExtendedLeaves: d.interceptionExtendedLeaves,
+      interceptionExtraNodes: d.interceptionExtraNodes,
+      interceptionMaxExtraDepth: d.interceptionMaxExtraDepth,
+      frontierSamples: ctx.frontierSamples ?? 0,
+      lastCutoff: d.lastCutoff,
     },
     iterations,
   };

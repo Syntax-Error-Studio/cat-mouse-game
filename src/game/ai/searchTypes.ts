@@ -86,6 +86,28 @@ export interface RuleSet {
    * OPTIONAL: if absent, the simulator falls back to its own uniform default.
    */
   buildButterChance?: (state: GameEngineState) => { state: GameEngineState; weight: number }[] | null;
+  /**
+   * G0.4F-2A — resolve pending ghost-butter spawns at a CAT→MOUSE turn boundary
+   * as an honest CHANCE node.
+   *
+   * Input: a Playing state where the CAT has exhausted its move budget (about
+   * to hand off to the mouse) and `pendingButterSpawns` is non-empty.
+   *
+   * The builder runs the SHARED pure core (engine.resolveGhostBoundaryCore):
+   * it snapshots the ghosts once, materializes idle ones into entity butters,
+   * auto-picks any ghost the mouse stands on (mouseHasButter=true, +replacement
+   * request), blocks occupied ghosts (blocked++ → keep at 1) and rerolls those
+   * blocked a second time (+replacement request). The deterministic parts are
+   * folded into each outcome; the random parts (new ghost positions for
+   * auto-pick replacements and rerolls) are enumerated over every injective
+   * assignment of distinct legal cells (uniform weight 1/C(candidates, k)).
+   *
+   * Returns null when no ghost resolution is needed (the caller then falls back
+   * to plain `endTurn`), or when the boundary is not a CAT→MOUSE hand-off.
+   * NEVER calls Math.random — the real game samples the same core with its own
+   * RNG, so real == search distribution.
+   */
+  resolveGhostBoundaryChance?: (state: GameEngineState) => { state: GameEngineState; weight: number }[] | null;
 }
 
 /** Transposition-table bound (used from Phase D; type defined now). */

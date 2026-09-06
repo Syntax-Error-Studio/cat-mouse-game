@@ -1,6 +1,7 @@
 import type { GameEngineState } from '../engine';
 import type { SearchAction } from './searchTypes';
 import type { MateSide } from './expectiminimax';
+import type { HardProgressGuardMemory, ProgressGuardDiag } from './progressGuard';
 import { stateKey } from './transposition';
 
 /**
@@ -36,12 +37,21 @@ export interface HardRootSnapshot {
   catMovesLeft: number;
   mouseMovesLeft: number;
   butterPositions: { r: number; c: number }[];
+  pendingButterSpawns: GameEngineState['pendingButterSpawns'];
+  /** G0.4F-2A.1: optional for backward compatibility with pre-2A.1 snapshots. */
+  pendingButterPlacementDebt?: number;
   mouseHasButter: boolean;
   mouseSkillActive: boolean;
   trapPosition: { r: number; c: number } | null;
   catTrapsRemaining: number;
   blockedTunnels: { r: number; c: number }[];
   tunnelExitChoices: { r: number; c: number; label: string }[];
+  /** G0.4F-2B-1.6: M3-lite Progress-Guard policy memory. OPTIONAL (absent in
+   *  pre-1.6 snapshots → undefined/null). It affects ROOT-LEVEL policy but is
+   *  excluded from stateKey/gameAffectingEqual/TT (it is NOT game-rule
+   *  transition state — documented explicitly). Debug/forensics must be able
+   *  to round-trip it exactly (P23). */
+  hardProgressGuardMemory?: HardProgressGuardMemory | null;
 }
 
 export interface HardProductionDiag {
@@ -53,6 +63,37 @@ export interface HardProductionDiag {
   mate: MateSide;
   plan: SearchAction[];
   rootValues: { action: SearchAction; value: number; mate: MateSide }[];
+  /** G0.3X: bounded-refutation sidecar diagnostics for this turn (absent when
+   *  the flag was OFF or the turn predates the trial build). */
+  refutation?: HardRefutationDiag;
+  /** G0.4F-2B-1.8: M3-lite Progress-Guard diagnostics for this turn (compact,
+   *  mirrors ProgressGuardDebug). Recorded from the SAME live debug object as
+   *  `refutation` so the human-validation log can prove the feature flag state
+   *  per turn. Debug-only; excluded from stateKey/gameAffectingEqual. Absent
+   *  when the turn predates 1.8 (no guard diag was captured). */
+  progressGuard?: ProgressGuardDiag;
+}
+
+/** G0.3X: compact bounded-refutation diagnostics recorded per Hard turn so the
+ *  human-validation log can reconstruct baseline→final decision, override
+ *  usage and sidecar cost WITHOUT the live debug object. Debug-only; the
+ *  history field is excluded from stateKey/gameAffectingEqual. */
+export interface HardRefutationDiag {
+  triggered: boolean;
+  candidateCount: number;
+  baselineProbeStatus: string | null;
+  candidateStatuses: string[];
+  refutedCount: number;
+  cleanCount: number;
+  overrideEligible: boolean;
+  overrideUsed: boolean;
+  selectedPlanSource: 'baseline' | 'bounded_refutation';
+  refutationCpuMs: number;
+  refutationWallMs: number;
+  fallbackUsed: boolean;
+  sidecarAbortReason: string;
+  baselinePlan: SearchAction[];
+  finalPlan: SearchAction[];
 }
 
 /** Execution link: what the production trajectory actually did + end key. */
@@ -97,12 +138,15 @@ export function captureHardRoot(state: GameEngineState): HardRootSnapshot {
     catMovesLeft: state.catMovesLeft,
     mouseMovesLeft: state.mouseMovesLeft,
     butterPositions: clone(state.butterPositions),
+    pendingButterSpawns: clone(state.pendingButterSpawns ?? []),
+    pendingButterPlacementDebt: state.pendingButterPlacementDebt ?? 0,
     mouseHasButter: state.mouseHasButter,
     mouseSkillActive: state.mouseSkillActive,
     trapPosition: state.trapPosition ? { ...state.trapPosition } : null,
     catTrapsRemaining: state.catTrapsRemaining,
     blockedTunnels: clone(state.blockedTunnels),
     tunnelExitChoices: clone(state.tunnelExitChoices),
+    hardProgressGuardMemory: state.hardProgressGuardMemory ? clone(state.hardProgressGuardMemory) : null,
   };
 }
 
@@ -119,6 +163,8 @@ export function restoreHardRoot(snap: HardRootSnapshot): GameEngineState {
     catMovesLeft: snap.catMovesLeft,
     mouseMovesLeft: snap.mouseMovesLeft,
     butterPositions: JSON.parse(JSON.stringify(snap.butterPositions)),
+    pendingButterSpawns: JSON.parse(JSON.stringify(snap.pendingButterSpawns ?? [])) as GameEngineState['pendingButterSpawns'],
+    pendingButterPlacementDebt: snap.pendingButterPlacementDebt ?? 0,
     mouseHasButter: snap.mouseHasButter,
     mouseSkillActive: snap.mouseSkillActive,
     trapPosition: snap.trapPosition ? { ...snap.trapPosition } : null,
@@ -130,6 +176,9 @@ export function restoreHardRoot(snap: HardRootSnapshot): GameEngineState {
     gameEventLog: [],
     lastHardSearch: null,
     hardSearchHistory: [],
+    hardProgressGuardMemory: snap.hardProgressGuardMemory
+      ? JSON.parse(JSON.stringify(snap.hardProgressGuardMemory)) as HardProgressGuardMemory
+      : null,
   };
 }
 

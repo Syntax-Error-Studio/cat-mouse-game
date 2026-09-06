@@ -7,10 +7,15 @@ import { CellType, GamePhase, PieceType, GameMode } from '../game/types';
 import { makeTunnelCorners } from '../game/types';
 import { useMemo, useState } from 'react';
 import type { HardSearchDebug } from '../game/ai/hardTurnPlanner';
-import type { HardSearchHistoryEntry } from '../game/ai/hardHistory';
+import type { HardSearchHistoryEntry, HardRefutationDiag } from '../game/ai/hardHistory';
 import { hardHistorySnapshotJson } from '../game/ai/hardHistory';
+import type { HardProgressGuardMemory } from '../game/ai/progressGuard';
+import {
+  progressGuardHeaderLine, formatProgressGuardBlock, formatHistoryProgressGuard, progressGuardMemoryMissing,
+} from '../game/ai/progressGuardLog';
 import type { SearchAction } from '../game/ai/searchTypes';
 import type { Direction } from '../game/types';
+import { HARD_LEAF_MODE_CONFIG, HARD_PROGRESS_GUARD_CONFIG, type HardLeafModeConfig } from '../game/ai/searchConfig';
 
 type BoardCell = { type: CellType; piece?: PieceType; hasButter: boolean };
 
@@ -19,6 +24,10 @@ interface DebugInfoProps {
   catPosition: { r: number; c: number };
   mousePosition: { r: number; c: number };
   butterPositions: { r: number; c: number }[];
+  /** G0.4F-2A: pending ghost-butter spawn markers (future-spawn, non-blocking). */
+  pendingButterSpawns: { r: number; c: number; blockedMaterializations: number }[];
+  /** G0.4F-2A.1: one-for-one replacement obligations waiting for a legal cell. */
+  pendingButterPlacementDebt?: number;
   mouseHasButter: boolean;
   mouseSkillActive: boolean;
   catMovesLeft: number;
@@ -38,12 +47,66 @@ interface DebugInfoProps {
   hardSearch: HardSearchDebug | null | undefined;
   /** G0.2: bounded history of recent Hard roots for offline forensics. */
   hardSearchHistory: HardSearchHistoryEntry[] | null | undefined;
+  /** G0.3X: 1-based game counter for the human-validation log (GAME N marker). */
+  gameNo: number;
+  /** G0.4F-2B-1.8: current M3-lite Progress-Guard policy memory (for the
+   *  §7 debug-only sanity hint). Read-only display; never fed back into the
+   *  engine from here. */
+  hardProgressGuardMemory?: HardProgressGuardMemory | null;
 }
 
 /** One-line label for a SearchAction (e.g. "catStep →", "catPlaceTrap"). */
 function actionLabel(a: SearchAction): string {
   if (a.type === 'catStep') return `catStep ${(a.direction as Direction).key}`;
   return a.type;
+}
+
+/** Short one-char plan token for log lines (ArrowDown→D etc.). */
+function shortToken(a: SearchAction): string {
+  if (a.type === 'catStep') return (a.direction as Direction).key.slice(5)[0] ?? '?';
+  if (a.type === 'catPlaceTrap') return 'PT';
+  if (a.type === 'mouseSkill') return 'SK';
+  if (a.type === 'chooseTunnel') return 'TU';
+  return '?';
+}
+
+/** G0.3X: render one turn's bounded-refutation record as log lines.
+ *  Field names match the G0.3X spec §1 exactly (refutationTriggered,
+ *  candidateCount, baselineProbeStatus, PLAN_REFUTED count, overrideEligible,
+ *  overrideUsed, selectedPlanSource, refutationCpuMs, refutationWallMs,
+ *  fallbackUsed, sidecarAbortReason) so the offline analyzer parses the log
+ *  unambiguously. */
+function formatRefutationDiag(r: HardRefutationDiag): string[] {
+  const out: string[] = [];
+  out.push(`REFUTATION: refutationTriggered=${r.triggered} candidateCount=${r.candidateCount}`);
+  out.push(`  baselineProbeStatus=${r.baselineProbeStatus ?? 'null'}`);
+  out.push(`  candidateStatuses=[${r.candidateStatuses.join(', ')}] PLAN_REFUTED_count=${r.refutedCount} NO_REFUTATION_FOUND_count=${r.cleanCount} CHANCE_MIXED_count=${r.candidateStatuses.filter(s => s === 'CHANCE_MIXED').length} INCOMPLETE_count=${r.candidateStatuses.filter(s => s === 'INCOMPLETE').length}`);
+  out.push(`  overrideEligible=${r.overrideEligible} overrideUsed=${r.overrideUsed} selectedPlanSource=${r.selectedPlanSource}`);
+  out.push(`  refutationCpuMs=${typeof r.refutationCpuMs === 'number' ? r.refutationCpuMs.toFixed(1) : r.refutationCpuMs} refutationWallMs=${typeof r.refutationWallMs === 'number' ? r.refutationWallMs.toFixed(1) : r.refutationWallMs}`);
+  out.push(`  fallbackUsed=${r.fallbackUsed} sidecarAbortReason=${r.sidecarAbortReason}`);
+  const base = r.baselinePlan.map(shortToken).join('');
+  const fin = r.finalPlan.map(shortToken).join('');
+  out.push(`  BASELINE_PLAN=[${base || '(empty)'}]`);
+  out.push(`  FINAL_PLAN=[${fin || '(empty)'}]${base !== fin ? '  <<OVERRIDE' : ''}`);
+  return out;
+}
+
+/** G0.3X: render the last-turn [HARD_SEARCH] refutation block (spec §1 names). */
+function formatHardSearchRefutation(h: HardSearchDebug): string {
+  const r = h.refutation;
+  if (!r) return 'REFUTATION: (none)';
+  const statuses = r.candidateStatuses ?? [];
+  return [
+    'REFUTATION:',
+    `  refutationEnabled=${r.refutationEnabled} refutationTriggered=${r.refutationTriggered} candidateCount=${r.candidateCount}`,
+    `  baselineProbeStatus=${r.baselineProbeStatus ?? 'null'}`,
+    `  candidateStatuses=[${statuses.join(', ')}] PLAN_REFUTED_count=${statuses.filter(s => s === 'PLAN_REFUTED').length} NO_REFUTATION_FOUND_count=${statuses.filter(s => s === 'NO_REFUTATION_FOUND').length} CHANCE_MIXED_count=${statuses.filter(s => s === 'CHANCE_MIXED').length} INCOMPLETE_count=${statuses.filter(s => s === 'INCOMPLETE').length}`,
+    `  overrideEligible=${r.overrideEligible} overrideUsed=${r.overrideUsed} selectedPlanSource=${r.selectedPlanSource}`,
+    `  refutationCpuMs=${typeof r.refutationCpuMs === 'number' ? r.refutationCpuMs.toFixed(1) : r.refutationCpuMs} refutationWallMs=${typeof r.refutationWallMs === 'number' ? r.refutationWallMs.toFixed(1) : r.refutationWallMs}`,
+    `  fallbackUsed=${r.selectedPlanSource === 'baseline' && r.refutationTriggered} sidecarAbortReason=${r.sidecarAbortReason}`,
+    `  BASELINE_PLAN=[${(h.baselinePlan ?? []).map(shortToken).join('') || '(empty)'}]`,
+    `  FINAL_PLAN=[${h.plan.map(shortToken).join('') || '(empty)'}]${h.baselinePlan && JSON.stringify(h.baselinePlan.map(shortToken)) !== JSON.stringify(h.plan.map(shortToken)) ? '  <<OVERRIDE' : ''}`,
+  ].join('\n');
 }
 
 /** Format the [HARD_SEARCH] debug block as plain text (copyable). */
@@ -85,6 +148,8 @@ function formatHardSearch(h: HardSearchDebug): string {
     `  tunnelControl=${h.evalRoot.tunnelControl}`,
     `  tempo=${h.evalRoot.tempo}`,
     `  total=${h.evalRoot.total}`,
+    '',
+    formatHardSearchRefutation(h),
   ].join('\n');
 }
 
@@ -107,6 +172,9 @@ function formatHardSearchHistory(h: HardSearchHistoryEntry[]): string {
       `ROOT_VALUE=${e.production.rootValue} mate=${e.production.mate ?? 'null'}`,
       `PLAN: ${e.production.plan.map(actionLabel).join(' → ') || '(empty)'}`,
       `EXEC: endState=${e.execution?.endStateKey ?? 'null'} matched=${e.execution?.matchedPlan ?? 'n/a'}`,
+      ...(e.production.refutation ? formatRefutationDiag(e.production.refutation) : []),
+      // G0.4F-2B-1.8 §4: compact per-turn Progress-Guard block (after REFUTATION).
+      ...(e.production.progressGuard ? formatHistoryProgressGuard(e.production.progressGuard) : []),
       `SNAPSHOT_JSON=${hardHistorySnapshotJson(e)}`,
     );
   }
@@ -114,13 +182,38 @@ function formatHardSearchHistory(h: HardSearchHistoryEntry[]): string {
 }
 
 export const DebugInfo: React.FC<DebugInfoProps> = ({
-  board, catPosition, mousePosition, butterPositions,
+  board, catPosition, mousePosition, butterPositions, pendingButterSpawns = [],
+  pendingButterPlacementDebt = 0,
   mouseHasButter, mouseSkillActive, catMovesLeft, mouseMovesLeft,
   trapPosition, catTrapsRemaining, currentPlayer, phase, message,
   gameMode, blockedTunnels, tunnelExitChoices, catActionLog, gameEventLog, difficulty,
-  hardSearch, hardSearchHistory,
+  hardSearch, hardSearchHistory, gameNo, hardProgressGuardMemory = null,
 }) => {
   const [copied, setCopied] = useState(false);
+  // G0.4E-2/G0.4F-1.3: dev-only Hard-leaf mode display/toggle (single source of
+  // truth = HARD_LEAF_MODE_CONFIG). Mirrors the config into local state so the
+  // label re-renders; the config object is the only runtime state the search reads.
+  const [leafMode, setLeafMode] = useState(HARD_LEAF_MODE_CONFIG.current);
+  // G0.4F-2B-1.2: added H1 (baseline_hole_corrected) to the dev cycle.
+  const LEAF_CYCLE: HardLeafModeConfig[] = ['baseline', 'baseline_hole_corrected', 'hybrid_standard_only', 'hybrid_route_v2_standard_only'];
+  const toggleHardLeaf = () => {
+    const i = LEAF_CYCLE.indexOf(HARD_LEAF_MODE_CONFIG.current);
+    const next = LEAF_CYCLE[(i + 1) % LEAF_CYCLE.length];
+    HARD_LEAF_MODE_CONFIG.current = next;
+    setLeafMode(next);
+  };
+  const leafLabel = leafMode === 'baseline' ? 'BASELINE'
+    : leafMode === 'baseline_hole_corrected' ? 'H1 (Corrected Hole)'
+    : leafMode === 'hybrid_standard_only' ? 'HYBRID_V1'
+    : 'HYBRID_V2';
+
+  // G0.4F-2B-1.6: M3-lite Progress Guard toggle (independent from leaf mode).
+  // Default OFF. Mirrors HARD_PROGRESS_GUARD_CONFIG; DEV-only rendering below.
+  const [guardOn, setGuardOn] = useState(HARD_PROGRESS_GUARD_CONFIG.enabled);
+  const toggleProgressGuard = () => {
+    HARD_PROGRESS_GUARD_CONFIG.enabled = !HARD_PROGRESS_GUARD_CONFIG.enabled;
+    setGuardOn(HARD_PROGRESS_GUARD_CONFIG.enabled);
+  };
 
   // ---- Build the full plain-text dump (for the copy button) ----
   const boardDump = board.map((row, r) =>
@@ -132,21 +225,53 @@ export const DebugInfo: React.FC<DebugInfoProps> = ({
       if (cell.type === CellType.Tunnel) return 'T';
       if (cell.type === CellType.MouseHole) return 'H';
       if (butterPositions.some(b => b.r === r && b.c === c)) return 'B';
+      if (pendingButterSpawns.some(g => g.r === r && g.c === c)) return 'G';
       if (trapPosition?.r === r && trapPosition?.c === c) return 'R';
       return '.';
     }).join('')
   ).join('\n');
 
+  // G0.4F-2A/2A.1: [GHOST_BUTTER] block (debug export; no SNAPSHOT impact).
+  const ghostBlock = (pendingButterSpawns.length
+    ? pendingButterSpawns.map((g, i) => `pending[${i}]=(${g.r},${g.c}) blocked=${g.blockedMaterializations}`).join('\n')
+    : '(none)') + `\nplacementDebt=${pendingButterPlacementDebt}`;
+
   const hardSearchText = hardSearch ? formatHardSearch(hardSearch) : '[HARD_SEARCH] none';
 
+  // G0.3X: per-game marker + winner line for the human-validation log.
+  const gameHeader = `GAME ${gameNo}`;
+  const resultLine =
+    phase === GamePhase.CatWins ? 'RESULT: cat_wins'
+    : phase === GamePhase.MouseWins ? 'RESULT: mouse_wins'
+    : 'RESULT: (playing)';
+
+  // G0.4F-2B-1.8: header flag MUST read the real config (never the stale UI
+  // mirror) so the copied log itself proves the feature-flag state (§2).
+  const progressGuardHeader = progressGuardHeaderLine(HARD_PROGRESS_GUARD_CONFIG.enabled);
+
+  // G0.4F-2B-1.8 §7: debug-only sanity hint — guard ON ∧ ≥1 clean Hard cat
+  // turn completed (matched execution in the bounded history) ∧ no policy
+  // memory captured → warn (hint only; never auto-fix / never affect AI).
+  const hasCleanHardTurn = (hardSearchHistory ?? []).some((e) => e.execution?.matchedPlan === true);
+  const guardMemoryMissing = progressGuardMemoryMissing(
+    HARD_PROGRESS_GUARD_CONFIG.enabled,
+    hasCleanHardTurn,
+    hardProgressGuardMemory ?? null,
+  );
+
   const fullDebugText =
-    '[HARD_SEARCH]\n' + hardSearchText +
+    gameHeader + '\n' + resultLine +
+    '\nHARD_LEAF=' + leafLabel +
+    '\n' + progressGuardHeader +
+    // G0.4F-2B-1.8 §3: last-turn guard block (full names) right after [HARD_SEARCH].
+    '\n[HARD_SEARCH]\n' + hardSearchText +
+    '\n\n' + formatProgressGuardBlock(hardSearch?.progressGuard) +
     '\n\n[STATE]\n' +
     `cat=(${catPosition.r},${catPosition.c}) mouse=(${mousePosition.r},${mousePosition.c})\n` +
     `catMoves=${catMovesLeft} mouseMoves=${mouseMovesLeft}\n` +
     `butter=${mouseHasButter} skill=${mouseSkillActive} trap=${trapPosition ? `(${trapPosition.r},${trapPosition.c})` : 'none'}\n` +
     `trapRemain=${catTrapsRemaining} phase=${phase} difficulty=${difficulty}\n` +
-    `msg="${message}"\n\n[BOARD]\n${boardDump}\n\n[AI_LOG]\n` +
+    `msg="${message}"\n\n[BOARD]\n${boardDump}\n\n[GHOST_BUTTER]\n${ghostBlock}\n\n[AI_LOG]\n` +
     (catActionLog.length ? catActionLog.join('\n') : '(empty)') +
     '\n\n[GAME_EVENT_LOG]\n' +
     (gameEventLog.length ? gameEventLog.join('\n') : '(empty)') +
@@ -262,6 +387,7 @@ export const DebugInfo: React.FC<DebugInfoProps> = ({
       if (cell.type === CellType.Tunnel) return 'T';
       if (cell.type === CellType.MouseHole) return 'H';
       if (butterPositions.some(b => b.r === r && b.c === c)) return 'B';
+      if (pendingButterSpawns.some(g => g.r === r && g.c === c)) return 'G';
       if (trapPosition?.r === r && trapPosition?.c === c) return 'R';
       return '.';
     }).join('')
@@ -345,6 +471,58 @@ export const DebugInfo: React.FC<DebugInfoProps> = ({
         >
           {copied ? '✅ 已复制' : '📋 一键复制全部调试信息'}
         </button>
+        {/* G0.4E-2/G0.4F-1.3/G0.4F-2B-1.2: DEV-ONLY Hard Leaf mode switch — shows
+            current leaf and cycles baseline → H1 → HYBRID_V1 → HYBRID_V2 →
+            baseline. Never compiled into a production build
+            (import.meta.env.DEV is false there). Toggle only between games,
+            never mid-game. */}
+        {import.meta.env.DEV && (
+          <span style={{ marginLeft: '0.75rem', fontSize: '0.7rem', color: '#dcdcaa' }}>
+            Hard Leaf = <b>{leafLabel}</b>
+            <button
+              onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleHardLeaf(); }}
+              style={{
+                marginLeft: '0.5rem',
+                fontSize: '0.65rem',
+                padding: '0.05rem 0.4rem',
+                borderRadius: '0.3rem',
+                border: '1px solid #dcdcaa',
+                background: 'transparent',
+                color: '#dcdcaa',
+                cursor: 'pointer',
+              }}
+            >
+              {(() => {
+                const i = LEAF_CYCLE.indexOf(HARD_LEAF_MODE_CONFIG.current);
+                const n = LEAF_CYCLE[(i + 1) % LEAF_CYCLE.length];
+                return n === 'baseline' ? '→ BASELINE'
+                  : n === 'baseline_hole_corrected' ? '→ H1 (Corrected Hole)'
+                  : n === 'hybrid_standard_only' ? '→ HYBRID_V1'
+                  : '→ HYBRID_V2';
+              })()}
+            </button>
+            {/* G0.4F-2B-1.6: M3-lite Progress Guard toggle (independent from the
+                leaf mode; default OFF). DEV-only. Human-test protocol: H1 +
+                M3-lite ON, start a NEW game. */}
+            <span style={{ marginLeft: '0.75rem', color: guardOn ? '#6cc96c' : '#dcdcaa' }}>
+              Progress Guard = <b>{guardOn ? 'ON' : 'OFF'}</b>
+              <button
+                onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleProgressGuard(); }}
+                style={{
+                  marginLeft: '0.5rem', fontSize: '0.65rem', padding: '0.05rem 0.4rem',
+                  borderRadius: '0.3rem', border: '1px solid #dcdcaa',
+                  background: 'transparent', color: '#dcdcaa', cursor: 'pointer',
+                }}
+              >
+                {guardOn ? '→ OFF' : '→ ON'}
+              </button>
+              {/* G0.4F-2B-1.8 §7: debug-only sanity hint (hint only, no state fix). */}
+              {guardMemoryMissing && (
+                <span style={{ marginLeft: '0.5rem', color: '#dcdcaa' }}>⚠ Progress Guard memory missing</span>
+              )}
+            </span>
+          </span>
+        )}
       </summary>
 
       {/* === HARD_SEARCH DEBUG (Search AI last turn) === */}

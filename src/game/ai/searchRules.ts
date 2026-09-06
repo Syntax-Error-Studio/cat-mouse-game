@@ -5,9 +5,9 @@ import {
   mouseSkill,
   catPlaceTrap,
   endTurn,
-  enumerateButterSpawns,
-  getTunnelCorners,
-  type GameEngineState,
+  enumerateButterSpawnsForState,
+  enumerateGhostAnnouncementOutcomes,
+  enumerateGhostBoundaryOutcomes,
 } from '../engine';
 import { chooseTunnelExit } from '../rules/tunnels';
 
@@ -26,46 +26,21 @@ import { chooseTunnelExit } from '../rules/tunnels';
  * construction, identical to the real game — no simplified "fake" rules.
  *
  *  - `mouseStep` is the DETERMINISTIC mouse transition: it performs the move
- *    and butter PICKUP but defers regeneration. The simulator turns a butter
- *    pickup into an honest CHANCE node via `enumerateButterSpawns` — so the
- *    search never calls Math.random.
- *  - `enumerateButterSpawns` lists every legal new-butter cell (pure, no RNG).
+ *    and butter PICKUP but defers the ghost announcement. The simulator turns a
+ *    butter pickup into an honest CHANCE node via the shared ghost-announcement
+ *    kernel — so the search never calls Math.random.
+ *  - `enumerateButterSpawns` lists every legal ghost spawn cell (pure, no RNG),
+ *    excluding current entity butters AND current pending ghosts.
  *  - `endTurn` is used internally by the simulator to FORCE the turn hand-off
- *    (it is NOT an exposed SearchAction).
+ *    (it is NOT an exposed SearchAction). At a CAT→MOUSE boundary with pending
+ *    ghosts or placement debt, `resolveGhostBoundaryChance` is used instead.
+ *
+ * G0.4F-2A.3: ALL ghost-rule enumeration lives in the SHARED kernel exported
+ * from engine.ts (enumerateButterSpawnsForState / enumerateGhostAnnouncementOutcomes
+ * / enumerateGhostBoundaryOutcomes) — the SAME single source that
+ * `createEngineRuleSet()` (the REAL production Hard search adapter) consumes.
+ * There is exactly ONE ghost-rule enumeration source; this file holds no copies.
  */
-// `enumerateButterSpawns` in the engine is a pure 7-arg utility
-// (config, board, tunnelCorners, mousePos, catPos, existingButters, trapPos).
-// The RuleSet contract is the ergonomic `(state) => Point[]`, so we adapt here
-// — this is the only place that knows both shapes, keeping the simulator
-// engine-free.
-function enumerateButterSpawnsForState(state: GameEngineState): { r: number; c: number }[] {
-  return enumerateButterSpawns(
-    state.config,
-    state.board,
-    getTunnelCorners(state.config),
-    state.mousePosition,
-    state.catPosition,
-    state.butterPositions,
-    state.trapPosition,
-  );
-}
-
-/**
- * Default CHANCE builder: uniform weight 1/N over every legal spawn cell,
- * exactly matching the real game's uniform random draw. Each outcome is a
- * complete successor state with the new butter placed.
- */
-function buildButterChanceForState(
-  state: GameEngineState,
-): { state: GameEngineState; weight: number }[] | null {
-  const cells = enumerateButterSpawnsForState(state);
-  if (cells.length === 0) return null;
-  const weight = 1 / cells.length;
-  return cells.map((c) => ({
-    state: { ...state, butterPositions: [...state.butterPositions, c] },
-    weight,
-  }));
-}
 
 export const defaultRuleSet: RuleSet = {
   mouseStep: mouseStepDeterministic,
@@ -75,5 +50,6 @@ export const defaultRuleSet: RuleSet = {
   chooseTunnelExit,
   enumerateButterSpawns: enumerateButterSpawnsForState,
   endTurn,
-  buildButterChance: buildButterChanceForState,
+  buildButterChance: enumerateGhostAnnouncementOutcomes,
+  resolveGhostBoundaryChance: enumerateGhostBoundaryOutcomes,
 };

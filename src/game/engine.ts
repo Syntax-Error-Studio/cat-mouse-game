@@ -39,11 +39,22 @@ import {
 // binding) is deliberately NEVER imported by engine.
 import { planHardCatTurn } from './ai/hardTurnPlanner';
 import type { HardSearchDebug } from './ai/hardTurnPlanner';
-import type { HardSearchHistoryEntry } from './ai/hardHistory';
+import type { HardSearchHistoryEntry, HardRefutationDiag } from './ai/hardHistory';
 import { pushHardHistory, makeHardHistoryEntry } from './ai/hardHistory';
 import { stateKey } from './ai/transposition';
 import type { RuleSet, SearchAction } from './ai/searchTypes';
-import { DEFAULT_SEARCH_CONFIG } from './ai/searchConfig';
+import { DEFAULT_SEARCH_CONFIG, HARD_TRIAL, HARD_PROGRESS_GUARD_CONFIG } from './ai/searchConfig';
+// G0.4E-1 — feature-flagged Hybrid leaf (default OFF; resolveHardLeaf picks the
+// active Hard leaf by HARD_LEAF_MODE_CONFIG). No rule/search/eval change.
+import { resolveHardLeaf } from './ai/hybridLeaf';
+// G0.4F-2B-1.9B — single current-turn execution truth (matched bookkeeping
+// repair: never scan the cumulative catActionLog; §10-§12).
+import { buildHardTurnExecutionStatus, type ExecutionFacts } from './ai/turnExecutionStatus';
+// G0.4F-2B-1.6 — M3-lite Progress Guard policy memory helpers (root policy,
+// excluded from stateKey/TT; NOT game-rule transition state).
+import {
+  classifyExecutedCatTurn, emptyProgressGuardMemory, type HardProgressGuardMemory,
+} from './ai/progressGuard';
 
 // --- Local types ---
 
@@ -54,6 +65,30 @@ type CellData = {
 };
 
 type Board = CellData[][];
+
+/**
+ * G0.4F-2A — a pending "ghost butter" spawn marker.
+ *
+ * When the mouse eats an ENTITY butter, it is removed from `butterPositions`
+ * immediately, but NO new entity butter is spawned yet. Instead a GHOST is
+ * announced: a future-spawn marker at a random legal cell. The ghost:
+ *   - is NOT in `butterPositions` (so it never blocks cat move / push / trap /
+ *     mouse pickup — ghost cells are freely traversable);
+ *   - is rendered semi-transparent so the player sees "butter will appear here";
+ *   - materializes into an ENTITY butter at the next CAT→MOUSE turn boundary
+ *     (after the cat gets a full response turn), OR is auto-picked if the mouse
+ *     is standing on it, OR is delayed/rerolled if the cell is occupied.
+ *
+ * `blockedMaterializations`: how many CAT→MOUSE boundaries failed to
+ * materialize because the cell was occupied by cat/box/trap. The first block
+ * delays by one; a second consecutive block triggers a REROLL to a new random
+ * legal position (blocked reset to 0).
+ */
+export interface PendingButterSpawn {
+  r: number;
+  c: number;
+  blockedMaterializations: number;
+}
 
 // Exported so the shared rule kernel (src/game/rules/*) and the test suite can
 // reference the exact engine state shape without copying it. Structure/semantics
@@ -72,6 +107,13 @@ export type GameEngineState = {
   butterPositions: { r: number; c: number }[];
   mouseHasButter: boolean;
   mouseSkillActive: boolean; // 是否已释放技能（额外步数+解锁传送）
+  // G0.4F-2A: pending ghost-butter spawn markers (not entity butters; see above).
+  pendingButterSpawns: PendingButterSpawn[];
+  // G0.4F-2A.1: how many one-for-one butter replacement obligations are still
+  // waiting for a legal announce position. Incremented when a pickup / auto-pick
+  // replacement / reroll has no legal candidate; retried (converted into a
+  // visible ghost) at subsequent CAT→MOUSE boundaries. Never dropped.
+  pendingButterPlacementDebt: number;
   // TrapPosition: where the trap is placed
   trapPosition: { r: number; c: number } | null;
   catTrapsRemaining: number; // 猫当前可用的陷阱数量
@@ -91,6 +133,12 @@ export type GameEngineState = {
    *  snapshots) for offline point-of-no-return forensics. Debug-only; EXCLUDED
    *  from gameAffectingEqual/stateKey/TT — never affects AI decisions. */
   hardSearchHistory: HardSearchHistoryEntry[];
+  /** G0.4F-2B-1.6: M3-lite Progress-Guard policy memory (root-level context,
+   *  NOT game-rule transition state). EXCLUDED from stateKey/
+   *  gameAffectingEqual/TT by construction (those enumerations do not list it);
+   *  EXCLUDED debug-only hardSearchHistory is also untouched. Affects ONLY the
+   *  post-search root rescue policy when the feature flag is ON. */
+  hardProgressGuardMemory: import('./ai/progressGuard').HardProgressGuardMemory | null;
 };
 
 // --- Helpers ---
@@ -329,6 +377,10 @@ function generateButterPositions(
  * Search Simulator can model butter regeneration as an honest CHANCE node
  * (one outcome per candidate, equal weight) instead of a single hidden random
  * draw. The real game samples ONE of these via `generateSingleButterPosition`.
+ *
+ * G0.4F-2A: `reserved` (optional) lists additional positions that must be
+ * excluded (e.g. pending ghost positions), so an announced ghost can never
+ * coincide with an existing entity butter or another pending ghost.
  */
 export function enumerateButterSpawns(
   config: GameConfig,
@@ -338,6 +390,7 @@ export function enumerateButterSpawns(
   catPos: { r: number; c: number },
   existingButters: { r: number; c: number }[],
   trapPos: { r: number; c: number } | null,
+  reserved: { r: number; c: number }[] = [],
 ): { r: number; c: number }[] {
   const valid: { r: number; c: number }[] = [];
   for (let r = 1; r <= config.boardSize - 2; r++) {
@@ -349,6 +402,7 @@ export function enumerateButterSpawns(
       if (board[r][c].type === CellType.Void) continue;
       if (existingButters.some(b => b.r === r && b.c === c)) continue;
       if (trapPos && r === trapPos.r && c === trapPos.c) continue;
+      if (reserved.some(p => p.r === r && p.c === c)) continue;
       // Non-initial: closer to hole is OK
       const distToHole = Math.abs(r - config.mouseHole.r) + Math.abs(c - config.mouseHole.c);
       if (distToHole < 3) continue;
@@ -370,9 +424,10 @@ function generateSingleButterPosition(
   catPos: { r: number; c: number },
   existingButters: { r: number; c: number }[],
   trapPos: { r: number; c: number } | null,
+  reserved: { r: number; c: number }[] = [],
 ): { r: number; c: number } | null {
   const valid = enumerateButterSpawns(
-    config, board, tunnelCorners, mousePos, catPos, existingButters, trapPos,
+    config, board, tunnelCorners, mousePos, catPos, existingButters, trapPos, reserved,
   );
   if (valid.length === 0) return null;
   return valid[Math.floor(Math.random() * valid.length)];
@@ -446,6 +501,8 @@ export function createInitialState(config: GameConfig = DEFAULT_CONFIG): GameEng
     butterPositions,
     mouseHasButter: false,
     mouseSkillActive: false,
+    pendingButterSpawns: [],
+    pendingButterPlacementDebt: 0,
     trapPosition: null,
     catTrapsRemaining: 1,
     blockedTunnels: [],
@@ -455,6 +512,7 @@ export function createInitialState(config: GameConfig = DEFAULT_CONFIG): GameEng
     gameEventLog: [],
     lastHardSearch: null,
     hardSearchHistory: [],
+    hardProgressGuardMemory: null,
   };
 }
 
@@ -659,15 +717,30 @@ export function mouseMove(state: GameEngineState, direction: Direction): GameEng
     return s; // multi-exit: wait for the player's choice
   }
 
-  // One-for-one butter regeneration (C# prototype behavior) — real game draws
-  // ONE random spawn via Math.random. The Search Simulator defers this and
-  // enumerates ALL spawns as a chance node (see mouseStepDeterministic).
+  // G0.4F-2A ghost-butter rule: when the mouse eats an entity butter, it is
+  // removed (already done in core) and NO entity butter is respawned here.
+  // Instead a GHOST (pending spawn marker) is announced at a random legal
+  // cell. The ghost does not block movement/push/trap and materializes into an
+  // entity butter at the next CAT→MOUSE turn boundary.
   if (core.pickedButter) {
     const tunnelCorners = getTunnelCorners(s.config);
-    const newButter = generateSingleButterPosition(
-      s.config, s.board, tunnelCorners, s.mousePosition, s.catPosition, s.butterPositions, s.trapPosition,
+    const ghostPos = generateSingleButterPosition(
+      s.config, s.board, tunnelCorners, s.mousePosition, s.catPosition,
+      s.butterPositions, s.trapPosition, s.pendingButterSpawns,
     );
-    if (newButter) s = { ...s, butterPositions: [...s.butterPositions, newButter] };
+    if (ghostPos) {
+      s = {
+        ...s,
+        pendingButterSpawns: [...s.pendingButterSpawns, { r: ghostPos.r, c: ghostPos.c, blockedMaterializations: 0 }],
+      };
+      s = logEvent(s, `GHOST_BUTTER_ANNOUNCED pos=(${ghostPos.r},${ghostPos.c})`);
+    } else {
+      // G0.4F-2A.1: no legal spawn candidate — the one-for-one replacement
+      // obligation is NEVER dropped. Record it as placement debt; it is
+      // retried at subsequent CAT→MOUSE boundaries.
+      s = { ...s, pendingButterPlacementDebt: (s.pendingButterPlacementDebt ?? 0) + 1 };
+      s = logEvent(s, 'GHOST_BUTTER_DEFERRED count=1');
+    }
   }
 
   return finalizeTurnAfterMouseStep(s);
@@ -848,6 +921,247 @@ function checkCatWin(state: GameEngineState): GameEngineState {
   return state;
 }
 
+// --- Ghost butter: shared CAT→MOUSE boundary resolution core ---
+
+/**
+ * G0.4F-2A — whether an ENTITY butter can currently legally exist on (r,c).
+ *
+ * This is the "can materialize" check used at the CAT→MOUSE boundary. It uses
+ * the REAL board semantics (same predicates as the movement/spawn rules), NOT
+ * a second copy. A cell can hold an entity butter when its terrain is not a
+ * box / pile / void / mouse-hole / tunnel corner, and it is not occupied by
+ * the cat, a trap, or an existing entity butter.
+ *
+ * (The ≥3 distance-from-pieces rule applies to the ANNOUNCEMENT draw, not to
+ * materializing a pre-announced ghost, whose position was already fixed.)
+ */
+function canMaterializeButter(state: GameEngineState, r: number, c: number): boolean {
+  const { config, board } = state;
+  if (!isInBounds(r, c, config.boardSize)) return false;
+  const cell = board[r][c];
+  if (cell.type === CellType.Box) return false;
+  if (isFixedObstacle(cell.type)) return false; // pile / wall
+  if (cell.type === CellType.Void) return false;
+  if (isMouseHole(r, c, config.mouseHole)) return false;
+  if (isTunnelCorner(r, c, getTunnelCorners(config))) return false;
+  if (state.catPosition.r === r && state.catPosition.c === c) return false;
+  if (state.trapPosition && state.trapPosition.r === r && state.trapPosition.c === c) return false;
+  if (hasButterAt(r, c, state.butterPositions)) return false;
+  return true;
+}
+
+/** G0.4F-2A — deterministic CAT→MOUSE ghost-boundary resolution (pure core).
+ *
+ * Input: a Playing state whose cat has just ended its turn (currentPlayer===Cat),
+ * about to hand off to the mouse. Snapshot the pending ghosts ONCE and resolve
+ * each (in deterministic sorted order):
+ *   - mouse stands on the ghost   → AUTO-PICK (consume, mouseHasButter=true,
+ *                                    +1 new-ghost placement request);
+ *   - cell can hold entity butter → MATERIALIZE (move pending → butterPositions);
+ *   - otherwise                   → BLOCKED: if this is the 1st block keep with
+ *                                    blocked=1; if a 2nd consecutive block →
+ *                                    REROLL (+1 new-ghost placement request).
+ * The new-ghost positions (auto-pick replacements + rerolls) are NOT chosen
+ * here — they are reported as `ghostPlacements` so the REAL game samples them
+ * with Math.random and the SEARCH enumerates them as a CHANCE node (both via
+ * the SAME candidate kernel enumerateButterSpawns, so real == search).
+ *
+ * Returns the fully-resolved hand-off state (mouse to move, moves set from the
+ * final mouseHasButter) plus the count of new-ghost placements and events.
+ */
+export interface GhostBoundaryResolution {
+  state: GameEngineState;
+  ghostPlacements: number;
+  events: string[];
+}
+
+export function resolveGhostBoundaryCore(catEndState: GameEngineState): GhostBoundaryResolution {
+  const snapshot = [...catEndState.pendingButterSpawns];
+  const kept: PendingButterSpawn[] = [];
+  const materialized: { r: number; c: number }[] = [];
+  let mouseHasButter = catEndState.mouseHasButter;
+  let ghostPlacements = 0;
+  const events: string[] = [];
+  const { config } = catEndState;
+
+  for (const g of snapshot) {
+    const mouseOn = catEndState.mousePosition.r === g.r && catEndState.mousePosition.c === g.c;
+    if (mouseOn) {
+      // §7 auto-pick on materialization point
+      mouseHasButter = true;
+      ghostPlacements++; // replacement ghost (new random position)
+      events.push(`GHOST_BUTTER_AUTO_PICKED pos=(${g.r},${g.c})`);
+      continue; // consumed; not materialized, not kept
+    }
+    if (canMaterializeButter(catEndState, g.r, g.c)) {
+      materialized.push({ r: g.r, c: g.c });
+      events.push(`GHOST_BUTTER_MATERIALIZED pos=(${g.r},${g.c})`);
+      continue;
+    }
+    // blocked
+    const blocked = g.blockedMaterializations + 1;
+    if (blocked >= 2) {
+      // §10 reroll: remove this ghost, need a new random position
+      ghostPlacements++;
+      events.push(`GHOST_BUTTER_REROLLED old=(${g.r},${g.c})`);
+      continue;
+    }
+    kept.push({ r: g.r, c: g.c, blockedMaterializations: blocked });
+    events.push(`GHOST_BUTTER_BLOCKED pos=(${g.r},${g.c}) count=${blocked}`);
+  }
+
+  // Hand off to the mouse. NOTE: ghost materialization does NOT change
+  // catTrapsRemaining / trapPosition / blockedTunnels; only the butter list,
+  // pending list, mouseHasButter, moves and player change here.
+  const newMouseMoves = mouseHasButter ? config.mouseCarryingMoves : config.mouseBaseMoves;
+  const resolved: GameEngineState = {
+    ...catEndState,
+    phase: GamePhase.Playing,
+    currentPlayer: PieceType.Mouse,
+    catMovesLeft: catEndState.catMovesLeft,
+    mouseMovesLeft: newMouseMoves,
+    butterPositions: [...catEndState.butterPositions, ...materialized],
+    mouseHasButter,
+    pendingButterSpawns: kept,
+    tunnelExitChoices: [],
+    message: mouseHasButter
+      ? `鼠的回合 — 携带黄油移速减慢（剩余${config.mouseCarryingMoves}步），按空格释放技能`
+      : `鼠的回合 — 按方向键移动（剩余${config.mouseBaseMoves}步）`,
+  };
+  return { state: resolved, ghostPlacements, events };
+}
+
+// ============================================================================
+// G0.4F-2A.3 — SHARED GHOST-RULE ENUMERATION KERNEL (single source of truth).
+//
+// The ghost-butter gameplay needs the SAME deterministic enumeration from BOTH
+// RuleSet adapters:
+//   - createEngineRuleSet()  (engine.ts — used by the REAL Hard search)
+//   - defaultRuleSet         (ai/searchRules.ts — used by tests/offline)
+// If they ever drift, production Hard search simulates ghost/debt boundaries
+// with stale (immediate-entity-butter) semantics and can even THROW at a
+// CAT→MOUSE ghost boundary (yellow screen in the real game).
+//
+// These pure rule-level enumerators live in engine.ts (not ai/searchRules.ts)
+// because engine must never import searchRules (runtime cycle); searchRules
+// already imports engine, so it can reuse these. No AI strategy, no Math.random.
+// ============================================================================
+
+/** Enumerate all k-subsets of `cells` (combinations, order-independent). */
+export function combinations<T>(cells: T[], k: number): T[][] {
+  const out: T[][] = [];
+  const rec = (start: number, chosen: T[]) => {
+    if (chosen.length === k) { out.push([...chosen]); return; }
+    for (let i = start; i < cells.length; i++) {
+      chosen.push(cells[i]);
+      rec(i + 1, chosen);
+      chosen.pop();
+    }
+  };
+  rec(0, []);
+  return out;
+}
+
+/**
+ * G0.4F-2A.3 — legal ghost-candidate cells for a state.
+ * Reuses the real spawn legality kernel with `reserved = pendingButterSpawns`,
+ * so entity butters and pending ghosts never overlap.
+ */
+export function enumerateButterSpawnsForState(state: GameEngineState): { r: number; c: number }[] {
+  return enumerateButterSpawns(
+    state.config,
+    state.board,
+    getTunnelCorners(state.config),
+    state.mousePosition,
+    state.catPosition,
+    state.butterPositions,
+    state.trapPosition,
+    state.pendingButterSpawns ?? [], // G0.4F-2A: ghosts never overlap butters/ghosts
+  );
+}
+
+/**
+ * G0.4F-2A.3 — mouse-pickup ghost-announcement CHANCE outcomes.
+ * Uniform 1/N over legal ghost cells; each outcome ADDS a pending ghost (NOT an
+ * entity butter). With NO legal candidate, returns a single deterministic
+ * outcome that increments placement debt (+1) — the one-for-one replacement is
+ * never dropped, and never falls through to a hidden random draw.
+ */
+export function enumerateGhostAnnouncementOutcomes(state: GameEngineState): { state: GameEngineState; weight: number }[] {
+  const cells = enumerateButterSpawnsForState(state);
+  if (cells.length === 0) {
+    return [{ state: { ...state, pendingButterPlacementDebt: (state.pendingButterPlacementDebt ?? 0) + 1 }, weight: 1 }];
+  }
+  const weight = 1 / cells.length;
+  return cells.map((c) => ({
+    state: {
+      ...state,
+      pendingButterSpawns: [...(state.pendingButterSpawns ?? []), { r: c.r, c: c.c, blockedMaterializations: 0 }],
+    },
+    weight,
+  }));
+}
+
+/**
+ * G0.4F-2A.3 — CAT→MOUSE ghost/debt boundary CHANCE outcomes (F2A.1 semantics).
+ * Runs the shared deterministic core, then handles the random new-ghost
+ * placements honestly:
+ *   - totalRequests === 0        → single deterministic outcome.
+ *   - candidates === 0           → all requests become debt (deterministic).
+ *   - totalRequests > candidates → all candidates used + remaining debt
+ *                                  (deterministic, unique set, no k! dupes).
+ *   - totalRequests <= candidates→ uniform totalRequests-subsets (1/C(N,k)).
+ * NEVER calls Math.random and NEVER returns empty for a CAT→MOUSE boundary that
+ * has pending ghosts or debt (so the simulator never falls to engine.endTurn).
+ */
+export function enumerateGhostBoundaryOutcomes(state: GameEngineState): { state: GameEngineState; weight: number }[] {
+  if (state.currentPlayer !== PieceType.Cat) return [];
+  const hasGhosts = (state.pendingButterSpawns?.length ?? 0) > 0;
+  const hasDebt = (state.pendingButterPlacementDebt ?? 0) > 0;
+  if (!hasGhosts && !hasDebt) return [];
+  const { state: resolved, ghostPlacements } = resolveGhostBoundaryCore(state);
+  const totalRequests = ghostPlacements + (resolved.pendingButterPlacementDebt ?? 0);
+  if (totalRequests === 0) {
+    // fully deterministic resolution (idle materialize + block-once keep)
+    return [{ state: resolved, weight: 1 }];
+  }
+  const candidates = enumerateButterSpawnsForState(resolved);
+  const N = candidates.length;
+  if (N === 0) {
+    // No legal candidate → all requests become debt (deterministic, no drop).
+    return [{ state: { ...resolved, pendingButterPlacementDebt: totalRequests }, weight: 1 }];
+  }
+  if (totalRequests > N) {
+    // Partial: use ALL N candidates; remaining (totalRequests − N) stays debt.
+    return [{
+      state: {
+        ...resolved,
+        pendingButterSpawns: [
+          ...(resolved.pendingButterSpawns ?? []),
+          ...candidates.map((p) => ({ r: p.r, c: p.c, blockedMaterializations: 0 })),
+        ],
+        pendingButterPlacementDebt: totalRequests - N,
+      },
+      weight: 1,
+    }];
+  }
+  // totalRequests <= N: enumerate uniform k-subsets.
+  const combos = combinations(candidates, totalRequests);
+  if (combos.length === 0) return [];
+  const weight = 1 / combos.length;
+  return combos.map((combo) => ({
+    state: {
+      ...resolved,
+      pendingButterSpawns: [
+        ...(resolved.pendingButterSpawns ?? []),
+        ...combo.map((p) => ({ r: p.r, c: p.c, blockedMaterializations: 0 })),
+      ],
+      pendingButterPlacementDebt: 0,
+    },
+    weight,
+  }));
+}
+
 // --- End turn ---
 
 export function endTurn(state: GameEngineState): GameEngineState {
@@ -856,8 +1170,57 @@ export function endTurn(state: GameEngineState): GameEngineState {
   const nextPlayer = state.currentPlayer === PieceType.Cat ? PieceType.Mouse : PieceType.Cat;
   const { config } = state;
 
+  // G0.4F-2A ghost-butter rule: pending ghosts materialize ONLY at the
+  // CAT→MOUSE turn boundary (after the cat's full response turn). Resolve them
+  // via the shared pure core, then sample the required new-ghost positions
+  // with Math.random (the SEARCH enumerates these as a CHANCE node instead).
+  // G0.4F-2A.1: replacement obligations are NEVER dropped — when there are not
+  // enough legal candidates, the shortfall is recorded as placement debt and
+  // retried at subsequent boundaries.
+  if (state.currentPlayer === PieceType.Cat && ((state.pendingButterSpawns?.length ?? 0) > 0 || (state.pendingButterPlacementDebt ?? 0) > 0)) {
+    const { state: resolved, ghostPlacements, events } = resolveGhostBoundaryCore(state);
+    let s = resolved;
+    // Total new-ghost placements requested: auto-pick replacements + rerolls
+    // (ghostPlacements) plus any carried-over placement debt.
+    const existingDebt = s.pendingButterPlacementDebt ?? 0;
+    let totalRequests = ghostPlacements + existingDebt;
+    // Real game: draw sequentially WITHOUT replacement from the current legal
+    // candidate set (excluding existing butters + kept ghosts). Each draw
+    // consumes one request; any request that cannot be placed (no candidates
+    // left) stays as debt and is retried next boundary — never dropped.
+    while (totalRequests > 0) {
+      const pos = generateSingleButterPosition(
+        s.config, s.board, getTunnelCorners(s.config),
+        s.mousePosition, s.catPosition, s.butterPositions, s.trapPosition, s.pendingButterSpawns,
+      );
+      if (pos) {
+        s = { ...s, pendingButterSpawns: [...s.pendingButterSpawns, { r: pos.r, c: pos.c, blockedMaterializations: 0 }] };
+        s = logEvent(s, `GHOST_BUTTER_ANNOUNCED pos=(${pos.r},${pos.c})`);
+        totalRequests--;
+      } else {
+        break; // no legal candidate left → remaining requests become debt
+      }
+    }
+    // Persist any remaining unfulfilled requests as placement debt (reset to 0
+    // when ALL were fulfilled — the carried debt was fully consumed).
+    s = { ...s, pendingButterPlacementDebt: totalRequests };
+    if (totalRequests > 0) {
+      s = logEvent(s, `GHOST_BUTTER_DEFERRED count=${totalRequests}`);
+    }
+    for (const ev of events) s = logEvent(s, ev);
+    s = logEvent(s, 'TURN_END from=cat to=mouse reason=normal');
+    s = logEvent(s, `TURN_START player=${s.currentPlayer} catMoves=${s.catMovesLeft} mouseMoves=${s.mouseMovesLeft} butter=${s.mouseHasButter} skill=${s.mouseSkillActive}`);
+    return s;
+  }
+
   // Reset mouse skill when mouse turn ends (cat's turn starts)
   const resetMouseSkill = state.currentPlayer === PieceType.Mouse;
+
+  // G0.4F-2B-1.6: M3-lite Progress Guard — the ONLY place that sets
+  // mouseTurnObserved=true is the REAL Mouse→Cat boundary below. CAT→MOUSE
+  // (the ghost branch above) never sets it. This flag is what lets the next
+  // cat turn know a full mouse turn genuinely elapsed between two cat turns.
+  const guardMemory = state.hardProgressGuardMemory;
 
   // Calculate mouse moves for the new turn
   const newMouseMoves = nextPlayer === PieceType.Mouse
@@ -886,6 +1249,11 @@ export function endTurn(state: GameEngineState): GameEngineState {
         ? '鼠回合结束，轮到猫行动。'
         : '鼠回合结束，猫开始行动。'),
     tunnelExitChoices: [],
+    // Real Mouse→Cat boundary (nextPlayer===Cat && origin was Mouse): mark the
+    // observed mouse turn. Memory object is preserved across the boundary.
+    hardProgressGuardMemory: nextPlayer === PieceType.Cat && guardMemory
+      ? { ...guardMemory, mouseTurnObserved: true }
+      : guardMemory ?? null,
   };
 
   result = logEvent(result, `TURN_START player=${result.currentPlayer} catMoves=${result.catMovesLeft} mouseMoves=${result.mouseMovesLeft} butter=${result.mouseHasButter} skill=${result.mouseSkillActive}`);
@@ -3273,32 +3641,42 @@ export function createEngineRuleSet(): RuleSet {
     catPlaceTrap,
     chooseTunnelExit,
     endTurn,
-    enumerateButterSpawns: (state) => enumerateButterSpawns(
-      state.config,
-      state.board,
-      getTunnelCorners(state.config),
-      state.mousePosition,
-      state.catPosition,
-      state.butterPositions,
-      state.trapPosition,
-    ),
-    buildButterChance: (state) => {
-      const cells = enumerateButterSpawns(
-        state.config,
-        state.board,
-        getTunnelCorners(state.config),
-        state.mousePosition,
-        state.catPosition,
-        state.butterPositions,
-        state.trapPosition,
-      );
-      if (cells.length === 0) return null;
-      const weight = 1 / cells.length;
-      return cells.map((c) => ({
-        state: { ...state, butterPositions: [...state.butterPositions, c] },
-        weight,
-      }));
-    },
+    // G0.4F-2A.3: SHARED ghost-rule kernel — the SAME single source as
+    // defaultRuleSet (ai/searchRules.ts). No stale entity-butter pickup
+    // builder; ghost announce adds a pending ghost, and the CAT→MOUSE boundary
+    // resolves ghosts/debt via explicit CHANCE outcomes (never Math.random).
+    enumerateButterSpawns: enumerateButterSpawnsForState,
+    buildButterChance: enumerateGhostAnnouncementOutcomes,
+    resolveGhostBoundaryChance: enumerateGhostBoundaryOutcomes,
+  };
+}
+
+/**
+ * G0.3X — Convert a HardSearchDebug's compact refutation diagnostics into the
+ * per-turn history record. This lets the human-validation log reconstruct
+ * baseline→final plan, override usage and sidecar cost for EVERY turn without
+ * holding the live debug object. Debug-only; excluded from stateKey.
+ */
+function refutationDiagFromDebug(debug: HardSearchDebug): HardRefutationDiag | undefined {
+  const r = debug.refutation;
+  if (!r) return undefined;
+  const statuses = r.candidateStatuses ?? [];
+  return {
+    triggered: r.refutationTriggered,
+    candidateCount: r.candidateCount,
+    baselineProbeStatus: r.baselineProbeStatus,
+    candidateStatuses: statuses,
+    refutedCount: statuses.filter(s => s === 'PLAN_REFUTED').length,
+    cleanCount: statuses.filter(s => s === 'NO_REFUTATION_FOUND').length,
+    overrideEligible: r.overrideEligible,
+    overrideUsed: r.overrideUsed,
+    selectedPlanSource: r.selectedPlanSource,
+    refutationCpuMs: r.refutationCpuMs,
+    refutationWallMs: r.refutationWallMs,
+    fallbackUsed: r.selectedPlanSource === 'baseline' && r.refutationTriggered,
+    sidecarAbortReason: r.sidecarAbortReason,
+    baselinePlan: debug.baselinePlan ?? [],
+    finalPlan: debug.plan ?? [],
   };
 }
 
@@ -3317,7 +3695,15 @@ export function catAiMove(state: GameEngineState): GameEngineState | null {
     return catAiEasy(state);
   }
   if (difficulty === DifficultyConst.Hard) {
-    const plan = planHardCatTurn(state, { rules: createEngineRuleSet(), timeBudgetMs: DEFAULT_SEARCH_CONFIG.timeBudgetMsPerCatTurn });
+    const plan = planHardCatTurn(state, {
+      rules: createEngineRuleSet(),
+      timeBudgetMs: DEFAULT_SEARCH_CONFIG.timeBudgetMsPerCatTurn,
+      // G0.3X — Human Hard Validation build: bounded refutation sidecar ON.
+      refutation: { enabled: HARD_TRIAL.refutationEnabled, totalTurnBudgetMs: HARD_TRIAL.totalTurnBudgetMs },
+      // G0.4E-1 — active Hard leaf by feature flag (default baseline =
+      // evaluateForCat). Both Hard call sites use the SAME resolver.
+      leafEvaluator: resolveHardLeaf(),
+    });
     state = { ...state, lastHardSearch: plan.debug };
     const first = plan.plan[0] ?? plan.bestAction;
     if (first) {
@@ -3408,12 +3794,34 @@ export function computeCatAiTrajectory(state: GameEngineState): CatAiStep[] | nu
   let hardPlanIdx = 0;
   let hardPlanActions: SearchAction[] | null = null;
   let pendingHistoryEntry: HardSearchHistoryEntry | null = null;
+  // G0.4F-2B-1.9B §10/§11: per-turn execution facts (single current-turn
+  // truth). NEVER derive matched/clean from the cumulative catActionLog —
+  // historical SEARCH_FALLBACK entries from earlier turns must not pollute the
+  // current turn's status (sticky bookkeeping bug, see 1.9A).
+  const execFacts: ExecutionFacts = {
+    plannedPlan: [],
+    appliedPlanActions: [],
+    planCompleted: false,
+    fallbackOccurred: false,
+    invalidActionOccurred: false,
+    catMovesExhausted: false,
+    gameEndedDuringTurn: false,
+  };
+  // G0.4F-2B-1.6R §2: the REAL cat-turn root (state at planHardCatTurn time).
+  // Memory classification is computed from THIS root + the final executed
+  // state — never from replaying the plan from the final state.
+  let progressGuardExecutionRoot: GameEngineState | null = null;
   // G0.2: 1-based turn index kept on the state (debug only).
   const hardTurnNo = (current.hardSearchHistory?.length ?? 0) + 1;
   if (isHardTurn) {
+    progressGuardExecutionRoot = current;
     const planned = planHardCatTurn(current, {
       rules: createEngineRuleSet(),
       timeBudgetMs: DEFAULT_SEARCH_CONFIG.timeBudgetMsPerCatTurn,
+      // G0.3X — Human Hard Validation build: bounded refutation sidecar ON.
+      refutation: { enabled: HARD_TRIAL.refutationEnabled, totalTurnBudgetMs: HARD_TRIAL.totalTurnBudgetMs },
+      // G0.4E-1 — same resolver as catAiMove (feature flag; default baseline).
+      leafEvaluator: resolveHardLeaf(),
     });
     // F1B (HARD_SEARCH debug): persist the debug record onto the state so the
     // UI debug panel can render it (with copy). Debug-only — excluded from
@@ -3421,6 +3829,7 @@ export function computeCatAiTrajectory(state: GameEngineState): CatAiStep[] | nu
     current = { ...current, lastHardSearch: planned.debug };
     if (planned.hasSolution && planned.plan.length > 0) {
       hardPlanActions = planned.plan;
+      execFacts.plannedPlan = planned.plan;
       // G0.2: record the EXACT root snapshot + production diagnostics into
       // the bounded history (deep copy; never affects the search). Defensive:
       // only when a real iterative-search result exists (tests may inject a
@@ -3435,9 +3844,12 @@ export function computeCatAiTrajectory(state: GameEngineState): CatAiStep[] | nu
           mate: planned.search.mate,
           plan: planned.plan,
           rootValues: planned.search.rootActions ?? [],
+          refutation: refutationDiagFromDebug(planned.debug),
+          progressGuard: planned.debug.progressGuard,
         });
       }
     } else {
+      execFacts.fallbackOccurred = true; // no_hard_plan: current turn did NOT follow a plan
       current = logFallback(
         current,
         `SEARCH_FALLBACK reason=no_hard_plan completedDepth=${planned.completedDepth} attemptedDepth=${planned.attemptedDepth}`,
@@ -3467,6 +3879,8 @@ export function computeCatAiTrajectory(state: GameEngineState): CatAiStep[] | nu
       if (!applied.valid) {
         // F1B-4: plan/state mismatch → explicit, non-silent fallback: the rest
         // of this turn uses the legacy heuristic (no deadlock).
+        execFacts.invalidActionOccurred = true;
+        execFacts.fallbackOccurred = true;
         current = logFallback(
           current,
           `SEARCH_FALLBACK reason=plan_action_invalid action=${action.type}`,
@@ -3474,6 +3888,7 @@ export function computeCatAiTrajectory(state: GameEngineState): CatAiStep[] | nu
         hardPlanActions = null; // fall back to legacy for the rest of the turn
         nextState = catAiMove(current);
       } else {
+        execFacts.appliedPlanActions.push(action);
         nextState = applied.state;
       }
     } else if (hardPlanActions && hardPlanIdx >= hardPlanActions.length) {
@@ -3482,6 +3897,7 @@ export function computeCatAiTrajectory(state: GameEngineState): CatAiStep[] | nu
       // an EXPLICIT, non-silent fallback: log it, then let the legacy AI finish
       // the rest of the turn without deadlock. Behavior is identical to the
       // other fallback paths — only the reason differs (audit requirement).
+      execFacts.fallbackOccurred = true;
       current = logFallback(
         current,
         `SEARCH_FALLBACK reason=plan_exhausted plan_len=${hardPlanActions.length} remaining_moves=${current.catMovesLeft}`,
@@ -3495,6 +3911,7 @@ export function computeCatAiTrajectory(state: GameEngineState): CatAiStep[] | nu
     // AI returned null — cat is truly stuck (no valid moves at all).
     // Force a move toward the mouse using BFS as last resort.
     if (!nextState) {
+      execFacts.fallbackOccurred = true; // 1.9B: real trajectory fallback this turn
       const forced = forceCatMoveTowardsMouse(current);
       if (!forced) {
         // Absolutely no valid move anywhere — consume remaining moves and end turn
@@ -3511,6 +3928,7 @@ export function computeCatAiTrajectory(state: GameEngineState): CatAiStep[] | nu
 
     if (nextState.phase !== GamePhase.Playing) {
       // Game ended — record the winning move
+      execFacts.gameEndedDuringTurn = true;
       const to = nextState.catPosition;
       steps.push({ state: nextState, from, to, detail: nextState.phase === GamePhase.CatWins ? '抓鼠' : '结束' });
       break;
@@ -3552,6 +3970,7 @@ export function computeCatAiTrajectory(state: GameEngineState): CatAiStep[] | nu
     // Cat didn't move and didn't consume a move, and no meaningful state changed.
     // Now it is truly stuck / invalid, so fallback is allowed.
     if (catStayed && movesUnchanged) {
+      execFacts.fallbackOccurred = true; // 1.9B: real trajectory fallback this turn
       const forced = forceCatMoveTowardsMouse(current);
       if (!forced) {
         stuckCount++;
@@ -3607,6 +4026,14 @@ export function computeCatAiTrajectory(state: GameEngineState): CatAiStep[] | nu
     current = nextState;
   }
 
+  // G0.4F-2B-1.9B §11: finalize the single current-turn execution truth from
+  // the collected facts (plan completed? moves exhausted? game ended?), then
+  // derive matchedPlan once. Both the history logging AND the M3 memory
+  // consume this ONE object — never re-scan the cumulative catActionLog (§10).
+  execFacts.planCompleted = (hardPlanActions !== null && hardPlanIdx >= hardPlanActions.length);
+  execFacts.catMovesExhausted = current.catMovesLeft <= 0;
+  const turnExecutionStatus = buildHardTurnExecutionStatus(execFacts);
+
   // G0.2: fill the execution link of the pending history entry with the actual
   // end-of-cat-turn stateKey (post-plan, before the separate endTurn), and
   // attach the bounded history onto the returned final state.
@@ -3615,9 +4042,7 @@ export function computeCatAiTrajectory(state: GameEngineState): CatAiStep[] | nu
     pendingHistoryEntry.execution = {
       plan: pendingHistoryEntry.production.plan,
       endStateKey: stateKey(finalExecState),
-      matchedPlan: !steps.some((st) =>
-        st.state.catActionLog.some((m) => m.includes('SEARCH_FALLBACK')),
-      ),
+      matchedPlan: turnExecutionStatus.matchedPlan,
     };
     const history = pushHardHistory(
       (current.hardSearchHistory ?? []).filter((e) => e.turn !== pendingHistoryEntry!.turn),
@@ -3629,7 +4054,85 @@ export function computeCatAiTrajectory(state: GameEngineState): CatAiStep[] | nu
     }
   }
 
+  // G0.4F-2B-1.6R §2-§4: update the Progress-Guard policy memory from the
+  // ACTUAL executed cat turn. The classification is computed from the REAL
+  // cat-turn root (progressGuardExecutionRoot) + the FINAL executed step state
+  // (steps[last].state) + the EXECUTED plan label + the single matchedPlan truth
+  // bit — never by replaying the plan from the final state.
+  {
+    const guardEnabled = HARD_PROGRESS_GUARD_CONFIG.enabled;
+    // 1.9B-R1: the M3 memory classifier MUST use the SINGLE execution-truth bit
+    // (turnExecutionStatus.matchedPlan — the same value the history logging
+    // uses). The weaker "no fallback/invalid" check alone would also treat an
+    // INCOMPLETE plan (e.g. plan exhausted before the turn ended) as "clean",
+    // which the frozen progressGuard contract
+    //   "matchedPlan is the single execution-truth bit"
+    // does not allow.
+    const matchedPlan = turnExecutionStatus.matchedPlan;
+    const finalPlanLabel = planLabelOfSearch(hardPlanActions ?? []);
+    if (isHardTurn) {
+      // Stale-memory defence (§16): whenever the M3-lite flag is OFF, any new
+      // Hard cat execution must NOT leave a previous memory that could later be
+      // mistaken for "the previous cat turn" after re-enable. Invalidate it.
+      if (!guardEnabled) {
+        if (current.hardProgressGuardMemory || (steps.length > 0 && steps[steps.length - 1].state.hardProgressGuardMemory)) {
+          const invalid = makeProgressGuardMemoryInvalid(progressGuardExecutionRoot ?? current);
+          if (steps.length > 0) {
+            steps[steps.length - 1] = { ...steps[steps.length - 1], state: { ...steps[steps.length - 1].state, hardProgressGuardMemory: invalid } };
+          }
+        }
+      } else {
+        const finalExecState = steps.length > 0 ? steps[steps.length - 1].state : null;
+        let newMemory: HardProgressGuardMemory;
+        if (matchedPlan && finalPlanLabel.length > 0 && progressGuardExecutionRoot) {
+          // Real execution classification (root vs finalExecState — no replay).
+          const facts = classifyExecutedCatTurn(progressGuardExecutionRoot, finalExecState, finalPlanLabel, matchedPlan);
+          newMemory = makeProgressGuardMemory(facts, finalPlanLabel, progressGuardExecutionRoot);
+        } else {
+          // fallback / invalid / incomplete / no exec → invalidate memory (no phantom history).
+          newMemory = makeProgressGuardMemoryInvalid(progressGuardExecutionRoot ?? current);
+        }
+        if (finalExecState) {
+          steps[steps.length - 1] = { ...steps[steps.length - 1], state: { ...finalExecState, hardProgressGuardMemory: newMemory } };
+        }
+      }
+    }
+  }
+
   return steps;
+}
+
+// --- G0.4F-2B-1.6/1.6R M3-lite engine helpers (policy memory from EXECUTED turn) ---
+
+function planLabelOfSearch(plan: SearchAction[]): string {
+  return plan.map(a => a.type === 'catStep' ? a.direction!.key.slice(5)[0] : a.type === 'catPlaceTrap' ? 'T' : '?').join('');
+}
+
+/** Build policy memory from an executed cat turn's classification facts. */
+function makeProgressGuardMemory(
+  facts: { noProgressLoop: boolean; signature: import('./ai/progressGuard').LoopSignature | null },
+  planLabel: string,
+  state: GameEngineState,
+): HardProgressGuardMemory {
+  const sig = facts.signature;
+  return {
+    version: 1,
+    previousNoProgressLoop: facts.noProgressLoop && sig !== null,
+    previousSignature: sig,
+    previousPlanLabel: planLabel,
+    previousCatStart: sig?.catStart ?? '',
+    previousCatEnd: sig?.catEnd ?? '',
+    mouseTurnObserved: false, // cleared after the cat turn ends; set only by Mouse→Cat endTurn
+    previousRootKey: stateKey(state),
+    previousEndKey: sig?.catEnd ?? undefined,
+  };
+}
+
+/** Invalidate memory after a fallback / invalid execution (no phantom history),
+ *  or when the feature is OFF (stale-memory defence §16). */
+function makeProgressGuardMemoryInvalid(state: GameEngineState): HardProgressGuardMemory {
+  const m = emptyProgressGuardMemory();
+  return { ...m, previousRootKey: stateKey(state) };
 }
 
 /**

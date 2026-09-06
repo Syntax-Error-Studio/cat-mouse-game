@@ -8,6 +8,8 @@ interface BoardProps {
   catPosition: { r: number; c: number };
   mousePosition: { r: number; c: number };
   butterPositions: { r: number; c: number }[];
+  /** G0.4F-2A: pending ghost-butter spawn markers (future-spawn, non-blocking). */
+  pendingButterSpawns?: { r: number; c: number; blockedMaterializations: number }[];
   mouseHasButter: boolean;
   mouseSkillActive: boolean;
   catMovesLeft: number;
@@ -50,7 +52,7 @@ const SPRITE: Record<string, string> = {
 const MOVE_DURATION = 200;
 
 export const Board: React.FC<BoardProps> = ({
-  board, catPosition, mousePosition, butterPositions,
+  board, catPosition, mousePosition, butterPositions, pendingButterSpawns = [],
   mouseHasButter, mouseSkillActive, catMovesLeft, mouseMovesLeft,
   trapPosition, catTrapsRemaining, currentPlayer, phase, gameMode, blockedTunnels, message,
   onMove, onSkill, onTrap, onRestart, onChooseExit, tunnelExitChoices,
@@ -241,6 +243,30 @@ export const Board: React.FC<BoardProps> = ({
     objectFit: 'contain',
     pointerEvents: 'none',
   };
+  // G0.4F-2A.4 §2: cellItemStyle is a FULL-CELL ABSOLUTE ENTITY LAYER.
+  // It is taken entirely out of the grid cell's normal flow (inset:0 → the full
+  // cell is its containing block), so it never alters grid-track sizing or the
+  // cell's intrinsic geometry, and the mouse/cat percentage overlays (pieceStyle,
+  // zIndex 10) stay exactly aligned with the (now purely 1fr-tracked) cells.
+  // Box/pile/trap/entity-butter/tunnel center inside the full cell via flex.
+  const cellItemStyle: React.CSSProperties = {
+    position: 'absolute',
+    inset: 0,
+    zIndex: 1,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    pointerEvents: 'none',
+  };
+  const ghostUnderlayStyle: React.CSSProperties = {
+    position: 'absolute',
+    inset: '6%',
+    zIndex: 0,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    pointerEvents: 'none',
+  };
 
   // ---- Render helpers ----
 
@@ -248,6 +274,8 @@ export const Board: React.FC<BoardProps> = ({
     // Check what entity is on this cell (used for bg + icons)
     const isButter = butterPositions.some(b => b.r === r && b.c === c);
     const isTrap = trapPosition?.r === r && trapPosition?.c === c;
+    // G0.4F-2A: ghost butter (future-spawn marker) — semi-transparent, non-blocking.
+    const isGhost = pendingButterSpawns.some(g => g.r === r && g.c === c);
 
     let bg = '#f0e6d3';
 
@@ -289,16 +317,26 @@ export const Board: React.FC<BoardProps> = ({
           }
         }}
       >
-        {cell.type === CellType.Box && <img src={SPRITE.box} alt="箱" style={cellImgStyle} />}
-        {cell.type === CellType.Pile && <img src={SPRITE.pile} alt="杂货堆" style={cellImgStyle} />}
-        {isButter && <img src={SPRITE.cheese} alt="奶酪" style={cellImgStyle} />}
-        {isTrap && <img src={SPRITE.trap} alt="陷阱" style={cellImgStyle} />}
-        {cell.type === CellType.Tunnel && !tunnelArrow && <img src={SPRITE.tunnel} alt="快速通道" style={cellImgStyle} />}
-        {cell.type === CellType.Tunnel && tunnelArrow && <img src={SPRITE.tunnel} alt="快速通道" style={cellImgStyle} />}
-        {cell.type === CellType.MouseHole && <span style={{ fontSize: '1.3em' }}>🕳️</span>}
-        {cell.type === CellType.Wall && <span style={{ fontSize: '1.3em' }}>🧱</span>}
-        {cell.type === CellType.Void && <span style={{ fontSize: '1.05em', opacity: 0.35 }}>🌫️</span>}
-        {cell.type === CellType.Empty && tunnelArrow && <span style={{ opacity: 0.4 }}>{tunnelArrow}</span>}
+        {/* G0.4F-2A.1 §12: ghost butter is a TRUE UNDERLAY (absolute, zIndex 0,
+            inset ~6%) so box/trap/entity-butter render fully on top of it.
+            Pieces (mouse/cat) overlay at zIndex 10 via the absolute overlays. */}
+        {isGhost && !isButter && (
+          <div style={ghostUnderlayStyle}>
+            <img src={SPRITE.cheese} alt="幽灵黄油" style={{ width: '92%', height: '92%', objectFit: 'contain', opacity: 0.38, filter: 'drop-shadow(0 0 3px rgba(250,204,21,0.35))' }} />
+          </div>
+        )}
+        <div style={cellItemStyle}>
+          {cell.type === CellType.Box && <img src={SPRITE.box} alt="箱" style={cellImgStyle} />}
+          {cell.type === CellType.Pile && <img src={SPRITE.pile} alt="杂货堆" style={cellImgStyle} />}
+          {isButter && <img src={SPRITE.cheese} alt="奶酪" style={cellImgStyle} />}
+          {isTrap && <img src={SPRITE.trap} alt="陷阱" style={cellImgStyle} />}
+          {cell.type === CellType.Tunnel && !tunnelArrow && <img src={SPRITE.tunnel} alt="快速通道" style={cellImgStyle} />}
+          {cell.type === CellType.Tunnel && tunnelArrow && <img src={SPRITE.tunnel} alt="快速通道" style={cellImgStyle} />}
+          {cell.type === CellType.MouseHole && <span style={{ fontSize: '1.3em' }}>🕳️</span>}
+          {cell.type === CellType.Wall && <span style={{ fontSize: '1.3em' }}>🧱</span>}
+          {cell.type === CellType.Void && <span style={{ fontSize: '1.05em', opacity: 0.35 }}>🌫️</span>}
+          {cell.type === CellType.Empty && tunnelArrow && <span style={{ opacity: 0.4 }}>{tunnelArrow}</span>}
+        </div>
       </div>
     );
   };

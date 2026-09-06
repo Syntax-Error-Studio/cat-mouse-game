@@ -626,17 +626,24 @@ test('Chance weights match the real game: uniform 1/N over enumerateButterSpawns
   for (const o of chance!) {
     expect(o.weight).toBeCloseTo(w, 12);
     sum += o.weight;
-    // every outcome is a complete state with exactly one butter re-added
-    expect(o.state.butterPositions.length).toBe(1);
+    // G0.4F-2A ghost-butter rule: the eaten entity butter is NOT re-added;
+    // each outcome ADDS a pending GHOST (future-spawn marker), so
+    // butterPositions stays empty and pendingButterSpawns gains exactly one.
+    expect(o.state.butterPositions.length).toBe(0);
+    expect(o.state.pendingButterSpawns.length).toBe(1);
+    // the ghost position is one of the enumerated candidates
+    const ghost = o.state.pendingButterSpawns[0];
+    expect(candidates.some((b) => b.r === ghost.r && b.c === ghost.c)).toBe(true);
   }
   expect(sum).toBeCloseTo(1, 12); // probabilities sum to 1
 
-  // Empirical proof: the real game's random draw always lands in the same set.
+  // Empirical proof: the real game's random ghost draw always lands in the same set.
   for (let i = 0; i < 40; i++) {
     const after = mouseMove(s, dir('ArrowRight'));
-    expect(after.butterPositions.length).toBe(1);
-    const cell = after.butterPositions[0];
-    const inSet = candidates.some((b) => b.r === cell.r && b.c === cell.c);
+    expect(after.butterPositions.length).toBe(0);
+    expect(after.pendingButterSpawns.length).toBe(1);
+    const ghost = after.pendingButterSpawns[0];
+    const inSet = candidates.some((b) => b.r === ghost.r && b.c === ghost.c);
     expect(inSet).toBe(true);
   }
 });

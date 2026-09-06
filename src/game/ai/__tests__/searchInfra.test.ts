@@ -114,18 +114,24 @@ describe('B2.5 search infrastructure', () => {
       expect(weightSum).toBeCloseTo(1, 10);
       for (const o of sim.outcomes) {
         expect(o.state.mouseHasButter).toBe(true);
-        expect(o.state.butterPositions).toHaveLength(s.butterPositions.length); // -1 picked +1 spawned
-        // each outcome's butter set == postPickup set + exactly one of the candidates
+        // G0.4F-2A ghost-butter rule: eaten entity butter is NOT re-added;
+        // butterPositions stays at postPickup count, and exactly one pending
+        // GHOST is announced.
+        expect(o.state.butterPositions).toHaveLength(postPickup.butterPositions.length);
+        expect(o.state.pendingButterSpawns).toHaveLength(postPickup.pendingButterSpawns.length + 1);
+        // each outcome's ghost == postPickup ghosts + exactly one candidate
+        const ghost = o.state.pendingButterSpawns[o.state.pendingButterSpawns.length - 1];
         const plus1 = cands.some((cand) =>
+          cand.r === ghost.r && cand.c === ghost.c &&
           gameAffectingEqual(
-            { ...o.state, butterPositions: o.state.butterPositions.filter((b) => !(b.r === cand.r && b.c === cand.c)) },
-            { ...o.state, butterPositions: postPickup.butterPositions },
+            { ...o.state, pendingButterSpawns: o.state.pendingButterSpawns.slice(0, -1) },
+            { ...o.state, pendingButterSpawns: postPickup.pendingButterSpawns },
           ),
         );
         expect(plus1).toBe(true);
       }
 
-      // The real game (one random draw) is one of the enumerated outcomes.
+      // The real game (one random ghost draw) is one of the enumerated outcomes.
       const real = mouseMove(s, dir('ArrowRight'));
       expect(sim.outcomes.some((o) => gameAffectingEqual(o.state, real))).toBe(true);
     });

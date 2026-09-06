@@ -26,17 +26,23 @@ export function GamePage() {
   const navigate = useNavigate();
   const location = useLocation();
   const { config, setDifficulty } = useGame();
-  // 若本次对局是从「地图编辑器」点试玩进入的，则提供返回编辑器的入口
-  const fromEditor = (location.state as { from?: string } | null)?.from === 'editor';
+  // 若本次对局是从「地图编辑器」点试玩进入的，则提供返回编辑器的入口；
+  // 试玩地图配置通过路由 state 传入（不再写全局 config，避免污染本地模式开局）。
+  const routeState = (location.state as { from?: string; config?: GameConfig } | null) ?? null;
+  const fromEditor = routeState?.from === 'editor';
+  const editorConfig = routeState?.config;
 
-  // GamePage 是"模式无关"的棋盘壳：对局参数（含 gameMode）全部来自 context，
-  // 由对局配置页 /setup/:mode 在进入前写入。新增模式只需扩展配置，不必改动此处。
-  const effectiveConfig: GameConfig = config;
+  // GamePage 是"模式无关"的棋盘壳：对局参数（含 gameMode）来自 context 或编辑器试玩 state。
+  const effectiveConfig: GameConfig = editorConfig ?? config;
 
   const [gameState, setGameState] = useState<GameData>(() => createInitialState(effectiveConfig));
   const [showDebug, setShowDebug] = useState(false);
   const [gameOverDismissed, setGameOverDismissed] = useState(false);
   const [paused, setPaused] = useState(false);
+
+  // G0.3X — Human Hard Validation: 1-based game counter. Increments each time a
+  // new game starts (restart), so the debug log can mark GAME 1 … GAME 10.
+  const [gameNo, setGameNo] = useState(1);
 
   const isAnimatingRef = useRef(false);
   const frozenDebugRef = useRef<GameData | null>(null);
@@ -207,6 +213,7 @@ export function GamePage() {
     setGameState(createInitialState(effectiveConfig));
     setGameOverDismissed(false);
     setPaused(false);
+    setGameNo(n => n + 1); // G0.3X: next game begins
   }, [effectiveConfig]);
 
   const cycleDifficulty = useCallback(() => {
@@ -214,6 +221,7 @@ export function GamePage() {
     const idx = (diffs.indexOf(config.difficulty) + 1) % diffs.length;
     setDifficulty(diffs[idx]);
     setGameState(createInitialState({ ...effectiveConfig, difficulty: diffs[idx] }));
+    setGameNo(n => n + 1); // G0.3X: difficulty change starts a new game
   }, [config.difficulty, effectiveConfig, setDifficulty]);
 
   return (
@@ -246,22 +254,12 @@ export function GamePage() {
         />
 
         {fromEditor && (
-          <button
+          <MenuButton
+            src="/ui/返回编辑器.png"
+            alt="返回编辑器"
             onClick={() => navigate('/editor')}
-            style={{
-              padding: '0.5rem 1.5rem',
-              borderRadius: '0.75rem',
-              border: '2px solid #7c2d12',
-              backgroundColor: '#fff7ed',
-              cursor: 'pointer',
-              fontWeight: 'bold',
-              fontSize: '0.95rem',
-              color: '#7c2d12',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
-            }}
-          >
-            ✏️ 返回编辑器
-          </button>
+            width="clamp(120px, 16vw, 200px)"
+          />
         )}
 
         <button
@@ -277,24 +275,15 @@ export function GamePage() {
             boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
           }}
         >
-          {config.difficulty === 'easy' ? '🟢 简单' : config.difficulty === 'medium' ? '🟡 中等' : '🔴 困难'}
+          {config.difficulty === 'easy' ? '🟢 简单' : config.difficulty === 'medium' ? '🟠 困难' : '🔴 恐怖'}
         </button>
 
-        <button
+        <MenuButton
+          src="/ui/调试.png"
+          alt="调试"
           onClick={() => setShowDebug(!showDebug)}
-          style={{
-            padding: '0.5rem 1.5rem',
-            borderRadius: '0.75rem',
-            border: '2px solid #374151',
-            backgroundColor: '#fff',
-            cursor: 'pointer',
-            fontWeight: 'bold',
-            fontSize: '0.95rem',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
-          }}
-        >
-          🔧 {showDebug ? '隐藏' : '调试'}
-        </button>
+          width="clamp(120px, 16vw, 200px)"
+        />
       </div>
 
       {/* 游戏控制按钮 */}
@@ -342,6 +331,7 @@ export function GamePage() {
         catPosition={gameState.catPosition}
         mousePosition={gameState.mousePosition}
         butterPositions={gameState.butterPositions}
+        pendingButterSpawns={gameState.pendingButterSpawns}
         mouseHasButter={gameState.mouseHasButter}
         mouseSkillActive={gameState.mouseSkillActive}
         catMovesLeft={gameState.catMovesLeft}
@@ -378,6 +368,8 @@ export function GamePage() {
           catPosition={debugState.catPosition}
           mousePosition={debugState.mousePosition}
           butterPositions={debugState.butterPositions}
+          pendingButterSpawns={debugState.pendingButterSpawns}
+          pendingButterPlacementDebt={debugState.pendingButterPlacementDebt ?? 0}
           mouseHasButter={debugState.mouseHasButter}
           mouseSkillActive={debugState.mouseSkillActive}
           catMovesLeft={debugState.catMovesLeft}
@@ -395,6 +387,8 @@ export function GamePage() {
           difficulty={debugState.config.difficulty}
           hardSearch={debugState.lastHardSearch}
           hardSearchHistory={debugState.hardSearchHistory}
+          gameNo={gameNo}
+          hardProgressGuardMemory={debugState.hardProgressGuardMemory}
         />
       )}
     </div>

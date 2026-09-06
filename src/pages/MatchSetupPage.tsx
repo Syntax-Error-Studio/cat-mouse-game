@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { MenuButton } from '../components/MenuButton';
 import { useGame } from '../context/GameContext';
+import { DEFAULT_CONFIG } from '../game/config';
 import { GameMode } from '../game/types';
 
 // 模式标识：后续扩展只需在这里加一项 + 实现对应控制器，
@@ -93,14 +94,22 @@ function Stepper({
 export function MatchSetupPage() {
   const { mode } = useParams<{ mode: string }>();
   const navigate = useNavigate();
-  const { config, updateConfigField, setGameMode } = useGame();
+  const { config, updateConfigField, setFullConfig } = useGame();
 
   const modeId = (mode as ModeId) ?? 'single';
   const meta = MODE_META[modeId] ?? MODE_META.single;
 
   const startMatch = () => {
     if (!meta.gameMode) return;
-    setGameMode(meta.gameMode);
+    // 旧版本编辑器“试玩”曾把自定义地图配置（butterCount=0 / customTerrain 等）写入全局 config，
+    // 若检测到此类残留则整体重置为默认对局参数（保留本页难度），
+    // 保证本地模式开局有正常的随机地图，而不是空棋盘或编辑器地图。
+    const hasEditorResidue = config.butterCount === 0 || Boolean(config.customTerrain);
+    if (hasEditorResidue) {
+      setFullConfig({ ...DEFAULT_CONFIG, gameMode: meta.gameMode, difficulty: config.difficulty });
+    } else {
+      setFullConfig({ ...config, gameMode: meta.gameMode });
+    }
     navigate('/game');
   };
 
@@ -124,27 +133,35 @@ export function MatchSetupPage() {
         </div>
       ) : (
         <div style={CARD_STYLE}>
-          {/* 难度（仅单人模式需要 AI） */}
+          {/* 难度（仅单人模式需要 AI）
+              显示层难度命名：简单 → easy，困难 → medium，恐怖 → hard */}
           {modeId === 'single' && (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
               <span style={{ fontSize: '1.05rem', color: '#5D4037', fontWeight: 'bold' }}>难度</span>
               <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-                {(['easy', 'medium', 'hard'] as const).map(d => {
-                  const active = config.difficulty === d;
-                  const label = d === 'easy' ? '🟢 简单' : d === 'medium' ? '🟡 中等' : '🔴 困难';
+                {([
+                  { id: 'easy', src: '/ui/简单.png' },
+                  { id: 'medium', src: '/ui/困难.png' },
+                  { id: 'hard', src: '/ui/恐怖.png' },
+                ] as const).map(({ id, src }) => {
+                  const active = config.difficulty === id;
                   return (
-                    <button
-                      key={d}
-                      onClick={() => updateConfigField('difficulty', d)}
+                    <div
+                      key={id}
                       style={{
-                        ...PILL_STYLE,
-                        backgroundColor: active ? '#FF8F00' : '#FFD54F',
-                        color: active ? '#FFF8E1' : '#3E2723',
-                        transform: active ? 'scale(1.05)' : 'scale(1)',
+                        borderRadius: '1rem',
+                        padding: '4px',
+                        outline: active ? '3px solid #FF8F00' : '3px solid transparent',
+                        boxShadow: active ? '0 4px 12px rgba(255,143,0,0.35)' : 'none',
                       }}
                     >
-                      {label}
-                    </button>
+                      <MenuButton
+                        src={src}
+                        alt={id}
+                        onClick={() => updateConfigField('difficulty', id)}
+                        width="clamp(150px, 22vw, 260px)"
+                      />
+                    </div>
                   );
                 })}
               </div>

@@ -19,7 +19,6 @@ import {
   loadDraft,
   clearDraft,
 } from '../game/mapStorage';
-import { useGame } from '../context/GameContext';
 
 const MIN = 4;
 const MAX = 24;
@@ -32,19 +31,21 @@ interface ToolDef {
   emoji: string;
   color: string;
   textColor?: string;
+  /** 对应格子的贴图素材（无则用 emoji 兜底） */
+  img?: string;
 }
 
 const TOOLS: ToolDef[] = [
-  { id: CellType.Empty, label: '地板', emoji: '⬜', color: '#fde9c8' },
-  { id: CellType.Wall, label: '墙', emoji: '🧱', color: '#5b4636', textColor: '#fff' },
-  { id: CellType.Void, label: '虚空', emoji: '🌫️', color: 'repeating-linear-gradient(45deg,#eee,#eee 6px,#e0e0e0 6px,#e0e0e0 12px)' },
-  { id: CellType.Box, label: '箱子', emoji: '📦', color: '#c08552' },
-  { id: CellType.Pile, label: '杂物堆', emoji: '🪨', color: '#9e9e9e' },
-  { id: CellType.ButterSpot, label: '黄油', emoji: '🧈', color: '#ffe082' },
-  { id: CellType.Tunnel, label: '快速通道', emoji: '🌀', color: '#b39ddb' },
-  { id: CellType.MouseHole, label: '鼠洞', emoji: '🕳️', color: '#37474f', textColor: '#fff' },
-  { id: 'cat', label: '猫起点', emoji: '🐱', color: '#ffd1dc' },
-  { id: 'mouse', label: '鼠起点', emoji: '🐭', color: '#d1f0ff' },
+  { id: CellType.Empty, label: '地板', emoji: '⬜', color: '#fde9c8', img: '/map/floor.png' },
+  { id: CellType.Wall, label: '墙', emoji: '🧱', color: '#5b4636', textColor: '#fff', img: '/map/wall.png' },
+  { id: CellType.Void, label: '虚空', emoji: '🌫️', color: 'repeating-linear-gradient(45deg,#eee,#eee 6px,#e0e0e0 6px,#e0e0e0 12px)', img: '/map/void.png' },
+  { id: CellType.Box, label: '箱子', emoji: '📦', color: '#c08552', img: '/box.png' },
+  { id: CellType.Pile, label: '杂物堆', emoji: '🪨', color: '#9e9e9e', img: '/pile.png' },
+  { id: CellType.ButterSpot, label: '黄油', emoji: '🧈', color: '#ffe082', img: '/cheese.png' },
+  { id: CellType.Tunnel, label: '快速通道', emoji: '🌀', color: '#b39ddb', img: '/tunnel.png' },
+  { id: CellType.MouseHole, label: '鼠洞', emoji: '🕳️', color: '#37474f', textColor: '#fff', img: '/map/mousehole.png' },
+  { id: 'cat', label: '猫起点', emoji: '🐱', color: '#ffd1dc', img: '/map/catspawn.png' },
+  { id: 'mouse', label: '鼠起点', emoji: '🐭', color: '#d1f0ff', img: '/map/mousespawn.png' },
 ];
 
 const PANEL_BG = 'rgba(255,255,255,0.85)';
@@ -57,7 +58,6 @@ const CARD_STYLE: React.CSSProperties = {
 
 export function EditorPage() {
   const navigate = useNavigate();
-  const { setFullConfig } = useGame();
 
   const [mapId, setMapId] = useState<string>(() => crypto.randomUUID());
   const [name, setName] = useState('未命名地图');
@@ -288,8 +288,9 @@ export function EditorPage() {
     // 试玩前先把当前编辑暂存为草稿，退出后即可回到编辑器继续改
     saveDraft(map);
     const cfg = mapDefinitionToGameConfig(map, playMode);
-    setFullConfig(cfg);
-    navigate('/game', { state: { from: 'editor' } });
+    // 试玩地图通过路由 state 传给 GamePage，不写入全局 config，
+    // 避免编辑器残留污染后续本地模式/对局配置页的开局参数。
+    navigate('/game', { state: { from: 'editor', config: cfg } });
   }
 
   // ---------- 草稿：挂载时恢复 + 编辑时自动暂存 ----------
@@ -450,7 +451,12 @@ export function EditorPage() {
                     background: t.color, cursor: 'pointer', fontSize: '0.9rem', color: t.textColor ?? '#3e2723',
                   }}
                 >
-                  <span style={{ fontSize: '1.1rem' }}>{t.emoji}</span>{t.label}
+                  {t.img ? (
+                    <img src={t.img} alt={t.label} style={{ width: 22, height: 22, objectFit: 'contain', borderRadius: 4, background: '#fff' }} />
+                  ) : (
+                    <span style={{ fontSize: '1.1rem' }}>{t.emoji}</span>
+                  )}
+                  {t.label}
                 </button>
               ))}
             </div>

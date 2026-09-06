@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import { MenuButton } from '../components/MenuButton';
 
 // 按"玩家意图"分类的主菜单：玩 / 造 / 系统
@@ -30,8 +29,6 @@ const DIVIDER_STYLE: React.CSSProperties = {
 };
 
 export function MainMenu() {
-  const navigate = useNavigate();
-
   return (
     <div style={{
       minHeight: '100vh',
@@ -56,28 +53,12 @@ export function MainMenu() {
       />
 
       {/* 新手教程 — 醒目入口 */}
-      <button
-        onClick={() => navigate('/tutorial')}
-        style={{
-          width: 'clamp(240px, 32vw, 400px)',
-          padding: '0.75rem 2rem',
-          borderRadius: '3rem',
-          border: '4px solid #2E7D32',
-          backgroundColor: '#66BB6A',
-          color: '#FFFFFF',
-          fontSize: '1.6rem',
-          fontWeight: 'bold',
-          cursor: 'pointer',
-          fontFamily: 'inherit',
-          boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
-          transition: 'transform 0.15s ease, filter 0.15s ease',
-          marginBottom: '0.4rem',
-        }}
-        onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.05)'; e.currentTarget.style.filter = 'brightness(1.08)'; }}
-        onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.filter = 'brightness(1)'; }}
-      >
-        🎓 新手教程
-      </button>
+      <MenuButton
+        src="/ui/新手教程.png"
+        alt="新手教程"
+        to="/tutorial"
+        width="clamp(240px, 32vw, 400px)"
+      />
 
       {/* 玩 · Play */}
       <section style={SECTION_STYLE}>
@@ -86,28 +67,8 @@ export function MainMenu() {
         <MenuButton src="/ui/本地模式.png" alt="本地模式" to="/local" width="clamp(240px, 32vw, 400px)" />
         <MenuButton src="/ui/联机模式.png" alt="联机模式" to="/online" width="clamp(240px, 32vw, 400px)" />
 
-        {/* 挑战关卡 — 暂用文字按钮，后续替换为图片素材 */}
-        <button
-          onClick={() => navigate('/challenges')}
-          style={{
-            width: 'clamp(240px, 32vw, 400px)',
-            padding: '0.75rem 2rem',
-            borderRadius: '3rem',
-            border: '4px solid #3E2723',
-            backgroundColor: '#FFD54F',
-            color: '#FFF8E1',
-            fontSize: '1.6rem',
-            fontWeight: 'bold',
-            cursor: 'pointer',
-            fontFamily: 'inherit',
-            boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
-            transition: 'transform 0.15s ease, filter 0.15s ease',
-          }}
-          onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.05)'; e.currentTarget.style.filter = 'brightness(1.08)'; }}
-          onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.filter = 'brightness(1)'; }}
-        >
-          🏆 挑战关卡
-        </button>
+        {/* 挑战关卡 */}
+        <MenuButton src="/ui/挑战关卡.png" alt="挑战关卡" to="/challenges" width="clamp(240px, 32vw, 400px)" />
       </section>
 
       {/* 造 · Workshop */}

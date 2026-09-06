@@ -1,6 +1,6 @@
 import type { GameEngineState } from '../engine';
 import type { SearchAction } from './searchTypes';
-import { pointSetKey } from './stateCompare';
+import { pointSetKey, pendingSpawnsKey } from './stateCompare';
 
 /**
  * Compact, order-independent cell signature (type + piece + butter flag).
@@ -49,6 +49,8 @@ export function stateKey(state: GameEngineState): string {
     s.catMovesLeft,
     s.mouseMovesLeft,
     pointSetKey(s.butterPositions),
+    pendingSpawnsKey(s.pendingButterSpawns),
+    s.pendingButterPlacementDebt ?? 0,
     s.mouseHasButter ? 1 : 0,
     s.mouseSkillActive ? 1 : 0,
     s.trapPosition ? `${s.trapPosition.r},${s.trapPosition.c}` : '_',

@@ -3,6 +3,7 @@ import { GamePhase, PieceType } from '../types';
 import type { RuleSet, SearchAction } from './searchTypes';
 import { simulateSearchAction } from './simulator';
 import { stateKey } from './transposition';
+import { generateLegalSearchActions } from './legalActions';
 import { type SearchContext } from './expectiminimax';
 import { evaluateForCat } from './evaluation';
 
@@ -90,6 +91,85 @@ export function countRevisits(root: GameEngineState, plan: SearchAction[], rules
     seen.add(p);
   }
   return revisits;
+}
+
+// ---------------------------------------------------------------------------
+// G0.4F-2B-1.9B — full-turn completeness invariant (pure helper)
+// ---------------------------------------------------------------------------
+
+/**
+ * Replay a cat-turn plan from a fresh Playing Hard Cat root and classify the
+ * end state against the FULL-TURN COMPLETENESS INVARIANT:
+ *
+ *   For a Playing fresh Hard Cat root, IF the plan completes normally AND the
+ *   execution did NOT hit CatWins / game termination / explicit legal-action
+ *   exhaustion, THEN replaying the plan must leave catMovesLeft === 0.
+ *
+ * Distinguishes the legitimately-complete cases (game over, no legal actions
+ * left, turn boundary reached with 0 moves) from a TRUNCATED plan (the plan
+ * ran out of actions while the cat still has moves and legal actions).
+ *
+ * A CAT→CHANCE transition on the final catStep (CAT→MOUSE ghost/debt boundary)
+ * is a complete turn: the cat action itself is executed, the boundary resolves
+ * via chance (never written into the plan), and catMovesLeft is 0.
+ */
+export type PlanCompletionVerdict =
+  | { kind: 'COMPLETE_TURN_BOUNDARY'; catMovesLeft: 0; reason: string }
+  | { kind: 'COMPLETE_CHANCE_BOUNDARY'; catMovesLeft: 0; reason: string }
+  | { kind: 'GAME_ENDED'; phase: GamePhase; reason: string }
+  | { kind: 'NO_LEGAL_ACTIONS'; catMovesLeft: number; reason: string }
+  | { kind: 'TRUNCATED'; catMovesLeft: number; reason: string };
+
+export function planFullTurnCompleteness(
+  root: GameEngineState,
+  plan: SearchAction[],
+  rules: RuleSet,
+): PlanCompletionVerdict {
+  let cur = root;
+  for (const a of plan) {
+    const t = simulateSearchAction(cur, a, rules);
+    if (t.kind === 'chance') {
+      // Final catStep ending at a CAT→MOUSE ghost/debt CHANCE boundary. The cat
+      // action was executed; the boundary is resolved by the real engine later.
+      // Completeness holds iff the cat's move budget was exhausted by this
+      // action (chance only fires on move exhaustion — see
+      // simulator.forceEndTurnIfNeeded).
+      const movesBefore = cur.catMovesLeft;
+      if (movesBefore <= 1) {
+        return { kind: 'COMPLETE_CHANCE_BOUNDARY', catMovesLeft: 0, reason: 'final catStep -> ghost/debt CAT→MOUSE CHANCE boundary (moves exhausted)' };
+      }
+      return { kind: 'TRUNCATED', catMovesLeft: cur.catMovesLeft, reason: `chance transition with catMovesLeft=${movesBefore}>1 (unexpected for cat actions)` };
+    }
+    if (t.kind !== 'deterministic') {
+      return { kind: 'TRUNCATED', catMovesLeft: cur.catMovesLeft, reason: 'unexpected transition kind' };
+    }
+    cur = t.state;
+    if (cur.phase !== GamePhase.Playing) {
+      return { kind: 'GAME_ENDED', phase: cur.phase, reason: 'game terminated during plan replay' };
+    }
+    if (cur.currentPlayer !== PieceType.Cat) {
+      // Turn boundary reached (auto endTurn). Completeness requires the cat's
+      // move budget to be exhausted (unless a zero-cost trap-collect ended it).
+      if (cur.catMovesLeft === 0 || a.type === 'catPlaceTrap') {
+        return { kind: 'COMPLETE_TURN_BOUNDARY', catMovesLeft: 0, reason: 'turn handed off to mouse' };
+      }
+      return { kind: 'TRUNCATED', catMovesLeft: cur.catMovesLeft, reason: 'turn handed off with catMovesLeft>0' };
+    }
+  }
+  // Plan consumed but the cat still has moves left.
+  if (cur.catMovesLeft > 0) {
+    // Explicit legal-action exhaustion: no actions available → turn ends anyway.
+    const legal = legalCatActionCount(cur, rules);
+    if (legal === 0) {
+      return { kind: 'NO_LEGAL_ACTIONS', catMovesLeft: cur.catMovesLeft, reason: 'plan ended with moves left but no legal actions' };
+    }
+    return { kind: 'TRUNCATED', catMovesLeft: cur.catMovesLeft, reason: `plan ended with catMovesLeft=${cur.catMovesLeft} > 0 and legal actions available` };
+  }
+  return { kind: 'COMPLETE_TURN_BOUNDARY', catMovesLeft: 0, reason: 'plan consumed all cat moves' };
+}
+
+function legalCatActionCount(s: GameEngineState, rules: RuleSet): number {
+  return generateLegalSearchActions(s, rules).filter(a => a.type === 'catStep' || a.type === 'catPlaceTrap').length;
 }
 
 // ---------------------------------------------------------------------------
@@ -311,12 +391,6 @@ function extractDp(
 
   for (const action of actionsToTry) {
     const trans = simulateSearchAction(state, action, rules);
-    if (trans.kind !== 'deterministic') {
-      continue;
-    }
-
-    const childState = trans.state;
-    const switched = state.currentPlayer !== childState.currentPlayer;
 
     // Compute reversal contribution of this action.
     let actionReversal = 0;
@@ -331,12 +405,29 @@ function extractDp(
     };
 
     let childPlan: SearchAction[];
-    if (switched || childState.phase !== GamePhase.Playing || childState.currentPlayer !== PieceType.Cat) {
-      // Cat turn ended after this action.
+    if (trans.kind === 'chance') {
+      // G0.4F-2B-1.9B: a CHANCE transition for a CAT action can only occur on
+      // the FINAL catStep of the turn (catMovesLeft -> 0 at a CAT→MOUSE
+      // ghost/debt boundary — see simulator.forceEndTurnIfNeeded; catPlaceTrap
+      // is always deterministic; cat actions never chance mid-turn). The CAT
+      // action itself is still fully controlled by the cat and MUST remain in
+      // the plan: append it and end this extraction branch. The CHANCE
+      // outcomes (ghost spawn positions) are NOT cat actions and are never
+      // written into the plan — production resolves materialization with the
+      // real engine. Previously this branch did `continue`, silently dropping
+      // the final cat action and producing a truncated plan (plan_exhausted).
       childPlan = [];
     } else {
-      const childDepth = depthTurns - (switched ? 1 : 0);
-      childPlan = extractDp(childState, rules, graph, planBranches, childDepth, childPrefix, memo, maxLength - 1, pathGuard);
+      const childState = trans.state;
+      const switched = state.currentPlayer !== childState.currentPlayer;
+
+      if (switched || childState.phase !== GamePhase.Playing || childState.currentPlayer !== PieceType.Cat) {
+        // Cat turn ended after this action.
+        childPlan = [];
+      } else {
+        const childDepth = depthTurns - (switched ? 1 : 0);
+        childPlan = extractDp(childState, rules, graph, planBranches, childDepth, childPrefix, memo, maxLength - 1, pathGuard);
+      }
     }
 
     const fullPlan = [action, ...childPlan];
