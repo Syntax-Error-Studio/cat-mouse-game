@@ -56,6 +56,7 @@ import type { RuleSet, SearchAction } from './searchTypes';
 import { generateLegalSearchActions } from './legalActions';
 import { simulateSearchAction } from './simulator';
 import { stateKey } from './transposition';
+import { finiteDeadline, markAbort, type SidecarControl } from './deadlineContext';
 import { mateActionCost, MATE_SCORE, defaultLeafEval, type MateSide } from './expectiminimax';
 
 // ---------------------------------------------------------------------------
@@ -130,6 +131,11 @@ export interface LegacyEnumeration {
   expandedStateKeys: Set<string>;
   /** Distinct (type, stateKey, cumulativeCost) frontier signatures. */
   frontierSignatures: Set<string>;
+  /** TRUE = the queue was dropped before it drained because the shared turn
+   *  deadline passed. The frontier is then a PARTIAL set: callers must discard it,
+   *  because "no refutation among the sequences I never enumerated" is not a
+   *  finding. Always false on the NO_DEADLINE path, where there is no wall to pass. */
+  incomplete: boolean;
 }
 
 /**
@@ -137,18 +143,32 @@ export interface LegacyEnumeration {
  * Stops at first player switch (TURN_BOUNDARY) or terminal (TERMINAL),
  * mirroring the engine's forced turn hand-off. Chance outcomes are enumerated
  * one-per-weight. Each complete sequence counts once into `rawAtomicPaths`.
+ *
+ * @param ctl optional turn-deadline control ({@link SidecarControl}). Absent, or
+ *            carrying `NO_DEADLINE`, resolves to no gate at all: the queue drains
+ *            completely and the clock is never read, so behaviour is exactly as
+ *            before. A FINITE_ABSOLUTE context stops the expansion at expiry and
+ *            sets `incomplete`; it adds NO cap of any kind (no maxPlans, no beam,
+ *            no topK), so a run that does not expire enumerates exactly what it
+ *            always did.
  */
-export function enumerateFullTurnLegacy(root: GameEngineState, rules: RuleSet): LegacyEnumeration {
+export function enumerateFullTurnLegacy(
+  root: GameEngineState, rules: RuleSet, ctl?: SidecarControl,
+): LegacyEnumeration {
+  const dl = finiteDeadline(ctl?.deadline);
   const out: LegacyEnumeration = {
     rawAtomicPaths: 0,
     terminals: [],
     boundaries: [],
     expandedStateKeys: new Set(),
     frontierSignatures: new Set(),
+    incomplete: false,
   };
   interface Q { state: GameEngineState; cost: number; prob: number; witness: SearchAction[]; }
   const queue: Q[] = [{ state: root, cost: 0, prob: 1, witness: [] }];
+  let aborted = false;
   while (queue.length > 0) {
+    if (dl !== null && dl.expired()) { aborted = true; break; } // once per expanded state
     const cur = queue.shift()!;
     out.expandedStateKeys.add(stateKey(cur.state));
     const actions = generateLegalSearchActions(cur.state, rules);
@@ -158,6 +178,7 @@ export function enumerateFullTurnLegacy(root: GameEngineState, rules: RuleSet): 
       continue;
     }
     for (const action of actions) {
+      if (dl !== null && dl.expired()) { aborted = true; break; } // before each expensive child
       const trans = simulateSearchAction(cur.state, action, rules);
       const edgeCost = mateActionCost(action);
       const handle = (next: GameEngineState, weight: number) => {
@@ -185,12 +206,19 @@ export function enumerateFullTurnLegacy(root: GameEngineState, rules: RuleSet): 
         }
       };
       if (trans.kind === 'chance') {
-        for (const o of trans.outcomes) handle(o.state, o.weight);
+        for (const o of trans.outcomes) {
+          if (dl !== null && dl.expired()) { aborted = true; break; } // per chance outcome (widest fan-out)
+          handle(o.state, o.weight);
+        }
+        if (aborted) break;
       } else {
         handle(trans.state, 1);
       }
     }
+    if (aborted) break;
   }
+  out.incomplete = aborted;
+  if (aborted) markAbort(ctl, 'selection_enumeration');
   return out;
 }
 

@@ -7,6 +7,8 @@ import {
   FIXED_PATHS, FIXED_CPU_MS, FIXED_EXACT,
   type RefutationDiagnostics,
 } from './boundedPlanRefutation';
+import { finiteDeadline, makeControl, makeFiniteDeadline, markAbort,
+  type DeadlineContext, type SidecarControl } from './deadlineContext';
 // G0.4F-2B-1.6 — M3-lite Progress Guard (imports the production helper + the
 // feature flag; NO ai-training/ imports).
 import {
@@ -139,6 +141,12 @@ export interface ProgressGuardDebug {
   rescueApplied: boolean;
   abortReason: string;
   guardMs: number;
+  /** R1E §9: the guard's own transactional abort record, so a rescue/guard turn is
+   *  covered by the SAME accounting as the normal sidecar (`deadlineAbort`,
+   *  `abortPhase`, `partialCommitCount`, total-deadline clock reads). Observational
+   *  only — no decision reads it. Present on the legacy path too, where it records
+   *  `finite: null` and 0 reads. */
+  deadlineControl?: SidecarControl;
 }
 
 /** Options for one Hard cat-turn plan. `rules` is INJECTED by the caller (engine). */
@@ -223,6 +231,29 @@ export function planHardCatTurn(
   let plan = search.catTurnPlan;
   let refutation: RefutationDiagnostics | undefined;
 
+  // ---- G0.4F-2B-1.9BE-R1E §6/§8: ONE turn deadline per planner call ----
+  // `plannerCallStart` + `totalTurnBudgetMs` is resolved to a FINITE_ABSOLUTE context
+  // HERE, before any consumer exists, and that one object is what the bounded
+  // refutation sidecar and the progress guard's rescue probe both receive. Neither of
+  // them gets a number to rebuild a window from, and neither can tell the difference
+  // between "the wall is at +Infinity" and "there is no wall" — that distinction is
+  // what the two DeadlineContext kinds are for. The baseline `timeBudgetMs` search
+  // above is UNCHANGED; this is the wall that bounds what comes AFTER it.
+  const sidecarBudgetMs = opts.refutation?.enabled
+    ? (opts.refutation.totalTurnBudgetMs ?? elapsedMs)
+    : null;
+  const guardBudgetMs = opts.refutation?.enabled
+    ? (opts.refutation.totalTurnBudgetMs ?? 150)
+    : (opts.progressGuard?.totalTurnBudgetMs ?? opts.timeBudgetMs);
+  // Production (`HARD_TRIAL`) always supplies totalTurnBudgetMs = 150, so the two
+  // numbers below are equal and there is literally one object for the whole turn. The
+  // second construction only exists for a caller that omits the budget while enabling
+  // one of the two consumers — where HEAD already ran two different walls.
+  const turnDeadline = makeFiniteDeadline(t0 + (sidecarBudgetMs ?? guardBudgetMs), now);
+  const guardDeadline = sidecarBudgetMs === guardBudgetMs
+    ? turnDeadline
+    : makeFiniteDeadline(t0 + guardBudgetMs, now);
+
   // ---- G0.3W sidecar (feature-flagged, default OFF) ----
   if (opts.refutation?.enabled) {
     const refStart = now();
@@ -235,11 +266,11 @@ export function planHardCatTurn(
       baselineMate: search.mate,
       enabled: true,
     });
-    // External total-turn deadline (absolute). Baseline budget is UNCHANGED;
-    // the sidecar only uses the remaining time after the baseline search.
-    const totalBudgetMs = opts.refutation.totalTurnBudgetMs ?? elapsedMs;
-    const totalDeadlineMs = t0 + totalBudgetMs;
-    const remaining = totalDeadlineMs - now();
+    // `remaining` is the time left on the SHARED wall when the sidecar would start,
+    // read once here. It is an ENTRY GATE only and never travels downstream as a
+    // budget, because each child that re-derived its own window could outlive the
+    // turn it was spawned in.
+    const remaining = turnDeadline.remainingMs();
     if (!gate) {
       refutation = {
         refutationEnabled: true,
@@ -283,7 +314,7 @@ export function planHardCatTurn(
     } else {
       const sidecar = runRefutationSidecar(state, search.catTurnPlan, search.value, {
         rules: opts.rules,
-        totalDeadlineMs,
+        deadline: turnDeadline,
         now,
         enabled: true,
       });
@@ -297,18 +328,14 @@ export function planHardCatTurn(
   {
     const guardEnabled = HARD_PROGRESS_GUARD_CONFIG.enabled;
     if (guardEnabled) {
-      // G0.4F-2B-1.6R §7/§8: absolute total-turn deadline computed ONCE from
-      // plannerStart (t0) + the TOTAL turn budget — the SAME semantics the
-      // refutation sidecar uses. The guard never receives a fresh 150ms window.
-      const totalBudgetMs = opts.refutation?.enabled
-        ? (opts.refutation.totalTurnBudgetMs ?? 150)
-        : (opts.progressGuard?.totalTurnBudgetMs ?? opts.timeBudgetMs);
-      const absoluteTotalDeadlineMs = t0 + totalBudgetMs;
+      // G0.4F-2B-1.6R §7/§8 + R1E §8: the guard receives the SAME DeadlineContext
+      // object the planner derived at entry (or the one equal to it), never a scalar
+      // instant for the child to rebuild a window from. In production that is the
+      // sidecar's own object, so one 150 ms wall bounds both consumers of this turn.
       const guardResult = runProgressGuard({
         state, plan, search, refutation, opts, now,
         passMemory: opts.progressGuard?.passMemory,
-        totalBudgetMs,
-        absoluteTotalDeadlineMs,
+        deadline: guardDeadline,
       });
       if (guardResult.applied) {
         plan = guardResult.rescuePlan!;
@@ -410,21 +437,21 @@ export function runProgressGuard(args: {
   opts: HardTurnPlanOptions;
   now: () => number;
   passMemory?: HardProgressGuardMemory | null;
-  totalBudgetMs?: number;
-  /** G0.4F-2B-1.6R: ABSOLUTE total-turn deadline from planner start (t0 +
-   *  totalTurnBudgetMs), shared with the refutation sidecar. The guard must NOT
-   *  receive its own fresh budget window. */
-  absoluteTotalDeadlineMs?: number;
+  /** R1E §6/§8: the planner's SHARED turn deadline, by reference. Required — the
+   *  guard has no budget of its own to fall back to, and a number it could rebuild a
+   *  window from is exactly the shape this round removes. `NO_DEADLINE` is a legal
+   *  value for an offline caller and means instrumentation off, not a distant wall. */
+  deadline: DeadlineContext;
 }): { applied: boolean; rescuePlan: SearchAction[] | null; debug: ProgressGuardDebug } {
   const { state, plan, search, refutation, opts, now } = args;
   const t0 = now();
-  // G0.4F-2B-1.6R §7: the Total-turn deadline is an ABSOLUTE time computed ONCE
-  // at planner start (planHardCatTurn t0 + totalTurnBudgetMs) and SHARED by the
-  // bounded-refutation sidecar AND the Progress Guard. We must NOT recompute a
-  // fresh budget from guardStart (that would hand the guard a new 150ms).
-  // `args.absoluteTotalDeadlineMs` is set by planHardCatTurn; tests may inject
-  // a fake monotonic clock to make the whole budget already consumed.
-  const totalDeadlineMs = args.absoluteTotalDeadlineMs ?? (t0 + (args.totalBudgetMs ?? opts.timeBudgetMs));
+  // G0.4F-2B-1.6R §7 + R1E §8: the total-turn deadline is computed ONCE at planner
+  // start and arrives here as one object, shared with the bounded-refutation sidecar.
+  // The guard must NOT recompute a fresh budget from guardStart (that would hand it a
+  // new 150ms), and it must not derive a context from a scalar either. Resolving the
+  // gate once means a NO_DEADLINE turn reads no clock here at all.
+  const dl = finiteDeadline(args.deadline);
+  const ctl = makeControl(args.deadline);
   const leafMode = HARD_LEAF_MODE_CONFIG.current;
   const enabled = HARD_PROGRESS_GUARD_CONFIG.enabled;
 
@@ -434,6 +461,7 @@ export function runProgressGuard(args: {
     previousCompletedDepth: null, previousCompletedPlan: '',
     originalPlan: planLabelOf(plan), rescuePlan: '', exactImmediateMouseWins: 0,
     rescueProbeStatus: null, rescueApplied: false, abortReason: '', guardMs: now() - t0,
+    deadlineControl: ctl,
     ...partial,
   });
 
@@ -503,8 +531,10 @@ export function runProgressGuard(args: {
     };
   }
 
-  // deadline check before rescue work.
-  if (now() >= totalDeadlineMs) {
+  // Turn-deadline check before rescue work. On the legacy path `dl` is null: no clock
+  // read, no abort, exactly HEAD.
+  if (dl !== null && dl.expired()) {
+    markAbort(ctl, 'guard_entry');
     return { applied: false, rescuePlan: null, debug: baseDebug({ eligible: true, previousNoProgressLoop: prevNoProgress, currentNoProgressLoop: true, signatureMatch: true, mouseTurnObserved: true, triggered: true, abortReason: 'deadline' }) };
   }
 
@@ -531,15 +561,20 @@ export function runProgressGuard(args: {
     return { applied: false, rescuePlan: null, debug: baseDebug({ eligible: true, previousNoProgressLoop: prevNoProgress, currentNoProgressLoop: true, signatureMatch: true, mouseTurnObserved: true, triggered: true, previousCompletedDepth: search.previousCompletedDepth, previousCompletedPlan: rescueLabel, originalPlan: currentLabel, rescuePlan: rescueLabel, exactImmediateMouseWins: wins, rescueProbeStatus: null, abortReason: 'exact_mouse_win' }) };
   }
 
-  // deadline again before the probe.
-  if (now() >= totalDeadlineMs) {
+  // Turn-deadline check again before the probe.
+  if (dl !== null && dl.expired()) {
+    markAbort(ctl, 'guard_rescue_probe');
     return { applied: false, rescuePlan: null, debug: baseDebug({ eligible: true, previousNoProgressLoop: prevNoProgress, currentNoProgressLoop: true, signatureMatch: true, mouseTurnObserved: true, triggered: true, previousCompletedDepth: search.previousCompletedDepth, previousCompletedPlan: rescueLabel, originalPlan: currentLabel, rescuePlan: rescueLabel, exactImmediateMouseWins: 0, abortReason: 'deadline' }) };
   }
 
-  // §26 rescue bounded probe.
+  // §26 rescue bounded probe. R1E §8/§9: it receives THE SAME DeadlineContext object
+  // the planner derived — not a scalar it has to rebuild a context from — and it
+  // marks the guard's own control, so a rescue/guard turn is covered by the same
+  // transactional accounting as a normal sidecar turn. The probe's local
+  // FIXED_PATHS / FIXED_CPU_MS / FIXED_EXACT limits are untouched.
   const probe = runBoundedProbe(mouseRoot, opts.rules, {
     maxPaths: FIXED_PATHS, maxCpuMs: FIXED_CPU_MS, maxExact: FIXED_EXACT,
-    externalDeadlineMs: totalDeadlineMs, now,
+    deadline: args.deadline, control: ctl, now,
   });
   const probeStatus = probe.status;
   if (!rescueProbeAllows(probeStatus)) {
@@ -554,6 +589,28 @@ export function runProgressGuard(args: {
       }),
     };
   }
+
+  // R1E §19 transactional gate: a wall that passed while the rescue work ran commits
+  // nothing — the turn keeps the pre-guard plan. HEAD checked nothing between the
+  // probe and the commit, so this only bites on the FINITE_ABSOLUTE path; on the
+  // legacy path `dl` is null and the rescue applies exactly as it always did.
+  if (dl !== null && dl.expired()) {
+    markAbort(ctl, 'guard_rescue_probe');
+    return {
+      applied: false, rescuePlan: null,
+      debug: baseDebug({
+        eligible: true, previousNoProgressLoop: prevNoProgress, currentNoProgressLoop: true,
+        signatureMatch: true, mouseTurnObserved: true, triggered: true,
+        previousCompletedDepth: search.previousCompletedDepth, previousCompletedPlan: rescueLabel,
+        originalPlan: currentLabel, rescuePlan: rescueLabel, exactImmediateMouseWins: 0,
+        rescueProbeStatus: probeStatus, abortReason: 'deadline',
+      }),
+    };
+  }
+
+  // Fail-closed audit, counted at commit time rather than assumed: an aborted guard
+  // transaction that still applied a rescue would be a partial commit. Must stay 0.
+  if (ctl.deadlineAbort) ctl.partialCommitCount++;
 
   // Applied.
   return {

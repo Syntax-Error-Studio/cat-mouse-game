@@ -22,6 +22,7 @@ import {
   FIXED_EXACT,
 } from '../boundedPlanRefutation';
 import type { BoundedRefutationProbeResult } from '../boundedPlanRefutation';
+import { makeControl, NO_DEADLINE } from '../deadlineContext';
 import { DIRECTIONS } from '../../types';
 
 // ===========================================================================
@@ -98,7 +99,9 @@ const shortOf = (a: { type: string; direction?: { key: string } }): string => {
   return '?';
 };
 
-const PROBE = { maxPaths: FIXED_PATHS, maxCpuMs: FIXED_CPU_MS, maxExact: FIXED_EXACT };
+/** §7: an offline caller that wants the unlimited mode must SAY so. `NO_DEADLINE`
+ *  is the explicit token, never an omitted argument. */
+const PROBE = { maxPaths: FIXED_PATHS, maxCpuMs: FIXED_CPU_MS, maxExact: FIXED_EXACT, deadline: NO_DEADLINE };
 
 // ---------------------------------------------------------------------------
 // 1. disabled = baseline identical
@@ -282,7 +285,7 @@ test('G0.3W-12. chance-bearing refutation path is CHANCE_MIXED, never REFUTED', 
     catTrapsRemaining: 0,
     trapPosition: null,
   };
-  const r = runBoundedProbe(s, defaultRuleSet, { maxPaths: 128, maxCpuMs: 500, maxExact: 48 });
+  const r = runBoundedProbe(s, defaultRuleSet, { maxPaths: 128, maxCpuMs: 500, maxExact: 48, deadline: NO_DEADLINE });
   // The mouse CAN reach the hole carrying butter, but only via the butter
   // pickup (chance). The single-witness model cannot guarantee ALL chance
   // outcomes refute → must be CHANCE_MIXED or NO_REFUTATION_FOUND, never
@@ -363,7 +366,7 @@ describe('G0.3W real-corpus regression (G4 / G1)', () => {
     const baselinePlan = base.catTurnPlan;
     // authoritative G4 baseline is U→R→PlaceTrap→D→R
     expect(baselinePlan.map(shortOf).join('')).toContain('PT');
-    const cands = selectCandidates(root, baselinePlan, defaultRuleSet);
+    const cands = selectCandidates(root, baselinePlan, defaultRuleSet, makeControl(NO_DEADLINE));
     const badIdx = cands.findIndex(c => {
       // replay to mouse root: BAD = cat (3,5) / mouse (4,7)
       let cur = root;
@@ -394,7 +397,7 @@ describe('G0.3W real-corpus regression (G4 / G1)', () => {
     // deadline OFF (no external total budget) → full sidecar decision
     const sidecar = runRefutationSidecar(root, base.catTurnPlan, base.value, {
       rules: defaultRuleSet,
-      totalDeadlineMs: Number.MAX_SAFE_INTEGER,
+      deadline: NO_DEADLINE,
       now: () => performance.now(),
       enabled: true,
     });
@@ -413,13 +416,13 @@ describe('G0.3W real-corpus regression (G4 / G1)', () => {
       useTT: true, useAlphaBeta: true, useMoveOrdering: true, maxThreatExtensions: 0,
       leafEvaluator: evaluateForCat,
     });
-    const cands = selectCandidates(root, base.catTurnPlan, defaultRuleSet);
+    const cands = selectCandidates(root, base.catTurnPlan, defaultRuleSet, makeControl(NO_DEADLINE));
     expect(cands.length).toBeGreaterThanOrEqual(1);
     const reports = cands.map(c => runBoundedProbe(c.mouseRoot, defaultRuleSet, PROBE));
     // every candidate refuted (G0.3V: 6/6) → no clean candidate exists
     expect(reports.every(r => r.status === 'PLAN_REFUTED')).toBe(true);
     const sidecar = runRefutationSidecar(root, base.catTurnPlan, base.value, {
-      rules: defaultRuleSet, totalDeadlineMs: Number.MAX_SAFE_INTEGER,
+      rules: defaultRuleSet, deadline: NO_DEADLINE,
       now: () => performance.now(), enabled: true,
     });
     expect(sidecar.overrideUsed).toBe(false);
@@ -434,13 +437,13 @@ describe('G0.3W real-corpus regression (G4 / G1)', () => {
       useTT: true, useAlphaBeta: true, useMoveOrdering: true, maxThreatExtensions: 0,
       leafEvaluator: evaluateForCat,
     });
-    const cands = selectCandidates(root, base.catTurnPlan, defaultRuleSet);
+    const cands = selectCandidates(root, base.catTurnPlan, defaultRuleSet, makeControl(NO_DEADLINE));
     expect(cands.length).toBeGreaterThanOrEqual(1);
     const reports = cands.map(c => runBoundedProbe(c.mouseRoot, defaultRuleSet, PROBE));
     // baseline (first candidate) NOT refuted (G0.3V: 6/6 NO_REFUTATION_FOUND)
     expect(reports[0].refuted).toBe(false);
     const sidecar = runRefutationSidecar(root, base.catTurnPlan, base.value, {
-      rules: defaultRuleSet, totalDeadlineMs: Number.MAX_SAFE_INTEGER,
+      rules: defaultRuleSet, deadline: NO_DEADLINE,
       now: () => performance.now(), enabled: true,
     });
     expect(sidecar.overrideUsed).toBe(false);

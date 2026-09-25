@@ -23,6 +23,7 @@
 import type { GameEngineState } from '../engine';
 import { CellType, DIRECTIONS, PieceType } from '../types';
 import { mouseCarryingDistanceToHole } from './evaluation';
+import { finiteDeadline, type DeadlineContext } from './deadlineContext';
 
 type RC = { r: number; c: number };
 const key = (p: RC) => `${p.r},${p.c}`;
@@ -112,9 +113,24 @@ export interface InterceptionResult {
   /** The validated G0.3R trigger. */
   trigger: boolean;
   costUs: number;
+  /** TRUE = the shared turn deadline passed mid-computation, so NO geometry field
+   *  above is trustworthy. The caller must abort the whole sidecar; a partial
+   *  interception may never be scored, ordered by, or used as a proof. */
+  incompleteDeadline: boolean;
 }
 
-export function computeInterception(state: GameEngineState): InterceptionResult {
+/**
+ * @param deadline the shared turn deadline, or `NO_DEADLINE`/absent for the legacy
+ *                 path. `finiteDeadline()` resolves the latter two to `null`, so an
+ *                 unbounded turn performs ZERO total-deadline clock reads here — the
+ *                 whole module runs as it always did, and `incompleteDeadline` can
+ *                 only ever be set on a FINITE_ABSOLUTE turn.
+ */
+export function computeInterception(
+  state: GameEngineState,
+  deadline?: DeadlineContext,
+): InterceptionResult {
+  const dl = finiteDeadline(deadline);
   const t0 = typeof performance !== 'undefined' ? performance.now() : 0;
   const prefilter =
     state.phase === 'playing' && state.currentPlayer === PieceType.Mouse && state.mouseHasButter;
@@ -123,6 +139,13 @@ export function computeInterception(state: GameEngineState): InterceptionResult 
     worstInterceptMargin: null, interceptableRouteCount: 0, interceptableRouteRatio: null,
     mouseHasUncoveredRoute: false, gateCount: 0, catGateArrivalMargin: null,
     catOnGateAxis: false, rawCatToCorridor: null, trigger: false, costUs: 0,
+    incompleteDeadline: false,
+  };
+  // The abort value is 'empty' — no margins, no routes, trigger=false — never a
+  // half-computed geometry that could read back as a completed negative.
+  const geoAbort = (): InterceptionResult => {
+    const abortNow = typeof performance !== 'undefined' ? performance.now() : 0;
+    return { ...empty, costUs: abortNow - t0, incompleteDeadline: true };
   };
   if (!prefilter) return empty;
 
@@ -137,6 +160,7 @@ export function computeInterception(state: GameEngineState): InterceptionResult 
     for (const h of src) { d2hole.set(key(h), 0); frontier.push(h); }
     let d = 0;
     while (frontier.length > 0) {
+      if (dl !== null && dl.expired()) return geoAbort(); // per BFS layer
       d++;
       const next: RC[] = [];
       for (const cur of frontier) {
@@ -159,6 +183,11 @@ export function computeInterception(state: GameEngineState): InterceptionResult 
     const q: Q[] = [{ p: state.mousePosition, d: 0, path: [state.mousePosition] }];
     const seen = new Set<string>();
     while (q.length > 0 && routes.length < 2000) {
+      // The route family is this module's worst-case synchronous region: the cap
+      // bounds the OUTPUT, while the queue holds path copies with no per-cell
+      // dedup, so queue length — not the cap — bounds the work. This pop is where
+      // the turn deadline must be sampled.
+      if (dl !== null && dl.expired()) return geoAbort();
       const { p, d, path } = q.shift()!;
       for (const nb of mouseCarryingNeighbors(state, p)) {
         const nd = d + 1;
@@ -182,6 +211,7 @@ export function computeInterception(state: GameEngineState): InterceptionResult 
   let best = Infinity, worst = -Infinity;
   const cellInfo = new Map<string, { catArr: number | null; mouseArr: number | null }>();
   for (const route of routes) {
+    if (dl !== null && dl.expired()) return geoAbort(); // per route, not per cell
     for (const cell of route) {
       const k = key(cell);
       if (cellInfo.has(k)) continue;
@@ -201,6 +231,7 @@ export function computeInterception(state: GameEngineState): InterceptionResult 
   // per-route interceptability
   let interceptable = 0, uncovered = 0;
   for (const route of routes) {
+    if (dl !== null && dl.expired()) return geoAbort(); // per route
     let hit = false;
     for (const cell of route) {
       const info = cellInfo.get(key(cell));
@@ -213,12 +244,14 @@ export function computeInterception(state: GameEngineState): InterceptionResult 
   // critical gates (cells on every route)
   const freq = new Map<string, number>();
   for (const route of routes) {
+    if (dl !== null && dl.expired()) return geoAbort(); // per route
     const seen = new Set<string>();
     for (const c of route) { const k = key(c); if (!seen.has(k)) { seen.add(k); freq.set(k, (freq.get(k) ?? 0) + 1); } }
   }
   let gateCount = 0, gateMargin = Infinity;
   const gates: string[] = [];
   for (const [k, f] of freq) {
+    if (dl !== null && dl.expired()) return geoAbort(); // gate scan
     if (f === routes.length && routes.length > 0) {
       gateCount++;
       gates.push(k);
@@ -259,5 +292,6 @@ export function computeInterception(state: GameEngineState): InterceptionResult 
     rawCatToCorridor,
     trigger,
     costUs: (typeof performance !== 'undefined' ? performance.now() : 0) - t0,
+    incompleteDeadline: false,
   };
 }

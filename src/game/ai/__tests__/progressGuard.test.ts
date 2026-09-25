@@ -56,6 +56,7 @@ import { gameAffectingEqual } from '../stateCompare';
 import { stateKey } from '../transposition';
 import { enumerateFullTurnLegacy } from '../turnBoundary';
 import { runBoundedProbe, FIXED_PATHS, FIXED_CPU_MS, FIXED_EXACT } from '../boundedPlanRefutation';
+import { makeFiniteDeadline, NO_DEADLINE } from '../deadlineContext';
 
 const rules = createEngineRuleSet();
 const label = (a: SearchAction): string => a.type === 'catStep' ? a.direction!.key.slice(5)[0] : a.type === 'catPlaceTrap' ? 'T' : '?';
@@ -260,6 +261,7 @@ describe('G0.4F-2B-1.6 M3-lite Progress Guard', () => {
     const mouseRoot = rules.endTurn(facts.endState as GameEngineState);
     const probe = runBoundedProbe(mouseRoot, rules, {
       maxPaths: FIXED_PATHS, maxCpuMs: FIXED_CPU_MS, maxExact: FIXED_EXACT,
+      deadline: NO_DEADLINE,
     });
     expect(probe.status).toBe('NO_REFUTATION_FOUND');
   });
@@ -376,7 +378,7 @@ describe('G0.4F-2B-1.6 M3-lite Progress Guard', () => {
       refutation: refutationDiag,
       opts: { rules, timeBudgetMs: 600000 },
       now: () => 0,
-      passMemory: mem, totalBudgetMs: 600000, absoluteTotalDeadlineMs: 600000,
+      passMemory: mem, deadline: makeFiniteDeadline(600000, () => 0),
     });
     expect(res.applied).toBe(false);
     expect(res.debug.rescueApplied).toBe(false);
@@ -404,7 +406,7 @@ describe('G0.4F-2B-1.6 M3-lite Progress Guard', () => {
         state: t15, plan: uldrActs, search: fakeSearch(ddldActs),
         refutation: refutationDiag,
         opts: { rules, timeBudgetMs: 600000 },
-        now: () => 0, passMemory: mem, totalBudgetMs: 600000, absoluteTotalDeadlineMs: 600000,
+        now: () => 0, passMemory: mem, deadline: makeFiniteDeadline(600000, () => 0),
       });
       expect(res.applied).toBe(false);
       expect(res.debug.rescueApplied).toBe(false);
@@ -423,7 +425,7 @@ describe('G0.4F-2B-1.6 M3-lite Progress Guard', () => {
     const t15 = game5Root(15);
     const facts = replayCatPlanLabel(t15, 'DDLD');
     const mouseRoot = rules.endTurn(facts.endState as GameEngineState);
-    const probe = runBoundedProbe(mouseRoot, rules, { maxPaths: FIXED_PATHS, maxCpuMs: FIXED_CPU_MS, maxExact: FIXED_EXACT });
+    const probe = runBoundedProbe(mouseRoot, rules, { maxPaths: FIXED_PATHS, maxCpuMs: FIXED_CPU_MS, maxExact: FIXED_EXACT, deadline: NO_DEADLINE });
     expect(rescueProbeAllows(probe.status)).toBe(true);
   });
 
@@ -441,7 +443,9 @@ describe('G0.4F-2B-1.6 M3-lite Progress Guard', () => {
       state: t15, plan: uldrActs, search: fakeSearch(ddldActs),
       opts: { rules, timeBudgetMs: 100 },
       now: () => 151, passMemory: mem,
-      totalBudgetMs: 150, absoluteTotalDeadlineMs: 0 + 150,
+      // HEAD expressed this as `absoluteTotalDeadlineMs = plannerStart(0) + 150`; the
+      // same instant and the same fake clock, now carried as one shared context object.
+      deadline: makeFiniteDeadline(0 + 150, () => 151),
     });
     expect(res.applied).toBe(false);
     expect(res.debug.rescueApplied).toBe(false);

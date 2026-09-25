@@ -39,6 +39,10 @@ import { generateLegalSearchActions } from './legalActions';
 import { simulateSearchAction } from './simulator';
 import { stateKey } from './transposition';
 import { mouseCarryingDistanceToHole } from './evaluation';
+import {
+  finiteDeadline, makeControl, markAbort,
+  type DeadlineContext, type SidecarControl,
+} from './deadlineContext';
 
 // ---------------------------------------------------------------------------
 // G0.3V FROZEN parameters (§16 / G0.3W §23: MUST NOT be tuned per root)
@@ -124,6 +128,13 @@ interface ProbeBudget {
   threatVisited: number;
   internalCut: boolean;
   externalHit: boolean;
+  /** The ONE shared turn deadline, threaded in by reference from the planner entry.
+   *  Required: this probe never decides for itself that it is unlimited. The hot
+   *  checks below use `finiteDeadline(deadline)`, so a NO_DEADLINE turn performs no
+   *  clock read here at all. `externalDeadlineMs` above keeps its own meaning for
+   *  legacy scalar callers, so nothing existing is re-derived. */
+  deadline: DeadlineContext;
+  control: SidecarControl | undefined;
 }
 
 // ---------------------------------------------------------------------------
@@ -154,8 +165,19 @@ export function selectCandidates(
   root: GameEngineState,
   baselinePlan: SearchAction[],
   rules: RuleSet,
+  ctl: SidecarControl,
 ): PlanCandidate[] {
-  const leg = enumerateFullTurnLegacy(root, rules);
+  // Resolved ONCE, outside every loop: `null` = the legacy path, where the total
+  // deadline is not instrumented and the clock is never read.
+  const dl = finiteDeadline(ctl.deadline);
+  // An empty list from here means one of two VERY different things, and the caller
+  // must not guess: enumerated-and-exhausted, or enumerated-NOTHING because the
+  // turn deadline fired. `ctl.deadlineAbort` is the discriminator, and the abort
+  // case returns no list at all rather than a half-built one, because a partial
+  // frontier would let the sidecar imply "no refutation among the plans I never
+  // enumerated".
+  const leg = enumerateFullTurnLegacy(root, rules, ctl);
+  if (leg.incomplete) return [];
   let baselineRoot: GameEngineState | null = null;
   let baselineCost = 0;
   {
@@ -182,7 +204,15 @@ export function selectCandidates(
   }
 
   const geoOf = new Map<string, InterceptionResult>();
-  for (const [sk, rec] of byRoot) geoOf.set(sk, computeInterception(rec.state));
+  for (const [sk, rec] of byRoot) {
+    // One computeInterception per UNIQUE boundary root, and it is the module's
+    // worst-case synchronous region: the check is per iteration, never once for the
+    // whole selector call.
+    if (dl !== null && dl.expired()) { markAbort(ctl, 'selection_interception'); return []; }
+    const g = computeInterception(rec.state, ctl.deadline);
+    if (g.incompleteDeadline) { markAbort(ctl, 'selection_interception'); return []; }
+    geoOf.set(sk, g);
+  }
 
   const candidates: PlanCandidate[] = [];
   const seen = new Set<string>();
@@ -202,6 +232,10 @@ export function selectCandidates(
     });
   };
 
+  // The cheapRank sorts below are O(n log n) over EVERY boundary root and
+  // cheapRank itself reads the geometry, so the check goes before the sort, not
+  // after it. (The other two sort sites are covered per-iteration further down.)
+  if (dl !== null && dl.expired()) { markAbort(ctl, 'selection_sorts'); return []; }
   if (baselineRoot) {
     const sk = `${stateKey(baselineRoot)}\x00${baselineCost}`;
     if (byRoot.has(sk)) push(sk, 'A-baseline', 0);
@@ -216,6 +250,7 @@ export function selectCandidates(
 
   const firstBest = new Map<string, string>();
   for (const [sk, rec] of byRoot) {
+    if (dl !== null && dl.expired()) { markAbort(ctl, 'selection_sorts'); return []; }
     const f = rec.plans[0].first;
     const cur = firstBest.get(f);
     if (cur === undefined || cheapRank(geoOf.get(sk)!) < cheapRank(geoOf.get(cur)!)) firstBest.set(f, sk);
@@ -228,13 +263,17 @@ export function selectCandidates(
   const sortedRoots = [...byRoot.keys()].sort((a, b) => cheapRank(geoOf.get(a)!) - cheapRank(geoOf.get(b)!));
   let cAdded = 0;
   for (const sk of sortedRoots) {
+    if (dl !== null && dl.expired()) { markAbort(ctl, 'selection_sorts'); return []; }
     if (candidates.length >= MAX_TACTICAL_CANDIDATES) break;
     if (seen.has(sk)) continue;
     push(sk, `C-global:${cAdded + 1}`, 0);
     cAdded++;
   }
 
-  return candidates.slice(0, MAX_TACTICAL_CANDIDATES);
+  // The cap applied here is still the frozen MAX_TACTICAL_CANDIDATES.
+  const sel = candidates.slice(0, MAX_TACTICAL_CANDIDATES);
+  ctl.candidateCount = sel.length;
+  return sel;
 }
 
 function shortActionKey(a: { type: string; direction?: { key: string } }): string {
@@ -357,14 +396,26 @@ function arrivalTime(st: GameEngineState, actor: 'mouse' | 'cat', steps: number)
   return t;
 }
 
-function catExactReachWithin4(st: GameEngineState, rules: RuleSet): Map<string, number> {
+/**
+ * This BFS simulates the cat's whole ACTION graph, not just cells — every popped
+ * state re-runs generateLegalSearchActions + simulateSearchAction — so its work is
+ * bounded by action sequences, not by the board. It reports `aborted` instead of
+ * returning a partial map, because a truncated reach set would silently turn an
+ * UNANSWERABLE threat into a RESPONDED one, i.e. manufacture a false negative proof.
+ */
+function catExactReachWithin4(
+  st: GameEngineState, rules: RuleSet, deadline: DeadlineContext,
+): { dist: Map<string, number>; aborted: boolean } {
+  const dl = finiteDeadline(deadline);
   const dist = new Map<string, number>();
   dist.set(`${st.catPosition.r},${st.catPosition.c}`, 0);
   const q: { s: GameEngineState; d: number }[] = [{ s: st, d: 0 }];
   while (q.length > 0) {
+    if (dl !== null && dl.expired()) return { dist, aborted: true }; // per pop
     const { s, d } = q.shift()!;
     if (d >= 4) continue;
     for (const a of generateLegalSearchActions(s, rules).filter(a => a.type === 'catStep' || a.type === 'catPlaceTrap')) {
+      if (dl !== null && dl.expired()) return { dist, aborted: true }; // per expensive child
       const tr = simulateSearchAction(s, a, rules);
       if (tr.kind !== 'deterministic') continue;
       const p = tr.state.catPosition;
@@ -374,18 +425,29 @@ function catExactReachWithin4(st: GameEngineState, rules: RuleSet): Map<string, 
       q.push({ s: tr.state, d: d + 1 });
     }
   }
-  return dist;
+  return { dist, aborted: false };
 }
 
-export function catCaptureOrInterceptWithin4(st: GameEngineState, rules: RuleSet): boolean {
-  const reach = catExactReachWithin4(st, rules);
+/**
+ * `false` means the cat provably cannot intercept; it never means "we ran out of
+ * time", which is why the third outcome is not collapsed into a boolean.
+ */
+export function catCaptureOrInterceptWithin4(
+  st: GameEngineState, rules: RuleSet, deadline: DeadlineContext,
+): boolean | 'aborted' {
+  const dl = finiteDeadline(deadline);
+  const reach = catExactReachWithin4(st, rules, deadline);
+  if (reach.aborted) return 'aborted';
   const mouseK = `${st.mousePosition.r},${st.mousePosition.c}`;
-  if (reach.has(mouseK)) return true;
+  if (reach.dist.has(mouseK)) return true;
   const goal = mouseCarryingDistanceToHole(st);
   if (goal === null) return false;
   const d2h = d2holeMap(st);
   const mdist = bfsMouse(st);
-  for (const [k, cd] of reach) {
+  // The route-crossing scan walks the whole reach set and each step runs the time
+  // model: checked at the loop head AND per iteration.
+  if (dl !== null && dl.expired()) return 'aborted';
+  for (const [k, cd] of reach.dist) {
     const d2 = d2h.get(k);
     const mdv = mdist.get(k);
     if (d2 === undefined || mdv === undefined) continue;
@@ -394,6 +456,7 @@ export function catCaptureOrInterceptWithin4(st: GameEngineState, rules: RuleSet
     const catArr = arrivalTime(st, 'cat', cd);
     const mouseArr = arrivalTime(st, 'mouse', mdv);
     if (catArr !== null && mouseArr !== null && catArr <= mouseArr) return true;
+    if (dl !== null && dl.expired()) return 'aborted';
   }
   return false;
 }
@@ -401,9 +464,19 @@ export function catCaptureOrInterceptWithin4(st: GameEngineState, rules: RuleSet
 // ---------------------------------------------------------------------------
 // Mouse continuation danger ordering (G0.3V §5 — frozen, no per-root hack)
 // ---------------------------------------------------------------------------
-function mouseDanger(st: GameEngineState): number {
+/**
+ * This is where the sidecar calls computeInterception for EVERY mouse child state,
+ * i.e. its hottest unpreemptible call. `null` means aborted, and the caller must
+ * discard the probe rather than order candidates by a 0.
+ */
+function mouseDanger(
+  st: GameEngineState, deadline: DeadlineContext,
+): number | null {
+  const dl = finiteDeadline(deadline);
   if (st.mouseHasButter) {
-    const g = computeInterception(st);
+    if (dl !== null && dl.expired()) return null;
+    const g = computeInterception(st, deadline);
+    if (g.incompleteDeadline) return null;
     const goalD = g.mouseGoalSteps ?? mouseCarryingDistanceToHole(st) ?? 99;
     const margin = g.bestInterceptMargin ?? 0;
     const unc = g.mouseHasUncoveredRoute ? 50 : 0;
@@ -422,9 +495,19 @@ function mouseDanger(st: GameEngineState): number {
 // Bounded adversarial mouse-response probe (G0.3V §4 frozen)
 // ---------------------------------------------------------------------------
 export interface ProbeOpts {
+  // These three keep their frozen meaning and values. The deadline below is an
+  // ADDITIONAL stop condition, never a replacement for a cap and never a
+  // re-derivation of a budget.
   maxPaths?: number;
   maxCpuMs?: number;
   maxExact?: number;
+  /** The ONE shared turn deadline, passed by reference from the planner. REQUIRED:
+   *  a probe never infers that it is unlimited. An offline/test caller that really
+   *  means "no total deadline" says so with `deadline: NO_DEADLINE`, which resolves
+   *  to no instrumentation at all rather than to a distant wall. */
+  deadline: DeadlineContext;
+  /** Abort record this probe marks when it is the region that broke the contract. */
+  control?: SidecarControl;
   /** Outer total-turn deadline (absolute ms in `now` time-base). When it fires,
    *  the probe returns INCOMPLETE (never a completed negative). */
   externalDeadlineMs?: number;
@@ -434,17 +517,24 @@ export interface ProbeOpts {
 export function runBoundedProbe(
   mouseRoot: GameEngineState,
   rules: RuleSet,
-  opts: ProbeOpts = {},
+  opts: ProbeOpts,
 ): BoundedRefutationProbeResult {
   const maxPaths = opts.maxPaths ?? FIXED_PATHS;
   const maxCpuMs = opts.maxCpuMs ?? FIXED_CPU_MS;
   const maxExact = opts.maxExact ?? FIXED_EXACT;
   const now = opts.now ?? (typeof performance !== 'undefined' ? () => performance.now() : () => Date.now());
+  // The probe ASKS the shared context instead of receiving a relative remainingMs,
+  // and it never builds one for itself: an absent `opts.deadline` is a type error, not
+  // a silent unlimited mode. Same clock origin as the caller's, so a comparison is
+  // between two readings of ONE clock, never across origins. The gate is resolved
+  // once here — under NO_DEADLINE `dl` is null and the total deadline costs nothing.
+  const dl = finiteDeadline(opts.deadline);
   const budget: ProbeBudget = {
     maxPaths, maxCpuMs, maxExact, start: now(),
     externalDeadlineMs: opts.externalDeadlineMs ?? null, now,
     pathsUsed: 0, exactChecks: 0, l1Checks: 0, rejected: 0,
     respondedCount: 0, threatVisited: 0, internalCut: false, externalHit: false,
+    deadline: opts.deadline, control: opts.control,
   };
 
   interface Partial {
@@ -453,7 +543,16 @@ export function runBoundedProbe(
     danger: number;
     hasChance: boolean;
   }
-  let frontier: Partial[] = [{ state: mouseRoot, actions: [], danger: mouseDanger(mouseRoot), hasChance: false }];
+  // The probe's OWN root danger is a computeInterception call that runs BEFORE the
+  // loop exists. An abort sets both flags so the loop is never entered — this does
+  // not depend on re-reading the clock, so it cannot be missed.
+  const rootDanger = mouseDanger(mouseRoot, budget.deadline);
+  if (rootDanger === null) {
+    markAbort(budget.control, 'probe_root_danger');
+    budget.externalHit = true;
+    budget.internalCut = true;
+  }
+  let frontier: Partial[] = [{ state: mouseRoot, actions: [], danger: rootDanger ?? 0, hasChance: false }];
   let expansions = 0;
   const visitedBoundaries = new Set<string>();
   const expandedStates = new Set<string>();
@@ -462,8 +561,14 @@ export function runBoundedProbe(
   let bestType: 'A' | 'B' | 'TERMINAL_WIN' | null = null;
   let bestPathRank: number | null = null;
 
-  const externalDeadlineHit = (): boolean =>
-    budget.externalDeadlineMs !== null && budget.now() >= budget.externalDeadlineMs;
+  const externalDeadlineHit = (): boolean => {
+    // Effective stop = existing local contract OR shared absolute deadline. The
+    // scalar branch is kept verbatim, so a probe called the old way behaves the old
+    // way; the shared context is only the added branch.
+    if (budget.externalDeadlineMs !== null && budget.now() >= budget.externalDeadlineMs) return true;
+    if (dl !== null && dl.expired()) { markAbort(budget.control, 'probe_loop'); return true; }
+    return false;
+  };
   const maybeCut = (): boolean => {
     if (budget.internalCut) return true;
     if (++expansions % 16 === 0 && budget.now() - budget.start > budget.maxCpuMs) budget.internalCut = true;
@@ -488,8 +593,21 @@ export function runBoundedProbe(
     }
     budget.threatVisited++;
     if (budget.exactChecks >= budget.maxExact) return 'UNKNOWN';
+    // The exact-local check below runs a full cat-action BFS per threat boundary, so
+    // the check goes BEFORE it — and an aborted BFS must never answer the question.
+    // externalHit turns the probe into INCOMPLETE.
+    if (dl !== null && dl.expired()) {
+      markAbort(budget.control, 'probe_exact_check');
+      budget.externalHit = true; budget.internalCut = true;
+      return 'UNKNOWN';
+    }
     budget.exactChecks++;
-    const ok = catCaptureOrInterceptWithin4(st, rules);
+    const ok = catCaptureOrInterceptWithin4(st, rules, budget.deadline);
+    if (ok === 'aborted') {
+      markAbort(budget.control, 'probe_exact_check');
+      budget.externalHit = true; budget.internalCut = true;
+      return 'UNKNOWN';
+    }
     if (ok) budget.respondedCount++;
     return ok ? 'RESPONDED' : 'UNANSWERABLE';
   };
@@ -540,16 +658,31 @@ export function runBoundedProbe(
       const actions = generateLegalSearchActions(st, rules);
       if (actions.length === 0) { budget.pathsUsed++; continue; }
       const expanded: Partial[] = [];
+      let dangerAborted = false;
       for (const a of actions) {
+        // Per mouse continuation: before the simulate AND before the geometry call
+        // inside mouseDanger. The maybeCut() at the top of this branch samples the
+        // clock once per 16 EXPANSIONS, which is what let a single expansion run
+        // past the wall; it stays untouched, and these checks sit alongside it.
+        if (dl !== null && dl.expired()) { markAbort(budget.control, 'probe_expansion'); dangerAborted = true; break; }
         const tr = simulateSearchAction(st, a, rules);
         if (tr.kind === 'chance') {
           for (const o of tr.outcomes) {
-            expanded.push({ state: o.state, actions: [...cur.actions, a], danger: mouseDanger(o.state), hasChance: true });
+            if (dl !== null && dl.expired()) { markAbort(budget.control, 'probe_expansion'); dangerAborted = true; break; }
+            const dg = mouseDanger(o.state, budget.deadline);
+            if (dg === null) { markAbort(budget.control, 'probe_expansion'); dangerAborted = true; break; }
+            expanded.push({ state: o.state, actions: [...cur.actions, a], danger: dg, hasChance: true });
           }
+          if (dangerAborted) break;
         } else {
-          expanded.push({ state: tr.state, actions: [...cur.actions, a], danger: mouseDanger(tr.state), hasChance: cur.hasChance });
+          const dg = mouseDanger(tr.state, budget.deadline);
+          if (dg === null) { markAbort(budget.control, 'probe_expansion'); dangerAborted = true; break; }
+          expanded.push({ state: tr.state, actions: [...cur.actions, a], danger: dg, hasChance: cur.hasChance });
         }
       }
+      // An aborted expansion yields NO candidate verdict: the probe ends as
+      // INCOMPLETE, never as NO_REFUTATION_FOUND, which would read as a proof.
+      if (dangerAborted) { budget.externalHit = true; budget.internalCut = true; break; }
       frontier = frontier.concat(expanded).sort((a, b) => b.danger - a.danger).slice(0, MAX_FRONTIER);
     }
   }
@@ -776,6 +909,10 @@ export interface RefutationDiagnostics {
   overrideUsed: boolean;
   selectedPlanSource: 'baseline' | 'bounded_refutation';
   sidecarAbortReason: SidecarAbortReason;
+  /** How far the shared turn deadline got. Present only when the sidecar actually
+   *  ran; purely observational — none of it is an input to any decision, and an
+   *  older caller that ignores the field behaves exactly as before. */
+  deadlineControl?: SidecarControl;
 }
 
 export interface RefutationSidecarResult {
@@ -788,8 +925,12 @@ export interface RefutationSidecarResult {
 
 export interface RefutationSidecarOpts {
   rules: RuleSet;
-  /** Absolute total-turn deadline (ms in `now` time-base). */
-  totalDeadlineMs: number;
+  /** The ONE shared turn deadline for the whole turn, created at planner entry and
+   *  threaded by reference. REQUIRED, and it is a context rather than a number: a
+   *  caller that means "unlimited" must say `NO_DEADLINE`, so forgetting the argument
+   *  is a compile error instead of an unbounded sidecar that looks bounded. This
+   *  module never opens a second clock of its own. */
+  deadline: DeadlineContext;
   now?: () => number;
   enabled: boolean;
 }
@@ -815,6 +956,13 @@ export function runRefutationSidecar(
 ): RefutationSidecarResult {
   const now = opts.now ?? (typeof performance !== 'undefined' ? () => performance.now() : () => Date.now());
   const t0 = now();
+  // The sidecar does not receive a relative budget — it receives the caller's
+  // context, frozen at planner entry, so nothing downstream can re-add a window of
+  // its own. There is no fallback here to fall back to: NO_DEADLINE is inert because
+  // it carries no clock, not because it carries a distant one.
+  const deadline = opts.deadline;
+  const ctl = makeControl(deadline);
+  const dl = finiteDeadline(deadline);
   const baseDiag: RefutationDiagnostics = {
     refutationEnabled: opts.enabled,
     refutationTriggered: false,
@@ -836,7 +984,11 @@ export function runRefutationSidecar(
     return { diagnostics: baseDiag, plan: baselinePlan, overrideUsed: false, selectedCandidateIdx: 0 };
   }
 
-  const candidates = selectCandidates(root, baselinePlan, opts.rules);
+  const candidates = selectCandidates(root, baselinePlan, opts.rules, ctl);
+  // Transactional gate: an abort during candidate SELECTION means the candidate
+  // set is incomplete, so it must not be treated as "no candidates" — nor as a
+  // complete set. Abort wins over the shorter length-based branch below.
+  if (ctl.deadlineAbort) return abortSidecar(baselinePlan, baseDiag, ctl);
   if (candidates.length === 0) {
     return {
       diagnostics: { ...baseDiag, refutationTriggered: true, candidateCount: 0, sidecarAbortReason: 'no_candidates' },
@@ -844,21 +996,35 @@ export function runRefutationSidecar(
     };
   }
 
-  const externalDeadlineMs = opts.totalDeadlineMs;
-  const reports = candidates.map(c =>
-    runBoundedProbe(c.mouseRoot, opts.rules, {
+  // The probe loop is the long-running region: each candidate used to buy its
+  // own FIXED_CPU_MS window with no clock read between candidates. The shared
+  // absolute deadline is now re-checked at every boundary, and the remaining
+  // per-candidate CPU cap keeps its original semantics as an ADDITIONAL stop.
+  const reports: BoundedRefutationProbeResult[] = [];
+  for (let ci = 0; ci < candidates.length; ci++) {
+    if (dl !== null && dl.expired()) {
+      markAbort(ctl, 'probe_loop');
+      return abortSidecar(baselinePlan, baseDiag, ctl);
+    }
+    reports.push(runBoundedProbe(candidates[ci].mouseRoot, opts.rules, {
       maxPaths: FIXED_PATHS,
       maxCpuMs: FIXED_CPU_MS,
       maxExact: FIXED_EXACT,
-      externalDeadlineMs,
+      deadline,
+      control: ctl,
       now,
-    }),
-  );
+    }));
+    if (ctl.deadlineAbort) return abortSidecar(baselinePlan, baseDiag, ctl);
+  }
   const wallMs = now() - t0;
 
   // Witness legality gate (§8): any PLAN_REFUTED must replay.
   let invalidWitness = false;
   for (let i = 0; i < reports.length; i++) {
+    if (dl !== null && dl.expired()) {
+      markAbort(ctl, 'witness_replay');
+      return abortSidecar(baselinePlan, baseDiag, ctl);
+    }
     const r = reports[i];
     if (r.refuted) {
       const rep = replayMouseWitness(candidates[i].mouseRoot, r.witness, opts.rules, r.boundaryReached);
@@ -873,6 +1039,10 @@ export function runRefutationSidecar(
   let overrideEligible = baselineRefuted;
   let overrideIdx = 0;
   if (overrideEligible) {
+    if (dl !== null && dl.expired()) {
+      markAbort(ctl, 'override_selection');
+      return abortSidecar(baselinePlan, baseDiag, ctl);
+    }
     overrideIdx = pickOverrideCandidate(candidates, reports, baselineValue);
     overrideEligible = overrideIdx !== 0;
   }
@@ -883,6 +1053,10 @@ export function runRefutationSidecar(
   let abort: SidecarAbortReason = 'none';
 
   if (overrideEligible) {
+    if (dl !== null && dl.expired()) {
+      markAbort(ctl, 'cat_replay');
+      return abortSidecar(baselinePlan, baseDiag, ctl);
+    }
     // Cat candidate replay legality (§9): the override plan must execute from
     // the ORIGINAL root.
     const cand = candidates[overrideIdx];
@@ -927,7 +1101,38 @@ export function runRefutationSidecar(
     overrideUsed,
     selectedPlanSource: overrideUsed ? 'bounded_refutation' : 'baseline',
     sidecarAbortReason: overrideUsed ? 'none' : abort,
+    deadlineControl: ctl,
   };
 
+  // Fail-closed audit: when the clock expired mid-call, the plan handed back
+  // MUST be the baseline. Counting the violation instead of assuming it keeps
+  // "no partial commit" a measured value rather than a claim.
+  if (ctl.deadlineAbort && JSON.stringify(plan) !== JSON.stringify(baselinePlan)) ctl.partialCommitCount++;
+
   return { diagnostics: diag, plan, overrideUsed, selectedCandidateIdx };
+}
+
+/**
+ * Transactional deadline abort: the shared turn deadline expired before the
+ * sidecar reached a complete decision. Everything computed so far is discarded
+ * — no partial candidate rejection, no partial override, no partial witness —
+ * and the caller keeps the PRIMARY baseline plan.
+ */
+function abortSidecar(
+  baselinePlan: SearchAction[],
+  baseDiag: RefutationDiagnostics,
+  ctl: SidecarControl,
+): RefutationSidecarResult {
+  return {
+    diagnostics: {
+      ...baseDiag,
+      refutationTriggered: true,
+      candidateCount: ctl.candidateCount,
+      sidecarAbortReason: 'deadline',
+      deadlineControl: ctl,
+    },
+    plan: baselinePlan,
+    overrideUsed: false,
+    selectedCandidateIdx: 0,
+  };
 }
