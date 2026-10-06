@@ -38,13 +38,33 @@ import { computeInterception } from './interceptionGeometry';
 export const MATE_SCORE = 1_000_000;
 
 /**
- * F1A-2: how often the wall-clock deadline is sampled. Calling `now()` on
- * EVERY node would make the clock a hot spot for no benefit; sampling once
- * per 64 nodes keeps a mid-depth abort bounded (≤64 nodes past the deadline)
- * at negligible cost. This is deliberately a simple constant — NOT a tuned
- * performance parameter (per the F1A spec).
+ * T1E-B (G0.4F-2B-1.9E-B): the NODE-level wall-clock deadline observation cadence.
+ *
+ * History: F1A-2 sampled only every 64 nodes because a per-node `now()` was
+ * assumed to be a hot spot. T1E then measured the real numbers on the current
+ * source: the 64-node cadence was the dominant overshoot mechanism (a single
+ * sampling window of synchronous work could run tens of ms past the deadline),
+ * while the clock-read cost is negligible (≈50 ns per read; a whole call's
+ * worth of reads ≈ 0.03 ms). So the node cadence is now 1 (observe at every
+ * interior node) and the remaining work inside one node is additionally bounded
+ * by EVAL_DEADLINE_CHECK_INTERVAL below.
  */
-export const DEADLINE_CHECK_INTERVAL = 64;
+export const DEADLINE_CHECK_INTERVAL = 1;
+
+/**
+ * T1E-B: evaluator-batch deadline observation interval. Every K-th evaluation
+ * the search samples the SAME absolute deadline authority the node gate uses.
+ * The value 64 was resolved from measurement, not guessed: T1E-B ran E64/E32/E16
+ * (node cadence fixed at D1) over the frozen T1E dev corpus and selected the
+ * LARGEST interval that passes the frozen M1/M2 timing gates — 64 evaluations
+ * ≈ 14 ms of evaluation work at the measured ≈0.22 ms/evaluation.
+ *
+ * This observes the clock and sets a search-local flag ONLY; the evaluator's
+ * mathematics, the TT, pruning, ordering and terminal semantics are untouched.
+ * It is inert on the NO_DEADLINE path (ctx.deadlineMs === undefined returns
+ * before any clock read), so no-deadline searches pay nothing and stay identical.
+ */
+export const EVAL_DEADLINE_CHECK_INTERVAL = 64;
 
 /**
  * F1A-2: the default monotonic clock. `performance.now()` where available
@@ -68,6 +88,36 @@ function deadlineReached(ctx: SearchContext, nodeCount: { count: number }): bool
   if (nodeCount.count % DEADLINE_CHECK_INTERVAL !== 0) return false;
   const clock = ctx.now ?? defaultNow;
   return clock() >= ctx.deadlineMs;
+}
+
+/**
+ * T1E-B: evaluator-batch deadline observation. Called from `evaluateLeaf` (the
+ * search's evaluation wrapper — NOT from `evaluateForCat`, so the evaluator's
+ * definition is untouched). Every EVAL_DEADLINE_CHECK_INTERVAL evaluations it
+ * samples the SAME clock and the SAME absolute deadline as `deadlineReached`
+ * above — there is no second deadline, budget or clock origin.
+ *
+ * When the deadline has passed it sets `ctx.evalDeadlineHit`, which the EXISTING
+ * node-level abort site consumes: that site returns the identical
+ * `{completed:false, cacheable:false}` result it uses for a node-level deadline
+ * hit, so the in-flight iterative-deepening iteration is discarded exactly as
+ * before and the caller keeps the last COMPLETE iteration. Nothing here can
+ * return a value, commit a partial iteration, or expose a partial root action.
+ *
+ * FINITE_DEADLINE only: on the no-deadline path this returns before touching the
+ * counter or the clock (NO_DEADLINE_EXTRA_CLOCK_READ_COUNT = 0).
+ */
+function evalBatchDeadlineObserved(ctx: SearchContext): boolean {
+  if (ctx.deadlineMs === undefined) return false;
+  ctx.evalCheckCounter++;
+  if (ctx.evalCheckCounter % EVAL_DEADLINE_CHECK_INTERVAL !== 0) return false;
+  const clock = ctx.now ?? defaultNow;
+  if (clock() >= ctx.deadlineMs) {
+    ctx.evalDeadlineHit = true;
+    ctx.diagnostics.deadlineCutoffs++;
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -591,6 +641,13 @@ export interface SearchContext {
    */
   profiler?: SearchProfiler;
   /**
+   * T1E-B: search-call-local evaluator-batch deadline state. Lives on the
+   * per-search SearchContext (like evalCache), so it can never leak across
+   * planner calls and is never a module-global mutable counter.
+   */
+  evalCheckCounter: number;
+  evalDeadlineHit: boolean;
+  /**
    * G0.3C: per-search evaluation cache (stateKey → evaluateForCat result).
    * When set, evaluateLeaf checks this map before calling the evaluator.
    * evaluateForCat is pure, so the cache is sound. Lives on the context
@@ -738,6 +795,8 @@ export function createSearchContext(
     useThreatOrdering,
     evalCache: new Map<string, number>(), // G0.3C: per-search eval memoization
     equalPrimaryGraph: new Map(), // G0.3E-R2: per-search equal-primary graph
+    evalCheckCounter: 0,          // T1E-B: per-search evaluator-batch observation state
+    evalDeadlineHit: false,       // T1E-B: set when an evaluation observes the deadline
     diagnostics: {
       nodes: 0,
       chanceNodes: 0,
@@ -845,6 +904,9 @@ export function defaultLeafEval(state: GameEngineState): number {
 const EVAL_CACHE_MAX_SIZE = 50_000;
 
 function evaluateLeaf(state: GameEngineState, ctx: SearchContext, key?: string): number {
+  // T1E-B: evaluator-batch deadline observation (observes the clock + sets a flag only;
+  // the evaluator's value, the cache and the profiler paths are unchanged).
+  evalBatchDeadlineObserved(ctx);
   // G0.3C: per-search evaluation memoization. evaluateForCat is pure, so the
   // same stateKey always yields the same value. The caller passes the key it
   // already computed (from _search's repetition check / TT probe) to avoid a
@@ -1566,7 +1628,8 @@ function _searchInner(
   //     nodes (see deadlineReached). A cost has already been paid for the
   //     node that reaches the deadline, so this is a soft stop, not a hard
   //     preemption — exactly the abort contract the node budget has.
-  if (deadlineReached(ctx, nodeCount)) {
+  // T1E-B: a deadline observed inside the evaluator batch takes this SAME abort path.
+  if (deadlineReached(ctx, nodeCount) || ctx.evalDeadlineHit) {
     ctx.diagnostics.deadlineCutoffs++;
     const dlLeaf = evaluateLeaf(state, ctx, key);
     maybeFrontierSample(ctx, {

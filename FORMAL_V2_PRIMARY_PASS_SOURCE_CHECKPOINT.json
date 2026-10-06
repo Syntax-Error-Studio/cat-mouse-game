@@ -1,0 +1,218 @@
+{
+ "schema": "FORMAL_V2_PRIMARY_PASS_SOURCE_CHECKPOINT_V1",
+ "at": "2026-10-06T05:06:43.697Z",
+ "round": "T1H — source checkpoint freeze (no experiment, no benchmark, no AI change)",
+ "BASELINE_HEAD": "7dca14ca743cd92c862726ac2416d10676364fce",
+ "branch": "main",
+ "BASE_HEAD_OF_THE_PASSING_SOURCE": "7dca14ca743cd92c862726ac2416d10676364fce",
+ "CONTENT_ADDRESSED_SOURCE_IDENTITY": {
+  "form": "CONTENT_ADDRESSED_MANIFEST",
+  "fullGitDiffBinarySha256": "b841535bf9ed8f2f534135cca58620d7e5da9f7f90164dfa21656d1c9e01a932",
+  "declaredByT1EB": "b841535bf9ed8f2f534135cca58620d7e5da9f7f90164dfa21656d1c9e01a932",
+  "matchesT1EB": true,
+  "changedTrackedFiles": [
+   "src/game/ai/__tests__/expectiminimax.test.ts",
+   "src/game/ai/expectiminimax.ts",
+   "src/game/engine.ts"
+  ]
+ },
+ "T1EB_CANDIDATE_SOURCE_AUTHORITY_SHA256": "59bb043b5054ddd3732cd8ec710951942b1ff0d11056bfc9bfbf1ccc63895504",
+ "T1EB_PROPOSED_FROZEN_SOURCE_CHECKPOINT_SHA256": "c3efcf5a04de534fd177af40a9345be43c43dc237efa992a6d1f63deef91d631",
+ "T1EB_EXPECTIMINIMAX_SHA256": "891f12b64fdef1ea1e479656ad5fd4af81aeefc1d30d77b44b1b11cf01ecb793",
+ "T1G_FINAL_ARTIFACT": {
+  "path": "ai-training/f2b19be-r1-formal-pregrid-v2/t1g/formal_v2_t1g_primary_1700_pair_authority_v1.json",
+  "sha256": "092d509ea5effdf7183a19aaf2e2187b527b30a978078a2e0ff6ac88a701879a"
+ },
+ "AUTHORITIES": {
+  "FORMAL_MOUSE_POLICY_PROTOCOL": "V2",
+  "CURRENT_TIMING_AUTHORITY": "T1EB_PROTOCOL_V2_TIMING_AUTHORITY_V1",
+  "CURRENT_CORRECTNESS_AUTHORITY": "CCA_V4R1_DEADLINE_SEAM_RECERT",
+  "CURRENT_FORMAL_EXACT_REPLAY_READY": true,
+  "T1F_WARMUP_AUTHORITY": "PASS",
+  "T1G_FORMAL_V2_PRIMARY_AUTHORITY": "PASS",
+  "FORMAL_V2_PRIMARY_EFFICACY": "PASS"
+ },
+ "T1G_PRIMARY_RESULT": {
+  "TOTAL_PAIRS": 1700,
+  "TOTAL_LOGICAL_JOBS": 3400,
+  "TOTAL_VALID_COMPLETED_JOBS": 3400,
+  "BOTH_RESOLVED_PAIRS": 1681,
+  "BASELINE_CAT_WINS": 1223,
+  "FROZEN_HYBRID_CAT_WINS": 1368,
+  "BASELINE_CAT_WIN_RATE": 0.7275431290898274,
+  "FROZEN_HYBRID_CAT_WIN_RATE": 0.8138013087447947,
+  "PAIRED_DELTA_CAT_WIN_RATE": 0.08625817965496728,
+  "BOOTSTRAP_CI95": [
+   0.07019631171921475,
+   0.10291493158834028
+  ],
+  "EXACT_TWO_SIDED_MCNEMAR_P": 5.721066316058817e-25,
+  "M1": {
+   "p50": 105.1882,
+   "p95": 117.1289,
+   "p99": 123.7544,
+   "max": 145.0513
+  },
+  "M2": {
+   "p50": 150.2627,
+   "p95": 150.8326,
+   "p99": 153.6555,
+   "max": 159.056
+  },
+  "PRIMARY_POPULATION_STATUS": "CONSUMED_CONFIRMATION_POPULATION",
+  "NOT_A_PERFECT_PLAY_PROOF": true
+ },
+ "BOUND_PRODUCTION_SOURCE": [
+  {
+   "path": "src/game/engine.ts",
+   "role": "S1 runtime WORLD-entropy seam (adopted T1D-M)",
+   "sha256": "8e92366681988e7368a3cdef02662adeeff81eb4cb04af870bd378157eb477f6"
+  },
+  {
+   "path": "src/game/ai/expectiminimax.ts",
+   "role": "deadline-repair seam: node cadence 1, eval-batch cadence 64 (adopted T1E-B)",
+   "sha256": "891f12b64fdef1ea1e479656ad5fd4af81aeefc1d30d77b44b1b11cf01ecb793"
+  },
+  {
+   "path": "src/game/ai/forcedLossTieBreak.ts",
+   "role": "unchanged content (EOL-only worktree stat noise)",
+   "sha256": "839585867ba8e5fed190f1ece48f5635e70624796d25f03febfc064333964457"
+  },
+  {
+   "path": "src/game/ai/hybridWeights.ts",
+   "role": "unchanged content (EOL-only worktree stat noise)",
+   "sha256": "70b1e09e6a8d667861c1156e0bba445e401e2ede37f8d0bcba43d8050f8f7be6"
+  },
+  {
+   "path": "src/game/ai/__tests__/expectiminimax.test.ts",
+   "role": "seam tests (self-calibrating deadline expectations)",
+   "sha256": "49d1d1bf82e6f24a336757537164b154cf4422ae33ae949e97e49423929c5f84"
+  },
+  {
+   "path": "GAMEPLAY.md",
+   "role": "gameplay authority",
+   "sha256": "1b19a8b557fe6c4c440e608a81a852ae4f0e7e74f46e082d23b1efcc1bdeefa4"
+  }
+ ],
+ "DIGEST_BOUND_FORMAL_TOOLING": [
+  {
+   "path": "ai-training/c1/c1_lib.ts",
+   "role": "FORMAL_MOUSE_POLICY_PROTOCOL_V2 (POLICY_PROBE_COMMIT_SEMANTICS_V1) + formal arm path",
+   "sha256": "e3e4dd787570d65bc34178081a80eff464bcb0f5feedc2eced77321366a287dd",
+   "inGit": false,
+   "why": "ai-training/** is gitignored by repository policy (.gitignore:24)"
+  },
+  {
+   "path": "ai-training/f2b19be-r1-formal-pregrid-v2/formal_v2_committed_recorder.ts",
+   "role": "COMMITTED_DECISION_RECORDER_V2",
+   "sha256": "75ab8ca45826e25d0529de27ebebbfb36a791769df647f916abc7404e44af5e8",
+   "inGit": false,
+   "why": "ai-training/** is gitignored by repository policy (.gitignore:24)"
+  },
+  {
+   "path": "ai-training/f2b19be-r1-formal-pregrid-v2/formal_v2_replay_envelope.ts",
+   "role": "COMPLETE_REPLAY_ENVELOPE_V2",
+   "sha256": "8068a91e8eb212100ceb4446640a0d754001dc459a076433830b77657e7dcbfa",
+   "inGit": false,
+   "why": "ai-training/** is gitignored by repository policy (.gitignore:24)"
+  },
+  {
+   "path": "ai-training/f2b19be-r1-formal-pregrid-v2/t1d/t1d_broker.mjs",
+   "role": "RUNTIME_ENTROPY_BROKER_V1 / SHA256_COUNTER_V1",
+   "sha256": "868ecef896cc420854d52be8c59389dda51c436402f2a4b43aa90e44ca8da141",
+   "inGit": false,
+   "why": "ai-training/** is gitignored by repository policy (.gitignore:24)"
+  },
+  {
+   "path": "ai-training/f2b19be-r1-formal-pregrid-v2/t1g/t1g_task.ts",
+   "role": "T1G primary worker source",
+   "sha256": "7f269330cc878f1f5a1330fe20b9e1a8fffaa2d52618205881f52d6342f49acb",
+   "inGit": false,
+   "why": "ai-training/** is gitignored by repository policy (.gitignore:24)"
+  },
+  {
+   "path": "ai-training/f2b19be-r1-formal-pregrid-v2/t1g/dist/t1g_task.mjs",
+   "role": "T1G primary worker bundle (executed)",
+   "sha256": "a032d567c10eb4ae3ecfbbf9c6324f70b23327fb7ac5af9d86ba16112736e884",
+   "inGit": false,
+   "why": "ai-training/** is gitignored by repository policy (.gitignore:24)"
+  },
+  {
+   "path": "ai-training/f2b19be-r1-formal-pregrid-v2/t1g/t1g_analyze.ts",
+   "role": "T1G frozen statistical analyzer source",
+   "sha256": "6fddbb854902d89d485bab43f5eff39da47484f096c86e50639c77256a4c2d85",
+   "inGit": false,
+   "why": "ai-training/** is gitignored by repository policy (.gitignore:24)"
+  },
+  {
+   "path": "ai-training/f2b19be-r1-formal-pregrid-v2/t1g/dist/t1g_analyze.mjs",
+   "role": "T1G frozen statistical analyzer bundle (executed)",
+   "sha256": "097d635a796ac3d14b3eb07b71d8673d19fb1f78f60b73d7f34dc33e9791f29f",
+   "inGit": false,
+   "why": "ai-training/** is gitignored by repository policy (.gitignore:24)"
+  },
+  {
+   "path": "ai-training/f2b19be-r1-formal-pregrid-v2/t1g/remote/t1g_supervisor.mjs",
+   "role": "T1G primary supervisor (journal/resume/observer)",
+   "sha256": "4a50ad9c6d05e08d172343b6b0f5a55bae352fc2863916bdef73344abeaf8537",
+   "inGit": false,
+   "why": "ai-training/** is gitignored by repository policy (.gitignore:24)"
+  },
+  {
+   "path": "ai-training/f2b19be-r1-formal-pregrid-v2/t1g/remote/t1g_sampler.mjs",
+   "role": "T1G external process sampler",
+   "sha256": "e7d78566657074c0e407b7e861631c0ab2d0cd34b9eeaf54e129072fe9a57f73",
+   "inGit": false,
+   "why": "ai-training/** is gitignored by repository policy (.gitignore:24)"
+  },
+  {
+   "path": "ai-training/f2b19be-r1-formal-pregrid-v2/t1g/remote/t1g_proc.mjs",
+   "role": "role-based /proc classification library",
+   "sha256": "05b11a2145292b5fe500bb54efa0fd729fbb676630782faa693c840d7b9e6037",
+   "inGit": false,
+   "why": "ai-training/** is gitignored by repository policy (.gitignore:24)"
+  },
+  {
+   "path": "ai-training/f2b19be-r1-formal-pregrid-v2/t1g/T1G_PRIMARY_CONTRACT.json",
+   "role": "T1G primary contract (gates + statistical contract)",
+   "sha256": "69514e06916199976016e487cb719519facb016677dbc8d0aa07077d4a197431",
+   "inGit": false,
+   "why": "ai-training/** is gitignored by repository policy (.gitignore:24)"
+  },
+  {
+   "path": "ai-training/f2b19be-r1-formal-pregrid-v2/t1g/t1g_plan.json",
+   "role": "frozen 3400-job schedule",
+   "sha256": "c5615f230da41fafca5adb2da7625ff0e81fab27c485a9f54b679ae220e60c5f",
+   "inGit": false,
+   "why": "ai-training/** is gitignored by repository policy (.gitignore:24)"
+  },
+  {
+   "path": "ai-training/f2b19be-r1-formal-pregrid-v2/t1g/formal_v2_t1g_primary_1700_pair_authority_v1.json",
+   "role": "T1G final authority artifact",
+   "sha256": "092d509ea5effdf7183a19aaf2e2187b527b30a978078a2e0ff6ac88a701879a",
+   "inGit": false,
+   "why": "ai-training/** is gitignored by repository policy (.gitignore:24)"
+  }
+ ],
+ "T1G_FROZEN_TOOL_HASHES": {
+  "workerBundle": "a032d567c10eb4ae3ecfbbf9c6324f70b23327fb7ac5af9d86ba16112736e884",
+  "analyzer": "097d635a796ac3d14b3eb07b71d8673d19fb1f78f60b73d7f34dc33e9791f29f",
+  "supervisor": "4a50ad9c6d05e08d172343b6b0f5a55bae352fc2863916bdef73344abeaf8537",
+  "sampler": "e7d78566657074c0e407b7e861631c0ab2d0cd34b9eeaf54e129072fe9a57f73",
+  "procLib": "05b11a2145292b5fe500bb54efa0fd729fbb676630782faa693c840d7b9e6037",
+  "plan": "c5615f230da41fafca5adb2da7625ff0e81fab27c485a9f54b679ae220e60c5f",
+  "contract": "69514e06916199976016e487cb719519facb016677dbc8d0aa07077d4a197431",
+  "bootstrapSeed": 4097858470
+ },
+ "NOT_COMMITTED_ON_PURPOSE": {
+  "reason": "repository policy + this round’s classification: large/round artifacts are not part of the source checkpoint",
+  "ignoredByPolicy": [
+   "ai-training/** (.gitignore:24)",
+   "dist/ (.gitignore:2)"
+  ],
+  "untrackedRoundArtifacts": "root-level round reports/tools and scratch/ are left untracked; they are evidence, not the authoritative source"
+ },
+ "SOURCE_SEMANTICS_CHANGED_AFTER_T1G": false,
+ "HEAVY_BENCHMARK_RUN": false,
+ "PRIMARY_RERUN": false
+}

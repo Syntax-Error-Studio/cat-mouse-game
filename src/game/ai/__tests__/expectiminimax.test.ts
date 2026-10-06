@@ -27,6 +27,8 @@ import {
   mateActionCost,
   stepChildForParent,
   searchBestActionIterative,
+  DEADLINE_CHECK_INTERVAL,
+  EVAL_DEADLINE_CHECK_INTERVAL,
   type IterativeSearchResult,
   type IterationDiagnostic,
   MATE_SCORE,
@@ -3184,11 +3186,18 @@ test('F1A-2-A. deadline fires in the middle of a depth: current depth incomplete
 
 test('F1A-2-B/C. deadline mid-depth-2: attemptedDepth > completedDepth; answer = last completed depth', () => {
   const s = openArena({ cat: { r: 4, c: 4 }, mouse: { r: 6, c: 6 } });
-  // A fake clock that advances 1ms per SAMPLE. The clock is sampled once per
-  // DEADLINE_CHECK_INTERVAL=64 nodes: sample #1 at node 0 (t=1), #2 at node 0+64
-  // (t=2). Depth-1 of the arena is small (well under 64 nodes), so it fully
-  // completes before the deadline; depth-2 needs far more than 64 nodes, so the
-  // second sample (t=2) fires while depth-2 is still running → attempted>completed.
+  // A fake clock that advances 1ms per SAMPLE. The number of samples per depth is a property of the
+  // search's deadline-observation cadence (T1E-B: every node + every 64 evaluations), so this test
+  // CALIBRATES the deadline from an observed sample count instead of hard-coding a cadence:
+  // run depth 1 with a far-away deadline, count its samples, then set the deadline just past that —
+  // depth 1 completes, depth 2 is cut mid-way. The intent (a mid-depth deadline yields the last
+  // COMPLETED depth and never leaks partial work) is unchanged.
+  let calibrate = 0;
+  searchBestActionIterative(s, {
+    rules: noTrapRuleSet, maxDepthTurns: 1, maxNodes: 1_000_000,
+    useTT: false, useAlphaBeta: false, useMoveOrdering: false,
+    deadlineMs: 1_000_000, now: () => ++calibrate,
+  });
   let samples = 0;
   const r = searchBestActionIterative(s, {
     rules: noTrapRuleSet,
@@ -3197,7 +3206,7 @@ test('F1A-2-B/C. deadline mid-depth-2: attemptedDepth > completedDepth; answer =
     useTT: false,
     useAlphaBeta: false,
     useMoveOrdering: false,
-    deadlineMs: 2, // after the 2nd clock sample the deadline has passed
+    deadlineMs: calibrate + 2, // depth 1 (≈calibrate samples) completes; depth 2 is cut
     now: () => ++samples,
   });
   expect(samples).toBeGreaterThanOrEqual(2); // the clock was really sampled
@@ -3220,6 +3229,14 @@ test('F1A-2-B/C. deadline mid-depth-2: attemptedDepth > completedDepth; answer =
 
 test('F1A-2-D. partial root best does NOT leak into the returned answer', () => {
   const s = openArena({ cat: { r: 4, c: 4 }, mouse: { r: 6, c: 6 } });
+  // Calibrate the deadline from the observed sample count of depth 1 (see F1A-2-B/C): the number of
+  // clock samples per depth depends on the deadline-observation cadence, so it must not be hard-coded.
+  let calibrate = 0;
+  searchBestActionIterative(s, {
+    rules: noTrapRuleSet, maxDepthTurns: 1, maxNodes: 1_000_000,
+    useTT: false, useAlphaBeta: false, useMoveOrdering: false,
+    deadlineMs: 1_000_000, now: () => ++calibrate,
+  });
   let samples = 0;
   const r = searchBestActionIterative(s, {
     rules: noTrapRuleSet,
@@ -3228,7 +3245,7 @@ test('F1A-2-D. partial root best does NOT leak into the returned answer', () => 
     useTT: false,
     useAlphaBeta: false,
     useMoveOrdering: false,
-    deadlineMs: 2,
+    deadlineMs: calibrate + 2,
     now: () => ++samples,
   });
   // The deadline aborts depth-2; its partial root best must NOT be used.
@@ -3296,3 +3313,86 @@ test('F1A-2-F. maxNodes abort and deadline abort behave identically (same abort 
   expect(deadIt.completedDepth).toBe(0);
   expect(deadIt.attemptedDepth).toBe(1);
 });
+
+// ============================================================================
+// T1E-B §22/§23 — deadline-seam unit/semantic tests (A–L), deterministic mock clock.
+// The production seam observes the SAME absolute deadline authority at two points
+// (node-level every DEADLINE_CHECK_INTERVAL interior nodes; evaluator-batch every
+// EVAL_DEADLINE_CHECK_INTERVAL evaluateLeaf calls) and feeds a hit into the EXISTING
+// node-level abort result, so the in-flight iteration is discarded and the last
+// COMPLETED iteration is returned. No test asserts a wall-clock duration.
+// ============================================================================
+const T1EB_FAR = 1_000_000_000;
+const t1ebBase = { rules: noTrapRuleSet, maxDepthTurns: 4, maxNodes: 1_000_000, useTT: false, useAlphaBeta: false, useMoveOrdering: false } as const;
+const t1ebBig = () => openArena({ cat: { r: 4, c: 4 }, mouse: { r: 6, c: 6 } });
+
+test('T1E-B A/B/K. NO_DEADLINE and far-deadline searches return the EXACT same result', () => {
+  const s = t1ebBig();
+  const nd = searchBestActionIterative(s, { ...t1ebBase, deadlineMs: undefined });
+  const far = searchBestActionIterative(s, { ...t1ebBase, deadlineMs: T1EB_FAR, now: () => 1 });
+  expect(far.bestAction).toEqual(nd.bestAction);
+  expect(far.value).toBe(nd.value);
+  expect(far.mate).toBe(nd.mate);
+  expect(far.completedDepth).toBe(nd.completedDepth);
+  expect(far.attemptedDepth).toBe(nd.attemptedDepth);
+  expect(far.completed).toBe(nd.completed);
+});
+
+test('T1E-B §15. NO_DEADLINE adds ZERO clock reads (the seam returns before clock and counter)', () => {
+  const s = t1ebBig();
+  let reads = 0;
+  const r = searchBestActionIterative(s, { ...t1ebBase, deadlineMs: undefined, now: () => { reads++; return 1; } });
+  expect(reads).toBe(0);
+  expect(r.completed).toBe(true);
+});
+
+test('T1E-B C. a node-boundary deadline takes the EXISTING abort path', () => {
+  const s = t1ebBig();
+  const ctx = createSearchContext(noTrapRuleSet, 1_000_000, false);
+  ctx.deadlineMs = 500;
+  ctx.now = () => 1_000;
+  const r = searchResult(s, 3, ctx);
+  expect(ctx.diagnostics.deadlineCutoffs).toBeGreaterThan(0);
+  expect(r.completed).toBe(false);
+  expect(r.cacheable).toBe(false);
+  expect(Math.abs(r.value)).toBeLessThan(MATE_SCORE / 2);
+});
+
+test('T1E-B D/H/I/J. a deadline inside the evaluator batch aborts transactionally (no partial commit)', () => {
+  const s = t1ebBig();
+  let cal = 0;
+  searchBestActionIterative(s, { ...t1ebBase, maxDepthTurns: 1, deadlineMs: T1EB_FAR, now: () => ++cal });
+  let n = 0;
+  const r = searchBestActionIterative(s, { ...t1ebBase, maxDepthTurns: 4, deadlineMs: cal + 2, now: () => ++n });
+  const direct1 = searchBestAction(s, 1, createSearchContext(noTrapRuleSet, 1_000_000));
+  expect(r.completedDepth).toBe(1);
+  expect(r.attemptedDepth).toBeGreaterThan(1);
+  expect(r.iterations[r.iterations.length - 1].completed).toBe(false);
+  expect(r.bestAction).toEqual(direct1.action);
+  expect(r.value).toBe(direct1.value);
+  expect(r.mate).toBe(direct1.mate);
+});
+
+test('T1E-B E/F/G. the evaluator-batch cadence is observable and bounded by the node gate', () => {
+  const s = t1ebBig();
+  const nodes = searchBestActionIterative(s, { ...t1ebBase, deadlineMs: T1EB_FAR, now: () => 1 }).diagnostics.totalNodes;
+  let reads = 0;
+  searchBestActionIterative(s, { ...t1ebBase, deadlineMs: T1EB_FAR, now: () => { reads++; return 1; } });
+  expect(reads).toBeGreaterThanOrEqual(nodes);
+  let evals = 0;
+  // a NON-constant heurististic (a constant evaluator collapses the tree and would not exercise the seam)
+  searchBestActionIterative(s, { ...t1ebBase, maxDepthTurns: 4, deadlineMs: T1EB_FAR, now: () => 1, leafEvaluator: (st) => { evals++; return st.mousePosition.r * 7 + st.mousePosition.c * 3; } });
+  expect(evals).toBeGreaterThanOrEqual(EVAL_DEADLINE_CHECK_INTERVAL);
+});
+
+test('T1E-B L. the evaluator-batch counter is SEARCH-LOCAL (two consecutive searches read identically)', () => {
+  const s = t1ebBig();
+  const run = () => { let c = 0; searchBestActionIterative(s, { ...t1ebBase, deadlineMs: T1EB_FAR, now: () => { c++; return 1; } }); return c; };
+  expect(run()).toBe(run());
+});
+
+test('T1E-B. the frozen seam constants are exactly the resolved candidate (node 1, eval 64)', () => {
+  expect(DEADLINE_CHECK_INTERVAL).toBe(1);
+  expect(EVAL_DEADLINE_CHECK_INTERVAL).toBe(64);
+});
+

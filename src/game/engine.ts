@@ -56,6 +56,36 @@ import {
   classifyExecutedCatTurn, emptyProgressGuardMemory, type HardProgressGuardMemory,
 } from './ai/progressGuard';
 
+// ============================================================
+// S1 (T1D-M) — WORLD runtime entropy seam.
+//
+// The ONE runtime WORLD gameplay random draw (the ghost/butter spawn-cell
+// sample below) is routed through this seam. The DEFAULT is unchanged native
+// `Math.random()`: with no provider injected, behaviour is byte-for-byte the
+// pre-adoption behaviour (same draw count, same distribution, same selection).
+// Formal/replay evidence modes inject an explicit provider (the frozen
+// RUNTIME_ENTROPY_BROKER_V1) instead of relying on ambient randomness.
+//
+// This is an explicit injection seam only: no global Math.random replacement,
+// no MONKEYPATCH authority. MAP generation and AI-decision randomness are NOT
+// routed through it (they keep their own native/explicit paths).
+// ============================================================
+export type WorldEntropySource = (context: string) => number;
+let worldEntropySource: WorldEntropySource | null = null;
+
+/** Inject the WORLD runtime entropy provider, or `null` to restore native. */
+export function setWorldEntropySource(source: WorldEntropySource | null): void {
+  worldEntropySource = source;
+}
+/** True while the native default (Math.random) is in force. */
+export function getWorldEntropySourceIsNative(): boolean {
+  return worldEntropySource === null;
+}
+/** One WORLD runtime draw in [0,1): native by default, injected in formal/replay modes. */
+function worldRuntimeRandom(context: string): number {
+  return worldEntropySource === null ? Math.random() : worldEntropySource(context);
+}
+
 // --- Local types ---
 
 type CellData = {
@@ -430,7 +460,12 @@ function generateSingleButterPosition(
     config, board, tunnelCorners, mousePos, catPos, existingButters, trapPos, reserved,
   );
   if (valid.length === 0) return null;
-  return valid[Math.floor(Math.random() * valid.length)];
+  // S1: the draw goes through the seam; native default ⇒ identical to
+  // `valid[Math.floor(Math.random() * valid.length)]`.
+  const context = `${valid.map((v) => `${v.r},${v.c}`).join(';')}|m=${mousePos.r},${mousePos.c}|c=${catPos.r},${catPos.c}`
+    + `|t=${trapPos ? `${trapPos.r},${trapPos.c}` : '-'}|b=${existingButters.map((b) => `${b.r},${b.c}`).join(';')}`
+    + `|r=${reserved.map((b) => `${b.r},${b.c}`).join(';')}`;
+  return valid[Math.floor(worldRuntimeRandom(context) * valid.length)];
 }
 
 /**
