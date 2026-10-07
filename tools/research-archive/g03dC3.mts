@@ -3,20 +3,20 @@
  * Read-only. Uses ONLY the REAL Game-C Turn3 snapshot.
  */
 import { readFileSync } from 'node:fs';
-import { restoreHardRoot, type HardRootSnapshot } from './src/game/ai/hardHistory';
+import { restoreHardRoot, type HardRootSnapshot } from '../../src/game/ai/hardHistory';
 import {
   searchBestAction,
   createSearchContext,
   type SearchContext,
-} from './src/game/ai/expectiminimax';
-import { defaultRuleSet } from './src/game/ai/searchRules';
-import { evaluateForCat } from './src/game/ai/evaluation';
-import { simulateSearchAction } from './src/game/ai/simulator';
-import { generateLegalSearchActions } from './src/game/ai/legalActions';
-import { stateKey } from './src/game/ai/transposition';
-import { countReversals } from './src/game/ai/planQuality';
-import type { SearchAction } from './src/game/ai/searchTypes';
-import { GamePhase, PieceType } from './src/game/types';
+} from '../../src/game/ai/expectiminimax';
+import { defaultRuleSet } from '../../src/game/ai/searchRules';
+import { evaluateForCat } from '../../src/game/ai/evaluation';
+import { simulateSearchAction } from '../../src/game/ai/simulator';
+import { generateLegalSearchActions } from '../../src/game/ai/legalActions';
+import { stateKey } from '../../src/game/ai/transposition';
+import { countReversals } from '../../src/game/ai/planQuality';
+import type { SearchAction } from '../../src/game/ai/searchTypes';
+import { GamePhase, PieceType } from '../../src/game/types';
 
 const LOG_FILE = 'C:\\Users\\zheng\\Downloads\\real-failure-3games.txt';
 

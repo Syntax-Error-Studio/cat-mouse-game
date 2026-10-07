@@ -16,25 +16,25 @@
  *   node g03h-noncarry.run.mjs
  */
 import { readFileSync, writeFileSync } from 'node:fs';
-import type { GameEngineState } from './src/game/engine';
-import { PieceType } from './src/game/types';
-import { restoreHardRoot, type HardRootSnapshot } from './src/game/ai/hardHistory';
+import type { GameEngineState } from '../../src/game/engine';
+import { PieceType } from '../../src/game/types';
+import { restoreHardRoot, type HardRootSnapshot } from '../../src/game/ai/hardHistory';
 import {
   evaluateForCat,
   evaluateForCatDetailed,
   DEFAULT_EVALUATION_WEIGHTS,
   HEURISTIC_LIMIT,
-} from './src/game/ai/evaluation';
-import { EVALUATION_CORPUS } from './src/game/ai/__tests__/evaluationCorpus';
-import { defaultRuleSet } from './src/game/ai/searchRules';
-import { simulateSearchAction } from './src/game/ai/simulator';
-import { generateLegalSearchActions } from './src/game/ai/legalActions';
+} from '../../src/game/ai/evaluation';
+import { EVALUATION_CORPUS } from '../../src/game/ai/__tests__/evaluationCorpus';
+import { defaultRuleSet } from '../../src/game/ai/searchRules';
+import { simulateSearchAction } from '../../src/game/ai/simulator';
+import { generateLegalSearchActions } from '../../src/game/ai/legalActions';
 import {
   createSearchContext,
   searchResult,
   stepChildForParent,
   mateActionCost,
-} from './src/game/ai/expectiminimax';
+} from '../../src/game/ai/expectiminimax';
 
 function baselineLeaf(state: GameEngineState): number {
   const d = evaluateForCatDetailed(state);

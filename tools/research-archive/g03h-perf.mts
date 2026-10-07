@@ -14,16 +14,16 @@
  *   node g03h-perf.run.mjs
  */
 import { readFileSync, writeFileSync } from 'node:fs';
-import type { GameEngineState } from './src/game/engine';
-import { restoreHardRoot, type HardRootSnapshot } from './src/game/ai/hardHistory';
+import type { GameEngineState } from '../../src/game/engine';
+import { restoreHardRoot, type HardRootSnapshot } from '../../src/game/ai/hardHistory';
 import {
   evaluateForCat,
   evaluateForCatDetailed,
   DEFAULT_EVALUATION_WEIGHTS,
   HEURISTIC_LIMIT,
-} from './src/game/ai/evaluation';
-import { defaultRuleSet } from './src/game/ai/searchRules';
-import { planHardCatTurn } from './src/game/ai/hardTurnPlanner';
+} from '../../src/game/ai/evaluation';
+import { defaultRuleSet } from '../../src/game/ai/searchRules';
+import { planHardCatTurn } from '../../src/game/ai/hardTurnPlanner';
 
 function baselineLeaf(state: GameEngineState): number {
   const d = evaluateForCatDetailed(state);
