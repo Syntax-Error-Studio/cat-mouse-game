@@ -12,14 +12,14 @@
  *   - intra-turn continuation (NON_FORCED_INTRA_TURN_TIE candidate)
  *
  * Usage:
- *   npx tsx g03d.mts <logfile>
- *   npx tsx g03d.mts "C:\Users\zheng\Downloads\real-failure-3games.txt"
+ *   npx tsx tools/research-archive/g03d.mts <logfile>
+ *   npx tsx tools/research-archive/g03d.mts "C:\Users\zheng\Downloads\real-failure-3games.txt"
  */
 import { readFileSync } from 'node:fs';
 import { performance } from 'node:perf_hooks';
-import { catMove, catPlaceTrap, type GameEngineState } from './src/game/engine';
-import { GamePhase, PieceType, type Direction } from './src/game/types';
-import type { SearchAction, RuleSet } from './src/game/ai/searchTypes';
+import { catMove, catPlaceTrap, type GameEngineState } from '../../src/game/engine';
+import { GamePhase, PieceType, type Direction } from '../../src/game/types';
+import type { SearchAction, RuleSet } from '../../src/game/ai/searchTypes';
 import {
   searchBestAction,
   searchResult,
@@ -28,14 +28,14 @@ import {
   createSearchContext,
   type MateSide,
   type SearchContext,
-} from './src/game/ai/expectiminimax';
-import { evaluateForCat, evaluateForCatDetailed, type EvaluationContributions } from './src/game/ai/evaluation';
-import { defaultRuleSet } from './src/game/ai/searchRules';
-import { restoreHardRoot, type HardRootSnapshot } from './src/game/ai/hardHistory';
-import { stateKey } from './src/game/ai/transposition';
-import { simulateSearchAction } from './src/game/ai/simulator';
-import { generateLegalSearchActions } from './src/game/ai/legalActions';
-import { gameAffectingEqual } from './src/game/ai/stateCompare';
+} from '../../src/game/ai/expectiminimax';
+import { evaluateForCat, evaluateForCatDetailed, type EvaluationContributions } from '../../src/game/ai/evaluation';
+import { defaultRuleSet } from '../../src/game/ai/searchRules';
+import { restoreHardRoot, type HardRootSnapshot } from '../../src/game/ai/hardHistory';
+import { stateKey } from '../../src/game/ai/transposition';
+import { simulateSearchAction } from '../../src/game/ai/simulator';
+import { generateLegalSearchActions } from '../../src/game/ai/legalActions';
+import { gameAffectingEqual } from '../../src/game/ai/stateCompare';
 
 // ---------------------------------------------------------------------------
 // Parsing

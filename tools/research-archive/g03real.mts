@@ -1,14 +1,14 @@
 import { readFileSync } from 'node:fs';
 import { performance } from 'node:perf_hooks';
-import { restoreHardRoot, type HardRootSnapshot } from './src/game/ai/hardHistory';
-import { searchBestActionIterative, type IterativeSearchResult } from './src/game/ai/expectiminimax';
-import { defaultRuleSet } from './src/game/ai/searchRules';
-import { evaluateForCat } from './src/game/ai/evaluation';
-import { classifyGoalThreat } from './src/game/ai/threatClassifier';
-import { simulateSearchAction } from './src/game/ai/simulator';
-import { generateLegalSearchActions } from './src/game/ai/legalActions';
-import type { SearchAction } from './src/game/ai/searchTypes';
-import { GamePhase, PieceType } from './src/game/types';
+import { restoreHardRoot, type HardRootSnapshot } from '../../src/game/ai/hardHistory';
+import { searchBestActionIterative, type IterativeSearchResult } from '../../src/game/ai/expectiminimax';
+import { defaultRuleSet } from '../../src/game/ai/searchRules';
+import { evaluateForCat } from '../../src/game/ai/evaluation';
+import { classifyGoalThreat } from '../../src/game/ai/threatClassifier';
+import { simulateSearchAction } from '../../src/game/ai/simulator';
+import { generateLegalSearchActions } from '../../src/game/ai/legalActions';
+import type { SearchAction } from '../../src/game/ai/searchTypes';
+import { GamePhase, PieceType } from '../../src/game/types';
 
 /**
  * G0.3B FINAL REAL-SNAPSHOT VALIDATION (read-only).
@@ -22,8 +22,8 @@ import { GamePhase, PieceType } from './src/game/types';
  * RuleSet, TT policy, D3 move-ordering baseline profile.
  *
  * Usage:
- *   npx tsx g03real.mts <history-file> <runs-per-config>
- *   npx tsx g03real.mts "C:\Users\zheng\Downloads\hard-search-history-20260820.txt" 20
+ *   npx tsx tools/research-archive/g03real.mts <history-file> <runs-per-config>
+ *   npx tsx tools/research-archive/g03real.mts "C:\Users\zheng\Downloads\hard-search-history-20260820.txt" 20
  */
 const HISTORY_FILE = process.argv[2] ?? 'C:\\Users\\zheng\\Downloads\\hard-search-history-20260820.txt';
 const RUNS = Number(process.argv[3] ?? 20);

@@ -12,14 +12,14 @@
  * FIRST_FORCED_LOSS_ROOT (all actions mouse-mate at the deepest verified
  * proof) and reports whether a PREVIOUS root had a savable action.
  *
- * Run:  npx vite-node g02scan.mts <history.json>
+ * Run:  npx vite-node tools/research-archive/g02scan.mts <history.json>
  */
 import { readFileSync } from 'node:fs';
-import type { GameEngineState } from './src/game/engine';
-import { defaultRuleSet } from './src/game/ai/searchRules';
-import type { RuleSet, SearchAction } from './src/game/ai/searchTypes';
-import { simulateSearchAction } from './src/game/ai/simulator';
-import { generateLegalSearchActions } from './src/game/ai/legalActions';
+import type { GameEngineState } from '../../src/game/engine';
+import { defaultRuleSet } from '../../src/game/ai/searchRules';
+import type { RuleSet, SearchAction } from '../../src/game/ai/searchTypes';
+import { simulateSearchAction } from '../../src/game/ai/simulator';
+import { generateLegalSearchActions } from '../../src/game/ai/legalActions';
 import {
   searchBestActionIterative as iter,
   searchResult,
@@ -27,10 +27,10 @@ import {
   mateActionCost,
   createSearchContext,
   type MateSide,
-} from './src/game/ai/expectiminimax';
-import { evaluateForCat } from './src/game/ai/evaluation';
-import { restoreHardRoot, type HardSearchHistoryEntry } from './src/game/ai/hardHistory';
-import { stateKey } from './src/game/ai/transposition';
+} from '../../src/game/ai/expectiminimax';
+import { evaluateForCat } from '../../src/game/ai/evaluation';
+import { restoreHardRoot, type HardSearchHistoryEntry } from '../../src/game/ai/hardHistory';
+import { stateKey } from '../../src/game/ai/transposition';
 
 const BIG = 50_000_000;
 

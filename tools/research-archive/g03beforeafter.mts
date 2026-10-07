@@ -6,17 +6,17 @@
  * AFTER  = evalCache enabled (default, per-search Map).
  *
  * Usage:
- *   npx tsx g03beforeafter.mts <history-file> <runs>
+ *   npx tsx tools/research-archive/g03beforeafter.mts <history-file> <runs>
  */
 import { readFileSync } from 'node:fs';
 import { performance } from 'node:perf_hooks';
-import { restoreHardRoot, type HardRootSnapshot } from './src/game/ai/hardHistory';
-import { searchBestActionIterative, type IterativeSearchResult } from './src/game/ai/expectiminimax';
-import { defaultRuleSet } from './src/game/ai/searchRules';
-import { evaluateForCat } from './src/game/ai/evaluation';
-import { simulateSearchAction } from './src/game/ai/simulator';
-import type { SearchAction } from './src/game/ai/searchTypes';
-import { GamePhase, PieceType } from './src/game/types';
+import { restoreHardRoot, type HardRootSnapshot } from '../../src/game/ai/hardHistory';
+import { searchBestActionIterative, type IterativeSearchResult } from '../../src/game/ai/expectiminimax';
+import { defaultRuleSet } from '../../src/game/ai/searchRules';
+import { evaluateForCat } from '../../src/game/ai/evaluation';
+import { simulateSearchAction } from '../../src/game/ai/simulator';
+import type { SearchAction } from '../../src/game/ai/searchTypes';
+import { GamePhase, PieceType } from '../../src/game/types';
 
 const positional = process.argv.slice(2).filter((a) => !a.startsWith('--') && !a.includes(':') && !a.includes('\\'));
 const HISTORY_FILE = positional.find((a) => !/^\d+$/.test(a)) ?? 'C:\\Users\\zheng\\Downloads\\hard-search-history-20260820.txt';
@@ -114,7 +114,7 @@ function runOnce(state: ReturnType<typeof restoreHardRoot>, useCache: boolean): 
 //
 // For 100ms A/B, we compare current (cache ON) against G0.3B baseline data.
 
-import { createSearchContext, searchResult } from './src/game/ai/expectiminimax';
+import { createSearchContext, searchResult } from '../../src/game/ai/expectiminimax';
 
 function runFixedDepth(state: ReturnType<typeof restoreHardRoot>, depth: number, useCache: boolean): { ms: number; nodes: number } {
   const ctx = createSearchContext(defaultRuleSet, 10_000_000, false, true, true, 0, false);

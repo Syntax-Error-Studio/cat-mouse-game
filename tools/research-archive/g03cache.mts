@@ -6,13 +6,13 @@
  * bit-identical.
  *
  * Usage:
- *   npx tsx g03cache.mts <history-file>
+ *   npx tsx tools/research-archive/g03cache.mts <history-file>
  */
 import { readFileSync } from 'node:fs';
-import { restoreHardRoot, type HardRootSnapshot } from './src/game/ai/hardHistory';
-import { searchBestActionIterative, createSearchContext, searchResult } from './src/game/ai/expectiminimax';
-import { defaultRuleSet } from './src/game/ai/searchRules';
-import { evaluateForCat } from './src/game/ai/evaluation';
+import { restoreHardRoot, type HardRootSnapshot } from '../../src/game/ai/hardHistory';
+import { searchBestActionIterative, createSearchContext, searchResult } from '../../src/game/ai/expectiminimax';
+import { defaultRuleSet } from '../../src/game/ai/searchRules';
+import { evaluateForCat } from '../../src/game/ai/evaluation';
 
 const HISTORY_FILE = process.argv.find((a, i) => i > 1 && !a.startsWith('--') && !/^\d+$/.test(a) && !a.includes('\\')) ?? 'C:\\Users\\zheng\\Downloads\\hard-search-history-20260820.txt';
 

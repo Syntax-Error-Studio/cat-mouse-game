@@ -12,13 +12,13 @@
  * overhead polluted the search math.
  *
  * Usage:
- *   npx tsx g03fixed.mts <history-file>   (run in BOTH worktrees, diff output)
+ *   npx tsx tools/research-archive/g03fixed.mts <history-file>   (run in BOTH worktrees, diff output)
  */
 import { readFileSync } from 'node:fs';
-import { restoreHardRoot, type HardRootSnapshot } from './src/game/ai/hardHistory';
-import { searchBestActionIterative } from './src/game/ai/expectiminimax';
-import { defaultRuleSet } from './src/game/ai/searchRules';
-import { evaluateForCat } from './src/game/ai/evaluation';
+import { restoreHardRoot, type HardRootSnapshot } from '../../src/game/ai/hardHistory';
+import { searchBestActionIterative } from '../../src/game/ai/expectiminimax';
+import { defaultRuleSet } from '../../src/game/ai/searchRules';
+import { evaluateForCat } from '../../src/game/ai/evaluation';
 
 const HISTORY_FILE = process.argv.find((a, i) => i > 1 && !a.startsWith('--')) ?? 'C:\\Users\\zheng\\Downloads\\hard-search-history-20260820.txt';
 const isLegacy = process.argv.includes('--legacy');

@@ -8,14 +8,14 @@
  * separately, including whether the executed first move is the required
  * distance-INCREASING retreat.
  *
- * Run:  npx vite-node f1bprodbench.mts
+ * Run:  npx vite-node tools/research-archive/f1bprodbench.mts
  */
-import { computeCatAiTrajectory, type GameEngineState } from './src/game/engine';
+import { computeCatAiTrajectory, type GameEngineState } from '../../src/game/engine';
 import { fixtures, actionKeyOf, manhattan } from './f01fixtures.mts';
-import { defaultRuleSet } from './src/game/ai/searchRules';
-import type { RuleSet, SearchAction } from './src/game/ai/searchTypes';
-import { generateLegalSearchActions } from './src/game/ai/legalActions';
-import { simulateSearchAction } from './src/game/ai/simulator';
+import { defaultRuleSet } from '../../src/game/ai/searchRules';
+import type { RuleSet, SearchAction } from '../../src/game/ai/searchTypes';
+import { generateLegalSearchActions } from '../../src/game/ai/legalActions';
+import { simulateSearchAction } from '../../src/game/ai/simulator';
 import {
   searchResult,
   stepChildForParent,
@@ -23,7 +23,7 @@ import {
   createSearchContext,
   compareSearchScore,
   type MateSide,
-} from './src/game/ai/expectiminimax';
+} from '../../src/game/ai/expectiminimax';
 
 const NODES = 60_000;
 const DEPTH = 6;

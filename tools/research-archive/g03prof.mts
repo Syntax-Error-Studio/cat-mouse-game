@@ -5,16 +5,16 @@
  * with the SearchProfiler enabled, outputting a time-share ranking.
  *
  * Usage:
- *   npx tsx g03prof.mts <history-file> [depth] [runs]
- *   npx tsx g03prof.mts "C:\Users\zheng\Downloads\hard-search-history-20260820.txt" 2 10
+ *   npx tsx tools/research-archive/g03prof.mts <history-file> [depth] [runs]
+ *   npx tsx tools/research-archive/g03prof.mts "C:\Users\zheng\Downloads\hard-search-history-20260820.txt" 2 10
  */
 import { readFileSync } from 'node:fs';
 import { performance } from 'node:perf_hooks';
-import { restoreHardRoot, type HardRootSnapshot } from './src/game/ai/hardHistory';
-import { searchBestActionIterative, createSearchContext, searchResult, type SearchProfiler } from './src/game/ai/expectiminimax';
-import { defaultRuleSet } from './src/game/ai/searchRules';
-import { evaluateForCat } from './src/game/ai/evaluation';
-import { PieceType, GamePhase } from './src/game/types';
+import { restoreHardRoot, type HardRootSnapshot } from '../../src/game/ai/hardHistory';
+import { searchBestActionIterative, createSearchContext, searchResult, type SearchProfiler } from '../../src/game/ai/expectiminimax';
+import { defaultRuleSet } from '../../src/game/ai/searchRules';
+import { evaluateForCat } from '../../src/game/ai/evaluation';
+import { PieceType, GamePhase } from '../../src/game/types';
 
 const HISTORY_FILE = process.argv.find((a, i) => i > 1 && !a.startsWith('--') && !/^\d+$/.test(a)) ?? 'C:\\Users\\zheng\\Downloads\\hard-search-history-20260820.txt';
 const positional = process.argv.slice(2).filter((a) => !a.startsWith('--') && !a.includes(':') && !a.includes('\\'));
