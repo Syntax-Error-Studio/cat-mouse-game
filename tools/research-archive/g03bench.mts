@@ -6,18 +6,18 @@
  * comparison table.
  *
  * Usage:
- *   npx tsx g03bench.mts                    # full benchmark
- *   npx tsx g03bench.mts --before           # baseline only (no extension)
- *   npx tsx g03bench.mts --after            # after only (extension ON)
+ *   npx tsx tools/research-archive/g03bench.mts                    # full benchmark
+ *   npx tsx tools/research-archive/g03bench.mts --before           # baseline only (no extension)
+ *   npx tsx tools/research-archive/g03bench.mts --after            # after only (extension ON)
  */
-import { createInitialState, type GameEngineState } from './src/game/engine';
-import type { GameConfig } from './src/game/config';
-import { GamePhase, PieceType, CellType } from './src/game/types';
-import { searchBestActionIterative, type IterativeSearchResult } from './src/game/ai/expectiminimax';
-import { defaultRuleSet } from './src/game/ai/searchRules';
-import { evaluateForCat } from './src/game/ai/evaluation';
-import { classifyGoalThreat } from './src/game/ai/threatClassifier';
-import type { RuleSet } from './src/game/ai/searchTypes';
+import { createInitialState, type GameEngineState } from '../../src/game/engine';
+import type { GameConfig } from '../../src/game/config';
+import { GamePhase, PieceType, CellType } from '../../src/game/types';
+import { searchBestActionIterative, type IterativeSearchResult } from '../../src/game/ai/expectiminimax';
+import { defaultRuleSet } from '../../src/game/ai/searchRules';
+import { evaluateForCat } from '../../src/game/ai/evaluation';
+import { classifyGoalThreat } from '../../src/game/ai/threatClassifier';
+import type { RuleSet } from '../../src/game/ai/searchTypes';
 import { performance } from 'node:perf_hooks';
 
 // ---------------------------------------------------------------------------
