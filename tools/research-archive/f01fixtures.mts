@@ -3,11 +3,11 @@
  * modified). Imported by f01bench.mts and the focused probes so the fixture
  * geometry has exactly ONE definition.
  */
-import { createInitialState, type GameEngineState } from './src/game/engine';
-import type { GameConfig } from './src/game/config';
-import { GamePhase, PieceType, CellType, DIRECTIONS, type Direction } from './src/game/types';
-import { defaultRuleSet } from './src/game/ai/searchRules';
-import type { RuleSet } from './src/game/ai/searchTypes';
+import { createInitialState, type GameEngineState } from '../../src/game/engine';
+import type { GameConfig } from '../../src/game/config';
+import { GamePhase, PieceType, CellType, DIRECTIONS, type Direction } from '../../src/game/types';
+import { defaultRuleSet } from '../../src/game/ai/searchRules';
+import type { RuleSet } from '../../src/game/ai/searchTypes';
 
 export type P = { r: number; c: number };
 

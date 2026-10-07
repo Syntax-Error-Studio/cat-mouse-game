@@ -9,9 +9,9 @@
  * Uses ONLY the exported SNAPSHOT_JSON (no reconstruction).
  */
 import { readFileSync, existsSync } from 'node:fs';
-import { catMove, catPlaceTrap, type GameEngineState } from './src/game/engine';
-import { GamePhase, PieceType, type Direction } from './src/game/types';
-import type { SearchAction, RuleSet } from './src/game/ai/searchTypes';
+import { catMove, catPlaceTrap, type GameEngineState } from '../../src/game/engine';
+import { GamePhase, PieceType, type Direction } from '../../src/game/types';
+import type { SearchAction, RuleSet } from '../../src/game/ai/searchTypes';
 import {
   searchBestAction,
   searchResult,
@@ -19,13 +19,13 @@ import {
   mateActionCost,
   createSearchContext,
   type MateSide,
-} from './src/game/ai/expectiminimax';
-import { evaluateForCat } from './src/game/ai/evaluation';
-import { defaultRuleSet } from './src/game/ai/searchRules';
-import { restoreHardRoot, type HardRootSnapshot } from './src/game/ai/hardHistory';
-import { stateKey } from './src/game/ai/transposition';
-import { simulateSearchAction } from './src/game/ai/simulator';
-import { generateLegalSearchActions } from './src/game/ai/legalActions';
+} from '../../src/game/ai/expectiminimax';
+import { evaluateForCat } from '../../src/game/ai/evaluation';
+import { defaultRuleSet } from '../../src/game/ai/searchRules';
+import { restoreHardRoot, type HardRootSnapshot } from '../../src/game/ai/hardHistory';
+import { stateKey } from '../../src/game/ai/transposition';
+import { simulateSearchAction } from '../../src/game/ai/simulator';
+import { generateLegalSearchActions } from '../../src/game/ai/legalActions';
 
 const DIR: Record<string, Direction> = {
   ArrowUp: { key: 'ArrowUp', dr: -1, dc: 0, label: '↑' },

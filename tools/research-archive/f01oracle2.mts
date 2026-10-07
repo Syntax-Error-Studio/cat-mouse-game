@@ -22,9 +22,9 @@
  *     first step of `computeCatAiTrajectory` (which contains the BFS fallback
  *     layer that a bare `catAiMove` call misses).
  *
- * Run:  npx vite-node f01oracle2.mts
+ * Run:  npx vite-node tools/research-archive/f01oracle2.mts
  */
-import { catAiMove, computeCatAiTrajectory, type GameEngineState } from './src/game/engine';
+import { catAiMove, computeCatAiTrajectory, type GameEngineState } from '../../src/game/engine';
 import {
   searchBestAction,
   searchResult,
@@ -33,12 +33,12 @@ import {
   mateActionCost,
   compareSearchScore,
   type MateSide,
-} from './src/game/ai/expectiminimax';
-import { defaultRuleSet } from './src/game/ai/searchRules';
-import type { RuleSet } from './src/game/ai/searchTypes';
-import { simulateSearchAction } from './src/game/ai/simulator';
-import { generateLegalSearchActions } from './src/game/ai/legalActions';
-import { evaluateForCat } from './src/game/ai/evaluation';
+} from '../../src/game/ai/expectiminimax';
+import { defaultRuleSet } from '../../src/game/ai/searchRules';
+import type { RuleSet } from '../../src/game/ai/searchTypes';
+import { simulateSearchAction } from '../../src/game/ai/simulator';
+import { generateLegalSearchActions } from '../../src/game/ai/legalActions';
+import { evaluateForCat } from '../../src/game/ai/evaluation';
 import { fixtures, noTrapRuleSet, actionKeyOf, dirOfDelta, manhattan } from './f01fixtures.mts';
 
 const D = Number(process.env.F01_ORACLE_DEPTH ?? 6);
