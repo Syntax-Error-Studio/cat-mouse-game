@@ -12,20 +12,20 @@
  * evaluator, RuleSet, TT policy, D3 move-ordering baseline.
  *
  * Usage (LEGACY worktree):
- *   npx tsx g03three.mts --legacy <history-file> <runs>
+ *   npx tsx tools/research-archive/g03three.mts --legacy <history-file> <runs>
  * Usage (current worktree):
- *   npx tsx g03three.mts --mode off   <history-file> <runs>
- *   npx tsx g03three.mts --mode order <history-file> <runs>
+ *   npx tsx tools/research-archive/g03three.mts --mode off   <history-file> <runs>
+ *   npx tsx tools/research-archive/g03three.mts --mode order <history-file> <runs>
  */
 import { readFileSync } from 'node:fs';
 import { performance } from 'node:perf_hooks';
-import { restoreHardRoot, type HardRootSnapshot } from './src/game/ai/hardHistory';
-import { searchBestActionIterative, type IterativeSearchResult } from './src/game/ai/expectiminimax';
-import { defaultRuleSet } from './src/game/ai/searchRules';
-import { evaluateForCat } from './src/game/ai/evaluation';
-import { simulateSearchAction } from './src/game/ai/simulator';
-import type { SearchAction } from './src/game/ai/searchTypes';
-import { GamePhase, PieceType } from './src/game/types';
+import { restoreHardRoot, type HardRootSnapshot } from '../../src/game/ai/hardHistory';
+import { searchBestActionIterative, type IterativeSearchResult } from '../../src/game/ai/expectiminimax';
+import { defaultRuleSet } from '../../src/game/ai/searchRules';
+import { evaluateForCat } from '../../src/game/ai/evaluation';
+import { simulateSearchAction } from '../../src/game/ai/simulator';
+import type { SearchAction } from '../../src/game/ai/searchTypes';
+import { GamePhase, PieceType } from '../../src/game/types';
 
 const isLegacy = process.argv.includes('--legacy');
 const modeIdx = process.argv.indexOf('--mode');

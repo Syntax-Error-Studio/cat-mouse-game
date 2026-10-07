@@ -1,9 +1,9 @@
 import { readFileSync } from 'node:fs';
 import { performance } from 'node:perf_hooks';
-import { restoreHardRoot, type HardRootSnapshot } from './src/game/ai/hardHistory';
-import { searchBestActionIterative } from './src/game/ai/expectiminimax';
-import { defaultRuleSet } from './src/game/ai/searchRules';
-import { evaluateForCat } from './src/game/ai/evaluation';
+import { restoreHardRoot, type HardRootSnapshot } from '../../src/game/ai/hardHistory';
+import { searchBestActionIterative } from '../../src/game/ai/expectiminimax';
+import { defaultRuleSet } from '../../src/game/ai/searchRules';
+import { evaluateForCat } from '../../src/game/ai/evaluation';
 
 const text = readFileSync('C:\\Users\\zheng\\Downloads\\hard-search-history-20260820.txt', 'utf8');
 const blocks = text.split(/Turn\s*#(\d+)/).slice(1);
