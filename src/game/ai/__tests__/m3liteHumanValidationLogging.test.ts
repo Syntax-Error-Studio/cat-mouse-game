@@ -29,6 +29,7 @@ import {
   progressGuardHeaderLine, formatProgressGuardBlock, formatHistoryProgressGuard, progressGuardMemoryMissing,
   type ProgressGuardLogFields,
 } from '../progressGuardLog';
+import { game5TurnRoot } from './fixtures/frozenFixtures';
 
 const rules = createEngineRuleSet();
 const label = (a: SearchAction): string => a.type === 'catStep' ? a.direction!.key.slice(5)[0] : a.type === 'catPlaceTrap' ? 'T' : '?';
@@ -44,13 +45,7 @@ function sampleGuard(): ProgressGuardLogFields {
   };
 }
 
-/** Game5 T15 root from the F2B-1.4 parsed-log SNAPSHOT authority. */
-function game5Root(turn: number): GameEngineState {
-  const parsed = JSON.parse(readFileSync('ai-training/f2b14/parsed_log.json', 'utf8'));
-  const rec = parsed.turns.find((x: { turn: number; snapshotJson?: string }) => x.turn === turn && x.snapshotJson);
-  expect(rec).toBeTruthy();
-  return restoreHardRoot(JSON.parse(rec.snapshotJson));
-}
+/** Game5 T15 root — the bundled frozen F2B-1.4 SNAPSHOT record. */
 
 /** Minimal full GameEngineState (default board) for snapshot round-trip tests. */
 function canonState(): GameEngineState {
@@ -190,7 +185,7 @@ describe('G0.4F-2B-1.8 M3-lite human-validation logging', () => {
   it('D7: production AI plan unchanged with guard OFF (frozen pre-1.8 authority, P26 settings)', () => {
     HARD_PROGRESS_GUARD_CONFIG.enabled = false;
     setHardLeafMode('baseline_hole_corrected');
-    const root = game5Root(15);
+    const root = game5TurnRoot(15);
     const p = planHardCatTurn(root, {
       rules, timeBudgetMs: 600000, maxDepthTurns: 2, maxNodes: 2_000_000,
       leafEvaluator: evaluateCorrectedHoleForCat, refutation: { enabled: false },

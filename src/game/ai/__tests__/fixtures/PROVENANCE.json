@@ -1,0 +1,81 @@
+{
+ "purpose": "Portable copies of the frozen experiment states that the AI regression tests need. Extracted verbatim from the local ai-training/ authorities (git-ignored by repository policy, .gitignore ai-training/), so a fresh GitHub clone can run the suite without that directory.",
+ "extractedAt": "2026-10-13",
+ "extractionRule": "Only the HardRootSnapshot game-affecting fields are kept; debug-only state fields (catActionLog, gameEventLog, lastHardSearch, hardSearchHistory, message) are dropped. Every record carries the authority stateKey (or the timeline scalars it cross-checks against) plus a sha256 over the canonical snapshot JSON.",
+ "originFiles": {
+  "d01": {
+   "path": "ai-training/d01/exact_teacher_audit_roots.ndjson",
+   "sha256": "084fae3f1dae76ee173b4ad823b3d68e6a42002a16e874e25c961a1c579c78f8",
+   "bytes": 185551,
+   "trackedInGit": false
+  },
+  "f0": {
+   "path": "ai-training/f0/f0_timelines.json",
+   "sha256": "39513aa52548a12af75c88677532a8b38da7a609f63c4476f0f902cfcb5a46a9",
+   "bytes": 639117,
+   "trackedInGit": false
+  },
+  "f03": {
+   "path": "ai-training/f03/threat_onset.json",
+   "sha256": "61201433034967362face5ed330afe9d2171629e10297b991a0e65a475176447",
+   "bytes": 11156,
+   "trackedInGit": false
+  },
+  "f2b14": {
+   "path": "ai-training/f2b14/parsed_log.json",
+   "sha256": "720daed6159882c0976bd1d7c06c33350577e543bb8d1fe58fea9bb611de162c",
+   "bytes": 133520,
+   "trackedInGit": false
+  }
+ },
+ "droppedDebugKeysByRecord": {
+  "G4_BAD_boundary": [],
+  "G4_GOOD_boundary": [],
+  "G16T8": [
+   "catActionLog",
+   "gameEventLog",
+   "hardSearchHistory",
+   "lastHardSearch",
+   "message"
+  ],
+  "G17T2": [
+   "catActionLog",
+   "gameEventLog",
+   "hardSearchHistory",
+   "lastHardSearch",
+   "message"
+  ],
+  "G19T7": [
+   "catActionLog",
+   "gameEventLog",
+   "hardSearchHistory",
+   "lastHardSearch",
+   "message"
+  ],
+  "G24T1": [
+   "catActionLog",
+   "gameEventLog",
+   "hardSearchHistory",
+   "lastHardSearch",
+   "message"
+  ],
+  "game5_T4": [],
+  "game5_T5": [],
+  "game5_T14": [],
+  "game5_T15": []
+ },
+ "fixtures": [
+  "g4_boundaries.d01.json",
+  "turn_roots.f0.json",
+  "threat_authority.f03.json",
+  "game5_turns.f2b14.json"
+ ],
+ "notPorted": [
+  {
+   "path": "g03o_lib.mts + <author-local Downloads>/post-g03h-real-failure-5games.txt",
+   "usedBy": "boundedPlanRefutation.test.ts (G0.3W real-corpus G4/G1 regressions)",
+   "status": "BLOCKED — the corpus is an author-local file outside the repository and is no longer present on this machine (verified 2026-10-13: the Downloads folder exists, the file does not). Its 4 regressions therefore SKIP explicitly; no substitute state was invented and no expectation was rewritten.",
+   "redaction": "The machine-specific directory prefix is deliberately not recorded here: it is provenance prose, not a dependency. Test code must never resolve an author-absolute path (asserted by frozenFixtureIntegrity.test.ts F3)."
+  }
+ ]
+}

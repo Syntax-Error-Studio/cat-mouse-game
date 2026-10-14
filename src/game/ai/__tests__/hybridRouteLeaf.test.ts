@@ -15,13 +15,13 @@
  *   K. single flag source of truth
  *   L. DebugInfo mode label semantics (BASELINE / HYBRID_V1 / HYBRID_V2)
  *
- * G19/G17/G4 fixtures are reconstructed from the frozen ai-training
- * authorities (SNAPSHOT_JSON restore + real RuleSet enumeration), so these
- * are REAL production-evaluator regressions, not pinned-literal masquerades.
+ * G19/G17/G4 fixtures are the repository-bundled frozen records
+ * (`./fixtures/*.json`, restored with the existing SNAPSHOT_JSON restore tooling
+ * + real RuleSet enumeration), so these are REAL production-evaluator
+ * regressions, not pinned-literal masquerades.
  */
 /// <reference types="node" />
 import { describe, it, expect, beforeEach } from 'vitest';
-import { readFileSync } from 'node:fs';
 import { createInitialState, createEngineRuleSet, type GameEngineState } from '../../engine';
 import { DEFAULT_CONFIG } from '../../config';
 import { Difficulty, GamePhase, PieceType, CellType, DIRECTIONS } from '../../types';
@@ -36,10 +36,10 @@ import {
   hybridRouteV2EvaluateForCat, evaluateHybridRouteV2Eligible,
 } from '../hybridRouteLeaf';
 import { HARD_LEAF_MODE_CONFIG, HARD_LEAF_MODE_DEFAULT } from '../searchConfig';
-import { restoreHardRoot, type HardRootSnapshot } from '../hardHistory';
 import { enumerateFullTurnLegacy } from '../turnBoundary';
 import { simulateSearchAction } from '../simulator';
 import { stateKey } from '../transposition';
+import { g4Boundaries, f0TurnRoot, f03ThreatAuthority } from './fixtures/frozenFixtures';
 
 const rules = createEngineRuleSet();
 const label = (a: SearchAction): string => a.type === 'catStep' ? a.direction!.key.slice(5)[0] : a.type === 'catPlaceTrap' ? 'T' : '?';
@@ -52,28 +52,6 @@ function f12ConfirmedMath(state: GameEngineState): number {
   const h = evaluateHybridRouteV2Eligible(state, productionValueNet);
   if (!Number.isFinite(h)) return evaluateForCat(state);
   return h;
-}
-
-/** Load the G4 GOOD/BAD boundary snapshots from the frozen corpus ndjson. */
-function g4Boundaries(): { good: GameEngineState; bad: GameEngineState } {
-  const lines = readFileSync('ai-training/d01/exact_teacher_audit_roots.ndjson', 'utf8').trim().split('\n').filter((l: string) => l.length > 0);
-  let goodSnap: HardRootSnapshot | null = null, badSnap: HardRootSnapshot | null = null;
-  for (const line of lines) {
-    const rec = JSON.parse(line);
-    if (rec.source === 'G4_GOOD_boundary') goodSnap = rec.snapshot as HardRootSnapshot;
-    else if (rec.source === 'G4_BAD_boundary') badSnap = rec.snapshot as HardRootSnapshot;
-  }
-  expect(goodSnap).toBeTruthy();
-  expect(badSnap).toBeTruthy();
-  return { good: restoreHardRoot(goodSnap!), bad: restoreHardRoot(badSnap!) };
-}
-
-/** Reconstruct a game turn root from the F0 timeline SNAPSHOT_JSON authority. */
-function restoreTurnRoot(game: number, turn: number): GameEngineState {
-  const t = JSON.parse(readFileSync('ai-training/f0/f0_timelines.json', 'utf8'));
-  const entry = t[String(game)].turns.find((x: { turn: number }) => x.turn === turn);
-  expect(entry).toBeTruthy();
-  return restoreHardRoot(entry.root as HardRootSnapshot);
 }
 
 const DIR_BY_CHAR: Record<string, Direction> = {
@@ -95,13 +73,11 @@ function replayPlan(root: GameEngineState, tokens: string[]): GameEngineState {
   return cur;
 }
 
-// ---- G19 real end states (reconstruct from ai-training authority) ----
+// ---- G19 real end states (from the bundled F0.3 authority) ----
 function g19EndStates(): { state: GameEngineState; witness: string; forced: boolean }[] {
-  const f03 = JSON.parse(readFileSync('ai-training/f03/threat_onset.json', 'utf8'));
-  const enumData = f03.games['G19_T7_ENUM'];
   const forcedMap = new Map<string, boolean>();
-  for (const d of enumData.detail) forcedMap.set(d.witness as string, d.forced as boolean);
-  const root = restoreTurnRoot(19, 7);
+  for (const d of f03ThreatAuthority().g19t7.detail) forcedMap.set(d.witness, d.forced);
+  const root = f0TurnRoot('G19T7');
   const ends = enumerateFullTurnLegacy(root, rules);
   const seen = new Set<string>();
   const out: { state: GameEngineState; witness: string; forced: boolean }[] = [];
@@ -118,13 +94,12 @@ function g19EndStates(): { state: GameEngineState; witness: string; forced: bool
   return out;
 }
 
-// ---- G17 safe/unsafe pair (from F03 arms authority) ----
+// ---- G17 safe/unsafe pair (from the bundled F0.3 arms authority) ----
 function g17Pair(): { safe: GameEngineState; unsafe: GameEngineState } {
-  const f03 = JSON.parse(readFileSync('ai-training/f03/threat_onset.json', 'utf8'));
-  const arm = f03.arms['G17T2'];
-  const root = restoreTurnRoot(17, 2);
-  const prodTokens: string[] = arm.PROD_PLAN.map((t: string) => (t === 'PT' ? 'T' : t));
-  const deepTokens: string[] = arm.DEEP_PLAN.map((t: string) => (t === 'PT' ? 'T' : t));
+  const arm = f03ThreatAuthority().g17t2;
+  const root = f0TurnRoot('G17T2');
+  const prodTokens: string[] = arm.PROD_PLAN.map((t) => (t === 'PT' ? 'T' : t));
+  const deepTokens: string[] = arm.DEEP_PLAN.map((t) => (t === 'PT' ? 'T' : t));
   return { safe: replayPlan(root, prodTokens), unsafe: replayPlan(root, deepTokens) };
 }
 

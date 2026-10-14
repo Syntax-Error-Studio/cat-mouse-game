@@ -1,3 +1,13 @@
+> **【文档性质说明 · 2026-10-13 追加，不改动下文任何原始记录】**
+>
+> 本文件的标题与正文实际是 **Phase E0 的实验任务书**（下一阶段的规则冻结、EvaluationBreakdown、benchmark corpus 等要求），**不是 Phase D4 的验收报告**。首行 H1 已经声明 `Phase E0`，第 3 行「Phase D4 已验收通过。」是全文唯一与 D4 相关的陈述。
+>
+> E0 的执行结果请看 [`E0-final-report.md`](./E0-final-report.md)（H1：`Phase E0 — Evaluation Foundation + Benchmark Corpus · 最终报告`，状态「已完成并停止」）。阅读定位与同类错位文档见 [`docs/REPORTS_INDEX.md`](./docs/REPORTS_INDEX.md)。
+>
+> 以下为原始记录，逐字保留。
+
+---
+
 # Phase E0：Evaluation Foundation + Benchmark Corpus
 
 Phase D4 已验收通过。

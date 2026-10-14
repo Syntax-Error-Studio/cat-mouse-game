@@ -2,11 +2,27 @@
  * G0.4E-1.1 — hybridLeaf production integration HARDENED tests.
  *
  * §1 single flag source; §2 strict eligibility; §3 golden ValueNet parity;
- * §4 exact fingerprint; §5 real fail-closed (NaN/+Inf/throw); §6 real G4;
- * §7 real call-site wiring; §8 default OFF.
+ * §4 exact fingerprint; §5 real fail-closed (composition + guards);
+ * §6 REAL G4 regression (restored frozen states through the live production
+ * evaluator); §8 default OFF.
+ *
+ * The real CALL-OBSERVATION evidence (§7 — the leaf being INVOKED by the
+ * production search) lives in `hybridLeafCallObservation.test.ts`, because that
+ * file has to mock `../hybridLeaf` to instrument the resolved leaf. Mocking here
+ * would destroy the §1/§8 resolver-IDENTITY claims, which are separate evidence
+ * and are kept intact.
+ *
+ * P0-1 remediation notes:
+ *   - S6 used to compare two pinned literals against each other, which no
+ *     model change could ever fail. It now restores the frozen G4 GOOD/BAD
+ *     boundary states and calls the CURRENT production `hybridEvaluateForCat`.
+ *   - G4 evidence here is a LEAF-RANKING claim (one static state vs another).
+ *     Whole-search/whole-game G4 behaviour is a different claim and is NOT made
+ *     here; see boundedPlanRefutation.test.ts §10-§12 for the search-level G4
+ *     regressions (those still need the non-portable real-game corpus).
  */
 import { describe, it, expect, beforeEach } from 'vitest';
-import { createInitialState, endTurn, computeCatAiTrajectory, catAiMove, type GameEngineState } from '../../engine';
+import { createInitialState, endTurn, type GameEngineState } from '../../engine';
 import { DEFAULT_CONFIG } from '../../config';
 import { Difficulty } from '../../types';
 import { evaluateForCat } from '../evaluation';
@@ -17,31 +33,25 @@ import {
 } from '../hybridLeaf';
 import { HYBRID_WEIGHTS_FINGERPRINT } from '../hybridWeights';
 import { HARD_LEAF_MODE_CONFIG, HARD_LEAF_MODE_DEFAULT } from '../searchConfig';
-
-// =============================================================
-// FROZEN GOLDEN FIXTURES (G0.4E-1.1 §3) — expected ValueNet values
-// computed ONCE from the offline optimized authority
-// (ai-training/ts-bridge/valuenet_infer_opt.ts, same weights +
-//  sparse math). These are independent of productionValueNet.
-// =============================================================
-// expected values from the offline authority (float64):
-//   canonical normal    -> -0.6383722382
-//   carrying butter     -> -0.5526142062
-//   trap present        -> -0.6941829879
-//   no trap             -> -0.5123456789  (placeholder, filled by real run below)
-//   G4 GOOD             ->  (filled)
-//   G4 BAD              ->  (filled)
-// NOTE: the exact expected numbers are captured from the OFFLINE optimized
-// evaluator and pinned here; productionValueNet must match within 1e-12.
-// (The placeholder values below are replaced by the authoritative ones in
-//  d03_golden.ts; the test compares against them.)
+import { stateKey } from '../transposition';
+import { g4Boundaries } from './fixtures/frozenFixtures';
+import { G4_AUDIT_GOLDENS, G4_BASELINE_RECORDED } from './fixtures/g4Goldens';
 
 function freshState(difficulty: Difficulty = Difficulty.Hard, overrides: Record<string, unknown> = {}): GameEngineState {
   return createInitialState({ ...DEFAULT_CONFIG, difficulty, ...overrides } as Parameters<typeof createInitialState>[0]);
 }
 
+/** The frozen G4 scores. See `./fixtures/g4Goldens.ts` for the provenance of
+ *  each class: the audit goldens VERIFY the live model output, they are no
+ *  longer operands of a constant-vs-constant comparison. */
+const G4_FROZEN = {
+  ...G4_AUDIT_GOLDENS,
+  baselineGood: G4_BASELINE_RECORDED.good,
+  baselineBad: G4_BASELINE_RECORDED.bad,
+};
+
 describe('G0.4E-1.1 hybridLeaf hardening', () => {
-  beforeEach(() => setHardLeafMode('baseline'));
+  beforeEach(() => { setHardLeafMode('baseline'); });
 
   // ---- §1 single source of truth ----
   it('S1: setHardLeafMode writes the single config source; no second state', () => {
@@ -142,7 +152,7 @@ describe('G0.4E-1.1 hybridLeaf hardening', () => {
 
   // ---- §5 real fail-closed ----
   it('S5: computeHybridFromParts returns NaN for nonfinite ValueNet; clamps nonfinite eval', () => {
-    // nonfinite ValueNet -> NaN (fail-closed on model fault)
+    // nonfinite ValueNet -> NaN (fail-closed signal to the wrapper)
     expect(Number.isNaN(computeHybridFromParts(1, NaN))).toBe(true);
     expect(Number.isNaN(computeHybridFromParts(1, Infinity))).toBe(true);
     expect(Number.isNaN(computeHybridFromParts(1, -Infinity))).toBe(true);
@@ -164,72 +174,78 @@ describe('G0.4E-1.1 hybridLeaf hardening', () => {
     expect(hybridEvaluateForCat(easy)).toBe(evaluateForCat(easy));
   });
 
-  it('S5: nonfinite ValueNet result falls back to evaluateForCat (via injected parts)', () => {
-    // Simulate a model fault by forcing computeHybridFromParts to produce NaN
-    // and verifying hybridEvaluateForCat's guard path returns evaluateForCat.
-    // (Production always uses productionValueNet; the NaN path is exercised
-    // through computeHybridFromParts + the hybrid guard.)
-    const st = freshState(Difficulty.Hard);
-    const h = computeHybridFromParts(evaluateForCat(st), NaN);
-    expect(Number.isNaN(h)).toBe(true);
-    // the hybrid wrapper returns evaluateForCat when h is nonfinite
-    // (covered by unit-level: hybrid = computeHybridFromParts; if NaN -> baseline)
+  it('S5: the production wrapper composes exactly evaluateForCat + ValueNet on eligible states and never leaks a nonfinite leaf', () => {
+    // Wrapper contract, checked against the LIVE model rather than against a
+    // hand-fed NaN: on an eligible state the returned value must be precisely
+    // computeHybridFromParts(e, productionValueNet(s)) — the finite branch — and
+    // on an ineligible state precisely evaluateForCat(s) — the fallback branch.
+    const eligible = freshState(Difficulty.Hard);
+    expect(isHybridEligibleState(eligible)).toBe(true);
+    const e = evaluateForCat(eligible);
+    const v = productionValueNet(eligible);
+    expect(hybridEvaluateForCat(eligible)).toBe(computeHybridFromParts(e, v));
+    expect(Number.isFinite(hybridEvaluateForCat(eligible))).toBe(true);
+
+    // no leaf the production wrapper can produce may be nonfinite: sweep real
+    // search-successor-shaped states (ghost + debt + wall + non-hard included).
+    const wall = { ...eligible, board: eligible.board.map((row) => row.map((c) => ({ ...c }))) } as GameEngineState;
+    wall.board[0][0] = { ...wall.board[0][0], type: 'wall' as never };
+    const corpus: GameEngineState[] = [
+      eligible,
+      { ...eligible, pendingButterSpawns: [{ r: 2, c: 3, blockedMaterializations: 0 }] } as GameEngineState,
+      { ...eligible, pendingButterPlacementDebt: 2 } as GameEngineState,
+      wall,
+      freshState(Difficulty.Easy),
+      endTurn(freshState(Difficulty.Hard)),
+    ];
+    for (const st of corpus) {
+      const out = hybridEvaluateForCat(st);
+      expect(Number.isFinite(out)).toBe(true);
+      if (!isHybridEligibleState(st)) expect(out).toBe(evaluateForCat(st));
+    }
   });
 
-  // ---- §6 real G4 regression (pinned frozen values, no external file dep) ----
-  it('S6: G4 GOOD > BAD — pinned hybrid values from the frozen authority', () => {
-    // The G4 GOOD/BAD hybrid values were computed via the production hybrid on
-    // the frozen exact snapshots (node audit). Pin the ordering + values.
-    const good = 0.13444009609896948;
-    const bad = -0.010821052917053802;
-    expect(good).toBeGreaterThan(bad);
-    // and the ValueNet component alone (pinned from offline authority) orders
-    // GOOD > BAD, so the hybrid cannot reverse it on these states.
-    const vGood = 0.6572226744572904;
-    const vBad = -0.06693379475773628;
+  // ---- §6 REAL G4 regression (P0-1) ----
+  it('S6: G4 GOOD > BAD — the LIVE production Hybrid V1 evaluator on the restored frozen states', () => {
+    const { good, bad, goodRecord, badRecord } = g4Boundaries();
+    // identity: the restored state IS the frozen audit state (loader already
+    // verified snapshot digest + stateKey; assert the key we hold matches).
+    expect(stateKey(good)).toBe(goodRecord.stateKey);
+    expect(stateKey(bad)).toBe(badRecord.stateKey);
+    // The pair is NOT single-variable: parsed from the frozen records, the three
+    // differences are cat (3,5)->(3,7), trap (2,4)->(2,3) and one box
+    // (4,4)->(3,8); mouse (4,7), butter, side-to-move and the counters match.
+    // The assertions below pin only the cat coordinate and the key difference.
+    expect(`${good.catPosition.r},${good.catPosition.c}`).toBe('3,7');
+    expect(`${bad.catPosition.r},${bad.catPosition.c}`).toBe('3,5');
+    expect(stateKey(good)).not.toBe(stateKey(bad));
+
+    // domain: this may be called a Hybrid V1 regression only if both states are
+    // inside V1's legal enable domain (otherwise the wrapper would silently be
+    // reporting the baseline it fell back to).
+    expect(isHybridEligibleState(good)).toBe(true);
+    expect(isHybridEligibleState(bad)).toBe(true);
+
+    // the actual production call.
+    const vGood = hybridEvaluateForCat(good);
+    const vBad = hybridEvaluateForCat(bad);
+
+    // golden values now VERIFY the model output (they were the whole test before).
+    expect(vGood).toBe(G4_FROZEN.v1Good);
+    expect(vBad).toBe(G4_FROZEN.v1Bad);
+    expect(productionValueNet(good)).toBe(G4_FROZEN.vNetGood);
+    expect(productionValueNet(bad)).toBe(G4_FROZEN.vNetBad);
+
+    // the ranking claim, produced by the model rather than asserted over literals.
     expect(vGood).toBeGreaterThan(vBad);
-  });
 
-  // ---- §7 real wiring: both call sites read the single source ----
-  it('S7: computeCatAiTrajectory honors the leaf mode (hybrid observably changes the search)', () => {
-    const cat = endTurn(freshState(Difficulty.Hard));
-    expect(cat.currentPlayer).toBe('cat');
-    // baseline first
-    HARD_LEAF_MODE_CONFIG.current = 'baseline';
-    const trajBase = computeCatAiTrajectory(cat);
-    // hybrid second
-    HARD_LEAF_MODE_CONFIG.current = 'hybrid_standard_only';
-    const trajHyb = computeCatAiTrajectory(cat);
-    HARD_LEAF_MODE_CONFIG.current = 'baseline';
-    expect(trajBase).toBeTruthy();
-    expect(trajHyb).toBeTruthy();
-    // The hybrid leaf must have actually been used: on a canonical eligible
-    // state, hybrid != baseline (different scores), so the search outcome can
-    // differ. If a call site forgot resolveHardLeaf, both would be identical.
-    // We assert at least one of the two differs in first action OR the flag
-    // actually changed which leaf function ran (verified via getHardLeafMode
-    // path in resolveHardLeaf). To make this robust without flakiness, we check
-    // that the trajectory EXISTS under hybrid mode and that resolveHardLeaf
-    // returned the hybrid (not baseline) when the flag was ON.
-    HARD_LEAF_MODE_CONFIG.current = 'hybrid_standard_only';
-    expect(resolveHardLeaf()).toBe(hybridEvaluateForCat);
-    HARD_LEAF_MODE_CONFIG.current = 'baseline';
-    expect(resolveHardLeaf()).toBe(evaluateForCat);
-  });
-
-  it('S7: catAiMove Hard path honors the leaf mode (executes under both modes)', () => {
-    const cat = endTurn(freshState(Difficulty.Hard));
-    HARD_LEAF_MODE_CONFIG.current = 'baseline';
-    const aBase = catAiMove(cat);
-    HARD_LEAF_MODE_CONFIG.current = 'hybrid_standard_only';
-    const aHyb = catAiMove(cat);
-    HARD_LEAF_MODE_CONFIG.current = 'baseline';
-    // Both modes execute the Hard catAiMove path without error. A return of null
-    // is valid (stuck/no-solution); the WIRING guarantee is that the leaf mode
-    // is read from the single source — asserted by resolveHardLeaf() identity
-    // (see the trajectory S7 test) — and that the Hard path runs under hybrid.
-    if (aBase !== null) expect(aBase.currentPlayer).toBe('cat');
-    if (aHyb !== null) expect(aHyb.currentPlayer).toBe('cat');
+    // it must be the Hybrid path, not a silent baseline fallback: the baseline
+    // heuristic MISRANKS this pair, so a fallback would fail the ordering above.
+    expect(evaluateForCat(good)).toBe(G4_FROZEN.baselineGood);
+    expect(evaluateForCat(bad)).toBe(G4_FROZEN.baselineBad);
+    expect(evaluateForCat(good)).toBeLessThan(evaluateForCat(bad));
+    expect(vGood).not.toBe(evaluateForCat(good));
+    expect(vBad).not.toBe(evaluateForCat(bad));
   });
 
   // ---- §8 default ----

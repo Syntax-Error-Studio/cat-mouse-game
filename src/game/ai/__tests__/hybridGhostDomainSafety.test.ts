@@ -8,7 +8,6 @@
  * game-affecting (unchanged from F2A.1).
  */
 import { describe, it, expect, beforeEach } from 'vitest';
-import { readFileSync } from 'node:fs';
 import { createInitialState, type GameEngineState } from '../../engine';
 import { DEFAULT_CONFIG } from '../../config';
 import { Difficulty } from '../../types';
@@ -19,32 +18,22 @@ import {
 } from '../hybridLeaf';
 import { hybridRouteV2EvaluateForCat } from '../hybridRouteLeaf';
 import { HARD_LEAF_MODE_CONFIG, HARD_LEAF_MODE_DEFAULT } from '../searchConfig';
-import { restoreHardRoot, type HardRootSnapshot } from '../hardHistory';
 import { enumerateFullTurnLegacy } from '../turnBoundary';
 import { simulateSearchAction } from '../simulator';
 import { createEngineRuleSet } from '../../engine';
 import { stateKey } from '../transposition';
 import { PieceType, GamePhase, DIRECTIONS, type Direction } from '../../types';
 import type { SearchAction } from '../searchTypes';
+import { g4Boundaries, f0TurnRoot, f03ThreatAuthority } from './fixtures/frozenFixtures';
 
 const rules = createEngineRuleSet();
 const label = (a: SearchAction): string => a.type === 'catStep' ? a.direction!.key.slice(5)[0] : a.type === 'catPlaceTrap' ? 'T' : '?';
 
-/** Restore a game turn root from the F0 timeline SNAPSHOT_JSON authority. */
-function restoreTurnRoot(game: number, turn: number): GameEngineState {
-  const t = JSON.parse(readFileSync('ai-training/f0/f0_timelines.json', 'utf8'));
-  const entry = t[String(game)].turns.find((x: { turn: number }) => x.turn === turn);
-  expect(entry).toBeTruthy();
-  return restoreHardRoot(entry.root as HardRootSnapshot);
-}
-
-/** G19 real end states (from F03 authority). */
+/** G19 real end states (from the bundled F0.3 authority). */
 function g19EndStates(): { state: GameEngineState; witness: string; forced: boolean }[] {
-  const f03 = JSON.parse(readFileSync('ai-training/f03/threat_onset.json', 'utf8'));
-  const enumData = f03.games['G19_T7_ENUM'];
   const forcedMap = new Map<string, boolean>();
-  for (const d of enumData.detail) forcedMap.set(d.witness as string, d.forced as boolean);
-  const root = restoreTurnRoot(19, 7);
+  for (const d of f03ThreatAuthority().g19t7.detail) forcedMap.set(d.witness, d.forced);
+  const root = f0TurnRoot('G19T7');
   const ends = enumerateFullTurnLegacy(root, rules);
   const seen = new Set<string>();
   const out: { state: GameEngineState; witness: string; forced: boolean }[] = [];
@@ -78,11 +67,10 @@ function replayPlan(root: GameEngineState, tokens: string[]): GameEngineState {
   }
   return cur;
 }
-/** G17 safe/unsafe pair (from F03 arms authority). */
+/** G17 safe/unsafe pair (from the bundled F0.3 arms authority). */
 function g17Pair(): { safe: GameEngineState; unsafe: GameEngineState } {
-  const f03 = JSON.parse(readFileSync('ai-training/f03/threat_onset.json', 'utf8'));
-  const arm = f03.arms['G17T2'];
-  const root = restoreTurnRoot(17, 2);
+  const arm = f03ThreatAuthority().g17t2;
+  const root = f0TurnRoot('G17T2');
   return {
     safe: replayPlan(root, arm.PROD_PLAN.map((t: string) => (t === 'PT' ? 'T' : t))),
     unsafe: replayPlan(root, arm.DEEP_PLAN.map((t: string) => (t === 'PT' ? 'T' : t))),
@@ -174,16 +162,8 @@ describe('G0.4F-2A.2 legacy hybrid ghost-domain safety', () => {
     // G17
     const g17 = g17Pair();
     expect(hybridRouteV2EvaluateForCat(g17.safe)).toBeGreaterThan(hybridRouteV2EvaluateForCat(g17.unsafe));
-    // G4
-    const lines = readFileSync('ai-training/d01/exact_teacher_audit_roots.ndjson', 'utf8').trim().split('\n').filter((l: string) => l.length > 0);
-    let goodSnap: HardRootSnapshot | null = null, badSnap: HardRootSnapshot | null = null;
-    for (const line of lines) {
-      const rec = JSON.parse(line);
-      if (rec.source === 'G4_GOOD_boundary') goodSnap = rec.snapshot as HardRootSnapshot;
-      else if (rec.source === 'G4_BAD_boundary') badSnap = rec.snapshot as HardRootSnapshot;
-    }
-    expect(goodSnap).toBeTruthy(); expect(badSnap).toBeTruthy();
-    const good = restoreHardRoot(goodSnap!); const bad = restoreHardRoot(badSnap!);
+    // G4 — the bundled frozen boundary pair (shared loader, identity-verified).
+    const { good, bad } = g4Boundaries();
     expect(hybridRouteV2EvaluateForCat(good)).toBeGreaterThan(hybridRouteV2EvaluateForCat(bad));
   });
 

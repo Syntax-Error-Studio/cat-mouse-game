@@ -337,6 +337,14 @@ test('G0.3W-13. trap / skill / tunnel witness replay legality', () => {
 // ---------------------------------------------------------------------------
 // The real corpus lives in the user's Downloads; when absent, loadRoot returns
 // null and the test is explicitly SKIPPED (never a vacuous pass).
+//
+// P0-3 status (2026-10-13): this is the ONE remaining non-portable fixture in
+// the suite. The corpus file is not in the repository (g03o_lib.mts is
+// git-ignored, its input is an author-local absolute path) and no longer exists
+// on this machine, so these 4 regressions skip everywhere. Fixing them needs
+// the original log back; substituting a similar-looking state or rewriting the
+// expectations is forbidden by the frozen-evidence rules, so it is reported as
+// BLOCKED instead. See fixtures/PROVENANCE.json -> notPorted.
 
 // helper: load game root from the real corpus (SNAPSHOT_JSON authoritative).
 // The specifier is cast to `string` so TS does not statically resolve the root

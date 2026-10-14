@@ -1,0 +1,179 @@
+{
+ "recordKind": "F03_THREAT_ONSET_AUTHORITY",
+ "description": "Oracle enumeration facts for the F0.3 threat-onset study: per-witness forced flags and the oracle-safe plan set at G19T7, plus the G17T2 safe/unsafe plan pair. Witnesses are cat-turn action labels (U/D/L/R/T). g19t7 and g17t2 are verbatim, key-preserving subsets of games.G19_T7_ENUM and arms.G17T2; only the state-reference fields catRoot, mouseRoot and prodEnd are omitted (no test consumes them).",
+ "originFile": "ai-training/f03/threat_onset.json",
+ "originFileSha256": "61201433034967362face5ed330afe9d2171629e10297b991a0e65a475176447",
+ "originMeta": {
+  "note": "F0.3 two-mouse-turn threat onset; oracle = ∃M1 ∀C1 ∃M2:MouseWins; real RuleSet; budget+wall capped"
+ },
+ "extractedAt": "2026-10-13",
+ "g19t7": {
+  "game": 19,
+  "turn": 7,
+  "prodPlan": "ULDL",
+  "totalUniqueEnds": 23,
+  "safeCount": 2,
+  "unsafeCount": 21,
+  "infeasibleCount": 0,
+  "AVOIDABLE_AT_ROOT": true,
+  "detail": [
+   {
+    "witness": "UUUU",
+    "forced": true,
+    "infeasible": false
+   },
+   {
+    "witness": "UUUD",
+    "forced": true,
+    "infeasible": false
+   },
+   {
+    "witness": "UUUL",
+    "forced": true,
+    "infeasible": false
+   },
+   {
+    "witness": "UUUR",
+    "forced": true,
+    "infeasible": false
+   },
+   {
+    "witness": "UUDD",
+    "forced": false,
+    "infeasible": false
+   },
+   {
+    "witness": "UUDL",
+    "forced": true,
+    "infeasible": false
+   },
+   {
+    "witness": "UUDR",
+    "forced": true,
+    "infeasible": false
+   },
+   {
+    "witness": "UURD",
+    "forced": true,
+    "infeasible": false
+   },
+   {
+    "witness": "UURL",
+    "forced": true,
+    "infeasible": false
+   },
+   {
+    "witness": "UURR",
+    "forced": true,
+    "infeasible": false
+   },
+   {
+    "witness": "UDLL",
+    "forced": true,
+    "infeasible": false
+   },
+   {
+    "witness": "UDRD",
+    "forced": true,
+    "infeasible": false
+   },
+   {
+    "witness": "UDRR",
+    "forced": true,
+    "infeasible": false
+   },
+   {
+    "witness": "URRU",
+    "forced": true,
+    "infeasible": false
+   },
+   {
+    "witness": "URRR",
+    "forced": true,
+    "infeasible": false
+   },
+   {
+    "witness": "LLDD",
+    "forced": true,
+    "infeasible": false
+   },
+   {
+    "witness": "LLDL",
+    "forced": true,
+    "infeasible": false
+   },
+   {
+    "witness": "LLLU",
+    "forced": true,
+    "infeasible": false
+   },
+   {
+    "witness": "RDUU",
+    "forced": true,
+    "infeasible": false
+   },
+   {
+    "witness": "RDUL",
+    "forced": true,
+    "infeasible": false
+   },
+   {
+    "witness": "RDUR",
+    "forced": true,
+    "infeasible": false
+   },
+   {
+    "witness": "RRRD",
+    "forced": false,
+    "infeasible": false
+   },
+   {
+    "witness": "RRRR",
+    "forced": true,
+    "infeasible": false
+   }
+  ],
+  "oracleSafePlans": [
+   {
+    "witness": "UUDD",
+    "cat": "(5,3)",
+    "mouse": "(7,2)"
+   },
+   {
+    "witness": "RRRD",
+    "cat": "(6,6)",
+    "mouse": "(7,2)"
+   }
+  ]
+ },
+ "g17t2": {
+  "game": 17,
+  "turn": 2,
+  "PROD_PLAN": [
+   "D",
+   "D",
+   "D",
+   "D"
+  ],
+  "DEEP_PLAN": [
+   "L",
+   "L",
+   "D",
+   "R"
+  ],
+  "PROD_ORACLE": {
+   "immediateM1Win": false,
+   "m1Candidates": 135,
+   "usedNodes": 74237,
+   "infeasible": false
+  },
+  "DEEP_ORACLE": {
+   "immediateM1Win": false,
+   "m1Candidates": 266,
+   "usedNodes": 177579,
+   "infeasible": false
+  },
+  "PROD_FORCED_PICKUP_WIN2": false,
+  "DEEP_FORCED_PICKUP_WIN2": true
+ }
+}

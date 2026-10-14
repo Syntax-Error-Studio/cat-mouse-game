@@ -25,7 +25,8 @@
  * P22 mouse turn observed only Mouse→Cat endTurn.
  * P23 memory snapshot/restore exact.
  * P24 memory excluded from stateKey/TT.
- * P25 baseline guard-off exactness.
+ * P25 baseline guard-off exactness (frozen clock, so it compares semantics
+ *      rather than the depth two wall-clock searches happened to reach).
  * P26 H1 guard-off exactness.
  * P27 V1/V2 untouched (resolveHardLeaf identity + guard ineligible).
  * P28 Game1 final root no trigger.
@@ -33,7 +34,6 @@
  * P30 one main search per cat turn (previous depth from same search — no
  *     second searchBestActionIterative call).
  */
-import { readFileSync } from 'node:fs';
 import { describe, it, expect, beforeEach, afterAll } from 'vitest';
 import { createEngineRuleSet, createInitialState, type GameEngineState } from '../../engine';
 import { DEFAULT_CONFIG } from '../../config';
@@ -51,12 +51,13 @@ import {
   replayCatPlanLabel, classifyExecutedCatTurn, progressGuardTrigger, progressGuardEligible,
   emptyProgressGuardMemory, signaturesEqual, type HardProgressGuardMemory,
 } from '../progressGuard';
-import { restoreHardRoot, captureHardRoot, type HardRootSnapshot } from '../hardHistory';
+import { restoreHardRoot, captureHardRoot } from '../hardHistory';
 import { gameAffectingEqual } from '../stateCompare';
 import { stateKey } from '../transposition';
 import { enumerateFullTurnLegacy } from '../turnBoundary';
 import { runBoundedProbe, FIXED_PATHS, FIXED_CPU_MS, FIXED_EXACT } from '../boundedPlanRefutation';
 import { makeFiniteDeadline, NO_DEADLINE } from '../deadlineContext';
+import { f0TurnRoot, game5TurnRoot } from './fixtures/frozenFixtures';
 
 const rules = createEngineRuleSet();
 const label = (a: SearchAction): string => a.type === 'catStep' ? a.direction!.key.slice(5)[0] : a.type === 'catPlaceTrap' ? 'T' : '?';
@@ -97,22 +98,6 @@ function fakeSearch(prevPlan: SearchAction[]): any {
     diagnostics: { totalNodes: 1 },
     iterations: [],
   };
-}
-
-/** Restore a game turn root from the F0 timeline SNAPSHOT_JSON authority. */
-function restoreTurnRoot(game: number, turn: number): GameEngineState {
-  const t = JSON.parse(readFileSync('ai-training/f0/f0_timelines.json', 'utf8'));
-  const entry = t[String(game)].turns.find((x: { turn: number }) => x.turn === turn);
-  if (entry && entry.root) return restoreHardRoot(entry.root as HardRootSnapshot);
-  throw new Error(`missing root G${game}T${turn}`);
-}
-
-/** Game5 turns from the parsed log SNAPSHOT authority. */
-function game5Root(turn: number): GameEngineState {
-  const parsed = JSON.parse(readFileSync('ai-training/f2b14/parsed_log.json', 'utf8'));
-  const rec = parsed.turns.find((x: { turn: number; snapshotJson?: string }) => x.turn === turn && x.snapshotJson);
-  expect(rec).toBeTruthy();
-  return restoreHardRoot(JSON.parse(rec.snapshotJson));
 }
 
 function cleanCanonical(): GameEngineState {
@@ -173,9 +158,9 @@ describe('G0.4F-2B-1.6 M3-lite Progress Guard', () => {
   });
 
   it('P1: prototype progress parity — Game5 T14/T15 are no-progress loops; T4 has box progress', () => {
-    const t14 = game5Root(14);
-    const t15 = game5Root(15);
-    const t4 = game5Root(4);
+    const t14 = game5TurnRoot(14);
+    const t15 = game5TurnRoot(15);
+    const t4 = game5TurnRoot(4);
     const f14 = replayCatPlanLabel(t14, 'ULDR');
     const f15 = replayCatPlanLabel(t15, 'ULDR');
     const f4 = replayCatPlanLabel(t4, 'URDL');
@@ -192,15 +177,15 @@ describe('G0.4F-2B-1.6 M3-lite Progress Guard', () => {
   });
 
   it('P2: T14 no trigger — no previous memory', () => {
-    const t14 = game5Root(14);
+    const t14 = game5TurnRoot(14);
     const cur = replayCatPlanLabel(t14, 'ULDR');
     const g = progressGuardTrigger({ previous: null, currentFacts: cur, realMouseTurnElapsed: true });
     expect(g.trigger).toBe(false);
   });
 
   it('P3: T15 trigger — previous ULDR memory + current ULDR + mouse observed', () => {
-    const t15 = game5Root(15);
-    const prevSig = replayCatPlanLabel(game5Root(14), 'ULDR').signature;
+    const t15 = game5TurnRoot(15);
+    const prevSig = replayCatPlanLabel(game5TurnRoot(14), 'ULDR').signature;
     const mem = makeMemory({ noProgressLoop: true, sig: prevSig, mouseObserved: true });
     const cur = replayCatPlanLabel(t15, 'ULDR');
     const g = progressGuardTrigger({ previous: mem, currentFacts: cur, realMouseTurnElapsed: true });
@@ -208,7 +193,7 @@ describe('G0.4F-2B-1.6 M3-lite Progress Guard', () => {
   });
 
   it('P4: T15 previous depth = DDLD (single search maxDepth=2)', () => {
-    const t15 = game5Root(15);
+    const t15 = game5TurnRoot(15);
     setHardLeafMode('baseline_hole_corrected');
     const p = planHardCatTurn(t15, {
       rules, timeBudgetMs: 600000, maxDepthTurns: 2, maxNodes: 2_000_000,
@@ -221,7 +206,7 @@ describe('G0.4F-2B-1.6 M3-lite Progress Guard', () => {
   });
 
   it('P5: previous-depth standalone parity — prev(D2) == standalone D1 exact', () => {
-    const t15 = game5Root(15);
+    const t15 = game5TurnRoot(15);
     setHardLeafMode('baseline_hole_corrected');
     const two = planHardCatTurn(t15, {
       rules, timeBudgetMs: 600000, maxDepthTurns: 2, maxNodes: 2_000_000,
@@ -236,7 +221,7 @@ describe('G0.4F-2B-1.6 M3-lite Progress Guard', () => {
   });
 
   it('P6: T15 rescue exact immediate mouse wins = 0', () => {
-    const t15 = game5Root(15);
+    const t15 = game5TurnRoot(15);
     // replay DDLD to cat-end then endTurn → mouse root (real rules)
     const facts = replayCatPlanLabel(t15, 'DDLD');
     expect(facts.valid).toBe(true);
@@ -256,7 +241,7 @@ describe('G0.4F-2B-1.6 M3-lite Progress Guard', () => {
   });
 
   it('P7: T15 rescue probe NO_REFUTATION_FOUND', () => {
-    const t15 = game5Root(15);
+    const t15 = game5TurnRoot(15);
     const facts = replayCatPlanLabel(t15, 'DDLD');
     const mouseRoot = rules.endTurn(facts.endState as GameEngineState);
     const probe = runBoundedProbe(mouseRoot, rules, {
@@ -269,8 +254,8 @@ describe('G0.4F-2B-1.6 M3-lite Progress Guard', () => {
   it('P8: T15 final plan DDLD (guard applied via passMemory)', () => {
     HARD_PROGRESS_GUARD_CONFIG.enabled = true;
     setHardLeafMode('baseline_hole_corrected');
-    const t15 = game5Root(15);
-    const prevSig = replayCatPlanLabel(game5Root(14), 'ULDR').signature;
+    const t15 = game5TurnRoot(15);
+    const prevSig = replayCatPlanLabel(game5TurnRoot(14), 'ULDR').signature;
     const mem = makeMemory({ noProgressLoop: true, sig: prevSig, mouseObserved: true });
     const p = planHardCatTurn(t15, {
       rules, timeBudgetMs: 600000, maxDepthTurns: 2, maxNodes: 2_000_000,
@@ -283,8 +268,8 @@ describe('G0.4F-2B-1.6 M3-lite Progress Guard', () => {
   });
 
   it('P9/P10: Game5 T4/T5 no trigger (one-off, box progress)', () => {
-    const t4 = game5Root(4);
-    const t5 = game5Root(5);
+    const t4 = game5TurnRoot(4);
+    const t5 = game5TurnRoot(5);
     const f4 = replayCatPlanLabel(t4, 'URDL');
     const f5 = replayCatPlanLabel(t5, 'RDUL');
     expect(f4.noProgressLoop).toBe(false); // box progress
@@ -358,8 +343,8 @@ describe('G0.4F-2B-1.6 M3-lite Progress Guard', () => {
   it('P17: refutation override bypass — selectedPlanSource=bounded_refutation → rescueApplied=false (real gate)', () => {
     HARD_PROGRESS_GUARD_CONFIG.enabled = true;
     setHardLeafMode('baseline_hole_corrected');
-    const t15 = game5Root(15);
-    const prevSig = replayCatPlanLabel(game5Root(14), 'ULDR').signature!;
+    const t15 = game5TurnRoot(15);
+    const prevSig = replayCatPlanLabel(game5TurnRoot(14), 'ULDR').signature!;
     const mem = makeMemory({ noProgressLoop: true, sig: prevSig, mouseObserved: true });
     const uldrActs = actionsFromStrings(['U', 'L', 'D', 'R']);
     const ddldActs = actionsFromStrings(['D', 'D', 'L', 'D']);
@@ -388,8 +373,8 @@ describe('G0.4F-2B-1.6 M3-lite Progress Guard', () => {
   it('P18: current refutation PLAN_REFUTED / INCOMPLETE / CHANCE_MIXED all fail-closed (real) — abortReason=refutation_current_X', () => {
     HARD_PROGRESS_GUARD_CONFIG.enabled = true;
     setHardLeafMode('baseline_hole_corrected');
-    const t15 = game5Root(15);
-    const prevSig = replayCatPlanLabel(game5Root(14), 'ULDR').signature!;
+    const t15 = game5TurnRoot(15);
+    const prevSig = replayCatPlanLabel(game5TurnRoot(14), 'ULDR').signature!;
     const mem = makeMemory({ noProgressLoop: true, sig: prevSig, mouseObserved: true });
     const uldrActs = actionsFromStrings(['U', 'L', 'D', 'R']);
     const ddldActs = actionsFromStrings(['D', 'D', 'L', 'D']);
@@ -422,7 +407,7 @@ describe('G0.4F-2B-1.6 M3-lite Progress Guard', () => {
     expect(rescueProbeAllows(null)).toBe(false);
     expect(rescueProbeAllows(undefined)).toBe(false);
     // T15 actual probe (P7) is NO_REFUTATION_FOUND → the gate would allow it.
-    const t15 = game5Root(15);
+    const t15 = game5TurnRoot(15);
     const facts = replayCatPlanLabel(t15, 'DDLD');
     const mouseRoot = rules.endTurn(facts.endState as GameEngineState);
     const probe = runBoundedProbe(mouseRoot, rules, { maxPaths: FIXED_PATHS, maxCpuMs: FIXED_CPU_MS, maxExact: FIXED_EXACT, deadline: NO_DEADLINE });
@@ -432,8 +417,8 @@ describe('G0.4F-2B-1.6 M3-lite Progress Guard', () => {
   it('P20: deadline fail-closed — guard starts after total deadline → abort=deadline, keep original (real fake clock)', () => {
     HARD_PROGRESS_GUARD_CONFIG.enabled = true;
     setHardLeafMode('baseline_hole_corrected');
-    const t15 = game5Root(15);
-    const prevSig = replayCatPlanLabel(game5Root(14), 'ULDR').signature!;
+    const t15 = game5TurnRoot(15);
+    const prevSig = replayCatPlanLabel(game5TurnRoot(14), 'ULDR').signature!;
     const mem = makeMemory({ noProgressLoop: true, sig: prevSig, mouseObserved: true });
     const uldrActs = actionsFromStrings(['U', 'L', 'D', 'R']);
     const ddldActs = actionsFromStrings(['D', 'D', 'L', 'D']);
@@ -456,14 +441,14 @@ describe('G0.4F-2B-1.6 M3-lite Progress Guard', () => {
     // When execution falls back (SEARCH_FALLBACK), engine must NOT record the
     // planned-but-not-executed loop as previousNoProgressLoop. Unit: the memory
     // factory used by the engine sets previousNoProgressLoop=false on invalid.
-    const root = game5Root(15);
+    const root = game5TurnRoot(15);
     const m = { ...emptyProgressGuardMemory(), previousRootKey: stateKey(root) };
     expect(m.previousNoProgressLoop).toBe(false);
     expect(m.previousSignature).toBeNull();
   });
 
   it('P22: mouse turn observed only Mouse→Cat endTurn', () => {
-    const root = game5Root(15);
+    const root = game5TurnRoot(15);
     const mem: HardProgressGuardMemory = { ...emptyProgressGuardMemory(), previousPlanLabel: 'ULDR' };
     // CAT→MOUSE ghost-free endTurn must NOT set mouseTurnObserved (nextPlayer=Mouse)
     const catToMouse = rules.endTurn({ ...root, currentPlayer: PieceType.Cat, catMovesLeft: 0, hardProgressGuardMemory: mem });
@@ -479,7 +464,7 @@ describe('G0.4F-2B-1.6 M3-lite Progress Guard', () => {
   });
 
   it('P23: memory snapshot/restore exact', () => {
-    const root = game5Root(15);
+    const root = game5TurnRoot(15);
     const mem: HardProgressGuardMemory = {
       version: 1, previousNoProgressLoop: true,
       previousSignature: { catStart: '4,8', catEnd: '4,8', plan: 'URDL', boxHash: 'X', trap: '1,1' },
@@ -497,7 +482,7 @@ describe('G0.4F-2B-1.6 M3-lite Progress Guard', () => {
     HARD_PROGRESS_GUARD_CONFIG.enabled = true;
     setHardLeafMode('baseline_hole_corrected');
     // Game5 T14 root (cat=(6,6) in the 14/15/16 run; use the actual log root).
-    const t14 = game5Root(14);
+    const t14 = game5TurnRoot(14);
     const root = { ...t14, catMovesLeft: 4 };
     // Manual execution of the ULDR loop through the REAL engine catMove (the
     // SAME transition the production trajectory uses per step — catMove does
@@ -538,9 +523,9 @@ describe('G0.4F-2B-1.6 M3-lite Progress Guard', () => {
 
   it('P24c: STALE_MEMORY_REENABLE — guard OFF execution invalidates old memory so re-enable cannot mistake it as previous turn', () => {
     HARD_PROGRESS_GUARD_CONFIG.enabled = true;
-    const root = game5Root(15);
+    const root = game5TurnRoot(15);
     // Build a valid "previous no-progress" memory that WOULD trigger if reused.
-    const wouldTrigger = makeMemory({ noProgressLoop: true, sig: replayCatPlanLabel(game5Root(14), 'ULDR').signature!, mouseObserved: true });
+    const wouldTrigger = makeMemory({ noProgressLoop: true, sig: replayCatPlanLabel(game5TurnRoot(14), 'ULDR').signature!, mouseObserved: true });
     const curFacts = replayCatPlanLabel(root, 'ULDR');
     const gBefore = progressGuardTrigger({ previous: wouldTrigger, currentFacts: curFacts, realMouseTurnElapsed: true });
     expect(gBefore.trigger).toBe(true); // memory is genuinely trigger-capable
@@ -557,7 +542,7 @@ describe('G0.4F-2B-1.6 M3-lite Progress Guard', () => {
   });
 
   it('P24: memory excluded from stateKey/gameAffectingEqual/TT', () => {
-    const root = game5Root(15);
+    const root = game5TurnRoot(15);
     const a = { ...root, hardProgressGuardMemory: null };
     const b = { ...root, hardProgressGuardMemory: { ...emptyProgressGuardMemory(), previousPlanLabel: 'ULDR' } };
     expect(stateKey(a)).toBe(stateKey(b));
@@ -567,18 +552,40 @@ describe('G0.4F-2B-1.6 M3-lite Progress Guard', () => {
   it('P25: baseline guard-off exactness (default OFF, plan identical)', () => {
     HARD_PROGRESS_GUARD_CONFIG.enabled = false;
     setHardLeafMode('baseline');
-    const root = game5Root(15);
+    const root = game5TurnRoot(15);
+    // Semantic premise: in baseline mode the resolver hands back evaluateForCat
+    // itself, so the two searches below must be the SAME computation.
+    expect(resolveHardLeaf()).toBe(evaluateForCat);
+    // Frozen clock via the planner's documented test seam (hardTurnPlanner.ts:162,
+    // same pattern as P2/P3/P20 and boundedPlanRefutation.test.ts:125). The declared
+    // 100 ms budget stays unchanged, but elapsed time is pinned to 0 so a loaded
+    // machine can no longer make one run stop at depth 1 and the other at depth 2.
+    // This verifies search SEMANTICS, not wall-clock performance — real-budget
+    // behaviour is still exercised against performance.now() elsewhere
+    // (productionGhostRuleSet.test.ts P11 runs a real 100 ms production turn).
+    const now = () => 0;
     // explicit baseline evaluator
-    const pEval = planHardCatTurn(root, { rules, timeBudgetMs: 100, maxDepthTurns: 2, leafEvaluator: evaluateForCat, refutation: { enabled: false } });
-    const pResolve = planHardCatTurn(root, { rules, timeBudgetMs: 100, maxDepthTurns: 2, leafEvaluator: resolveHardLeaf(), refutation: { enabled: false } });
+    const pEval = planHardCatTurn(root, { rules, timeBudgetMs: 100, maxDepthTurns: 2, leafEvaluator: evaluateForCat, refutation: { enabled: false }, now });
+    const pResolve = planHardCatTurn(root, { rules, timeBudgetMs: 100, maxDepthTurns: 2, leafEvaluator: resolveHardLeaf(), refutation: { enabled: false }, now });
+    // Prove first that neither the deadline nor the node budget was the binding
+    // constraint; otherwise "same plan" could just be two runs coincidentally
+    // stopping at the same shallow depth.
+    expect(pEval.deadlineFired).toBe(false);
+    expect(pResolve.deadlineFired).toBe(false);
+    expect(pEval.budgetFired).toBe(false);
+    expect(pResolve.budgetFired).toBe(false);
+    expect(pEval.completedDepth).toBe(2);
+    expect(pResolve.completedDepth).toBe(2);
     expect(pEval.plan.map(label).join('')).toBe(pResolve.plan.map(label).join(''));
     expect(pEval.search.value).toBe(pResolve.search.value);
+    // Same search, so the node spend must match too (not just the answer).
+    expect(pEval.search.diagnostics.totalNodes).toBe(pResolve.search.diagnostics.totalNodes);
   });
 
   it('P26: H1 guard-off exactness', () => {
     HARD_PROGRESS_GUARD_CONFIG.enabled = false;
     setHardLeafMode('baseline_hole_corrected');
-    const root = game5Root(15);
+    const root = game5TurnRoot(15);
     const p = planHardCatTurn(root, { rules, timeBudgetMs: 600000, maxDepthTurns: 2, maxNodes: 2_000_000, leafEvaluator: H1Leaf, refutation: { enabled: false } });
     expect(p.plan.map(label).join('')).toBe('ULDR'); // same as pre-guard (guard OFF)
     expect(p.debug.progressGuard?.enabled).toBe(false);
@@ -586,7 +593,7 @@ describe('G0.4F-2B-1.6 M3-lite Progress Guard', () => {
 
   it('P27: V1/V2 untouched (guard ineligible; leaf functions still baseline identity)', () => {
     HARD_PROGRESS_GUARD_CONFIG.enabled = true;
-    const root = game5Root(15);
+    const root = game5TurnRoot(15);
     // V1/V2 leaves unaffected by guard being on
     expect(hybridEvaluateForCat(root)).toBe(hybridEvaluateForCat(root));
     expect(hybridRouteV2EvaluateForCat(root)).toBe(hybridRouteV2EvaluateForCat(root));
@@ -597,7 +604,7 @@ describe('G0.4F-2B-1.6 M3-lite Progress Guard', () => {
   });
 
   it('P28: Game1 final root no trigger', () => {
-    const root = restoreTurnRoot(16, 8); // F2B-1.3 final root proxy (cat=5,3 mouse=9,8)
+    const root = f0TurnRoot('G16T8'); // F2B-1.3 final root proxy (cat=5,3 mouse=9,8)
     const cur = replayCatPlanLabel(root, 'DDRD');
     const g = progressGuardTrigger({ previous: null, currentFacts: cur, realMouseTurnElapsed: true });
     expect(g.trigger).toBe(false);
@@ -608,7 +615,7 @@ describe('G0.4F-2B-1.6 M3-lite Progress Guard', () => {
   });
 
   it('P30: one main search per cat turn (previous depth from same search)', () => {
-    const t15 = game5Root(15);
+    const t15 = game5TurnRoot(15);
     setHardLeafMode('baseline_hole_corrected');
     const p = planHardCatTurn(t15, {
       rules, timeBudgetMs: 600000, maxDepthTurns: 2, maxNodes: 2_000_000,

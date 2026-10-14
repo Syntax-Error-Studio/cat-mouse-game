@@ -17,12 +17,12 @@
  *     vs hybridRouteV2EvaluateForCat — maxAbsError must be 0)
  * P14 default mode is baseline
  *
- * Read-only against ai-training data files (same precedent as
- * hybridRouteLeaf.test.ts / hybridGhostDomainSafety.test.ts). No src/ change
- * beyond this test file.
+ * Read-only against the repository-bundled frozen fixtures
+ * (`./fixtures/*.json`, same precedent as hybridRouteLeaf.test.ts /
+ * hybridGhostDomainSafety.test.ts after the P0-3 rewire). No src/ change beyond
+ * this test file.
  */
 import { describe, it, expect, beforeEach } from 'vitest';
-import { readFileSync } from 'node:fs';
 import { createInitialState, createEngineRuleSet, type GameEngineState } from '../../engine';
 import { DEFAULT_CONFIG } from '../../config';
 import { Difficulty, PieceType, GamePhase, DIRECTIONS, CellType, type Direction } from '../../types';
@@ -34,37 +34,15 @@ import {
 } from '../hybridRouteLeaf';
 import { productionValueNet, resolveHardLeaf, setHardLeafMode, getHardLeafMode } from '../hybridLeaf';
 import { HARD_LEAF_MODE_CONFIG, HARD_LEAF_MODE_DEFAULT } from '../searchConfig';
-import { restoreHardRoot, type HardRootSnapshot } from '../hardHistory';
 import { enumerateFullTurnLegacy } from '../turnBoundary';
 import { simulateSearchAction } from '../simulator';
 import { stateKey } from '../transposition';
 import { HYBRID_S } from '../hybridWeights';
 import { planHardCatTurn } from '../hardTurnPlanner';
+import { g4Boundaries, f0TurnRoot, f03ThreatAuthority } from './fixtures/frozenFixtures';
 
 const rules = createEngineRuleSet();
 const label = (a: SearchAction): string => a.type === 'catStep' ? a.direction!.key.slice(5)[0] : a.type === 'catPlaceTrap' ? 'T' : '?';
-
-/** Restore a game turn root from the F0 timeline SNAPSHOT_JSON authority. */
-function restoreTurnRoot(game: number, turn: number): GameEngineState {
-  const t = JSON.parse(readFileSync('ai-training/f0/f0_timelines.json', 'utf8'));
-  const entry = t[String(game)].turns.find((x: { turn: number }) => x.turn === turn);
-  expect(entry).toBeTruthy();
-  return restoreHardRoot(entry.root as HardRootSnapshot);
-}
-
-/** G4 GOOD/BAD boundary snapshots from the frozen corpus. */
-function g4Boundaries(): { good: GameEngineState; bad: GameEngineState } {
-  const lines = readFileSync('ai-training/d01/exact_teacher_audit_roots.ndjson', 'utf8').trim().split('\n').filter((l: string) => l.length > 0);
-  let goodSnap: HardRootSnapshot | null = null, badSnap: HardRootSnapshot | null = null;
-  for (const line of lines) {
-    const rec = JSON.parse(line);
-    if (rec.source === 'G4_GOOD_boundary') goodSnap = rec.snapshot as HardRootSnapshot;
-    else if (rec.source === 'G4_BAD_boundary') badSnap = rec.snapshot as HardRootSnapshot;
-  }
-  expect(goodSnap).toBeTruthy();
-  expect(badSnap).toBeTruthy();
-  return { good: restoreHardRoot(goodSnap!), bad: restoreHardRoot(badSnap!) };
-}
 
 const DIR_BY_CHAR: Record<string, Direction> = {
   U: DIRECTIONS.find((d) => d.key === 'ArrowUp')!,
@@ -166,7 +144,7 @@ describe('G0.4F-2B-1.2 H1 corrected-hole leaf', () => {
   });
 
   it('P3: G16 flip — C0 ULUL>UDRR, H1 UDRR>ULUL (exact G16T8 boundaries)', () => {
-    const root = restoreTurnRoot(16, 8);
+    const root = f0TurnRoot('G16T8');
     const ulul = replayPlan(root, ['U', 'L', 'U', 'L']);
     const udrr = replayPlan(root, ['U', 'D', 'R', 'R']);
     expect(evaluateForCat(ulul)).toBeGreaterThan(evaluateForCat(udrr)); // C0 misrank
@@ -176,7 +154,7 @@ describe('G0.4F-2B-1.2 H1 corrected-hole leaf', () => {
   });
 
   it('P4: G17 control — production H1 keeps DDDD in top half', () => {
-    const root = restoreTurnRoot(17, 2);
+    const root = f0TurnRoot('G17T2');
     const prodBoundary = replayPlan(root, ['D', 'D', 'D', 'D']);
     const prodKey = stateKey(prodBoundary);
     const ends = enumerateFullTurnLegacy(root, rules);
@@ -197,10 +175,9 @@ describe('G0.4F-2B-1.2 H1 corrected-hole leaf', () => {
   });
 
   it('P5: G19 oracle-safe — production H1 D2 plan in F0.3 oracleSafePlans', () => {
-    const f03 = JSON.parse(readFileSync('ai-training/f03/threat_onset.json', 'utf8'));
-    const authority: string[] = f03.games['G19_T7_ENUM'].oracleSafePlans.map((p: { witness: string }) => p.witness);
+    const authority: string[] = f03ThreatAuthority().g19t7.oracleSafePlans.map((p) => p.witness);
     expect(authority).toContain('RRRD');
-    const root = restoreTurnRoot(19, 7);
+    const root = f0TurnRoot('G19T7');
     setHardLeafMode('baseline_hole_corrected');
     const res = searchWithH1(root, 2);
     const plan = res.plan.map(label).join('');
@@ -208,7 +185,7 @@ describe('G0.4F-2B-1.2 H1 corrected-hole leaf', () => {
   });
 
   it('P6: G24 no RULTD / no full-turn loop under H1', () => {
-    const root = restoreTurnRoot(24, 1);
+    const root = f0TurnRoot('G24T1');
     setHardLeafMode('baseline_hole_corrected');
     const res = searchWithH1(root, 2);
     const plan = res.plan.map(label).join('');
@@ -269,7 +246,7 @@ describe('G0.4F-2B-1.2 H1 corrected-hole leaf', () => {
     expect(getHardLeafMode()).toBe('baseline');
     expect(resolveHardLeaf()).toBe(evaluateForCat);
     // a real search under baseline leaf is byte-identical to explicit evaluateForCat
-    const root = restoreTurnRoot(16, 8);
+    const root = f0TurnRoot('G16T8');
     const a = planHardCatTurn(root, { rules, timeBudgetMs: 100, maxDepthTurns: 1, leafEvaluator: evaluateForCat, refutation: { enabled: false } });
     setHardLeafMode('baseline');
     const b = planHardCatTurn(root, { rules, timeBudgetMs: 100, maxDepthTurns: 1, leafEvaluator: resolveHardLeaf(), refutation: { enabled: false } });
@@ -329,9 +306,9 @@ describe('G0.4F-2B-1.2 H1 corrected-hole leaf', () => {
     const states: GameEngineState[] = [];
     const { good, bad } = g4Boundaries();
     states.push(good, bad);
-    const g19root = restoreTurnRoot(19, 7);
+    const g19root = f0TurnRoot('G19T7');
     for (const plan of [['U', 'U', 'D', 'D'], ['R', 'R', 'R', 'D']]) states.push(replayPlan(g19root, plan));
-    const g17root = restoreTurnRoot(17, 2);
+    const g17root = f0TurnRoot('G17T2');
     states.push(replayPlan(g17root, ['D', 'D', 'D', 'D']));
     states.push(freshCanonical());
     // dedupe by stateKey and keep only eligible states

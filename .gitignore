@@ -159,3 +159,11 @@ CODELY.md
 /f0summary.cjs
 /g03i_parse.cjs
 /g03i_explore.mjs
+
+# --- 本地历史取证 / 恢复快照（体积大且不入库；仅根目录路径，不影响任何已提交内容）---
+# 添加这三条规则前已核实：`git ls-files -- ai-training.zip scratch .r1e-head-control` → 0 个已跟踪文件，
+# 因此规则不会让任何已入库文件消失。这里只是防止 `git add` 误把约 2.99 GB 的 ZIP、
+# 前序研究轮次的 scratch 取证目录和 HEAD 对照快照吞进提交。本地文件一律保留，未删除。
+/ai-training.zip
+/scratch/
+/.r1e-head-control/
