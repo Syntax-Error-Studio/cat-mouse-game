@@ -7,6 +7,7 @@ import {
   catMove,
   catPlaceTrap,
   endTurn,
+  guardStalledTurnBudgets,
   computeCatAiTrajectory,
   getDirectionByKey,
 } from '../game/engine';
@@ -72,10 +73,11 @@ export function GamePage() {
       return catState !== initialState ? catState : initialState;
     }
 
-    if (catState.catMovesLeft <= 0) {
-      catState = { ...catState, catMovesLeft: catState.config.catBaseMoves };
-    }
-
+    // The cat's budget comes from the rule kernel (`endTurn` grants
+    // config.catBaseMoves when the Mouse→Cat hand-off runs). The UI must NOT
+    // top it up here: that masked the trap hand-off bug and could hand the cat
+    // a second turn. A cat turn with 0 moves yields no trajectory, and the
+    // empty-trajectory branch below performs the kernel's own hand-off.
     const trajectory = computeCatAiTrajectory(catState);
 
     if (!trajectory || trajectory.length === 0) {
@@ -146,33 +148,28 @@ export function GamePage() {
       const dir = getDirectionByKey(key);
       if (!dir) return prev;
 
+      let next: GameData;
       if (prev.currentPlayer === PieceType.Mouse) {
+        // The rule kernel owns the Mouse→Cat hand-off — both for "moves
+        // exhausted" and for the trap step — so `mouseMove` already returns a
+        // cat turn with a fresh budget. The UI only decides who acts next;
+        // it must not re-flip the actor or write move budgets of its own.
         const result = mouseMove(prev, dir);
-
-        if (result.mouseMovesLeft <= 0 && result.phase === GamePhase.Playing) {
-          if (prev.gameMode === GameMode.Single) {
-            return runCatAi(result);
-          }
-          return {
-            ...result,
-            phase: GamePhase.Playing,
-            currentPlayer: PieceType.Cat,
-            catMovesLeft: prev.config.catBaseMoves,
-          };
+        if (result.phase === GamePhase.Playing && result.currentPlayer === PieceType.Cat) {
+          next = prev.gameMode === GameMode.Single ? runCatAi(result) : result;
+        } else {
+          next = result;
         }
-        return result;
-      }
-
-      if (prev.currentPlayer === PieceType.Cat && prev.gameMode === GameMode.Dual) {
+      } else if (prev.currentPlayer === PieceType.Cat && prev.gameMode === GameMode.Dual) {
         const result = catMove(prev, dir);
-
-        if (result.catMovesLeft <= 0 && result.phase === GamePhase.Playing) {
-          return endTurn(result);
-        }
-        return result;
+        next = result.catMovesLeft <= 0 && result.phase === GamePhase.Playing ? endTurn(result) : result;
+      } else {
+        return prev;
       }
 
-      return prev;
+      // Anti-freeze backstop at the commit boundary (repairs only what the
+      // kernel's own turn record can attribute; see engine.ts).
+      return guardStalledTurnBudgets(next, 'ui:key_move');
     });
   }, [runCatAi, paused]);
 
@@ -203,9 +200,9 @@ export function GamePage() {
       const afterTeleport = chooseTunnelExit(prev, r, c);
       if (afterTeleport === prev) return prev; // invalid choice / wrong phase → no-op
       if (prev.gameMode === GameMode.Single) {
-        return runCatAi(endTurn(afterTeleport));
+        return guardStalledTurnBudgets(runCatAi(endTurn(afterTeleport)), 'ui:tunnel_exit');
       }
-      return endTurn(afterTeleport);
+      return guardStalledTurnBudgets(endTurn(afterTeleport), 'ui:tunnel_exit');
     });
   }, [runCatAi]);
 

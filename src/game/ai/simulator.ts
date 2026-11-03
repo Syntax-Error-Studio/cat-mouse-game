@@ -17,9 +17,10 @@ import { gameAffectingEqual } from './stateCompare';
  *
  * Turn hand-off (`endTurn`) is NOT an exposed action — it is a FORCED
  * transition applied here when the current player has no moves left (cat after
- * its last step, mouse after a tunnel-exit choice). The mouse's own move
- * already ends the turn internally (trap flip / moves-exhausted), so no extra
- * endTurn is applied there.
+ * its last step, mouse after a tunnel-exit choice). The mouse's own move ends
+ * its turn internally (moves exhausted / trap), so no extra endTurn is applied
+ * there — and because that internal hand-off is the shared `endTurn`, the state
+ * the simulator receives already carries a fresh `catMovesLeft`.
  *
  * @returns a SearchTransitionResult.
  *  - `chance` is produced ONLY when the mouse eats a butter: the simulator
@@ -87,8 +88,10 @@ export function simulateSearchAction(
  *    with 0 moves but does NOT end the turn, so we end it here.
  *
  * If the resulting state is already terminal (CatWins / MouseWins) or still in
- * a tunnel-choice, or was already flipped to the other player (mouse stepping
- * on a trap), no endTurn is applied (it would wrongly flip the actor back).
+ * a tunnel-choice, no endTurn is applied (it would wrongly flip the actor back).
+ * A mouse trap-step is NOT such a case: it ends the mouse turn through the
+ * shared `endTurn` inside `rules.mouseStep`, so it arrives here as a cat turn
+ * with a fresh budget — never as "cat with 0 moves", which would flip back.
  */
 function forceEndTurnIfNeeded(state: GameEngineState, rules: RuleSet): SearchTransitionResult {
   if (state.phase !== GamePhase.Playing) return { kind: 'deterministic', state }; // terminal or tunnel-choice
@@ -118,8 +121,8 @@ function forceEndTurnIfNeeded(state: GameEngineState, rules: RuleSet): SearchTra
   // Reached only when the current player has spent their last move:
   //  - catStep that brought catMovesLeft to 0  -> hand off to the mouse.
   //  - chooseTunnelExit (mouse, 0 moves left)  -> hand off to the cat.
-  // A mouse trap-step flips currentPlayer to Cat with catMovesLeft>0, so
-  // noMovesLeft is false and we never wrongly flip the actor back.
+  // `mouseStep` never lands here: its own finalization already handed the turn
+  // over (trap or moves-exhausted) through the shared `endTurn`.
   return { kind: 'deterministic', state: rules.endTurn(state) };
 }
 

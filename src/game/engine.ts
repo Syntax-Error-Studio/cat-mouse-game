@@ -560,7 +560,9 @@ export function createInitialState(config: GameConfig = DEFAULT_CONFIG): GameEng
  * means a butter was consumed and removed (but NOT yet regenerated — that is
  * deferred to the caller). `tunnelPending` means the mouse entered a tunnel
  * and is now awaiting an exit choice (phase === ChoosingTunnelExit).
- * `trapFlipped` means stepping on the trap already handed the turn to the cat.
+ * `trapFlipped` means the step triggered the trap: the mouse loses ALL
+ * remaining moves, so `finalizeTurnAfterMouseStep` performs the (normal)
+ * Mouse→Cat hand-off. The core itself never changes `currentPlayer`.
  * `won` means the mouse reached the hole carrying butter.
  */
 export interface MouseStepCore {
@@ -650,7 +652,11 @@ function applyMouseStepCore(state: GameEngineState, direction: Direction): Mouse
     return { state: choosingState, moved: true, pickedButter: false, trapFlipped: false, tunnelPending: true, won: false };
   }
 
-  // Trap: stepping on the trap ends the mouse turn immediately (currentPlayer flips to Cat)
+  // Trap: stepping on the trap consumes ALL remaining mouse moves. The turn
+  // hand-off itself belongs to the SHARED turn-end mechanism
+  // (`finalizeTurnAfterMouseStep`), NOT to this core: flipping `currentPlayer`
+  // here would start the cat's turn from the cat's STALE budget — which is 0
+  // during every mouse turn — and leave both players with 0 moves (freeze).
   if (state.trapPosition?.r === nr && state.trapPosition?.c === nc) {
     const newBoard = cloneBoard(state.board);
     newBoard[pos.r][pos.c] = { ...newBoard[pos.r][pos.c], piece: undefined };
@@ -662,8 +668,7 @@ function applyMouseStepCore(state: GameEngineState, direction: Direction): Mouse
       trapPosition: null,
       mouseMovesLeft: 0, // 踩陷阱直接损失全部剩余步数
       phase: GamePhase.Playing,
-      currentPlayer: PieceType.Cat,
-      message: '💀 踩到捕鼠夹！损失全部剩余步数并结束本回合！',
+      message: TRAP_STEP_MESSAGE,
     };
     return { state: trapState, moved: true, pickedButter: false, trapFlipped: true, tunnelPending: false, won: false };
   }
@@ -720,16 +725,27 @@ function applyMouseStepCore(state: GameEngineState, direction: Direction): Mouse
 }
 
 /**
- * Finish a mouse step: auto-end the turn when the mouse runs out of moves.
- * The trap case already flipped `currentPlayer` to Cat inside the core, so it
- * is left untouched. Shared by the real `mouseMove` and the Search Simulator,
- * so the turn-finalization rule is defined exactly once.
+ * Message of a mouse step that triggered its own trap. Kept as one constant
+ * because `endTurn` rewrites `message` as part of the hand-off, and the trap
+ * notice has to survive it.
  */
-function finalizeTurnAfterMouseStep(state: GameEngineState): GameEngineState {
+const TRAP_STEP_MESSAGE = '💀 踩到捕鼠夹！损失全部剩余步数，本回合结束 — 轮到猫行动。';
+
+/**
+ * Finish a mouse step: auto-end the turn when the mouse runs out of moves —
+ * the SAME `endTurn` the normal move and the Search Simulator use, so the
+ * Mouse→Cat hand-off (skill reset, TURN_END/TURN_START events, Progress-Guard
+ * observation, `catMovesLeft = config.catBaseMoves`) happens exactly once.
+ *
+ * `trapTriggered` only restores the trap notice on the message; it is passed in
+ * by the caller because the core reports the trap flip (`MouseStepCore`) rather
+ * than encoding it in the state.
+ */
+function finalizeTurnAfterMouseStep(state: GameEngineState, trapTriggered = false): GameEngineState {
   if (state.phase !== GamePhase.Playing) return state; // MouseWins / ChoosingTunnelExit
-  if (state.currentPlayer === PieceType.Cat) return state; // trap flipped the actor
   if (state.mouseMovesLeft <= 0 && state.tunnelExitChoices.length === 0) {
-    return endTurn(state);
+    const ended = endTurn(state);
+    return trapTriggered ? { ...ended, message: TRAP_STEP_MESSAGE } : ended;
   }
   return state;
 }
@@ -778,7 +794,7 @@ export function mouseMove(state: GameEngineState, direction: Direction): GameEng
     }
   }
 
-  return finalizeTurnAfterMouseStep(s);
+  return finalizeTurnAfterMouseStep(s, core.trapFlipped);
 }
 
 /**
@@ -796,7 +812,7 @@ export function mouseStepDeterministic(state: GameEngineState, direction: Direct
   if (!core.moved) return core.state;
   if (core.won) return core.state;
   if (core.tunnelPending) return core.state; // single-exit teleport is handled by chooseTunnelExit in the search
-  return finalizeTurnAfterMouseStep(core.state);
+  return finalizeTurnAfterMouseStep(core.state, core.trapFlipped);
 }
 
 // --- Mouse skill (spacebar) ---
@@ -1293,6 +1309,79 @@ export function endTurn(state: GameEngineState): GameEngineState {
 
   result = logEvent(result, `TURN_START player=${result.currentPlayer} catMoves=${result.catMovesLeft} mouseMoves=${result.mouseMovesLeft} butter=${result.mouseHasButter} skill=${result.mouseSkillActive}`);
   return result;
+}
+
+// --- Defensive turn-budget guard (anti-freeze) ---
+
+/**
+ * A PLAYING state whose hand-off completed always leaves the actor something to
+ * spend: `endTurn` grants the incoming cat `catBaseMoves` and the incoming mouse
+ * `mouseBaseMoves` / `mouseCarryingMoves`. So both budgets sitting at 0 means
+ * either (a) the current actor just spent its last move and the hand-off has not
+ * run yet — the normal window the UI / Search Simulator close with `endTurn` —
+ * or (b) a path bypassed the hand-off and the game is frozen.
+ *
+ * The guard repairs ONLY what it can attribute, and it never writes a budget
+ * (an unconditional "+4 for the cat" would let one side act twice):
+ *   - not Playing (terminal / ChoosingTunnelExit) -> untouched;
+ *   - either budget > 0 -> untouched (never adds moves to a live turn);
+ *   - both 0 and the kernel's own `TURN_START` record shows the CURRENT actor
+ *     began this turn with a positive budget -> that actor is done: hand off
+ *     exactly once through `endTurn` (which settles ghost butter and placement
+ *     debt on the CAT→MOUSE direction);
+ *   - anything else (no `TURN_START` at all, `TURN_START` names the other side,
+ *     or the hand-off granted this actor 0 moves) -> record a diagnosis and
+ *     change nothing: with no attributable hand-off source, picking a player or
+ *     inventing moves would fabricate actions.
+ *
+ * Deliberately NOT wired into the shared transitions (`catMove` /
+ * `chooseTunnelExit` / `endTurn`): the Search Simulator reuses those and must
+ * resolve its hand-offs through CHANCE nodes, never through `endTurn`'s random
+ * ghost draw. Call this at the real game's state-commit boundaries instead.
+ *
+ * `origin` tags the call site in the diagnostic event so a freeze (or a repair)
+ * is traceable in the debug log.
+ */
+export function guardStalledTurnBudgets(state: GameEngineState, origin: string): GameEngineState {
+  if (state.phase !== GamePhase.Playing) return state;
+  if (state.mouseMovesLeft > 0 || state.catMovesLeft > 0) return state;
+
+  const diagnosis = classifyStalledTurnBudget(state);
+  const common = `origin=${origin} player=${state.currentPlayer} catMoves=${state.catMovesLeft} mouseMoves=${state.mouseMovesLeft}`;
+  if (diagnosis.action === 'record') {
+    return logEvent(state, `TURN_BUDGET_STALL ${common} action=record reason=${diagnosis.reason}`);
+  }
+  return endTurn(logEvent(state, `TURN_BUDGET_STALL ${common} action=handoff reason=${diagnosis.reason}`));
+}
+
+type TurnBudgetDiagnosis =
+  | { action: 'handoff'; reason: string }
+  | { action: 'record'; reason: string };
+
+/** The most recent `TURN_START …` line — the kernel's own record of which actor
+ *  was granted the current turn and with how many moves. Log-only: excluded from
+ *  stateKey / gameAffectingEqual, so reading it here cannot affect the AI. */
+function lastTurnStartRecord(state: GameEngineState): { player: string; catMoves: number; mouseMoves: number } | null {
+  const log = state.gameEventLog ?? [];
+  for (let i = log.length - 1; i >= 0; i--) {
+    const m = /^TURN_START player=(\S+) catMoves=(\S+) mouseMoves=(\S+)/.exec(log[i]);
+    if (m) return { player: m[1], catMoves: Number(m[2]), mouseMoves: Number(m[3]) };
+  }
+  return null;
+}
+
+function classifyStalledTurnBudget(state: GameEngineState): TurnBudgetDiagnosis {
+  const started = lastTurnStartRecord(state);
+  if (!started) return { action: 'record', reason: 'no_turn_start_record' };
+  if (started.player !== state.currentPlayer) {
+    return { action: 'record', reason: `actor_changed_without_handoff(turn_start_player=${started.player})` };
+  }
+  const granted = started.player === PieceType.Cat ? started.catMoves : started.mouseMoves;
+  if (Number.isFinite(granted) && granted > 0) {
+    return { action: 'handoff', reason: `turn_spent(turn_start_moves=${granted})` };
+  }
+  if (!Number.isFinite(granted)) return { action: 'record', reason: `unattributable_turn_start_moves(${granted})` };
+  return { action: 'record', reason: `turn_started_without_budget(turn_start_moves=${granted})` };
 }
 
 // ============================================================
