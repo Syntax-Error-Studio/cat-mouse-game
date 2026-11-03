@@ -57,11 +57,20 @@ export const HARD_TRIAL = {
  *   - 'hybrid_route_v2_standard_only'→ F12-confirmed Hybrid V2 (route-aware +
  *                                      corrected holeControl) leaf, only on
  *                                      canonical standard-map states.
+ *   - 'a0_expected_return_boundary_only' → PPC-A0-DEV-01: the FROZEN
+ *                                      G0.4F-2B-1.9AX A0_LINEAR expected-return
+ *                                      model, used ONLY on the search boundary
+ *                                      the model was trained on (phase Playing
+ *                                      AND Mouse-to-move) inside the canonical
+ *                                      hard standard map; every other leaf keeps
+ *                                      production evaluateForCat, and terminal
+ *                                      nodes stay with the search kernel.
+ *                                      MODEL_BOUNDARY_ELIGIBLE_HYBRID_LEAF.
  * This is a TRIAL switch — production default stays 'baseline'; one-key revert =
  * set back to 'baseline'.
  */
 export const HARD_LEAF_MODE_DEFAULT = 'baseline' as const;
-export type HardLeafModeConfig = 'baseline' | 'baseline_hole_corrected' | 'hybrid_standard_only' | 'hybrid_route_v2_standard_only';
+export type HardLeafModeConfig = 'baseline' | 'baseline_hole_corrected' | 'hybrid_standard_only' | 'hybrid_route_v2_standard_only' | 'a0_expected_return_boundary_only';
 export const HARD_LEAF_MODE_CONFIG: { current: HardLeafModeConfig } = {
   current: HARD_LEAF_MODE_DEFAULT,
 };

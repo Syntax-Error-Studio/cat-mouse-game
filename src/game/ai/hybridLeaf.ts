@@ -26,6 +26,9 @@ import type { GameEngineState } from '../engine';
 import { HARD_LEAF_MODE_CONFIG, type HardLeafModeConfig } from './searchConfig';
 // G0.4F-1.3: V2 leaf (call-time only — safe module cycle, see resolveHardLeaf).
 import { hybridRouteV2EvaluateForCat } from './hybridRouteLeaf';
+// PPC-A0-DEV-01: frozen 1.9AX A0 expected-return leaf (no cycle — the A0 module
+// imports only evaluation / config / types / its own frozen bundle).
+import { a0ExpectedReturnEvaluateForCat } from './a0ExpectedReturnLeaf';
 
 export const HYBRID_MATH_FROZEN = {
   S: HYBRID_S,
@@ -220,13 +223,18 @@ export function hybridEvaluateForCat(state: GameEngineState): number {
 
 /** Resolve the active leaf by HardLeafMode (single source = HARD_LEAF_MODE_CONFIG).
  *  Per-leaf eligibility is re-checked inside hybridEvaluateForCat /
- *  hybridRouteV2EvaluateForCat for EVERY leaf state (not just the root).
+ *  hybridRouteV2EvaluateForCat / a0ExpectedReturnEvaluateForCat for EVERY leaf
+ *  state (not just the root).
  *
  *  Mode wiring (G0.4F-1.3 §6 + G0.4F-2B-1.2 §7):
  *    baseline                       → evaluateForCat
  *    baseline_hole_corrected        → evaluateCorrectedHoleForCat (H1, F2B-1.1)
  *    hybrid_standard_only           → hybridEvaluateForCat        (V1, unchanged)
  *    hybrid_route_v2_standard_only  → hybridRouteV2EvaluateForCat (V2, F12-confirmed)
+ *    a0_expected_return_boundary_only
+ *                                → a0ExpectedReturnEvaluateForCat  (PPC-A0-DEV-01,
+ *                                  frozen 1.9AX A0 on Mouse-to-move boundary
+ *                                  leaves only; every other leaf evaluateForCat)
  *
  *  H1 (baseline_hole_corrected) has NO eligibility gate: it is not a ValueNet,
  *  so ghost/debt states evaluate normally (G0.4F-2B-1.2 §8). The real ghost
@@ -240,5 +248,6 @@ export function resolveHardLeaf(): (s: GameEngineState) => number {
   if (mode === 'baseline_hole_corrected') return evaluateCorrectedHoleForCat;
   if (mode === 'hybrid_standard_only') return hybridEvaluateForCat;
   if (mode === 'hybrid_route_v2_standard_only') return hybridRouteV2EvaluateForCat;
+  if (mode === 'a0_expected_return_boundary_only') return a0ExpectedReturnEvaluateForCat;
   return evaluateForCat;
 }

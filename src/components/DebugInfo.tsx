@@ -195,17 +195,24 @@ export const DebugInfo: React.FC<DebugInfoProps> = ({
   // label re-renders; the config object is the only runtime state the search reads.
   const [leafMode, setLeafMode] = useState(HARD_LEAF_MODE_CONFIG.current);
   // G0.4F-2B-1.2: added H1 (baseline_hole_corrected) to the dev cycle.
-  const LEAF_CYCLE: HardLeafModeConfig[] = ['baseline', 'baseline_hole_corrected', 'hybrid_standard_only', 'hybrid_route_v2_standard_only'];
+  // PPC-A0-DEV-01: added the frozen 1.9AX A0 expected-return leaf. Switch only
+  // between games (never mid-game), on the canonical Hard standard map — that is
+  // the only domain the frozen model was trained and certified on.
+  const LEAF_CYCLE: HardLeafModeConfig[] = ['baseline', 'baseline_hole_corrected', 'hybrid_standard_only', 'hybrid_route_v2_standard_only', 'a0_expected_return_boundary_only'];
+  const LEAF_LABELS: Record<HardLeafModeConfig, string> = {
+    baseline: 'BASELINE',
+    baseline_hole_corrected: 'H1 (Corrected Hole)',
+    hybrid_standard_only: 'HYBRID_V1',
+    hybrid_route_v2_standard_only: 'HYBRID_V2',
+    a0_expected_return_boundary_only: 'A0 (Expected Return)',
+  };
   const toggleHardLeaf = () => {
     const i = LEAF_CYCLE.indexOf(HARD_LEAF_MODE_CONFIG.current);
     const next = LEAF_CYCLE[(i + 1) % LEAF_CYCLE.length];
     HARD_LEAF_MODE_CONFIG.current = next;
     setLeafMode(next);
   };
-  const leafLabel = leafMode === 'baseline' ? 'BASELINE'
-    : leafMode === 'baseline_hole_corrected' ? 'H1 (Corrected Hole)'
-    : leafMode === 'hybrid_standard_only' ? 'HYBRID_V1'
-    : 'HYBRID_V2';
+  const leafLabel = LEAF_LABELS[leafMode];
 
   // G0.4F-2B-1.6: M3-lite Progress Guard toggle (independent from leaf mode).
   // Default OFF. Mirrors HARD_PROGRESS_GUARD_CONFIG; DEV-only rendering below.
@@ -471,9 +478,9 @@ export const DebugInfo: React.FC<DebugInfoProps> = ({
         >
           {copied ? '✅ 已复制' : '📋 一键复制全部调试信息'}
         </button>
-        {/* G0.4E-2/G0.4F-1.3/G0.4F-2B-1.2: DEV-ONLY Hard Leaf mode switch — shows
-            current leaf and cycles baseline → H1 → HYBRID_V1 → HYBRID_V2 →
-            baseline. Never compiled into a production build
+        {/* G0.4E-2/G0.4F-1.3/G0.4F-2B-1.2/PPC-A0-DEV-01: DEV-ONLY Hard Leaf mode
+            switch — shows current leaf and cycles baseline → H1 → HYBRID_V1 →
+            HYBRID_V2 → A0 → baseline. Never compiled into a production build
             (import.meta.env.DEV is false there). Toggle only between games,
             never mid-game. */}
         {import.meta.env.DEV && (
@@ -494,11 +501,7 @@ export const DebugInfo: React.FC<DebugInfoProps> = ({
             >
               {(() => {
                 const i = LEAF_CYCLE.indexOf(HARD_LEAF_MODE_CONFIG.current);
-                const n = LEAF_CYCLE[(i + 1) % LEAF_CYCLE.length];
-                return n === 'baseline' ? '→ BASELINE'
-                  : n === 'baseline_hole_corrected' ? '→ H1 (Corrected Hole)'
-                  : n === 'hybrid_standard_only' ? '→ HYBRID_V1'
-                  : '→ HYBRID_V2';
+                return `→ ${LEAF_LABELS[LEAF_CYCLE[(i + 1) % LEAF_CYCLE.length]]}`;
               })()}
             </button>
             {/* G0.4F-2B-1.6: M3-lite Progress Guard toggle (independent from the
