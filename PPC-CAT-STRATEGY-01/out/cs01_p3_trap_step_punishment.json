@@ -1,0 +1,28 @@
+{
+  "before": {
+    "mouse": {
+      "r": 4,
+      "c": 3
+    },
+    "movesLeft": 4,
+    "player": "mouse",
+    "trap": {
+      "r": 4,
+      "c": 4
+    }
+  },
+  "after": {
+    "mouse": {
+      "r": 4,
+      "c": 4
+    },
+    "movesLeft": 0,
+    "player": "cat",
+    "trap": null,
+    "message": "💀 踩到捕鼠夹！损失全部剩余步数，本回合结束 — 轮到猫行动。"
+  },
+  "events": [
+    "TURN_END from=mouse to=cat reason=normal",
+    "TURN_START player=cat catMoves=4 mouseMoves=0 butter=false skill=false"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "round": "PPC-CAT-STRATEGY-01",
+  "date": "2026-11-12",
+  "nature": "READ_ONLY_EVIDENCE_ROUND",
+  "post_hoc": true,
+  "pre_registration": "NONE (this round produces evidence only; the single candidate's A/B must be pre-registered next round)",
+  "production_changed": false,
+  "src_lines_changed": 0,
+  "reproduce": "npx vitest run --config PPC-CAT-STRATEGY-01/vitest.config.mts",
+  "test_files": 5,
+  "tests": 17,
+  "claims_that_ARE_supported": [
+    "The ghost-butter bait line of game 1 turn 9 is legal under the real engine and wins in ONE mouse turn (witness rSrrrr), and does NOT win when the ghost butter is removed (exhaustive over 93 states).",
+    "H1 scores a pending ghost butter at exactly 0 in every state, and scores ANY butter (including an entity butter at the hole doorstep) at exactly 0 while the mouse carries butter.",
+    "At the game-1 turn-9 root, all 33 distinct legal cat full turns still lose inside the next mouse turn (0 capped, 0 unknown).",
+    "A box can be pushed onto a tunnel corner legally; blockedTunnels updates; the mouse's route roughly doubles.",
+    "On the four real 10x10 maps, 0 of 24 cat turns had any box orthogonally adjacent to a tunnel corner, and blockedTunnels was never written.",
+    "All four real games spent their only trap on turn 1 at (1,1); the trap was never triggered, never reclaimed, never moved; catTrapsRemaining stayed 0 afterwards.",
+    "trapControl is a monotone reward for 'a trap exists at BFS distance < boardSize from the mouse', has no resource or reclaim term, and rewards the earliest placement (+120 vs +60 vs 0) on states with an identical cat end cell."
+  ],
+  "claims_that_are_NOT_supported": [
+    "That retaining the trap would have changed any of the four real results (untested; requires the next round's A/B).",
+    "That a ghost/near-hole-butter H1 feature would have saved game 1 turn 9 (the cat was 9 steps away; saving it needs a 2-turn horizon).",
+    "That blocking a tunnel is strategically better than chasing in general (0 real decision points observed).",
+    "Any statement outside a one-mouse-turn horizon for the defence sweep.",
+    "Any claim that production search depth is insufficient in general: D1 completed on 24/24 real turns, D2 on 10/24."
+  ],
+  "bounded_oracles": {
+    "mouseWinInOneTurn": { "cap": 200000, "capped_occurrences": 0 },
+    "defence_sweep_mouse_win": { "cap": 30000, "unknown": 0 },
+    "enumerateCatTurnBoundaries": { "cap": 20000, "capped": false }
+  }
+}

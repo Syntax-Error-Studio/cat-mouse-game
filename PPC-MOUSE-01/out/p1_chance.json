@@ -1,0 +1,15 @@
+{
+ "fixture": "M_BUTTER_MICRO",
+ "outcomes": 2,
+ "weightSum": 1,
+ "weights": [
+  0.5,
+  0.5
+ ],
+ "spawnCells": 1,
+ "chanceNodes": 423,
+ "fullWindowChanceSearches": 423,
+ "value": -676.3888888888888,
+ "nodes": 330,
+ "note": "D2 invariant: every chance outcome is searched with the FULL window (chanceNodes === fullWindowChanceSearches); the product never narrows a random node"
+}

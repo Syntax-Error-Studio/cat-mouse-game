@@ -1,0 +1,14 @@
+{
+ "fixture": "M_MICRO",
+ "depth": 2,
+ "storedValue": -1596.6269841269843,
+ "storedMate": null,
+ "storedDepth": 2,
+ "value1": -1596.6269841269843,
+ "value2": -1596.6269841269843,
+ "nodes1": 1262,
+ "nodes2": 0,
+ "action1": "skill",
+ "action2": "skill",
+ "note": "a mouse root stores and re-serves the same EXACT entry; the second call resolves from the table (nodes collapse)"
+}

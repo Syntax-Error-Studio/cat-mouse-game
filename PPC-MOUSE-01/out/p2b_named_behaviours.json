@@ -1,0 +1,151 @@
+{
+ "section": "P2-B named behaviours",
+ "win": {
+  "id": "M_CARRY_HOME",
+  "policy": "SHARED_GREEDY",
+  "D": 1,
+  "budget": 600,
+  "steps": 2,
+  "actions": [
+   "mouse→",
+   "mouse→"
+  ],
+  "depths": [
+   "1/1",
+   "1/1"
+  ],
+  "stepWall": [
+   6.77,
+   6.5
+  ],
+  "end": "mouse_wins/mouse",
+  "terminal": "MouseWins",
+  "fullTurn": true,
+  "wall": 13.43,
+  "overrun": -586.57,
+  "parities": [
+   "exact",
+   "exact"
+  ],
+  "rejects": 0,
+  "mismatches": 0,
+  "random": 0,
+  "abort": null
+ },
+ "skill": {
+  "id": "M_SKILL_ONLY",
+  "policy": "SHARED_GREEDY",
+  "D": 1,
+  "budget": 600,
+  "steps": 3,
+  "actions": [
+   "skill",
+   "mouse↑",
+   "exit(5,0)"
+  ],
+  "depths": [
+   "1/1",
+   "1/1",
+   "1/1"
+  ],
+  "stepWall": [
+   0.55,
+   0.43,
+   0.54
+  ],
+  "end": "playing/cat",
+  "terminal": "none",
+  "fullTurn": true,
+  "wall": 1.6,
+  "overrun": -598.4,
+  "parities": [
+   "exact",
+   "exact",
+   "exact"
+  ],
+  "rejects": 0,
+  "mismatches": 0,
+  "random": 0,
+  "abort": null
+ },
+ "trap": {
+  "id": "M_TRAP_ONLY",
+  "policy": "SHARED_GREEDY",
+  "D": 1,
+  "budget": 600,
+  "steps": 1,
+  "actions": [
+   "mouse↓"
+  ],
+  "depths": [
+   "1/1"
+  ],
+  "stepWall": [
+   0.12
+  ],
+  "end": "playing/cat",
+  "terminal": "none",
+  "fullTurn": true,
+  "wall": 0.15,
+  "overrun": -599.85,
+  "parities": [
+   "exact"
+  ],
+  "rejects": 0,
+  "mismatches": 0,
+  "random": 0,
+  "abort": null
+ },
+ "tunnel": {
+  "id": "M_TUNNEL",
+  "policy": "SHARED_GREEDY",
+  "D": 1,
+  "budget": 600,
+  "steps": 2,
+  "actions": [
+   "mouse←",
+   "exit(0,0)"
+  ],
+  "depths": [
+   "1/1",
+   "1/1"
+  ],
+  "stepWall": [
+   0.88,
+   0.36
+  ],
+  "end": "playing/cat",
+  "terminal": "none",
+  "fullTurn": true,
+  "wall": 1.3,
+  "overrun": -598.7,
+  "parities": [
+   "exact",
+   "exact"
+  ],
+  "rejects": 0,
+  "mismatches": 0,
+  "random": 0,
+  "abort": null
+ },
+ "stranded": {
+  "id": "M_STRANDED",
+  "policy": "SHARED_GREEDY",
+  "D": 1,
+  "budget": 600,
+  "steps": 0,
+  "actions": [],
+  "depths": [],
+  "stepWall": [],
+  "end": "cat_wins/mouse",
+  "terminal": "CatWins",
+  "fullTurn": false,
+  "wall": 0.006400000000098771,
+  "overrun": 0,
+  "parities": [],
+  "rejects": 0,
+  "mismatches": 0,
+  "random": 0,
+  "abort": "rule_a_terminal_before_planning"
+ }
+}

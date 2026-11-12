@@ -1,0 +1,68 @@
+{
+  "root": {
+    "cat": {
+      "r": 1,
+      "c": 1
+    },
+    "mouse": {
+      "r": 8,
+      "c": 5
+    }
+  },
+  "rows": [
+    {
+      "planLabel": "TDDDD",
+      "catEnd": {
+        "r": 5,
+        "c": 1
+      },
+      "catMovesLeft": 0,
+      "player": "cat",
+      "trap": {
+        "r": 1,
+        "c": 1
+      },
+      "total": 409.947,
+      "trapControl": 120,
+      "capturePressure": -630,
+      "tempo": 0,
+      "mouseTrapDistance": 8,
+      "trace": []
+    },
+    {
+      "planLabel": "DTDDD",
+      "catEnd": {
+        "r": 5,
+        "c": 1
+      },
+      "catMovesLeft": 0,
+      "player": "cat",
+      "trap": {
+        "r": 2,
+        "c": 1
+      },
+      "total": 349.947,
+      "trapControl": 60,
+      "capturePressure": -630,
+      "tempo": 0,
+      "mouseTrapDistance": 9,
+      "trace": []
+    },
+    {
+      "planLabel": "DDDD",
+      "catEnd": {
+        "r": 5,
+        "c": 1
+      },
+      "catMovesLeft": 0,
+      "player": "cat",
+      "trap": null,
+      "total": 289.947,
+      "trapControl": 0,
+      "capturePressure": -630,
+      "tempo": 0,
+      "mouseTrapDistance": null,
+      "trace": []
+    }
+  ]
+}

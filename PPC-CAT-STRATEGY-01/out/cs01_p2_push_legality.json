@@ -1,0 +1,44 @@
+{
+  "before": {
+    "exitsFromTopLeft": [
+      "0,9",
+      "9,0",
+      "9,9"
+    ],
+    "openTunnels": [
+      "0,0",
+      "0,9",
+      "9,0",
+      "9,9"
+    ],
+    "mouseDistToHole": 4,
+    "mouseTunnelAccessDistance": 2
+  },
+  "after": {
+    "cat": {
+      "r": 1,
+      "c": 0
+    },
+    "catMovesLeft": 3,
+    "cornerCellType": "box",
+    "blockedTunnels": [
+      "0,0"
+    ],
+    "exitsFromTopLeft": [
+      "0,9",
+      "9,0",
+      "9,9"
+    ],
+    "openTunnels": [
+      "0,9",
+      "9,0",
+      "9,9"
+    ],
+    "mouseDistToHole": 9,
+    "mouseTunnelAccessDistance": 7,
+    "mouseCanStillEnterTopLeft": false,
+    "catLog": [
+      "🐱 [CAT] (2,0)→(1,0) 推箱堵通道 | 剩余:3"
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+{"fixture":"M_CARRY_HOME","checked":1}
+{"fixture":"M_BUTTER_PICKUP","checked":1}
+{"fixture":"M_SKILL_ONLY","checked":1}
+{"fixture":"M_TUNNEL","checked":1}
+{"fixture":"M_TRAP_ONLY","checked":1}
+{"fixture":"M_STRANDED","checked":0,"why":"no step executed (RULE-A terminal before planning)"}
+{"fixture":"M_CAT_ADJACENT","checked":1}
+{"fixture":"M_MICRO","checked":1}
+{"fixture":"M_BUTTER_MICRO","checked":1}
+{"fixture":"M_CAT_MATE3","checked":1}
+{"fixture":"M10_BUTTER","checked":1}

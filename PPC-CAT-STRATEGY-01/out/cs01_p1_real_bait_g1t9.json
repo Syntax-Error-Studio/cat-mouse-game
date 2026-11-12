@@ -1,0 +1,71 @@
+{
+  "game": 1,
+  "turn": 9,
+  "loggedPlan": "LLDL",
+  "catRootState": {
+    "cat": {
+      "r": 1,
+      "c": 7
+    },
+    "mouse": {
+      "r": 8,
+      "c": 3
+    },
+    "mouseHasButter": true,
+    "mouseMovesLeft": 0,
+    "catMovesLeft": 4,
+    "trap": {
+      "r": 1,
+      "c": 1
+    },
+    "trapsRemaining": 0,
+    "ghost": {
+      "pos": {
+        "r": 8,
+        "c": 5,
+        "blockedMaterializations": 0
+      },
+      "distToHole": 3
+    },
+    "entityButterDistToHole": [
+      5
+    ],
+    "blockedTunnels": []
+  },
+  "catPlanExecuted": "LLDL",
+  "catEnd": {
+    "cat": {
+      "r": 2,
+      "c": 4
+    },
+    "mouse": {
+      "r": 8,
+      "c": 3
+    },
+    "chanceBranches": 1
+  },
+  "ghostMaterialized": true,
+  "ghostStillPending": 0,
+  "mouseTurnBudget": 3,
+  "mouseCarriesAtBoundary": true,
+  "mouseWinInOneTurn": {
+    "withGhostButter": {
+      "win": true,
+      "witness": "rSrrrr",
+      "states": 552,
+      "capped": false
+    },
+    "withoutGhostButter": {
+      "win": false,
+      "states": 93,
+      "capped": false
+    }
+  },
+  "afterSkill": {
+    "mouseMovesLeft": 6,
+    "mouseHasButter": false,
+    "mouseSkillActive": true
+  },
+  "distMouseToGhost": 2,
+  "distCatToGhost": 7
+}

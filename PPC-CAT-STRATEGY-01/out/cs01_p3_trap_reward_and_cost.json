@@ -1,0 +1,71 @@
+{
+  "realRoot": {
+    "game": 1,
+    "turn": 1,
+    "cat": {
+      "r": 1,
+      "c": 1
+    },
+    "mouse": {
+      "r": 8,
+      "c": 5
+    }
+  },
+  "withoutTrap": {
+    "total": 154.289,
+    "trapControl": 0,
+    "mouseTrapDistance": null,
+    "catHasTrapAvailable": true,
+    "trapActive": false
+  },
+  "withTrapPlaced": {
+    "total": 154.289,
+    "trapControl": 0,
+    "mouseTrapDistance": null,
+    "catHasTrapAvailable": false,
+    "trapActive": true
+  },
+  "immediateGain": 0,
+  "resourceCounterIrrelevance": {
+    "oneTrapInHand": {
+      "total": 154.289,
+      "trapControl": 0,
+      "mouseTrapDistance": null,
+      "catHasTrapAvailable": true,
+      "trapActive": false
+    },
+    "noTrapInHand": {
+      "total": 154.289,
+      "trapControl": 0,
+      "mouseTrapDistance": null,
+      "catHasTrapAvailable": false,
+      "trapActive": false
+    },
+    "identical": true,
+    "trapPlacedFarAway": {
+      "total": 154.289,
+      "trapControl": 0,
+      "mouseTrapDistance": null,
+      "catHasTrapAvailable": false,
+      "trapActive": true
+    },
+    "note": "catTrapsRemaining / trapActive are FEATURES; scoreFeatures() never reads them except through mouse-side trap proximity."
+  },
+  "reverseControlTrapOnTheMouseRoute": {
+    "mouseOnTrap": {
+      "total": 518.087,
+      "trapControl": 600,
+      "mouseTrapDistance": 0,
+      "catHasTrapAvailable": true,
+      "trapActive": true
+    },
+    "mouseNotOnTrap": {
+      "total": -81.913,
+      "trapControl": 0,
+      "mouseTrapDistance": null,
+      "catHasTrapAvailable": true,
+      "trapActive": false
+    },
+    "delta": 600
+  }
+}

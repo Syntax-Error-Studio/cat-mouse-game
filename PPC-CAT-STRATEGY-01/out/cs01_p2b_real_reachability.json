@@ -1,0 +1,199 @@
+{
+  "totalCatTurns": 24,
+  "turnsWithABoxAdjacentToACorner": 0,
+  "turnsWithAReachableTunnelBlockPush": 0,
+  "rows": [
+    {
+      "game": 1,
+      "turn": 1,
+      "catMovesLeft": 4,
+      "boxesAdjacentToCorners": 0,
+      "reachable": [],
+      "options": []
+    },
+    {
+      "game": 1,
+      "turn": 2,
+      "catMovesLeft": 4,
+      "boxesAdjacentToCorners": 0,
+      "reachable": [],
+      "options": []
+    },
+    {
+      "game": 1,
+      "turn": 3,
+      "catMovesLeft": 4,
+      "boxesAdjacentToCorners": 0,
+      "reachable": [],
+      "options": []
+    },
+    {
+      "game": 1,
+      "turn": 4,
+      "catMovesLeft": 4,
+      "boxesAdjacentToCorners": 0,
+      "reachable": [],
+      "options": []
+    },
+    {
+      "game": 1,
+      "turn": 5,
+      "catMovesLeft": 4,
+      "boxesAdjacentToCorners": 0,
+      "reachable": [],
+      "options": []
+    },
+    {
+      "game": 1,
+      "turn": 6,
+      "catMovesLeft": 4,
+      "boxesAdjacentToCorners": 0,
+      "reachable": [],
+      "options": []
+    },
+    {
+      "game": 1,
+      "turn": 7,
+      "catMovesLeft": 4,
+      "boxesAdjacentToCorners": 0,
+      "reachable": [],
+      "options": []
+    },
+    {
+      "game": 1,
+      "turn": 8,
+      "catMovesLeft": 4,
+      "boxesAdjacentToCorners": 0,
+      "reachable": [],
+      "options": []
+    },
+    {
+      "game": 1,
+      "turn": 9,
+      "catMovesLeft": 4,
+      "boxesAdjacentToCorners": 0,
+      "reachable": [],
+      "options": []
+    },
+    {
+      "game": 2,
+      "turn": 1,
+      "catMovesLeft": 4,
+      "boxesAdjacentToCorners": 0,
+      "reachable": [],
+      "options": []
+    },
+    {
+      "game": 2,
+      "turn": 2,
+      "catMovesLeft": 4,
+      "boxesAdjacentToCorners": 0,
+      "reachable": [],
+      "options": []
+    },
+    {
+      "game": 2,
+      "turn": 3,
+      "catMovesLeft": 4,
+      "boxesAdjacentToCorners": 0,
+      "reachable": [],
+      "options": []
+    },
+    {
+      "game": 2,
+      "turn": 4,
+      "catMovesLeft": 4,
+      "boxesAdjacentToCorners": 0,
+      "reachable": [],
+      "options": []
+    },
+    {
+      "game": 2,
+      "turn": 5,
+      "catMovesLeft": 4,
+      "boxesAdjacentToCorners": 0,
+      "reachable": [],
+      "options": []
+    },
+    {
+      "game": 2,
+      "turn": 6,
+      "catMovesLeft": 4,
+      "boxesAdjacentToCorners": 0,
+      "reachable": [],
+      "options": []
+    },
+    {
+      "game": 2,
+      "turn": 7,
+      "catMovesLeft": 4,
+      "boxesAdjacentToCorners": 0,
+      "reachable": [],
+      "options": []
+    },
+    {
+      "game": 2,
+      "turn": 8,
+      "catMovesLeft": 4,
+      "boxesAdjacentToCorners": 0,
+      "reachable": [],
+      "options": []
+    },
+    {
+      "game": 5,
+      "turn": 1,
+      "catMovesLeft": 4,
+      "boxesAdjacentToCorners": 0,
+      "reachable": [],
+      "options": []
+    },
+    {
+      "game": 5,
+      "turn": 2,
+      "catMovesLeft": 4,
+      "boxesAdjacentToCorners": 0,
+      "reachable": [],
+      "options": []
+    },
+    {
+      "game": 5,
+      "turn": 3,
+      "catMovesLeft": 4,
+      "boxesAdjacentToCorners": 0,
+      "reachable": [],
+      "options": []
+    },
+    {
+      "game": 5,
+      "turn": 4,
+      "catMovesLeft": 4,
+      "boxesAdjacentToCorners": 0,
+      "reachable": [],
+      "options": []
+    },
+    {
+      "game": 6,
+      "turn": 1,
+      "catMovesLeft": 4,
+      "boxesAdjacentToCorners": 0,
+      "reachable": [],
+      "options": []
+    },
+    {
+      "game": 6,
+      "turn": 2,
+      "catMovesLeft": 4,
+      "boxesAdjacentToCorners": 0,
+      "reachable": [],
+      "options": []
+    },
+    {
+      "game": 6,
+      "turn": 3,
+      "catMovesLeft": 4,
+      "boxesAdjacentToCorners": 0,
+      "reachable": [],
+      "options": []
+    }
+  ]
+}

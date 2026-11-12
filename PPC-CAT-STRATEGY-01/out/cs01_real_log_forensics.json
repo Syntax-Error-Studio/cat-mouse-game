@@ -1,0 +1,911 @@
+{
+  "source": "ai-training/f2b19a/log_game{A,B,C,D}.txt",
+  "games": [
+    {
+      "file": "log_gameD.txt",
+      "gameNo": 1,
+      "result": "mouse_wins",
+      "hardLeaf": "H1 (Corrected Hole)",
+      "turns": 9,
+      "firstTrapTurn": 2,
+      "trapAtCatStart": true,
+      "distinctTrapCells": [
+        "1,1"
+      ],
+      "trapTrace": [
+        "-",
+        "1,1",
+        "1,1",
+        "1,1",
+        "1,1",
+        "1,1",
+        "1,1",
+        "1,1",
+        "1,1"
+      ],
+      "trapsRemainingAtEnd": 0,
+      "finalPhase": "mouse_wins",
+      "jumps": [
+        {
+          "fromTurn": 3,
+          "toTurn": 4,
+          "prevMouse": {
+            "r": 9,
+            "c": 6
+          },
+          "curMouse": {
+            "r": 0,
+            "c": 9
+          },
+          "manhattan": 12,
+          "mouseBudgetPlusCat": 4,
+          "atTunnelCorner": true,
+          "teleportImplied": true
+        },
+        {
+          "fromTurn": 7,
+          "toTurn": 8,
+          "prevMouse": {
+            "r": 1,
+            "c": 8
+          },
+          "curMouse": {
+            "r": 9,
+            "c": 0
+          },
+          "manhattan": 16,
+          "mouseBudgetPlusCat": 3,
+          "atTunnelCorner": true,
+          "teleportImplied": true
+        }
+      ],
+      "perTurn": [
+        {
+          "turn": 1,
+          "cat": "1,1",
+          "mouse": "8,5",
+          "mouseManhattanToHole": 3,
+          "butter": false,
+          "skill": false,
+          "mouseMoves": 0,
+          "catMoves": 4,
+          "trap": null,
+          "trapRemain": 1,
+          "ghosts": [],
+          "placementDebt": 0,
+          "blockedTunnels": [],
+          "entityButterDistToHole": [
+            10,
+            8
+          ],
+          "planLabel": "TDDDD",
+          "cDepth": 1,
+          "nodes": 2688,
+          "elapsedMs": 102.3,
+          "h1MouseButterDistance": 11,
+          "h1MouseWinRouteDistance": 23,
+          "h1TrapControl": 0,
+          "h1TunnelControl": -180,
+          "h1Total": 154.28947368421052,
+          "planHasTrap": true
+        },
+        {
+          "turn": 2,
+          "cat": "5,1",
+          "mouse": "7,4",
+          "mouseManhattanToHole": 4,
+          "butter": false,
+          "skill": false,
+          "mouseMoves": 0,
+          "catMoves": 4,
+          "trap": "1,1",
+          "trapRemain": 0,
+          "ghosts": [],
+          "placementDebt": 0,
+          "blockedTunnels": [],
+          "entityButterDistToHole": [
+            10,
+            8
+          ],
+          "planLabel": "DRDD",
+          "cDepth": 2,
+          "nodes": 2112,
+          "elapsedMs": 101.9,
+          "h1MouseButterDistance": 12,
+          "h1MouseWinRouteDistance": 24,
+          "h1TrapControl": 59.999999999999986,
+          "h1TunnelControl": -150,
+          "h1Total": 737.8421052631579,
+          "planHasTrap": false
+        },
+        {
+          "turn": 3,
+          "cat": "8,2",
+          "mouse": "9,6",
+          "mouseManhattanToHole": 3,
+          "butter": false,
+          "skill": false,
+          "mouseMoves": 0,
+          "catMoves": 4,
+          "trap": "1,1",
+          "trapRemain": 0,
+          "ghosts": [],
+          "placementDebt": 0,
+          "blockedTunnels": [],
+          "entityButterDistToHole": [
+            10,
+            8
+          ],
+          "planLabel": "RRRR",
+          "cDepth": 2,
+          "nodes": 1280,
+          "elapsedMs": 111.4,
+          "h1MouseButterDistance": 9,
+          "h1MouseWinRouteDistance": 21,
+          "h1TrapControl": 240,
+          "h1TunnelControl": -300,
+          "h1Total": 346.6578947368421,
+          "planHasTrap": false
+        },
+        {
+          "turn": 4,
+          "cat": "8,6",
+          "mouse": "0,9",
+          "mouseManhattanToHole": 7,
+          "butter": false,
+          "skill": false,
+          "mouseMoves": 0,
+          "catMoves": 4,
+          "trap": "1,1",
+          "trapRemain": 0,
+          "ghosts": [],
+          "placementDebt": 0,
+          "blockedTunnels": [],
+          "entityButterDistToHole": [
+            10,
+            8
+          ],
+          "planLabel": "LUUU",
+          "cDepth": 3,
+          "nodes": 1984,
+          "elapsedMs": 102,
+          "h1MouseButterDistance": 6,
+          "h1MouseWinRouteDistance": 17,
+          "h1TrapControl": 420,
+          "h1TunnelControl": -900,
+          "h1Total": -1107.6842105263158,
+          "planHasTrap": false
+        },
+        {
+          "turn": 5,
+          "cat": "5,5",
+          "mouse": "0,5",
+          "mouseManhattanToHole": 10,
+          "butter": false,
+          "skill": false,
+          "mouseMoves": 0,
+          "catMoves": 4,
+          "trap": "1,1",
+          "trapRemain": 0,
+          "ghosts": [],
+          "placementDebt": 0,
+          "blockedTunnels": [],
+          "entityButterDistToHole": [
+            10,
+            8
+          ],
+          "planLabel": "ULUL",
+          "cDepth": 1,
+          "nodes": 1088,
+          "elapsedMs": 117.1,
+          "h1MouseButterDistance": 2,
+          "h1MouseWinRouteDistance": 13,
+          "h1TrapControl": 300,
+          "h1TunnelControl": -225,
+          "h1Total": -1570.578947368421,
+          "planHasTrap": false
+        },
+        {
+          "turn": 6,
+          "cat": "3,3",
+          "mouse": "0,6",
+          "mouseManhattanToHole": 9,
+          "butter": true,
+          "skill": false,
+          "mouseMoves": 0,
+          "catMoves": 4,
+          "trap": "1,1",
+          "trapRemain": 0,
+          "ghosts": [
+            {
+              "pos": "8,2",
+              "distToHole": 6,
+              "blocked": 0
+            },
+            {
+              "pos": "5,5",
+              "distToHole": 5,
+              "blocked": 0
+            }
+          ],
+          "placementDebt": 0,
+          "blockedTunnels": [],
+          "entityButterDistToHole": [],
+          "planLabel": "URR",
+          "cDepth": 1,
+          "nodes": 1216,
+          "elapsedMs": 103.9,
+          "h1MouseButterDistance": null,
+          "h1MouseWinRouteDistance": 10,
+          "h1TrapControl": 240,
+          "h1TunnelControl": 0,
+          "h1Total": 150.42105263157896,
+          "planHasTrap": false
+        },
+        {
+          "turn": 7,
+          "cat": "3,5",
+          "mouse": "1,8",
+          "mouseManhattanToHole": 6,
+          "butter": true,
+          "skill": false,
+          "mouseMoves": 0,
+          "catMoves": 4,
+          "trap": "1,1",
+          "trapRemain": 0,
+          "ghosts": [],
+          "placementDebt": 0,
+          "blockedTunnels": [],
+          "entityButterDistToHole": [
+            6,
+            5
+          ],
+          "planLabel": "RRUR",
+          "cDepth": 2,
+          "nodes": 1920,
+          "elapsedMs": 102.6,
+          "h1MouseButterDistance": 15,
+          "h1MouseWinRouteDistance": 7,
+          "h1TrapControl": 59.999999999999986,
+          "h1TunnelControl": 0,
+          "h1Total": -77.80075187969919,
+          "planHasTrap": false
+        },
+        {
+          "turn": 8,
+          "cat": "2,8",
+          "mouse": "9,0",
+          "mouseManhattanToHole": 9,
+          "butter": false,
+          "skill": false,
+          "mouseMoves": 0,
+          "catMoves": 4,
+          "trap": "1,1",
+          "trapRemain": 0,
+          "ghosts": [],
+          "placementDebt": 0,
+          "blockedTunnels": [],
+          "entityButterDistToHole": [
+            6,
+            5
+          ],
+          "planLabel": "LLUR",
+          "cDepth": 1,
+          "nodes": 1024,
+          "elapsedMs": 102.3,
+          "h1MouseButterDistance": 3,
+          "h1MouseWinRouteDistance": 9,
+          "h1TrapControl": 420,
+          "h1TunnelControl": -900,
+          "h1Total": -1093.342105263158,
+          "planHasTrap": false
+        },
+        {
+          "turn": 9,
+          "cat": "1,7",
+          "mouse": "8,3",
+          "mouseManhattanToHole": 5,
+          "butter": true,
+          "skill": false,
+          "mouseMoves": 0,
+          "catMoves": 4,
+          "trap": "1,1",
+          "trapRemain": 0,
+          "ghosts": [
+            {
+              "pos": "8,5",
+              "distToHole": 3,
+              "blocked": 0
+            }
+          ],
+          "placementDebt": 0,
+          "blockedTunnels": [],
+          "entityButterDistToHole": [
+            5
+          ],
+          "planLabel": "LLDL",
+          "cDepth": 1,
+          "nodes": 1216,
+          "elapsedMs": 105.3,
+          "h1MouseButterDistance": 5,
+          "h1MouseWinRouteDistance": 5,
+          "h1TrapControl": 59.999999999999986,
+          "h1TunnelControl": 0,
+          "h1Total": -1172.421052631579,
+          "planHasTrap": false
+        }
+      ]
+    },
+    {
+      "file": "log_gameC.txt",
+      "gameNo": 2,
+      "result": "mouse_wins",
+      "hardLeaf": "H1 (Corrected Hole)",
+      "turns": 8,
+      "firstTrapTurn": 2,
+      "trapAtCatStart": true,
+      "distinctTrapCells": [
+        "1,1"
+      ],
+      "trapTrace": [
+        "-",
+        "1,1",
+        "1,1",
+        "1,1",
+        "1,1",
+        "1,1",
+        "1,1",
+        "1,1"
+      ],
+      "trapsRemainingAtEnd": 0,
+      "finalPhase": "mouse_wins",
+      "jumps": [
+        {
+          "fromTurn": 5,
+          "toTurn": 6,
+          "prevMouse": {
+            "r": 9,
+            "c": 2
+          },
+          "curMouse": {
+            "r": 0,
+            "c": 9
+          },
+          "manhattan": 16,
+          "mouseBudgetPlusCat": 3,
+          "atTunnelCorner": true,
+          "teleportImplied": true
+        }
+      ],
+      "perTurn": [
+        {
+          "turn": 1,
+          "cat": "1,1",
+          "mouse": "4,9",
+          "mouseManhattanToHole": 3,
+          "butter": false,
+          "skill": false,
+          "mouseMoves": 0,
+          "catMoves": 4,
+          "trap": null,
+          "trapRemain": 1,
+          "ghosts": [],
+          "placementDebt": 0,
+          "blockedTunnels": [],
+          "entityButterDistToHole": [
+            8,
+            8
+          ],
+          "planLabel": "TRRRR",
+          "cDepth": 1,
+          "nodes": 3136,
+          "elapsedMs": 101.2,
+          "h1MouseButterDistance": 8,
+          "h1MouseWinRouteDistance": 17,
+          "h1TrapControl": 0,
+          "h1TunnelControl": -225,
+          "h1Total": -160.39473684210537,
+          "planHasTrap": true
+        },
+        {
+          "turn": 2,
+          "cat": "1,5",
+          "mouse": "5,8",
+          "mouseManhattanToHole": 2,
+          "butter": false,
+          "skill": false,
+          "mouseMoves": 0,
+          "catMoves": 4,
+          "trap": "1,1",
+          "trapRemain": 0,
+          "ghosts": [],
+          "placementDebt": 0,
+          "blockedTunnels": [],
+          "entityButterDistToHole": [
+            8,
+            8
+          ],
+          "planLabel": "RRDR",
+          "cDepth": 3,
+          "nodes": 2240,
+          "elapsedMs": 103.1,
+          "h1MouseButterDistance": 8,
+          "h1MouseWinRouteDistance": 17,
+          "h1TrapControl": 119.99999999999997,
+          "h1TunnelControl": -180,
+          "h1Total": 529.7368421052631,
+          "planHasTrap": false
+        },
+        {
+          "turn": 3,
+          "cat": "2,8",
+          "mouse": "4,5",
+          "mouseManhattanToHole": 6,
+          "butter": false,
+          "skill": false,
+          "mouseMoves": 0,
+          "catMoves": 4,
+          "trap": "1,1",
+          "trapRemain": 0,
+          "ghosts": [],
+          "placementDebt": 0,
+          "blockedTunnels": [],
+          "entityButterDistToHole": [
+            8,
+            8
+          ],
+          "planLabel": "DDLL",
+          "cDepth": 2,
+          "nodes": 1024,
+          "elapsedMs": 105.3,
+          "h1MouseButterDistance": 4,
+          "h1MouseWinRouteDistance": 13,
+          "h1TrapControl": 180.00000000000003,
+          "h1TunnelControl": -112.5,
+          "h1Total": -409.8684210526317,
+          "planHasTrap": false
+        },
+        {
+          "turn": 4,
+          "cat": "4,6",
+          "mouse": "5,2",
+          "mouseManhattanToHole": 8,
+          "butter": true,
+          "skill": false,
+          "mouseMoves": 0,
+          "catMoves": 4,
+          "trap": "1,1",
+          "trapRemain": 0,
+          "ghosts": [
+            {
+              "pos": "2,5",
+              "distToHole": 8,
+              "blocked": 0
+            }
+          ],
+          "placementDebt": 0,
+          "blockedTunnels": [],
+          "entityButterDistToHole": [
+            8
+          ],
+          "planLabel": "DLL",
+          "cDepth": 1,
+          "nodes": 1344,
+          "elapsedMs": 103.1,
+          "h1MouseButterDistance": 2,
+          "h1MouseWinRouteDistance": 9,
+          "h1TrapControl": 180.00000000000003,
+          "h1TunnelControl": 0,
+          "h1Total": -369.77485380116957,
+          "planHasTrap": false
+        },
+        {
+          "turn": 5,
+          "cat": "5,3",
+          "mouse": "9,2",
+          "mouseManhattanToHole": 7,
+          "butter": true,
+          "skill": false,
+          "mouseMoves": 0,
+          "catMoves": 4,
+          "trap": "1,1",
+          "trapRemain": 0,
+          "ghosts": [
+            {
+              "pos": "4,7",
+              "distToHole": 4,
+              "blocked": 0
+            }
+          ],
+          "placementDebt": 0,
+          "blockedTunnels": [],
+          "entityButterDistToHole": [
+            8
+          ],
+          "planLabel": "DDDL",
+          "cDepth": 1,
+          "nodes": 1472,
+          "elapsedMs": 101.7,
+          "h1MouseButterDistance": 10,
+          "h1MouseWinRouteDistance": 7,
+          "h1TrapControl": 0,
+          "h1TunnelControl": 0,
+          "h1Total": -344.3007518796992,
+          "planHasTrap": false
+        },
+        {
+          "turn": 6,
+          "cat": "8,2",
+          "mouse": "0,9",
+          "mouseManhattanToHole": 7,
+          "butter": false,
+          "skill": false,
+          "mouseMoves": 0,
+          "catMoves": 4,
+          "trap": "1,1",
+          "trapRemain": 0,
+          "ghosts": [],
+          "placementDebt": 0,
+          "blockedTunnels": [],
+          "entityButterDistToHole": [
+            8,
+            4
+          ],
+          "planLabel": "LUUU",
+          "cDepth": 2,
+          "nodes": 1920,
+          "elapsedMs": 101.1,
+          "h1MouseButterDistance": 6,
+          "h1MouseWinRouteDistance": 11,
+          "h1TrapControl": 420,
+          "h1TunnelControl": -900,
+          "h1Total": -733.3421052631579,
+          "planHasTrap": false
+        },
+        {
+          "turn": 7,
+          "cat": "5,1",
+          "mouse": "4,9",
+          "mouseManhattanToHole": 3,
+          "butter": false,
+          "skill": false,
+          "mouseMoves": 0,
+          "catMoves": 4,
+          "trap": "1,1",
+          "trapRemain": 0,
+          "ghosts": [],
+          "placementDebt": 0,
+          "blockedTunnels": [],
+          "entityButterDistToHole": [
+            8,
+            4
+          ],
+          "planLabel": "URUU",
+          "cDepth": 1,
+          "nodes": 832,
+          "elapsedMs": 104.9,
+          "h1MouseButterDistance": 2,
+          "h1MouseWinRouteDistance": 7,
+          "h1TrapControl": 180.00000000000003,
+          "h1TunnelControl": -225,
+          "h1Total": -905.7105263157894,
+          "planHasTrap": false
+        },
+        {
+          "turn": 8,
+          "cat": "2,2",
+          "mouse": "4,9",
+          "mouseManhattanToHole": 3,
+          "butter": true,
+          "skill": false,
+          "mouseMoves": 0,
+          "catMoves": 4,
+          "trap": "1,1",
+          "trapRemain": 0,
+          "ghosts": [
+            {
+              "pos": "8,6",
+              "distToHole": 2,
+              "blocked": 0
+            }
+          ],
+          "placementDebt": 0,
+          "blockedTunnels": [],
+          "entityButterDistToHole": [
+            8
+          ],
+          "planLabel": "DDDR",
+          "cDepth": 1,
+          "nodes": 1152,
+          "elapsedMs": 103.2,
+          "h1MouseButterDistance": 6,
+          "h1MouseWinRouteDistance": 3,
+          "h1TrapControl": 0,
+          "h1TunnelControl": 0,
+          "h1Total": -640.1403508771931,
+          "planHasTrap": false
+        }
+      ]
+    },
+    {
+      "file": "log_gameB.txt",
+      "gameNo": 5,
+      "result": "mouse_wins",
+      "hardLeaf": "H1 (Corrected Hole)",
+      "turns": 4,
+      "firstTrapTurn": 2,
+      "trapAtCatStart": true,
+      "distinctTrapCells": [
+        "1,1"
+      ],
+      "trapTrace": [
+        "-",
+        "1,1",
+        "1,1",
+        "1,1"
+      ],
+      "trapsRemainingAtEnd": 0,
+      "finalPhase": "mouse_wins",
+      "jumps": [],
+      "perTurn": [
+        {
+          "turn": 1,
+          "cat": "1,1",
+          "mouse": "9,0",
+          "mouseManhattanToHole": 9,
+          "butter": false,
+          "skill": false,
+          "mouseMoves": 0,
+          "catMoves": 4,
+          "trap": null,
+          "trapRemain": 1,
+          "ghosts": [],
+          "placementDebt": 0,
+          "blockedTunnels": [],
+          "entityButterDistToHole": [
+            7,
+            8
+          ],
+          "planLabel": "TRRDD",
+          "cDepth": 1,
+          "nodes": 1792,
+          "elapsedMs": 103.4,
+          "h1MouseButterDistance": 2,
+          "h1MouseWinRouteDistance": 11,
+          "h1TrapControl": 0,
+          "h1TunnelControl": -900,
+          "h1Total": -1076.1052631578948,
+          "planHasTrap": true
+        },
+        {
+          "turn": 2,
+          "cat": "3,3",
+          "mouse": "9,2",
+          "mouseManhattanToHole": 7,
+          "butter": true,
+          "skill": false,
+          "mouseMoves": 0,
+          "catMoves": 4,
+          "trap": "1,1",
+          "trapRemain": 0,
+          "ghosts": [
+            {
+              "pos": "6,6",
+              "distToHole": 3,
+              "blocked": 0
+            }
+          ],
+          "placementDebt": 0,
+          "blockedTunnels": [],
+          "entityButterDistToHole": [
+            8
+          ],
+          "planLabel": "DDL",
+          "cDepth": 1,
+          "nodes": 1664,
+          "elapsedMs": 100.8,
+          "h1MouseButterDistance": 16,
+          "h1MouseWinRouteDistance": 7,
+          "h1TrapControl": 0,
+          "h1TunnelControl": 0,
+          "h1Total": -575.3533834586468,
+          "planHasTrap": false
+        },
+        {
+          "turn": 3,
+          "cat": "5,3",
+          "mouse": "9,5",
+          "mouseManhattanToHole": 4,
+          "butter": true,
+          "skill": false,
+          "mouseMoves": 0,
+          "catMoves": 4,
+          "trap": "1,1",
+          "trapRemain": 0,
+          "ghosts": [],
+          "placementDebt": 0,
+          "blockedTunnels": [],
+          "entityButterDistToHole": [
+            8,
+            3
+          ],
+          "planLabel": "LDDD",
+          "cDepth": 2,
+          "nodes": 3264,
+          "elapsedMs": 101.9,
+          "h1MouseButterDistance": 8,
+          "h1MouseWinRouteDistance": 4,
+          "h1TrapControl": 0,
+          "h1TunnelControl": 0,
+          "h1Total": -429.7368421052631,
+          "planHasTrap": false
+        },
+        {
+          "turn": 4,
+          "cat": "8,2",
+          "mouse": "9,8",
+          "mouseManhattanToHole": 1,
+          "butter": true,
+          "skill": false,
+          "mouseMoves": 0,
+          "catMoves": 4,
+          "trap": "1,1",
+          "trapRemain": 0,
+          "ghosts": [],
+          "placementDebt": 0,
+          "blockedTunnels": [],
+          "entityButterDistToHole": [
+            8,
+            3
+          ],
+          "planLabel": "UUUU",
+          "cDepth": 2,
+          "nodes": 1664,
+          "elapsedMs": 102.6,
+          "h1MouseButterDistance": 5,
+          "h1MouseWinRouteDistance": 1,
+          "h1TrapControl": 0,
+          "h1TunnelControl": 0,
+          "h1Total": -1061.9736842105262,
+          "planHasTrap": false
+        }
+      ]
+    },
+    {
+      "file": "log_gameA.txt",
+      "gameNo": 6,
+      "result": "mouse_wins",
+      "hardLeaf": "H1 (Corrected Hole)",
+      "turns": 3,
+      "firstTrapTurn": 2,
+      "trapAtCatStart": true,
+      "distinctTrapCells": [
+        "1,1"
+      ],
+      "trapTrace": [
+        "-",
+        "1,1",
+        "1,1"
+      ],
+      "trapsRemainingAtEnd": 0,
+      "finalPhase": "mouse_wins",
+      "jumps": [
+        {
+          "fromTurn": 2,
+          "toTurn": 3,
+          "prevMouse": {
+            "r": 1,
+            "c": 6
+          },
+          "curMouse": {
+            "r": 7,
+            "c": 6
+          },
+          "manhattan": 6,
+          "mouseBudgetPlusCat": 3,
+          "atTunnelCorner": false,
+          "teleportImplied": true
+        }
+      ],
+      "perTurn": [
+        {
+          "turn": 1,
+          "cat": "1,1",
+          "mouse": "0,9",
+          "mouseManhattanToHole": 7,
+          "butter": false,
+          "skill": false,
+          "mouseMoves": 0,
+          "catMoves": 4,
+          "trap": null,
+          "trapRemain": 1,
+          "ghosts": [],
+          "placementDebt": 0,
+          "blockedTunnels": [],
+          "entityButterDistToHole": [
+            7,
+            8
+          ],
+          "planLabel": "TDRRD",
+          "cDepth": 2,
+          "nodes": 3392,
+          "elapsedMs": 101.4,
+          "h1MouseButterDistance": 4,
+          "h1MouseWinRouteDistance": 12,
+          "h1TrapControl": 0,
+          "h1TunnelControl": -900,
+          "h1Total": -1045.9736842105262,
+          "planHasTrap": true
+        },
+        {
+          "turn": 2,
+          "cat": "3,3",
+          "mouse": "1,6",
+          "mouseManhattanToHole": 8,
+          "butter": true,
+          "skill": false,
+          "mouseMoves": 0,
+          "catMoves": 4,
+          "trap": "1,1",
+          "trapRemain": 0,
+          "ghosts": [
+            {
+              "pos": "5,1",
+              "distToHole": 9,
+              "blocked": 0
+            }
+          ],
+          "placementDebt": 0,
+          "blockedTunnels": [],
+          "entityButterDistToHole": [
+            7
+          ],
+          "planLabel": "UURR",
+          "cDepth": 1,
+          "nodes": 1408,
+          "elapsedMs": 103.7,
+          "h1MouseButterDistance": 1,
+          "h1MouseWinRouteDistance": 8,
+          "h1TrapControl": 180.00000000000003,
+          "h1TunnelControl": 0,
+          "h1Total": -185.0526315789474,
+          "planHasTrap": false
+        },
+        {
+          "turn": 3,
+          "cat": "1,5",
+          "mouse": "7,6",
+          "mouseManhattanToHole": 2,
+          "butter": true,
+          "skill": false,
+          "mouseMoves": 0,
+          "catMoves": 4,
+          "trap": "1,1",
+          "trapRemain": 0,
+          "ghosts": [
+            {
+              "pos": "8,4",
+              "distToHole": 4,
+              "blocked": 0
+            }
+          ],
+          "placementDebt": 0,
+          "blockedTunnels": [],
+          "entityButterDistToHole": [
+            9
+          ],
+          "planLabel": "RDDD",
+          "cDepth": 1,
+          "nodes": 1280,
+          "elapsedMs": 102.5,
+          "h1MouseButterDistance": 7,
+          "h1MouseWinRouteDistance": 2,
+          "h1TrapControl": 0,
+          "h1TunnelControl": 0,
+          "h1Total": -737.1578947368421,
+          "planHasTrap": false
+        }
+      ]
+    }
+  ]
+}

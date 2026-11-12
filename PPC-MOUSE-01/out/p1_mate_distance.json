@@ -1,0 +1,16 @@
+{
+ "mouseMate": {
+  "fixture": "M_CARRY_HOME",
+  "value": -999998,
+  "expected": -999998,
+  "mate": "mouse"
+ },
+ "catMate": {
+  "fixture": "M_CAT_MATE3",
+  "value": 999997,
+  "expected": 999997,
+  "mate": "cat",
+  "depth": 2
+ },
+ "note": "edge cost = mateActionCost (mouseStep 1, catStep 1, skill/trap/tunnel 0); distance is game time, not plies"
+}

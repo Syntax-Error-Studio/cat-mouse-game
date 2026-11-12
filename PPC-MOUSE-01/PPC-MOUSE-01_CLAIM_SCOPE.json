@@ -1,0 +1,145 @@
+{
+  "document_id": "PPC-MOUSE-01_CLAIM_SCOPE",
+  "kind": "CLAIM_SCOPE_DECLARATION",
+  "post_hoc": true,
+  "registration_timing": "POST_HOC — this round ran WITHOUT a frozen pre-registration. This file is written AFTER execution and is explicitly NOT a pre-registration. It exists so later rounds can see exactly which claims were committed in advance (none) and which were decided while looking at the data (everything below).",
+  "why_no_prereg": "PPC-MOUSE-01 was specified as an exploratory feasibility round (P0-P4) whose deliverable is 'can M0 be built on the shared core, and what is missing'. Freezing numeric gates before knowing whether the search even runs at a mouse root would have produced a gate that measures nothing. The cost of that choice is stated here: no threshold in this round carries pre-registered authority.",
+  "round": "PPC-MOUSE-01",
+  "round_title": "共享搜索内核与鼠 AI M0 独立原型",
+  "source_baseline": {
+    "branch": "ppc/2026-11-03-a0-trap-fix",
+    "head": "9ba04b5",
+    "worktree": "dirty (pre-existing modifications, none from this round)",
+    "ruleset_version": 2,
+    "audited_object": "working tree, not HEAD"
+  },
+  "frozen_inherited_authority": {
+    "MAIN_SEARCH_SEMANTIC_BUDGET_MS": 100,
+    "TOTAL_TURN_HARD_WALL_MS": 150,
+    "H1_LEAF": "evaluateForCat baseline",
+    "SIDECAR": "unchanged",
+    "HISTORICAL_ROUNDS": [
+      "PPC-ARIMAA-01",
+      "PPC-PTB-1A",
+      "PPC-SEARCH-01"
+    ],
+    "note": "none of the above was modified, re-measured or reinterpreted this round"
+  },
+  "claims_made": [
+    {
+      "id": "C1",
+      "claim": "The existing Stepwise Expectiminimax is correct at a MOUSE root: MIN for the mouse, MAX for the cat, real-probability CHANCE, unchanged mate-distance and TT EXACT semantics.",
+      "evidence": "PPC-MOUSE-01/out/p1_mouse_root_parity.json",
+      "measurement": "14 root-depth pairs (11 fixtures at D1 + M_MICRO/M_BUTTER_MICRO/M_CAT_MATE3 at D2) vs an unpruned, TT-free, ordering-free, budget-free oracle",
+      "result": "maxAbsValueDiff = 0; mateMismatches = []",
+      "scope_limit": "The oracle shares simulateSearchAction / mateActionCost / stepChildForParent / evaluateForCat with production. This proves the SEARCH COMBINATORICS, not the transition rules. Rule correctness is only covered by real-engine execution (C4)."
+    },
+    {
+      "id": "C2",
+      "claim": "No new Expectiminimax was written. Every M0 decision goes through the production searchBestActionIterative.",
+      "evidence": "PPC-MOUSE-01/mouse_lib.mts planMouseSearch (one call, same options as planHardCatTurn)",
+      "result": "production source diff = 0 lines",
+      "scope_limit": "The oracle in the test file IS a second implementation, but it is a test control and is never called by the controller."
+    },
+    {
+      "id": "C3",
+      "claim": "The mouse really minimises (the chosen action is the oracle argmin, not merely a legal move).",
+      "evidence": "PPC-MOUSE-01/out/p1_oracle_root_ranking.json",
+      "measurement": "M_MICRO @ D2 full root permutation: skill -1596.6 (chosen), mouse-right -603.0, mouse-up -126.8, mouse-down +999996, mouse-left +999996"
+    },
+    {
+      "id": "C4",
+      "claim": "Every action M0 executes is accepted by the REAL engine and matches the model, and no future random outcome is read while planning.",
+      "evidence": [
+        "PPC-MOUSE-01/out/p2a_m0_generous.jsonl",
+        "PPC-MOUSE-01/out/p3a_m0_100ms.jsonl",
+        "PPC-MOUSE-01/out/p2c_random_independence.json",
+        "PPC-MOUSE-01/out/p3c_action_legality_all.json"
+      ],
+      "measurement": "26 steps at a generous budget and 26 steps at D1/100ms, each executed via mouseMove / mouseSkill / chooseTunnelExit",
+      "result": "26/26 accepted, rejects = 0, mismatches = 0, Math.random calls during planning = 0"
+    },
+    {
+      "id": "C5",
+      "claim": "The whole mouse turn shares ONE 100 ms pool; no per-step re-grant.",
+      "evidence": "PPC-MOUSE-01/out/p3b_budget_accounting.json",
+      "measurement": "grantsMs [100], cumulativeGranted 100, naive per-step model = steps x 100, total wall 100.69 ms, hard wall 150 ms",
+      "result": "cumulative grants never exceed the turn budget by construction (both SHARED_GREEDY and SHARED_EVEN draw from one turnStart)"
+    },
+    {
+      "id": "C6",
+      "claim": "At 100 ms the realistic horizon for the mouse is D1 (D4 is not affordable).",
+      "evidence": "PPC-MOUSE-01/out/p3a_m0_100ms.jsonl",
+      "measurement": "11 fixtures x {D1,D4} x {GREEDY,EVEN}",
+      "result": {
+        "D1": "10/11 turns complete, max turn wall 11 ms, 52 steps, mean step 1.20 ms, max step 5.73 ms, every step completedDepth 1/1",
+        "D4": "4/11 (GREEDY) and 7/11 (EVEN) complete; completedDepth mostly 1/2 or 2/3; completed depth 4 reached only by M_CAT_MATE3 (35 nodes, 25 ms)",
+        "over_hard_wall_150ms": 0
+      },
+      "scope_limit": "Wall clock on a loaded dev machine has >=2x noise on sub-second roots (already documented in PPC-SEARCH-01). The stable parts of this claim are the COMPLETED DEPTHS and the ABORT REASONS, not the millisecond figures."
+    },
+    {
+      "id": "C7",
+      "claim": "A whole-turn mouse plan is NOT implemented and cannot be obtained by reusing the cat plan extractors.",
+      "evidence": [
+        "PPC-MOUSE-01/out/p4_plan_gap.json",
+        "PPC-MOUSE-01/out/p4_forced_loss_tiebreak_at_mouse_root.json",
+        "PPC-MOUSE-01/out/p4_mouse_plan_requirements.json"
+      ],
+      "measurement": "catTurnPlan length on all 11 mouse roots; forcedLossTieBreak at a mouse root",
+      "result": "catTurnPlan = 0 on 11/11; forcedLossTieBreak returns null in 0.03 ms; 5 structural requirements recorded",
+      "root_cause": "buildCatTurnPlan (expectiminimax.ts:1894) and planQuality.fallbackPlanWalk (:582) both break on currentPlayer !== PieceType.Cat"
+    },
+    {
+      "id": "C8",
+      "claim": "createSearchContext does NOT set leafEvaluator, and searchBestAction then silently uses defaultLeafEval instead of evaluateForCat. Identical traversal, different value.",
+      "evidence": "PPC-MOUSE-01/out/p1_leaf_injection_contract.json",
+      "measurement": "M_MICRO D1: default 115 vs injected -1731.746, nodes 89/89; M_BUTTER_MICRO D1: default 115 vs injected -1532.143, nodes 0/0",
+      "classification": "HARNESS_MISUSE_RESOLVED — an API footgun, NOT a production search defect",
+      "how_it_surfaced": "An apparent fixed-depth vs iterative disagreement at M_MICRO/M_BUTTER_MICRO D2 (135.000 vs -1596.627) was traced to the missing injection. The wrong hypothesis (bound/window contamination) was eliminated with readings before the real cause was found: tt=false ab=false ord=false ALSO returned 135.000.",
+      "action_taken": "fixed in the harness; pinned as regression guard P1-11; production source NOT changed"
+    },
+    {
+      "id": "C9",
+      "claim": "A position already decided by RULE-A still advertises 4 legal actions and the search still returns an action.",
+      "evidence": "PPC-MOUSE-01/out/p4_rule_a_sink.json",
+      "measurement": "M_STRANDED: applyNoMoveLoss -> cat_wins; generateLegalSearchActions -> 4 actions; search -> value 999999, mate cat, action mouse-up, 0 nodes",
+      "required_consequence": "any controller must check applyNoMoveLoss BEFORE planning. M0 does, so M0 is unaffected."
+    }
+  ],
+  "claims_explicitly_NOT_made": [
+    "The mouse AI has reached Hard strength (no full games were played).",
+    "Depth 4 is usable within 100 ms.",
+    "Mouse turn-level planning exists.",
+    "defaultLeafEval is a defect (it is a deliberate simple leaf; the defect is a caller not injecting).",
+    "The 4 advertised legal actions on a RULE-A-decided position are a bug in generateLegalSearchActions.",
+    "Anything about win rate, Elo, or comparative strength vs the cat AI."
+  ],
+  "thresholds_with_power": {
+    "note": "Only exactness thresholds carry authority this round; every performance number is descriptive.",
+    "exact_equality_gates": [
+      "search value must equal the oracle value bit-for-bit (maxAbsValueDiff = 0)",
+      "mate classification must match exactly",
+      "chanceNodes must equal fullWindowChanceSearches",
+      "weightSum must equal 1 within 1e-9",
+      "engine must accept 100% of executed actions"
+    ],
+    "descriptive_only": [
+      "wall clock per turn and per step",
+      "completedDepth distribution",
+      "node counts"
+    ]
+  },
+  "deterministic_digest": "b506de77335118fa",
+  "digest_inputs": "P1 parity rows (id, depth, nodes, value, mate, action) + every p2a/p3a run row (id, policy, D, steps, actions, depths, end, terminal, rejects, mismatches) + P1-11 leaf-injection rows. Wall clock is deliberately EXCLUDED.",
+  "discipline": {
+    "heavy_worker_concurrency": 1,
+    "fresh_process_serial": true,
+    "duplicate_job_check_before_start": true,
+    "git": "no commit, no push, no reset, no stash, no clean, no add",
+    "production_source_changed": false,
+    "gameplay_rules_changed": false
+  },
+  "next_stage_gate": "DEFER_TO_CHATGPT",
+  "issued_at_round": "PPC-MOUSE-01"
+}

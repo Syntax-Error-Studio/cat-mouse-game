@@ -1,0 +1,40 @@
+{
+ "rows": [
+  {
+   "arm": "A",
+   "d": 1,
+   "nodes": 28,
+   "capped": false,
+   "chance": 52,
+   "ms": 41.97,
+   "completed": true
+  },
+  {
+   "arm": "A",
+   "d": 2,
+   "nodes": 2363,
+   "capped": false,
+   "chance": 111,
+   "ms": 2014.936,
+   "completed": true
+  },
+  {
+   "arm": "B",
+   "d": 1,
+   "nodes": 32,
+   "capped": false,
+   "chance": 59,
+   "ms": 23.521,
+   "completed": true
+  },
+  {
+   "arm": "B",
+   "d": 2,
+   "nodes": 2508,
+   "capped": false,
+   "chance": 161,
+   "ms": 2061.253,
+   "completed": true
+  }
+ ]
+}

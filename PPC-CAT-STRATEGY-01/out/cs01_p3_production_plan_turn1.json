@@ -1,0 +1,70 @@
+{
+  "root": {
+    "cat": {
+      "r": 1,
+      "c": 1
+    },
+    "mouse": {
+      "r": 8,
+      "c": 5
+    },
+    "trapsRemaining": 1,
+    "trap": null
+  },
+  "loggedPlan": "TDDDD",
+  "productionProfile100ms": {
+    "planLabel": "",
+    "planStatus": "search_incomplete",
+    "completedDepth": 0,
+    "attemptedDepth": 1,
+    "nodes": 54,
+    "elapsedMs": 107.6,
+    "rootValue": 0,
+    "mate": null,
+    "rootActions": []
+  },
+  "relaxed400msNoSidecar": {
+    "planLabel": "TDDDD",
+    "planStatus": "planned",
+    "completedDepth": 1,
+    "attemptedDepth": 2,
+    "nodes": 1303,
+    "elapsedMs": 410.8,
+    "rootValue": 209.947,
+    "mate": null,
+    "rootActions": [
+      {
+        "action": "Down",
+        "value": 149.947,
+        "mate": null,
+        "bound": "exact"
+      },
+      {
+        "action": "Right",
+        "value": 114.158,
+        "mate": null,
+        "bound": "exact"
+      },
+      {
+        "action": "T",
+        "value": 209.947,
+        "mate": null,
+        "bound": "exact"
+      },
+      {
+        "action": "Up",
+        "value": 174.158,
+        "mate": null,
+        "bound": "exact"
+      },
+      {
+        "action": "Left",
+        "value": 174.158,
+        "mate": null,
+        "bound": "exact"
+      }
+    ]
+  },
+  "note": "The 400 ms run is NOT a production profile — it only reads the search answer when the 100 ms wall did not finish depth 1 in this process. Real browser games completed depth>=1 on 24/24 turns (cs01_real_log_forensics.json).",
+  "refutationSource": "baseline"
+}

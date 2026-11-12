@@ -1,0 +1,23 @@
+{
+ "section": "P2-A config-rect vs board-terrain hole divergence",
+ "configHole": {
+  "r": 7,
+  "c": 8,
+  "size": 2
+ },
+ "boardCellType": "empty",
+ "configRectVariant": {
+  "proven": true,
+  "dist": 1
+ },
+ "boardTerrainVariant": {
+  "proven": false,
+  "dist": null
+ },
+ "truth": {
+  "win": false,
+  "path": [],
+  "nodes": 4
+ },
+ "note": "the engine wins on targetCell.type === mouse_hole; the config rect is authoring intent only"
+}

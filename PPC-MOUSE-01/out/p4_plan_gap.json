@@ -1,0 +1,84 @@
+{
+ "section": "P4-1 the search returns an ACTION at a mouse root but NO turn plan",
+ "rows": [
+  {
+   "id": "M_CARRY_HOME",
+   "bestAction": "mouse→",
+   "catTurnPlanLen": 0,
+   "previousCompletedPlanLen": 0,
+   "completedDepth": 1
+  },
+  {
+   "id": "M_BUTTER_PICKUP",
+   "bestAction": "mouse→",
+   "catTurnPlanLen": 0,
+   "previousCompletedPlanLen": 0,
+   "completedDepth": 1
+  },
+  {
+   "id": "M_SKILL_ONLY",
+   "bestAction": "skill",
+   "catTurnPlanLen": 0,
+   "previousCompletedPlanLen": 0,
+   "completedDepth": 1
+  },
+  {
+   "id": "M_TUNNEL",
+   "bestAction": "mouse←",
+   "catTurnPlanLen": 0,
+   "previousCompletedPlanLen": 0,
+   "completedDepth": 1
+  },
+  {
+   "id": "M_TRAP_ONLY",
+   "bestAction": "mouse↓",
+   "catTurnPlanLen": 0,
+   "previousCompletedPlanLen": 0,
+   "completedDepth": 1
+  },
+  {
+   "id": "M_STRANDED",
+   "bestAction": "mouse↑",
+   "catTurnPlanLen": 0,
+   "previousCompletedPlanLen": 0,
+   "completedDepth": 1
+  },
+  {
+   "id": "M_CAT_ADJACENT",
+   "bestAction": "mouse→",
+   "catTurnPlanLen": 0,
+   "previousCompletedPlanLen": 0,
+   "completedDepth": 1
+  },
+  {
+   "id": "M_MICRO",
+   "bestAction": "skill",
+   "catTurnPlanLen": 0,
+   "previousCompletedPlanLen": 0,
+   "completedDepth": 1
+  },
+  {
+   "id": "M_BUTTER_MICRO",
+   "bestAction": "mouse→",
+   "catTurnPlanLen": 0,
+   "previousCompletedPlanLen": 0,
+   "completedDepth": 1
+  },
+  {
+   "id": "M_CAT_MATE3",
+   "bestAction": "mouse→",
+   "catTurnPlanLen": 0,
+   "previousCompletedPlanLen": 0,
+   "completedDepth": 1
+  },
+  {
+   "id": "M10_BUTTER",
+   "bestAction": "mouse→",
+   "catTurnPlanLen": 0,
+   "previousCompletedPlanLen": 0,
+   "completedDepth": 1
+  }
+ ],
+ "cause": "buildCatTurnPlan (expectiminimax.ts:1894) and planQuality.fallbackPlanWalk (:582) both break on `currentPlayer !== PieceType.Cat`",
+ "note": "M0 only needs the action, so this is not a blocker for M0 — it IS a blocker for any whole-turn mouse plan"
+}

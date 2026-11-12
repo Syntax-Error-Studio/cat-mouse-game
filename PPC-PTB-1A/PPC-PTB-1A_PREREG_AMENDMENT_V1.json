@@ -1,0 +1,192 @@
+{
+  "schema": "PPC-PTB-1A-PREREG-AMENDMENT-V1",
+  "version": 1,
+  "generated_at": "2026-11-12T14:10:00+08:00",
+  "status": "AMENDMENT_ONLY__ORIGINAL_NOT_OVERWRITTEN",
+  "amends": {
+    "file": "PPC-ARIMAA-01/PPC-ARIMAA-01_PREREGISTERED_EXPERIMENTS.json",
+    "bytes": 13834,
+    "sha256": "19d2fc610502e0b0554890e4e7b9a1c2d558a0038634de23c3a9f24ba8e5beb9",
+    "mutation_policy": "READ_ONLY__NEVER_REWRITE_THE_ORIGINAL"
+  },
+  "authority_separation": {
+    "is_new_formal_authority": false,
+    "supersedes_original": false,
+    "relationship": "APPEND_ONLY_ADDENDUM__original stays the record of what was pre-registered before the audit",
+    "effective_condition": "takes effect only for future M1 work; nothing here retroactively rewrites the original gates"
+  },
+  "timing_attestation": {
+    "amendments_recorded_before_experiment_execution": true,
+    "caveat_source": "the amendments were derived from the PPC-PTB-1A correctness pre-audit (probe run 2026-11-12), which executed NO arm-A/B/C comparison, NO benchmark, NO self-play and NO model training",
+    "what_had_already_run": [
+      "read-only source audit",
+      "real-engine one-turn ground-truth probes on synthetic legal states",
+      "depth-1 traversal coverage on 7 frozen roots",
+      "wall-clock micro-measurements of the certificate predicate"
+    ],
+    "what_had_NOT_run": [
+      "A vs B vs C comparison",
+      "any 100ms/150ms benchmark lane",
+      "playing-strength measurement",
+      "M1 implementation in production"
+    ]
+  },
+  "amendments": [
+    {
+      "id": "AM-1",
+      "target": "config_matrix[S3]",
+      "original": {
+        "delta": "boardSize=6",
+        "status": "REQUIRES_VALIDATION",
+        "required_gates": ["opening_certified", "UNKNOWN_not_accepted"],
+        "intent_as_written": "run the default experiment set on a 6x6 board"
+      },
+      "problems_found": [
+        "S3 as written does not say HOW boardSize is applied, and the two paths are not equivalent",
+        "measured (P5-A): raw mutation {...DEFAULT_CONFIG, boardSize:6} is REJECTED by validateGameConfig with two issues -- hole rect (7,8,2) out of bounds and mouseStart (7,8) out of bounds",
+        "measured (P5-A): withBoardSize(DEFAULT_CONFIG, 6) is ACCEPTED (ok=true) and re-derives hole to (3,4) -- but it keeps boxCount=12 and pileCount=4 from the 10x10 defaults",
+        "density consequence at 6x6: 36 cells - 4 hole - 4 tunnel = 28 free cells, against 16 fixed obstacles -> 57% of the playable area obstructed, versus 16/92 = 17% at 10x10; that is a different game, not a smaller one",
+        "H1 and the frozen learned leaves are normalized on the default 10x10 map, so a 6x6 run measures a different game AND a different evaluator"
+      ],
+      "amended": {
+        "role": "FAIL_CLOSED_NEGATIVE_CONTROL",
+        "requirement": "S3 is now a NEGATIVE control: a 6x6 configuration produced by raw boardSize mutation MUST be rejected by validateGameConfig, with an explicit reason, no crash, no partially-initialized state and no benchmark row",
+        "pass_condition": "rejection observed and recorded verbatim (hole out of bounds + start out of bounds)",
+        "additional_entry": {
+          "id": "S3b",
+          "delta": "6x6 legal small map built via withBoardSize (layout re-derived), with obstacle counts explicitly re-scaled",
+          "status": "REQUIRES_VALIDATION",
+          "measured_precondition": "withBoardSize(DEFAULT_CONFIG,6) validates ok=true today, so S3b is REACHABLE -- but only after boxCount/pileCount are either scaled or held with the resulting density reported",
+          "required_gates": ["legality_100pct", "obstacle_density_reported", "opening_certified", "UNKNOWN_not_accepted", "same_rule_strength_control"]
+        }
+      }
+    },
+    {
+      "id": "AM-2",
+      "target": "config_matrix[S5]",
+      "original": {
+        "delta": "irregular map with Void",
+        "params": { "customTerrain": "sparse void pattern", "tunnelCorners": "may be empty array" },
+        "status": "REQUIRES_VALIDATION"
+      },
+      "problems_found": [
+        "no explicit legality gate: 'sparse void pattern' is not a specification, so two runs can use different maps and still be called S5",
+        "the mouse-hole contract diverges on hand-drawn maps: the ENGINE wins on board terrain (targetCell.type === 'mouse_hole') while evaluation, RULE-B and the carrying BFS use the config.mouseHole rectangle",
+        "'tunnelCorners may be empty' silently changes the mouse's mobility graph and the cat's blocking options"
+      ],
+      "amended": {
+        "requirement": "S5 must ship an EXPLICIT, versioned layout artifact (cell-by-cell terrain, hole cells, tunnel corners, start cells) plus a legality gate that runs BEFORE any measurement",
+        "legality_gate_checks": [
+          "every mouse_hole terrain cell is inside the configured hole rect and vice versa (else the layout is INVALID)",
+          "all four tunnel corners are either present and consistent with config, or the layout is explicitly declared tunnel-free",
+          "start cells are enterable and mutually reachable under the real rules",
+          "the void pattern leaves at least one legal action for whichever side moves first",
+          "the carrying path from every reachable cell to a hole is either blocked or well-defined (no ambiguity at the rect boundary)"
+        ],
+        "required_gates": ["layout_artifact_pinned", "hole_terrain_rect_consistency", "void_not_traversable", "legality_100pct"]
+      }
+    },
+    {
+      "id": "AM-3",
+      "target": "preregistered_gates[M1_exact_turn_certificate].description",
+      "original": "leaf-level proof: mouse wins in-turn iff carrying && carryingHoleDist <= mouseMovesLeft; cat wins in-turn iff catWalkDist <= catMovesLeft (walk-only => conservative)",
+      "problems_found": [
+        "the mouse side is NOT an iff: carryingHoleDist is computed on a graph that permits entering the trap cell, and stepping on the trap ends the turn with zero moves left",
+        "measured: 22 false PROVEN_SAME_TURN_WIN verdicts in 123 candidate states on the default map (P1-A)",
+        "the cat side is NOT an iff either: catWalkDist only prices walk-only routes, so a box push can reach the mouse in fewer real steps",
+        "one side is unsound-as-written and the other is merely incomplete; a single 'iff' wording hides that asymmetry"
+      ],
+      "amended": {
+        "mouse_side": {
+          "claim": "CONDITIONAL_SUFFICIENT_PROOF",
+          "predicate": "phase==Playing && currentPlayer==Mouse && mouseMovesLeft>0 && mouseHasButter && trapAwareCarryingDist(mouse) <= mouseMovesLeft",
+          "required_corrections": [
+            "the trap cell is removed from the graph (stepping on it forfeits the turn)",
+            "the hole targets are board cells of terrain mouse_hole, not the config rect",
+            "tunnel cells stay excluded (carrying forbids tunnel entry)"
+          ],
+          "strength_after_correction": "EXACT (necessary and sufficient) inside the mouse's own turn, because the graph is static for the whole turn",
+          "empirical": "400/400 agreements with the real engine, 0 disagreements, 0 witness-replay failures (P1-B)"
+        },
+        "cat_side": {
+          "claim": "SUFFICIENT_ONLY__NEVER_EXACT",
+          "predicate": "phase==Playing && currentPlayer==Cat && catMovesLeft>0 && catWalkDist(mouse) <= catMovesLeft",
+          "reason": "walk-only BFS excludes box pushes, so the true minimum step count can be strictly smaller; the certificate proves a capture but can never prove its absence",
+          "empirical": "0 false PROVEN in 3011 checked states; 0 missed wins in a 400-state near-miss band and 304 push-only candidates (P1-C) -- soundness is confirmed, incompleteness is a THEORETICAL hazard that this map did not exhibit"
+        },
+        "three_valued_output": {
+          "PROVEN_SAME_TURN_WIN": "a complete legal action witness exists that reaches a terminal win inside the current turn",
+          "NOT_PROVEN": "this detector found no proof; a winning line may still exist",
+          "UNKNOWN": "the predicate could not be evaluated (budget, incomplete state, unmodelled randomness, layout inconsistency)"
+        },
+        "forbidden": [
+          "emitting PROVEN from a distance comparison alone",
+          "treating NOT_PROVEN as 'no win exists'",
+          "treating UNKNOWN as safe"
+        ]
+      }
+    },
+    {
+      "id": "AM-4",
+      "target": "preregistered_gates[M1_exact_turn_certificate].GO[C2]",
+      "original": "C2_zero_counterexamples_vs_exhaustive_fixed_depth_search_on_dev_roots",
+      "problems_found": [
+        "the fixed-depth search evaluates its horizon with the SAME static H1 leaf that the certificate is meant to supplement, so it cannot serve as an independent oracle for one-turn terminal truth",
+        "requiring the certificate to reproduce the old static leaf value would reject exactly the new information (a decided win) that motivates the whole step",
+        "a self-referential oracle turns a correctness question into a consistency question"
+      ],
+      "amended": {
+        "C2_primary_oracle": "INDEPENDENT_REAL_RULES_ONE_TURN_TERMINAL_GROUND_TRUTH",
+        "definition": "for each leaf, exhaustively enumerate the current actor's own legal action sequences through the REAL engine transitions and decide whether a terminal win is reachable inside that turn",
+        "acceptance": [
+          "FALSE_PROVEN_COUNT == 0 (hard fail, no tolerance)",
+          "MISSED_WIN_COUNT is reported but is NOT a failure for the cat side (sufficient-only)",
+          "for the mouse side, MISSED_WIN_COUNT == 0 because the corrected predicate claims exactness",
+          "UNKNOWN is never counted as correct"
+        ],
+        "C2_secondary": "search value / plan / budget effects are a SEPARATE question, evaluated after C2 primary passes, and are never used to establish correctness"
+      }
+    },
+    {
+      "id": "AM-5",
+      "target": "preregistered_gates[M1_exact_turn_certificate] (new clauses)",
+      "reason": "the audit produced two facts the original gate could not express",
+      "added": [
+        {
+          "id": "C5_trigger_coverage_measured",
+          "requirement": "report, per root, how many leaves the certificate actually fires on AND whether it DISCRIMINATES leaves of the same root",
+          "measured_baseline": "7 frozen roots, 1044 leaves at depth-1 traversal, 1044 mouse / 0 cat, 322 proven, 0 roots where the verdict separates the root's candidate moves",
+          "consequence": "a certificate that fires on ALL or NONE of a root's leaves cannot change the chosen move; it can only relabel the value. Any playing-strength claim must clear this bar first"
+        },
+        {
+          "id": "C6_cat_side_reachability",
+          "requirement": "the cat-side certificate may only be counted as useful if cat-to-move leaves exist at the budget being evaluated",
+          "measured_baseline": "AUTHORITY_100MS completedDepth = 1 (20/20) on both authority roots; at depth 1 the frozen fixed-depth lane recorded 453 mouse leaves and 0 cat leaves. Therefore the cat-side certificate has ZERO firing sites at the 100ms production budget",
+          "consequence": "cat-side M1 work is gated on D2 becoming reachable; do not budget it as a D1 win"
+        },
+        {
+          "id": "C7_no_mate_injection_yet",
+          "requirement": "the certificate may not write +/-MATE_SCORE into the leaf value until mate distance, TT EXACT semantics, CHANCE semantics and truncation propagation are separately audited",
+          "status": "NOT_SATISFIED__BLOCKING_FOR_VALUE_INJECTION"
+        }
+      ]
+    }
+  ],
+  "unchanged_frozen_semantics": [
+    "arms A / B / C definitions and the NO_NEW_HYBRID_CANDIDATE verdict for C",
+    "MAIN_SEARCH_SEMANTIC_BUDGET = 100ms",
+    "TOTAL_TURN_HARD_WALL = 150ms",
+    "HEAVY_WORKER_CONCURRENCY = 1",
+    "SERIAL_FRESH_REPETITIONS = TRUE",
+    "DUPLICATE_BENCHMARK_CHECK = REQUIRED",
+    "all existing frozen correctness gates",
+    "excluded_routes list",
+    "M2 and M3 gates"
+  ],
+  "final_state": {
+    "PPC_PTB1A_PREREG_AMENDMENT": "AMENDMENT_V1_RECORDED__ORIGINAL_UNCHANGED",
+    "NEW_FORMAL_AUTHORITY": "NONE",
+    "PRODUCTION_AI_CHANGED": "NO",
+    "GAMEPLAY_RULES_CHANGED": "NO"
+  }
+}

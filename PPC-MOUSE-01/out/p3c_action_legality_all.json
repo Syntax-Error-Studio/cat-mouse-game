@@ -1,0 +1,99 @@
+{
+ "rows": [
+  {
+   "fixture": "M_CARRY_HOME",
+   "step": 0,
+   "action": "mouse→",
+   "inLegalSet": true,
+   "phase": "playing",
+   "engineVerdict": "exact",
+   "legalSetSize": 5
+  },
+  {
+   "fixture": "M_BUTTER_PICKUP",
+   "step": 0,
+   "action": "mouse→",
+   "inLegalSet": true,
+   "phase": "playing",
+   "engineVerdict": "chance_masked",
+   "legalSetSize": 4
+  },
+  {
+   "fixture": "M_SKILL_ONLY",
+   "step": 0,
+   "action": "skill",
+   "inLegalSet": true,
+   "phase": "playing",
+   "engineVerdict": "exact",
+   "legalSetSize": 1
+  },
+  {
+   "fixture": "M_TUNNEL",
+   "step": 0,
+   "action": "mouse←",
+   "inLegalSet": true,
+   "phase": "playing",
+   "engineVerdict": "exact",
+   "legalSetSize": 3
+  },
+  {
+   "fixture": "M_TRAP_ONLY",
+   "step": 0,
+   "action": "mouse↓",
+   "inLegalSet": true,
+   "phase": "playing",
+   "engineVerdict": "exact",
+   "legalSetSize": 1
+  },
+  {
+   "fixture": "M_CAT_ADJACENT",
+   "step": 0,
+   "action": "mouse→",
+   "inLegalSet": true,
+   "phase": "playing",
+   "engineVerdict": "exact",
+   "legalSetSize": 3
+  },
+  {
+   "fixture": "M_MICRO",
+   "step": 0,
+   "action": "skill",
+   "inLegalSet": true,
+   "phase": "playing",
+   "engineVerdict": "exact",
+   "legalSetSize": 5
+  },
+  {
+   "fixture": "M_BUTTER_MICRO",
+   "step": 0,
+   "action": "mouse→",
+   "inLegalSet": true,
+   "phase": "playing",
+   "engineVerdict": "chance_masked",
+   "legalSetSize": 4
+  },
+  {
+   "fixture": "M_CAT_MATE3",
+   "step": 0,
+   "action": "mouse→",
+   "inLegalSet": true,
+   "phase": "playing",
+   "engineVerdict": "exact",
+   "legalSetSize": 1
+  },
+  {
+   "fixture": "M10_BUTTER",
+   "step": 0,
+   "action": "mouse→",
+   "inLegalSet": true,
+   "phase": "playing",
+   "engineVerdict": "chance_masked",
+   "legalSetSize": 4
+  }
+ ],
+ "engineAcceptance": {
+  "steps": 10,
+  "rejects": 0,
+  "note": "full-turn step coverage comes from the M0 runs themselves (rejects=0 over every executed step at both budgets)"
+ }
+}

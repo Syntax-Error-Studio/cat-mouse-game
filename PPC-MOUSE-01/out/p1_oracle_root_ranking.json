@@ -1,0 +1,33 @@
+{
+ "fixture": "M_MICRO",
+ "depth": 2,
+ "ranking": [
+  {
+   "action": "skill",
+   "value": -1596.6269841269843,
+   "mate": null
+  },
+  {
+   "action": "mouse→",
+   "value": -602.9761904761906,
+   "mate": null
+  },
+  {
+   "action": "mouse↑",
+   "value": -126.78571428571439,
+   "mate": null
+  },
+  {
+   "action": "mouse↓",
+   "value": 999996,
+   "mate": "cat"
+  },
+  {
+   "action": "mouse←",
+   "value": 999996,
+   "mate": "cat"
+  }
+ ],
+ "searchChoice": "skill",
+ "searchValue": -1596.6269841269843
+}

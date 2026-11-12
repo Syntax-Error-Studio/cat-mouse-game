@@ -1,0 +1,20 @@
+{
+ "fixture": "M_BUTTER_PICKUP",
+ "draws": [
+  0,
+  0.5,
+  0.999999
+ ],
+ "chosenPlans": [
+  "mouse→ mouse↑ skill mouse↑ mouse← mouse← exit(5,0)",
+  "mouse→ mouse↑ skill mouse↑ mouse← mouse← exit(5,0)",
+  "mouse→ mouse↑ skill mouse↑ mouse← mouse← exit(5,0)"
+ ],
+ "firstStepValues": [
+  -1731.7460317460318,
+  -1731.7460317460318,
+  -1731.7460317460318
+ ],
+ "identical": true,
+ "note": "the planner enumerates the spawn distribution; a draw can only affect the REAL engine execution afterwards"
+}

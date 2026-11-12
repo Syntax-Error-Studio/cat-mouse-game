@@ -1,0 +1,27 @@
+{
+ "section": "P1-11 — leafEvaluator injection is MANDATORY for parity with the Hard planner",
+ "factory": "createSearchContext(rules, maxNodes, useTT, useAlphaBeta, useMoveOrdering, maxThreatExtensions, useThreatOrdering)",
+ "default_leaf": "defaultLeafEval = 200 - 5*manhattan(cat,mouse) - 60*mouseHasButter",
+ "production_leaf": "evaluateForCat (hardTurnPlanner.ts:239 defaults to it; iterative entry takes opts.leafEvaluator)",
+ "rows": [
+  {
+   "id": "M_MICRO",
+   "oracle": -1731.7460317460318,
+   "defaultLeafValue": 115,
+   "injectedLeafValue": -1731.7460317460318,
+   "nodesDefault": 89,
+   "nodesInjected": 89,
+   "sameTraversal": true
+  },
+  {
+   "id": "M_BUTTER_MICRO",
+   "oracle": -1532.142857142857,
+   "defaultLeafValue": 115,
+   "injectedLeafValue": -1532.142857142857,
+   "nodesDefault": 0,
+   "nodesInjected": 0,
+   "sameTraversal": true
+  }
+ ],
+ "integration_requirement": "a mouse controller must set ctx.leafEvaluator = evaluateForCat (or pass opts.leafEvaluator to the iterative entry) or it will silently play a different game"
+}

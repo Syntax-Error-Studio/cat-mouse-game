@@ -1,0 +1,15 @@
+{
+ "section": "P3 H1 blindness to a decided one-turn win",
+ "truth": {
+  "win": true,
+  "path": [
+   "→"
+  ],
+  "nodes": 12
+ },
+ "carryHoleDist": 1,
+ "mouseMovesLeft": 2,
+ "h1ValueForCat": -2094.0526315789475,
+ "mateScoreForCompare": 1000000,
+ "note": "a decided MouseWins state is scored at H1 magnitude; the search only sees the mate if it simulates the remaining plies"
+}

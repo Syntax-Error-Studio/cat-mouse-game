@@ -1,0 +1,15 @@
+{
+ "fixture": "M_STRANDED",
+ "ruleAVerdict": "cat_wins",
+ "legalActionsAdvertised": [
+  "mouse↑",
+  "mouse↓",
+  "mouse←",
+  "mouse→"
+ ],
+ "searchAction": "mouse↑",
+ "searchValue": 999999,
+ "searchMate": "cat",
+ "nodes": 0,
+ "note": "simulateSearchAction settles RULE-A first, so every candidate maps to the SAME terminal and none of them is a no-op -> the legal set is non-empty in a position that is already decided"
+}

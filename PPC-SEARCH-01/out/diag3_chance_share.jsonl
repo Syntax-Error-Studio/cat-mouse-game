@@ -1,0 +1,4 @@
+{"id":"G1T10","nodes":547,"chanceNodes":57,"leafNodes":1802,"terminalNodes":221,"fullWindowChanceSearches":57,"cutoffs":165,"firstMoveCutoffs":165,"orderedNodes":548,"exactHits":233,"stores":319,"chanceNodeSharePct":10.42}
+{"id":"G1T1","nodes":1452,"chanceNodes":0,"leafNodes":722,"terminalNodes":0,"fullWindowChanceSearches":0,"cutoffs":1052,"firstMoveCutoffs":1020,"orderedNodes":1443,"exactHits":125,"stores":276,"chanceNodeSharePct":0}
+{"id":"G1T9","nodes":4522,"chanceNodes":174,"leafNodes":7464,"terminalNodes":0,"fullWindowChanceSearches":174,"cutoffs":0,"firstMoveCutoffs":0,"orderedNodes":4518,"exactHits":5191,"stores":4523,"chanceNodeSharePct":3.85}
+{"id":"G4T2","nodes":642,"chanceNodes":0,"leafNodes":316,"terminalNodes":0,"fullWindowChanceSearches":0,"cutoffs":495,"firstMoveCutoffs":477,"orderedNodes":643,"exactHits":65,"stores":90,"chanceNodeSharePct":0}

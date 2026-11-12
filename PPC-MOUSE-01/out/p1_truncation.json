@@ -1,0 +1,12 @@
+{
+ "fixture": "M_CARRY_HOME",
+ "maxNodes": 40,
+ "completed": false,
+ "completedDepth": 0,
+ "attemptedDepth": 1,
+ "bestAction": "none",
+ "value": 0,
+ "budgetExhausted": true,
+ "mate": null,
+ "note": "completedDepth 0 => bestAction null => a controller must not act on it"
+}

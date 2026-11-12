@@ -1,0 +1,114 @@
+{
+  "note": "States differ ONLY in how many of the four corners are blocked.",
+  "mouse": {
+    "r": 0,
+    "c": 2
+  },
+  "cat": {
+    "r": 2,
+    "c": 2
+  },
+  "rows": [
+    {
+      "blockedCount": 0,
+      "name": "blocked=0",
+      "total": 443.63,
+      "tunnelControl": -450,
+      "confinement": -88,
+      "holeControl": 300,
+      "voronoiBalance": 39.13,
+      "capturePressure": -180,
+      "mouseReachableArea": 99,
+      "openTunnelCount": 4,
+      "mouseCanReachTunnel": true,
+      "mouseTunnelAccessDistance": 2,
+      "mouseWinRouteDistance": 13
+    },
+    {
+      "blockedCount": 1,
+      "name": "blocked=1",
+      "total": 858.668,
+      "tunnelControl": -128.571,
+      "confinement": -77,
+      "holeControl": 50,
+      "voronoiBalance": 371.739,
+      "capturePressure": -180,
+      "mouseReachableArea": 98,
+      "openTunnelCount": 3,
+      "mouseCanReachTunnel": true,
+      "mouseTunnelAccessDistance": 7,
+      "mouseWinRouteDistance": 13
+    },
+    {
+      "blockedCount": 2,
+      "name": "blocked=2",
+      "total": 805.551,
+      "tunnelControl": -81.818,
+      "confinement": -66,
+      "holeControl": -100,
+      "voronoiBalance": 410.87,
+      "capturePressure": -180,
+      "mouseReachableArea": 97,
+      "openTunnelCount": 2,
+      "mouseCanReachTunnel": true,
+      "mouseTunnelAccessDistance": 11,
+      "mouseWinRouteDistance": 13
+    },
+    {
+      "blockedCount": 3,
+      "name": "blocked=3",
+      "total": 848.641,
+      "tunnelControl": -56.25,
+      "confinement": -55,
+      "holeControl": -100,
+      "voronoiBalance": 417.391,
+      "capturePressure": -180,
+      "mouseReachableArea": 96,
+      "openTunnelCount": 1,
+      "mouseCanReachTunnel": true,
+      "mouseTunnelAccessDistance": 16,
+      "mouseWinRouteDistance": 13
+    },
+    {
+      "blockedCount": 4,
+      "name": "blocked=4",
+      "total": 915.891,
+      "tunnelControl": 0,
+      "confinement": -44,
+      "holeControl": -100,
+      "voronoiBalance": 417.391,
+      "capturePressure": -180,
+      "mouseReachableArea": 95,
+      "openTunnelCount": 0,
+      "mouseCanReachTunnel": false,
+      "mouseTunnelAccessDistance": null,
+      "mouseWinRouteDistance": 13
+    }
+  ],
+  "deltas": [
+    {
+      "from": 0,
+      "to": 1,
+      "totalDelta": 415.038,
+      "tunnelControlDelta": 321.429
+    },
+    {
+      "from": 1,
+      "to": 2,
+      "totalDelta": -53.117,
+      "tunnelControlDelta": 46.753
+    },
+    {
+      "from": 2,
+      "to": 3,
+      "totalDelta": 43.09,
+      "tunnelControlDelta": 25.568
+    },
+    {
+      "from": 3,
+      "to": 4,
+      "totalDelta": 67.25,
+      "tunnelControlDelta": 56.25
+    }
+  ]
+}

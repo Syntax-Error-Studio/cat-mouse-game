@@ -1,0 +1,11 @@
+{
+ "fixture": "M_CARRY_HOME",
+ "searchMate": "mouse",
+ "rootValueCount": 5,
+ "mouseMateRootActions": 2,
+ "exactBounds": 5,
+ "tieBreakResult": null,
+ "tieBreakMs": 0.029,
+ "catPlanAtMouseRoot": [],
+ "note": "the forced-loss tie-break is a CAT-plan selector; at a mouse root it either returns null (fail closed) or, worse, a plan nobody can use. Its output never reaches M0."
+}

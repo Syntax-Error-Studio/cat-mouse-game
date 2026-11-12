@@ -1,0 +1,45 @@
+{
+ "section": "P5-A S3 boardSize application paths",
+ "rawMutation": {
+  "config": {
+   "boardSize": 6,
+   "mouseHole": {
+    "r": 7,
+    "c": 8,
+    "size": 2
+   },
+   "boxCount": 12,
+   "pileCount": 4
+  },
+  "ok": false,
+  "issues": [
+   {
+    "kind": "invalid",
+    "message": "鼠洞区域越界：左上角为（行 7，列 8），大小 2，完整区域需要行 7～8、列 8～9，但棋盘只有 6×6。请调小鼠洞行/列或增大棋盘。"
+   },
+   {
+    "kind": "invalid",
+    "message": "鼠的初始位置越界：（行 7，列 8），棋盘范围是 0～5。请重新选择起点。"
+   }
+  ]
+ },
+ "viaWithBoardSize": {
+  "config": {
+   "boardSize": 6,
+   "mouseHole": {
+    "r": 3,
+    "c": 4,
+    "size": 2
+   },
+   "boxCount": 12,
+   "pileCount": 4
+  },
+  "ok": true,
+  "issues": []
+ },
+ "size15": {
+  "ok": true,
+  "issues": []
+ },
+ "note": "withBoardSize re-derives hole/starts only while the layout is untouched default; raw mutation leaves S0 coordinates and is rejected"
+}

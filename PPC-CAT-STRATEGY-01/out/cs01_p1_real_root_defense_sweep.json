@@ -1,0 +1,126 @@
+{
+  "game": 1,
+  "turn": 9,
+  "catTurnEnumeration": {
+    "distinctBoundaries": 33,
+    "expandedStates": 28,
+    "capped": false,
+    "terminals": 0
+  },
+  "mouseWinNextTurn": {
+    "yes": 33,
+    "no": 0,
+    "unknown": 0
+  },
+  "verdict": "EVERY_LEGAL_CAT_TURN_STILL_LOSES_IN_ONE_MOUSE_TURN",
+  "samples": [
+    {
+      "plan": "UDUD",
+      "catEnd": {
+        "r": 1,
+        "c": 7
+      },
+      "mouseWinNextTurn": true,
+      "mouseDistToHole": 5
+    },
+    {
+      "plan": "UDUL",
+      "catEnd": {
+        "r": 0,
+        "c": 6
+      },
+      "mouseWinNextTurn": true,
+      "mouseDistToHole": 5
+    },
+    {
+      "plan": "UDUR",
+      "catEnd": {
+        "r": 0,
+        "c": 8
+      },
+      "mouseWinNextTurn": true,
+      "mouseDistToHole": 5
+    },
+    {
+      "plan": "UDDD",
+      "catEnd": {
+        "r": 3,
+        "c": 7
+      },
+      "mouseWinNextTurn": true,
+      "mouseDistToHole": 5
+    },
+    {
+      "plan": "UDDL",
+      "catEnd": {
+        "r": 2,
+        "c": 6
+      },
+      "mouseWinNextTurn": true,
+      "mouseDistToHole": 5
+    },
+    {
+      "plan": "UDDR",
+      "catEnd": {
+        "r": 2,
+        "c": 8
+      },
+      "mouseWinNextTurn": true,
+      "mouseDistToHole": 5
+    },
+    {
+      "plan": "UDLL",
+      "catEnd": {
+        "r": 1,
+        "c": 5
+      },
+      "mouseWinNextTurn": true,
+      "mouseDistToHole": 5
+    },
+    {
+      "plan": "UDRR",
+      "catEnd": {
+        "r": 1,
+        "c": 9
+      },
+      "mouseWinNextTurn": true,
+      "mouseDistToHole": 5
+    },
+    {
+      "plan": "ULDD",
+      "catEnd": {
+        "r": 2,
+        "c": 6
+      },
+      "mouseWinNextTurn": true,
+      "mouseDistToHole": 5
+    },
+    {
+      "plan": "ULDL",
+      "catEnd": {
+        "r": 1,
+        "c": 5
+      },
+      "mouseWinNextTurn": true,
+      "mouseDistToHole": 5
+    },
+    {
+      "plan": "ULDR",
+      "catEnd": {
+        "r": 1,
+        "c": 7
+      },
+      "mouseWinNextTurn": true,
+      "mouseDistToHole": 5
+    },
+    {
+      "plan": "ULLD",
+      "catEnd": {
+        "r": 1,
+        "c": 5
+      },
+      "mouseWinNextTurn": true,
+      "mouseDistToHole": 5
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "generatedAt": "2026-11-12T10:11:38.770Z",
+  "fileCount": 26,
+  "files": [
+    {
+      "file": "PPC-CAT-STRATEGY-01/PPC-CAT-STRATEGY-01_CLAIM_SCOPE.json",
+      "bytes": 2487,
+      "sha256": "184c5cf8d0403efda504f77a6f95cd9c5c6024b1d3e02ef55aa930da37720095"
+    },
+    {
+      "file": "PPC-CAT-STRATEGY-01/PPC-CAT-STRATEGY-01_REPORT.md",
+      "bytes": 26500,
+      "sha256": "c82ef4ba5672b230f57d5eeac9af0eff97bf5cf45acc6e1023911f898aa929bd"
+    },
+    {
+      "file": "PPC-CAT-STRATEGY-01/cs01_lib.mts",
+      "bytes": 11855,
+      "sha256": "5178a893cdcc55d4fc8d5a052469cd51363df5645cbe229f55c5bd1a2f8dfd42"
+    },
+    {
+      "file": "PPC-CAT-STRATEGY-01/cs01_real.test.mts",
+      "bytes": 7822,
+      "sha256": "d53f3af31289575550ff14650d75a1f5d2f4343a1654047df67dfe3febea5e72"
+    },
+    {
+      "file": "PPC-CAT-STRATEGY-01/cs02_ghost.test.mts",
+      "bytes": 12725,
+      "sha256": "4353851e0beafb75ad1834f7a5b1d3d784793bac4ed6492cef743569cf79c948"
+    },
+    {
+      "file": "PPC-CAT-STRATEGY-01/cs03_push.test.mts",
+      "bytes": 12347,
+      "sha256": "a94a6ca71704a3e6d4d75f1d17c5be9e3f64b9c1a117eae7aa9f6445ff55b662"
+    },
+    {
+      "file": "PPC-CAT-STRATEGY-01/cs04_trap.test.mts",
+      "bytes": 11013,
+      "sha256": "fa0e5e955de067917975eeaf045cf400d03cdfdb5d279f79ad756c1bb92c7ad4"
+    },
+    {
+      "file": "PPC-CAT-STRATEGY-01/cs05_config.test.mts",
+      "bytes": 7673,
+      "sha256": "c37f7b838199c5c51aa101ea560a7e3c38f3dea9b44571fff96d0d58be1cdab6"
+    },
+    {
+      "file": "PPC-CAT-STRATEGY-01/out/cs01_p1_h1_ghost_blindness.json",
+      "bytes": 5292,
+      "sha256": "d098c59982e789b50a8cf26e17f17ae5ead9eff50261256f25d12a1d507ae630"
+    },
+    {
+      "file": "PPC-CAT-STRATEGY-01/out/cs01_p1_real_bait_g1t9.json",
+      "bytes": 1213,
+      "sha256": "e51c52340a5675e5978d3fe301d51a34c0680576c47356e791feaffd54bf55e5"
+    },
+    {
+      "file": "PPC-CAT-STRATEGY-01/out/cs01_p1_real_ghost_turns.json",
+      "bytes": 5013,
+      "sha256": "dfe0fe0f32feda2d43940e6598a5e55aab9bad44cf136dd2842f32f482100b8b"
+    },
+    {
+      "file": "PPC-CAT-STRATEGY-01/out/cs01_p1_real_root_defense_sweep.json",
+      "bytes": 2139,
+      "sha256": "876b53ac01bb2f9be8427b01ad0553d9eb4d3e6a3bbc626fcbb7be84f92e1ecc"
+    },
+    {
+      "file": "PPC-CAT-STRATEGY-01/out/cs01_p2_h1_tunnel_gradient.json",
+      "bytes": 2640,
+      "sha256": "efe0235d7d4ec4566de3f4d715785656181f40f82918a0423054012424aa07fb"
+    },
+    {
+      "file": "PPC-CAT-STRATEGY-01/out/cs01_p2_push_legality.json",
+      "bytes": 713,
+      "sha256": "f6a1c59c32d8526214d50986488fbe7ba9ba0cb3ae1c47db64b7845d61609667"
+    },
+    {
+      "file": "PPC-CAT-STRATEGY-01/out/cs01_p2_push_search.json",
+      "bytes": 1548,
+      "sha256": "783cb222e3d3a80b40d0989caafc54ddacad083d9d080bf81a5dfa935408e22a"
+    },
+    {
+      "file": "PPC-CAT-STRATEGY-01/out/cs01_p2_reverse_control.json",
+      "bytes": 564,
+      "sha256": "aa996b619c73229b1249de56472ae7ed0bea1d85a796d502b2928da0b4f93956"
+    },
+    {
+      "file": "PPC-CAT-STRATEGY-01/out/cs01_p2b_real_reachability.json",
+      "bytes": 3723,
+      "sha256": "0e8eb7c30e8ad4adcae419311be371ae6774b88aecedca5b062365761a287fc5"
+    },
+    {
+      "file": "PPC-CAT-STRATEGY-01/out/cs01_p3_production_plan_turn1.json",
+      "bytes": 1528,
+      "sha256": "d1335afb5d7ba05f4cbadf567008b00384dfcba9fac18b55950c686d04b0d291"
+    },
+    {
+      "file": "PPC-CAT-STRATEGY-01/out/cs01_p3_real_first_turn_trap.json",
+      "bytes": 1636,
+      "sha256": "23ee5cedbffe2126d966faf9d4e3f29a52e61742b23ca1d45154afe092ac3eff"
+    },
+    {
+      "file": "PPC-CAT-STRATEGY-01/out/cs01_p3_trap_reward_and_cost.json",
+      "bytes": 1605,
+      "sha256": "e4c2f6f8fc72ffd0dccb21b67b4d6a0633fa7ada0f630c74287b7fb81d23add0"
+    },
+    {
+      "file": "PPC-CAT-STRATEGY-01/out/cs01_p3_trap_step_punishment.json",
+      "bytes": 536,
+      "sha256": "73962779183aed8e9a9160b8e900b8a85d3250f7ebdfeb5d89f6220b46728463"
+    },
+    {
+      "file": "PPC-CAT-STRATEGY-01/out/cs01_p3b_trap_leaf_comparison.json",
+      "bytes": 1143,
+      "sha256": "c875c04861f0e51a13089952b347faab2fe1432c8f3dce44dd524b0a3b9b1aec"
+    },
+    {
+      "file": "PPC-CAT-STRATEGY-01/out/cs01_p5_config_coverage.json",
+      "bytes": 4696,
+      "sha256": "920025e8be715c795aa91d82a4c0afce70704459a4aa4f818e41db18cbcc6049"
+    },
+    {
+      "file": "PPC-CAT-STRATEGY-01/out/cs01_real_log_forensics.json",
+      "bytes": 23172,
+      "sha256": "f73edd0331b5b9e80fbdbdb862a0d14a4c84364c3d77ea5069dc2856bc251b05"
+    },
+    {
+      "file": "PPC-CAT-STRATEGY-01/out/cs01_real_trap_lifetime.json",
+      "bytes": 2102,
+      "sha256": "26e430814e89b66189ed37de4ca8429630f4e02ad248d3fd9593d9aa0d600555"
+    },
+    {
+      "file": "PPC-CAT-STRATEGY-01/vitest.config.mts",
+      "bytes": 806,
+      "sha256": "5dfee152580e0f2c705ad7c6c12f5ebf4c7fbd23070788cf38b36f5417d3528b"
+    }
+  ]
+}

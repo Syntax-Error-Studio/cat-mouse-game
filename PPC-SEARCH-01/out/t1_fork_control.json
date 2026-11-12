@@ -1,0 +1,12 @@
+{
+ "gate": "fork control — PVS_ENABLED=false must equal production",
+ "roots": 25,
+ "depths": [
+  1,
+  2
+ ],
+ "runs": 50,
+ "mismatches": 0,
+ "absNodeDelta": 0,
+ "rows": []
+}

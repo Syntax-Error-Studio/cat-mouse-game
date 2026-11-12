@@ -1,0 +1,80 @@
+{
+ "id": "PPC-SEARCH-01",
+ "title": "PVS single-variable search acceleration prototype + D2 feasibility",
+ "written_before": "the performance lane (pvs_perf.test.mts) was executed; the correctness lane was already running",
+ "why_this_note_exists": "The GO threshold must be fixed BEFORE the numbers are seen, so that a disappointing result cannot be reinterpreted as a near miss, and a lucky root cannot be promoted to the headline.",
+ "source_baseline": {
+  "branch": "ppc/2026-11-03-a0-trap-fix",
+  "head": "9ba04b53ff89370a3de6b7c1e318cb78e3c742b1",
+  "worktree_dirty": true,
+  "gameplay_ruleset_version": 2,
+  "note": "the object under test is the WORKING TREE, not HEAD"
+ },
+ "frozen_by_this_round": {
+  "main_search_budget_ms": 100,
+  "total_turn_budget_ms": 150,
+  "leaf_mode": "baseline (H1 = evaluateForCat)",
+  "max_nodes_fixed_depth": 2000000,
+  "max_nodes_deadline_lane": 500000,
+  "max_depth_turns_iterative": 4,
+  "tt_policy": "EXACT-only store, exact depth+extensions match, fresh table per search",
+  "move_ordering": "production D3 ordering, useThreatOrdering=false",
+  "chance_weights": "the simulator's own deterministic enumeration",
+  "heavy_worker_concurrency": 1,
+  "serial_fresh_repetitions": true
+ },
+ "arms": {
+  "A": "src/game/ai/expectiminimax.ts — production authority, unchanged",
+  "A_FORK": "PPC-SEARCH-01/proto/expectiminimaxPvs.ts with PVS_ENABLED=false — fork control, must be bit-identical to A",
+  "B": "same fork, PVS_ENABLED=true — THE pre-registered arm; the only algorithmic variable is PVS",
+  "C": "same fork, PVS_ENABLED=true + PVS_CHANCE_EXEMPT=true — SECONDARY mechanism, reported separately",
+  "rule_about_C": "Arm C may not be used to convert a failing arm B into a GO. If B fails the gate, the verdict is NO_GO_PVS regardless of what C does; C exists only to explain WHY, and to tell a future round which form of PVS (if any) is worth revisiting."
+ },
+ "roots": {
+  "development_set": "the 25 frozen G0.4F-2B-1.9D corpus roots (G1T1-G1T10, G4T1-G4T5, G8T1-G8T10), restored from the human game logs",
+  "controls": [
+   "C_TRAP — trap armed adjacent to the mouse",
+   "C_TRAP_RECLAIM — cat standing on its own trap (0-cost reclaim)",
+   "C_NO_LEGAL — cat walled in; RULE-A settles the loss inside the transition",
+   "C_TUNNEL — phase=choosing_tunnel_exit with 3 exits",
+   "C_GHOST — one pending ghost spawn at the cat->mouse boundary",
+   "C_BUTTER_PICKUP — mouse beside butter, the pickup opens a CHANCE node",
+   "C_PUSH — box pushable from the cat cell",
+   "C_CAT3 — cat has 3 steps (config.catBaseMoves=3)",
+   "C_CAT5 — cat has 5 steps (config.catBaseMoves=5)"
+  ],
+  "depths": [1, 2],
+  "unseen_validation_set": "none this round — declared as a known limitation, not silently omitted"
+ },
+ "correctness_gates": {
+  "T1_fork_control": "arm A_FORK equals arm A on value/mate/completed/bestAction/plan AND on node count, 25 roots x D1/D2",
+  "T2_pvs_parity": "arm B equals arm A on value (exact float), mate, completed, bestAction, catTurnPlan, 25 roots x D1/D2",
+  "T2b_armC_parity": "arm C equals arm A on the same fields",
+  "T3_tt_soundness": "for arms B and C, TT ON equals TT OFF (the EXACT-only store must not have admitted a bound)",
+  "T4_controls_parity": "arms B and C equal arm A on all 9 ruleset-v2 controls at D1/D2",
+  "T5_plan_replay": "every arm-B cat turn plan re-executes through the real engine transitions",
+  "T6_chance_full_window": "chanceNodes === fullWindowChanceSearches for every arm (no chance node was window-pruned)",
+  "fail_rule": "any false mate, illegal action, wrong probability mass, wrong TT EXACT entry or leaked incomplete result is an immediate FAIL — 'the move choice looks about the same' is NOT a pass"
+ },
+ "performance_gates": {
+  "primary_value_gate": "median over the 25 development roots of (D2 wall of A / D2 wall of B) >= 1.25",
+  "secondary_gates": [
+   "D1 completion inside 100 ms must not degrade",
+   "no new fallback (empty plan) rows at 100 ms",
+   "no material memory regression (TT entries / RSS)",
+   "no production budget was increased to obtain the result"
+  ],
+  "reporting_rules": [
+   "every root is reported; no best-root headline, no mean-of-best",
+   "node counts and wall time are reported separately — more nodes is not a speedup",
+   "wall time is the median of 3 fresh fixed-depth repetitions and 5 fresh 100 ms repetitions",
+   "the deadline lane is directional evidence on a laptop, not a hardware benchmark"
+  ],
+  "no_go_rule": "if the primary gate fails, the verdict is NO_GO_PVS. Aspiration windows, LMR, cross-turn TT or new tactical certificates MUST NOT be stacked on to rescue this round."
+ },
+ "declared_limitations": [
+  "the 100 ms / 150 ms lanes are single-process wall-clock measurements on a shared machine",
+  "the sidecar and progress guard run AFTER the main search and are out of scope: this round measures the MAIN search only",
+  "arm C is a mechanism study, not an admissible result"
+ ]
+}

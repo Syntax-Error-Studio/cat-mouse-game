@@ -1,0 +1,10 @@
+{
+ "note": "raw rows live in s1..s5 .jsonl (one append per root, interruption-safe)",
+ "fields": [
+  "value",
+  "mate",
+  "completed",
+  "bestAction",
+  "plan"
+ ]
+}

@@ -1,0 +1,14 @@
+{
+ "section": "P1-C cat naive certificate soundness / completeness",
+ "checked": 3011,
+ "fired": 1929,
+ "falseProvenCount": 0,
+ "falseProvenSamples": [],
+ "nearMissBandChecked": 400,
+ "missedCount": 0,
+ "missedSamples": [],
+ "pushOnlyChecked": 304,
+ "pushOnlyWinCount": 0,
+ "pushOnlySamples": [],
+ "note": "walk-only BFS excludes box pushes, so the certificate can only MISS wins, never invent them"
+}

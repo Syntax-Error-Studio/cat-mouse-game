@@ -1,0 +1,19 @@
+{
+ "fixture": "M_TUNNEL",
+ "enteredPhase": "choosing_tunnel_exit",
+ "exitChoices": 4,
+ "exitChoiceSample": [
+  "(0,0) ↺ 原地",
+  "(0,5) ↙",
+  "(5,0) ↗",
+  "(5,5) ↖"
+ ],
+ "requirements": [
+  "the plan must be CONDITIONAL, not a linear action list: a butter pickup forks into a CHANCE node whose revealed ghost changes the next decision",
+  "tunnel entry leaves the mouse in phase choosing_tunnel_exit, whose legal set is only the exits (and the engine auto-resolves a single exit)",
+  "a trap step zeroes the remaining moves, so plan length is state-dependent, not config-dependent",
+  "RULE-A can end the turn (and the game) at any hand-off, so any planner must re-check it before executing the next planned action",
+  "the shared search gives (bestAction, value, mate) per REPLAN; a whole-turn plan needs a mouse-side equivalent of buildCatTurnPlan + extractBestCatTurnPlan + forcedLossTieBreak"
+ ],
+ "note": "M0 sidesteps all five by construction: it commits to ONE action, executes it through the real engine, and replans from the OBSERVED state"
+}

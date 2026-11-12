@@ -1,0 +1,245 @@
+{
+ "section": "P1-A mouse naive certificate falsification",
+ "candidateStates": 123,
+ "certFired": 137,
+ "falseProvenCount": 22,
+ "positiveControls": 14,
+ "parityMismatch": 0,
+ "falseProvenSamples": [
+  {
+   "kind": "TRAP_ON_ROUTE",
+   "mouse": {
+    "r": 3,
+    "c": 9
+   },
+   "moves": 4,
+   "trap": {
+    "r": 6,
+    "c": 9
+   },
+   "trapDistToHole": 1,
+   "certDist": 4,
+   "certSays": "PROVEN_SAME_TURN_WIN",
+   "engineSays": "NO_WIN"
+  },
+  {
+   "kind": "TRAP_ON_ROUTE",
+   "mouse": {
+    "r": 3,
+    "c": 9
+   },
+   "moves": 4,
+   "trap": {
+    "r": 5,
+    "c": 9
+   },
+   "trapDistToHole": 2,
+   "certDist": 4,
+   "certSays": "PROVEN_SAME_TURN_WIN",
+   "engineSays": "NO_WIN"
+  },
+  {
+   "kind": "TRAP_ON_ROUTE",
+   "mouse": {
+    "r": 3,
+    "c": 9
+   },
+   "moves": 4,
+   "trap": {
+    "r": 4,
+    "c": 9
+   },
+   "trapDistToHole": 3,
+   "certDist": 4,
+   "certSays": "PROVEN_SAME_TURN_WIN",
+   "engineSays": "NO_WIN"
+  },
+  {
+   "kind": "TRAP_ON_ROUTE",
+   "mouse": {
+    "r": 4,
+    "c": 8
+   },
+   "moves": 4,
+   "trap": {
+    "r": 6,
+    "c": 9
+   },
+   "trapDistToHole": 1,
+   "certDist": 4,
+   "certSays": "PROVEN_SAME_TURN_WIN",
+   "engineSays": "NO_WIN"
+  },
+  {
+   "kind": "TRAP_ON_ROUTE",
+   "mouse": {
+    "r": 4,
+    "c": 8
+   },
+   "moves": 4,
+   "trap": {
+    "r": 5,
+    "c": 9
+   },
+   "trapDistToHole": 2,
+   "certDist": 4,
+   "certSays": "PROVEN_SAME_TURN_WIN",
+   "engineSays": "NO_WIN"
+  },
+  {
+   "kind": "TRAP_ON_ROUTE",
+   "mouse": {
+    "r": 4,
+    "c": 8
+   },
+   "moves": 4,
+   "trap": {
+    "r": 4,
+    "c": 9
+   },
+   "trapDistToHole": 3,
+   "certDist": 4,
+   "certSays": "PROVEN_SAME_TURN_WIN",
+   "engineSays": "NO_WIN"
+  },
+  {
+   "kind": "TRAP_ON_ROUTE",
+   "mouse": {
+    "r": 4,
+    "c": 9
+   },
+   "moves": 3,
+   "trap": {
+    "r": 6,
+    "c": 9
+   },
+   "trapDistToHole": 1,
+   "certDist": 3,
+   "certSays": "PROVEN_SAME_TURN_WIN",
+   "engineSays": "NO_WIN"
+  },
+  {
+   "kind": "TRAP_ON_ROUTE",
+   "mouse": {
+    "r": 4,
+    "c": 9
+   },
+   "moves": 3,
+   "trap": {
+    "r": 5,
+    "c": 9
+   },
+   "trapDistToHole": 2,
+   "certDist": 3,
+   "certSays": "PROVEN_SAME_TURN_WIN",
+   "engineSays": "NO_WIN"
+  },
+  {
+   "kind": "TRAP_ON_ROUTE",
+   "mouse": {
+    "r": 5,
+    "c": 8
+   },
+   "moves": 3,
+   "trap": {
+    "r": 6,
+    "c": 9
+   },
+   "trapDistToHole": 1,
+   "certDist": 3,
+   "certSays": "PROVEN_SAME_TURN_WIN",
+   "engineSays": "NO_WIN"
+  },
+  {
+   "kind": "TRAP_ON_ROUTE",
+   "mouse": {
+    "r": 5,
+    "c": 8
+   },
+   "moves": 3,
+   "trap": {
+    "r": 5,
+    "c": 9
+   },
+   "trapDistToHole": 2,
+   "certDist": 3,
+   "certSays": "PROVEN_SAME_TURN_WIN",
+   "engineSays": "NO_WIN"
+  },
+  {
+   "kind": "TRAP_ON_ROUTE",
+   "mouse": {
+    "r": 5,
+    "c": 9
+   },
+   "moves": 2,
+   "trap": {
+    "r": 6,
+    "c": 9
+   },
+   "trapDistToHole": 1,
+   "certDist": 2,
+   "certSays": "PROVEN_SAME_TURN_WIN",
+   "engineSays": "NO_WIN"
+  },
+  {
+   "kind": "TRAP_ON_ROUTE",
+   "mouse": {
+    "r": 6,
+    "c": 6
+   },
+   "moves": 4,
+   "trap": {
+    "r": 8,
+    "c": 7
+   },
+   "trapDistToHole": 1,
+   "certDist": 4,
+   "certSays": "PROVEN_SAME_TURN_WIN",
+   "engineSays": "NO_WIN"
+  }
+ ],
+ "positiveControlSamples": [
+  {
+   "mouse": {
+    "r": 3,
+    "c": 9
+   },
+   "moves": 4,
+   "dist": 4,
+   "path": [
+    "↓",
+    "↓",
+    "↓",
+    "↓"
+   ]
+  },
+  {
+   "mouse": {
+    "r": 4,
+    "c": 8
+   },
+   "moves": 4,
+   "dist": 4,
+   "path": [
+    "→",
+    "↓",
+    "↓",
+    "↓"
+   ]
+  },
+  {
+   "mouse": {
+    "r": 4,
+    "c": 9
+   },
+   "moves": 3,
+   "dist": 3,
+   "path": [
+    "↓",
+    "↓",
+    "↓"
+   ]
+  }
+ ]
+}

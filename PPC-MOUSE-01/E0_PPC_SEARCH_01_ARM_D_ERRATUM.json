@@ -1,0 +1,76 @@
+{
+  "erratum_id": "PPC-MOUSE-01-E0",
+  "kind": "APPEND_ONLY_CORRECTION",
+  "issued_at_round": "PPC-MOUSE-01",
+  "issued_at_local_time": "2026-11-12",
+  "target_round": "PPC-SEARCH-01",
+  "target_artifact": "PPC-SEARCH-01/proto/expectiminimaxPvs.ts :: arm D (`PVS_STRICT_BOUNDS`)",
+  "frozen_artifacts_left_untouched": [
+    {
+      "path": "PPC-SEARCH-01/PPC-SEARCH-01_PVS_REPORT.md",
+      "bytes": 30932,
+      "sha256": "47a6672cd51d389597711f4c9a50687285bf80a9bf09079542c53e0b4de3dab3",
+      "status": "UNMODIFIED"
+    },
+    {
+      "path": "PPC-SEARCH-01/PPC-SEARCH-01_PREREGISTRATION.json",
+      "bytes": 4973,
+      "sha256": "c5344cbba8626f1a861595172be7ef69b474c81fe9e91fd938fe67aa6afbcc5f",
+      "status": "UNMODIFIED"
+    },
+    {
+      "path": "PPC-SEARCH-01/proto/expectiminimaxPvs.ts",
+      "bytes": 119463,
+      "sha256": "4999417063d2afbb52e40ea8cab1f2f80b12a924da46cdcc6993fbbcc49f4d44",
+      "status": "UNMODIFIED"
+    },
+    {
+      "path": "PPC-SEARCH-01/out/ (13 evidence artifacts)",
+      "status": "UNMODIFIED"
+    }
+  ],
+  "no_rerun": {
+    "pvs_benchmark_rerun": false,
+    "reason": "The correction changes the DIRECTION of a bound label that is only ever consumed by equality tests against 'exact'. It cannot move any measured node count, wall clock, value, mate or plan. Re-running the sweep would produce evidence about a different question."
+  },
+  "defect": {
+    "site": "PPC-SEARCH-01/proto/expectiminimaxPvs.ts:1605-1615",
+    "code_as_written": "const strictBound = PVS_STRICT_BOUNDS && degenerateWindow; const boundType = strictBound ? (maximizing ? 'lower' : 'upper') : ...",
+    "claimed_justification_in_code_comment": "a node that entered with a degenerate window is an unresolved bound in BOTH directions (MAX can only prove `<= X`, MIN can only prove `>= X`), whatever the cutoff flag says",
+    "what_is_wrong": "The comment states the correct fact (MAX proves <= X, MIN proves >= X) and then emits the OPPOSITE labels. A MAX result of `value <= X` is an UPPER bound; arm D labels it 'lower'. A MIN result of `value >= X` is a LOWER bound; arm D labels it 'upper'. Both directions are inverted.",
+    "correct_mapping": {
+      "degenerate_window_max_not_cut_off": "upper  (proved: true value <= X)",
+      "degenerate_window_min_not_cut_off": "lower  (proved: true value >= X)",
+      "degenerate_window_max_cut_off": "lower  (proved: true value >= X == beta) — unchanged, this one was already right",
+      "degenerate_window_min_cut_off": "upper  (proved: true value <= X == alpha) — unchanged, this one was already right"
+    },
+    "why_the_case_is_reachable_only_because_arm_D_suppressed_equality_cutoff": "Arm D also relaxed the degenerate-window cutoff test from `>= 0` to `> 0` (lines 1569/1571), which is what allows a degenerate node to finish WITHOUT cutting off. Under the production `>=` rule a (X,X) node cuts off on its first candidate, so the mislabelled branch would have been dead code. The label and the relaxation were introduced together."
+  },
+  "blast_radius_audit": {
+    "question": "does the inverted direction change any PPC-SEARCH-01 number?",
+    "consumer_enumeration": [
+      "expectiminimax.ts:272  isCertifiedResult  -> r.bound === 'exact'  (equality only)",
+      "expectiminimax.ts:1066 storeTT            -> result.bound !== 'exact' -> return  (equality only)",
+      "forcedLossTieBreak.ts:54                  -> rootActions.filter(a => a.bound === 'exact')  (equality only)",
+      "expectiminimax.ts:1316                    -> rootValues record, displayed only",
+      "turnLazy.ts:350                           -> tt.bound === 'exact'  (equality only, different module)"
+    ],
+    "finding": "Every consumer tests equality against 'exact'. 'lower' and 'upper' are indistinguishable to all of them, so swapping the two labels is INERT for storage, certification, tie-break eligibility and plan extraction.",
+    "affected_conclusions": "NONE",
+    "unaffected_conclusions": [
+      "G1T10 arm D node count 12,225 -> 365,612 (668x production) — driven by `bound !== 'exact'` barring the EXACT-only TT, not by which non-exact label was used",
+      "arm D wall clock ~95 s",
+      "arm B/C/D plan identity results",
+      "NO_GO_PVS verdict and all three supporting reasons",
+      "the bound-contract gap in production (expectiminimax.ts:1422 states the cutoff axis, not the window axis) — that is a DIFFERENT, still-open finding"
+    ],
+    "newly_weakened_claim": "PPC-SEARCH-01 §7.4 called arm D 'the bound fix'. Correct description: 'a conservative non-exact labelling, with the two labels swapped'. It remains sufficient to demonstrate that refusing EXACT writes destroys the cache economics (that is what the 668x measures), but it is NOT a correct implementation of window-axis honesty, so it must not be cited as one."
+  },
+  "implication_for_future_rounds": [
+    "Any future narrow-window work must emit MAX-no-cutoff -> 'upper', MIN-no-cutoff -> 'lower', and must add a FOURTH state to InternalSearchResult.bound (e.g. 'narrowed-unresolved') if it ever wants to distinguish 'proved exact' from 'window-limited', because 'lower'/'upper' in this codebase are ALSO produced by real alpha-beta cutoffs and the two meanings are not separable today.",
+    "The production defect at expectiminimax.ts:1422 (bound tracks the cutoff axis only) is still open and still blocks any window-narrowing search. The PVS line stays closed.",
+    "A second site with the same shape exists in turnLazy.ts:497; it is outside this round's scope and was NOT modified."
+  ],
+  "production_code_changed": false,
+  "ppc_search_01_files_changed": 0
+}

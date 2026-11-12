@@ -1,0 +1,16 @@
+{
+ "fixture": "M_CARRY_HOME",
+ "turnBudgetMs": 100,
+ "grantsMs": [
+  100
+ ],
+ "searchMs": [
+  100.64
+ ],
+ "cumulativeGranted": 100,
+ "naivePerStepModel": 100,
+ "totalWallMs": 100.68,
+ "overrunMs": 0.68,
+ "hardWallMs": 150,
+ "note": "cumulative grants never exceed the turn budget by construction; the naive model would be steps x 100 ms"
+}

@@ -1,0 +1,11 @@
+{"id":"M_CARRY_HOME","legal":["mouse↑","mouse↓","mouse←","mouse→","skill"],"oracleRoot":["mouse→","mouse↓","mouse↑","mouse←","skill"],"sameSet":true}
+{"id":"M_BUTTER_PICKUP","legal":["mouse↑","mouse↓","mouse←","mouse→"],"oracleRoot":["mouse→","mouse↑","mouse←","mouse↓"],"sameSet":true}
+{"id":"M_SKILL_ONLY","legal":["skill"],"oracleRoot":["skill"],"sameSet":true}
+{"id":"M_TUNNEL","legal":["mouse↓","mouse←","mouse→"],"oracleRoot":["mouse←","mouse↓","mouse→"],"sameSet":true}
+{"id":"M_TRAP_ONLY","legal":["mouse↓"],"oracleRoot":["mouse↓"],"sameSet":true}
+{"id":"M_STRANDED","legal":["mouse↑","mouse↓","mouse←","mouse→"],"oracleRoot":["mouse↑","mouse↓","mouse←","mouse→"],"sameSet":true}
+{"id":"M_CAT_ADJACENT","legal":["mouse↑","mouse←","mouse→"],"oracleRoot":["mouse→","mouse↑","mouse←"],"sameSet":true}
+{"id":"M_MICRO","legal":["mouse↑","mouse↓","mouse←","mouse→","skill"],"oracleRoot":["skill","mouse→","mouse↓","mouse↑","mouse←"],"sameSet":true}
+{"id":"M_BUTTER_MICRO","legal":["mouse↑","mouse↓","mouse←","mouse→"],"oracleRoot":["mouse→","mouse↑","mouse←","mouse↓"],"sameSet":true}
+{"id":"M_CAT_MATE3","legal":["mouse→"],"oracleRoot":["mouse→"],"sameSet":true}
+{"id":"M10_BUTTER","legal":["mouse↑","mouse↓","mouse←","mouse→"],"oracleRoot":["mouse→","mouse↑","mouse←","mouse↓"],"sameSet":true}

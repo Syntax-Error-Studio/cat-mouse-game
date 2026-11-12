@@ -1,0 +1,16 @@
+{
+ "section": "P4 cost (single-thread, warm, this machine)",
+ "perCheckMs": {
+  "gateOnlyMs": 0.00006,
+  "reusedCarryHoleMapLookupMs": 0.00007,
+  "freshCarryingBfsMs": 0.0249,
+  "fullEvaluationContextMs": 0.1431,
+  "correctedTrapAwareBfsMs": 0.0119,
+  "h1EvaluationMs": 0.1089
+ },
+ "ratios": {
+  "correctedOverH1": 0.109,
+  "freshBfsOverH1": 0.229
+ },
+ "note": "the lookup path reuses the H1 context carryHoleMap; the corrected path rebuilds one BFS and only when the gate fires"
+}

@@ -1,0 +1,326 @@
+{
+  "schema": "PPC-ARIMAA-01-PREREG-V1",
+  "generated_at": "2026-11-12T13:01:50+08:00",
+  "status": "PREREGISTERED_NOT_EXECUTED",
+  "authority_separation": {
+    "new_independent_artifact": true,
+    "merges_into_frozen_authority": false,
+    "overwrites_history": false,
+    "frozen_inputs_read_only": [
+      "GAMEPLAY.md",
+      "ai-training/**",
+      "FORMAL_V2_PRIMARY_PASS_SOURCE_CHECKPOINT.json",
+      "G0.3*/*.md",
+      "G0.4F*/*.md"
+    ]
+  },
+  "source_baseline": {
+    "workspace": "F:/小猫小鼠",
+    "branch": "ppc/2026-11-03-a0-trap-fix",
+    "head": "9ba04b53ff89370a3de6b7c1e318cb78e3c742b1",
+    "head_subject": "feat: add experimental A0 AI leaf for dev playtesting",
+    "dirty_entries": 79,
+    "audited_tree": "WORKING_TREE",
+    "gameplay_ruleset_version": 2
+  },
+  "budgets_frozen": {
+    "main_search_ms": 100,
+    "total_turn_ms": 150,
+    "max_depth_turns_attempted": 4,
+    "max_nodes_safety_valve": 500000,
+    "budget_changes_allowed": false
+  },
+  "resource_safety": {
+    "heavy_worker_concurrency": 1,
+    "serial_fresh_repetitions": true,
+    "duplicate_benchmark_check": "REQUIRED",
+    "resource_safety": "REQUIRED",
+    "heavy_benchmark_run": false,
+    "new_model_training": false,
+    "self_play_run": false,
+    "production_change": false
+  },
+  "arms": {
+    "A": {
+      "id": "LEGACY_STEPWISE",
+      "definition": "current production expectiminimax: atomic steps, MAX/MIN/CHANCE, alpha-beta, TT exact-only, iterative deepening, evaluateForCat (H1), 100ms/150ms",
+      "semantics": "FROZEN_BASELINE_MUST_NOT_BE_MODIFIED",
+      "may_change": []
+    },
+    "B": {
+      "id": "PURE_TURNWISE",
+      "definition": "full-turn terminal states as tree edges; within-turn enumeration via enumerateFullTurnLegacy/buildTurnDag; CHANCE resolved at turn boundary",
+      "purpose": [
+        "correctness oracle",
+        "branching-inflation measurement",
+        "action-sequence dedup study"
+      ],
+      "production_candidate": false,
+      "presupposition_of_superiority": false
+    },
+    "C": {
+      "id": "HYBRID_STEP_TURN",
+      "verdict": "NO_NEW_HYBRID_CANDIDATE",
+      "implement_in_this_round": false,
+      "disqualifying_evidence": [
+        "G0.3J: cat 64-821 raw sequences -> 14-214 unique turn-end states; mouse 5125-12288 -> 10-615; duplication 64.5%-95.0%",
+        "1.9N: exact turn DAG + AB/TT bit-identical value but fixed-D2 wall 15.5s vs 628ms (24.7x slower); 100ms D2 completion 0/20 -> EXACT_BUT_NO_SPEEDUP",
+        "G0.3L: turn-lazy 16.95x slower on d2 and exactness FAIL (H-g5t4)",
+        "1.9AB..1.9AE, 1.9W..1.9Z: multi-step candidate generation/ordering coverage 3/8..4/8, below pre-registered gate"
+      ]
+    }
+  },
+  "config_matrix": [
+    {
+      "id": "S0",
+      "delta": "default",
+      "params": { "boardSize": 10, "catBaseMoves": 4, "mouseBaseMoves": 4, "mouseCarryingMoves": 3, "mouseSkillExtraMoves": 3, "butterCount": 2, "boxCount": 12, "pileCount": 4, "mouseHole": { "r": 7, "c": 8, "size": 2 } },
+      "code_support": "DEFAULT",
+      "status": "EXPECTED_VALID",
+      "risk_focus": ["baseline"],
+      "required_gates": ["all_frozen_correctness_gates"]
+    },
+    {
+      "id": "S1",
+      "delta": "catBaseMoves=5",
+      "params": { "catBaseMoves": 5 },
+      "code_support": "CONFIG_ONLY",
+      "status": "REQUIRES_VALIDATION",
+      "risk_focus": [
+        "per-turn branching x~3.5 -> D2 cost +50..100%",
+        "plan maxLength=8 still sufficient (5+1 trap)",
+        "H1 weights tuned at 4v3; speed-race balance drift",
+        "no UI control for cat steps exists"
+      ],
+      "required_gates": ["legality_100pct", "turn_completeness", "same-rule strength control", "no win-rate-as-strength-claim"]
+    },
+    {
+      "id": "S2",
+      "delta": "catBaseMoves=3",
+      "params": { "catBaseMoves": 3 },
+      "code_support": "CONFIG_ONLY",
+      "status": "REQUIRES_VALIDATION",
+      "risk_focus": ["smaller branching; cat intrinsically weaker by rule", "must not be read as algorithm regression"],
+      "required_gates": ["legality_100pct", "turn_completeness", "same-rule strength control"]
+    },
+    {
+      "id": "S3",
+      "delta": "boardSize=6",
+      "params": { "boardSize": 6 },
+      "code_support": "SUPPORTED (BOARD_SIZE_MIN=5, deriveDefaultLayout)",
+      "status": "REQUIRES_VALIDATION",
+      "risk_focus": ["RULE-B certification cost/verdict at 6x6", "H1 normalization holds"],
+      "required_gates": ["opening_certified", "UNKNOWN_not_accepted"]
+    },
+    {
+      "id": "S4",
+      "delta": "boardSize=15",
+      "params": { "boardSize": 15 },
+      "code_support": "SUPPORTED (BOARD_SIZE_MAX=20)",
+      "status": "HIGH_RISK",
+      "risk_focus": [
+        "leaf eval O(N^2): 3 BFS + 225-cell voronoi -> ~2.25x per leaf",
+        "D1 may already exceed 100ms",
+        "RULE-B certifier node budget"
+      ],
+      "required_gates": ["per_leaf_cost", "D1_completion_rate", "P50_P95_wall"]
+    },
+    {
+      "id": "S5",
+      "delta": "irregular map with Void",
+      "params": { "customTerrain": "sparse void pattern", "tunnelCorners": "may be empty array" },
+      "code_support": "SUPPORTED (customTerrain, CellType.Void)",
+      "status": "REQUIRES_VALIDATION",
+      "risk_focus": [
+        "all learned leaves fail closed off default map",
+        "RULE-B optimistic pruning preconditions under Void",
+        "validateGameConfig coverage"
+      ],
+      "required_gates": ["opening_certified", "void_not_traversable", "legality_100pct"]
+    },
+    {
+      "id": "S6",
+      "delta": "butterCount in {1,4,6}",
+      "params": { "butterCount": "variant" },
+      "code_support": "SUPPORTED (butterCount in stateKey)",
+      "status": "REQUIRES_VALIDATION",
+      "risk_focus": ["CHANCE fan-out distribution", "butterRace single-stage assumption"],
+      "required_gates": ["chance_probability_conservation", "fanout_distribution_recorded"]
+    },
+    {
+      "id": "S7",
+      "delta": "box/pile density variants",
+      "params": { "boxCount": "low/high", "pileCount": "low/high" },
+      "code_support": "SUPPORTED",
+      "status": "REQUIRES_VALIDATION",
+      "risk_focus": [
+        "push branching increases",
+        "confinement/voronoi shift",
+        "cat self-trapping (RULE-A) may become common"
+      ],
+      "required_gates": ["RULE_A_both_sides", "no_illegal_push", "legality_100pct"]
+    },
+    {
+      "id": "S8",
+      "delta": "cat/mouse start positions",
+      "params": { "mouseStart": "variant", "catStart": "variant" },
+      "code_support": "SUPPORTED",
+      "status": "REQUIRES_VALIDATION",
+      "risk_focus": ["isDerivedDefaultLayout rejects non-default (does not affect search)", "H1 hole-relative assumptions weak"],
+      "required_gates": ["opening_certified", "first_turn_plan_legal"]
+    },
+    {
+      "id": "S9",
+      "delta": "mouseSkillExtraMoves variants",
+      "params": { "mouseSkillExtraMoves": "variant" },
+      "code_support": "SUPPORTED (field in stateKey)",
+      "status": "REQUIRES_VALIDATION",
+      "risk_focus": ["skill is a zero-cost action the search will exploit", "RULE-A skill-unlock predicate must stay in sync"],
+      "required_gates": ["skill_unlock_matches_engine", "legality_100pct"]
+    },
+    {
+      "id": "S10",
+      "delta": "two independent mouse holes (FUTURE RULE)",
+      "code_support": "NOT_SUPPORTED",
+      "status": "DESIGN_ONLY",
+      "migration_cost": {
+        "data_model": "MEDIUM (single rect -> array, keep length-1 compat)",
+        "terminal": "SMALL (any hole wins)",
+        "pathfinding": "NEAR_ZERO (buildMultiSourceDistanceMap already multi-source)",
+        "holeControl": "MEDIUM (per-hole margin/coverage required; single margin cancels out)",
+        "stateKey": "SMALL (hole already in boardKey; must pin board-as-truth)",
+        "RULE_B_certifier": "LARGE (mouse lines x holes; H=3/20000 may be insufficient)"
+      },
+      "assume_implemented": false
+    }
+  ],
+  "metrics": {
+    "correctness_gates": [
+      "legal_action_coverage_100pct",
+      "turn_completeness_verdicts",
+      "transition_parity_simulator_vs_engine",
+      "chance_weights_finite_positive_sum_1",
+      "mate_vs_nonmate_separation_lexicographic",
+      "TT_exact_only_depth_and_extension_match",
+      "truncation_and_UNKNOWN_propagation",
+      "ruleset_version_isolation"
+    ],
+    "performance": [
+      "nodes",
+      "unique_states",
+      "completedDepth_distribution",
+      "full_turn_candidate_coverage",
+      "cpu_ms",
+      "wall_ms",
+      "P50_ms",
+      "P95_ms",
+      "P99_ms",
+      "peak_memory_mib",
+      "deadline_hit_rate_100ms",
+      "D2_completion_rate_at_100ms",
+      "fallback_rate"
+    ],
+    "playing_strength": [
+      "cat_win_rate",
+      "mouse_win_rate",
+      "paired_game_results",
+      "real_tactical_blunder_rate",
+      "proven_loss_avoidance",
+      "generalization_across_configs"
+    ]
+  },
+  "preregistered_gates": {
+    "M1_exact_turn_certificate": {
+      "description": "leaf-level proof: mouse wins in-turn iff carrying && carryingHoleDist <= mouseMovesLeft; cat wins in-turn iff catWalkDist <= catMovesLeft (walk-only => conservative)",
+      "added_nodes": 0,
+      "GO": [
+        "C1_all_frozen_correctness_gates_green",
+        "C2_zero_counterexamples_vs_exhaustive_fixed_depth_search_on_dev_roots",
+        "C3_G1T9_class_roots_not_worse_under_same_100ms (no SAFE->BAD per METHOD_A/H2 labels)",
+        "C4_completedDepth_distribution_not_degraded"
+      ],
+      "NO_GO": "any of C1..C4 fails -> revert via single flag",
+      "scope_limit": "expresses only one-turn forced win/loss; does NOT fix two-turn structural BAD (G8T10 class)"
+    },
+    "M2_exact_chance_compression": {
+      "description": "reuse 1.9D isGhostAnnouncementHorizonInert predicate; bit-exact reuse",
+      "precondition": "stateKey extended with GAMEPLAY_RULESET_VERSION + mouseHole/tunnelCorners",
+      "GO": [
+        "bit-identical value+mate at same depth on all parity roots",
+        "node reduction >= 1.4x"
+      ]
+    },
+    "M3_node_count_reduction": {
+      "description": "PVS + aspiration windows + cross-turn TT persistence",
+      "GO": [
+        "bit-identical value+mate at same depth",
+        "D2 completion rate at 100ms >= 60% on dev set",
+        "D2 completion rate at 100ms >= 40% on held-out set"
+      ]
+    },
+    "overall_no_go": [
+      "any correctness gate regressed",
+      "budget increased to manufacture an advantage",
+      "UNKNOWN/INCOMPLETE counted as safety",
+      "single-sided (unpaired) win-rate claim"
+    ]
+  },
+  "root_and_seed_policy": {
+    "dev_set": "pre-registered, frozen before any candidate run",
+    "holdout_set": "never used for tuning; one-shot",
+    "external_regression_roots": "ai-training/human-logs/PPC-HV14 five games (read-only, never retuned)",
+    "seeds": "fixed per root; serial fresh process per repetition",
+    "chance_handling": "enumerated (never sampled) inside search => reproducible",
+    "duplicate_run_check": "required before any aggregate is reported"
+  },
+  "excluded_routes": [
+    "threat extension / leaf quiescence (G0.3S/T/U)",
+    "exact plan probe as runtime (1.9H/I/J)",
+    "turn DAG runtime (1.9N)",
+    "turn-lazy (G0.3L)",
+    "cheap representation fix / micro-optimization only (1.9E/F/M)",
+    "static completed-plan orderings (1.9AC/AD/AE)",
+    "positive refill (1.9AF)",
+    "tactical prefix order (1.9AG) / path8 adversarial trace (1.9AH)",
+    "learned proposal portfolios (1.9W/X/Y/Z)",
+    "exact H2 runtime certification (1.9AK)",
+    "H2-only training / current H2 aux head (1.9Q/R/S/S-R1/T/U)",
+    "A0 frozen model production shadow (1.9BA PREFLIGHT_FAIL)"
+  ],
+  "recommended_next_stage": {
+    "id": "PTB-1",
+    "name": "Proven Tactical Boundary",
+    "sequence": ["M1_exact_turn_certificate", "M2_exact_chance_compression", "M3_node_count_reduction"],
+    "first_action": "M1 only, behind a single feature flag, no production default change",
+    "rationale": "zero added nodes, sound, changes decisions (not just speed); targets HORIZON class and partially REPRESENTATION class without weight surgery"
+  },
+  "final_state": {
+    "PPC_ARIMAA01_STATUS": "RESEARCH_COMPLETE_NO_PRODUCTION_CHANGE",
+    "SOURCE_BASELINE": "ppc/2026-11-03-a0-trap-fix @ 9ba04b53ff89370a3de6b7c1e318cb78e3c742b1 (working tree, 79 dirty)",
+    "GAMEPLAY_RULESET_VERSION": 2,
+    "CURRENT_SEARCH_CLASSIFICATION": "STEPWISE_EXPECTIMINIMAX_TURN_COUNTED_DEPTH",
+    "EXISTING_STEPWISE_CORRECTNESS": "VERIFIED_BY_FROZEN_GATES",
+    "EXISTING_ALPHA_BETA_TT_ORDERING": "AB_YES_CHANCE_FULL_WINDOW_TT_EXACT_ONLY_ORDERING_TT_THEN_MANHATTAN",
+    "CAT_STEP_VARIABILITY": "CONFIG_ONLY_OK_BELOW_8_STEPS_NO_UI_STRENGTH_UNPROVEN",
+    "MOUSE_AI_SHARED_CORE_FEASIBILITY": "FEASIBLE_REUSE_KERNEL_REWRITE_PLAN_LAYER",
+    "MOUSE_TURN_PLAN_GAP": "ABSENT_MOUSE_PLAN_MUST_BE_CONDITIONAL",
+    "VARIABLE_BOARD_COMPATIBILITY": "SUPPORTED_5_TO_20_EVAL_COST_O_N2",
+    "IRREGULAR_MAP_COMPATIBILITY": "VOID_SUPPORTED_LEARNED_LEAVES_FAIL_CLOSED",
+    "MULTI_HOLE_COMPATIBILITY": "NOT_SUPPORTED_COST_IN_EVALUATOR_AND_CERTIFIER",
+    "EVALUATOR_GENERALIZATION_RISKS": "SINGLE_HOLE_ASSUMPTION_LEARNED_LEAVES_10x10_ONLY",
+    "TT_RULESET_IDENTITY_RISKS": "NO_RULESET_VERSION_IN_KEY_NO_CROSS_TURN_REUSE",
+    "ARIMAA_TECHNIQUE_REUSE": "STEPWISE_PRESENT_MISSING_STATIC_GOAL_DETECTION_LMR_ASPIRATION",
+    "PURE_TURNWISE_ASSESSMENT": "ORACLE_ONLY",
+    "HYBRID_SEARCH_NOVELTY": "NO_NEW_HYBRID_CANDIDATE",
+    "HISTORICAL_FAILED_ROUTES_EXCLUDED": 12,
+    "PROPOSED_A_B_C_EXPERIMENT": "PREREGISTERED_NOT_EXECUTED",
+    "RECOMMENDED_NEXT_STAGE": "PTB-1_M1_EXACT_TURN_CERTIFICATE_LEAF",
+    "PRODUCTION_AI_CHANGED": "NO",
+    "GAMEPLAY_RULES_CHANGED": "NO",
+    "MAIN_SEARCH_BUDGET_MS": 100,
+    "TOTAL_TURN_BUDGET_MS": 150,
+    "HEAVY_WORKER_CONCURRENCY": 1,
+    "NEW_FORMAL_AUTHORITY": "NONE",
+    "COMMIT_PUSH_STATUS": "NONE"
+  }
+}

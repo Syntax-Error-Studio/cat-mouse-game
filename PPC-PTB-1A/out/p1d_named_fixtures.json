@@ -1,0 +1,77 @@
+{
+ "section": "P1-D named fixtures",
+ "trapOnRoute": {
+  "mouse": {
+   "r": 3,
+   "c": 9
+  },
+  "trap": {
+   "r": 4,
+   "c": 9
+  },
+  "cleanCarryDist": 4,
+  "naive": {
+   "fires": true,
+   "dist": 4,
+   "gated": null
+  },
+  "corrected": {
+   "proven": false,
+   "dist": null
+  },
+  "truth": {
+   "win": false,
+   "path": [],
+   "nodes": 32
+  }
+ },
+ "catCorridorBlock": {
+  "catOnCutCell": {
+   "r": 4,
+   "c": 9
+  },
+  "naive": {
+   "fires": false,
+   "dist": 22,
+   "gated": null
+  },
+  "truth": {
+   "win": false,
+   "path": [],
+   "nodes": 32
+  }
+ },
+ "notMouseTurn": {
+  "naive": {
+   "fires": false,
+   "dist": null,
+   "gated": "not_mouse_turn"
+  }
+ },
+ "carryingGate": {
+  "naive": {
+   "fires": false,
+   "dist": null,
+   "gated": "no_butter"
+  },
+  "truth": {
+   "win": false,
+   "path": [],
+   "nodes": 32
+  }
+ },
+ "catAdjacent": {
+  "naive": {
+   "fires": true,
+   "dist": 1,
+   "gated": null
+  },
+  "truth": {
+   "win": true,
+   "path": [
+    "↓"
+   ],
+   "nodes": 2
+  }
+ }
+}

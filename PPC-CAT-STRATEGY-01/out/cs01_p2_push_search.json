@@ -1,0 +1,80 @@
+{
+  "root": {
+    "cat": {
+      "r": 2,
+      "c": 0
+    },
+    "mouse": {
+      "r": 0,
+      "c": 2
+    },
+    "box": {
+      "r": 1,
+      "c": 0
+    }
+  },
+  "legalActions": [
+    "Up",
+    "Down",
+    "Right"
+  ],
+  "pushIsGenerated": true,
+  "pushBlocksTunnel": true,
+  "search": {
+    "planLabel": "URUR",
+    "completedDepth": 1,
+    "attemptedDepth": 2,
+    "nodes": 355,
+    "elapsedMs": 102.6,
+    "rootValue": 999996,
+    "ranking": [
+      {
+        "action": "Up",
+        "value": 999996,
+        "mate": "cat",
+        "bound": "exact"
+      },
+      {
+        "action": "Right",
+        "value": 999996,
+        "mate": "cat",
+        "bound": "exact"
+      },
+      {
+        "action": "Down",
+        "value": 213.016,
+        "mate": null,
+        "bound": "exact"
+      }
+    ]
+  },
+  "chosePush": true,
+  "h1AfterPush": {
+    "name": "afterPush",
+    "total": -12.854,
+    "tunnelControl": -128.571,
+    "confinement": -77,
+    "holeControl": 200,
+    "voronoiBalance": -384.783,
+    "capturePressure": -270,
+    "mouseReachableArea": 98,
+    "openTunnelCount": 3,
+    "mouseCanReachTunnel": true,
+    "mouseTunnelAccessDistance": 7,
+    "mouseWinRouteDistance": 13
+  },
+  "h1Root": {
+    "name": "root",
+    "total": -57.643,
+    "tunnelControl": -450,
+    "confinement": -88,
+    "holeControl": 400,
+    "voronoiBalance": -257.143,
+    "capturePressure": -360,
+    "mouseReachableArea": 98,
+    "openTunnelCount": 4,
+    "mouseCanReachTunnel": true,
+    "mouseTunnelAccessDistance": 2,
+    "mouseWinRouteDistance": 13
+  }
+}

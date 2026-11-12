@@ -1,0 +1,496 @@
+{
+ "p1_mouse_root_parity": {
+  "rows": [
+   {
+    "id": "M_CARRY_HOME",
+    "depth": 1,
+    "nodes": 74,
+    "searchValue": -999998,
+    "oracleValue": -999998,
+    "searchMate": "mouse",
+    "oracleMate": "mouse",
+    "valueDiff": 0,
+    "action": "mouse→",
+    "completedDepth": 1
+   },
+   {
+    "id": "M_BUTTER_PICKUP",
+    "depth": 1,
+    "nodes": 61,
+    "searchValue": -1731.7460317460318,
+    "oracleValue": -1731.7460317460318,
+    "searchMate": null,
+    "oracleMate": null,
+    "valueDiff": 0,
+    "action": "mouse→",
+    "completedDepth": 1
+   },
+   {
+    "id": "M_SKILL_ONLY",
+    "depth": 1,
+    "nodes": 2,
+    "searchValue": -1696.3675213675212,
+    "oracleValue": -1696.3675213675212,
+    "searchMate": null,
+    "oracleMate": null,
+    "valueDiff": 0,
+    "action": "skill",
+    "completedDepth": 1
+   },
+   {
+    "id": "M_TUNNEL",
+    "depth": 1,
+    "nodes": 3,
+    "searchValue": -1750.7936507936508,
+    "oracleValue": -1750.7936507936508,
+    "searchMate": null,
+    "oracleMate": null,
+    "valueDiff": 0,
+    "action": "mouse←",
+    "completedDepth": 1
+   },
+   {
+    "id": "M_TRAP_ONLY",
+    "depth": 1,
+    "nodes": 0,
+    "searchValue": -705.0000000000001,
+    "oracleValue": -705.0000000000001,
+    "searchMate": null,
+    "oracleMate": null,
+    "valueDiff": 0,
+    "action": "mouse↓",
+    "completedDepth": 1
+   },
+   {
+    "id": "M_STRANDED",
+    "depth": 1,
+    "nodes": 0,
+    "searchValue": 999999,
+    "oracleValue": 999999,
+    "searchMate": "cat",
+    "oracleMate": "cat",
+    "valueDiff": 0,
+    "action": "mouse↑",
+    "completedDepth": 1
+   },
+   {
+    "id": "M_CAT_ADJACENT",
+    "depth": 1,
+    "nodes": 3,
+    "searchValue": -1254.3650793650793,
+    "oracleValue": -1254.3650793650793,
+    "searchMate": null,
+    "oracleMate": null,
+    "valueDiff": 0,
+    "action": "mouse→",
+    "completedDepth": 1
+   },
+   {
+    "id": "M_MICRO",
+    "depth": 1,
+    "nodes": 29,
+    "searchValue": -1731.7460317460318,
+    "oracleValue": -1731.7460317460318,
+    "searchMate": null,
+    "oracleMate": null,
+    "valueDiff": 0,
+    "action": "skill",
+    "completedDepth": 1
+   },
+   {
+    "id": "M_BUTTER_MICRO",
+    "depth": 1,
+    "nodes": 0,
+    "searchValue": -1532.142857142857,
+    "oracleValue": -1532.142857142857,
+    "searchMate": null,
+    "oracleMate": null,
+    "valueDiff": 0,
+    "action": "mouse→",
+    "completedDepth": 1
+   },
+   {
+    "id": "M_CAT_MATE3",
+    "depth": 1,
+    "nodes": 0,
+    "searchValue": -508.58585858585866,
+    "oracleValue": -508.58585858585866,
+    "searchMate": null,
+    "oracleMate": null,
+    "valueDiff": 0,
+    "action": "mouse→",
+    "completedDepth": 1
+   },
+   {
+    "id": "M10_BUTTER",
+    "depth": 1,
+    "nodes": 0,
+    "searchValue": -1061.0434782608706,
+    "oracleValue": -1061.0434782608706,
+    "searchMate": null,
+    "oracleMate": null,
+    "valueDiff": 0,
+    "action": "mouse→",
+    "completedDepth": 1
+   },
+   {
+    "id": "M_MICRO",
+    "depth": 2,
+    "nodes": 1183,
+    "searchValue": -1596.6269841269843,
+    "oracleValue": -1596.6269841269843,
+    "searchMate": null,
+    "oracleMate": null,
+    "valueDiff": 0,
+    "action": "skill",
+    "completedDepth": 2
+   },
+   {
+    "id": "M_BUTTER_MICRO",
+    "depth": 2,
+    "nodes": 226,
+    "searchValue": -676.3888888888888,
+    "oracleValue": -676.3888888888888,
+    "searchMate": null,
+    "oracleMate": null,
+    "valueDiff": 0,
+    "action": "mouse→",
+    "completedDepth": 2
+   },
+   {
+    "id": "M_CAT_MATE3",
+    "depth": 2,
+    "nodes": 35,
+    "searchValue": 999997,
+    "oracleValue": 999997,
+    "searchMate": "cat",
+    "oracleMate": "cat",
+    "valueDiff": 0,
+    "action": "mouse→",
+    "completedDepth": 2
+   }
+  ],
+  "maxAbsValueDiff": 0,
+  "mateMismatches": [],
+  "fixtures": 11
+ },
+ "p2_m0_generous": {
+  "runs": 11,
+  "totalSteps": 26,
+  "fullTurnExecuted": 10,
+  "rejects": 0,
+  "mismatches": 0,
+  "randomCalls": 0,
+  "chanceMaskedSteps": 3,
+  "exactSteps": 23,
+  "detail": [
+   {
+    "id": "M_CARRY_HOME",
+    "steps": 2,
+    "actions": [
+     "mouse→",
+     "mouse→"
+    ],
+    "end": "mouse_wins/mouse",
+    "terminal": "MouseWins",
+    "wall": 26.03
+   },
+   {
+    "id": "M_BUTTER_PICKUP",
+    "steps": 7,
+    "actions": [
+     "mouse→",
+     "mouse↑",
+     "skill",
+     "mouse↑",
+     "mouse←",
+     "mouse←",
+     "exit(5,0)"
+    ],
+    "end": "playing/cat",
+    "terminal": "none",
+    "wall": 24.74
+   },
+   {
+    "id": "M_SKILL_ONLY",
+    "steps": 3,
+    "actions": [
+     "skill",
+     "mouse↑",
+     "exit(5,0)"
+    ],
+    "end": "playing/cat",
+    "terminal": "none",
+    "wall": 1.48
+   },
+   {
+    "id": "M_TUNNEL",
+    "steps": 2,
+    "actions": [
+     "mouse←",
+     "exit(0,0)"
+    ],
+    "end": "playing/cat",
+    "terminal": "none",
+    "wall": 1.21
+   },
+   {
+    "id": "M_TRAP_ONLY",
+    "steps": 1,
+    "actions": [
+     "mouse↓"
+    ],
+    "end": "playing/cat",
+    "terminal": "none",
+    "wall": 0.21
+   },
+   {
+    "id": "M_STRANDED",
+    "steps": 0,
+    "actions": [],
+    "end": "cat_wins/mouse",
+    "terminal": "CatWins",
+    "wall": 0.018299999999953798
+   },
+   {
+    "id": "M_CAT_ADJACENT",
+    "steps": 2,
+    "actions": [
+     "mouse→",
+     "mouse↓"
+    ],
+    "end": "playing/cat",
+    "terminal": "none",
+    "wall": 1.32
+   },
+   {
+    "id": "M_MICRO",
+    "steps": 6,
+    "actions": [
+     "skill",
+     "mouse↑",
+     "mouse↑",
+     "mouse→",
+     "mouse→",
+     "exit(5,0)"
+    ],
+    "end": "playing/cat",
+    "terminal": "none",
+    "wall": 8.12
+   },
+   {
+    "id": "M_BUTTER_MICRO",
+    "steps": 1,
+    "actions": [
+     "mouse→"
+    ],
+    "end": "playing/cat",
+    "terminal": "none",
+    "wall": 0.79
+   },
+   {
+    "id": "M_CAT_MATE3",
+    "steps": 1,
+    "actions": [
+     "mouse→"
+    ],
+    "end": "playing/cat",
+    "terminal": "none",
+    "wall": 0.15
+   },
+   {
+    "id": "M10_BUTTER",
+    "steps": 1,
+    "actions": [
+     "mouse→"
+    ],
+    "end": "playing/cat",
+    "terminal": "none",
+    "wall": 10.94
+   }
+  ]
+ },
+ "p3_m0_100ms": {
+  "byCombo": {
+   "D1/SHARED_EVEN": {
+    "runs": 11,
+    "steps": 26,
+    "fullTurnExecuted": 10,
+    "abortedOnBudget": 0,
+    "budgetAbortRate": 0.0,
+    "meanSteps": 2.364,
+    "maxWallMs": 11.6,
+    "meanWallMs": 3.1,
+    "overHardWall150": 0,
+    "rejects": 0,
+    "mismatches": 0,
+    "randomCalls": 0
+   },
+   "D1/SHARED_GREEDY": {
+    "runs": 11,
+    "steps": 26,
+    "fullTurnExecuted": 10,
+    "abortedOnBudget": 0,
+    "budgetAbortRate": 0.0,
+    "meanSteps": 2.364,
+    "maxWallMs": 12.0,
+    "meanWallMs": 3.1,
+    "overHardWall150": 0,
+    "rejects": 0,
+    "mismatches": 0,
+    "randomCalls": 0
+   },
+   "D4/SHARED_EVEN": {
+    "runs": 11,
+    "steps": 15,
+    "fullTurnExecuted": 7,
+    "abortedOnBudget": 3,
+    "budgetAbortRate": 0.2727,
+    "meanSteps": 1.364,
+    "maxWallMs": 101.5,
+    "meanWallMs": 75.9,
+    "overHardWall150": 0,
+    "rejects": 0,
+    "mismatches": 0,
+    "randomCalls": 0
+   },
+   "D4/SHARED_GREEDY": {
+    "runs": 11,
+    "steps": 10,
+    "fullTurnExecuted": 4,
+    "abortedOnBudget": 6,
+    "budgetAbortRate": 0.5455,
+    "meanSteps": 0.909,
+    "maxWallMs": 101.6,
+    "meanWallMs": 84.9,
+    "overHardWall150": 0,
+    "rejects": 0,
+    "mismatches": 0,
+    "randomCalls": 0
+   }
+  },
+  "rows": 44,
+  "budgetMs": 100
+ },
+ "chance": {
+  "fixture": "M_BUTTER_MICRO",
+  "outcomes": 2,
+  "weightSum": 1,
+  "weights": [
+   0.5,
+   0.5
+  ],
+  "spawnCells": 1,
+  "chanceNodes": 423,
+  "fullWindowChanceSearches": 423,
+  "value": -676.3888888888888,
+  "nodes": 330,
+  "note": "D2 invariant: every chance outcome is searched with the FULL window (chanceNodes === fullWindowChanceSearches); the product never narrows a random node"
+ },
+ "tt": {
+  "fixture": "M_MICRO",
+  "depth": 2,
+  "storedValue": -1596.6269841269843,
+  "storedMate": null,
+  "storedDepth": 2,
+  "value1": -1596.6269841269843,
+  "value2": -1596.6269841269843,
+  "nodes1": 1262,
+  "nodes2": 0,
+  "action1": "skill",
+  "action2": "skill",
+  "note": "a mouse root stores and re-serves the same EXACT entry; the second call resolves from the table (nodes collapse)"
+ },
+ "truncation": {
+  "fixture": "M_CARRY_HOME",
+  "maxNodes": 40,
+  "completed": false,
+  "completedDepth": 0,
+  "attemptedDepth": 1,
+  "bestAction": "none",
+  "value": 0,
+  "budgetExhausted": true,
+  "mate": null,
+  "note": "completedDepth 0 => bestAction null => a controller must not act on it"
+ },
+ "mate_distance": {
+  "mouseMate": {
+   "fixture": "M_CARRY_HOME",
+   "value": -999998,
+   "expected": -999998,
+   "mate": "mouse"
+  },
+  "catMate": {
+   "fixture": "M_CAT_MATE3",
+   "value": 999997,
+   "expected": 999997,
+   "mate": "cat",
+   "depth": 2
+  },
+  "note": "edge cost = mateActionCost (mouseStep 1, catStep 1, skill/trap/tunnel 0); distance is game time, not plies"
+ },
+ "leaf_injection": {
+  "section": "P1-11 — leafEvaluator injection is MANDATORY for parity with the Hard planner",
+  "factory": "createSearchContext(rules, maxNodes, useTT, useAlphaBeta, useMoveOrdering, maxThreatExtensions, useThreatOrdering)",
+  "default_leaf": "defaultLeafEval = 200 - 5*manhattan(cat,mouse) - 60*mouseHasButter",
+  "production_leaf": "evaluateForCat (hardTurnPlanner.ts:239 defaults to it; iterative entry takes opts.leafEvaluator)",
+  "rows": [
+   {
+    "id": "M_MICRO",
+    "oracle": -1731.7460317460318,
+    "defaultLeafValue": 115,
+    "injectedLeafValue": -1731.7460317460318,
+    "nodesDefault": 89,
+    "nodesInjected": 89,
+    "sameTraversal": true
+   },
+   {
+    "id": "M_BUTTER_MICRO",
+    "oracle": -1532.142857142857,
+    "defaultLeafValue": 115,
+    "injectedLeafValue": -1532.142857142857,
+    "nodesDefault": 0,
+    "nodesInjected": 0,
+    "sameTraversal": true
+   }
+  ],
+  "integration_requirement": "a mouse controller must set ctx.leafEvaluator = evaluateForCat (or pass opts.leafEvaluator to the iterative entry) or it will silently play a different game"
+ },
+ "budget_accounting": {
+  "fixture": "M_CARRY_HOME",
+  "turnBudgetMs": 100,
+  "grantsMs": [
+   100
+  ],
+  "searchMs": [
+   100.64
+  ],
+  "cumulativeGranted": 100,
+  "naivePerStepModel": 100,
+  "totalWallMs": 100.68,
+  "overrunMs": 0.68,
+  "hardWallMs": 150,
+  "note": "cumulative grants never exceed the turn budget by construction; the naive model would be steps x 100 ms"
+ },
+ "random_independence": {
+  "fixture": "M_BUTTER_PICKUP",
+  "draws": [
+   0,
+   0.5,
+   0.999999
+  ],
+  "chosenPlans": [
+   "mouse→ mouse↑ skill mouse↑ mouse← mouse← exit(5,0)",
+   "mouse→ mouse↑ skill mouse↑ mouse← mouse← exit(5,0)",
+   "mouse→ mouse↑ skill mouse↑ mouse← mouse← exit(5,0)"
+  ],
+  "firstStepValues": [
+   -1731.7460317460318,
+   -1731.7460317460318,
+   -1731.7460317460318
+  ],
+  "identical": true,
+  "note": "the planner enumerates the spawn distribution; a draw can only affect the REAL engine execution afterwards"
+ },
+ "deterministic_digest": "b506de77335118fa02f441c7f69a1cb85fa4726b437da28741aefac5af30b8bd"
+}

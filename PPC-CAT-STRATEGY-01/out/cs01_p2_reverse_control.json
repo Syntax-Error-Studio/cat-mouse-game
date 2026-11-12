@@ -1,0 +1,38 @@
+{
+  "root": {
+    "cat": {
+      "r": 8,
+      "c": 4
+    },
+    "mouse": {
+      "r": 8,
+      "c": 7
+    }
+  },
+  "catCanReachTheBoxInOneTurn": false,
+  "planLabel": "RRR",
+  "completedDepth": 1,
+  "rootActions": [
+    {
+      "action": "Right",
+      "value": 999997,
+      "mate": "cat"
+    },
+    {
+      "action": "Up",
+      "value": -235.28,
+      "mate": null
+    },
+    {
+      "action": "Down",
+      "value": -235.28,
+      "mate": null
+    },
+    {
+      "action": "Left",
+      "value": -235.28,
+      "mate": null
+    }
+  ],
+  "mouseDistToHole": 1
+}

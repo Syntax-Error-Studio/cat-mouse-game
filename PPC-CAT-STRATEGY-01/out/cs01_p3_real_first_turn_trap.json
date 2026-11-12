@@ -1,0 +1,76 @@
+{
+  "rows": [
+    {
+      "game": 1,
+      "turn1Plan": "TDDDD",
+      "turn1PlanStartsWithTrap": true,
+      "trapPlacedAt": {
+        "r": 1,
+        "c": 1
+      },
+      "trapEqualsCatStart": true,
+      "catMovesLeftBefore": 4,
+      "catMovesLeftAfterPlacing": 4,
+      "mouseAt": {
+        "r": 8,
+        "c": 5
+      },
+      "mouseDistanceToTrapWhenPlaced": 11,
+      "trapControlImmediatelyGained": 0
+    },
+    {
+      "game": 2,
+      "turn1Plan": "TRRRR",
+      "turn1PlanStartsWithTrap": true,
+      "trapPlacedAt": {
+        "r": 1,
+        "c": 1
+      },
+      "trapEqualsCatStart": true,
+      "catMovesLeftBefore": 4,
+      "catMovesLeftAfterPlacing": 4,
+      "mouseAt": {
+        "r": 4,
+        "c": 9
+      },
+      "mouseDistanceToTrapWhenPlaced": 11,
+      "trapControlImmediatelyGained": 0
+    },
+    {
+      "game": 5,
+      "turn1Plan": "TRRDD",
+      "turn1PlanStartsWithTrap": true,
+      "trapPlacedAt": {
+        "r": 1,
+        "c": 1
+      },
+      "trapEqualsCatStart": true,
+      "catMovesLeftBefore": 4,
+      "catMovesLeftAfterPlacing": 4,
+      "mouseAt": {
+        "r": 9,
+        "c": 0
+      },
+      "mouseDistanceToTrapWhenPlaced": 9,
+      "trapControlImmediatelyGained": 0
+    },
+    {
+      "game": 6,
+      "turn1Plan": "TDRRD",
+      "turn1PlanStartsWithTrap": true,
+      "trapPlacedAt": {
+        "r": 1,
+        "c": 1
+      },
+      "trapEqualsCatStart": true,
+      "catMovesLeftBefore": 4,
+      "catMovesLeftAfterPlacing": 4,
+      "mouseAt": {
+        "r": 0,
+        "c": 9
+      },
+      "mouseDistanceToTrapWhenPlaced": 9,
+      "trapControlImmediatelyGained": 0
+    }
+  ]
+}

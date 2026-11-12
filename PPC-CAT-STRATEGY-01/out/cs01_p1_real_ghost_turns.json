@@ -1,0 +1,271 @@
+{
+  "rows": [
+    {
+      "game": 1,
+      "turn": 6,
+      "planLogged": "URR",
+      "cat": {
+        "r": 3,
+        "c": 3
+      },
+      "mouse": {
+        "r": 0,
+        "c": 6
+      },
+      "mouseHasButter": true,
+      "ghosts": [
+        {
+          "pos": "8,2",
+          "distToHole": 6,
+          "blocked": 0
+        },
+        {
+          "pos": "5,5",
+          "distToHole": 5,
+          "blocked": 0
+        }
+      ],
+      "entityButterDistToHole": [],
+      "catDistToNearestGhost": 4,
+      "mouseTurnsToGhost": 6,
+      "executed": true,
+      "mouseWinInOneTurnAfter": {
+        "win": false,
+        "witness": null,
+        "states": 43,
+        "capped": false
+      }
+    },
+    {
+      "game": 1,
+      "turn": 9,
+      "planLogged": "LLDL",
+      "cat": {
+        "r": 1,
+        "c": 7
+      },
+      "mouse": {
+        "r": 8,
+        "c": 3
+      },
+      "mouseHasButter": true,
+      "ghosts": [
+        {
+          "pos": "8,5",
+          "distToHole": 3,
+          "blocked": 0
+        }
+      ],
+      "entityButterDistToHole": [
+        5
+      ],
+      "catDistToNearestGhost": 9,
+      "mouseTurnsToGhost": 2,
+      "executed": true,
+      "mouseWinInOneTurnAfter": {
+        "win": true,
+        "witness": "rSrrrr",
+        "states": 552,
+        "capped": false
+      }
+    },
+    {
+      "game": 2,
+      "turn": 4,
+      "planLogged": "DLL",
+      "cat": {
+        "r": 4,
+        "c": 6
+      },
+      "mouse": {
+        "r": 5,
+        "c": 2
+      },
+      "mouseHasButter": true,
+      "ghosts": [
+        {
+          "pos": "2,5",
+          "distToHole": 8,
+          "blocked": 0
+        }
+      ],
+      "entityButterDistToHole": [
+        8
+      ],
+      "catDistToNearestGhost": 3,
+      "mouseTurnsToGhost": 6,
+      "executed": true,
+      "mouseWinInOneTurnAfter": {
+        "win": false,
+        "witness": null,
+        "states": 1129,
+        "capped": false
+      }
+    },
+    {
+      "game": 2,
+      "turn": 5,
+      "planLogged": "DDDL",
+      "cat": {
+        "r": 5,
+        "c": 3
+      },
+      "mouse": {
+        "r": 9,
+        "c": 2
+      },
+      "mouseHasButter": true,
+      "ghosts": [
+        {
+          "pos": "4,7",
+          "distToHole": 4,
+          "blocked": 0
+        }
+      ],
+      "entityButterDistToHole": [
+        8
+      ],
+      "catDistToNearestGhost": 5,
+      "mouseTurnsToGhost": 10,
+      "executed": true,
+      "mouseWinInOneTurnAfter": {
+        "win": false,
+        "witness": null,
+        "states": 21,
+        "capped": false
+      }
+    },
+    {
+      "game": 2,
+      "turn": 8,
+      "planLogged": "DDDR",
+      "cat": {
+        "r": 2,
+        "c": 2
+      },
+      "mouse": {
+        "r": 4,
+        "c": 9
+      },
+      "mouseHasButter": true,
+      "ghosts": [
+        {
+          "pos": "8,6",
+          "distToHole": 2,
+          "blocked": 0
+        }
+      ],
+      "entityButterDistToHole": [
+        8
+      ],
+      "catDistToNearestGhost": 10,
+      "mouseTurnsToGhost": 7,
+      "executed": true,
+      "mouseWinInOneTurnAfter": {
+        "win": true,
+        "witness": "ddd",
+        "states": 10,
+        "capped": false
+      }
+    },
+    {
+      "game": 5,
+      "turn": 2,
+      "planLogged": "DDL",
+      "cat": {
+        "r": 3,
+        "c": 3
+      },
+      "mouse": {
+        "r": 9,
+        "c": 2
+      },
+      "mouseHasButter": true,
+      "ghosts": [
+        {
+          "pos": "6,6",
+          "distToHole": 3,
+          "blocked": 0
+        }
+      ],
+      "entityButterDistToHole": [
+        8
+      ],
+      "catDistToNearestGhost": 6,
+      "mouseTurnsToGhost": 7,
+      "executed": true,
+      "mouseWinInOneTurnAfter": {
+        "win": false,
+        "witness": null,
+        "states": 40,
+        "capped": false
+      }
+    },
+    {
+      "game": 6,
+      "turn": 2,
+      "planLogged": "UURR",
+      "cat": {
+        "r": 3,
+        "c": 3
+      },
+      "mouse": {
+        "r": 1,
+        "c": 6
+      },
+      "mouseHasButter": true,
+      "ghosts": [
+        {
+          "pos": "5,1",
+          "distToHole": 9,
+          "blocked": 0
+        }
+      ],
+      "entityButterDistToHole": [
+        7
+      ],
+      "catDistToNearestGhost": 4,
+      "mouseTurnsToGhost": 9,
+      "executed": true,
+      "mouseWinInOneTurnAfter": {
+        "win": false,
+        "witness": null,
+        "states": 1863,
+        "capped": false
+      }
+    },
+    {
+      "game": 6,
+      "turn": 3,
+      "planLogged": "RDDD",
+      "cat": {
+        "r": 1,
+        "c": 5
+      },
+      "mouse": {
+        "r": 7,
+        "c": 6
+      },
+      "mouseHasButter": true,
+      "ghosts": [
+        {
+          "pos": "8,4",
+          "distToHole": 4,
+          "blocked": 0
+        }
+      ],
+      "entityButterDistToHole": [
+        9
+      ],
+      "catDistToNearestGhost": 8,
+      "mouseTurnsToGhost": 3,
+      "executed": true,
+      "mouseWinInOneTurnAfter": {
+        "win": true,
+        "witness": "rr",
+        "states": 4,
+        "capped": false
+      }
+    }
+  ]
+}

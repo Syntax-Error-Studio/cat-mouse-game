@@ -1,0 +1,206 @@
+{
+  "anchorState": {
+    "game": 1,
+    "turn": 9,
+    "cat": {
+      "r": 1,
+      "c": 7
+    },
+    "mouse": {
+      "r": 8,
+      "c": 3
+    }
+  },
+  "ghost": {
+    "pos": {
+      "r": 8,
+      "c": 5,
+      "blockedMaterializations": 0
+    },
+    "distToHole": 3
+  },
+  "nearHoleCellUsed": {
+    "r": 6,
+    "c": 8
+  },
+  "carryingRows": [
+    {
+      "name": "A1_asPlayed_ghostPending",
+      "total": -1172.421052631579,
+      "contributions": {
+        "capturePressure": -1350,
+        "mouseGoalThreat": -220,
+        "butterRace": 0,
+        "confinement": -44.00000000000004,
+        "mobility": 0,
+        "trapControl": 59.999999999999986,
+        "tunnelControl": 0,
+        "holeControl": 150,
+        "voronoiBalance": 31.57894736842105,
+        "tempo": 200
+      },
+      "features": {
+        "mouseHasButter": true,
+        "mouseButterDistance": 5,
+        "mouseWinRouteDistance": 5,
+        "mouseGoalDistance": 5
+      }
+    },
+    {
+      "name": "A2_ghostRemoved",
+      "total": -1172.421052631579,
+      "contributions": {
+        "capturePressure": -1350,
+        "mouseGoalThreat": -220,
+        "butterRace": 0,
+        "confinement": -44.00000000000004,
+        "mobility": 0,
+        "trapControl": 59.999999999999986,
+        "tunnelControl": 0,
+        "holeControl": 150,
+        "voronoiBalance": 31.57894736842105,
+        "tempo": 200
+      },
+      "features": {
+        "mouseHasButter": true,
+        "mouseButterDistance": 5,
+        "mouseWinRouteDistance": 5,
+        "mouseGoalDistance": 5
+      }
+    },
+    {
+      "name": "A3_ghostMovedToHoleDoorstep",
+      "total": -1172.421052631579,
+      "contributions": {
+        "capturePressure": -1350,
+        "mouseGoalThreat": -220,
+        "butterRace": 0,
+        "confinement": -44.00000000000004,
+        "mobility": 0,
+        "trapControl": 59.999999999999986,
+        "tunnelControl": 0,
+        "holeControl": 150,
+        "voronoiBalance": 31.57894736842105,
+        "tempo": 200
+      },
+      "features": {
+        "mouseHasButter": true,
+        "mouseButterDistance": 5,
+        "mouseWinRouteDistance": 5,
+        "mouseGoalDistance": 5
+      }
+    },
+    {
+      "name": "A4_ghostReplacedByEntityButterAtHoleDoorstep",
+      "total": -1172.421052631579,
+      "contributions": {
+        "capturePressure": -1350,
+        "mouseGoalThreat": -220,
+        "butterRace": 0,
+        "confinement": -44.00000000000004,
+        "mobility": 0,
+        "trapControl": 59.999999999999986,
+        "tunnelControl": 0,
+        "holeControl": 150,
+        "voronoiBalance": 31.57894736842105,
+        "tempo": 200
+      },
+      "features": {
+        "mouseHasButter": true,
+        "mouseButterDistance": 5,
+        "mouseWinRouteDistance": 5,
+        "mouseGoalDistance": 5
+      }
+    }
+  ],
+  "nonCarryingRows": [
+    {
+      "name": "B1_noGhost_baseline",
+      "total": -814.578947368421,
+      "contributions": {
+        "capturePressure": -1350,
+        "mouseGoalThreat": 0,
+        "butterRace": 350,
+        "confinement": -87.99999999999996,
+        "mobility": 0,
+        "trapControl": 180.00000000000003,
+        "tunnelControl": -225,
+        "holeControl": 150,
+        "voronoiBalance": -31.57894736842105,
+        "tempo": 200
+      },
+      "features": {
+        "mouseHasButter": false,
+        "mouseButterDistance": 5,
+        "mouseWinRouteDistance": 11,
+        "mouseGoalDistance": null
+      }
+    },
+    {
+      "name": "B2_ghostPendingAtHoleDoorstep",
+      "total": -814.578947368421,
+      "contributions": {
+        "capturePressure": -1350,
+        "mouseGoalThreat": 0,
+        "butterRace": 350,
+        "confinement": -87.99999999999996,
+        "mobility": 0,
+        "trapControl": 180.00000000000003,
+        "tunnelControl": -225,
+        "holeControl": 150,
+        "voronoiBalance": -31.57894736842105,
+        "tempo": 200
+      },
+      "features": {
+        "mouseHasButter": false,
+        "mouseButterDistance": 5,
+        "mouseWinRouteDistance": 11,
+        "mouseGoalDistance": null
+      }
+    },
+    {
+      "name": "B3_entityButterAtHoleDoorstep",
+      "total": -814.578947368421,
+      "contributions": {
+        "capturePressure": -1350,
+        "mouseGoalThreat": 0,
+        "butterRace": 350,
+        "confinement": -87.99999999999996,
+        "mobility": 0,
+        "trapControl": 180.00000000000003,
+        "tunnelControl": -225,
+        "holeControl": 150,
+        "voronoiBalance": -31.57894736842105,
+        "tempo": 200
+      },
+      "features": {
+        "mouseHasButter": false,
+        "mouseButterDistance": 5,
+        "mouseWinRouteDistance": 11,
+        "mouseGoalDistance": null
+      }
+    },
+    {
+      "name": "B4_entityButterRightNextToMouse",
+      "total": -1105.578947368421,
+      "contributions": {
+        "capturePressure": -1350,
+        "mouseGoalThreat": 0,
+        "butterRace": 70,
+        "confinement": -98.99999999999997,
+        "mobility": 0,
+        "trapControl": 180.00000000000003,
+        "tunnelControl": -225,
+        "holeControl": 150,
+        "voronoiBalance": -31.57894736842105,
+        "tempo": 200
+      },
+      "features": {
+        "mouseHasButter": false,
+        "mouseButterDistance": 1,
+        "mouseWinRouteDistance": 5,
+        "mouseGoalDistance": null
+      }
+    }
+  ]
+}
