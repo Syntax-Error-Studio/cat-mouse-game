@@ -6,6 +6,7 @@ import type {
   SearchTransitionResult,
 } from './searchTypes';
 import { gameAffectingEqual } from './stateCompare';
+import { applyNoMoveLoss } from '../rules/mobility';
 
 /**
  * Apply one SearchAction to `state` using the injected RuleSet.
@@ -33,6 +34,13 @@ export function simulateSearchAction(
   action: SearchAction,
   rules: RuleSet,
 ): SearchTransitionResult {
+  // RULE-A: a state whose current actor has no legal spatial move is already
+  // terminal. The real engine settles this at every formal boundary; this
+  // guard gives directly-constructed search roots the exact same verdict
+  // (shared pure kernel — never a second AI-side copy of the rule).
+  const settled = applyNoMoveLoss(state);
+  if (settled !== state) return { kind: 'deterministic', state: settled };
+
   switch (action.type) {
     case 'catStep': {
       const next = rules.catMove(state, action.direction);
@@ -50,7 +58,10 @@ export function simulateSearchAction(
       // announced as a ghost). Build a CHANCE node from the enumerated legal
       // ghost spawn cells (each outcome ADDS a pending ghost, not an entity
       // butter).
-      const pickedButter = next.butterPositions.length === state.butterPositions.length - 1;
+      // A terminal pickup (butter-into-hole MouseWins, or a RULE-A loss) has
+      // no future spawn obligation — keep it deterministic.
+      const pickedButter = next.phase === GamePhase.Playing
+        && next.butterPositions.length === state.butterPositions.length - 1;
       if (pickedButter) {
         const built = rules.buildButterChance
           ? rules.buildButterChance(next)

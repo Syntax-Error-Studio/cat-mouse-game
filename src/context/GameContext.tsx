@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useCallback, type ReactNode } from 'react';
 import type { GameConfig } from '../game/config';
-import { DEFAULT_CONFIG } from '../game/config';
+import { DEFAULT_CONFIG, withBoardSize, withMouseHole } from '../game/config';
 import type { GameMode, Difficulty } from '../game/types';
 
 interface GameContextValue {
@@ -30,7 +30,13 @@ export function GameProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const updateConfigField = useCallback(<K extends keyof GameConfig>(key: K, value: GameConfig[K]) => {
-    setConfig(prev => ({ ...prev, [key]: value }));
+    setConfig(prev => {
+      // Derived defaults (hole + starts) follow a board-size change; explicit
+      // player coordinates never move. See `withBoardSize` / `withMouseHole`.
+      if (key === 'boardSize') return withBoardSize(prev, value as number);
+      if (key === 'mouseHole') return withMouseHole(prev, value as GameConfig['mouseHole']);
+      return { ...prev, [key]: value };
+    });
   }, []);
 
   const resetConfig = useCallback(() => {

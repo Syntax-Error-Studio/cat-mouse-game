@@ -7,13 +7,14 @@ import { CellType, GamePhase, PieceType, GameMode } from '../game/types';
 import { makeTunnelCorners } from '../game/types';
 import { useMemo, useState } from 'react';
 import type { HardSearchDebug } from '../game/ai/hardTurnPlanner';
-import type { HardSearchHistoryEntry, HardRefutationDiag } from '../game/ai/hardHistory';
+import type { HardSearchHistoryEntry, HardRefutationDiag, HardProductionDiag } from '../game/ai/hardHistory';
 import { hardHistorySnapshotJson } from '../game/ai/hardHistory';
 import type { HardProgressGuardMemory } from '../game/ai/progressGuard';
 import {
   progressGuardHeaderLine, formatProgressGuardBlock, formatHistoryProgressGuard, progressGuardMemoryMissing,
 } from '../game/ai/progressGuardLog';
 import type { SearchAction } from '../game/ai/searchTypes';
+import type { MateSide, SearchBoundType } from '../game/ai/expectiminimax';
 import type { Direction } from '../game/types';
 import { HARD_LEAF_MODE_CONFIG, HARD_PROGRESS_GUARD_CONFIG, type HardLeafModeConfig } from '../game/ai/searchConfig';
 
@@ -109,16 +110,63 @@ function formatHardSearchRefutation(h: HardSearchDebug): string {
   ].join('\n');
 }
 
-/** Format the [HARD_SEARCH] debug block as plain text (copyable). */
-function formatHardSearch(h: HardSearchDebug): string {
+// ===========================================================================
+// PPC-HV-1A §3 — shared root/diagnostic line builders.
+//
+// `bound` and the deadline facts are OPTIONAL on every record because an entry
+// written before 1A never carried them. An absent fact therefore prints
+// `unknown` / `n/a`: it must never default to the strongest reading (`exact`,
+// or "the search finished"), which is exactly the false-tie class RB-1 fixed.
+// ===========================================================================
+
+type RootRecord = { action: SearchAction; value: number; mate: MateSide; bound?: SearchBoundType };
+type DeadlineRecord = { elapsedMs: number; deadlineFired?: boolean; budgetFired?: boolean; budgetMs?: number };
+
+/** One root line, e.g. `ArrowUp: value=-864, mate=null, bound=exact`.
+ *  Full-precision value on purpose — rounding two root scores to one decimal
+ *  can turn distinct scores into a false tie on paper. */
+function rootActionLine(ra: RootRecord): string {
+  return `${actionLabel(ra.action).replace('catStep ', '')}: value=${String(ra.value)}, `
+    + `mate=${ra.mate ?? 'null'}, bound=${ra.bound ?? 'unknown'}`;
+}
+
+/** High→low by value for readability; this is a PRESENTATION order, not the
+ *  search's root move order. */
+function rootActionBlock(records: RootRecord[] | undefined, numbered: boolean): string {
+  const sorted = (records ?? []).slice().sort((a, b) => b.value - a.value);
+  if (sorted.length === 0) return '  (none published)';
+  return sorted.map((ra, i) => `  ${numbered ? `${i + 1}. ` : ''}${rootActionLine(ra)}`).join('\n');
+}
+
+function boolLabel(v: boolean | undefined): string {
+  return v === undefined ? 'unknown' : String(v);
+}
+
+/** The REAL abort cause of the main search — never inferred from
+ *  `completedDepth < attemptedDepth`. */
+function deadlineLine(d: DeadlineRecord): string {
+  const budget = d.budgetMs === undefined ? 'budgetMs=n/a' : `budgetMs=${d.budgetMs}`;
+  const over = d.budgetMs === undefined ? 'overNominalBudget=n/a' : `overNominalBudget=${d.elapsedMs > d.budgetMs}`;
+  return `DEADLINE: deadlineFired=${boolLabel(d.deadlineFired)} budgetFired=${boolLabel(d.budgetFired)} `
+    + `elapsedMs=${d.elapsedMs} ${budget} ${over}`;
+}
+
+function actionToken(a: SearchAction | null | undefined): string {
+  return a ? actionLabel(a).replace('catStep ', '') : 'none';
+}
+
+/** `n/a` = not recorded (pre-1A entry); `none` = the search returned no action. */
+function bestActionLabel(p: HardProductionDiag): string {
+  return p.bestAction === undefined ? 'n/a' : actionToken(p.bestAction);
+}
+
+/** Format the [HARD_SEARCH] debug block as plain text (copyable).
+ *  Exported for tests only — the panel is the sole runtime caller. */
+export function formatHardSearch(h: HardSearchDebug): string {
   const planLines = h.plan.length
     ? h.plan.map((a) => `  ${actionLabel(a)}`).join('\n')
     : '  (empty plan)';
-  const rootActions = (h.rootActions ?? [])
-    .slice()
-    .sort((a, b) => b.value - a.value)
-    .map((ra, i) => `  ${i + 1}. ${actionLabel(ra.action).replace('catStep ', '')} value=${ra.value.toFixed(1)} mate=${ra.mate ?? 'null'}`)
-    .join('\n');
+  const rootActions = rootActionBlock(h.rootActions, true);
   return [
     `cat=(${h.cat.r},${h.cat.c})`,
     `mouse=(${h.mouse.r},${h.mouse.c})`,
@@ -128,6 +176,8 @@ function formatHardSearch(h: HardSearchDebug): string {
     `attemptedDepth=${h.attemptedDepth}`,
     `nodes=${h.nodes}`,
     `elapsedMs=${h.elapsedMs.toFixed(1)}`,
+    deadlineLine(h),
+    `planStatus=${h.planStatus ?? 'unknown'}`,
     '',
     `rootValue=${h.rootValue}`,
     `mate=${h.mate ?? 'null'}`,
@@ -136,7 +186,7 @@ function formatHardSearch(h: HardSearchDebug): string {
     planLines,
     '',
     'TOP ROOT ACTIONS:',
-    rootActions || '  (none)',
+    rootActions,
     '',
     'EVAL ROOT:',
     `  mouseGoalThreat=${h.evalRoot.mouseGoalThreat}`,
@@ -153,10 +203,13 @@ function formatHardSearch(h: HardSearchDebug): string {
   ].join('\n');
 }
 
-/** Format the full HARD_SEARCH_HISTORY block (copyable, bounded 20). */
-function formatHardSearchHistory(h: HardSearchHistoryEntry[]): string {
+/** Format the full HARD_SEARCH_HISTORY block (copyable). Exports at most the
+ *  newest HARD_HISTORY_LIMIT=20 cat turns, but their `Turn #` stays monotonic
+ *  past 20 (PPC-HV-1A P0-1), so a mid-game copy still lines up with the next.
+ *  Exported for tests only — the panel is the sole runtime caller. */
+export function formatHardSearchHistory(h: HardSearchHistoryEntry[]): string {
   if (!h || h.length === 0) return '[HARD_SEARCH_HISTORY] (empty)';
-  const lines: string[] = ['[HARD_SEARCH_HISTORY]'];
+  const lines: string[] = ['[HARD_SEARCH_HISTORY] (nodes = total nodes across ALL iterations of that turn)'];
   for (const e of h) {
     lines.push(
       '',
@@ -169,9 +222,16 @@ function formatHardSearchHistory(h: HardSearchHistoryEntry[]): string {
       `trap=${e.root.trapPosition ? `(${e.root.trapPosition.r},${e.root.trapPosition.c})` : 'none'} remain=${e.root.catTrapsRemaining}`,
       `tunnelExitChoices=${e.root.tunnelExitChoices.length}`,
       `SEARCH: cDepth=${e.production.completedDepth} aDepth=${e.production.attemptedDepth} nodes=${e.production.nodes} elapsedMs=${e.production.elapsedMs.toFixed(1)}`,
+      deadlineLine(e.production),
+      // PPC-HV-1A: the executed plan's first action vs the search's own best
+      // action — a proved-exact tie reordering and an illegal replacement look
+      // different here, and a turn with no plan at all is now recorded too.
+      `PLAN_STATUS=${e.production.planStatus ?? 'unknown'} BEST_ACTION=${bestActionLabel(e.production)} PLAN_FIRST=${actionToken(e.production.plan[0])}`,
       `ROOT_VALUE=${e.production.rootValue} mate=${e.production.mate ?? 'null'}`,
+      'ROOT_ACTIONS:',
+      rootActionBlock(e.production.rootValues, false),
       `PLAN: ${e.production.plan.map(actionLabel).join(' → ') || '(empty)'}`,
-      `EXEC: endState=${e.execution?.endStateKey ?? 'null'} matched=${e.execution?.matchedPlan ?? 'n/a'}`,
+      `EXEC: endState=${e.execution?.endStateKey ?? 'null'} matched=${boolLabel(e.execution?.matchedPlan)} planCompleted=${boolLabel(e.execution?.planCompleted)} fallbackOccurred=${boolLabel(e.execution?.fallbackOccurred)} invalidAction=${boolLabel(e.execution?.invalidActionOccurred)} legalBoundary=${boolLabel(e.execution?.reachedLegalBoundary)}`,
       ...(e.production.refutation ? formatRefutationDiag(e.production.refutation) : []),
       // G0.4F-2B-1.8 §4: compact per-turn Progress-Guard block (after REFUTATION).
       ...(e.production.progressGuard ? formatHistoryProgressGuard(e.production.progressGuard) : []),
@@ -198,10 +258,13 @@ export const DebugInfo: React.FC<DebugInfoProps> = ({
   // PPC-A0-DEV-01: added the frozen 1.9AX A0 expected-return leaf. Switch only
   // between games (never mid-game), on the canonical Hard standard map — that is
   // the only domain the frozen model was trained and certified on.
-  const LEAF_CYCLE: HardLeafModeConfig[] = ['baseline', 'baseline_hole_corrected', 'hybrid_standard_only', 'hybrid_route_v2_standard_only', 'a0_expected_return_boundary_only'];
+  // PPC-HV-6: added 'h1_gate_race_trial' — H1 plus the bounded Gate Race term.
+  // The label is suffixed (TRIAL) so a playtest can never mistake it for H1.
+  const LEAF_CYCLE: HardLeafModeConfig[] = ['baseline', 'baseline_hole_corrected', 'h1_gate_race_trial', 'hybrid_standard_only', 'hybrid_route_v2_standard_only', 'a0_expected_return_boundary_only'];
   const LEAF_LABELS: Record<HardLeafModeConfig, string> = {
     baseline: 'BASELINE',
     baseline_hole_corrected: 'H1 (Corrected Hole)',
+    h1_gate_race_trial: 'H1+GATE_RACE (TRIAL)',
     hybrid_standard_only: 'HYBRID_V1',
     hybrid_route_v2_standard_only: 'HYBRID_V2',
     a0_expected_return_boundary_only: 'A0 (Expected Return)',

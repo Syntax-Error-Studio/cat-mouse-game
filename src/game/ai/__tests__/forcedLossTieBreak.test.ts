@@ -123,9 +123,12 @@ test('G0.3A-3. non-mate equal-value tie does not trigger secondary', () => {
   const ctx = createSearchContext(defaultRuleSet, BIG, true, true, true);
   ctx.capturePlan = true;
   ctx.planBranches = new Map();
+  // PPC-FLT-FIX-1 (§8): a proved root record always carries its real bound.
+  // The fixture's purpose is a NON-MATE tie, so the bound is unrelated; 'exact'
+  // is the truthful label for these constructed equal scores.
   const rootActions = [
-    { action: { type: 'catStep', direction: { key: 'ArrowUp', dr: -1, dc: 0, label: '↑' } } as SearchAction, value: 100, mate: null as MateSide },
-    { action: { type: 'catStep', direction: { key: 'ArrowDown', dr: 1, dc: 0, label: '↓' } } as SearchAction, value: 100, mate: null as MateSide },
+    { action: { type: 'catStep', direction: { key: 'ArrowUp', dr: -1, dc: 0, label: '↑' } } as SearchAction, value: 100, mate: null as MateSide, bound: 'exact' as const },
+    { action: { type: 'catStep', direction: { key: 'ArrowDown', dr: 1, dc: 0, label: '↓' } } as SearchAction, value: 100, mate: null as MateSide, bound: 'exact' as const },
   ];
   const result = forcedLossTieBreak(root, ctx, rootActions);
   expect(result).toBeNull(); // non-mate tie → no secondary

@@ -32,6 +32,10 @@ import {
   getMouseHoleGateCells,
   getMouseHoleCells,
 } from './rules/tunnelRules';
+// RULE-A (PPC-GAMEPLAY-01): the pure no-legal-spatial-move kernel. It imports
+// engine only as `import type` (erased), so this is a one-way runtime edge —
+// the engine never gains a reverse dependency on the AI/searcher.
+import { applyNoMoveLoss } from './rules/mobility';
 // F1B-1: the ONLY ai runtime import in the engine is the tiny Hard turn-planner
 // strategy. The planner tree (expectiminimax / evaluation / simulator) imports
 // engine ONLY as `import type` (erased), so no engine -> searchHard ->
@@ -40,7 +44,7 @@ import {
 import { planHardCatTurn } from './ai/hardTurnPlanner';
 import type { HardSearchDebug } from './ai/hardTurnPlanner';
 import type { HardSearchHistoryEntry, HardRefutationDiag } from './ai/hardHistory';
-import { pushHardHistory, makeHardHistoryEntry } from './ai/hardHistory';
+import { pushHardHistory, makeHardHistoryEntry, nextHardHistoryTurn } from './ai/hardHistory';
 import { stateKey } from './ai/transposition';
 import type { RuleSet, SearchAction } from './ai/searchTypes';
 import { DEFAULT_SEARCH_CONFIG, HARD_TRIAL, HARD_PROGRESS_GUARD_CONFIG } from './ai/searchConfig';
@@ -194,6 +198,24 @@ function logEvent(state: GameEngineState, msg: string): GameEngineState {
   const log = [...(state.gameEventLog || []), msg];
   if (log.length > 200) log.shift();
   return { ...state, gameEventLog: log };
+}
+
+/**
+ * RULE-A — settle the "no legal spatial move" loss at a formal rule boundary.
+ *
+ * Idempotent: returns the SAME reference unless a verdict fires. It never
+ * calls `endTurn` (no recursion) and never consults the AI — the verdict comes
+ * from the shared pure kernel `rules/mobility.ts`, so the real engine and the
+ * Search Simulator judge the exact same condition.
+ */
+function settleNoMoveLoss(state: GameEngineState): GameEngineState {
+  const next = applyNoMoveLoss(state);
+  if (next === state) return state;
+  const winner = next.phase === GamePhase.CatWins ? 'cat' : 'mouse';
+  const reason = next.phase === GamePhase.CatWins
+    ? 'mouse_no_legal_spatial_move'
+    : 'cat_no_legal_spatial_move';
+  return logEvent(next, `NO_LEGAL_MOVE_LOSS winner=${winner} reason=${reason}`);
 }
 
 /** Log a cat AI decision step */
@@ -523,7 +545,7 @@ export function createInitialState(config: GameConfig = DEFAULT_CONFIG): GameEng
     butterPositions = generateButterPositions(config, board, tunnelCorners, mouseStart, catStart, null);
   }
 
-  return {
+  return settleNoMoveLoss({
     board,
     config,
     gameMode: config.gameMode,
@@ -548,7 +570,7 @@ export function createInitialState(config: GameConfig = DEFAULT_CONFIG): GameEng
     lastHardSearch: null,
     hardSearchHistory: [],
     hardProgressGuardMemory: null,
-  };
+  });
 }
 
 // --- Mouse move ---
@@ -745,7 +767,11 @@ function finalizeTurnAfterMouseStep(state: GameEngineState, trapTriggered = fals
   if (state.phase !== GamePhase.Playing) return state; // MouseWins / ChoosingTunnelExit
   if (state.mouseMovesLeft <= 0 && state.tunnelExitChoices.length === 0) {
     const ended = endTurn(state);
-    return trapTriggered ? { ...ended, message: TRAP_STEP_MESSAGE } : ended;
+    // The trap notice must not overwrite a terminal verdict produced by the
+    // hand-off itself (e.g. the incoming cat has no legal spatial move).
+    return trapTriggered && ended.phase === GamePhase.Playing
+      ? { ...ended, message: TRAP_STEP_MESSAGE }
+      : ended;
   }
   return state;
 }
@@ -753,7 +779,7 @@ function finalizeTurnAfterMouseStep(state: GameEngineState, trapTriggered = fals
 export function mouseMove(state: GameEngineState, direction: Direction): GameEngineState {
   state = sanitizeItemOverlaps(state);
   const core = applyMouseStepCore(state, direction);
-  if (!core.moved) return core.state;
+  if (!core.moved) return settleNoMoveLoss(core.state);
   if (core.won) return core.state;
 
   let s = core.state;
@@ -794,7 +820,7 @@ export function mouseMove(state: GameEngineState, direction: Direction): GameEng
     }
   }
 
-  return finalizeTurnAfterMouseStep(s, core.trapFlipped);
+  return settleNoMoveLoss(finalizeTurnAfterMouseStep(s, core.trapFlipped));
 }
 
 /**
@@ -809,10 +835,10 @@ export function mouseMove(state: GameEngineState, direction: Direction): GameEng
  */
 export function mouseStepDeterministic(state: GameEngineState, direction: Direction): GameEngineState {
   const core = applyMouseStepCore(state, direction);
-  if (!core.moved) return core.state;
+  if (!core.moved) return settleNoMoveLoss(core.state);
   if (core.won) return core.state;
   if (core.tunnelPending) return core.state; // single-exit teleport is handled by chooseTunnelExit in the search
-  return finalizeTurnAfterMouseStep(core.state, core.trapFlipped);
+  return settleNoMoveLoss(finalizeTurnAfterMouseStep(core.state, core.trapFlipped));
 }
 
 // --- Mouse skill (spacebar) ---
@@ -827,14 +853,14 @@ export function mouseSkill(state: GameEngineState): GameEngineState {
 
   let s = logEvent(state, `MOUSE_SKILL before butter=${beforeButter} moves=${beforeMoves} after butter=false skill=true moves=${state.mouseMovesLeft + state.config.mouseSkillExtraMoves}`);
 
-  return {
+  return settleNoMoveLoss({
     ...s,
     blockedTunnels: s.blockedTunnels,
     mouseHasButter: false,
     mouseSkillActive: true,
     mouseMovesLeft: s.mouseMovesLeft + s.config.mouseSkillExtraMoves,
     message: '🔥 技能激活！获得额外步数，传送通道已解锁！',
-  };
+  });
 }
 
 // --- Cat move ---
@@ -843,6 +869,12 @@ export function catMove(state: GameEngineState, direction: Direction): GameEngin
   state = sanitizeItemOverlaps(state);
   if (state.phase !== GamePhase.Playing || state.currentPlayer !== PieceType.Cat) return state;
   if (state.catMovesLeft <= 0) return state;
+
+  // RULE-A: a cat that already has no legal spatial move loses before acting
+  // (a blocked/illegal direction keypress must not be inferred as "stranded"
+  // — the verdict enumerates ALL four directions itself).
+  const stranded = settleNoMoveLoss(state);
+  if (stranded !== state) return stranded;
 
   const pos = state.catPosition;
   const nr = pos.r + direction.dr;
@@ -903,7 +935,7 @@ export function catMove(state: GameEngineState, direction: Direction): GameEngin
       blockedTunnels: newBlockedTunnels,
       message: `猫推动箱子到 (${destR},${destC}) — 剩余 ${state.catMovesLeft - 1} 步`,
     }, pos, { r: nr, c: nc }, pushedToTunnel ? '推箱堵通道' : '推箱');
-    return checkCatWin(result);
+    return settleNoMoveLoss(checkCatWin(result));
   }
 
   // Normal move
@@ -929,7 +961,7 @@ export function catMove(state: GameEngineState, direction: Direction): GameEngin
       ? '🪤 猫收回了捕鼠夹！'
       : `猫移动 — 剩余 ${state.catMovesLeft - 1} 步`,
   }, pos, { r: nr, c: nc }, detail);
-  return checkCatWin(result);
+  return settleNoMoveLoss(checkCatWin(result));
 }
 
 // --- Cat place trap ---
@@ -958,10 +990,10 @@ export function catPlaceTrap(state: GameEngineState): GameEngineState {
     catTrapsRemaining: state.catTrapsRemaining - 1,
   };
 
-  return logAction(
+  return settleNoMoveLoss(logAction(
     next,
     `🪤 [CAT] 在当前位置(${r},${c})放置陷阱 | 剩余:${next.catTrapsRemaining}`,
-  );
+  ));
 }
 
 function checkCatWin(state: GameEngineState): GameEngineState {
@@ -1165,6 +1197,22 @@ export function enumerateGhostAnnouncementOutcomes(state: GameEngineState): { st
  * NEVER calls Math.random and NEVER returns empty for a CAT→MOUSE boundary that
  * has pending ghosts or debt (so the simulator never falls to engine.endTurn).
  */
+/**
+ * RULE-A — apply the pure no-move verdict to each CHANCE outcome.
+ * Pending ghosts never affect the mouse's spatial legality (they do not block
+ * movement; materialized entity butter does not block the mouse either), so
+ * the verdict is independent of the random new-ghost placement. No logging:
+ * search outcomes stay side-effect free (the real game logs in endTurn).
+ */
+function settleGhostChanceOutcomes(
+  outcomes: { state: GameEngineState; weight: number }[],
+): { state: GameEngineState; weight: number }[] {
+  return outcomes.map((o) => {
+    const settled = applyNoMoveLoss(o.state);
+    return settled === o.state ? o : { ...o, state: settled };
+  });
+}
+
 export function enumerateGhostBoundaryOutcomes(state: GameEngineState): { state: GameEngineState; weight: number }[] {
   if (state.currentPlayer !== PieceType.Cat) return [];
   const hasGhosts = (state.pendingButterSpawns?.length ?? 0) > 0;
@@ -1174,17 +1222,17 @@ export function enumerateGhostBoundaryOutcomes(state: GameEngineState): { state:
   const totalRequests = ghostPlacements + (resolved.pendingButterPlacementDebt ?? 0);
   if (totalRequests === 0) {
     // fully deterministic resolution (idle materialize + block-once keep)
-    return [{ state: resolved, weight: 1 }];
+    return settleGhostChanceOutcomes([{ state: resolved, weight: 1 }]);
   }
   const candidates = enumerateButterSpawnsForState(resolved);
   const N = candidates.length;
   if (N === 0) {
     // No legal candidate → all requests become debt (deterministic, no drop).
-    return [{ state: { ...resolved, pendingButterPlacementDebt: totalRequests }, weight: 1 }];
+    return settleGhostChanceOutcomes([{ state: { ...resolved, pendingButterPlacementDebt: totalRequests }, weight: 1 }]);
   }
   if (totalRequests > N) {
     // Partial: use ALL N candidates; remaining (totalRequests − N) stays debt.
-    return [{
+    return settleGhostChanceOutcomes([{
       state: {
         ...resolved,
         pendingButterSpawns: [
@@ -1194,13 +1242,13 @@ export function enumerateGhostBoundaryOutcomes(state: GameEngineState): { state:
         pendingButterPlacementDebt: totalRequests - N,
       },
       weight: 1,
-    }];
+    }]);
   }
   // totalRequests <= N: enumerate uniform k-subsets.
   const combos = combinations(candidates, totalRequests);
   if (combos.length === 0) return [];
   const weight = 1 / combos.length;
-  return combos.map((combo) => ({
+  return settleGhostChanceOutcomes(combos.map((combo) => ({
     state: {
       ...resolved,
       pendingButterSpawns: [
@@ -1210,7 +1258,7 @@ export function enumerateGhostBoundaryOutcomes(state: GameEngineState): { state:
       pendingButterPlacementDebt: 0,
     },
     weight,
-  }));
+  })));
 }
 
 // --- End turn ---
@@ -1261,7 +1309,10 @@ export function endTurn(state: GameEngineState): GameEngineState {
     for (const ev of events) s = logEvent(s, ev);
     s = logEvent(s, 'TURN_END from=cat to=mouse reason=normal');
     s = logEvent(s, `TURN_START player=${s.currentPlayer} catMoves=${s.catMovesLeft} mouseMoves=${s.mouseMovesLeft} butter=${s.mouseHasButter} skill=${s.mouseSkillActive}`);
-    return s;
+    // RULE-A: the incoming mouse may have no legal spatial move once pending
+    // ghosts have materialized / been auto-picked (carrying butter blocks
+    // tunnel entry, so a materialized butter CAN change the verdict).
+    return settleNoMoveLoss(s);
   }
 
   // Reset mouse skill when mouse turn ends (cat's turn starts)
@@ -1308,7 +1359,8 @@ export function endTurn(state: GameEngineState): GameEngineState {
   };
 
   result = logEvent(result, `TURN_START player=${result.currentPlayer} catMoves=${result.catMovesLeft} mouseMoves=${result.mouseMovesLeft} butter=${result.mouseHasButter} skill=${result.mouseSkillActive}`);
-  return result;
+  // RULE-A: judge the actor who is about to move.
+  return settleNoMoveLoss(result);
 }
 
 // --- Defensive turn-budget guard (anti-freeze) ---
@@ -3935,13 +3987,16 @@ export function computeCatAiTrajectory(state: GameEngineState): CatAiStep[] | nu
   // Memory classification is computed from THIS root + the final executed
   // state — never from replaying the plan from the final state.
   let progressGuardExecutionRoot: GameEngineState | null = null;
-  // G0.2: 1-based turn index kept on the state (debug only).
-  const hardTurnNo = (current.hardSearchHistory?.length ?? 0) + 1;
+  // G0.2: 1-based turn index (debug only). PPC-HV-1A P0-1: derived from the
+  // max RETAINED turn, never from the array length — the window rolls at
+  // HARD_HISTORY_LIMIT, and length+1 froze every turn after #20 onto "21".
+  const hardTurnNo = nextHardHistoryTurn(current.hardSearchHistory ?? []);
   if (isHardTurn) {
     progressGuardExecutionRoot = current;
+    const hardMainBudgetMs = DEFAULT_SEARCH_CONFIG.timeBudgetMsPerCatTurn;
     const planned = planHardCatTurn(current, {
       rules: createEngineRuleSet(),
-      timeBudgetMs: DEFAULT_SEARCH_CONFIG.timeBudgetMsPerCatTurn,
+      timeBudgetMs: hardMainBudgetMs,
       // G0.3X — Human Hard Validation build: bounded refutation sidecar ON.
       refutation: { enabled: HARD_TRIAL.refutationEnabled, totalTurnBudgetMs: HARD_TRIAL.totalTurnBudgetMs },
       // G0.4E-1 — same resolver as catAiMove (feature flag; default baseline).
@@ -3951,27 +4006,42 @@ export function computeCatAiTrajectory(state: GameEngineState): CatAiStep[] | nu
     // UI debug panel can render it (with copy). Debug-only — excluded from
     // gameAffectingEqual / stateKey.
     current = { ...current, lastHardSearch: planned.debug };
+    // G0.2: record the EXACT root snapshot + production diagnostics into the
+    // bounded history (deep copy; never affects the search).
+    // PPC-HV-1A P0-2: an entry is now written for EVERY real Hard planning
+    // result, NOT only when a usable plan came out of it. A depth-0 abort that
+    // throws the turn onto the legacy heuristic is exactly the failure a human
+    // game has to be able to show, and it used to leave no SNAPSHOT_JSON. The
+    // `planned.search` guard stays: a minimal HardTurnPlan injected by a test
+    // (no search object) still records nothing instead of crashing.
+    if (planned.search) {
+      pendingHistoryEntry = makeHardHistoryEntry(current, hardTurnNo, {
+        completedDepth: planned.completedDepth,
+        attemptedDepth: planned.attemptedDepth,
+        nodes: planned.search.diagnostics ? planned.search.diagnostics.totalNodes : 0,
+        elapsedMs: planned.elapsedMs ?? 0,
+        rootValue: planned.search.value,
+        mate: planned.search.mate,
+        plan: planned.plan,
+        rootValues: planned.search.rootActions ?? [],
+        // PPC-HV-1A P1-1/P1-2: planner-reported facts only — the search's own
+        // first action (vs the final plan[0], which is what proves an equal-
+        // primary tie was a proved tie and not a replacement), what the
+        // planner actually produced, and the real abort cause.
+        bestAction: planned.bestAction ?? null,
+        planStatus: planned.hasSolution
+          ? (planned.plan.length > 0 ? 'planned' : 'empty_plan')
+          : 'search_incomplete',
+        deadlineFired: planned.deadlineFired,
+        budgetFired: planned.budgetFired,
+        budgetMs: hardMainBudgetMs,
+        refutation: refutationDiagFromDebug(planned.debug),
+        progressGuard: planned.debug.progressGuard,
+      });
+    }
     if (planned.hasSolution && planned.plan.length > 0) {
       hardPlanActions = planned.plan;
       execFacts.plannedPlan = planned.plan;
-      // G0.2: record the EXACT root snapshot + production diagnostics into
-      // the bounded history (deep copy; never affects the search). Defensive:
-      // only when a real iterative-search result exists (tests may inject a
-      // minimal HardTurnPlan without the search object).
-      if (planned.search) {
-        pendingHistoryEntry = makeHardHistoryEntry(current, hardTurnNo, {
-          completedDepth: planned.completedDepth,
-          attemptedDepth: planned.attemptedDepth,
-          nodes: planned.search.diagnostics ? planned.search.diagnostics.totalNodes : 0,
-          elapsedMs: planned.elapsedMs ?? 0,
-          rootValue: planned.search.value,
-          mate: planned.search.mate,
-          plan: planned.plan,
-          rootValues: planned.search.rootActions ?? [],
-          refutation: refutationDiagFromDebug(planned.debug),
-          progressGuard: planned.debug.progressGuard,
-        });
-      }
     } else {
       execFacts.fallbackOccurred = true; // no_hard_plan: current turn did NOT follow a plan
       current = logFallback(
@@ -4167,6 +4237,13 @@ export function computeCatAiTrajectory(state: GameEngineState): CatAiStep[] | nu
       plan: pendingHistoryEntry.production.plan,
       endStateKey: stateKey(finalExecState),
       matchedPlan: turnExecutionStatus.matchedPlan,
+      // PPC-HV-1A P0-2: the rest of the same single-turn truth object — copied,
+      // never re-derived. An empty/fallback plan keeps matchedPlan=false; the
+      // flags say WHY (fallback fired / plan never completed / no boundary).
+      planCompleted: turnExecutionStatus.planCompleted,
+      fallbackOccurred: turnExecutionStatus.fallbackOccurred,
+      invalidActionOccurred: turnExecutionStatus.invalidActionOccurred,
+      reachedLegalBoundary: turnExecutionStatus.reachedLegalBoundary,
     };
     const history = pushHardHistory(
       (current.hardSearchHistory ?? []).filter((e) => e.turn !== pendingHistoryEntry!.turn),

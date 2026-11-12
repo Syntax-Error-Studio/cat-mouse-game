@@ -1,6 +1,6 @@
 import type { GameEngineState } from '../engine';
 import type { SearchAction } from './searchTypes';
-import type { MateSide } from './expectiminimax';
+import type { MateSide, SearchBoundType } from './expectiminimax';
 import type { HardProgressGuardMemory, ProgressGuardDiag } from './progressGuard';
 import { stateKey } from './transposition';
 
@@ -62,7 +62,36 @@ export interface HardProductionDiag {
   rootValue: number;
   mate: MateSide;
   plan: SearchAction[];
-  rootValues: { action: SearchAction; value: number; mate: MateSide }[];
+  /** PPC-HV-1A P1-1: full root records of the deepest COMPLETED iteration.
+   *  `bound` is the Alpha-Beta guarantee of `value` (RB-1: a one-sided bound is
+   *  NOT a proved score, so two candidates may only be treated as primary-equal
+   *  when both are 'exact'). OPTIONAL: entries written before 1A carry no bound,
+   *  and the export must show those as `unknown`, never as `exact`. */
+  rootValues: { action: SearchAction; value: number; mate: MateSide; bound?: SearchBoundType }[];
+  /** PPC-HV-1A P1-1: the search's own first action (`IterativeSearchResult
+   *  .bestAction`), i.e. before the forced-loss tie-break / equal-primary route
+   *  optimisation produced `plan`. Recording both lets the human log tell a
+   *  proved-exact tie reordering apart from an illegal replacement.
+   *  OPTIONAL (absent in pre-1A entries). */
+  bestAction?: SearchAction | null;
+  /** PPC-HV-1A P0-2: what the planner actually produced for this turn. Since
+   *  1A an entry is written even when NO plan came out, so a failed search keeps
+   *  its root snapshot. OPTIONAL (pre-1A entries only existed when a plan did,
+   *  so an absent status reads as a normal planned turn).
+   *   - 'planned'           : a non-empty plan drove the cat turn;
+   *   - 'empty_plan'        : depth-1 completed but the plan had no actions;
+   *   - 'search_incomplete' : not even depth-1 completed (completedDepth === 0). */
+  planStatus?: 'planned' | 'empty_plan' | 'search_incomplete';
+  /** PPC-HV-1A P1-2: the REAL abort cause reported by the planner
+   *  (`HardTurnPlan.deadlineFired` / `.budgetFired`, i.e. the search's
+   *  `deadlineExceeded` / `budgetExhausted`). Log-only — never fed back into a
+   *  search abort. OPTIONAL (pre-1A entries show `unknown`). */
+  deadlineFired?: boolean;
+  budgetFired?: boolean;
+  /** PPC-HV-1A P1-2: the nominal main-search wall budget this turn was given
+   *  (ms), so `elapsedMs > budgetMs` (an over-nominal spend) is a fact in the
+   *  log instead of an assumption about the constant. OPTIONAL. */
+  budgetMs?: number;
   /** G0.3X: bounded-refutation sidecar diagnostics for this turn (absent when
    *  the flag was OFF or the turn predates the trial build). */
   refutation?: HardRefutationDiag;
@@ -104,11 +133,24 @@ export interface HardHistoryExecution {
   endStateKey: string | null;
   /** True if the executed trajectory's final state matched the plan replay. */
   matchedPlan: boolean;
+  /**
+   * PPC-HV-1A P0-2: the remaining single-turn execution truths, copied verbatim
+   * from `buildHardTurnExecutionStatus` (never re-derived from the cumulative
+   * catActionLog). Together with `production.planStatus` they let the log
+   * distinguish a planned turn, an incomplete search, an empty plan, a legacy
+   * fallback that replaced the plan, and what the turn actually reached.
+   * OPTIONAL (pre-1A entries show `n/a`).
+   */
+  planCompleted?: boolean;
+  fallbackOccurred?: boolean;
+  invalidActionOccurred?: boolean;
+  reachedLegalBoundary?: boolean;
 }
 
 /** One saved Hard turn root. */
 export interface HardSearchHistoryEntry {
-  /** Monotonic turn counter (1-based, per game). */
+  /** Monotonic cat-turn counter (1-based, per game). Since PPC-HV-1A P0-1 it
+   *  keeps increasing past `HARD_HISTORY_LIMIT` — see `nextHardHistoryTurn`. */
   turn: number;
   /** stateKey of the EXACT root snapshot. */
   stateKey: string;
@@ -195,6 +237,26 @@ export function pushHardHistory(
 ): HardSearchHistoryEntry[] {
   const next = [...history, entry];
   return next.length > limit ? next.slice(next.length - limit) : next;
+}
+
+/**
+ * PPC-HV-1A P0-1 — the next monotonic cat-turn number, from the RETAINED window.
+ *
+ * The old caller derived it as `history.length + 1`. That is only correct while
+ * the window is not full: once `HARD_HISTORY_LIMIT` entries exist the array
+ * rolls (oldest dropped), so `length` stops counting distinct turns, every turn
+ * from #21 on is numbered `21` again, and the write-side dedup filter then
+ * deletes the PREVIOUS turn's record instead of a duplicate — the exact failure
+ * that would have hidden the early-game evidence in a long human game.
+ * `pushHardHistory` always keeps the newest entry in the window, so the maximum
+ * retained `turn` is always the previous turn's number and max+1 is exact.
+ * Debug-only: it reads nothing but `turn`, and the history field itself is
+ * excluded from stateKey / gameAffectingEqual / TT.
+ */
+export function nextHardHistoryTurn(history: HardSearchHistoryEntry[]): number {
+  let max = 0;
+  for (const e of history) if (e.turn > max) max = e.turn;
+  return max + 1;
 }
 
 /** Compute the exact stateKey of a root snapshot WITHOUT restoring a state. */

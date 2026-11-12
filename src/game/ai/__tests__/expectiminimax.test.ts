@@ -381,6 +381,7 @@ test('E2. Skill enables a forced win: carry A -> skill -> pick B -> enter hole',
     { r: 7, c: 7 },
     { r: 7, c: 8 }, // hole (preserved)
     { r: 1, c: 1 }, // cat kept off walls
+    { r: 1, c: 2 }, // RULE-A: give the cat a legal back-and-forth pair
   ]);
   s = {
     ...s,
@@ -474,10 +475,12 @@ test('G. Chance expected value: 0.25*100 + 0.75*(-20) = 10', () => {
 
   // Mouse about to step onto a butter (only the RIGHT move is legal).
   let s = createInitialState(cleanConfig());
-  s = setPieces(s, { r: 3, c: 4 }, { r: 0, c: 0 });
+  s = setPieces(s, { r: 3, c: 4 }, { r: 1, c: 1 });
   s = wallOff(s, [
     { r: 3, c: 4 }, // mouse start
     { r: 3, c: 5 }, // butter (to the right)
+    { r: 1, c: 1 }, // RULE-A: cat corridor...
+    { r: 1, c: 2 }, // ...second cell so the cat always has a legal step
   ]);
   s = {
     ...s,
@@ -506,7 +509,7 @@ test('H. Chance node does not consume an extra turn depth', () => {
     st.mousePosition.r === GOAL.r && st.mousePosition.c === GOAL.c ? -100 : 0;
 
   let s = createInitialState(cleanConfig());
-  s = setPieces(s, { r: 3, c: 4 }, { r: 0, c: 0 });
+  s = setPieces(s, { r: 3, c: 4 }, { r: 1, c: 1 });
   // mouse at (3,4), butter at (3,5); narrow lane to the right.
   s = wallOff(s, [
     { r: 3, c: 4 },
@@ -514,6 +517,8 @@ test('H. Chance node does not consume an extra turn depth', () => {
     { r: 3, c: 6 },
     { r: 3, c: 7 },
     { r: 3, c: 8 },
+    { r: 1, c: 1 }, // RULE-A: cat corridor...
+    { r: 1, c: 2 }, // ...second cell so the cat always has a legal step
   ]);
   s = {
     ...s,
@@ -583,9 +588,20 @@ test('I. Repetition safety — identical complete state on the path terminates',
 // ---------------------------------------------------------------------------
 
 test('J. No-legal-action edge case — no invented win/loss, returns static eval', () => {
+  // RULE-A now makes a materially boxed-in actor with moves left a REAL loss
+  // (CatWins), so the "Playing with no legal actions" edge can no longer be
+  // produced by physically walling the mouse in. It is exercised instead with a
+  // synthetic RuleSet whose transitions stall even though the board itself is
+  // open (mobility is legal, so RULE-A does not fire). The search contract
+  // under test is unchanged: an action-space dead end is a static leaf, never
+  // an invented win/loss.
+  const stalledRules: RuleSet = {
+    ...defaultRuleSet,
+    mouseStep: (st) => st, // no-op → every direction is filtered as illegal
+    mouseSkill: (st) => st,
+  };
   let s = createInitialState(cleanConfig());
-  // Mouse fully boxed in (all neighbors walls), movesLeft>0, Playing.
-  s = wallOff(s, [{ r: 4, c: 4 }]);
+  s = wallOff(s, [{ r: 4, c: 4 }, { r: 4, c: 5 }]); // open enough for legal mobility
   s = setPieces(s, { r: 4, c: 4 }, { r: 0, c: 0 });
   s = {
     ...s,
@@ -595,7 +611,7 @@ test('J. No-legal-action edge case — no invented win/loss, returns static eval
     phase: GamePhase.Playing,
   };
 
-  const ctx = createSearchContext(defaultRuleSet, 1_000_000);
+  const ctx = createSearchContext(stalledRules, 1_000_000);
   const v = searchResult(s, 3, ctx).value;
 
   expect(Number.isFinite(v)).toBe(true);
@@ -970,14 +986,22 @@ function mouseButterChanceRoot(buildChance: RuleSet['buildButterChance']): {
     ...defaultRuleSet,
     mouseSkill: (st) => st, // no-op → filtered as illegal
     catPlaceTrap: (st) => st, // not the actor, but keep deterministic
+    // RULE-A: the synthetic "stalled" chance outcome below is spatially mobile
+    // (so it is NOT a no-move loss) but its transitions refuse to move, which
+    // keeps it a genuine no-legal-action leaf with mate = null. Scoped to that
+    // exact cell so the real root step (the butter pickup) is unaffected.
+    mouseStep: (st, direction) =>
+      st.mousePosition.r === 2 && st.mousePosition.c === 2
+        ? st
+        : defaultRuleSet.mouseStep(st, direction),
     buildButterChance: buildChance,
   };
   let s = createInitialState(cleanConfig());
-  s = setPieces(s, { r: 4, c: 4 }, { r: 0, c: 0 }); // mouse (4,4), cat far/walled
+  s = setPieces(s, { r: 4, c: 4 }, { r: 1, c: 1 }); // mouse (4,4), cat parked in a live corridor
   s = { ...s, butterPositions: [{ r: 4, c: 5 }] }; // butter adjacent to the mouse
   s = wallOff(s, [
     { r: 4, c: 4 }, { r: 4, c: 5 }, // mouse + butter open
-    { r: 0, c: 0 }, // cat cell (kept open, far away)
+    { r: 1, c: 1 }, { r: 1, c: 2 }, // RULE-A: cat keeps a legal step
   ]);
   const state: GameEngineState = {
     ...s,
@@ -990,12 +1014,14 @@ function mouseButterChanceRoot(buildChance: RuleSet['buildButterChance']): {
   return { state, rules };
 }
 
-/** A fully-boxed Playing state (no legal actions) → _search returns a leaf
- *  with mate = null. Used as the "non-mate" outcome of a CHANCE node. */
-function boxedMouseLeaf(): GameEngineState {
+/** A genuinely NON-terminal stall: the state has legal spatial mobility (so
+ *  RULE-A does not terminalize it), but the fixture RuleSet refuses every step,
+ *  so `_search` sees zero legal actions and returns a static leaf with
+ *  mate = null. Used as the "non-mate" outcome of a CHANCE node. */
+function stalledMouseLeaf(): GameEngineState {
   let s = createInitialState(cleanConfig());
   s = setPieces(s, { r: 2, c: 2 }); // mouse only, no cat
-  s = wallOff(s, [{ r: 2, c: 2 }]); // no open neighbor → no legal moves
+  s = wallOff(s, [{ r: 2, c: 2 }, { r: 2, c: 3 }]); // one open neighbor → mobility legal
   return {
     ...s,
     currentPlayer: PieceType.Mouse,
@@ -1014,7 +1040,7 @@ const terminalCatWins = (): GameEngineState => ({
 test('D0. CHANCE mate inheritance: 99% cat-mate + 1% non-mate → mate = null', () => {
   const { state, rules } = mouseButterChanceRoot(() => [
     { state: terminalCatWins(), weight: 0.99 },
-    { state: boxedMouseLeaf(), weight: 0.01 },
+    { state: stalledMouseLeaf(), weight: 0.01 },
   ]);
   const r = searchResult(state, 20, createSearchContext(rules, 1_000_000));
   // Not all outcomes are cat-mates (one is a non-mate leaf) → the CHANCE is
@@ -1975,7 +2001,7 @@ test('D2-F. CHANCE exactness: full-window outcomes give bit-identical expectatio
       build: () =>
         mouseButterChanceRoot(() => [
           { state: terminalCatWins(), weight: 0.99 },
-          { state: boxedMouseLeaf(), weight: 0.01 },
+          { state: stalledMouseLeaf(), weight: 0.01 },
         ]),
       mate: null,
     },
@@ -3381,15 +3407,18 @@ test('T1E-B E/F/G. the evaluator-batch cadence is observable and bounded by the 
   expect(reads).toBeGreaterThanOrEqual(nodes);
   let evals = 0;
   // a NON-constant heurististic (a constant evaluator collapses the tree and would not exercise the seam)
+  // ~1M-node exhaustive arena searches; the seam semantics are asserted with a
+  // mock clock, so this budget is environmental (serial heavy run), not part of
+  // any correctness gate.
   searchBestActionIterative(s, { ...t1ebBase, maxDepthTurns: 4, deadlineMs: T1EB_FAR, now: () => 1, leafEvaluator: (st) => { evals++; return st.mousePosition.r * 7 + st.mousePosition.c * 3; } });
   expect(evals).toBeGreaterThanOrEqual(EVAL_DEADLINE_CHECK_INTERVAL);
-});
+}, 120_000);
 
 test('T1E-B L. the evaluator-batch counter is SEARCH-LOCAL (two consecutive searches read identically)', () => {
   const s = t1ebBig();
   const run = () => { let c = 0; searchBestActionIterative(s, { ...t1ebBase, deadlineMs: T1EB_FAR, now: () => { c++; return 1; } }); return c; };
   expect(run()).toBe(run());
-});
+}, 120_000);
 
 test('T1E-B. the frozen seam constants are exactly the resolved candidate (node 1, eval 64)', () => {
   expect(DEADLINE_CHECK_INTERVAL).toBe(1);

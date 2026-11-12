@@ -17,3 +17,15 @@ body {
   justify-content: center;
   padding: 1rem;
 }
+
+/* 危险区域辅助（可选开启）：危险格只有一层半透明红底色，不写步数、不闪动、不分等级。
+   zIndex 0 把它压在实体层(1)和角色(10)之下，所以它不可能糊住棋子、黄油、箱子、陷阱或
+   通道；inset 0 让红底铺满整格，格子自己的 1px 边框仍然画在它上面。
+   pointer-events:none 是点击移动的保底：这层绝不能截获落点。 */
+.danger-fill {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: rgba(239, 68, 68, 0.22);
+  pointer-events: none;
+}

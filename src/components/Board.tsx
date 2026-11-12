@@ -1,5 +1,7 @@
 import { CellType, GamePhase, PieceType, GameMode } from '../game/types';
-import React, { useEffect, useState, useRef, useCallback } from 'react';
+import React, { useEffect, useMemo, useState, useRef, useCallback } from 'react';
+import { useDangerAssistEnabled, toggleDangerAssist } from './dangerAssist';
+import type { CatThreatMap } from '../game/threat/catThreatMap';
 
 type BoardCell = { type: CellType; piece?: PieceType; hasButter: boolean };
 
@@ -36,6 +38,13 @@ interface BoardProps {
   showSidePanel?: boolean;   // 是否显示右侧信息栏（教程模式关闭）
   showRestartButton?: boolean; // 是否显示「重新开始」按钮（教程模式关闭）
   showKeyboardHint?: boolean;  // 是否显示键盘提示（教程模式关闭）
+  /**
+   * PPC-HV-3 P0：「危险区域辅助」的地图。它由 game/threat/catThreatMap 在真实
+   * GameEngineState 上算出，null = 未开启。Board 只画它，绝不自己判断哪里危险 ——
+   * 那等于写出第二套规则。
+   */
+  threatMap?: CatThreatMap | null;
+  showDangerToggle?: boolean;
 }
 
 const SPRITE: Record<string, string> = {
@@ -58,6 +67,7 @@ export const Board: React.FC<BoardProps> = ({
   onMove, onSkill, onTrap, onRestart, onChooseExit, tunnelExitChoices,
   catActionLog = [], gameEventLog = [], onGameOverDismiss, gameOverDismissed, config, hideCat = false,
   showSidePanel = true, showRestartButton = true, showKeyboardHint = true,
+  threatMap = null, showDangerToggle = true,
 }) => {
   const isMouseTurn = phase === GamePhase.Playing && currentPlayer === PieceType.Mouse;
   const isCatTurn = phase === GamePhase.Playing && currentPlayer === PieceType.Cat;
@@ -268,6 +278,16 @@ export const Board: React.FC<BoardProps> = ({
     pointerEvents: 'none',
   };
 
+  // ---- 危险区域图层 ----
+  // 开关是纯呈现状态（localStorage，无引擎含义）；地图由上游在真实局面上算好后传进来，
+  // 这里只做 O(1) 查表。步数与最短目击路径留在算法里当证据，不在棋盘上画出来。
+  const dangerOn = useDangerAssistEnabled();
+  const dangerLookup = useMemo(() => {
+    const cells = new Set<number>();
+    if (threatMap) for (const cell of threatMap.dangerousCells) cells.add(cell.r * boardCols + cell.c);
+    return cells;
+  }, [threatMap, boardCols]);
+
   // ---- Render helpers ----
 
   const renderCell = (cell: BoardCell, r: number, c: number) => {
@@ -297,6 +317,8 @@ export const Board: React.FC<BoardProps> = ({
     const tunnelLabel = tunnelCorners.find(t => t.r === r && t.c === c);
     const tunnelArrow = tunnelLabel ? { '左上': '↘', '右上': '↙', '左下': '↗', '右下': '↖' }[tunnelLabel.label] : '';
 
+    const isDanger = dangerLookup.has(r * boardCols + c);
+
     return (
       <div
         key={`${r}-${c}`}
@@ -317,6 +339,9 @@ export const Board: React.FC<BoardProps> = ({
           }
         }}
       >
+        {/* 危险区域染色层：只有半透明红底，不写步数、不闪动。zIndex 0，和幽灵黄油
+            同层 —— 角色(z10)、箱/桩/陷阱/黄油/通道实体层(z1)都在它上面。 */}
+        {isDanger && <div className="danger-fill" />}
         {/* G0.4F-2A.1 §12: ghost butter is a TRUE UNDERLAY (absolute, zIndex 0,
             inset ~6%) so box/trap/entity-butter render fully on top of it.
             Pieces (mouse/cat) overlay at zIndex 10 via the absolute overlays. */}
@@ -370,6 +395,13 @@ export const Board: React.FC<BoardProps> = ({
     }] : []),
     ...(isCatTurn && catTrapsRemaining > 0 ? [{
       label: `🪤 放置陷阱（空格）[${catTrapsRemaining}]`, onClick: onTrap, bg: '#ea580c',
+    }] : []),
+    // 危险区域辅助：纯 UI 开关（PC/手机都有），默认关，选择记在本地。
+    // 它排在最后，这样「消耗黄油 / 放置陷阱」这两个主行动按钮的位置不会跳。
+    ...(showDangerToggle ? [{
+      label: dangerOn ? '⚠️ 危险区域辅助：开' : '⚠️ 危险区域辅助：关',
+      onClick: toggleDangerAssist,
+      bg: dangerOn ? '#b91c1c' : '#6b7280',
     }] : []),
   ];
 

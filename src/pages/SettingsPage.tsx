@@ -1,10 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import { MenuButton } from '../components/MenuButton';
 import { useGame } from '../context/GameContext';
+import { validateGameConfig } from '../game/config';
 
 export function SettingsPage() {
   const navigate = useNavigate();
   const { config, updateConfigField, resetConfig } = useGame();
+  const validation = validateGameConfig(config);
+  const holeMax = Math.max(0, config.boardSize - config.mouseHole.size);
 
   return (
     <div style={{
@@ -71,16 +74,35 @@ export function SettingsPage() {
         </label>
         <label>
           鼠洞行
-          <input type="number" min={0} max={19} value={config.mouseHole.r}
+          <input type="number" min={0} max={holeMax} value={config.mouseHole.r}
             onChange={e => updateConfigField('mouseHole', { ...config.mouseHole, r: Number(e.target.value) })}
             style={{ display: 'block', width: '100%', marginTop: '0.3rem', padding: '0.4rem', borderRadius: '0.5rem', border: '1px solid #d1d5db' }} />
         </label>
         <label>
           鼠洞列
-          <input type="number" min={0} max={19} value={config.mouseHole.c}
+          <input type="number" min={0} max={holeMax} value={config.mouseHole.c}
             onChange={e => updateConfigField('mouseHole', { ...config.mouseHole, c: Number(e.target.value) })}
             style={{ display: 'block', width: '100%', marginTop: '0.3rem', padding: '0.4rem', borderRadius: '0.5rem', border: '1px solid #d1d5db' }} />
         </label>
+        {!validation.ok && (
+          <div style={{
+            gridColumn: '1 / -1',
+            backgroundColor: '#FEF2F2',
+            border: '1px solid #EF4444',
+            borderRadius: '0.5rem',
+            padding: '0.75rem 1rem',
+            color: '#991B1B',
+            fontSize: '0.85rem',
+            lineHeight: 1.5,
+          }}>
+            <strong>当前配置无法开始对局，请调整：</strong>
+            <ul style={{ margin: '0.4rem 0 0', paddingLeft: '1.2rem' }}>
+              {validation.issues.map((issue) => (
+                <li key={issue.message}>{issue.message}</li>
+              ))}
+            </ul>
+          </div>
+        )}
         <div style={{ gridColumn: '1 / -1', textAlign: 'center' }}>
           <button
             onClick={() => resetConfig()}

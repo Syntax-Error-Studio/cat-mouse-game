@@ -29,6 +29,9 @@ import { hybridRouteV2EvaluateForCat } from './hybridRouteLeaf';
 // PPC-A0-DEV-01: frozen 1.9AX A0 expected-return leaf (no cycle — the A0 module
 // imports only evaluation / config / types / its own frozen bundle).
 import { a0ExpectedReturnEvaluateForCat } from './a0ExpectedReturnLeaf';
+// PPC-HV-6: H1 + Gate Race trial leaf (no cycle — it imports evaluation +
+// correctedHoleLeaf only, and never imports this module).
+import { evaluateH1GateRaceForCat } from './gateRaceLeaf';
 
 export const HYBRID_MATH_FROZEN = {
   S: HYBRID_S,
@@ -229,6 +232,10 @@ export function hybridEvaluateForCat(state: GameEngineState): number {
  *  Mode wiring (G0.4F-1.3 §6 + G0.4F-2B-1.2 §7):
  *    baseline                       → evaluateForCat
  *    baseline_hole_corrected        → evaluateCorrectedHoleForCat (H1, F2B-1.1)
+ *    h1_gate_race_trial             → evaluateH1GateRaceForCat  (PPC-HV-6 trial:
+ *                                      H1's number + the bounded Gate Race term;
+ *                                      H1 itself is NOT modified, so rolling this
+ *                                      word back restores H1 exactly)
  *    hybrid_standard_only           → hybridEvaluateForCat        (V1, unchanged)
  *    hybrid_route_v2_standard_only  → hybridRouteV2EvaluateForCat (V2, F12-confirmed)
  *    a0_expected_return_boundary_only
@@ -246,6 +253,7 @@ export function hybridEvaluateForCat(state: GameEngineState): number {
 export function resolveHardLeaf(): (s: GameEngineState) => number {
   const mode = getHardLeafMode();
   if (mode === 'baseline_hole_corrected') return evaluateCorrectedHoleForCat;
+  if (mode === 'h1_gate_race_trial') return evaluateH1GateRaceForCat;
   if (mode === 'hybrid_standard_only') return hybridEvaluateForCat;
   if (mode === 'hybrid_route_v2_standard_only') return hybridRouteV2EvaluateForCat;
   if (mode === 'a0_expected_return_boundary_only') return a0ExpectedReturnEvaluateForCat;

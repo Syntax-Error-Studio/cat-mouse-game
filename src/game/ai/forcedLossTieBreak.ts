@@ -1,10 +1,11 @@
 import type { GameEngineState } from '../engine';
 import type { SearchAction } from './searchTypes';
 import { generateLegalSearchActions } from './legalActions';
-import { compareSearchScore, type SearchContext, type MateSide } from './expectiminimax';
+import { compareSearchScore, type RootActionRecord, type SearchContext } from './expectiminimax';
 import {
   buildCandidate,
   compareCatTurnPlanQuality,
+  isSearchDeadlineExceeded,
   type CandidatePlan,
 } from './planQuality';
 
@@ -39,23 +40,30 @@ import {
 export function forcedLossTieBreak(
   root: GameEngineState,
   ctx: SearchContext,
-  rootActions: { action: SearchAction; value: number; mate: MateSide }[],
+  rootActions: RootActionRecord[],
 ): SearchAction[] | null {
   // Guard: only when the root is a proven mouse-mate (forced loss for cat).
   if (rootActions.length === 0) return null;
   const anyMouseMate = rootActions.some((a) => a.mate === 'mouse');
   if (!anyMouseMate) return null;
 
-  // Find the best primary score among root actions.
-  let bestPrimary = rootActions[0];
-  for (const a of rootActions) {
+  // PPC-RB1 / FIX-5: only a PROVED root score may take part in a forced-loss
+  // primary tie. A 'lower'/'upper' entry is a one-sided bound produced by an
+  // alpha-beta cutoff. A MISSING bound is unauthenticated — it is NOT exact and
+  // must never be certified as such (`bound === 'exact'` is strict).
+  const pool = rootActions.filter((a) => a.bound === 'exact');
+  if (pool.length === 0) return null;
+
+  // Find the best primary score among the proved root actions.
+  let bestPrimary = pool[0];
+  for (const a of pool) {
     if (compareSearchScore({ value: a.value, mate: a.mate }, { value: bestPrimary.value, mate: bestPrimary.mate }) > 0) {
       bestPrimary = a;
     }
   }
 
-  // Collect all root actions whose primary score EXACTLY equals the best.
-  const primaryEqual = rootActions.filter((a) =>
+  // Collect all proved root actions whose primary score EXACTLY equals the best.
+  const primaryEqual = pool.filter((a) =>
     compareSearchScore({ value: a.value, mate: a.mate }, { value: bestPrimary.value, mate: bestPrimary.mate }) === 0,
   );
 
@@ -66,22 +74,35 @@ export function forcedLossTieBreak(
   // (forced loss). If any non-mate is primary-equal, leave default behavior.
   if (!primaryEqual.every((a) => a.mate === 'mouse')) return null;
 
+  // FIX-2: reuse the search's own deadline authority. If the time is already
+  // gone, leave the search's plan untouched instead of starting extra work.
+  if (isSearchDeadlineExceeded(ctx)) return null;
+
   // Build candidate plans using shared plan-quality module.
   const legal = generateLegalSearchActions(root, ctx.rules);
   const candidates: CandidatePlan[] = [];
 
   for (const pe of primaryEqual) {
+    if (isSearchDeadlineExceeded(ctx)) return null;
     const originalIndex = legal.findIndex((a) => {
       if (a.type !== pe.action.type) return false;
       if (a.type === 'catStep') return a.direction!.key === (pe.action as { type: 'catStep'; direction: { key: string } }).direction!.key;
       return true;
     });
     const candidate = buildCandidate(root, pe.action, ctx, originalIndex >= 0 ? originalIndex : 999);
-    if (candidate) candidates.push(candidate);
+    // FIX-1: fail closed. If ANY proved primary-equal action cannot build a
+    // COMPLETE full-turn plan (missing successor branch, truncated replay,
+    // ambiguous CHANCE result, deadline), the selector has no admissible
+    // comparison set. It must NOT fall back to the survivors — in particular it
+    // must never return a sole candidate just because it was the only one that
+    // built. The caller keeps the search's own plan.
+    if (candidate === null) return null;
+    candidates.push(candidate);
   }
 
-  if (candidates.length === 0) return null;
-  if (candidates.length === 1) return candidates[0].plan;
+  // ≥2 proved primary-equal actions existed (checked above); a selector that
+  // only built one of them is not comparing anything.
+  if (candidates.length < 2) return null;
 
   // Sort by G0.3A original lexicographic key (NO uniqueProgress).
   // This preserves the exact G0.3A behavior: reversal → revisit → boundaryEval → stable.

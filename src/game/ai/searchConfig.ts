@@ -51,6 +51,15 @@ export const HARD_TRIAL = {
  *                                      ValueNet; it evaluates ghost/debt states
  *                                      normally (ghost gameplay itself is
  *                                      handled by the search transitions).
+ *   - 'h1_gate_race_trial'           → PPC-HV-6: H1 + the Gate Race (关口竞速)
+ *                                      trial term. Independent leaf — H1's own
+ *                                      math and numbers are untouched, and
+ *                                      rollback is one word back to
+ *                                      'baseline_hole_corrected'. TRIAL ONLY:
+ *                                      this is not a new strength authority, and
+ *                                      the M3-lite Progress Guard (gated to
+ *                                      'baseline_hole_corrected') stays OFF for
+ *                                      it by construction.
  *   - 'hybrid_standard_only'         → validated Hybrid V1 leaf (G0.4E), only on
  *                                      canonical standard-map states (fail-closed
  *                                      eligibility inside hybridLeaf.ts).
@@ -70,7 +79,7 @@ export const HARD_TRIAL = {
  * set back to 'baseline'.
  */
 export const HARD_LEAF_MODE_DEFAULT = 'baseline' as const;
-export type HardLeafModeConfig = 'baseline' | 'baseline_hole_corrected' | 'hybrid_standard_only' | 'hybrid_route_v2_standard_only' | 'a0_expected_return_boundary_only';
+export type HardLeafModeConfig = 'baseline' | 'baseline_hole_corrected' | 'h1_gate_race_trial' | 'hybrid_standard_only' | 'hybrid_route_v2_standard_only' | 'a0_expected_return_boundary_only';
 export const HARD_LEAF_MODE_CONFIG: { current: HardLeafModeConfig } = {
   current: HARD_LEAF_MODE_DEFAULT,
 };

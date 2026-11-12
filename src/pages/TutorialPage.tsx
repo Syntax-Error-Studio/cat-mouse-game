@@ -518,6 +518,7 @@ export function TutorialPage() {
             showSidePanel={false}
             showRestartButton={false}
             showKeyboardHint={false}
+            showDangerToggle={false}
           />
 
           {/* 讲解/演示：棋盘轻微变暗 + 角落小提示 */}

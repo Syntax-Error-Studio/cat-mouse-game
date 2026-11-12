@@ -1,7 +1,6 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import {
-  createInitialState,
   mouseMove,
   mouseSkill,
   catMove,
@@ -11,17 +10,129 @@ import {
   computeCatAiTrajectory,
   getDirectionByKey,
 } from '../game/engine';
+import type { GameEngineState } from '../game/engine';
 import { PieceType, GamePhase, GameMode, Difficulty } from '../game/types';
 import type { GameConfig } from '../game/config';
+import type { NewGameOpening, OpeningUnverifiedReason } from '../game/newGame';
+import { createGameState } from '../game/newGame';
 import { chooseTunnelExit } from '../game/rules/tunnels';
 import { Board } from '../components/Board';
+import { useCatThreatMap } from '../components/dangerAssist';
 import { DebugInfo } from '../components/DebugInfo';
 import { MenuButton } from '../components/MenuButton';
 import { useGame } from '../context/GameContext';
 
-type GameData = ReturnType<typeof createInitialState>;
+type GameData = GameEngineState;
+
+type OpeningBlock = { reason: OpeningUnverifiedReason; detail?: string };
 
 const CAT_AI_STEP_DELAY = 250;
+
+/**
+ * Why an auto opening failed RULE-B certification. Shown on the BLOCKING
+ * failure screen — such an opening never reaches the board, so it is never
+ * presented as a playable (let alone certified) match.
+ */
+const OPENING_UNVERIFIED_TEXT: Record<OpeningUnverifiedReason, string> = {
+  EXPLICIT_LAYOUT: '显式布局不参与自动认证',
+  UNSUPPORTED_CONFIG: '当前配置不在认证支持范围内',
+  INVALID_CONFIG: '当前配置不合法，存在越界或冲突的位置',
+  NO_CERTIFIED_OPENING: '限定预算内无法证明任何候选开局公平',
+  UNDER_GENERATED: '无法放置配置要求的全部黄油',
+  NO_LEGAL_OPENING: '生成的初始局面存在无合法行动的一方',
+};
+
+/**
+ * Blocking screen for an auto opening that failed certification: no Board, no
+ * move handlers, only regenerate (a fresh auto draw) and leave.
+ */
+function OpeningBlockedScreen(props: {
+  reason: OpeningUnverifiedReason;
+  detail?: string;
+  onRegenerate: () => void;
+  onBack: () => void;
+}) {
+  const invalidConfig = props.reason === 'INVALID_CONFIG';
+  return (
+    <div style={{
+      minHeight: '100vh',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: '1rem',
+      padding: '1rem',
+      backgroundColor: '#fef3c7',
+      fontFamily: '"Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif',
+    }}>
+      <div style={{
+        padding: '1.5rem 2rem',
+        maxWidth: '560px',
+        textAlign: 'center',
+        backgroundColor: '#FFF3CD',
+        borderRadius: '0.75rem',
+        border: '2px solid #F0AD4E',
+        color: '#8A6D3B',
+      }}>
+        <h1 style={{ fontSize: '1.25rem', margin: '0 0 0.75rem' }}>
+          {invalidConfig ? '当前配置无法开始对局' : '开局未通过公平性认证'}
+        </h1>
+        <p style={{ margin: '0 0 0.5rem', fontWeight: 'bold' }}>
+          {OPENING_UNVERIFIED_TEXT[props.reason]}。
+        </p>
+        {props.detail && (
+          <ul style={{
+            margin: '0 0 0.5rem',
+            paddingLeft: '1.2rem',
+            textAlign: 'left',
+            fontSize: '0.9rem',
+            lineHeight: 1.5,
+            whiteSpace: 'pre-line',
+          }}>
+            {props.detail.split('\n').map((line) => <li key={line}>{line}</li>)}
+          </ul>
+        )}
+        <p style={{ margin: 0 }}>
+          {invalidConfig
+            ? '本局尚未开始。请返回上一页调整上面的配置后重试。'
+            : '本局尚未开始，不会进入正式对局。请重新生成开局，或返回主菜单。'}
+        </p>
+      </div>
+      <div style={{ display: 'flex', gap: '0.8rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+        {!invalidConfig && (
+          <button
+            onClick={props.onRegenerate}
+            style={{
+              padding: '0.6rem 1.6rem',
+              borderRadius: '0.75rem',
+              border: '2px solid #374151',
+              backgroundColor: '#fff',
+              cursor: 'pointer',
+              fontWeight: 'bold',
+              fontSize: '1rem',
+            }}
+          >
+            重新生成开局
+          </button>
+        )}
+        <button
+          onClick={props.onBack}
+          style={{
+            padding: '0.6rem 1.6rem',
+            borderRadius: '0.75rem',
+            border: '2px solid #374151',
+            backgroundColor: '#fff',
+            cursor: 'pointer',
+            fontWeight: 'bold',
+            fontSize: '1rem',
+          }}
+        >
+          {invalidConfig ? '返回调整配置' : '返回主菜单'}
+        </button>
+      </div>
+    </div>
+  );
+}
 
 export function GamePage() {
   const navigate = useNavigate();
@@ -36,7 +147,20 @@ export function GamePage() {
   // GamePage 是"模式无关"的棋盘壳：对局参数（含 gameMode）来自 context 或编辑器试玩 state。
   const effectiveConfig: GameConfig = editorConfig ?? config;
 
-  const [gameState, setGameState] = useState<GameData>(() => createInitialState(effectiveConfig));
+  // Every new match (mount / restart / difficulty switch) goes through the ONE
+  // RULE-B factory; explicit editor/tutorial layouts bypass generation there.
+  // A failed auto opening carries no state, so the board cannot be operated.
+  const [initialOpening] = useState<NewGameOpening>(() => createGameState(effectiveConfig));
+  const [gameState, setGameState] = useState<GameData | null>(
+    initialOpening.status.kind === 'unverified' ? null : initialOpening.state,
+  );
+  const [openingBlocked, setOpeningBlocked] = useState<OpeningBlock | null>(
+    initialOpening.status.kind === 'unverified'
+      ? { reason: initialOpening.status.reason, detail: initialOpening.status.detail }
+      : null,
+  );
+  // 危险区域辅助：开着才算，算的是这一份真实 gameState（单机/本地双人同一条路径）。
+  const threatMap = useCatThreatMap(gameState);
   const [showDebug, setShowDebug] = useState(false);
   const [gameOverDismissed, setGameOverDismissed] = useState(false);
   const [paused, setPaused] = useState(false);
@@ -49,17 +173,16 @@ export function GamePage() {
   const frozenDebugRef = useRef<GameData | null>(null);
   const prevPhaseRef = useRef<GamePhase>(GamePhase.Playing);
 
-  if (gameState.phase !== prevPhaseRef.current && gameState.phase !== GamePhase.Playing) {
+  if (gameState && gameState.phase !== prevPhaseRef.current && gameState.phase !== GamePhase.Playing) {
     frozenDebugRef.current = { ...gameState };
   }
-  prevPhaseRef.current = gameState.phase;
-  const debugState = (gameState.phase !== GamePhase.Playing && frozenDebugRef.current) || gameState;
+  if (gameState) prevPhaseRef.current = gameState.phase;
 
   useEffect(() => {
-    if (gameState.phase === GamePhase.CatWins || gameState.phase === GamePhase.MouseWins) {
+    if (gameState?.phase === GamePhase.CatWins || gameState?.phase === GamePhase.MouseWins) {
       setGameOverDismissed(false);
     }
-  }, [gameState.phase]);
+  }, [gameState?.phase]);
 
   const runCatAi = useCallback((initialState: GameData): GameData => {
     if (isAnimatingRef.current) return initialState;
@@ -142,6 +265,7 @@ export function GamePage() {
   const handleMove = useCallback((key: string) => {
     if (paused) return;
     setGameState(prev => {
+      if (prev === null) return prev;
       if (prev.phase !== GamePhase.Playing) return prev;
       if (isAnimatingRef.current) return prev;
 
@@ -176,6 +300,7 @@ export function GamePage() {
   const handleSkill = useCallback(() => {
     if (paused) return;
     setGameState(prev => {
+      if (prev === null) return prev;
       if (isAnimatingRef.current) return prev;
       if (prev.phase !== GamePhase.Playing) return prev;
       if (prev.currentPlayer !== PieceType.Mouse) return prev;
@@ -186,6 +311,7 @@ export function GamePage() {
   const handleTrap = useCallback(() => {
     if (paused) return;
     setGameState(prev => {
+      if (prev === null) return prev;
       if (isAnimatingRef.current) return prev;
       if (prev.phase !== GamePhase.Playing) return prev;
       if (prev.currentPlayer !== PieceType.Cat || prev.gameMode !== GameMode.Dual) return prev;
@@ -195,6 +321,7 @@ export function GamePage() {
 
   const handleChooseTunnelExit = useCallback((r: number, c: number) => {
     setGameState(prev => {
+      if (prev === null) return prev;
       // Delegate to the shared rule kernel — single source of truth for tunnel
       // exit landing (used by GamePage, TutorialPage and the future Search Simulator).
       const afterTeleport = chooseTunnelExit(prev, r, c);
@@ -206,20 +333,52 @@ export function GamePage() {
     });
   }, [runCatAi]);
 
+  /** Returns false when certification failed and the match did not start. */
+  const startOpening = useCallback((cfg: GameConfig): boolean => {
+    const opening = createGameState(cfg);
+    if (opening.status.kind === 'unverified') {
+      setGameState(null);
+      setOpeningBlocked({ reason: opening.status.reason, detail: opening.status.detail });
+      return false;
+    }
+    setGameState(opening.state);
+    setOpeningBlocked(null);
+    return true;
+  }, []);
+
   const handleRestart = useCallback(() => {
-    setGameState(createInitialState(effectiveConfig));
+    if (!startOpening(effectiveConfig)) return;
     setGameOverDismissed(false);
     setPaused(false);
     setGameNo(n => n + 1); // G0.3X: next game begins
-  }, [effectiveConfig]);
+  }, [effectiveConfig, startOpening]);
 
   const cycleDifficulty = useCallback(() => {
     const diffs: Difficulty[] = ['easy', 'medium', 'hard'];
     const idx = (diffs.indexOf(config.difficulty) + 1) % diffs.length;
     setDifficulty(diffs[idx]);
-    setGameState(createInitialState({ ...effectiveConfig, difficulty: diffs[idx] }));
-    setGameNo(n => n + 1); // G0.3X: difficulty change starts a new game
-  }, [config.difficulty, effectiveConfig, setDifficulty]);
+    if (startOpening({ ...effectiveConfig, difficulty: diffs[idx] })) {
+      setGameNo(n => n + 1); // G0.3X: difficulty change starts a new game
+    }
+  }, [config.difficulty, effectiveConfig, setDifficulty, startOpening]);
+
+  // Blocked openings stop here, after every hook: the board below is the only
+  // operable surface, so an unverified auto layout can never start a match.
+  if (openingBlocked !== null || gameState === null) {
+    return (
+      <OpeningBlockedScreen
+        reason={openingBlocked?.reason ?? 'NO_CERTIFIED_OPENING'}
+        detail={openingBlocked?.detail}
+        onRegenerate={handleRestart}
+        onBack={() => {
+          if (openingBlocked?.reason === 'INVALID_CONFIG') navigate(-1);
+          else navigate('/');
+        }}
+      />
+    );
+  }
+
+  const debugState = (gameState.phase !== GamePhase.Playing && frozenDebugRef.current) || gameState;
 
   return (
     <div style={{
@@ -357,6 +516,7 @@ export function GamePage() {
         }}
         catActionLog={gameState.catActionLog}
         gameEventLog={gameState.gameEventLog}
+        threatMap={threatMap}
       />
 
       {showDebug && (

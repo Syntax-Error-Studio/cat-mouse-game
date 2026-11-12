@@ -251,12 +251,18 @@ let evaluationCallCount = 0;
 let mouseBfsCallCount = 0;
 let catBfsCallCount = 0;
 let carryMouseBfsCallCount = 0;
+/** HV-6: one-per-threat-target carrying map (Gate Race only; never used by Baseline/H1). */
+let carryRouteBfsCallCount = 0;
+/** HV-6: one-per-leaf push-aware cat arrival map (Gate Race only). */
+let catPushBfsCallCount = 0;
 
 export function resetEvaluationCalls(): void {
   evaluationCallCount = 0;
   mouseBfsCallCount = 0;
   catBfsCallCount = 0;
   carryMouseBfsCallCount = 0;
+  carryRouteBfsCallCount = 0;
+  catPushBfsCallCount = 0;
 }
 export function getEvaluationCalls(): number {
   return evaluationCallCount;
@@ -269,6 +275,12 @@ export function getCatBfsCalls(): number {
 }
 export function getCarryMouseBfsCalls(): number {
   return carryMouseBfsCallCount;
+}
+export function getCarryRouteBfsCalls(): number {
+  return carryRouteBfsCallCount;
+}
+export function getCatPushBfsCalls(): number {
+  return catPushBfsCallCount;
 }
 
 // ---------------------------------------------------------------------------
@@ -410,7 +422,11 @@ export const DEFAULT_EVALUATION_WEIGHTS: EvaluationWeights = {
 // them across features + Voronoi + contributions (spec #17 — no repeated BFS).
 // ---------------------------------------------------------------------------
 
-interface EvaluationContext {
+/**
+ * HV-6: exported (read-only) so a composite leaf can build the context ONCE and
+ * hand it back to `evaluateForCatDetailed`. Callers must never mutate it.
+ */
+export interface EvaluationContext {
   state: GameEngineState;
   boardSize: number;
   /** Distance from the mouse to every reachable cell (tunnel edges incl.). */
@@ -713,9 +729,13 @@ function scoreFeatures(
 export function evaluateForCatDetailed(
   state: GameEngineState,
   weights: EvaluationWeights = DEFAULT_EVALUATION_WEIGHTS,
+  prebuiltCtx?: EvaluationContext,
 ): EvaluationBreakdown {
   evaluationCallCount++;
-  const ctx = buildContext(state, true);
+  // HV-6: a composite leaf may supply the context it already built. `buildContext`
+  // is a pure function of the state, so a reused context is numerically identical
+  // to rebuilding it — the trial path therefore costs the SAME three BFS as H1.
+  const ctx = prebuiltCtx ?? buildContext(state, true);
   const features = featuresFromContext(ctx);
   const contributions = scoreFeatures(features, ctx.boardSize, weights, ctx);
   let total = 0;
@@ -744,6 +764,83 @@ export function buildMouseDistanceMap(state: GameEngineState): Map<string, numbe
 export function buildCatDistanceMap(state: GameEngineState): Map<string, number> {
   const ctx = buildContext(state, false);
   return ctx.catMap;
+}
+
+/**
+ * HV-6 (Gate Race trial leaf): build the evaluator's shared context explicitly so
+ * a composite leaf can construct it ONCE, read its maps, and pass it back to
+ * `evaluateForCatDetailed`. Costs exactly what one H1 call costs: one mouse BFS,
+ * one cat BFS, one carrying hole map, one Voronoi scan.
+ */
+export function createEvaluationContext(state: GameEngineState): EvaluationContext {
+  return buildContext(state, true);
+}
+
+/**
+ * HV-6: full carrying-graph distance map from an ARBITRARY start cell, using the
+ * evaluator's own carrying predicate (`mouseOrthogonal`, i.e. the same graph the
+ * multi-source hole map runs on). Exported so the Gate Race term reuses this BFS
+ * kernel instead of re-implementing the carrying rules a second time.
+ */
+export function buildCarryingDistanceMap(state: GameEngineState, start: RC): Map<string, number> {
+  carryRouteBfsCallCount++;
+  return buildDistanceMap(start, (r, c) => mouseOrthogonal(state, r, c));
+}
+
+/** HV-6: the map key format used by every exported distance map (single source). */
+export const evaluationCellKey = key;
+
+/**
+ * HV-6 (Gate Race only): the cat's arrival map over the SAME push rules the engine
+ * applies — `catCanEnter` for a free step, and for a box step the destination
+ * conditions of GAMEPLAY.md §4.2 / engine.ts `simulateCatMove` (in bounds, not the
+ * hole, not the mouse, not another box, not a pile/wall, not butter, not a trap).
+ *
+ * WHY THIS EXISTS: `ctx.catMap` is the walk-only graph and the standard map carries
+ * 12 boxes, so a cell the cat reaches in 4 real steps measures 20 walk steps. On
+ * such a map no interception margin can ever be positive and a corridor term is
+ * structurally dead — the model has to know that the cat pushes.
+ *
+ * EXACTNESS (deliberately NOT claimed): one push really does cost exactly one step
+ * and land the cat on the vacated cell, so the per-step cost is exact; what is not
+ * exact is the SEQUENCE — the map treats the box layout as static, so it can price
+ * a route whose later push depends on a box an earlier push already moved. It is
+ * therefore a LOWER bound on the cat's legal steps: it can only over-credit the
+ * cat, never under-credit it. The term keeps its own guard rails (layer-width
+ * discount, ±1 clamp, non-negative-only credit) and HV-6 §3 cross-checks the
+ * credited cells against the real step function on a small sample.
+ *
+ * Expansion stops ON the mouse's cell: stepping onto the mouse is a capture, so a
+ * route "through" it is not a positioning route.
+ */
+export function buildCatPushDistanceMap(state: GameEngineState): Map<string, number> {
+  catPushBfsCallCount++;
+  const { board } = state;
+  const neighbors = (r: number, c: number): RC[] => {
+    const out: RC[] = [];
+    if (r === state.mousePosition.r && c === state.mousePosition.c) return out;
+    for (const d of DIRECTIONS) {
+      const nr = r + d.dr;
+      const nc = c + d.dc;
+      if (!inBounds(state, nr, nc)) continue;
+      if (board[nr][nc].type === CellType.Box) {
+        const destR = nr + d.dr;
+        const destC = nc + d.dc;
+        if (!inBounds(state, destR, destC)) continue;
+        if (isMouseHoleCell(state, destR, destC)) continue;
+        if (state.mousePosition.r === destR && state.mousePosition.c === destC) continue;
+        if (board[destR][destC].type === CellType.Box) continue;
+        if (isFixedObstacle(board[destR][destC].type)) continue;
+        if (hasButterAt(state, destR, destC)) continue;
+        if (state.trapPosition && state.trapPosition.r === destR && state.trapPosition.c === destC) continue;
+        out.push({ r: nr, c: nc });
+        continue;
+      }
+      if (catCanEnter(state, nr, nc)) out.push({ r: nr, c: nc });
+    }
+    return out;
+  };
+  return buildDistanceMap(state.catPosition, neighbors);
 }
 export function bfsMouseDistance(state: GameEngineState, targets: RC[]): number | null {
   return bfsDistance(state.mousePosition, targets, (r, c) => mouseNeighbors(state, r, c));

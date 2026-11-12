@@ -256,6 +256,23 @@ export function preferResult(
 }
 
 /**
+ * PPC-RB1 — is this result a PROVED score, or only a bound on it?
+ *
+ * `completed` says the search was not aborted by the node budget / clock; it
+ * says nothing about the WINDOW. A fail-soft cutoff is a sound proof of an
+ * INCOMPLETE statement: 'lower' proves `value <= true`, 'upper' proves
+ * `value >= true`. So two results can carry the same number while only one of
+ * them is a fact about the position — which is exactly how a strictly worse
+ * action can be mistaken for an equal one.
+ *
+ * Only `completed && bound === 'exact'` may be used as evidence for
+ * equal-primary metadata or for displacing an incumbent on a tie.
+ */
+function isCertifiedResult(r: InternalSearchResult): boolean {
+  return r.completed && r.bound === 'exact';
+}
+
+/**
  * Real GAME-TIME cost of one primitive `SearchAction`, measured in "one cat
  * step / one mouse step" units. This is the ONLY place that decides how much a
  * search edge advances the mate distance (F1A-3).
@@ -569,8 +586,14 @@ export interface SearchContext {
    * (each root candidate's stepped value + mate), with NO extra search cost —
    * the values are already computed by the root MAX loop. Used by the
    * production Hard debug panel (TOP ROOT ACTIONS). Reset per search call.
+   *
+   * PPC-RB1: `bound` is part of the record. A root candidate searched after the
+   * MAX loop narrowed alpha may be a fail-soft BOUND, not a proved score, and
+   * without `bound` a consumer cannot tell `value = 10 (proved)` from
+   * `value = 10 (only known to be >= / <= the truth)`. The lazy searcher
+   * already publishes this field (`turnLazy.ts` `RootActionValue.bound`).
    */
-  rootValues: { action: SearchAction; value: number; mate: MateSide }[];
+  rootValues: RootActionRecord[];
   /**
    * G0.3B: maximum selective threat-extension credits per search path. When
    * > 0, the search may extend beyond the nominal depth horizon on states
@@ -739,6 +762,19 @@ export interface SearchBestActionResult {
  * only 'exact' nodes may be cached.
  */
 export type SearchBoundType = 'exact' | 'lower' | 'upper';
+
+/**
+ * PPC-RB1: one ROOT first-action record (`SearchContext.rootValues`, published
+ * as `IterativeSearchResult.rootActions`). `bound` is part of the record so a
+ * consumer can tell a proved score from a one-sided bound before treating two
+ * root actions as primary-equal.
+ */
+export type RootActionRecord = {
+  action: SearchAction;
+  value: number;
+  mate: MateSide;
+  bound: SearchBoundType;
+};
 
 export interface InternalSearchResult {
   value: number;
@@ -1241,6 +1277,9 @@ function searchActions(
   let best: InternalSearchResult | null = null;
   let bestAction: SearchAction | null = null;
   let bestOriginalIndex = -1;
+  // PPC-RB1: is the CURRENT incumbent a proved score, or only a bound? Tracked
+  // alongside `best` so the tie rules below never have to re-derive it.
+  let bestCertified = false;
   // G0.3E-R2: track equal-primary actions for the graph. At cat MAX nodes
   // in the root cat turn, collect ALL actions whose primary result exactly
   // equals the best. This is non-authoritative metadata — it does NOT
@@ -1257,6 +1296,10 @@ function searchActions(
   // actually detected. On the common case (no tie), this is zero-cost.
   let firstEqualAction: SearchAction | null = null;
   let equalActionsList: SearchAction[] | null = null;
+  // PPC-RB1: an anchor is only ever set from a CERTIFIED incumbent. A null
+  // anchor means "no proved score exists at this score yet", which is what
+  // keeps `equalActionsList` from ever being built around a `null` action.
+  // Inlined (no closure) because this runs once per expanded node.
   for (const pa of prepared) {
     const edgeCost = mateActionCost(pa.action);
     const childAlpha = unstepBoundForChild(alpha, edgeCost);
@@ -1270,17 +1313,20 @@ function searchActions(
       bound: childRes.bound,
     };
     if (ctx.capturePlan && ply === 0) {
-      ctx.rootValues.push({ action: pa.action, value: candidate.value, mate: candidate.mate });
+      ctx.rootValues.push({ action: pa.action, value: candidate.value, mate: candidate.mate, bound: candidate.bound });
     }
+    const candCertified = isCertifiedResult(candidate);
     // Selection: strict improvement, OR an exact tie broken by ORIGINAL legal
     // order. This guarantees ordering ON/OFF pick the SAME bestAction on ties.
     if (best === null) {
       best = candidate;
       bestAction = pa.action;
       bestOriginalIndex = pa.originalIndex;
+      bestCertified = candCertified;
       // G0.3E-R2: track first action (lazy — no array allocation yet).
-      if (inRootCatTurn && maximizing && candidate.completed) {
-        firstEqualAction = pa.action;
+      // PPC-RB1: the anchor must be certified (was: `candidate.completed`).
+      if (inRootCatTurn && maximizing) {
+        firstEqualAction = candCertified ? pa.action : null;
         equalActionsList = null;
       }
     } else {
@@ -1290,24 +1336,53 @@ function searchActions(
         best = candidate;
         bestAction = pa.action;
         bestOriginalIndex = pa.originalIndex;
+        bestCertified = candCertified;
         // G0.3E-R2: reset — new strict best.
-        if (inRootCatTurn && maximizing && candidate.completed) {
-          firstEqualAction = pa.action;
+        if (inRootCatTurn && maximizing) {
+          firstEqualAction = candCertified ? pa.action : null;
           equalActionsList = null;
         }
       } else if (tied) {
-        // G0.3E-R2: lazy collection — only allocate on first tie.
-        if (inRootCatTurn && maximizing && candidate.completed) {
-          if (equalActionsList === null) {
-            equalActionsList = [firstEqualAction!, pa.action];
-          } else {
-            equalActionsList.push(pa.action);
-          }
-        }
-        if (pa.originalIndex < bestOriginalIndex) {
+        if (!bestCertified && candCertified) {
+          // PPC-RB1 (certification upgrade): same primary score, but this
+          // candidate is a PROVED value while the incumbent is only a bound on
+          // it. Prefer the proved one — and re-anchor the equal-primary set on
+          // it, because nothing about the discarded bound was ever established.
           best = candidate;
           bestAction = pa.action;
           bestOriginalIndex = pa.originalIndex;
+          bestCertified = true;
+          if (inRootCatTurn && maximizing) {
+            firstEqualAction = pa.action;
+            equalActionsList = null;
+          }
+        } else if (bestCertified && !candCertified) {
+          // PPC-RB1 (rejection): an unproved candidate may neither displace a
+          // proved incumbent nor be advertised as one of its equal-primary
+          // alternates. The numbers matching is not evidence of equal strength.
+        } else if (bestCertified) {
+          // Genuine exact tie (both sides proved): the frozen G0.3E channel and
+          // the frozen stable-order replacement are unchanged.
+          if (inRootCatTurn && maximizing) {
+            if (equalActionsList === null) {
+              if (firstEqualAction !== null) equalActionsList = [firstEqualAction, pa.action];
+            } else {
+              equalActionsList.push(pa.action);
+            }
+          }
+          if (pa.originalIndex < bestOriginalIndex) {
+            best = candidate;
+            bestAction = pa.action;
+            bestOriginalIndex = pa.originalIndex;
+          }
+        } else {
+          // Both sides are only bounds: keep the frozen stable-order choice
+          // (no order-dependence is introduced), but never publish a tie set.
+          if (pa.originalIndex < bestOriginalIndex) {
+            best = candidate;
+            bestAction = pa.action;
+            bestOriginalIndex = pa.originalIndex;
+          }
         }
       }
     }
@@ -1354,6 +1429,10 @@ function searchActions(
   };
   // G0.3E-R2: record equal-primary graph node for cat MAX in root cat turn.
   // Only record if the node fully resolved (allCompleted) and there was a tie.
+  // PPC-RB1: by construction every member of `equalActionsList` was compared
+  // against a CERTIFIED (`completed && bound === 'exact'`) anchor, so the set
+  // now means "these actions are proved to score the same", not "these actions
+  // printed the same number".
   if (inRootCatTurn && maximizing && allCompleted && equalActionsList && equalActionsList.length > 1 && ctx.equalPrimaryGraph) {
     const graphKey = `${key}\x00${depthTurns}`;
     ctx.equalPrimaryGraph.set(graphKey, { state, equalActions: equalActionsList });
@@ -1848,7 +1927,7 @@ export function finalizeCompletedIterationPlan(
   iter: {
     mate: MateSide;
     builtPlan: SearchAction[];
-    rootValues: { action: SearchAction; value: number; mate: MateSide }[];
+    rootValues: RootActionRecord[];
     planBranches: Map<string, SearchAction>;
     graph: EqualPrimaryGraph;
   },
@@ -2102,7 +2181,7 @@ export interface IterativeSearchResult {
   previousCompletedMate: MateSide;
   /** F1B (HARD_SEARCH debug): root action values of the deepest COMPLETED
    *  iteration (from the actual search, no extra cost). Empty when off/none. */
-  rootActions: { action: SearchAction; value: number; mate: MateSide }[];
+  rootActions: RootActionRecord[];
   diagnostics: IterativeSearchDiagnostics;
   /** One entry per attempted depth (oldest first). */
   iterations: IterationDiagnostic[];
@@ -2155,7 +2234,7 @@ export function searchBestActionIterative(
   const iterations: IterationDiagnostic[] = [];
   let lastCompleted: { value: number; mate: MateSide; bestAction: SearchAction | null } | null = null;
   let lastCatTurnPlan: SearchAction[] = [];
-  let lastRootValues: { action: SearchAction; value: number; mate: MateSide }[] = [];
+  let lastRootValues: RootActionRecord[] = [];
   let lastPlanBranches: Map<string, SearchAction> = new Map();
   let lastCompletedGraph: EqualPrimaryGraph = new Map();
   // G0.4F-2B-1.6 (M3-lite): snapshot of the SECOND-deepest completed iteration
@@ -2164,7 +2243,7 @@ export function searchBestActionIterative(
   // second main search. Captured when a deeper depth completes.
   let prevCompleted: {
     depth: number; value: number; mate: MateSide;
-    builtPlan: SearchAction[]; rootValues: { action: SearchAction; value: number; mate: MateSide }[];
+    builtPlan: SearchAction[]; rootValues: RootActionRecord[];
     planBranches: Map<string, SearchAction>; graph: EqualPrimaryGraph;
   } | null = null;
   let completedDepth = 0;

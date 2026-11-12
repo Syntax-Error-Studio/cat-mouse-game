@@ -1,7 +1,8 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { MenuButton } from '../components/MenuButton';
 import { useGame } from '../context/GameContext';
-import { DEFAULT_CONFIG } from '../game/config';
+import { DEFAULT_CONFIG, validateGameConfig } from '../game/config';
+import type { GameConfig } from '../game/config';
 import { GameMode } from '../game/types';
 
 // 模式标识：后续扩展只需在这里加一项 + 实现对应控制器，
@@ -99,17 +100,19 @@ export function MatchSetupPage() {
   const modeId = (mode as ModeId) ?? 'single';
   const meta = MODE_META[modeId] ?? MODE_META.single;
 
+  // 旧版本编辑器“试玩”曾把自定义地图配置（butterCount=0 / customTerrain 等）写入全局 config。
+  // 这类残留会在开局时整体重置为默认对局参数（保留本页难度），所以校验也必须针对
+  // “真正会启动的那份配置”，否则按钮会被一份根本不会使用的配置禁用。
+  const hasEditorResidue = config.butterCount === 0 || Boolean(config.customTerrain);
+  const matchConfig: GameConfig = hasEditorResidue
+    ? { ...DEFAULT_CONFIG, gameMode: meta.gameMode ?? config.gameMode, difficulty: config.difficulty }
+    : { ...config, gameMode: meta.gameMode ?? config.gameMode };
+  const validation = validateGameConfig(matchConfig);
+
   const startMatch = () => {
     if (!meta.gameMode) return;
-    // 旧版本编辑器“试玩”曾把自定义地图配置（butterCount=0 / customTerrain 等）写入全局 config，
-    // 若检测到此类残留则整体重置为默认对局参数（保留本页难度），
-    // 保证本地模式开局有正常的随机地图，而不是空棋盘或编辑器地图。
-    const hasEditorResidue = config.butterCount === 0 || Boolean(config.customTerrain);
-    if (hasEditorResidue) {
-      setFullConfig({ ...DEFAULT_CONFIG, gameMode: meta.gameMode, difficulty: config.difficulty });
-    } else {
-      setFullConfig({ ...config, gameMode: meta.gameMode });
-    }
+    if (!validation.ok) return;
+    setFullConfig(matchConfig);
     navigate('/game');
   };
 
@@ -174,18 +177,38 @@ export function MatchSetupPage() {
           <Stepper label="箱子数量" value={config.boxCount} min={0} max={50} onChange={v => updateConfigField('boxCount', v)} />
           <Stepper label="黄油数量" value={config.butterCount} min={1} max={10} onChange={v => updateConfigField('butterCount', v)} />
 
+          {!validation.ok && (
+            <div style={{
+              backgroundColor: '#FEF2F2',
+              border: '1px solid #EF4444',
+              borderRadius: '0.5rem',
+              padding: '0.75rem 1rem',
+              color: '#991B1B',
+              fontSize: '0.85rem',
+              lineHeight: 1.5,
+            }}>
+              <strong>当前配置无法开始对局，请返回设置页调整：</strong>
+              <ul style={{ margin: '0.4rem 0 0', paddingLeft: '1.2rem' }}>
+                {validation.issues.map((issue) => (
+                  <li key={issue.message}>{issue.message}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
           <button
             onClick={startMatch}
+            disabled={!validation.ok}
             style={{
               marginTop: '0.4rem',
               padding: '0.8rem 2rem',
               borderRadius: '2rem',
               border: '3px solid #3E2723',
-              backgroundColor: '#66BB6A',
+              backgroundColor: validation.ok ? '#66BB6A' : '#BDBDBD',
               color: '#FFF8E1',
               fontSize: '1.3rem',
               fontWeight: 'bold',
-              cursor: 'pointer',
+              cursor: validation.ok ? 'pointer' : 'not-allowed',
               fontFamily: 'inherit',
               boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
             }}

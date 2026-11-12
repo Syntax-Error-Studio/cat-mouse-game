@@ -1,6 +1,6 @@
 import type { GameEngineState } from '../engine';
 import type { RuleSet, SearchAction } from './searchTypes';
-import { searchBestActionIterative, type IterativeSearchResult, type MateSide } from './expectiminimax';
+import { searchBestActionIterative, type IterativeSearchResult, type MateSide, type SearchBoundType } from './expectiminimax';
 import { evaluateForCat, evaluateForCatDetailed } from './evaluation';
 import {
   runRefutationSidecar, shouldRunSidecar, runBoundedProbe,
@@ -102,7 +102,22 @@ export interface HardSearchDebug {
   rootValue: number;
   mate: MateSide;
   plan: SearchAction[];
-  rootActions: { action: SearchAction; value: number; mate: MateSide }[];
+  /** PPC-HV-1A P1-1: full root records (assigned straight from
+   *  `IterativeSearchResult.rootActions`, so `bound` is present for every real
+   *  production turn). It was previously hidden behind a narrower declared
+   *  type, which is why the exported text could not show it. OPTIONAL so a
+   *  pre-1A record parsed from an older log still type-checks; the export shows
+   *  a missing bound as `unknown`, never as `exact`. */
+  rootActions: { action: SearchAction; value: number; mate: MateSide; bound?: SearchBoundType }[];
+  /** PPC-HV-1A P1-2: the planner's real abort cause for this turn (log-only,
+   *  never read by the search). OPTIONAL — pre-1A records show `unknown`. */
+  deadlineFired?: boolean;
+  budgetFired?: boolean;
+  /** PPC-HV-1A P1-2: nominal main-search wall budget (ms) this turn was given. */
+  budgetMs?: number;
+  /** PPC-HV-1A P0-2: what this planner call actually produced (same vocabulary
+   *  as `HardProductionDiag.planStatus`). Log-only. */
+  planStatus?: 'planned' | 'empty_plan' | 'search_incomplete';
   evalRoot: HardSearchEvalRoot;
   /** G0.3B: threat-aware search diagnostics. */
   extensionsTriggered: number;
@@ -217,6 +232,10 @@ export function planHardCatTurn(
     useTT: true,
     useAlphaBeta: true,
     useMoveOrdering: true,
+    // G0.3B FINAL: threat-aware ordering judged EXPERIMENTAL (真人 root 无收益证明),
+    // so production keeps pure D3 ordering. `searchBestActionIterative` defaults an
+    // omitted flag to `?? true`, so the OFF ruling only holds when set explicitly.
+    useThreatOrdering: false,
     leafEvaluator: opts.leafEvaluator ?? evaluateForCat,
     deadlineMs,
     now,
@@ -363,10 +382,17 @@ export function planHardCatTurn(
     attemptedDepth: search.attemptedDepth,
     nodes: search.diagnostics.totalNodes,
     elapsedMs,
+    // PPC-HV-1A P1-2: what the search itself reported. `budgetMs` is the budget
+    // THIS planner call was given (not a constant), so `elapsedMs > budgetMs` is
+    // a measured over-nominal spend rather than an assumption.
+    deadlineFired: search.deadlineExceeded,
+    budgetFired: search.budgetExhausted,
+    budgetMs: opts.timeBudgetMs,
     rootValue: search.value,
     mate: search.mate,
     plan,
     rootActions: search.rootActions,
+    planStatus: search.completed ? (plan.length > 0 ? 'planned' : 'empty_plan') : 'search_incomplete',
     evalRoot: buildEvalRoot(state),
     extensionsTriggered: search.diagnostics.extensionsTriggered,
     extendedNodes: search.diagnostics.extendedNodes,

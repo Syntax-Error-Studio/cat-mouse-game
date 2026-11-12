@@ -1,11 +1,34 @@
 import type { GameEngineState } from '../engine';
 import { GamePhase, PieceType } from '../types';
 import type { RuleSet, SearchAction } from './searchTypes';
-import { simulateSearchAction } from './simulator';
+import { simulateSearchAction, isNoOpAction } from './simulator';
 import { stateKey } from './transposition';
 import { generateLegalSearchActions } from './legalActions';
 import { type SearchContext } from './expectiminimax';
 import { evaluateForCat } from './evaluation';
+
+/**
+ * PPC-FLT-FIX-1: the leaf evaluator the searching context ACTUALLY used.
+ * Production Hard injects H1 (`evaluateCorrectedHoleForCat`); a context without
+ * an injected evaluator keeps the Baseline. This is read-only — it never feeds
+ * back into the search value.
+ */
+function activeLeafEvaluator(ctx: SearchContext): (s: GameEngineState) => number {
+  return ctx.leafEvaluator ?? evaluateForCat;
+}
+
+/**
+ * PPC-FLT-FIX-1: has the SAME wall-clock deadline authority the search used
+ * already passed? Postprocessing must not start a second time window; it only
+ * observes `ctx.deadlineMs` with `ctx.now` and, when time is gone, fails closed
+ * so the caller keeps the plan the search itself produced. No deadline
+ * configured → never exceeded (identical to the search's own gate).
+ */
+export function isSearchDeadlineExceeded(ctx: SearchContext): boolean {
+  if (ctx.deadlineMs === undefined) return false;
+  const clock = ctx.now ?? (() => (typeof performance !== 'undefined' ? performance.now() : Date.now()));
+  return clock() >= ctx.deadlineMs;
+}
 
 /**
  * ============================================================================
@@ -73,17 +96,14 @@ export function countReversals(plan: SearchAction[]): number {
   return count;
 }
 
-/** Standalone count of cat-position revisits (for tests). */
-export function countRevisits(root: GameEngineState, plan: SearchAction[], rules: RuleSet): number {
-  const positions: string[] = [`${root.catPosition.r},${root.catPosition.c}`];
-  let cur = root;
-  for (const a of plan) {
-    const t = simulateSearchAction(cur, a, rules);
-    if (t.kind !== 'deterministic') break;
-    cur = t.state;
-    positions.push(`${cur.catPosition.r},${cur.catPosition.c}`);
-    if (cur.phase !== GamePhase.Playing || cur.currentPlayer !== PieceType.Cat) break;
-  }
+/** Append the cat's cell only when it actually changed (spatial movement). */
+function pushCatCellIfChanged(positions: string[], state: GameEngineState): void {
+  const cell = `${state.catPosition.r},${state.catPosition.c}`;
+  if (cell !== positions[positions.length - 1]) positions.push(cell);
+}
+
+/** Number of repeated cells in a spatial sequence. */
+function countDuplicateCells(positions: string[]): number {
   let revisits = 0;
   const seen = new Set<string>();
   for (const p of positions) {
@@ -91,6 +111,37 @@ export function countRevisits(root: GameEngineState, plan: SearchAction[], rules
     seen.add(p);
   }
   return revisits;
+}
+
+/**
+ * Standalone count of cat-position revisits (for tests).
+ *
+ * PPC-FLT-FIX-1R: shares `buildCandidate`'s spatial semantics exactly — only a
+ * real cat-position change is recorded (a zero-cost `catPlaceTrap` is not a
+ * revisit, a box push that moves the cat is), and a final CAT→MOUSE CHANCE
+ * boundary contributes its (outcome-agreed) final cell instead of being
+ * skipped. The action sequence itself is never altered.
+ */
+export function countRevisits(root: GameEngineState, plan: SearchAction[], rules: RuleSet): number {
+  const positions: string[] = [`${root.catPosition.r},${root.catPosition.c}`];
+  let cur = root;
+  for (const a of plan) {
+    const t = simulateSearchAction(cur, a, rules);
+    if (t.kind === 'chance') {
+      const cells = new Set(t.outcomes.map((o) => `${o.state.catPosition.r},${o.state.catPosition.c}`));
+      // No single spatial sequence to count if outcomes disagree; the candidate
+      // builder rejects that case, so the helper stops rather than inventing one.
+      if (cells.size === 1) {
+        const cell = [...cells][0];
+        if (cell !== positions[positions.length - 1]) positions.push(cell);
+      }
+      break;
+    }
+    cur = t.state;
+    pushCatCellIfChanged(positions, cur);
+    if (cur.phase !== GamePhase.Playing || cur.currentPlayer !== PieceType.Cat) break;
+  }
+  return countDuplicateCells(positions);
 }
 
 // ---------------------------------------------------------------------------
@@ -194,10 +245,17 @@ export function buildPlanForFirstAction(
   maxLength = 8,
 ): SearchAction[] {
   const plan: SearchAction[] = [];
+  // Reject a non-cat / no-op action outright. A no-op would otherwise "walk"
+  // without consuming the cat's turn and could be certified as a complete plan.
+  if (firstAction.type !== 'catStep' && firstAction.type !== 'catPlaceTrap') return plan;
+  if (isNoOpAction(root, firstAction, ctx.rules)) return plan;
   const trans = simulateSearchAction(root, firstAction, ctx.rules);
+  plan.push(firstAction);
+  // FIX-2: a CAT→MOUSE ghost/debt CHANCE boundary is a real cat action, not a
+  // truncation. Keep it in the plan and let completeness certification decide.
+  if (trans.kind === 'chance') return plan;
   if (trans.kind !== 'deterministic') return plan;
   let cur = trans.state;
-  plan.push(firstAction);
   if (cur.phase !== GamePhase.Playing || cur.currentPlayer !== PieceType.Cat) return plan;
 
   const seen = new Set<string>([stateKey(root)]);
@@ -208,13 +266,28 @@ export function buildPlanForFirstAction(
     seen.add(key);
     const action = ctx.planBranches.get(key);
     if (!action) break;
+    if (action.type !== 'catStep' && action.type !== 'catPlaceTrap') break;
+    // An unexplained no-op edge is not a usable branch: stop and let the
+    // completeness verdict reject the (now shorter) plan.
+    if (isNoOpAction(cur, action, ctx.rules)) break;
     plan.push(action);
     const t = simulateSearchAction(cur, action, ctx.rules);
+    if (t.kind === 'chance') break;
     if (t.kind !== 'deterministic') break;
     cur = t.state;
   }
   return plan;
 }
+
+/** FIX-1: only a plan that provably completed the full cat turn is admissible. */
+function isCompleteVerdict(verdict: PlanCompletionVerdict): boolean {
+  return verdict.kind === 'COMPLETE_TURN_BOUNDARY'
+    || verdict.kind === 'COMPLETE_CHANCE_BOUNDARY'
+    || verdict.kind === 'GAME_ENDED'
+    || verdict.kind === 'NO_LEGAL_ACTIONS';
+}
+
+const CHANCE_WEIGHT_SUM_TOLERANCE = 1e-6;
 
 export function buildCandidate(
   root: GameEngineState,
@@ -222,28 +295,78 @@ export function buildCandidate(
   ctx: SearchContext,
   originalIndex: number,
 ): CandidatePlan | null {
+  // FIX-2: postprocessing reuses the search's OWN deadline authority; once it
+  // is gone the override is abandoned (caller keeps the search's plan).
+  if (isSearchDeadlineExceeded(ctx)) return null;
   const plan = buildPlanForFirstAction(root, firstAction, ctx);
   if (plan.length === 0) return null;
+
+  // FIX-1: `plan.length > 0` is NOT completeness. A missing successor branch
+  // (TT hit / unexpanded node) yields a short plan that would otherwise win the
+  // secondary comparison by having fewer moves.
+  const completeness = planFullTurnCompleteness(root, plan, ctx.rules);
+  if (!isCompleteVerdict(completeness)) return null;
+
+  const evaluate = activeLeafEvaluator(ctx);
   const positions: string[] = [`${root.catPosition.r},${root.catPosition.c}`];
   let cur = root;
   let reversalCount = 0;
+  let boundaryEval: number | null = null;
+
   for (let i = 0; i < plan.length; i++) {
     const a = plan[i];
     if (i > 0 && isImmediateReversal(plan[i - 1], a)) reversalCount++;
     const t = simulateSearchAction(cur, a, ctx.rules);
-    if (t.kind !== 'deterministic') break;
+    if (t.kind === 'chance') {
+      // Completeness already certified this as the FINAL cat action; anything
+      // else would be a mid-turn CHANCE for a cat action and is not admissible.
+      if (i !== plan.length - 1 || t.outcomes.length === 0) return null;
+      if (isSearchDeadlineExceeded(ctx)) return null;
+      // The ghost/debt boundary never moves the cat. All outcomes must agree on
+      // the final cell, otherwise there is no single spatial sequence to score.
+      const outcomeCells = new Set(t.outcomes.map((o) => `${o.state.catPosition.r},${o.state.catPosition.c}`));
+      if (outcomeCells.size !== 1) return null;
+      const finalCell = [...outcomeCells][0];
+      if (finalCell !== positions[positions.length - 1]) positions.push(finalCell);
+      // FIX-2: honest expectation over ALL outcomes — never outcomes[0], never
+      // an UNKNOWN→0 fallback. Weights must be a valid simulator distribution.
+      // PPC-FLT-FIX-1R: the deadline is re-checked around EVERY outcome leaf
+      // evaluation. A single synchronous leaf call cannot be preempted, but once
+      // time has run out the remaining outcomes are NOT evaluated, and no
+      // partially accumulated expectation is ever committed (the function
+      // returns null before assigning `boundaryEval`).
+      let weightSum = 0;
+      let weighted = 0;
+      for (const o of t.outcomes) {
+        if (isSearchDeadlineExceeded(ctx)) return null;
+        if (!o.state || !Number.isFinite(o.weight) || o.weight < 0) return null;
+        weightSum += o.weight;
+        weighted += o.weight * evaluate(o.state);
+        if (isSearchDeadlineExceeded(ctx)) return null;
+      }
+      if (!Number.isFinite(weightSum) || Math.abs(weightSum - 1) > CHANCE_WEIGHT_SUM_TOLERANCE) return null;
+      if (!Number.isFinite(weighted)) return null;
+      boundaryEval = weighted;
+      break;
+    }
+    if (t.kind !== 'deterministic') return null;
     cur = t.state;
-    positions.push(`${cur.catPosition.r},${cur.catPosition.c}`);
+    // FIX-3: only a real cat-position change is a movement. A zero-cost trap
+    // (and any other stationary action) must not be counted as a revisit.
+    pushCatCellIfChanged(positions, cur);
     if (cur.phase !== GamePhase.Playing || cur.currentPlayer !== PieceType.Cat) break;
   }
-  let revisitCount = 0;
-  const seen = new Set<string>();
-  for (const p of positions) {
-    if (seen.has(p)) revisitCount++;
-    seen.add(p);
+
+  if (boundaryEval === null) {
+    // Deterministic completion: turn boundary / game over / no legal actions.
+    // The terminal state, when the game ended, is the ACTUAL final state.
+    boundaryEval = evaluate(cur);
   }
+  if (isSearchDeadlineExceeded(ctx)) return null;
+  if (!Number.isFinite(boundaryEval)) return null;
+
+  const revisitCount = countDuplicateCells(positions);
   const uniqueProgress = new Set(positions).size - 1;
-  const boundaryEval = evaluateForCat(cur);
   return {
     firstAction,
     firstActionKey: dirKey(firstAction),
