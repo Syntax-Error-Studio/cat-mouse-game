@@ -1,0 +1,276 @@
+{
+  "round": "PPC-P2-PREPARED-TRANSITION-01",
+  "project": "Project Perfect Cat",
+  "date": "2026-11-14",
+  "branch": "ppc/p1-id-state-identity-fix",
+  "head": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+  "headUnchanged": true,
+  "committed": false,
+  "pushed": false,
+  "merged": false,
+  "note": "Gate identifiers follow this round's own numbering. `criterion` restates what was checked; the authoritative wording is the task book.",
+
+  "gates": [
+    {
+      "id": "PT-0",
+      "criterion": "Baseline identity: HEAD unchanged, three P1 archives byte-identical to the ones named in the task book, 26 P1 source files match the SEAL-01 manifest.",
+      "status": "PASS",
+      "evidence": ["SOURCE_MANIFEST.json", "REPORT.md §1"]
+    },
+    {
+      "id": "PT-1",
+      "criterion": "Duplicate successor simulation reproduced and frozen BEFORE any production change, with per-call identity and per-call output equality.",
+      "status": "PASS",
+      "evidence": ["BASELINE_DUPLICATE_SIMULATION.json", "probe/duplicateWitness.test.ts"],
+      "measured": {
+        "ruleCalls": 13960,
+        "distinctGroups": 6253,
+        "groupsExecutedMoreThanOnce": 5474,
+        "redundantExecutions": 7707,
+        "redundantPct": 55.2,
+        "groupsWhoseRepeatsDisagreed": 0,
+        "rootSimulationsPerLegalAction": "3 (empty-check + legality + prepared)"
+      }
+    },
+    {
+      "id": "PT-2",
+      "criterion": "Minimal production implementation: one simulation per candidate action per node, single candidate-enumeration source, no downstream change.",
+      "status": "PASS",
+      "evidence": ["IMPLEMENTATION_DESIGN.md", "CALL_GRAPH.md", "src/game/ai/preparedActions.ts", "CANDIDATE_DUPLICATE_SIMULATION.json"],
+      "measured": {
+        "productionFilesChanged": 3,
+        "productionFilesAdded": 1,
+        "testFilesAdded": 1,
+        "ruleCallsAfter": 7511,
+        "redundantAfter": 1258,
+        "distinctGroupsAfter": 6253,
+        "rootSimulationsPerLegalActionAfter": 1,
+        "searchOnlyRuleCallsBefore": 13586,
+        "searchOnlyRuleCallsAfter": 7137,
+        "postSearchPlanExtractionCallsBefore": 374,
+        "postSearchPlanExtractionCallsAfter": 374
+      }
+    },
+    {
+      "id": "PT-3",
+      "criterion": "Rule transition parity: every prepared transition equals an independent fresh simulation (kind, stateKey, full state JSON).",
+      "status": "PASS",
+      "evidence": ["TRANSITION_SEMANTIC_RESULTS.json"],
+      "measured": { "actions": 91, "deterministic": 91, "mismatches": 0, "fullStateMismatches": 0 }
+    },
+    {
+      "id": "PT-4",
+      "criterion": "CHANCE contract: outcome count and order from the RuleSet enumeration, uniform weights summing to 1, one pending ghost per outcome, deferred materialisation when occupied, auto-pickup, no RNG sampling.",
+      "status": "PASS",
+      "evidence": ["TRANSITION_SEMANTIC_RESULTS.json", "SPECIAL_RULE_REPLAY_RESULTS.json checks 10-14", "_raw/rng_audit.json"],
+      "measured": { "rngDrawsDuringSearch": 0, "rngRestoredNative": true }
+    },
+    {
+      "id": "PT-5",
+      "criterion": "Search mathematics unchanged: mate propagation, alpha-beta, transposition-table admission, stateKey, plan upper bound.",
+      "status": "PASS",
+      "evidence": ["FIXED_D1_PARITY_RESULTS.json", "src/game/ai/__tests__/preparedTransition.test.ts"]
+    },
+    {
+      "id": "PT-6",
+      "criterion": "Action ordering, originalIndex mapping, tunnel-exit handling, empty batch on terminal phases, trap and skill preconditions preserved.",
+      "status": "PASS",
+      "evidence": ["src/game/ai/__tests__/preparedTransition.test.ts"]
+    },
+    {
+      "id": "PT-7",
+      "criterion": "20 special-rule paths replayed on the real engine.",
+      "status": "PASS",
+      "evidence": ["SPECIAL_RULE_REPLAY_RESULTS.json"],
+      "measured": { "passed": 20, "total": 20 }
+    },
+    {
+      "id": "PT-8",
+      "criterion": "catBaseMoves 4/6/9, irregular Void/Wall map, trap/butter terrain identity.",
+      "status": "PASS",
+      "evidence": ["SPECIAL_RULE_REPLAY_RESULTS.json checks 18-20", "src/game/ai/__tests__/preparedTransition.test.ts"]
+    },
+    {
+      "id": "PT-9",
+      "criterion": "Real-time behaviour at 100 ms main search / 150 ms whole turn (diagnostic, not authoritative).",
+      "status": "PASS",
+      "evidence": ["DEADLINE_INTEGRATION_RESULTS.json"],
+      "measured": { "samples": 5, "authority": "DIAGNOSTIC_ONLY" },
+      "caveat": "Single sampling is not reproducible at a 100 ms cliff. Two passes disagreed, so the gate was repeated 5x and the variance is reported instead of one flattering table."
+    },
+    {
+      "id": "PT-10",
+      "criterion": "Does the candidate search more inside the same wall budget?",
+      "status": "PASS",
+      "evidence": ["DEADLINE_INTEGRATION_RESULTS.json"],
+      "measured": {
+        "moreNodesInEveryRun": true,
+        "totalNodeRatioRange": [1.081318, 1.16993],
+        "perRootMedianNodeRatioRange": [1.1359, 1.2155],
+        "medianTurnWallUnchanged": true,
+        "noRootEverLostAPlan": true,
+        "noNewFallbackEver": true,
+        "planOrDepthChangedRootsPerRun": [1, 2, 3, 1, 0],
+        "unionOfChangedRoots": ["G1T1", "G1T3", "G2T6"]
+      },
+      "verdictDetail": "MORE_SEARCH_WITHIN_100MS = YES. BETTER_VERIFIED_DECISION = NONE: which roots change plan flips run to run, and no adversarial verification supports any changed plan."
+    },
+    {
+      "id": "PT-11",
+      "criterion": "A/A calibration: 20 fresh repetitions, both arms identical source, fully serial.",
+      "status": "PASS",
+      "evidence": ["AA_CALIBRATION_RESULTS.json"],
+      "measured": { "repetitions": 20, "geometricMeanRatio": 0.9954525748434875, "ci95": [0.9879607827318281, 1.0030011778630548] }
+    },
+    {
+      "id": "PT-12",
+      "criterion": "A/B: 20 fresh repetitions, A = frozen baseline arm, B = candidate, one Node process per arm per repetition, strictly serial.",
+      "status": "PASS",
+      "evidence": ["AB_PERFORMANCE_RESULTS.json"],
+      "measured": {
+        "repetitions": 20,
+        "geometricMeanRatio": 0.9149602414466868,
+        "ci95": [0.9026941658332639, 0.9273929921275345],
+        "speedupPct": 8.503975855331324,
+        "rootsSlowerThanBaseline": 0,
+        "rootsFasterThanBaseline": 24
+      }
+    },
+    {
+      "id": "PT-13",
+      "criterion": "Pre-registered criteria applied without adjustment.",
+      "status": "PASS",
+      "evidence": ["PERFORMANCE_VERDICT.json"],
+      "measured": {
+        "AA_CALIBRATION": "PASS",
+        "CORRECTNESS_GATE": "PASS",
+        "NO_REGRESSION_GATE": "PASS",
+        "POSITIVE_SPEEDUP_EVIDENCE": "YES",
+        "STRONG_SPEEDUP_EVIDENCE": "YES"
+      },
+      "thresholdsUnchanged": true
+    },
+    {
+      "id": "PT-14",
+      "criterion": "Full serial regression, first pass, no rerun-to-green.",
+      "status": "PASS",
+      "evidence": ["REGRESSION_RESULTS.json", "logs/full_regression.log"],
+      "measured": {
+        "command": "npx vitest run --maxWorkers=1 --no-file-parallelism",
+        "files": { "passed": 83, "total": 83 },
+        "tests": { "passed": 1041, "skipped": 4, "total": 1045 },
+        "exitCode": 0,
+        "durationSeconds": 1621.1,
+        "logBytes": 291726,
+        "skippedArePreExisting": true,
+        "skippedIdentity": "boundedPlanRefutation.test.ts > G0.3W-4..7 (ctx.skip(), missing corpus)",
+        "testCountArithmetic": "CHECKPOINT-01 1000 -> OPENING-STACK-01 1026 (+1 file/+26) -> OPENING-SEAL-01 1027 (+1) -> this round 1045 (+1 file/+18)"
+      }
+    },
+    {
+      "id": "PT-15",
+      "criterion": "TypeScript build and production bundle.",
+      "status": "PASS",
+      "evidence": ["logs/tsc.log", "logs/build.log"],
+      "measured": { "tsc": "exit 0", "vite": "exit 0, 97 modules, 7.29 s, 2716.73 kB", "modulesBefore": 96 }
+    },
+    {
+      "id": "PT-16",
+      "criterion": "New candidate archived separately, restorable outside the repository, three P1 archives untouched.",
+      "status": "PASS",
+      "evidence": ["F:/ppc-checkpoints/PPC-P2-PREPARED-TRANSITION-01-candidate.tar.gz", "ARCHIVE_SHA256.txt", "RESTORE.md", "RESTORE_VERIFICATION.json"],
+      "measured": { "restoreVerdict": "PASS", "p1ArchivesModified": false }
+    },
+    {
+      "id": "PT-17",
+      "criterion": "Scope discipline: no rule, H1, search-math, TT, stateKey, plan-bound, 100/150 ms constant, sidecar, guard or mouse-AI change; no commit/push/merge; no second optimisation.",
+      "status": "PASS",
+      "evidence": ["REPORT.md §9", "SOURCE_MANIFEST.json", "IMPLEMENTATION_DESIGN.md"],
+      "measured": {
+        "gameRulesChanged": false,
+        "h1WeightsChanged": false,
+        "searchMathChanged": false,
+        "ttSemanticsChanged": false,
+        "stateKeyChanged": false,
+        "planBoundChanged": false,
+        "budgetConstantsChanged": false,
+        "sidecarChanged": false,
+        "progressGuardChanged": false,
+        "mouseAiChanged": false,
+        "secondOptimisationDone": false
+      }
+    }
+  ],
+
+  "gateSummary": {
+    "pass": 18,
+    "fail": 0,
+    "blocked": 0,
+    "notPerformed": 0
+  },
+
+  "absoluteDeadlineGate": "BLOCKED",
+  "absoluteDeadlineNote": "The 8.50 % figure is a relative speedup on a fixed workload. It is NOT evidence that a whole cat turn fits in 150 ms on any machine. The M1/M2 distribution gates are a narrower measurement domain and are not substituted here.",
+
+  "recommendation": "ADOPT_AS_P2_CANDIDATE",
+  "recommendationRationale": [
+    "Three production files, one of them new; downstream ordering / TT / alpha-beta / tie-break / equal-primary graph / plan extraction untouched.",
+    "24/24 frozen roots field-by-field identical to the frozen baseline at fixed D1; 91/91 transitions identical to an independent simulation; 20/20 special-rule paths pass.",
+    "8.50 % faster on a fixed workload with a paired 95 % CI of [0.9027, 0.9274] against an A/A noise floor of +-0.8 %; 0/24 roots slower.",
+    "Full regression 83/83 files, 1041 passed, 4 pre-existing skips, exit 0; tsc and vite both exit 0.",
+    "More nodes explored within the same 100 ms in 5/5 diagnostic runs, with no root ever losing a completed plan and no new fallback."
+  ],
+
+  "notClaimed": [
+    "Physical 150 ms compliance (ABSOLUTE_DEADLINE_GATE stays BLOCKED).",
+    "Stronger play. No adversarial verification supports any changed plan; G1T3 moving depth 1 -> depth 2 and repricing +32.97 -> -536.11 shows D1 is too shallow to judge, not that the new plan is better.",
+    "Removal of DAG re-expansion duplication (1258 redundant calls remain, 16.8 % of the new total). That needs TT/graph-search work and is out of scope this round."
+  ],
+
+  "openQuestionsForArchitectureReview": [
+    "Free trap placement + unconditional trapControl: it now surfaces in more roots because the candidate finishes depth 1 where the baseline fell back. Add a temporal term?",
+    "Depth-1 defensive blind spot: 23/24 roots still only reach depth 1 at 100 ms, so a one-turn mouse tactic (ghost butter bait) stays outside the horizon. Add an explicit mouse-oil + ghost threat term at D1?",
+    "generateBoxPositions samples only the inner ring, so boxes never reach the outer ring (24/24 real turns had boxesAdjacentToCorners=0). This is a map-generation defect, not a search defect.",
+    "Plan stability vs time budget needs its own observable. One depth step moved G1T3's value by 569 points, so single-episode plan comparison cannot rank configurations."
+  ],
+
+  "selfDisclosedProcessIssues": [
+    "The first version of the PT-9/PT-10 section was written from a single sample and was wrong; a second identical run contradicted it. Both samples were kept and 3 more added.",
+    "The first A/A driver run was cut off by the sandbox with a stale lock file; the 40 shards were preserved as an independent replicate and A/A was rerun from scratch.",
+    "duplicate_witness_pre.json was regenerated once before any production edit (to add the searchOnly subset); both captures predate the fix by mtime.",
+    "A whitespace-only edit to expectiminimax.ts during the regression run was reverted; final sha256 matches the manifest exactly.",
+    "process.resourceUsage().maxRSS is always 0 on Windows, so only RSS is recorded, never peak RSS.",
+    "parseRegression.mjs first failed to match the vitest summary because of ANSI colour codes and reported NOT_PERFORMED rather than guessing; null counts are now explicitly documented as 'reporter omitted, therefore 0'."
+  ],
+
+  "deliverables": {
+    "report": "REPORT.md",
+    "callGraph": "CALL_GRAPH.md",
+    "implementation": "IMPLEMENTATION_DESIGN.md",
+    "costAttribution": "RUNTIME_COST_ATTRIBUTION.md",
+    "resourceSafety": "RESOURCE_SAFETY_LOG.md",
+    "restore": "RESTORE.md",
+    "manifests": ["SOURCE_MANIFEST.json", "BASELINE_MANIFEST.json", "CANDIDATE_MANIFEST.json"],
+    "results": [
+      "BASELINE_DUPLICATE_SIMULATION.json",
+      "CANDIDATE_DUPLICATE_SIMULATION.json",
+      "TRANSITION_SEMANTIC_RESULTS.json",
+      "FIXED_D1_PARITY_RESULTS.json",
+      "SPECIAL_RULE_REPLAY_RESULTS.json",
+      "DEADLINE_INTEGRATION_RESULTS.json",
+      "AA_CALIBRATION_RESULTS.json",
+      "AB_PERFORMANCE_RESULTS.json",
+      "PERFORMANCE_VERDICT.json",
+      "REGRESSION_RESULTS.json",
+      "RESTORE_VERIFICATION.json",
+      "FINAL_DECISION.json"
+    ],
+    "archive": {
+      "path": "F:/ppc-checkpoints/PPC-P2-PREPARED-TRANSITION-01-candidate.tar.gz",
+      "sha256File": "ARCHIVE_SHA256.txt"
+    },
+    "logs": ["logs/full_regression.log", "logs/tsc.log", "logs/build.log", "logs/bench_aa.log", "logs/bench_ab.log"]
+  },
+
+  "processNote": "Stopped after this round. No H1, sidecar or tactical optimisation was started. Handing the evidence to the architecture review for the PASS/FAIL decision and the next step."
+}

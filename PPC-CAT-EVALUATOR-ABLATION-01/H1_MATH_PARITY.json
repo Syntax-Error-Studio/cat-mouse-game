@@ -1,0 +1,295 @@
+{
+  "artifactId": "H1_MATH_PARITY",
+  "round": "PPC-CAT-EVALUATOR-ABLATION-01",
+  "phase": 2,
+  "generatedAt": "2026-11-15T12:27:30.874Z",
+  "generatedBy": "PPC-CAT-EVALUATOR-ABLATION-01/probe/p2_parity.test.ts",
+  "head": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+  "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+  "productionSourceChanged": false,
+  "definition": {
+    "E1": "evaluateForCat(state) = evaluateForCatDetailed(state).total",
+    "H1": "evaluateCorrectedHoleForCat(state) = correctedHoleEvalTotal(evaluateForCatDetailed(state), boardSize) = (total - oldHoleControl) + correctedHoleControlValue",
+    "noExtraFeature": "H1 calls the SAME evaluateForCatDetailed once; only the both-reachable holeControl sign is flipped. No ghost/box/trap/tunnel/history/ValueNet term; no extra BFS."
+  },
+  "corpus": {
+    "path": "PPC-CAT-EVALUATOR-ABLATION-01/_raw/eval_corpus.json",
+    "corpusSize": 1517,
+    "bothReachableCount": 1517,
+    "singleSidedCount": 0,
+    "corpusKeysSha256": "a874e5156da21f881bc0a3b91944a959db42b8b8e4d413ae00a931bee2a17f91",
+    "collectionCap": 8000000,
+    "perRoot": {
+      "G6T1": {
+        "nodes": 324,
+        "completed": true,
+        "uniqueLeaves": 236
+      },
+      "G6T2": {
+        "nodes": 45,
+        "completed": true,
+        "uniqueLeaves": 22
+      },
+      "G6T3": {
+        "nodes": 44,
+        "completed": true,
+        "uniqueLeaves": 22
+      },
+      "G5T1": {
+        "nodes": 279,
+        "completed": true,
+        "uniqueLeaves": 122
+      },
+      "G5T2": {
+        "nodes": 62,
+        "completed": true,
+        "uniqueLeaves": 49
+      },
+      "G5T3": {
+        "nodes": 60,
+        "completed": true,
+        "uniqueLeaves": 33
+      },
+      "G5T4": {
+        "nodes": 40,
+        "completed": true,
+        "uniqueLeaves": 25
+      },
+      "G2T1": {
+        "nodes": 329,
+        "completed": true,
+        "uniqueLeaves": 234
+      },
+      "G2T2": {
+        "nodes": 61,
+        "completed": true,
+        "uniqueLeaves": 20
+      },
+      "G2T3": {
+        "nodes": 57,
+        "completed": true,
+        "uniqueLeaves": 35
+      },
+      "G2T4": {
+        "nodes": 46,
+        "completed": true,
+        "uniqueLeaves": 35
+      },
+      "G2T5": {
+        "nodes": 71,
+        "completed": true,
+        "uniqueLeaves": 59
+      },
+      "G2T6": {
+        "nodes": 41,
+        "completed": true,
+        "uniqueLeaves": 23
+      },
+      "G2T7": {
+        "nodes": 71,
+        "completed": true,
+        "uniqueLeaves": 24
+      },
+      "G2T8": {
+        "nodes": 87,
+        "completed": true,
+        "uniqueLeaves": 96
+      },
+      "G1T1": {
+        "nodes": 304,
+        "completed": true,
+        "uniqueLeaves": 188
+      },
+      "G1T2": {
+        "nodes": 70,
+        "completed": true,
+        "uniqueLeaves": 39
+      },
+      "G1T3": {
+        "nodes": 69,
+        "completed": true,
+        "uniqueLeaves": 19
+      },
+      "G1T4": {
+        "nodes": 55,
+        "completed": true,
+        "uniqueLeaves": 10
+      },
+      "G1T5": {
+        "nodes": 27,
+        "completed": true,
+        "uniqueLeaves": 32
+      },
+      "G1T6": {
+        "nodes": 78,
+        "completed": true,
+        "uniqueLeaves": 56
+      },
+      "G1T7": {
+        "nodes": 54,
+        "completed": true,
+        "uniqueLeaves": 46
+      },
+      "G1T8": {
+        "nodes": 48,
+        "completed": true,
+        "uniqueLeaves": 35
+      },
+      "G1T9": {
+        "nodes": 65,
+        "completed": true,
+        "uniqueLeaves": 33
+      }
+    }
+  },
+  "identity": {
+    "implementationExact": {
+      "statement": "H1 === (E1 - holeControl_E1) + correctedHoleControlValue(bd,bs)",
+      "maxAbsError": 0,
+      "bitExact": true
+    },
+    "signFlip": {
+      "statement": "both-reachable: correctedHoleControlValue === -holeControl_E1 ; single-sided: === holeControl_E1",
+      "mismatches": 0,
+      "bitExact": true
+    },
+    "rearrangedBothReachable": {
+      "statement": "H1 = E1 - 2*holeControl_E1 (real-arithmetic identity)",
+      "maxAbsError": 2.2737367544323206e-13,
+      "bitExact": false,
+      "atUlpScale": true,
+      "examples": [
+        {
+          "key": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__ec_e__e__e__e__b__e__e__e__b__e__e__e__e__e__b__e__e__e__e__b__b__b__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#8,5#0#4#1,4|2,5##0#0#0#2,2#0###10:4:3:3:4:2:single:hard",
+          "e1": -170.05263157894737,
+          "h": 450,
+          "h1": -1070.0526315789475,
+          "rearranged": -1070.0526315789473,
+          "err": 2.2737367544323206e-13
+        },
+        {
+          "key": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__ec_e__e__e__e__b__e__e__e__b__e__e__e__e__e__b__e__e__e__e__b__b__b__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#8,5#0#4#1,4|2,5##0#0#0#2,3#0###10:4:3:3:4:2:single:hard",
+          "e1": -170.05263157894737,
+          "h": 450,
+          "h1": -1070.0526315789475,
+          "rearranged": -1070.0526315789473,
+          "err": 2.2737367544323206e-13
+        },
+        {
+          "key": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__ec_e__e__e__e__b__e__e__e__b__e__e__e__e__e__b__e__e__e__e__b__b__b__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#8,5#0#4#1,4|2,5##0#0#0#3,2#0###10:4:3:3:4:2:single:hard",
+          "e1": -170.05263157894737,
+          "h": 450,
+          "h1": -1070.0526315789475,
+          "rearranged": -1070.0526315789473,
+          "err": 2.2737367544323206e-13
+        },
+        {
+          "key": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__ec_e__e__e__e__b__e__e__e__b__e__e__e__e__e__b__e__e__e__e__b__b__b__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#8,5#0#4#1,4|2,5##0#0#0#_#1###10:4:3:3:4:2:single:hard",
+          "e1": -170.05263157894737,
+          "h": 450,
+          "h1": -1070.0526315789475,
+          "rearranged": -1070.0526315789473,
+          "err": 2.2737367544323206e-13
+        },
+        {
+          "key": "t__e__e__e__e__e__e__e__e__t__e__e__e__b__e__e__b__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__ec_e__e__e__e__b__e__e__e__b__e__e__e__e__e__b__e__e__e__e__b__b__b__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#8,5#0#4#1,4|2,5##0#0#0#2,2#0###10:4:3:3:4:2:single:hard",
+          "e1": -170.05263157894737,
+          "h": 450,
+          "h1": -1070.0526315789475,
+          "rearranged": -1070.0526315789473,
+          "err": 2.2737367544323206e-13
+        },
+        {
+          "key": "t__e__e__e__e__e__e__e__e__t__e__e__e__b__e__e__b__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__ec_e__e__e__e__b__e__e__e__b__e__e__e__e__e__b__e__e__e__e__b__b__b__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#8,5#0#4#1,4|2,5##0#0#0#2,3#0###10:4:3:3:4:2:single:hard",
+          "e1": -170.05263157894737,
+          "h": 450,
+          "h1": -1070.0526315789475,
+          "rearranged": -1070.0526315789473,
+          "err": 2.2737367544323206e-13
+        },
+        {
+          "key": "t__e__e__e__e__e__e__e__e__t__e__e__e__b__e__e__b__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__ec_e__e__e__e__b__e__e__e__b__e__e__e__e__e__b__e__e__e__e__b__b__b__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#8,5#0#4#1,4|2,5##0#0#0#3,2#0###10:4:3:3:4:2:single:hard",
+          "e1": -170.05263157894737,
+          "h": 450,
+          "h1": -1070.0526315789475,
+          "rearranged": -1070.0526315789473,
+          "err": 2.2737367544323206e-13
+        },
+        {
+          "key": "t__e__e__e__e__e__e__e__e__t__e__e__e__b__e__e__b__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__ec_e__e__e__e__b__e__e__e__b__e__e__e__e__e__b__e__e__e__e__b__b__b__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#8,5#0#4#1,4|2,5##0#0#0#_#1###10:4:3:3:4:2:single:hard",
+          "e1": -170.05263157894737,
+          "h": 450,
+          "h1": -1070.0526315789475,
+          "rearranged": -1070.0526315789473,
+          "err": 2.2737367544323206e-13
+        },
+        {
+          "key": "t__e__e__e__e__e__e__e__e__t__e__e__e__e__e__e__e__e__b__e__e__e__b__e__ec_e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__em_e__e__e__e__e__e__e__b__e__e__e__e__e__b__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,4#4,9#0#4#5,2|6,1##0#0#0#1,2#0###10:4:3:3:4:2:single:hard",
+          "e1": -95.52631578947368,
+          "h": 350,
+          "h1": -795.5263157894738,
+          "rearranged": -795.5263157894736,
+          "err": 1.1368683772161603e-13
+        },
+        {
+          "key": "t__e__e__e__e__e__e__e__e__t__e__e__e__e__e__e__e__e__b__e__e__e__b__e__ec_e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__em_e__e__e__e__e__e__e__b__e__e__e__e__e__b__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,4#4,9#0#4#5,2|6,1##0#0#0#1,4#0###10:4:3:3:4:2:single:hard",
+          "e1": -95.52631578947368,
+          "h": 350,
+          "h1": -795.5263157894738,
+          "rearranged": -795.5263157894736,
+          "err": 1.1368683772161603e-13
+        }
+      ],
+      "explanation": "IEEE754 operation order: implementation does (total - h) + (-h) = (total - h) - h (two roundings); the rearranged total - 2h does one rounding. Difference <= 1 ulp; NOT a semantic deviation, NOT a weight/feature change."
+    },
+    "singleSidedHelperContract": {
+      "statement": "nullify one gate distance on a real breakdown copy => correctedHoleControlValue returns the UNCHANGED old contribution; total = (total - h) + h",
+      "checked": 800,
+      "contributionChanged": 0,
+      "contributionUnchangedBitExact": true,
+      "totalMaxAbsError": 1.1368683772161603e-13,
+      "totalBitExactCount": 630,
+      "totalRearrangedAtUlpScale": true,
+      "explanation": "Contribution is unchanged bit-exact (task requirement). The total can round by <=1 ulp because (total - h) + h != total in IEEE754 when h != 0 (single-sided h = +/-500)."
+    }
+  },
+  "callCounts": {
+    "E1": {
+      "evaluationCalls": 1517,
+      "mouseBfsCalls": 1517,
+      "catBfsCalls": 1517,
+      "carryMouseBfsCalls": 1517
+    },
+    "H1": {
+      "evaluationCalls": 1517,
+      "mouseBfsCalls": 1517,
+      "catBfsCalls": 1517,
+      "carryMouseBfsCalls": 1517
+    },
+    "noExtraBfs": true
+  },
+  "invariants": {
+    "nonFinite": 0,
+    "stateMutations": 0,
+    "nonDeterministic": 0,
+    "helperMismatch": 0,
+    "roundTripMismatch": 0,
+    "failureCount": 0,
+    "failures": []
+  },
+  "staticSideEffectScan": {
+    "evaluationTs": "no Math.random / Date.now / performance.now / console.* (counters write-only; L25 comment: never depends on search-path info)",
+    "correctedHoleLeafTs": "pure arithmetic over the breakdown; no random / time / logging / fs / fetch",
+    "determinismEmpirical": true
+  },
+  "verdict": {
+    "H1_MATH_PARITY": "PASS",
+    "SINGLE_SIDED_PARITY": "PASS",
+    "NO_EXTRA_BFS": "PASS",
+    "STATE_IMMUTABILITY": "PASS",
+    "rearrangedIdentitiesBitExact": false,
+    "fpRoundingCaveat": "The literal rearranged identities (E1-2h / E1) are NOT guaranteed bit-exact in IEEE754; the implementation-exact identity and the contribution-level sign flip ARE bit-exact. Max rearranged error reported above (ulp scale).",
+    "naturalSingleSidedCoverage": "ABSENT_IN_D1_CORPUS (branch verified by pure-helper contract test on real breakdowns + source)"
+  },
+  "elapsedMs": 3526
+}

@@ -1,0 +1,8 @@
+{
+  "rep": 1,
+  "label": "SMOKE_NOT_EVIDENCE",
+  "completedArmRecords": 4,
+  "expectedArmRecords": 4,
+  "jsonl": "F:\\小猫小鼠\\PPC-MCTS-01B\\data\\phase2-smoke-gatec\\rep-01.jsonl",
+  "updatedAt": "2026-11-16T16:48:09.203Z"
+}

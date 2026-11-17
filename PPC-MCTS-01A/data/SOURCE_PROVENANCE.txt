@@ -1,0 +1,75 @@
+PPC-MCTS-01A — SOURCE PROVENANCE
+generated: 2026-11-16 (Asia/Shanghai)
+
+HEAD: 48eaac6c4f3801d351787696ba5876995b64e8d8
+
+NOTE
+The working tree is NOT clean. The following src/game changes and untracked
+files existed before this audit (file timestamps predate the audit and the
+72-call smoke). This audit did not edit src/, the smoke, RACE, or the budget.
+"Current source" below means this working tree, which is also what the smoke
+and the diagnostics read. It is not identical to `git show HEAD`.
+
+WORKTREE STATUS (src only)
+ M src/game/ai/__tests__/expectiminimax.test.ts
+ M src/game/ai/__tests__/forcedLossTieBreakHv14Reachability.test.ts
+ M src/game/ai/__tests__/hv14FiveGameForensics.test.ts
+ M src/game/ai/__tests__/hv2PlanTieQuality.test.ts
+ M src/game/ai/__tests__/m3liteHumanValidationLogging.test.ts
+ M src/game/ai/__tests__/progressGuard.test.ts
+ M src/game/ai/deadlineContext.ts
+ M src/game/ai/expectiminimax.ts
+ M src/game/ai/hardTurnPlanner.ts
+ M src/game/ai/legalActions.ts
+ M src/game/ai/planQuality.ts
+ M src/game/ai/transposition.ts
+ M src/game/config.ts
+ M src/game/engine.ts
+ M src/game/openingFairness.ts
+?? src/game/__tests__/catMoveBudgetInputDomain.test.ts
+?? src/game/__tests__/openingFairnessStackSafety.test.ts
+?? src/game/ai/__tests__/fixtures/ppcId01-baseline-d1.json
+?? src/game/ai/__tests__/fixtures/ppcId01-human-roots.json
+?? src/game/ai/__tests__/fixtures/ppcTime01-baseline-planner.json
+?? src/game/ai/__tests__/hardTurnAbsoluteDeadline.test.ts
+?? src/game/ai/__tests__/hardTurnAbsoluteDeadlineEngine.test.ts
+?? src/game/ai/__tests__/planActionBoundFixtures.ts
+?? src/game/ai/__tests__/planReversalAccounting.test.ts
+?? src/game/ai/__tests__/planTurnActionBound.test.ts
+?? src/game/ai/__tests__/preparedTransition.test.ts
+?? src/game/ai/__tests__/stateIdentityCollision.test.ts
+?? src/game/ai/planBound.ts
+?? src/game/ai/preparedActions.ts
+
+DIFFSTAT (src/game)
+ src/game/ai/__tests__/expectiminimax.test.ts       |  15 +-
+ .../forcedLossTieBreakHv14Reachability.test.ts     | 113 +++++-
+ .../ai/__tests__/hv14FiveGameForensics.test.ts     |  25 +-
+ src/game/ai/__tests__/hv2PlanTieQuality.test.ts    |  44 +--
+ .../__tests__/m3liteHumanValidationLogging.test.ts |  11 +-
+ src/game/ai/__tests__/progressGuard.test.ts        |  34 +-
+ src/game/ai/deadlineContext.ts                     |  99 +++++-
+ src/game/ai/expectiminimax.ts                      |  81 ++++-
+ src/game/ai/hardTurnPlanner.ts                     |  55 ++-
+ src/game/ai/legalActions.ts                        |  41 +--
+ src/game/ai/planQuality.ts                         | 135 ++++++-
+ src/game/ai/transposition.ts                       |  44 ++-
+ src/game/config.ts                                 |  37 ++
+ src/game/engine.ts                                 | 113 +++++-
+ src/game/openingFairness.ts                        | 387 +++++++++++++++------
+ 15 files changed, 1015 insertions(+), 219 deletions(-)
+
+KEY FILE SHA256
+27ae2f468d19043425326c2fc42923aeae894a5f84d2e0684ee374808b50eb22  src/game/ai/legalActions.ts
+5b93f09ebe3443c6627ece9cbdd5c2296c9159688cdcef1d318de0505597e326  src/game/ai/hybridLeaf.ts
+e5246fa9d9976468fad3130b66216b3c214b4f786e9408b9306718bcc1cf8dd3  src/game/ai/evaluation.ts
+6d24d4f36d9f7e076fa36c9460ec51c674f1006f9cae00f7f5fb64771516df32  src/game/ai/simulator.ts
+ca99645a2aeed6bfaeb2a4f13b3333791f879cc5dc3bbbc045e199be5e792e9e  src/game/ai/searchRules.ts
+099f9a7b6d97b838c664aa7186be58465e5b01b8052af4b4e4e19a5644d19f06  src/game/engine.ts
+60e38c491c81f0b6d962bd32b306373de462cffcc9508b76c5bed02f9f70caae  src/game/config.ts
+508a65bf53b63555bc4d3f8de7199b8607a8544572bb0e55850445cdffa2c53a  PPC-MCTS-01/proto/uct.ts
+d315f8aeb2ce4f798df503e25c3c83fd9641b1a4d26b80b17f09229fb66e29bd  PPC-MCTS-01/proto/harness.ts
+a74bdafbf87b990d638d7bab1413a286a17767dc1d48a938394589ffbd53dc6e  PPC-MCTS-01/proto/race.ts
+6a57390385527da5bf3c2d36401e65be62cf62ae0f11564102db2dd5f6b13e8d  PPC-MCTS-01/proto/replay.ts
+a5878b14705178905070596f8b489598d813e9fa2f7bfc7b9090ddf180ea5b15  PPC-MCTS-01/out/smoke-final.jsonl
+1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09  src/game/ai/__tests__/fixtures/ppcId01-human-roots.json

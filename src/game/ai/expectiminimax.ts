@@ -1,12 +1,13 @@
 import type { GameEngineState } from '../engine';
 import { GamePhase, PieceType } from '../types';
 import type { RuleSet, SearchAction, SearchTransitionResult } from './searchTypes';
-import { generateLegalSearchActions } from './legalActions';
+import { generatePreparedSearchActions, type PreparedSearchAction } from './preparedActions';
 import { simulateSearchAction } from './simulator';
 import { stateKey, TranspositionTable } from './transposition';
 import type { TTEntry } from './transposition';
 import { forcedLossTieBreak } from './forcedLossTieBreak';
 import { extractBestCatTurnPlan, type EqualPrimaryGraph } from './planQuality';
+import { hasCertifiableCatMoveBudget, maxCatTurnPlanActions } from './planBound';
 import { classifyGoalThreat } from './threatClassifier';
 import { computeInterception } from './interceptionGeometry';
 
@@ -1110,6 +1111,16 @@ interface PreparedAction {
   originalIndex: number;
 }
 
+/** Attach the mutable ordering key to a reused prepared (action, transition) pair. */
+function toOrderable(p: PreparedSearchAction): PreparedAction {
+  return {
+    action: p.action,
+    transition: p.transition,
+    orderingScore: 0,
+    originalIndex: p.originalIndex,
+  };
+}
+
 /** Structural equality for `SearchAction` (used to match a TT bestAction hint). */
 function actionEqual(a: SearchAction, b: SearchAction | undefined): boolean {
   if (!b) return false;
@@ -1206,10 +1217,30 @@ function searchActions(
   extensionsRemaining: number,
   key: string,
   inRootCatTurn: boolean,
+  /**
+   * PPC-P2-PREPARED-TRANSITION-01: the root already built its prepared batch to
+   * decide whether the state has ANY legal action at all (the `cacheable:false`
+   * early exit in `runFixedSearch`), so it hands that batch down instead of
+   * making this node simulate the same candidates a second time.
+   */
+  preparedFromCaller?: readonly PreparedSearchAction[],
 ): { result: InternalSearchResult; bestAction: SearchAction | null } {
   const p2 = ctx.profiler;
-  const actions = p2 ? (() => { const t0 = performance.now(); const a = generateLegalSearchActions(state, ctx.rules); p2.legalActionsCalls++; p2.legalActionsMs += performance.now() - t0; return a; })() : generateLegalSearchActions(state, ctx.rules);
-  if (actions.length === 0) {
+  // PPC-P2-PREPARED-TRANSITION-01 — ONE simulation per candidate. The legality
+  // pass used to be thrown away and every surviving action re-simulated for the
+  // transition it recursed on; `generatePreparedSearchActions` keeps it.
+  const prepared: PreparedAction[] = (() => {
+    if (preparedFromCaller) return preparedFromCaller.map(toOrderable);
+    if (!p2) return generatePreparedSearchActions(state, ctx.rules).map(toOrderable);
+    const t0 = performance.now();
+    const batch = generatePreparedSearchActions(state, ctx.rules);
+    p2.legalActionsMs += performance.now() - t0;
+    p2.legalActionsCalls++;
+    p2.transitionCalls += batch.length;
+    return batch.map(toOrderable);
+  })();
+
+  if (prepared.length === 0) {
     // RULE_EDGE_CASE_NO_LEGAL_ACTIONS (requirement #8): Playing, movesLeft>0,
     // but fully boxed in. Do NOT invent a win/loss; return static eval.
     ctx.diagnostics.noLegalActionNodes++;
@@ -1222,15 +1253,11 @@ function searchActions(
 
   const maximizing = state.currentPlayer === PieceType.Cat;
 
-  // D3: simulate each legal action EXACTLY ONCE and reuse the transition while
-  // searching. This is the single site where ordering can reorder — it never
-  // re-simulates inside valueOfAction.
-  const prepared: PreparedAction[] = actions.map((action, i) => ({
-    action,
-    transition: p2 ? (() => { const t0 = performance.now(); const tr = simulateSearchAction(state, action, ctx.rules); p2.transitionCalls++; p2.transitionMs += performance.now() - t0; return tr; })() : simulateSearchAction(state, action, ctx.rules),
-    orderingScore: 0,
-    originalIndex: i,
-  }));
+  // D3 (PPC-P2-PREPARED-TRANSITION-01): the transition carried by each prepared
+  // action is the one the legality check already produced, so the search never
+  // re-simulates an action it has applied. This is the single site where
+  // ordering can reorder — nothing re-simulates inside valueOfAction.
+
 
   // G0.3B: compute threat classification ONCE for the current state, used
   // for threat-aware move ordering. Only when threat ordering is enabled
@@ -1834,8 +1861,23 @@ function runFixedSearch(
   }
 
   const rootKey = stateKey(state);
-  const actions = generateLegalSearchActions(state, ctx.rules);
-  if (actions.length === 0) {
+  // PPC-P2-PREPARED-TRANSITION-01: build the root's prepared batch ONCE. Before
+  // this round the root generated (and discarded) the legal list purely to test
+  // for emptiness, and `searchActions` then regenerated it and re-simulated
+  // every action — three simulations per legal root action. The batch below is
+  // handed to `searchActions`, so a root action is simulated exactly once.
+  const p2 = ctx.profiler;
+  const rootPrepared: PreparedSearchAction[] = p2
+    ? (() => {
+        const t0 = performance.now();
+        const batch = generatePreparedSearchActions(state, ctx.rules);
+        p2.legalActionsMs += performance.now() - t0;
+        p2.legalActionsCalls++;
+        p2.transitionCalls += batch.length;
+        return batch;
+      })()
+    : generatePreparedSearchActions(state, ctx.rules);
+  if (rootPrepared.length === 0) {
     const value = evaluateLeaf(state, ctx, rootKey);
     return {
       result: { value, completed: true, cacheable: false, mate: null, bound: 'exact' },
@@ -1859,7 +1901,7 @@ function runFixedSearch(
   }
 
   const path = new Set<string>();
-  const { result, bestAction } = searchActions(state, depthTurns, ctx, path, nodeCount, 0, NEG_INF, POS_INF, seedExt, rootKey, state.currentPlayer === PieceType.Cat);
+  const { result, bestAction } = searchActions(state, depthTurns, ctx, path, nodeCount, 0, NEG_INF, POS_INF, seedExt, rootKey, state.currentPlayer === PieceType.Cat, rootPrepared);
   if (bestAction !== null) storeTT(ctx, rootKey, depthTurns, seedExt, result, bestAction);
   return { result, bestAction };
 }
@@ -1884,9 +1926,16 @@ function runFixedSearch(
 export function buildCatTurnPlan(
   state: GameEngineState,
   ctx: SearchContext,
-  maxLength = 8,
+  // PPC-P1-PLAN-01: the cap is the state's own proven legal bound, never the
+  // legacy constant 8 (see `planBound.ts`). `extractBestCatTurnPlan` and
+  // `buildPlanForFirstAction` default to the SAME helper.
+  maxLength: number = maxCatTurnPlanActions(state),
 ): SearchAction[] {
   const plan: SearchAction[] = [];
+  // PPC-P1-CLOSURE-FIX-01: an illegal `catMovesLeft` has no legal bound, so this
+  // walk must not emit a plan at all (a 1-action "plan" off a NaN budget is what
+  // the old path produced, because `plan.length < maxLength` was already false).
+  if (!hasCertifiableCatMoveBudget(state)) return plan;
   let cur = state;
   // Prevent pathological cycles in the log walk (safety valve only):
   const seen = new Set<string>();

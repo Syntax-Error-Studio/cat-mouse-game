@@ -1,0 +1,321 @@
+{
+  "schemaVersion": "1.0",
+  "roundId": "PPC-T1-FOUNDATION-01",
+  "roundType": "READ_ONLY_ARCHITECTURE_AUDIT",
+  "generatedAt": "2026-11-16",
+  "purpose": "Identity and provenance record for the audit sources, frozen proof artifacts, and this round's deliverables. No production source was modified.",
+  "selfExcluded": true,
+  "selfPath": "PPC-T1-FOUNDATION-01/SOURCE_MANIFEST.json",
+  "repository": {
+    "root": "F:\\小猫小鼠",
+    "isGitRepository": true,
+    "branch": "ppc/p1-id-state-identity-fix",
+    "head": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+    "worktreeState": "DIRTY_PRE_EXISTING_P1_P2_CANDIDATE",
+    "changedThisRound": false,
+    "gitStatusEntryCountAtAuditStart": 62,
+    "roundArtifactsAdded": [
+      "PPC-T1-FOUNDATION-01/"
+    ],
+    "modifiedTrackedFiles": 15,
+    "untrackedProductionSource": [
+      "src/game/ai/planBound.ts",
+      "src/game/ai/preparedActions.ts"
+    ],
+    "note": "The dirty worktree predates this round. This round wrote only under PPC-T1-FOUNDATION-01/ and did not run git commit/push/merge/reset/clean/stash."
+  },
+  "method": {
+    "hashTool": "sha256sum (Git Bash)",
+    "jsonValidation": "PowerShell ConvertFrom-Json (syntax only)",
+    "nodeWorkersStarted": 0,
+    "vitestWorkersStarted": 0,
+    "searchesOrBenchmarksRun": 0,
+    "reads": "Read/Grep only on the live worktree and frozen artifacts"
+  },
+  "identityChecks": [
+    {
+      "name": "GAMEPLAY ruleset2 hash matches frozen SEAL manifest",
+      "expected": "e000778b114bea02ef09634085172ea435be143335721aa0cd04114afb2afd34",
+      "actual": "e000778b114bea02ef09634085172ea435be143335721aa0cd04114afb2afd34",
+      "evidence": [
+        "PPC-CAT-STRATEGY-SEAL-01/SOURCE_MANIFEST.json:161",
+        "PPC-CAT-STRATEGY-SEAL-01/REPORT.md:11"
+      ],
+      "bytes": 21128,
+      "pass": true
+    },
+    {
+      "name": "Prepared transition source matches P2 post hash",
+      "expected": "67b76ad3de53fee6d3d32f9bc8ab9a02b52234857b23b7fc9091bd92011ad764",
+      "actual": "67b76ad3de53fee6d3d32f9bc8ab9a02b52234857b23b7fc9091bd92011ad764",
+      "evidence": [
+        "PPC-P2-PREPARED-TRANSITION-01/SOURCE_MANIFEST.json:16-21"
+      ],
+      "pass": true
+    },
+    {
+      "name": "Branch and HEAD match P2 decision record",
+      "expected": "ppc/p1-id-state-identity-fix @ 48eaac6c4f3801d351787696ba5876995b64e8d8",
+      "actual": "ppc/p1-id-state-identity-fix @ 48eaac6c4f3801d351787696ba5876995b64e8d8",
+      "evidence": [
+        "PPC-P2-PREPARED-TRANSITION-01/FINAL_DECISION.json:5-6"
+      ],
+      "pass": true
+    },
+    {
+      "name": "Frozen fixture hash matches SEAL manifest and recertification",
+      "expected": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "actual": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "evidence": [
+        "PPC-CAT-STRATEGY-SEAL-01/SOURCE_MANIFEST.json:156",
+        "PPC-CAT-STRATEGY-SEAL-01/G6T2_RECERTIFICATION.json:10",
+        "PPC-CAT-STRATEGY-SEAL-01/ROOT_CLASSIFICATION_V2.json:7"
+      ],
+      "bytes": 264328,
+      "pass": true
+    },
+    {
+      "name": "Quantifier kernel hash matches SEAL manifest and SHA256SUMS",
+      "expected": "453915d3fd3a69bda5d113dd7e5732d20424a7f97cff739cf9b0aeee576a779b",
+      "actual": "453915d3fd3a69bda5d113dd7e5732d20424a7f97cff739cf9b0aeee576a779b",
+      "evidence": [
+        "PPC-CAT-STRATEGY-SEAL-01/SOURCE_MANIFEST.json:126",
+        "PPC-CAT-STRATEGY-SEAL-01/SHA256SUMS.txt:22"
+      ],
+      "bytes": 21012,
+      "pass": true
+    },
+    {
+      "name": "P4/P5 production results identity inherited from ERRATUM",
+      "expected": "PRODUCTION_100MS_RESULTS.json sha256=9d50560f107da52107cb68be94f4ac90214f8a50aabbc948f8f3114215278775",
+      "actual": "9d50560f107da52107cb68be94f4ac90214f8a50aabbc948f8f3114215278775",
+      "evidence": [
+        "PPC-CAT-EVALUATOR-ABLATION-01-ERRATUM-01/ERRATUM.md:7,252-258"
+      ],
+      "pass": true
+    }
+  ],
+  "sources": [
+    {
+      "path": "GAMEPLAY.md",
+      "role": "rule authority (ruleset 2)",
+      "sha256": "e000778b114bea02ef09634085172ea435be143335721aa0cd04114afb2afd34",
+      "bytes": 21128
+    },
+    {
+      "path": "src/game/ai/expectiminimax.ts",
+      "role": "MAX/MIN/CHANCE search, depth, TT, mate, plan extraction",
+      "sha256": "50d27da5e9d0d47a1ad70efb542a3ec1510507fd14b825a52729ebb90f6d690c"
+    },
+    {
+      "path": "src/game/ai/hardTurnPlanner.ts",
+      "role": "production Hard planner, budgets, sidecar/guard sequencing",
+      "sha256": "27b1ce6dc62234d0c822b2b0b6341205ac189b5f76d7662a5d29d9e17ded75ff"
+    },
+    {
+      "path": "src/game/ai/simulator.ts",
+      "role": "search transition simulator, forced endTurn, honest CHANCE",
+      "sha256": "6d24d4f36d9f7e076fa36c9460ec51c674f1006f9cae00f7f5fb64771516df32"
+    },
+    {
+      "path": "src/game/ai/preparedActions.ts",
+      "role": "legal search action enumeration and one-step preparation",
+      "sha256": "67b76ad3de53fee6d3d32f9bc8ab9a02b52234857b23b7fc9091bd92011ad764"
+    },
+    {
+      "path": "src/game/ai/legalActions.ts",
+      "role": "isEffective / legal action filtering",
+      "sha256": "27ae2f468d19043425326c2fc42923aeae894a5f84d2e0684ee374808b50eb22"
+    },
+    {
+      "path": "src/game/engine.ts",
+      "role": "real rules, RULE-A boundaries, ghost boundary, plan execution",
+      "sha256": "099f9a7b6d97b838c664aa7186be58465e5b01b8052af4b4e4e19a5644d19f06"
+    },
+    {
+      "path": "src/game/ai/deadlineContext.ts",
+      "role": "one absolute main deadline + one absolute total-turn deadline",
+      "sha256": "ced449445d70d1ba88cb20d88415b3c641d670aa886536fcacefa36b4aa50235"
+    },
+    {
+      "path": "src/game/ai/planBound.ts",
+      "role": "one proven cat-turn plan action bound",
+      "sha256": "4a212b75de6b5c47b6402c0745593169f6271a06d0f91fed99b7479f679b3dab"
+    },
+    {
+      "path": "src/game/rules/tunnelRules.ts",
+      "role": "shared tunnel geometry kernel",
+      "sha256": "e9ad62686be1f9320d7208b7c2786ac88b092ad29ad002d0bb49d731e093515b"
+    },
+    {
+      "path": "src/game/rules/mobility.ts",
+      "role": "RULE-A shared kernel (no-legal-spatial-move verdict)",
+      "sha256": "db177cf7fd9be9d3e95eee995bb22763c40c122ac97c97b94a5a3b1ff5bc3f8e"
+    }
+  ],
+  "frozenArtifacts": [
+    {
+      "path": "PPC-CAT-STRATEGY-SEAL-01/probe/seal_lib.ts",
+      "role": "quantifier kernel (solve + independent verifiers + classify)",
+      "sha256": "453915d3fd3a69bda5d113dd7e5732d20424a7f97cff739cf9b0aeee576a779b"
+    },
+    {
+      "path": "PPC-CAT-STRATEGY-SEAL-01/ROOT_CLASSIFICATION_V2.json",
+      "role": "24-root H0/H1 quantifier classification",
+      "sha256": "298c2c7018325a4639d4ef371a5a2ff1b5a829098636018235bf5905f262b0db"
+    },
+    {
+      "path": "PPC-CAT-STRATEGY-SEAL-01/G6T2_RECERTIFICATION.json",
+      "role": "root UNRESOLVED vs DRRR prefix PROVEN evidence",
+      "sha256": "5c5aa4d0bef980d4eb20de37319131dfb0320ef3eb8965c570a76d2a2ec89993"
+    },
+    {
+      "path": "PPC-CAT-STRATEGY-SEAL-01/STRATEGY_CERTIFICATE_VERIFICATION.json",
+      "role": "independent certificate verification (G6T2 DRRR, G6T3 mouseForce)",
+      "sha256": "3d51cd1b89f9a4017f18ee198d2ce80c2e7b625c4edc39f81194056a829b575c"
+    },
+    {
+      "path": "PPC-CAT-STRATEGY-SEAL-01/QUANTIFIER_AUDIT.md",
+      "role": "F1-F4 defect audit and corrected contract",
+      "sha256": "9eb14e9bc04f97b01e862eaef68db007f00fda4fd5278eb70038a11e8343ef9e"
+    },
+    {
+      "path": "PPC-CAT-STRATEGY-SEAL-01/REPORT.md",
+      "role": "SEAL round report / identity record",
+      "sha256": "061d5cc1a289e8144bc9d456efed41e9997bf0ecb1b2d434ba2c9de551149a07"
+    },
+    {
+      "path": "PPC-CAT-STRATEGY-SEAL-01/SOURCE_MANIFEST.json",
+      "role": "SEAL source manifest (rule, fixture, kernel hashes)",
+      "sha256": "7138b75d8d6dbc4ddd32dcf98d05b548bceb39636f6513fac31a47ac00b0902f"
+    },
+    {
+      "path": "PPC-CAT-EVALUATOR-ABLATION-01/PRODUCTION_100MS_RESULTS.json",
+      "role": "48 combinations / 240 production 100ms runs; depth and plan evidence",
+      "sha256": "9d50560f107da52107cb68be94f4ac90214f8a50aabbc948f8f3114215278775"
+    },
+    {
+      "path": "PPC-CAT-EVALUATOR-ABLATION-01-ERRATUM-01/ERRATUM.md",
+      "role": "P7 metric correction; 48/48 plan certificate binding; PROVEN_100MS_TACTICAL_GAIN=FALSE",
+      "sha256": "1cf68d934e5061093aa4e708430aa2f755d1beaa88517e7fdad8af1f16d67b88"
+    },
+    {
+      "path": "PPC-CAT-EVALUATOR-ABLATION-01-ERRATUM-01/G1T3_E1_100MS_CERTIFICATE.json",
+      "role": "G1T3/E1 UUUL independent quantifier certificate",
+      "sha256": "2fc98a82f399be6232bd241bf4db565c4fdbecd1d838289788ef39c7cb4236fa"
+    },
+    {
+      "path": "PPC-CAT-EVALUATOR-ABLATION-01-ERRATUM-01/ADDITIONAL_100MS_PLAN_CERTIFICATES.json",
+      "role": "certificates for the 5 newly covered actual 100ms plans",
+      "sha256": "cad3241254afcca2f3fe0f20de13c79a88594074ced77fd387b1fe0012c0c6a6"
+    },
+    {
+      "path": "PPC-CAT-EVALUATOR-ABLATION-01-ERRATUM-01/ERRATUM_RESULTS.json",
+      "role": "raw per-combination corrected metrics",
+      "sha256": "36b318414a7a2dfd4139abfdb89e4721ed3e640b44cf583f4b6fa501343354ed"
+    },
+    {
+      "path": "PPC-P2-PREPARED-TRANSITION-01/SOURCE_MANIFEST.json",
+      "role": "P2 prepared transition identity",
+      "sha256": "3e52a131d2337b44d91a79dd02e922e7f70ade0859440b91f1e51ac195ba8360"
+    },
+    {
+      "path": "PPC-P2-PREPARED-TRANSITION-01/FINAL_DECISION.json",
+      "role": "PT-0 PASS; branch/HEAD unchanged",
+      "sha256": "bc7ef40c994dbca736e52a05da286065fb08a21af8ca1257e0af32f5f113d2cb"
+    },
+    {
+      "path": "PPC-P1-TIME-02/SIDECAR_DIAG.json",
+      "role": "sidecar candidate enumeration / post-search budget evidence",
+      "sha256": "4b4032210d3ea5b5be51106ceb6ba9219546ddc048d126dcd58de50b9a1a86d2"
+    },
+    {
+      "path": "PPC-CAT-STRATEGY-01/SOURCE_MANIFEST.json",
+      "role": "earlier rule/fixture identity record",
+      "sha256": "806c9c0c0aa7c9da152f3a84da3d5572d7190783bb27cbcf3b402f1103099ea1"
+    },
+    {
+      "path": "src/game/ai/__tests__/fixtures/ppcId01-human-roots.json",
+      "role": "24 frozen human roots",
+      "sha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "bytes": 264328
+    }
+  ],
+  "deliverables": [
+    {
+      "path": "PPC-T1-FOUNDATION-01/REPORT.md",
+      "role": "audit report and machine state",
+      "sha256": "393825a01822df05f3c79b100e98ad30cc435178e82bfc9b1493c491800a2eb4"
+    },
+    {
+      "path": "PPC-T1-FOUNDATION-01/HORIZON_SEMANTICS.md",
+      "role": "D1-D4 stage semantics and special mechanics",
+      "sha256": "99567fe05a6666130cc49568cdc2cd77e466463dc73e70aae17366c0cb9d49db"
+    },
+    {
+      "path": "PPC-T1-FOUNDATION-01/PROOF_VS_EXPECTIMINIMAX.md",
+      "role": "quantifier-vs-search mapping, prohibition, costs, certificate validity",
+      "sha256": "a60b13c48b1ee7b1a62eb562d15be6706e8190cb0bb86fb78cb8ca1305ba4acb"
+    },
+    {
+      "path": "PPC-T1-FOUNDATION-01/TACTICAL_ARCHITECTURE_OPTIONS.md",
+      "role": "A-E route comparison and D-plan recommendation",
+      "sha256": "4fa4393e8a16001809b11e2b3c5a14e83fab63b97d7dbf1c2582c8c1f7c649da"
+    },
+    {
+      "path": "PPC-T1-FOUNDATION-01/NEXT_STAGE_PREREGISTRATION.json",
+      "role": "PPC-T1-PCV-01 protocol, caps, gates, kill criteria",
+      "sha256": "3dd79a40fda42af91056c3662fbb92ae0ad0da2c9fa9e50670eea139f3b06bfc"
+    }
+  ],
+  "observedDifferences": [
+    {
+      "id": "G1T8_LABEL_DIVERGENCE",
+      "description": "ROOT_CLASSIFICATION_V2.json labels G1T8 UNRESOLVED (h1CatSurvive=null), while ERRATUM section 8.5 describes the P4 label as CHANCE_DEPENDENT_OUTCOME.",
+      "interpretation": "Different kernels/cap outcomes and label priority; neither label is evidence of safety. This audit uses UNRESOLVED for safety judgments.",
+      "blocksResearch": false
+    },
+    {
+      "id": "G6T2_ROOT_VS_PREFIX",
+      "description": "G6T2 root classification is UNRESOLVED while the DRRR prefix certificate is PROVEN (117382 leaves, 31236 branches, 549 chance nodes).",
+      "interpretation": "Different scopes: the root proves over all cat first turns; the prefix fixes the first turn. Not a contradiction. Certificates must bind to the executed plan prefix.",
+      "blocksResearch": false
+    }
+  ],
+  "resourceCheck": {
+    "checkedAt": "2026-11-16",
+    "nodeProcesses": 4,
+    "vitestProcesses": 0,
+    "catMouseWorkers": 0,
+    "attribution": [
+      "F:\\docmap-studio Next dev server",
+      ".local/ai-reliability-cont-20261115 review scripts",
+      "tools/ai-eval reliability-final-run.mjs",
+      "@tencent-ai/agent-sdk headless agent"
+    ],
+    "actionTaken": "NONE (unrelated background workloads; not started, not killed)",
+    "roundWorkersStarted": 0
+  },
+  "flags": {
+    "productionSourceChanged": "NO",
+    "gameRulesChanged": "NO",
+    "searchMathChanged": "NO",
+    "h1Changed": "NO",
+    "sidecarChanged": "NO",
+    "progressGuardChanged": "NO",
+    "mouseAiChanged": "NO",
+    "budget100ms150msChanged": "NO",
+    "fullRegression": "NOT_PERFORMED",
+    "heavyBenchmark": "NOT_PERFORMED",
+    "selfPlay": "NOT_PERFORMED",
+    "commit": "NO",
+    "push": "NO",
+    "merge": "NO",
+    "resetCleanStash": "NO"
+  },
+  "notes": [
+    "The tunnelRules.ts hash is included as a read-time record; it is not part of any frozen identity claim in this round.",
+    "Hashes were computed in this round with sha256sum; no Node/Vitest worker was started.",
+    "This manifest intentionally omits its own SHA-256 (selfExcluded=true)."
+  ]
+}

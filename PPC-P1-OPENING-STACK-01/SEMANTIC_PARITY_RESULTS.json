@@ -1,0 +1,179 @@
+{
+  "artifactId": "SEMANTIC_PARITY_RESULTS",
+  "round": "PPC-P1-OPENING-STACK-01",
+  "method": "Both captures run the SAME probe file on the SAME fixture list, before and after the rewrite, and record every observable certificate field (verdict / reason / horizonTurns / maxNodes / exploredNodes / prunedNodes / witnessAction) plus generation counts, the resulting stateKey and the exact number of Math.random draws consumed. The comparison is a JSON deep-equality over the whole record, not a verdict-only check.",
+  "cases": 50,
+  "identical": 50,
+  "differing": 0,
+  "diffDetails": [],
+  "determinismOfTheProbe": {
+    "claim": "The probe itself is deterministic: two pre-fix runs produced byte-identical records.",
+    "evidence": "_raw/parity_pre_run1.json vs _raw/parity_pre.json — 50/50 identical"
+  },
+  "probes": {
+    "writer": "probe/parity_capture.test.ts",
+    "comparator": "probe/compare_parity.mjs",
+    "note": "Fails closed: the comparator exits non-zero and lists every differing case."
+  },
+  "coverage": {
+    "ordinary": [
+      "rush_h1",
+      "pushed_defended_h2",
+      "pushed_undefended_h2",
+      "detour_boxed_h2",
+      "detour_open_h2",
+      "tunnel_h2"
+    ],
+    "mouseSkill": [
+      "skill_h1",
+      "skill_used_h1"
+    ],
+    "tunnel": [
+      "tunnel_h2",
+      "tunnel_h2_noPrune"
+    ],
+    "boxes": [
+      "detour_boxed_h2",
+      "pushed_defended_h2"
+    ],
+    "butterChance": [
+      "chance_mixed",
+      "chance_allWin",
+      "chance_badWeight_0",
+      "chance_badWeight_-0.5",
+      "chance_badWeight_NaN",
+      "chance_badWeight_Infinity",
+      "chance_shortMass",
+      "chance_safeFirst_control",
+      "chance_quad_safeSecond",
+      "chance_quad_safeLast"
+    ],
+    "pendingGhost": [
+      "ghost_clean",
+      "ghost_pending",
+      "ghost_clean_noPrune",
+      "ghost_pending_noPrune"
+    ],
+    "patrolBound": [
+      "patrol_hole_spare",
+      "patrol_tunnel_spare",
+      "patrol_normal_spare",
+      "patrol_normal_noSpare_off"
+    ],
+    "nodeCap": [
+      "rush_h1_cap1",
+      "rush_h1_cap200k",
+      "pushed_h2_cap200k",
+      "tunnel_h2_cap200k"
+    ],
+    "relaxedPruneBothWays": [
+      "rush_h1_noPrune",
+      "pushed_h2_noPrune",
+      "tunnel_h2_noPrune",
+      "detour_boxed_h2_cap200k"
+    ],
+    "deepLegalBudget": [
+      "deepM500",
+      "deepM1000"
+    ],
+    "generation": [
+      "gen_twoCandidates",
+      "gen_unknown",
+      "gen_explicit",
+      "gen_tutorial",
+      "patrolEntry_predicates",
+      "chance_shape",
+      "chance_materialize"
+    ],
+    "defaultOpeningSeeded": [
+      "default_seeded"
+    ]
+  },
+  "randomConsumption": {
+    "default_seeded_preFix": {
+      "ok": true,
+      "scope": "AUTO",
+      "counts": {
+        "attempts": 2,
+        "unsafe": 0,
+        "unknown": 1,
+        "underGenerated": 0,
+        "noLegalOpening": 0
+      },
+      "verdict": "CERTIFIED_NO_CERTAIN_CAT_LOSS",
+      "exploredNodes": 1161,
+      "prunedNodes": 84,
+      "butters": [
+        {
+          "r": 3,
+          "c": 3
+        },
+        {
+          "r": 3,
+          "c": 7
+        }
+      ],
+      "stateKey": "t__e__e__e__e__e__e__e__e__t__e__ec_e__e__e__b__b__e__e__e__e__e__b__e__e__e__e__e__b__e__e__e__e__e__b__e__e__e__e__e__e__b__e__e__e__e__p__e__b__e__e__p__b__e__e__e__b__e__e__e__e__e__e__e__e__p__e__b__b__e__e__e__p__e__e__e__e__e__mm_m__e__b__e__e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#1,1#7,8#4#4#3,3|3,7##0#0#0#_#1###10:4:3:3:4:2:single:easy",
+      "randomDraws": 92
+    },
+    "default_seeded_postFix": {
+      "ok": true,
+      "scope": "AUTO",
+      "counts": {
+        "attempts": 2,
+        "unsafe": 0,
+        "unknown": 1,
+        "underGenerated": 0,
+        "noLegalOpening": 0
+      },
+      "verdict": "CERTIFIED_NO_CERTAIN_CAT_LOSS",
+      "exploredNodes": 1161,
+      "prunedNodes": 84,
+      "butters": [
+        {
+          "r": 3,
+          "c": 3
+        },
+        {
+          "r": 3,
+          "c": 7
+        }
+      ],
+      "stateKey": "t__e__e__e__e__e__e__e__e__t__e__ec_e__e__e__b__b__e__e__e__e__e__b__e__e__e__e__e__b__e__e__e__e__e__b__e__e__e__e__e__e__b__e__e__e__e__p__e__b__e__e__p__b__e__e__e__b__e__e__e__e__e__e__e__e__p__e__b__b__e__e__e__p__e__e__e__e__e__mm_m__e__b__e__e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#1,1#7,8#4#4#3,3|3,7##0#0#0#_#1###10:4:3:3:4:2:single:easy",
+      "randomDraws": 92
+    },
+    "note": "Identical draw count and identical stateKey prove the iterative solver consumes randomness in exactly the same order."
+  },
+  "pinnedInProductionTests": {
+    "file": "src/game/__tests__/openingFairnessStackSafety.test.ts",
+    "cases": [
+      "rush_h1",
+      "pushed_defended_h2",
+      "pushed_undefended_h2",
+      "detour_boxed_h2",
+      "detour_open_h2",
+      "tunnel_h2",
+      "skill_h1",
+      "skill_used_h1",
+      "tunnel_h2_noPrune",
+      "pushed_h2_noPrune",
+      "ghost_clean",
+      "ghost_pending",
+      "ghost_clean_noPrune",
+      "patrol_normal_spare",
+      "patrol_normal_noSpare_on",
+      "patrol_normal_noSpare_off"
+    ],
+    "note": "The captured counts are now asserted in the normal test suite, so a future solver change cannot drift silently."
+  },
+  "verdict": "PASS",
+  "logs": [
+    "logs/03_parity_pre.log",
+    "logs/04_parity_post.log"
+  ],
+  "raw": [
+    "_raw/parity_pre.json",
+    "_raw/parity_post.json",
+    "_raw/parity_pre_run1.json"
+  ]
+}

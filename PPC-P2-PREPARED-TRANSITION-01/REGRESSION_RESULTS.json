@@ -1,0 +1,30 @@
+{
+  "round": "PPC-P2-PREPARED-TRANSITION-01",
+  "log": "PPC-P2-PREPARED-TRANSITION-01/logs/full_regression.log",
+  "logBytes": 291726,
+  "command": "npx vitest run --maxWorkers=1 --no-file-parallelism",
+  "exitCode": 0,
+  "files": {
+    "passed": 83,
+    "failed": null,
+    "skipped": null,
+    "total": 83
+  },
+  "tests": {
+    "passed": 1041,
+    "failed": null,
+    "skipped": 4,
+    "total": 1045
+  },
+  "duration": "1621.10s (transform 5.89s, setup 0ms, import 18.54s, tests 1588.86s, environment 6ms)",
+  "failedFiles": [],
+  "failedTests": [],
+  "skippedTests": [],
+  "nullSemantics": "vitest omits \"<n> failed\" / \"<n> skipped\" from the summary when the count is 0, so null in files.failed / files.skipped / tests.failed means \"reporter did not print it\" and is treated as 0 for the verdict. No line is ever invented: if the \"Test Files\" / \"Tests\" summary line itself were missing, verdict is NOT_PERFORMED.",
+  "skippedIdentity": {
+    "count": 4,
+    "evidence": "the default reporter prints only the skipped COUNT, not the names; identity confirmed by a separate targeted run `npx vitest run src/game/ai/__tests__/boundedPlanRefutation.test.ts --reporter=verbose -t \"G0.3W\"` => 9 passed | 4 skipped, the 4 being G0.3W-4..7 under \"G0.3W real-corpus regression (G4 / G1)\" (ctx.skip(), missing corpus). Same 4 skips exist on the P1 baseline (1026-test run) and are environment-independent.",
+    "preExisting": true
+  },
+  "verdict": "PASS"
+}

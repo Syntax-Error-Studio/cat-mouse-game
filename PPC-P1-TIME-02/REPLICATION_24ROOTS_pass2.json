@@ -1,0 +1,261 @@
+{
+  "protocol": "DIAGNOSTIC replication of the P1-TIME-01 sweep. Uninstrumented src/game, 24 frozen roots, one turn each, one process, serial.",
+  "p1Time01Summary": {
+    "min": 106.65,
+    "p50": 150.57,
+    "p95": 153.15,
+    "max": 196.83,
+    "over150": 15
+  },
+  "summary": {
+    "n": 24,
+    "min": 105.5,
+    "p50": 143.72,
+    "p95": 150.55,
+    "max": 151.35,
+    "over150": 10,
+    "withFallback": []
+  },
+  "rows": [
+    {
+      "id": "G6T1",
+      "turnWallMs": 151.35,
+      "steps": 5,
+      "movesSpent": 4,
+      "fallbackReasons": [],
+      "completedDepth": 1,
+      "searchElapsedMs": 101.91499999999996,
+      "nodes": 230
+    },
+    {
+      "id": "G6T2",
+      "turnWallMs": 150.55,
+      "steps": 4,
+      "movesSpent": 4,
+      "fallbackReasons": [],
+      "completedDepth": 1,
+      "searchElapsedMs": 104.46499999999992,
+      "nodes": 496
+    },
+    {
+      "id": "G6T3",
+      "turnWallMs": 125.26,
+      "steps": 4,
+      "movesSpent": 4,
+      "fallbackReasons": [],
+      "completedDepth": 1,
+      "searchElapsedMs": 102.83619999999996,
+      "nodes": 483
+    },
+    {
+      "id": "G5T1",
+      "turnWallMs": 150.45,
+      "steps": 5,
+      "movesSpent": 4,
+      "fallbackReasons": [],
+      "completedDepth": 1,
+      "searchElapsedMs": 105.49849999999992,
+      "nodes": 625
+    },
+    {
+      "id": "G5T2",
+      "turnWallMs": 150.4,
+      "steps": 4,
+      "movesSpent": 4,
+      "fallbackReasons": [],
+      "completedDepth": 1,
+      "searchElapsedMs": 101.78009999999995,
+      "nodes": 807
+    },
+    {
+      "id": "G5T3",
+      "turnWallMs": 121.58,
+      "steps": 4,
+      "movesSpent": 4,
+      "fallbackReasons": [],
+      "completedDepth": 2,
+      "searchElapsedMs": 102.27559999999994,
+      "nodes": 1202
+    },
+    {
+      "id": "G5T4",
+      "turnWallMs": 105.5,
+      "steps": 4,
+      "movesSpent": 4,
+      "fallbackReasons": [],
+      "completedDepth": 2,
+      "searchElapsedMs": 105.18330000000014,
+      "nodes": 745
+    },
+    {
+      "id": "G2T1",
+      "turnWallMs": 143.72,
+      "steps": 5,
+      "movesSpent": 4,
+      "fallbackReasons": [],
+      "completedDepth": 1,
+      "searchElapsedMs": 101.1605999999997,
+      "nodes": 868
+    },
+    {
+      "id": "G2T2",
+      "turnWallMs": 119.76,
+      "steps": 4,
+      "movesSpent": 4,
+      "fallbackReasons": [],
+      "completedDepth": 2,
+      "searchElapsedMs": 101.39609999999993,
+      "nodes": 942
+    },
+    {
+      "id": "G2T3",
+      "turnWallMs": 125.39,
+      "steps": 4,
+      "movesSpent": 4,
+      "fallbackReasons": [],
+      "completedDepth": 2,
+      "searchElapsedMs": 102.0247000000004,
+      "nodes": 805
+    },
+    {
+      "id": "G2T4",
+      "turnWallMs": 150.35,
+      "steps": 4,
+      "movesSpent": 4,
+      "fallbackReasons": [],
+      "completedDepth": 1,
+      "searchElapsedMs": 104.41360000000032,
+      "nodes": 578
+    },
+    {
+      "id": "G2T5",
+      "turnWallMs": 150.36,
+      "steps": 4,
+      "movesSpent": 4,
+      "fallbackReasons": [],
+      "completedDepth": 1,
+      "searchElapsedMs": 101.92710000000034,
+      "nodes": 687
+    },
+    {
+      "id": "G2T6",
+      "turnWallMs": 116.27,
+      "steps": 4,
+      "movesSpent": 4,
+      "fallbackReasons": [],
+      "completedDepth": 2,
+      "searchElapsedMs": 100.64930000000004,
+      "nodes": 1043
+    },
+    {
+      "id": "G2T7",
+      "turnWallMs": 141.76,
+      "steps": 4,
+      "movesSpent": 4,
+      "fallbackReasons": [],
+      "completedDepth": 1,
+      "searchElapsedMs": 106.42679999999973,
+      "nodes": 393
+    },
+    {
+      "id": "G2T8",
+      "turnWallMs": 128.45,
+      "steps": 4,
+      "movesSpent": 4,
+      "fallbackReasons": [],
+      "completedDepth": 1,
+      "searchElapsedMs": 101.22490000000016,
+      "nodes": 537
+    },
+    {
+      "id": "G1T1",
+      "turnWallMs": 149.71,
+      "steps": 5,
+      "movesSpent": 4,
+      "fallbackReasons": [],
+      "completedDepth": 1,
+      "searchElapsedMs": 101.61179999999968,
+      "nodes": 1235
+    },
+    {
+      "id": "G1T2",
+      "turnWallMs": 135.92,
+      "steps": 4,
+      "movesSpent": 4,
+      "fallbackReasons": [],
+      "completedDepth": 2,
+      "searchElapsedMs": 103.35159999999996,
+      "nodes": 1112
+    },
+    {
+      "id": "G1T3",
+      "turnWallMs": 128.56,
+      "steps": 4,
+      "movesSpent": 4,
+      "fallbackReasons": [],
+      "completedDepth": 2,
+      "searchElapsedMs": 102.68370000000004,
+      "nodes": 875
+    },
+    {
+      "id": "G1T4",
+      "turnWallMs": 119.77,
+      "steps": 4,
+      "movesSpent": 4,
+      "fallbackReasons": [],
+      "completedDepth": 2,
+      "searchElapsedMs": 100.96979999999985,
+      "nodes": 1028
+    },
+    {
+      "id": "G1T5",
+      "turnWallMs": 150.35,
+      "steps": 4,
+      "movesSpent": 4,
+      "fallbackReasons": [],
+      "completedDepth": 1,
+      "searchElapsedMs": 111.8148000000001,
+      "nodes": 598
+    },
+    {
+      "id": "G1T6",
+      "turnWallMs": 150.35,
+      "steps": 4,
+      "movesSpent": 4,
+      "fallbackReasons": [],
+      "completedDepth": 1,
+      "searchElapsedMs": 101.82820000000038,
+      "nodes": 760
+    },
+    {
+      "id": "G1T7",
+      "turnWallMs": 150.38,
+      "steps": 4,
+      "movesSpent": 4,
+      "fallbackReasons": [],
+      "completedDepth": 2,
+      "searchElapsedMs": 102.0900999999999,
+      "nodes": 934
+    },
+    {
+      "id": "G1T8",
+      "turnWallMs": 150.39,
+      "steps": 4,
+      "movesSpent": 4,
+      "fallbackReasons": [],
+      "completedDepth": 1,
+      "searchElapsedMs": 102.57370000000083,
+      "nodes": 571
+    },
+    {
+      "id": "G1T9",
+      "turnWallMs": 147.72,
+      "steps": 4,
+      "movesSpent": 4,
+      "fallbackReasons": [],
+      "completedDepth": 1,
+      "searchElapsedMs": 103.04550000000017,
+      "nodes": 663
+    }
+  ]
+}

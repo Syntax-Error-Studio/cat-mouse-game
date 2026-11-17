@@ -1,0 +1,358 @@
+{
+  "artifactId": "HV14_REPRODUCTION_GAP",
+  "round": "PPC-P1-CLOSURE-FIX-01",
+  "project": "Project Perfect Cat",
+  "createdAt": "2026-11-13",
+  "purpose": "Register the single, irreducible difference between the historical HV14 corpus and the current engine, so that the corpus keeps its evidentiary value instead of the test being silently loosened. The historical log file is never modified.",
+  "classification": "STALE_ENGINE_BLINDSPOT",
+  "classificationMeaning": "The logged value was produced by an engine build that could not see a win that exists in the rules. The CURRENT value is the correct one; the LOGGED value is stale. This is a strength delta, not a scoring-rule change and not a regression.",
+  "game": "GAME3",
+  "turn": 4,
+  "sourceLog": "ai-training/human-logs/PPC-HV14/GAME3_H1.txt",
+  "originalLogSha256": "a7598bf6403bf441f9624dc1fa9738aca820d6434d389a9507e2fdbf6af543d7",
+  "originalLogUnmodified": true,
+  "loggedStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__e__b__p__b__e__e__e__e__e__p__e__e__e__b__e__e__e__e__e__e__e__e__e__e__b__b__e__e__e__e__p__p__e__b__e__e__e__e__e__ec_e__e__e__b__b__e__e__e__e__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__b__e__m__m__e__b__b__e__e__e__e__e__m__m__tm_e__e__e__e__e__e__e__e__t__#single#playing#cat#5,1#9,0#4#0#4,8|8,3##0#0#0#1,1#0###10:4:3:3:4:2:single:hard",
+  "currentStateIdentity": "t__e__e__e__e__e__e__e__e__t__e__e__e__b__p__b__e__e__e__e__e__p__e__e__e__b__e__e__e__e__e__e__e__e__e__e__b__b__e__e__e__e__p__p__e__b__e__e__e__e__e__ec_e__e__e__b__b__e__e__e__e__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__b__e__m__m__e__b__b__e__e__e__e__e__m__m__tm_e__e__e__e__e__e__e__e__t__#single#playing#cat#5,1#9,0#4#0#4,8|8,3##0#0#0#1,1#0###10:4:3:3:4:2:single:hard",
+  "stateIdentityMatches": true,
+  "currentStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__e__b__p__b__e__e__e__e__e__p__e__e__e__b__e__e__e__e__e__e__e__e__e__e__b__b__e__e__e__e__p__p__e__b__e__e__e__e__e__ec_e__e__e__b__b__e__e__e__e__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__b__e__m__m__e__b__b__e__e__e__e__e__m__m__tm_e__e__e__e__e__e__e__e__t__#single#playing#cat#5,1#9,0#4#0#4,8|8,3##0#0#0#1,1#0###10:4:3:3:4:2:single:hard",
+  "currentStateKeyMatches": true,
+  "rootPlayer": "cat",
+  "rootCatMovesLeft": 4,
+  "rootMouseMovesLeft": 0,
+  "rootStranded": false,
+  "loggedRootValue": -1052.9473684210527,
+  "loggedMate": "null",
+  "loggedCompletedDepth": 2,
+  "loggedPlan": "catStep ArrowDown → catStep ArrowRight → catStep ArrowRight → catStep ArrowRight",
+  "loggedPlanDirKeys": [
+    "ArrowDown",
+    "ArrowRight",
+    "ArrowRight",
+    "ArrowRight"
+  ],
+  "loggedSearchLine": "SEARCH: cDepth=2 aDepth=3 nodes=1025 elapsedMs=101.5",
+  "loggedDeadlineLine": "DEADLINE: deadlineFired=true budgetFired=false elapsedMs=101.5 budgetMs=100 overNominalBudget=true",
+  "loggedRootActions": [
+    "ArrowDown: value=-1052.9473684210527, mate=null, bound=exact",
+    "ArrowRight: value=-1052.9473684210527, mate=null, bound=exact",
+    "ArrowLeft: value=-1127.289473684211, mate=null, bound=upper",
+    "ArrowUp: value=-1127.289473684211, mate=null, bound=upper"
+  ],
+  "currentRootValue": 999996,
+  "currentMate": "cat",
+  "currentCompletedDepth": 1,
+  "currentAttemptedDepth": 2,
+  "currentBestAction": "Down",
+  "currentPlan": [
+    "Down",
+    "Down",
+    "Down",
+    "Left"
+  ],
+  "valueFormula": "MATE_SCORE - mateDistance = 1000000 - 4 (mate in 4 cat steps)",
+  "depthSweep": [
+    {
+      "api": "searchResult",
+      "depthTurns": 1,
+      "value": 999996,
+      "mate": "cat",
+      "completed": true,
+      "bound": "exact"
+    },
+    {
+      "api": "searchBestAction",
+      "depthTurns": 1,
+      "value": 999996,
+      "mate": "cat",
+      "completed": true,
+      "bestAction": "ArrowDown",
+      "nodes": 22,
+      "terminalNodes": 1,
+      "leafNodes": 33,
+      "maxDepthReached": 4,
+      "rootValues": []
+    },
+    {
+      "api": "searchResult",
+      "depthTurns": 2,
+      "value": 999996,
+      "mate": "cat",
+      "completed": true,
+      "bound": "exact"
+    },
+    {
+      "api": "searchBestAction",
+      "depthTurns": 2,
+      "value": 999996,
+      "mate": "cat",
+      "completed": true,
+      "bestAction": "ArrowDown",
+      "nodes": 554,
+      "terminalNodes": 1,
+      "leafNodes": 148,
+      "maxDepthReached": 8,
+      "rootValues": []
+    },
+    {
+      "api": "searchResult",
+      "depthTurns": 3,
+      "value": 999996,
+      "mate": "cat",
+      "completed": true,
+      "bound": "exact"
+    },
+    {
+      "api": "searchBestAction",
+      "depthTurns": 3,
+      "value": 999996,
+      "mate": "cat",
+      "completed": true,
+      "bestAction": "ArrowDown",
+      "nodes": 794,
+      "terminalNodes": 1,
+      "leafNodes": 404,
+      "maxDepthReached": 13,
+      "rootValues": []
+    },
+    {
+      "api": "searchResult",
+      "depthTurns": 4,
+      "value": 999996,
+      "mate": "cat",
+      "completed": true,
+      "bound": "exact"
+    },
+    {
+      "api": "searchBestAction",
+      "depthTurns": 4,
+      "value": 999996,
+      "mate": "cat",
+      "completed": true,
+      "bestAction": "ArrowDown",
+      "nodes": 66922,
+      "terminalNodes": 1,
+      "leafNodes": 15593,
+      "maxDepthReached": 17,
+      "rootValues": []
+    }
+  ],
+  "depthInvariance": "Depths 1/2/3/4 all return 999996 / mate=cat; depth 1 needs only 22 nodes with terminalNodes=1, so the win is not a deep-search artefact.",
+  "witness": "DDDL",
+  "witnessDirKeys": [
+    "ArrowDown",
+    "ArrowDown",
+    "ArrowDown",
+    "ArrowLeft"
+  ],
+  "witnessUniqueness": {
+    "method": "exhaustive real-engine replay of every legal cat action sequence up to the move budget",
+    "maxSequenceLength": 4,
+    "realEngineSequencesExplored": 212,
+    "simulatorSequencesExplored": 212,
+    "realEngineWinningSequences": [
+      {
+        "seq": [
+          "Down",
+          "Down",
+          "Down",
+          "Left"
+        ],
+        "len": 4,
+        "catEnd": {
+          "r": 8,
+          "c": 0
+        },
+        "mouseEnd": {
+          "r": 9,
+          "c": 0
+        },
+        "catMovesLeft": 0,
+        "mouseMovesLeft": 4,
+        "endKey": "t__e__e__e__e__e__e__e__e__t__e__e__e__b__p__b__e__e__e__e__e__p__e__e__e__b__e__e__e__e__e__e__e__e__e__e__b__b__e__e__e__e__p__p__e__b__e__e__e__e__e__e__e__e__e__b__b__e__e__e__e__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__b__e__m__m__ec_e__b__e__e__e__e__e__m__m__tm_b__e__e__e__e__e__e__e__t__#single#cat_wins#mouse#8,0#9,0#0#4#4,8|8,3##0#0#0#1,1#0###10:4:3:3:4:2:single:hard"
+      }
+    ],
+    "simulatorWinningSequences": [
+      {
+        "seq": [
+          "Down",
+          "Down",
+          "Down",
+          "Left"
+        ],
+        "len": 4,
+        "catEnd": {
+          "r": 8,
+          "c": 0
+        },
+        "mouseEnd": {
+          "r": 9,
+          "c": 0
+        },
+        "catMovesLeft": 0,
+        "mouseMovesLeft": 4,
+        "endKey": "t__e__e__e__e__e__e__e__e__t__e__e__e__b__p__b__e__e__e__e__e__p__e__e__e__b__e__e__e__e__e__e__e__e__e__e__b__b__e__e__e__e__p__p__e__b__e__e__e__e__e__e__e__e__e__b__b__e__e__e__e__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__b__e__m__m__ec_e__b__e__e__e__e__e__m__m__tm_b__e__e__e__e__e__e__e__t__#single#cat_wins#mouse#8,0#9,0#0#4#4,8|8,3##0#0#0#1,1#0###10:4:3:3:4:2:single:hard"
+      }
+    ],
+    "engineVsSimulatorDivergences": 4,
+    "loggedPlanWins": false
+  },
+  "realEngineReplay": {
+    "path": "rules.catMove → applyNoMoveLoss → endTurn at the turn boundary (exactly the match path)",
+    "trail": [
+      {
+        "step": "Down",
+        "cat": "6,1",
+        "mouse": "9,0",
+        "phase": "playing",
+        "player": "cat"
+      },
+      {
+        "step": "Down",
+        "cat": "7,1",
+        "mouse": "9,0",
+        "phase": "playing",
+        "player": "cat"
+      },
+      {
+        "step": "Down",
+        "cat": "8,1",
+        "mouse": "9,0",
+        "phase": "playing",
+        "player": "cat"
+      },
+      {
+        "step": "Left",
+        "cat": "8,0",
+        "mouse": "9,0",
+        "phase": "cat_wins",
+        "player": "mouse"
+      }
+    ],
+    "endsGame": true,
+    "outcome": "cat_wins"
+  },
+  "mouseNoLegalMoveEvidence": {
+    "note": "Verified INDEPENDENTLY of the loss-settlement kernel: the four neighbouring cells are read off the board and each direction is pushed through the real mouseStep rule. A legal mouse step must CHANGE THE COORDINATE — stateKey is not a valid judge here, because an illegal direction settles in place into cat_wins and would therefore appear to 'change'.",
+    "terminalPhase": "cat_wins",
+    "terminalPlayer": "mouse",
+    "terminalCat": {
+      "r": 8,
+      "c": 0
+    },
+    "terminalMouse": {
+      "r": 9,
+      "c": 0
+    },
+    "catMovesLeft": 0,
+    "mouseMovesLeft": 4,
+    "mouseNeighbourhood": [
+      {
+        "dir": "up",
+        "cell": "8,0",
+        "type": "empty",
+        "isCatCell": true,
+        "pushable": null
+      },
+      {
+        "dir": "down",
+        "cell": "10,0",
+        "type": "out_of_bounds",
+        "isCatCell": false,
+        "pushable": null
+      },
+      {
+        "dir": "left",
+        "cell": "9,-1",
+        "type": "out_of_bounds",
+        "isCatCell": false,
+        "pushable": null
+      },
+      {
+        "dir": "right",
+        "cell": "9,1",
+        "type": "box",
+        "isCatCell": false,
+        "pushable": "box (mouse cannot push)"
+      }
+    ],
+    "perDirection": [
+      {
+        "direction": "ArrowUp",
+        "mouseMoved": false,
+        "keyChanged": true,
+        "nextPhase": "cat_wins",
+        "nextMouse": "9,0",
+        "nextCatMovesLeft": 0
+      },
+      {
+        "direction": "ArrowDown",
+        "mouseMoved": false,
+        "keyChanged": true,
+        "nextPhase": "cat_wins",
+        "nextMouse": "9,0",
+        "nextCatMovesLeft": 0
+      },
+      {
+        "direction": "ArrowLeft",
+        "mouseMoved": false,
+        "keyChanged": true,
+        "nextPhase": "cat_wins",
+        "nextMouse": "9,0",
+        "nextCatMovesLeft": 0
+      },
+      {
+        "direction": "ArrowRight",
+        "mouseMoved": false,
+        "keyChanged": true,
+        "nextPhase": "cat_wins",
+        "nextMouse": "9,0",
+        "nextCatMovesLeft": 0
+      }
+    ],
+    "everyDirectionRejected": true,
+    "independentVerdict": "MOUSE_HAS_NO_LEGAL_STEP"
+  },
+  "corpusWideRecomputation": {
+    "roots": 45,
+    "identityOk": true,
+    "valueMatches": 44,
+    "mateMatches": 44,
+    "deviations": 1,
+    "deviationRows": [
+      {
+        "game": "GAME3",
+        "turn": 4,
+        "completedDepth": 2,
+        "keyOk": true,
+        "loggedValue": -1052.9473684210527,
+        "loggedMate": "null",
+        "nowValue": 999996,
+        "nowMate": "cat",
+        "valueMatch": false,
+        "mateMatch": false,
+        "nodes": 555
+      }
+    ],
+    "note": "Recomputed by a probe that does NOT abort on the first mismatch. The FLT-HV14-4 test body throws at its first disagreement, so its own log can only ever prove the prefix it reached (GAME3 T4 is the 20th root); it cannot be cited as a pass count."
+  },
+  "authorityConsequences": [
+    "HV14 is NO LONGER a fully reproducible baseline for the current engine (44/45).",
+    "Any later conclusion that cites HV14 root values (CAT-STRATEGY-01 G-series, M3-lite memory comparison) MUST exclude GAME3 T4 explicitly.",
+    "The other 44 roots keep an exact, zero-tolerance comparison in the test.",
+    "The test asserts the registered current values exactly (999996 / cat), and additionally replays the witness through the real engine — the exception is stronger than the assertion it replaces, not weaker."
+  ],
+  "evidenceArtifacts": {
+    "probeSource": "PPC-P1-CLOSURE-01/probe/hv14_t4_probe.test.ts",
+    "plannerProbe": "PPC-P1-CLOSURE-01/probe/hv14_t4_planner.test.ts",
+    "winsearchProbe": "PPC-P1-CLOSURE-01/probe/hv14_t4_winsearch.test.ts",
+    "terminalProbe": "PPC-P1-CLOSURE-01/probe/hv14_t4_terminal.test.ts",
+    "allRootsProbe": "PPC-P1-CLOSURE-01/probe/hv14_all_roots.test.ts",
+    "rawMeasurements": [
+      "PPC-P1-CLOSURE-01/_raw/hv14_t4_probe.json",
+      "PPC-P1-CLOSURE-01/_raw/hv14_t4_planner.json",
+      "PPC-P1-CLOSURE-01/_raw/hv14_t4_winsearch.json",
+      "PPC-P1-CLOSURE-01/_raw/hv14_t4_terminal.json",
+      "PPC-P1-CLOSURE-01/_raw/hv14_all_roots.json"
+    ]
+  }
+}

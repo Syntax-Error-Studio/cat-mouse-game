@@ -1,0 +1,219 @@
+{
+ "round": "PPC-T2-PCV-TAIL-01",
+ "type": "READ_ONLY_TAIL_CERTIFICATION",
+ "generatedAt": "2026-11-16T08:06:43.865Z",
+ "algorithm": "sha256",
+ "selfHashOmitted": true,
+ "note": "This manifest omits its own hash to avoid self-reference; SHA256SUMS.txt records it, and SHA256SUMS.txt does not hash itself.",
+ "worktree": {
+  "head": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+  "branch": "ppc/p1-id-state-identity-fix",
+  "preexistingTrackedModifications": 15,
+  "preexistingUntrackedEntries": 51,
+  "currentTrackedModifications": 15,
+  "currentUntrackedEntries": 52,
+  "newUntrackedEntriesThisRound": 1,
+  "note": "Pre-existing worktree changes were preserved; only the new TAIL directory was added by this round."
+ },
+ "artifacts": [
+  {
+   "path": "PPC-T2-PCV-TAIL-01/TAIL_CANDIDATES.json",
+   "sha256": "39cc3569fbe2a9e7955b37e91ef203b07486ff7a02f3998dd32bc8004fcae8b8",
+   "bytes": 24338,
+   "role": "Frozen tail candidate set"
+  },
+  {
+   "path": "PPC-T2-PCV-TAIL-01/TAIL_DEDUP_AUDIT.json",
+   "sha256": "09a860761c31dac40236e70c91d8847a1911a3428174f2be633fcdb087621caa",
+   "bytes": 99600,
+   "role": "Full identity/dedup canonical-state audit"
+  },
+  {
+   "path": "PPC-T2-PCV-TAIL-01/_raw/TAIL_CANDIDATE_FREEZE.json",
+   "sha256": "718fa976fe1daf4a0f5962a4f2441051402bf572861644d1d04e7ae272ebf37c",
+   "bytes": 547,
+   "role": "Pre-proof freeze record"
+  },
+  {
+   "path": "PPC-T2-PCV-TAIL-01/TAIL_PROOF_REP1.json",
+   "sha256": "ddc661a84160f3669042d97aff0eacc23e1485c380695dd9d7127193d9244d1a",
+   "bytes": 171040,
+   "role": "Fresh-process proof repetition 1"
+  },
+  {
+   "path": "PPC-T2-PCV-TAIL-01/TAIL_PROOF_REP2.json",
+   "sha256": "1c3ddeba13bef6117e642edd6955ac618d1886e3683d952aff838d826f5a0dd6",
+   "bytes": 171032,
+   "role": "Fresh-process proof repetition 2"
+  },
+  {
+   "path": "PPC-T2-PCV-TAIL-01/TAIL_CERTIFICATE_VERIFICATION.json",
+   "sha256": "ab19f8461213aab112ae1bb4c9f9503463c6bf85999513e739ed84255af32441",
+   "bytes": 168807,
+   "role": "Cross-repetition certificate verification and determinism audit"
+  },
+  {
+   "path": "PPC-T2-PCV-TAIL-01/TAIL_MATRIX.csv",
+   "sha256": "f26cf9d40fe60597784d6049df824100238d64724d9d2620d61fdd368aeead77",
+   "bytes": 3319,
+   "role": "Four-record tail result matrix"
+  },
+  {
+   "path": "PPC-T2-PCV-TAIL-01/REPORT.md",
+   "sha256": "ab95e89a526b2f1f1229635870d67151d19f0cac52ce04c9bb0d090d18773099",
+   "bytes": 8632,
+   "role": "Final report"
+  },
+  {
+   "path": "PPC-T2-PCV-TAIL-01/RESOURCE_SAFETY_LOG.md",
+   "sha256": "783997ca9df67e01509b5c4dd2db23a13ec181466b7afa5013f83f8d7bb6e768",
+   "bytes": 3539,
+   "role": "Resource and read-only safety log"
+  },
+  {
+   "path": "PPC-T2-PCV-TAIL-01/logs/generate.log",
+   "sha256": "bd3a17c8ac2e738f92fa7db71e1b94e94aeb88d4db6cb2b20ca8bcc980144e51",
+   "bytes": 6133,
+   "role": "Generation/freeze log"
+  },
+  {
+   "path": "PPC-T2-PCV-TAIL-01/logs/rep1.log",
+   "sha256": "77dead8df76d328598e90ccbab3d0177f5e982dbbaf35a6110d9d495c2d5d17b",
+   "bytes": 2340,
+   "role": "Proof repetition 1 log"
+  },
+  {
+   "path": "PPC-T2-PCV-TAIL-01/logs/rep2.log",
+   "sha256": "88a82fc3ad8db68d6fc8ef48bb04824a78859677d5008b40bb471fc9e7ffaf28",
+   "bytes": 2338,
+   "role": "Proof repetition 2 log"
+  },
+  {
+   "path": "PPC-T2-PCV-TAIL-01/logs/aggregate.log",
+   "sha256": "209c2ce4e715d2725b3df18a92535eba6e818504b304c6f37110a95d6628853b",
+   "bytes": 2640,
+   "role": "Aggregation log"
+  },
+  {
+   "path": "PPC-T2-PCV-TAIL-01/probe/tail_lib.ts",
+   "sha256": "ee87db1969b82577b03b92b2a9adbd26c5dcf4f3f58e9273124466a50725cea7",
+   "bytes": 26871,
+   "role": "Identity, dedup, replay, certificate helper library"
+  },
+  {
+   "path": "PPC-T2-PCV-TAIL-01/probe/generate_tail.test.ts",
+   "sha256": "4f1aeb004fa3ba537e051e2f479bbce05129ee645aad5bc44b4fbbc41aec7102",
+   "bytes": 3726,
+   "role": "Candidate identity/freeze test step"
+  },
+  {
+   "path": "PPC-T2-PCV-TAIL-01/probe/prove_tail.test.ts",
+   "sha256": "1d9b86f94736b8f81e369d2656e1cae4658116a9fe25f2ee18dd9361d334c3f8",
+   "bytes": 20720,
+   "role": "H0/reuse proof test step"
+  },
+  {
+   "path": "PPC-T2-PCV-TAIL-01/probe/vitest.config.mts",
+   "sha256": "4ecd2afe34cdb09a8503518fbf112a2471194221a5d36d82b7535553da503e3e",
+   "bytes": 388,
+   "role": "Serial fresh-process Vitest configuration"
+  },
+  {
+   "path": "PPC-T2-PCV-TAIL-01/probe/aggregate_tail.mjs",
+   "sha256": "2e8ecaf8e6bab3847d907383a648105efb348ecaad743deee393d1dfc04a80be",
+   "bytes": 8438,
+   "role": "Cross-repetition aggregator"
+  },
+  {
+   "path": "PPC-T2-PCV-TAIL-01/probe/finalize_tail.mjs",
+   "sha256": "2ed5716c60219cfab716514dd7883b5780799947b157ee597db666d9cd8a05b1",
+   "bytes": 6843,
+   "role": "Manifest and checksum finalizer"
+  }
+ ],
+ "frozenInputs": [
+  {
+   "path": "GAMEPLAY.md",
+   "expectedSha256": "e000778b114bea02ef09634085172ea435be143335721aa0cd04114afb2afd34",
+   "actualSha256": "e000778b114bea02ef09634085172ea435be143335721aa0cd04114afb2afd34",
+   "match": true
+  },
+  {
+   "path": "src/game/ai/__tests__/fixtures/ppcId01-human-roots.json",
+   "expectedSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+   "actualSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+   "match": true
+  },
+  {
+   "path": "PPC-T2-PCV-RESCUE-01/CANDIDATE_PLANS.json",
+   "expectedSha256": "8f5a3f9d99ac2f61c895255e72650b3761418cb58ff5152b7d5e94619f8fc3ed",
+   "actualSha256": "8f5a3f9d99ac2f61c895255e72650b3761418cb58ff5152b7d5e94619f8fc3ed",
+   "match": true
+  },
+  {
+   "path": "PPC-T2-PCV-RESCUE-01/_raw/CANDIDATE_FREEZE.json",
+   "expectedSha256": "ccd1925c1a4b489e330bd014c1dcc57434e1ab0e3c895c1f994c38f825e716f7",
+   "actualSha256": "ccd1925c1a4b489e330bd014c1dcc57434e1ab0e3c895c1f994c38f825e716f7",
+   "match": true
+  },
+  {
+   "path": "PPC-T2-PCV-RESCUE-01/ALTERNATIVE_PROOF_RESULTS.json",
+   "expectedSha256": "3351036f445e843c876d3629ea7698abd1e56c704aaffadeca74151cd7ef050a",
+   "actualSha256": "3351036f445e843c876d3629ea7698abd1e56c704aaffadeca74151cd7ef050a",
+   "match": true
+  },
+  {
+   "path": "PPC-T2-PCV-RESCUE-01/SOURCE_MANIFEST.json",
+   "expectedSha256": "b6b5b493b275efdc5952c040e0d18a3c89ee4a7e18928b5da577f5a9b08e5041",
+   "actualSha256": "b6b5b493b275efdc5952c040e0d18a3c89ee4a7e18928b5da577f5a9b08e5041",
+   "match": true
+  },
+  {
+   "path": "PPC-T1-PCV-01/SOURCE_MANIFEST.json",
+   "expectedSha256": "01f39e30be90b422f3cc6108a1373f85eed981a31b482b5df2a89797cf84f133",
+   "actualSha256": "01f39e30be90b422f3cc6108a1373f85eed981a31b482b5df2a89797cf84f133",
+   "match": true
+  },
+  {
+   "path": "PPC-CAT-STRATEGY-SEAL-01/probe/seal_lib.ts",
+   "expectedSha256": "453915d3fd3a69bda5d113dd7e5732d20424a7f97cff739cf9b0aeee576a779b",
+   "actualSha256": "453915d3fd3a69bda5d113dd7e5732d20424a7f97cff739cf9b0aeee576a779b",
+   "match": true
+  }
+ ],
+ "productionSources": [
+  {
+   "path": "src/game/ai/preparedActions.ts",
+   "expectedSha256": "67b76ad3de53fee6d3d32f9bc8ab9a02b52234857b23b7fc9091bd92011ad764",
+   "actualSha256": "67b76ad3de53fee6d3d32f9bc8ab9a02b52234857b23b7fc9091bd92011ad764",
+   "match": true
+  },
+  {
+   "path": "src/game/ai/expectiminimax.ts",
+   "expectedSha256": "50d27da5e9d0d47a1ad70efb542a3ec1510507fd14b825a52729ebb90f6d690c",
+   "actualSha256": "50d27da5e9d0d47a1ad70efb542a3ec1510507fd14b825a52729ebb90f6d690c",
+   "match": true
+  },
+  {
+   "path": "src/game/engine.ts",
+   "expectedSha256": "099f9a7b6d97b838c664aa7186be58465e5b01b8052af4b4e4e19a5644d19f06",
+   "actualSha256": "099f9a7b6d97b838c664aa7186be58465e5b01b8052af4b4e4e19a5644d19f06",
+   "match": true
+  }
+ ],
+ "summary": {
+  "originalRecords": 4,
+  "uniqueFrontiers": 2,
+  "reusedCertificates": 1,
+  "h0ProvenRecords": 4,
+  "h0RefutedRecords": 4,
+  "h1RunRecords": 0,
+  "h1ProvenRecords": 0,
+  "rescueRecords": 0,
+  "verifyFailures": 0,
+  "falseProven": 0,
+  "identityMismatches": 0,
+  "chanceComplete": true,
+  "rescueStatus": "NO_PROVEN_TACTICAL_RESCUE_H1"
+ }
+}

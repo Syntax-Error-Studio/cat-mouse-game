@@ -1,0 +1,754 @@
+{
+  "generatedAt": "2026-11-14T16:56:00.814Z",
+  "generatedBy": "PPC-CAT-STRATEGY-01/probe/cat_defense_probe.test.ts",
+  "root": "G6T2",
+  "provenance": "REAL_HUMAN_REPLAY",
+  "classification": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+  "quantifier": "∃τ_cat ∀σ_mouse ∀chance → ¬MouseWins",
+  "horizon": {
+    "name": "H1",
+    "hParam": 2,
+    "cut": "猫节点 idx >= 4 视为视界外"
+  },
+  "witnesses": [
+    {
+      "id": "W-CD-H1",
+      "note": "轨迹由精确量词搜索给出：每个猫节点取「能挡住」的第一着，鼠节点任取其首着（∀ 侧）。这只是策略的一个实例；∀ 覆盖由反驳树保证。",
+      "tracedLine": [
+        "c:D",
+        "c:R",
+        "c:D",
+        "c:R~chance#1",
+        "m:U",
+        "m:D",
+        "m:U",
+        "c:U",
+        "c:D",
+        "c:U",
+        "c:D",
+        "m:D",
+        "m:U",
+        "m:D",
+        "HORIZON"
+      ],
+      "replayedPlan": [
+        "c:D",
+        "c:R",
+        "c:D",
+        "c:R~chance#1",
+        "m:U",
+        "m:D",
+        "m:U",
+        "c:U",
+        "c:D",
+        "c:U",
+        "c:D",
+        "m:D",
+        "m:U",
+        "m:D"
+      ],
+      "chanceLog": [
+        "CHANCE R: 1 outcomes, picked #1 weight=1.000000 ghosts=[-]"
+      ],
+      "horizonIdxAfter": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        4
+      ],
+      "legalSets": [
+        [
+          "U",
+          "D",
+          "L"
+        ],
+        [
+          "U",
+          "L",
+          "R"
+        ],
+        [
+          "D",
+          "L",
+          "R"
+        ],
+        [
+          "U",
+          "D",
+          "L",
+          "R"
+        ],
+        [
+          "U",
+          "D",
+          "L",
+          "R",
+          "S"
+        ],
+        [
+          "D",
+          "L",
+          "R",
+          "S"
+        ],
+        [
+          "U",
+          "D",
+          "L",
+          "R",
+          "S"
+        ],
+        [
+          "U",
+          "D",
+          "L",
+          "R"
+        ],
+        [
+          "D",
+          "L",
+          "R"
+        ],
+        [
+          "U",
+          "D",
+          "L",
+          "R"
+        ],
+        [
+          "D",
+          "L",
+          "R"
+        ],
+        [
+          "D",
+          "L",
+          "R",
+          "S"
+        ],
+        [
+          "U",
+          "D",
+          "L",
+          "R",
+          "S"
+        ],
+        [
+          "D",
+          "L",
+          "R",
+          "S"
+        ]
+      ],
+      "steps": [
+        {
+          "i": 0,
+          "action": "c:D",
+          "state": {
+            "phase": "playing",
+            "currentPlayer": "cat",
+            "cat": "4,3",
+            "mouse": "1,6",
+            "catMovesLeft": 3,
+            "mouseMovesLeft": 0,
+            "mouseHasButter": true,
+            "mouseSkillActive": false,
+            "butterPositions": [
+              "2,6"
+            ],
+            "pendingButterSpawns": [
+              "5,1:0"
+            ],
+            "pendingButterPlacementDebt": 0,
+            "trapPosition": "1,1",
+            "catTrapsRemaining": 0,
+            "blockedTunnels": []
+          }
+        },
+        {
+          "i": 1,
+          "action": "c:R",
+          "state": {
+            "phase": "playing",
+            "currentPlayer": "cat",
+            "cat": "4,4",
+            "mouse": "1,6",
+            "catMovesLeft": 2,
+            "mouseMovesLeft": 0,
+            "mouseHasButter": true,
+            "mouseSkillActive": false,
+            "butterPositions": [
+              "2,6"
+            ],
+            "pendingButterSpawns": [
+              "5,1:0"
+            ],
+            "pendingButterPlacementDebt": 0,
+            "trapPosition": "1,1",
+            "catTrapsRemaining": 0,
+            "blockedTunnels": []
+          }
+        },
+        {
+          "i": 2,
+          "action": "c:D",
+          "state": {
+            "phase": "playing",
+            "currentPlayer": "cat",
+            "cat": "5,4",
+            "mouse": "1,6",
+            "catMovesLeft": 1,
+            "mouseMovesLeft": 0,
+            "mouseHasButter": true,
+            "mouseSkillActive": false,
+            "butterPositions": [
+              "2,6"
+            ],
+            "pendingButterSpawns": [
+              "5,1:0"
+            ],
+            "pendingButterPlacementDebt": 0,
+            "trapPosition": "1,1",
+            "catTrapsRemaining": 0,
+            "blockedTunnels": []
+          }
+        },
+        {
+          "i": 3,
+          "action": "c:R~chance#1",
+          "state": {
+            "phase": "playing",
+            "currentPlayer": "mouse",
+            "cat": "5,5",
+            "mouse": "1,6",
+            "catMovesLeft": 0,
+            "mouseMovesLeft": 3,
+            "mouseHasButter": true,
+            "mouseSkillActive": false,
+            "butterPositions": [
+              "2,6",
+              "5,1"
+            ],
+            "pendingButterSpawns": [],
+            "pendingButterPlacementDebt": 0,
+            "trapPosition": "1,1",
+            "catTrapsRemaining": 0,
+            "blockedTunnels": []
+          }
+        },
+        {
+          "i": 4,
+          "action": "m:U",
+          "state": {
+            "phase": "playing",
+            "currentPlayer": "mouse",
+            "cat": "5,5",
+            "mouse": "0,6",
+            "catMovesLeft": 0,
+            "mouseMovesLeft": 2,
+            "mouseHasButter": true,
+            "mouseSkillActive": false,
+            "butterPositions": [
+              "2,6",
+              "5,1"
+            ],
+            "pendingButterSpawns": [],
+            "pendingButterPlacementDebt": 0,
+            "trapPosition": "1,1",
+            "catTrapsRemaining": 0,
+            "blockedTunnels": []
+          }
+        },
+        {
+          "i": 5,
+          "action": "m:D",
+          "state": {
+            "phase": "playing",
+            "currentPlayer": "mouse",
+            "cat": "5,5",
+            "mouse": "1,6",
+            "catMovesLeft": 0,
+            "mouseMovesLeft": 1,
+            "mouseHasButter": true,
+            "mouseSkillActive": false,
+            "butterPositions": [
+              "2,6",
+              "5,1"
+            ],
+            "pendingButterSpawns": [],
+            "pendingButterPlacementDebt": 0,
+            "trapPosition": "1,1",
+            "catTrapsRemaining": 0,
+            "blockedTunnels": []
+          }
+        },
+        {
+          "i": 6,
+          "action": "m:U",
+          "state": {
+            "phase": "playing",
+            "currentPlayer": "cat",
+            "cat": "5,5",
+            "mouse": "0,6",
+            "catMovesLeft": 4,
+            "mouseMovesLeft": 0,
+            "mouseHasButter": true,
+            "mouseSkillActive": false,
+            "butterPositions": [
+              "2,6",
+              "5,1"
+            ],
+            "pendingButterSpawns": [],
+            "pendingButterPlacementDebt": 0,
+            "trapPosition": "1,1",
+            "catTrapsRemaining": 0,
+            "blockedTunnels": []
+          }
+        },
+        {
+          "i": 7,
+          "action": "c:U",
+          "state": {
+            "phase": "playing",
+            "currentPlayer": "cat",
+            "cat": "4,5",
+            "mouse": "0,6",
+            "catMovesLeft": 3,
+            "mouseMovesLeft": 0,
+            "mouseHasButter": true,
+            "mouseSkillActive": false,
+            "butterPositions": [
+              "2,6",
+              "5,1"
+            ],
+            "pendingButterSpawns": [],
+            "pendingButterPlacementDebt": 0,
+            "trapPosition": "1,1",
+            "catTrapsRemaining": 0,
+            "blockedTunnels": []
+          }
+        },
+        {
+          "i": 8,
+          "action": "c:D",
+          "state": {
+            "phase": "playing",
+            "currentPlayer": "cat",
+            "cat": "5,5",
+            "mouse": "0,6",
+            "catMovesLeft": 2,
+            "mouseMovesLeft": 0,
+            "mouseHasButter": true,
+            "mouseSkillActive": false,
+            "butterPositions": [
+              "2,6",
+              "5,1"
+            ],
+            "pendingButterSpawns": [],
+            "pendingButterPlacementDebt": 0,
+            "trapPosition": "1,1",
+            "catTrapsRemaining": 0,
+            "blockedTunnels": []
+          }
+        },
+        {
+          "i": 9,
+          "action": "c:U",
+          "state": {
+            "phase": "playing",
+            "currentPlayer": "cat",
+            "cat": "4,5",
+            "mouse": "0,6",
+            "catMovesLeft": 1,
+            "mouseMovesLeft": 0,
+            "mouseHasButter": true,
+            "mouseSkillActive": false,
+            "butterPositions": [
+              "2,6",
+              "5,1"
+            ],
+            "pendingButterSpawns": [],
+            "pendingButterPlacementDebt": 0,
+            "trapPosition": "1,1",
+            "catTrapsRemaining": 0,
+            "blockedTunnels": []
+          }
+        },
+        {
+          "i": 10,
+          "action": "c:D",
+          "state": {
+            "phase": "playing",
+            "currentPlayer": "mouse",
+            "cat": "5,5",
+            "mouse": "0,6",
+            "catMovesLeft": 0,
+            "mouseMovesLeft": 3,
+            "mouseHasButter": true,
+            "mouseSkillActive": false,
+            "butterPositions": [
+              "2,6",
+              "5,1"
+            ],
+            "pendingButterSpawns": [],
+            "pendingButterPlacementDebt": 0,
+            "trapPosition": "1,1",
+            "catTrapsRemaining": 0,
+            "blockedTunnels": []
+          }
+        },
+        {
+          "i": 11,
+          "action": "m:D",
+          "state": {
+            "phase": "playing",
+            "currentPlayer": "mouse",
+            "cat": "5,5",
+            "mouse": "1,6",
+            "catMovesLeft": 0,
+            "mouseMovesLeft": 2,
+            "mouseHasButter": true,
+            "mouseSkillActive": false,
+            "butterPositions": [
+              "2,6",
+              "5,1"
+            ],
+            "pendingButterSpawns": [],
+            "pendingButterPlacementDebt": 0,
+            "trapPosition": "1,1",
+            "catTrapsRemaining": 0,
+            "blockedTunnels": []
+          }
+        },
+        {
+          "i": 12,
+          "action": "m:U",
+          "state": {
+            "phase": "playing",
+            "currentPlayer": "mouse",
+            "cat": "5,5",
+            "mouse": "0,6",
+            "catMovesLeft": 0,
+            "mouseMovesLeft": 1,
+            "mouseHasButter": true,
+            "mouseSkillActive": false,
+            "butterPositions": [
+              "2,6",
+              "5,1"
+            ],
+            "pendingButterSpawns": [],
+            "pendingButterPlacementDebt": 0,
+            "trapPosition": "1,1",
+            "catTrapsRemaining": 0,
+            "blockedTunnels": []
+          }
+        },
+        {
+          "i": 13,
+          "action": "m:D",
+          "state": {
+            "phase": "playing",
+            "currentPlayer": "cat",
+            "cat": "5,5",
+            "mouse": "1,6",
+            "catMovesLeft": 4,
+            "mouseMovesLeft": 0,
+            "mouseHasButter": true,
+            "mouseSkillActive": false,
+            "butterPositions": [
+              "2,6",
+              "5,1"
+            ],
+            "pendingButterSpawns": [],
+            "pendingButterPlacementDebt": 0,
+            "trapPosition": "1,1",
+            "catTrapsRemaining": 0,
+            "blockedTunnels": []
+          }
+        }
+      ],
+      "finalPhase": "playing"
+    }
+  ],
+  "mouseReplyCoverage": {
+    "note": "对防守线上每个鼠决策点，枚举鼠的全部合法回应，并逐个用精确量词搜索验证「仍被挡住」。CHANCE 回应要求所有正概率分支都被挡住。cap=300000",
+    "cap": 300000,
+    "elapsedMs": 198,
+    "mouseDecisionPointsOnLine": 6,
+    "coveredDecisionPoints": 6,
+    "complete": true,
+    "points": [
+      {
+        "step": 4,
+        "mouseNode": "cat=5,5 mouse=1,6",
+        "replies": [
+          {
+            "action": "U",
+            "mouseForcedWin": false
+          },
+          {
+            "action": "D*",
+            "mouseForcedWin": false
+          },
+          {
+            "action": "L",
+            "mouseForcedWin": false
+          },
+          {
+            "action": "R",
+            "mouseForcedWin": false
+          },
+          {
+            "action": "S",
+            "mouseForcedWin": false
+          }
+        ],
+        "allDenied": true
+      },
+      {
+        "step": 5,
+        "mouseNode": "cat=5,5 mouse=0,6",
+        "replies": [
+          {
+            "action": "D",
+            "mouseForcedWin": false
+          },
+          {
+            "action": "L",
+            "mouseForcedWin": false
+          },
+          {
+            "action": "R",
+            "mouseForcedWin": false
+          },
+          {
+            "action": "S",
+            "mouseForcedWin": false
+          }
+        ],
+        "allDenied": true
+      },
+      {
+        "step": 6,
+        "mouseNode": "cat=5,5 mouse=1,6",
+        "replies": [
+          {
+            "action": "U",
+            "mouseForcedWin": false
+          },
+          {
+            "action": "D*",
+            "mouseForcedWin": false
+          },
+          {
+            "action": "L",
+            "mouseForcedWin": false
+          },
+          {
+            "action": "R",
+            "mouseForcedWin": false
+          },
+          {
+            "action": "S",
+            "mouseForcedWin": false
+          }
+        ],
+        "allDenied": true
+      },
+      {
+        "step": 11,
+        "mouseNode": "cat=5,5 mouse=0,6",
+        "replies": [
+          {
+            "action": "D",
+            "mouseForcedWin": false
+          },
+          {
+            "action": "L",
+            "mouseForcedWin": false
+          },
+          {
+            "action": "R",
+            "mouseForcedWin": false
+          },
+          {
+            "action": "S",
+            "mouseForcedWin": false
+          }
+        ],
+        "allDenied": true
+      },
+      {
+        "step": 12,
+        "mouseNode": "cat=5,5 mouse=1,6",
+        "replies": [
+          {
+            "action": "U",
+            "mouseForcedWin": false
+          },
+          {
+            "action": "D*",
+            "mouseForcedWin": false
+          },
+          {
+            "action": "L",
+            "mouseForcedWin": false
+          },
+          {
+            "action": "R",
+            "mouseForcedWin": false
+          },
+          {
+            "action": "S",
+            "mouseForcedWin": false
+          }
+        ],
+        "allDenied": true
+      },
+      {
+        "step": 13,
+        "mouseNode": "cat=5,5 mouse=0,6",
+        "replies": [
+          {
+            "action": "D",
+            "mouseForcedWin": false
+          },
+          {
+            "action": "L",
+            "mouseForcedWin": false
+          },
+          {
+            "action": "R",
+            "mouseForcedWin": false
+          },
+          {
+            "action": "S",
+            "mouseForcedWin": false
+          }
+        ],
+        "allDenied": true
+      }
+    ]
+  },
+  "alternativeFullTurnWitnesses": [
+    {
+      "id": "W-CD-DRRR",
+      "plan": [
+        "D",
+        "R",
+        "R",
+        "R"
+      ],
+      "boundaryOutcomes": 1,
+      "horizonIdx": 1,
+      "mouseForcedWinOnAnyBranch": false,
+      "verdict": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "catAfter": "4,6, mouse=1,6",
+      "note": "历史叙述把 DRRR 当作替代安全线；本轮用精确量词验证它确实安全。注意安全的原因不是「守住 (4,6)」，而是猫保持在与鼠可捕获的关系上，使鼠在 6 步内无法既拿油又进洞。"
+    }
+  ],
+  "catDefenseActionSets": {
+    "note": "逐层枚举猫的全部合法走法，并用精确量词搜索给每个走法打安全/不安全。「安全」= ∃后续猫策略使鼠在 H1 内无法强制获胜。CHANCE 后继取 AND。",
+    "horizon": "H1",
+    "cap": 300000,
+    "elapsedMs": 26251,
+    "depthReached": 2,
+    "depthLimited": "只展开到猫的第一回合前两步；更深层由 W-CD-H1 的防线与反驳树覆盖。",
+    "level1Root": [
+      {
+        "action": "U",
+        "safe": false,
+        "branches": 1
+      },
+      {
+        "action": "D",
+        "safe": true,
+        "branches": 1
+      },
+      {
+        "action": "L",
+        "safe": false,
+        "branches": 1
+      }
+    ],
+    "level2AfterSafeOpening": [
+      {
+        "afterFirst": "D",
+        "moves": [
+          {
+            "action": "U",
+            "safe": false,
+            "branches": 1
+          },
+          {
+            "action": "L",
+            "safe": false,
+            "branches": 1
+          },
+          {
+            "action": "R",
+            "safe": true,
+            "branches": 1
+          }
+        ]
+      }
+    ]
+  },
+  "tempoRaceTable": {
+    "note": "同一段鼠行动（技能 + 六个下行）对三种猫开局的实测。决定性的量是「round2 开始时猫鼠距离」再加上「此时轮到谁走」：catCanReachMouseInOneTurn 只在 catCanReachApplies=true 时才有意义。DRRR 属封锁型（鼠回合还没走完，它是被物理挡住），DRDR 属节奏型（鼠走完 6 步，轮到猫，距离 3 <= 4 可直接抓捕）；两种原理不同，不可混为一谈。",
+    "catMovesPerTurn": 4,
+    "rows": [
+      {
+        "catPlan": "UURR",
+        "catEnd": "1,5",
+        "mouseAttemptLegal": true,
+        "mouseEnd": "7,6",
+        "mouseMovesLeft": 0,
+        "catMouseDistanceAtRound2Start": 7,
+        "catToMoveAtRound2Start": true,
+        "mouseHeldMovesAtRound2Start": 0,
+        "catCanReachMouseInOneTurn": false,
+        "catCanReachApplies": true,
+        "blockers": []
+      },
+      {
+        "catPlan": "DRRR",
+        "catEnd": "4,6",
+        "mouseAttemptLegal": false,
+        "mouseEnd": "3,6",
+        "mouseMovesLeft": 4,
+        "catMouseDistanceAtRound2Start": 1,
+        "catToMoveAtRound2Start": false,
+        "mouseHeldMovesAtRound2Start": 4,
+        "catCanReachMouseInOneTurn": false,
+        "catCanReachApplies": false,
+        "blockers": [
+          "D (illegal: legal=U,R)"
+        ]
+      },
+      {
+        "catPlan": "DRDR",
+        "catEnd": "5,5",
+        "mouseAttemptLegal": true,
+        "mouseEnd": "7,6",
+        "mouseMovesLeft": 0,
+        "catMouseDistanceAtRound2Start": 3,
+        "catToMoveAtRound2Start": true,
+        "mouseHeldMovesAtRound2Start": 0,
+        "catCanReachMouseInOneTurn": true,
+        "catCanReachApplies": true,
+        "blockers": []
+      }
+    ]
+  }
+}

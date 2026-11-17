@@ -1,0 +1,236 @@
+{
+  "artifactId": "CHECKPOINT_MANIFEST",
+  "round": "PPC-P1-CLOSURE-FIX-01",
+  "project": "Project Perfect Cat",
+  "date": "2026-11-13",
+  "branch": "ppc/p1-id-state-identity-fix",
+  "head": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+  "checkpointForm": "SHA-PINNED UNCOMMITTED WORKING TREE",
+  "whyNotACommit": "COMMIT/PUSH/MERGE are all forbidden this round. A checkpoint here therefore means: the exact bytes of every touched file are pinned by sha256, the pre-fix byte stream is recoverable, and the verification commands that certify the snapshot are recorded. It is NOT a git commit and must not be described as one.",
+  "preFixSnapshot": {
+    "location": "PPC-P1-CLOSURE-FIX-01/pre_fix_snapshot/",
+    "trackedDiff": {
+      "path": "PPC-P1-CLOSURE-FIX-01/pre_fix_snapshot/tracked.diff.bin",
+      "sha256": "8e382c8677aaac50434e68d483d111839376b3381ec36cc5da901263932960cb",
+      "bytes": 45099,
+      "command": "git diff --binary HEAD",
+      "capturedAt": "2026-11-13 16:33 (before ANY edit of this round)",
+      "coversTrackedFiles": 10
+    },
+    "statusList": {
+      "path": "PPC-P1-CLOSURE-FIX-01/pre_fix_snapshot/status_pre.txt",
+      "sha256": "c2f9e3db0615ec67b385a66a5abc78d57d268911cc487365f24e4ba81c057e81",
+      "bytes": 19577,
+      "command": "git status --porcelain -uall"
+    },
+    "verificationPerformed": {
+      "method": "Reproduced the pre-fix tree in a scratch dir: `git show HEAD:<path>` for each patch target, then `patch -p1` with tracked.diff.bin.",
+      "contentIdentityProven": true,
+      "proof": "`git hash-object` of each reconstructed file equals the post-image blob id in the patch header (engine 21c4860, expectiminimax.ts fdd0fae, transposition 2b331f4, planQuality 98c6285).",
+      "artifactHashesRecovered": {
+        "src/game/ai/expectiminimax.ts": "42b6e71f0cf784c7…",
+        "src/game/ai/planQuality.ts": "f97dd2045733e1aa…",
+        "src/game/ai/transposition.ts": "7b4aa8eb3fab994a…",
+        "src/game/ai/deadlineContext.ts": "ced449445d70d1ba…",
+        "src/game/ai/hardTurnPlanner.ts": "27b1ce6dc62234d0…",
+        "src/game/ai/__tests__/progressGuard.test.ts": "0d80ee542ca86620…"
+      },
+      "allMatchPriorManifestValues": true
+    },
+    "lineEndingCaveat": {
+      "severity": "IMPORTANT — read before using the diff as a byte-exact recovery source",
+      "gitConfig": {
+        "core.autocrlf": "true"
+      },
+      "fact": "Two of the touched files (src/game/engine.ts, src/game/ai/__tests__/expectiminimax.test.ts) are stored with CRLF in the working tree, while `git diff` emits LF-normalised hunks. Patching HEAD blobs therefore reproduces the CONTENT exactly but the LF variant of those two files, so their sha256 differs from the pre-fix on-disk sha256.",
+      "workedExample": {
+        "file": "src/game/engine.ts",
+        "preFixOnDiskSha256": "dbb5377af22a6471e31c899f9debe896e9e74a629f4fb50a47753bd492810f3e",
+        "reconstructedLfSha256": "a750f860efa49add…",
+        "reconstructedCrlfSha256": "dbb5377af22a6471…",
+        "conclusion": "The CRLF variant reproduces the value PPC-P1-TIME-01 recorded, which both confirms the reconstruction and pins the line-ending convention."
+      },
+      "consequence": "Byte-level sha256 comparisons are line-ending sensitive. Any future comparison MUST state which convention it uses; a fresh `git checkout` on a core.autocrlf=true clone yields the CRLF form."
+    }
+  },
+  "changedFiles": [
+    {
+      "path": "src/game/config.ts",
+      "role": "production",
+      "lineEnding": "LF",
+      "candidateDiskSha256": "978c6c9f35553cad09f81bb96feda494e0f429799b61a9bf6dd4fb0fd104e900",
+      "candidateBytes": 13975,
+      "preFixDiskSha256": "3930cad8aad46588da289ce1b073328c89da1083c28bc95e566bfe0fcb4cc20c",
+      "preFixSource": "head-unmodified",
+      "note": "config.ts was unchanged from HEAD before this round and is an LF file, so the on-disk sha256 equals the HEAD blob sha256",
+      "preFixPrefixDeclared": "3930cad8aad46588"
+    },
+    {
+      "path": "src/game/engine.ts",
+      "role": "production",
+      "lineEnding": "CRLF",
+      "candidateDiskSha256": "5a51e837b2c56516779c3f886c2acd9482fec2cbe15a8afb1984878df1b5154e",
+      "candidateBytes": 189446,
+      "preFixDiskSha256": "dbb5377af22a6471e31c899f9debe896e9e74a629f4fb50a47753bd492810f3e",
+      "preFixSource": "verified-by-reconstruction",
+      "note": "reconstructed from pre_fix_snapshot/tracked.diff.bin; git blob hash 21c4860 matches the patch post-image; LF-normalised variant hashes a750f860, the CRLF variant hashes dbb5377a which is exactly what PPC-P1-TIME-01 recorded",
+      "preFixPrefixDeclared": "dbb5377af22a6471"
+    },
+    {
+      "path": "src/game/ai/planBound.ts",
+      "role": "production",
+      "lineEnding": "LF",
+      "candidateDiskSha256": "f1427ae19dd6f87db30190209de02f39541f197691c60349fb99d04e242a49cb",
+      "candidateBytes": 5615,
+      "preFixDiskSha256": "99c269f90e3d",
+      "preFixSource": "prior-manifest-prefix",
+      "note": "PPC-P1-PLAN-01 recorded 99c269f9; LF file, reconstruction matched at full length",
+      "preFixPrefixDeclared": "99c269f90e3d"
+    },
+    {
+      "path": "src/game/ai/planQuality.ts",
+      "role": "production",
+      "lineEnding": "LF",
+      "candidateDiskSha256": "d8ecdd26afc9e790d4f471c1e5d198af5da0afe8de56009e1a7c45e4586ce51e",
+      "candidateBytes": 30602,
+      "preFixDiskSha256": "f97dd2045733e1aa",
+      "preFixSource": "verified-by-reconstruction",
+      "preFixPrefixDeclared": "f97dd2045733e1aa"
+    },
+    {
+      "path": "src/game/ai/expectiminimax.ts",
+      "role": "production",
+      "lineEnding": "LF",
+      "candidateDiskSha256": "8ac2698587b426df39efc2bb3b451db89d21477e6c60a30ad90e387dfaad052c",
+      "candidateBytes": 107714,
+      "preFixDiskSha256": "42b6e71f0cf784c7",
+      "preFixSource": "verified-by-reconstruction",
+      "preFixPrefixDeclared": "42b6e71f0cf784c7"
+    },
+    {
+      "path": "src/game/__tests__/catMoveBudgetInputDomain.test.ts",
+      "role": "test",
+      "lineEnding": "LF",
+      "candidateDiskSha256": "854a601ccc2955ddb11cc36426647ab8c5fd77db995fc462cbd820409f206767",
+      "candidateBytes": 12690,
+      "preFixDiskSha256": null,
+      "preFixSource": "new-file"
+    },
+    {
+      "path": "src/game/ai/__tests__/planActionBoundFixtures.ts",
+      "role": "test-fixture",
+      "lineEnding": "LF",
+      "candidateDiskSha256": "9e6357cdde151d83812e0f4546ba496378187ee7e1775d6cd17a7e3284ee5e08",
+      "candidateBytes": 11825,
+      "preFixDiskSha256": "1da29be55729",
+      "preFixSource": "prior-manifest-prefix",
+      "preFixPrefixDeclared": "1da29be55729"
+    },
+    {
+      "path": "src/game/ai/__tests__/forcedLossTieBreakHv14Reachability.test.ts",
+      "role": "test",
+      "lineEnding": "LF",
+      "candidateDiskSha256": "d0ebb25e5f5927c27bf91f11d4ddcb642e7d515616499473c8c533d87ef8b03a",
+      "candidateBytes": 36228,
+      "preFixDiskSha256": "7eb2b6299c8f74d4845a5ed34239e93ed9e91a6d1e036d715d9d513b63ff762b",
+      "preFixSource": "head-unmodified",
+      "note": "the test file was unchanged from HEAD before this round and is an LF file, so the on-disk sha256 equals the HEAD blob sha256",
+      "preFixPrefixDeclared": "7eb2b6299c8f74d4"
+    },
+    {
+      "path": "src/game/ai/__tests__/expectiminimax.test.ts",
+      "role": "test",
+      "lineEnding": "CRLF",
+      "candidateDiskSha256": "521340c59689a6d405d6777b71d6a8a4228850b46403ba352b73008a4ef75688",
+      "candidateBytes": 161383,
+      "preFixDiskSha256": "1f10220223335048",
+      "preFixSource": "computed",
+      "note": "HEAD blob is LF (e4f415cf); the working-tree copy is CRLF, so its on-disk sha256 is 1f102202",
+      "preFixPrefixDeclared": "1f10220223335048"
+    }
+  ],
+  "restoreProcedure": {
+    "executed": false,
+    "warning": "Recorded for a future authorised session only. It requires a clean worktree, so it must NOT be run while the current candidate is still uncommitted — it would destroy the candidate. No reset, checkout, clean or stash was performed this round.",
+    "steps": [
+      "1. Confirm `git rev-parse HEAD` == 48eaac6c4f3801d351787696ba5876995b64e8d8.",
+      "2. Preserve the current candidate first (e.g. copy the working tree, or commit it on a scratch branch) — the procedure below overwrites it.",
+      "3. From a clean HEAD worktree, apply PPC-P1-CLOSURE-FIX-01/pre_fix_snapshot/tracked.diff.bin with `patch -p1` (NOT `git apply`, which refuses these paths as 'Skipped patch' inside this repo).",
+      "4. Re-verify with the sha256 table in changedFiles[].preFixDiskSha256, honouring the lineEndingCaveat above.",
+      "5. The three untracked files created by earlier rounds (planBound.ts, planActionBoundFixtures.ts, the fixtures) cannot be restored from a git diff at all; their pre-fix values are pinned in changedFiles[].preFixDiskSha256 / PPC-P1-PLAN-01's manifest."
+    ]
+  },
+  "certificationCommands": [
+    {
+      "what": "input domain",
+      "cmd": "npx vitest run src/game/__tests__/catMoveBudgetInputDomain.test.ts --maxWorkers=1 --no-file-parallelism",
+      "expect": "13 passed"
+    },
+    {
+      "what": "P1-PLAN bound",
+      "cmd": "npx vitest run src/game/ai/__tests__/planTurnActionBound.test.ts --maxWorkers=1 --no-file-parallelism",
+      "expect": "19 passed"
+    },
+    {
+      "what": "P1-QUALITY reversal",
+      "cmd": "npx vitest run src/game/ai/__tests__/planReversalAccounting.test.ts --maxWorkers=1 --no-file-parallelism",
+      "expect": "9 passed"
+    },
+    {
+      "what": "progress guard",
+      "cmd": "npx vitest run src/game/ai/__tests__/progressGuard.test.ts --maxWorkers=1 --no-file-parallelism",
+      "expect": "31 passed"
+    },
+    {
+      "what": "HV14 forensics",
+      "cmd": "npx vitest run src/game/ai/__tests__/hv14FiveGameForensics.test.ts --maxWorkers=1 --no-file-parallelism",
+      "expect": "16 passed"
+    },
+    {
+      "what": "HV14 FLT (with registered exception)",
+      "cmd": "npx vitest run src/game/ai/__tests__/forcedLossTieBreakHv14Reachability.test.ts --maxWorkers=1 --no-file-parallelism",
+      "expect": "4 passed; log line 'reproduced=44 staleBlindspots=1'"
+    },
+    {
+      "what": "T1E-B A/B/K",
+      "cmd": "npx vitest run src/game/ai/__tests__/expectiminimax.test.ts -t 'T1E-B A/B/K' --maxWorkers=1 --no-file-parallelism",
+      "expect": "1 passed / 88 skipped"
+    },
+    {
+      "what": "default-map parity",
+      "cmd": "npx vitest run src/game/ai/__tests__/stateIdentityCollision.test.ts --maxWorkers=1 --no-file-parallelism",
+      "expect": "35 passed"
+    },
+    {
+      "what": "compile",
+      "cmd": "npx tsc -b",
+      "expect": "exit 0, no output"
+    },
+    {
+      "what": "bundle",
+      "cmd": "npm run build",
+      "expect": "exit 0, 96 modules"
+    }
+  ],
+  "guardState": {
+    "commit": "NO",
+    "push": "NO",
+    "merge": "NO",
+    "reset": "NO",
+    "clean": "NO",
+    "stash": "NO",
+    "rebase": "NO",
+    "trackedModifiedFiles": 13,
+    "newUntrackedFilesThisRound": [
+      "src/game/__tests__/catMoveBudgetInputDomain.test.ts",
+      "PPC-P1-CLOSURE-FIX-01/",
+      "PPC-P1-ID-01/SOURCE_MANIFEST.json"
+    ],
+    "protectedUntrackedFile": {
+      "path": "纸制版作业-先打印好-后在纸上做作业-第二次.doc",
+      "sha256": "505bd083d753adde9c0e41362a175f0aec8dd806444601e9951526350006b626",
+      "mtime": "2026-10-16 20:50:04",
+      "touched": false
+    }
+  }
+}

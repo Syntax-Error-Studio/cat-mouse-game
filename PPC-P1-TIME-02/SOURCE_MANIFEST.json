@@ -1,0 +1,106 @@
+{
+  "capturedAt": "2026-11-12 (session clock)",
+  "gitHead": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+  "branch": "ppc/p1-id-state-identity-fix",
+  "files": [
+    {
+      "path": "src/game/engine.ts",
+      "sha256": "dbb5377af22a6471e31c899f9debe896e9e74a629f4fb50a47753bd492810f3e",
+      "size": 188461,
+      "note": "production candidate (P1-TIME-01 turn identity + PPC-P1-TIME-02 untouched)",
+      "bytes": 188461
+    },
+    {
+      "path": "src/game/ai/hardTurnPlanner.ts",
+      "sha256": "27b1ce6dc62234d0c822b2b0b6341205ac189b5f76d7662a5d29d9e17ded75ff",
+      "size": 36060,
+      "note": "production candidate",
+      "bytes": 36060
+    },
+    {
+      "path": "src/game/ai/deadlineContext.ts",
+      "sha256": "ced449445d70d1ba88cb20d88415b3c641d670aa886536fcacefa36b4aa50235",
+      "size": 14411,
+      "note": "production candidate",
+      "bytes": 14411
+    },
+    {
+      "path": "src/game/ai/transposition.ts",
+      "sha256": "7b4aa8eb3fab994a4abc77fdf38800ab2a5f9da57d5eb33a1b37075e106c2d64",
+      "size": 6784,
+      "note": "P1-ID candidate (must remain 7b4aa8eb…)",
+      "bytes": 6784
+    },
+    {
+      "path": "src/game/ai/expectiminimax.ts",
+      "sha256": "9b976ec9bdbfd2cc02f6bdbb1f28b8a47a7c7759d4119e35964e077b4593ce45",
+      "size": 107084,
+      "note": "UNMODIFIED since baseline",
+      "bytes": 107084
+    },
+    {
+      "path": "src/game/ai/searchConfig.ts",
+      "sha256": "0c960794de784785b8f12ac39fabf141bc1e82afd4cf8dc8d5788de12cabcd5c",
+      "size": 5670,
+      "note": "UNMODIFIED (budgets)",
+      "bytes": 5670
+    },
+    {
+      "path": "src/game/ai/evaluation.ts",
+      "sha256": "e5246fa9d9976468fad3130b66216b3c214b4f786e9408b9306718bcc1cf8dd3",
+      "size": 33959,
+      "note": "UNMODIFIED (leaf)",
+      "bytes": 33959
+    },
+    {
+      "path": "src/game/ai/correctedHoleLeaf.ts",
+      "sha256": "f1403d3d945b425f98aa76deac9b6c44d81c317adf88a4b72f17d47b499d9a8a",
+      "size": 3189,
+      "note": "UNMODIFIED",
+      "bytes": 3189
+    },
+    {
+      "path": "PPC-P1-TIME-02/trace/arm/game/engine.ts",
+      "sha256": "63c99f62e7a50dbe1eabebbef219840b2b6756ffb5b978ae724e3ccfe811784c",
+      "size": 191694,
+      "note": "instrumented arm",
+      "bytes": 191694
+    },
+    {
+      "path": "PPC-P1-TIME-02/trace/arm/game/ai/hardTurnPlanner.ts",
+      "sha256": "0dd05e87d74f1be0758a896568c0e9625e4271de5dd2628d3b25a34e5d1790dd",
+      "size": 38822,
+      "note": "instrumented arm",
+      "bytes": 38047
+    },
+    {
+      "path": "PPC-P1-TIME-02/trace/arm/game/ai/expectiminimax.ts",
+      "sha256": "78a08b25b0b95c56ceae7c151c39d034028143b6740a97a2b5a74c59b83b2aeb",
+      "size": 110770,
+      "note": "instrumented arm",
+      "bytes": 108340
+    },
+    {
+      "path": "PPC-P1-TIME-02/trace/arm/game/ai/traceSink.ts",
+      "sha256": "f8f94d7eb1765a2b9814c6f6efbe458d71e21c9e6a96687432795fc5ecb2743f",
+      "size": 2201,
+      "note": "arm-only sink (does not exist in src/)",
+      "bytes": 2132
+    },
+    {
+      "path": "src/game/ai/__tests__/fixtures/ppcId01-human-roots.json",
+      "sha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "size": 264328,
+      "note": "frozen 24-root fixture (P1-ID)",
+      "bytes": 264328
+    },
+    {
+      "path": "PPC-P1-TIME-01/TIMING_RESULTS.json",
+      "sha256": "74ff5aff8dd9d4dc445991c71efa09e7ff450458c22ef64513ced6c39320f0f8",
+      "size": 9527,
+      "note": "frozen P1-TIME-01 artifact (NOT overwritten)",
+      "bytes": 9527
+    }
+  ],
+  "note": "Arm hashes refreshed after the byte-faithful line-ending rebuild of trace/arm (see INSTRUMENTATION_MANIFEST.json for the anchor list and edit counts)."
+}

@@ -12,18 +12,21 @@ import { stateKey } from '../transposition';
 /**
  * PPC-HV-2 §4C — minimal counterexample for the equal-primary plan DP.
  *
- * `extractDp` scores a branch by `actionReversal + countReversals(childPlan)`
- * (planQuality.ts:434). `countReversals` only walks pairs INSIDE one array, so
- * the pair that straddles the recursion boundary — (action, childPlan[0]) — is
- * never charged to the branch that contains it. The child DP did consider that
- * pair when choosing (it is the child's own `actionReversal`), so the plan the
- * child returns can legitimately contain an immediate reversal at a tie, and
- * the parent then scores that reversal as 0.
+ * The DP used to score a branch by `actionReversal + countReversals(childPlan)`
+ * (planQuality.ts:434 before PPC-P1-QUALITY-01). `countReversals` only walks
+ * pairs INSIDE one array, so the pair that straddles the recursion boundary —
+ * (action, childPlan[0]) — was never charged to the branch that contains it.
+ * The child DP did consider that pair when choosing (it is the child's own
+ * `actionReversal`), so the plan the child returned could legitimately contain
+ * an immediate reversal at a tie, and the parent then scored that reversal as 0.
  *
- * This root is a PROVEN exact tie (both actions sit in `equalActions`), which
- * is the only place secondary optimisation is allowed. Nothing here changes a
- * primary score; it only says that among exactly-equal continuations the one
- * with fewer real reversals must win.
+ * PPC-P1-QUALITY-01 replaced the two-half sum with a single
+ * `countPlanReversals(prefix, [action, ...childPlan])` over the concatenated
+ * plan, so C1 is now a live gate instead of a reproduction. This root is a
+ * PROVEN exact tie (both actions sit in `equalActions`), which is the only place
+ * secondary optimisation is allowed. Nothing here changes a primary score; it
+ * only says that among exactly-equal continuations the one with fewer real
+ * reversals must win.
  */
 
 function cleanConfig(overrides: Partial<GameConfig> = {}): GameConfig {
@@ -84,12 +87,10 @@ const step = (key: 'ArrowUp' | 'ArrowDown'): SearchAction => ({
     : ({ key, dr: 1, dc: 0, label: '↓' } as Direction),
 });
 
-// SKIPPED ON PURPOSE: this is the reproduction, not a gate. The defect is real
-// and proven here, but PPC-HV-2 §5 showed it does NOT explain the four human
-// roots (2 have a unique exact best, 2 loop with ZERO immediate reversals), so
-// fixing it was not the evidence-backed single intervention. Un-skip together
-// with the accounting fix in extractDp (planQuality.ts:434).
-test.skip('HV2-C1. exact-tie branches are compared by the TRUE reversal count of the whole plan', () => {
+// PPC-P1-QUALITY-01: the reproduction is now a GATE. The accounting fix in
+// `extractDp` (a single `countPlanReversals(prefix, [action, ...childPlan])`)
+// makes this pass, so it is un-skipped exactly as the original note required.
+test('HV2-C1. exact-tie branches are compared by the TRUE reversal count of the whole plan', () => {
   const root = mkRoot();
   const graph: EqualPrimaryGraph = new Map();
   graph.set(`${stateKey(root)}\x002`, {
@@ -121,9 +122,12 @@ test.skip('HV2-C1. exact-tie branches are compared by the TRUE reversal count of
   expect(trueReversals, 'countReversals of the returned plan').toBe(0);
 });
 
-test('HV2-C2. countReversals sees only pairs inside one array (the boundary pair is invisible to the DP)', () => {
-  // Documents WHY C1 fails: the two halves the DP adds together are not the
-  // pairs of the plan it concatenates.
+test('HV2-C2. countReversals sees only pairs inside one array (which is why the DP needs its own prefix-aware count)', () => {
+  // Documents the primitive that the old DP misused: `countReversals` is a
+  // BATCH counter over one array. Concatenating two scored halves and adding
+  // their numbers is not the same as scoring the concatenation — which is what
+  // C1 caught. Since PPC-P1-QUALITY-01 the DP calls `countPlanReversals` on the
+  // full plan instead, so this primitive keeps its narrow, honest meaning.
   expect(countReversals([step('ArrowUp')])).toBe(0);
   expect(countReversals([step('ArrowDown')])).toBe(0);
   expect(countReversals([step('ArrowUp'), step('ArrowDown')])).toBe(1);

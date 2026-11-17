@@ -1,0 +1,78 @@
+{
+  "round": "PPC-P1-CLOSURE-01",
+  "generatedAt": "2026-11-13",
+  "purpose": "Record which regression / timing authorities are still valid after the four uncommitted P1 rounds, and which are stale, so no later round inherits a number that the current machine or the current tree cannot reproduce.",
+  "git": {
+    "repo": "F:/小猫小鼠",
+    "branch": "ppc/p1-id-state-identity-fix",
+    "head": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+    "headUnchangedSinceP1Id": true,
+    "commitsThisRound": 0,
+    "pushThisRound": 0,
+    "worktree": "10 tracked files modified + 17 untracked entries (expected; NOT described as clean)"
+  },
+  "authorities": [
+    {
+      "id": "REG-FULL-973",
+      "owner": "PPC-P1-ID-01 (baseline boundary)",
+      "claim": "973 tests / 7 failed (T1E-B + FLT-HV14-4 + 5 throughput-sensitive) at bare HEAD",
+      "status": "SUPERSEDED",
+      "why": "Later rounds added tests and re-judged 4 pinned strings; the count is no longer comparable. Use REG-FULL-982."
+    },
+    {
+      "id": "REG-FULL-982",
+      "owner": "PPC-P1-QUALITY-01",
+      "claim": "982 tests / 976 passed / 2 failed / 4 skipped / 80 files / 1713.45s",
+      "status": "VALID_BUT_NOT_REPEATED",
+      "why": "This round deliberately did not repeat the 1713s suite (task scope forbids the full rerun). The number stands as the last full measurement of this tree.",
+      "failing": ["expectiminimax.test.ts > T1E-B (30s timeout)", "forcedLossTieBreakHv14Reachability.test.ts > FLT-HV14-4 (value mismatch)"]
+    },
+    {
+      "id": "REG-T1EB-WALL",
+      "owner": "this round",
+      "claim": "T1E-B needs ~40s of wall clock on this machine to finish; the global testTimeout is 30000ms",
+      "status": "SUPERSEDED_BY_ENVIRONMENT",
+      "why": "The 30s constant was calibrated when the same workload finished in 18.51s (2026-11-12). Today the SAME frozen HEAD source needs 39.73s and the candidate 41.88s, so the constant no longer matches the machine.",
+      "measured": {
+        "headArm_tests_s": 39.73,
+        "candidate_tests_s": 41.88,
+        "delta_s": 2.15,
+        "deltaPct": 5.4,
+        "samples": "one paired observation each"
+      }
+    },
+    {
+      "id": "REG-HV14-CORPUS",
+      "owner": "PPC-HV14 human validation (2026-11-10)",
+      "claim": "45 real cat-turn root values, used as the golden table by FLT-HV14-1..4",
+      "status": "PARTIALLY_STALE",
+      "why": "44 of 45 roots reproduce exactly under the current engine. GAME3 T4 does not: the logged value -1052.9473 (mate=null) is not reproducible at any depth 1..4, while the current engine's 999996 is an independently verified real cat win.",
+      "nonReproducibleRoots": 1,
+      "reproducibleRoots": 44,
+      "consequence": "FLT-HV14-4 cannot pass until that one golden is re-baselined. Its other assertions (bound profile, conflict counts, gate firing root) are unaffected."
+    },
+    {
+      "id": "TIMING-100-150",
+      "owner": "PPC-P1-TIME-01 / TIME-02",
+      "claim": "MAIN_SEARCH_SEMANTIC_BUDGET = 100ms soft budget, TOTAL_TURN_HARD_WALL = 150ms hard wall, one identity per cat turn",
+      "status": "UNCHANGED",
+      "why": "No constant, deadline kind or clock was touched by this round. Verified by SHA: deadlineContext.ts ced44944, hardTurnPlanner.ts 27b1ce6d, engine.ts dbb5377a all identical to the P1-TIME-01 candidate."
+    }
+  ],
+  "gates": {
+    "ABSOLUTE_DEADLINE_GATE": "BLOCKED",
+    "ABSOLUTE_DEADLINE_GATE_reason": "No formal turn-wide 150ms timing authority has been produced since PPC-P1-TIME-02 superseded the earlier measurement. This round did not produce one (no timing benchmark was run).",
+    "NEW_EFFICACY_AUTHORITY": "NONE",
+    "NEW_STRENGTH_CLAIM": "NONE",
+    "FULL_REGRESSION_RERUN": "NOT_PERFORMED",
+    "TYPECHECK": "PASS (tsc -b exit 0, empty log)",
+    "VITE_BUILD": "NOT_PERFORMED (no production source changed this round; last build PASS in PPC-P1-QUALITY-01)"
+  },
+  "classification": {
+    "T1E-B": "TEST_EXPECTATION_OR_HARNESS_ISSUE",
+    "FLT-HV14-4": "TEST_EXPECTATION_OR_HARNESS_ISSUE",
+    "PREEXISTING_ENGINE_CORRECTNESS_FAILURE": "NONE_FOUND",
+    "PERFORMANCE_OR_TERMINATION_FAILURE": "NONE_FOUND",
+    "UNRESOLVED": "NONE"
+  }
+}

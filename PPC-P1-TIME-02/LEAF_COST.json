@@ -1,0 +1,84 @@
+{
+  "protocol": "DIAGNOSTIC micro-benchmark: 200 timed calls after 30 warm-up calls, single state per root, one process, no deadline, no profiler, no trace.",
+  "caveat": "Measures the evaluator alone on ONE state; a search evaluates many different states, so per-turn totals scale with unique-leaf count, not with this number.",
+  "rows": [
+    {
+      "id": "G1T5",
+      "boardSize": 10,
+      "leafModeDefault": "baseline (HARD_LEAF_MODE_DEFAULT)",
+      "evaluateForCat": {
+        "calls": 200,
+        "totalMs": 32.187,
+        "perCallMs": 0.16093,
+        "msPerCall": [
+          0.106,
+          0.132,
+          0.9593
+        ],
+        "checksum": -314115.789474,
+        "counters": {
+          "evaluations": 230,
+          "mouseBfs": 230,
+          "catBfs": 230,
+          "carryMouseBfs": 230
+        }
+      },
+      "evaluateCorrectedHoleForCat": {
+        "calls": 200,
+        "totalMs": 23.764,
+        "perCallMs": 0.11882,
+        "msPerCall": [
+          0.0997,
+          0.1068,
+          0.4433
+        ],
+        "checksum": -294115.789474,
+        "counters": {
+          "evaluations": 230,
+          "mouseBfs": 230,
+          "catBfs": 230,
+          "carryMouseBfs": 230
+        }
+      }
+    },
+    {
+      "id": "G1T1",
+      "boardSize": 10,
+      "leafModeDefault": "baseline (HARD_LEAF_MODE_DEFAULT)",
+      "evaluateForCat": {
+        "calls": 200,
+        "totalMs": 28.852,
+        "perCallMs": 0.14426,
+        "msPerCall": [
+          0.1036,
+          0.1275,
+          0.6027
+        ],
+        "checksum": 30857.894737,
+        "counters": {
+          "evaluations": 230,
+          "mouseBfs": 230,
+          "catBfs": 230,
+          "carryMouseBfs": 230
+        }
+      },
+      "evaluateCorrectedHoleForCat": {
+        "calls": 200,
+        "totalMs": 21.853,
+        "perCallMs": 0.10926,
+        "msPerCall": [
+          0.0999,
+          0.1023,
+          0.318
+        ],
+        "checksum": -169142.105263,
+        "counters": {
+          "evaluations": 230,
+          "mouseBfs": 230,
+          "catBfs": 230,
+          "carryMouseBfs": 230
+        }
+      }
+    }
+  ]
+}

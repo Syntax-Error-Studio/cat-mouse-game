@@ -1,0 +1,122 @@
+{
+  "round": "PPC-P1-QUALITY-01",
+  "generatedAt": "2026-11-13",
+  "defect": {
+    "registerId": "PPC-PLAN-001",
+    "source": "PPC-NEXTGEN-01/CORRECTNESS_REGISTER.md",
+    "registeredWitness": "PPC-NEXTGEN-01/research/search-audit/out/reversal_boundary_counterexample.json",
+    "code": "src/game/ai/planQuality.ts extractDp",
+    "before": "totalReversal = actionReversal + countReversals(childPlan)",
+    "after": "totalReversal = countPlanReversals(prefix.prevCatStepKey, [action, ...childPlan])"
+  },
+  "gates": [
+    {
+      "gate": "QA-0",
+      "name": "source identity / workspace / P1-ID + P1-PLAN-01 preservation",
+      "status": "PASS",
+      "evidence": "branch ppc/p1-id-state-identity-fix @ 48eaac6c; transposition.ts 7b4aa8eb (ID-01), planBound.ts 99c269f9, expectiminimax.ts 42b6e71f all byte-identical; P1-TIME-02 artifacts untouched; no commit/push/merge"
+    },
+    {
+      "gate": "QA-1",
+      "name": "registered two-step counterexample reproduced and closed (6 shapes, 2 axes, M=2..4)",
+      "status": "PASS",
+      "evidence": "BASELINE_REVERSAL_WITNESS.json: 6/6 pick the 1-reversal line (UD/LR family) over the 0-reversal straight line; POSTFIX_REVERSAL_WITNESS.json: 6/6 pick the straight line, 0 reversals, value/mate/completed/nodes/ttSize identical. planReversalAccounting QA-1/QA-1b"
+    },
+    {
+      "gate": "QA-2",
+      "name": "external prefix -> current action edge charged",
+      "status": "PASS",
+      "evidence": "QA-2: countPlanReversals('ArrowUp',[D])=1, ('ArrowDown',[D])=0, (null,[D])=0"
+    },
+    {
+      "gate": "QA-3",
+      "name": "current action -> child plan head edge charged",
+      "status": "PASS",
+      "evidence": "QA-3: countReversals([U])=0 but countPlanReversals(null,[U,D])=1 — the edge the old formula dropped"
+    },
+    {
+      "gate": "QA-4",
+      "name": "every adjacent pair charged exactly once",
+      "status": "PASS",
+      "evidence": "QA-4: countPlanReversals(null,plan)===countReversals(plan) for prefix-free plans; adding a prefix adds exactly its own edge for all 4 directions; alternating 6-action plan = 5"
+    },
+    {
+      "gate": "QA-5",
+      "name": "catPlaceTrap never manufactures a reversal",
+      "status": "PASS",
+      "evidence": "QA-5: 6 combinations across both sides of the trap; a trap in the middle breaks the chain (countPlanReversals(null,[U,T,D])=0)"
+    },
+    {
+      "gate": "QA-6",
+      "name": "memo keeps prefix contexts apart",
+      "status": "PASS",
+      "evidence": "QA-6: V-M3 corridor reaches (1,2)@1 with prefix Down and prefix Up inside one extraction; result is the 0-reversal line, and reversing the recorded root-tie order still yields DDD"
+    },
+    {
+      "gate": "QA-7",
+      "name": "equal-reversal ties keep the pre-existing stable order",
+      "status": "PASS",
+      "evidence": "QA-7: cross room, 4 ordered pairs (L/R, R/L, U/D, D/U) all yield the first-recorded straight line with 0 reversals"
+    },
+    {
+      "gate": "QA-8",
+      "name": "every returned plan is legal and certifies complete",
+      "status": "PASS",
+      "evidence": "QA-8: 5 roots replayed action by action through simulateSearchAction; every step deterministic and state-changing; end catMovesLeft=0, end player Mouse, COMPLETE_TURN_BOUNDARY"
+    },
+    {
+      "gate": "QA-9",
+      "name": "D1 search math unchanged (value/mate/completed/TT)",
+      "status": "PASS",
+      "evidence": "PARITY_RESULTS.json: 24/24 roots identical on key/completed/value/mate/action/ttSize; plan diffs = 0"
+    },
+    {
+      "gate": "QA-10",
+      "name": "P1-PLAN-01 long plans still legal and complete",
+      "status": "PASS",
+      "evidence": "planTurnActionBound.test.ts (PLAN-1/PLAN-2/PLAN-3) 19/19 PASS; EXTRACTION_COST.json M=9 -> dpLen 10, COMPLETE_TURN_BOUNDARY"
+    },
+    {
+      "gate": "QA-11",
+      "name": "24 human roots old vs new plan recorded",
+      "status": "PASS",
+      "evidence": "PARITY_RESULTS.json rows: baselinePlan === newPlan on all 24; total reversals 1 -> 1 (the single reversal is in a root with no tie, so the extractor never chose it)"
+    },
+    {
+      "gate": "QA-12",
+      "name": "TypeScript / Vite build / regression",
+      "status": "PASS_WITH_2_PREEXISTING_FAILURES",
+      "evidence": "npx tsc -b exit 0; npm run build exit 0 (96 modules, 7.91s); logs/regression_full.log: 982 tests, 976 passed / 2 failed / 4 skipped, 80 files, 1713s; the 2 failures are T1E-B and FLT-HV14-4, both pre-existing"
+    }
+  ],
+  "planChangesOutsideThe6Fixtures": [
+    {
+      "root": "GAME2 T7 (HV14-5/6, m3lite/m3lite forensics)",
+      "before": "LURD",
+      "after": "ULDR",
+      "why": "OLD: the Up branch's subtree returned UUDD (1 real reversal) because a deeper node dropped the join edge, so Up scored 1 and the second recorded action (Left) won. NEW: Up's subtree returns ULDR (0 reversals), the root is a genuine 4-way tie, and the first recorded action (Up) wins. Evidence: OLD_VS_NEW_DP.json",
+      "samePrimaryValue": true,
+      "reversalsBefore": 0,
+      "reversalsAfter": 0,
+      "conformsToStableOrder": true
+    },
+    {
+      "root": "Game5 T15 (progressGuard P4/P8/P26, m3lite D7)",
+      "before": "ULDR",
+      "after": "DRUL",
+      "why": "OLD: Down scored 1 (child returned DDUU) and Left scored 1 (child returned LLRR), although both branches' true optimum is 0 reversals; the winner was the first zero-cost branch (Up). NEW: all four branches score 0, so the first recorded action (Down) wins. Evidence: OLD_VS_NEW_DP_T15.json",
+      "samePrimaryValue": true,
+      "reversalsBefore": 0,
+      "reversalsAfter": 0,
+      "conformsToStableOrder": true
+    }
+  ],
+  "judgementOnPinnedStrings": {
+    "hv2PlanTieQuality HV2-C1": "un-skipped (the file said to un-skip together with this exact fix)",
+    "hv14FiveGameForensics HV14-5/HV14-6": "LURD -> ULDR, re-judged as the expected result of the fix (same exact primary value, 0 reversals both, ULDR is the stable-order winner)",
+    "progressGuard P4/P26": "ULDR -> DRUL, same reasoning",
+    "m3lite D7": "ULDR -> DRUL, same reasoning",
+    "progressGuard P8": "memory rebuilt from the loop the planner actually produces (DRUL). T14 and T15 both produce DRUL with IDENTICAL signatures, so the guard still triggers and rescues to DDLD in real play (T15_GUARD_PROBE.json: rescueApplied=true, rescuePlan=DDLD). The old test hard-coded the pre-fix label, which would have left the rescue path unexercised.",
+    "assertionsRelaxedOrDeleted": "NONE"
+  }
+}

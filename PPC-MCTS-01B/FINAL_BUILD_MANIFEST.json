@@ -1,0 +1,1268 @@
+{
+  "manifest": "FINAL_BUILD_MANIFEST",
+  "round": "PPC-REPORT-01-SEAL",
+  "roundNote": "Document-only seal round: mathematics and semantics corrected against the source, two core figures redrawn in Chinese, quality gate raised to 37 real checks. No experiment was run, no production source, GAMEPLAY, parameter or raw artefact was touched.",
+  "generatedAt": "2026-11-17T13:40:54.195Z",
+  "node": "v22.22.2",
+  "provenance": {
+    "head": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+    "branch": "ppc/p1-id-state-identity-fix",
+    "headUnchangedByThisRound": true,
+    "commitsMade": 0,
+    "pushesMade": 0
+  },
+  "buildCommand": "node PPC-MCTS-01B/scripts/build-drivers.mjs",
+  "buildOutputs": {
+    "builtAt": "2026-11-16T17:07:40.816Z",
+    "node": "v22.22.2",
+    "outputs": [
+      {
+        "entry": "PPC-MCTS-01B/drivers/parityFixedSims.ts",
+        "outfile": "PPC-MCTS-01B/build/parityFixedSims.mjs",
+        "bytes": 2850570,
+        "sha256": "1cef6942d1e1c9623ab9326ddf0070da3b8f44c1e5a5023c3327002ccddf6c75"
+      },
+      {
+        "entry": "PPC-MCTS-01B/drivers/perfBudget100.ts",
+        "outfile": "PPC-MCTS-01B/build/perfBudget100.mjs",
+        "bytes": 2822543,
+        "sha256": "3bd3292279490f4cef6a461c13cfbffa64f8b65287185b7466858b504a6b544e"
+      },
+      {
+        "entry": "PPC-MCTS-01B/drivers/phase1Parity.ts",
+        "outfile": "PPC-MCTS-01B/build/phase1Parity.mjs",
+        "bytes": 2830536,
+        "sha256": "26f4c66c24c5983818605f8428c756c017291694925d547dfd0d9dd10253b186"
+      }
+    ]
+  },
+  "totals": {
+    "files": 194,
+    "bytes": 28464977,
+    "byBucket": {
+      "registry": {
+        "files": 4,
+        "bytes": 201325
+      },
+      "report": {
+        "files": 18,
+        "bytes": 209654
+      },
+      "diffArtifact": {
+        "files": 2,
+        "bytes": 37513
+      },
+      "analysis": {
+        "files": 4,
+        "bytes": 639144
+      },
+      "buildOutput": {
+        "files": 4,
+        "bytes": 8504435
+      },
+      "dataArtefact": {
+        "files": 125,
+        "bytes": 18362105
+      },
+      "driverSource": {
+        "files": 6,
+        "bytes": 70841
+      },
+      "figure": {
+        "files": 5,
+        "bytes": 34506
+      },
+      "log": {
+        "files": 7,
+        "bytes": 64184
+      },
+      "probeSource": {
+        "files": 6,
+        "bytes": 76081
+      },
+      "prototypeSource": {
+        "files": 3,
+        "bytes": 80512
+      },
+      "scriptSource": {
+        "files": 10,
+        "bytes": 184677
+      }
+    }
+  },
+  "selfReference": {
+    "excluded": [
+      "BUILD_MANIFEST.json",
+      "FINAL_BUILD_MANIFEST.json",
+      "SHA256SUMS.txt"
+    ],
+    "reason": "A manifest cannot contain its own digest, and a digest list must be computed after every other file exists.",
+    "authorityForManifestDigest": "SHA256SUMS.txt (computed after this file is written)"
+  },
+  "files": [
+    {
+      "path": "PPC-MCTS-01B/BASELINE_FORK_PROVENANCE.json",
+      "bucket": "registry",
+      "bytes": 170402,
+      "sha256": "e1f100d36870e45b0a6d4d1436fc860c168534ca6696f3bb4a30d22ba85f26a5"
+    },
+    {
+      "path": "PPC-MCTS-01B/CALLSITE_REUSE_MATRIX.md",
+      "bucket": "report",
+      "bytes": 13652,
+      "sha256": "3afe5a6b74b92b3bc3441a8f079b243f097bb7942960a0b981e0d79b3e3f2127"
+    },
+    {
+      "path": "PPC-MCTS-01B/COMPETITION_METRICS_TABLE.md",
+      "bucket": "report",
+      "bytes": 2290,
+      "sha256": "97fddcaa8a2e880136cd58a4634b063677dc5e76ce450b2bd30aa9657294d375"
+    },
+    {
+      "path": "PPC-MCTS-01B/DIFF_uct_to_uctBaseline.patch",
+      "bucket": "diffArtifact",
+      "bytes": 24324,
+      "sha256": "bf69ddfd7c9794975ec63894bae57407be95a4a3007615fd7d6f1296f0a9c1f1"
+    },
+    {
+      "path": "PPC-MCTS-01B/DIFF_uct_to_uctPrepared.patch",
+      "bucket": "diffArtifact",
+      "bytes": 13189,
+      "sha256": "b66a66d2e6093e5799e5599d00416340a6715c42726d6924a24233f43f8d96e3"
+    },
+    {
+      "path": "PPC-MCTS-01B/FINAL_EXECUTION_REPORT.md",
+      "bucket": "report",
+      "bytes": 10916,
+      "sha256": "3fa98da56fa6343f90e5c6b9888be6c2355b9b683c60f1c00110c7fe8cd1299c"
+    },
+    {
+      "path": "PPC-MCTS-01B/FINAL_GATE_REPORT.md",
+      "bucket": "report",
+      "bytes": 10559,
+      "sha256": "2f6b948de794758a1b05008b6777fae3a912463902bb0b7d9add8c60b13f2b98"
+    },
+    {
+      "path": "PPC-MCTS-01B/FINAL_SEAL_REPORT.md",
+      "bucket": "report",
+      "bytes": 10405,
+      "sha256": "0475c33ec54b2ec7d8f0403c20b2715e337af968f595a1a5233f95b9e12b9188"
+    },
+    {
+      "path": "PPC-MCTS-01B/HARNESS_CORRECTNESS_REPORT.md",
+      "bucket": "report",
+      "bytes": 11859,
+      "sha256": "22e5991147f2a5b5ecda6aee1d6eb366232ce4118be62f32d20ef429da0f4040"
+    },
+    {
+      "path": "PPC-MCTS-01B/HARNESS_REPAIR_REPORT.md",
+      "bucket": "report",
+      "bytes": 23696,
+      "sha256": "c86c6bb258eecd7c9ac88897f5b8737f5896f989a6cb25d492607245a29e4a2a"
+    },
+    {
+      "path": "PPC-MCTS-01B/IMPLEMENTATION_REPORT.md",
+      "bucket": "report",
+      "bytes": 19011,
+      "sha256": "333d721724cafb0d3e29998b99d8be3bf3177b97ec486fa97fadc7ea71db4228"
+    },
+    {
+      "path": "PPC-MCTS-01B/NOTION_UPDATE.md",
+      "bucket": "report",
+      "bytes": 3932,
+      "sha256": "7fffba42a678d581edc09e0ba482484925ef5df25018aa72ebce5fc44d3d074c"
+    },
+    {
+      "path": "PPC-MCTS-01B/PHASE1_ANALYSIS/cells.csv",
+      "bucket": "analysis",
+      "bytes": 73068,
+      "sha256": "a10c172bd7a6761904869d9f44b5845930675c39c93b148262382feba4e36885"
+    },
+    {
+      "path": "PPC-MCTS-01B/PHASE1_ANALYSIS/summary.json",
+      "bucket": "analysis",
+      "bytes": 435909,
+      "sha256": "9adc57139a86d7598c026d09c81e0df24570cb9ec15c471c770dcd830ff7351a"
+    },
+    {
+      "path": "PPC-MCTS-01B/PHASE1_FINAL_REPORT.md",
+      "bucket": "report",
+      "bytes": 4235,
+      "sha256": "cf58695b4f47301983f523addad442f454a5d98b29a0b8f524bc782b1f3ffa58"
+    },
+    {
+      "path": "PPC-MCTS-01B/PHASE1_PREREGISTRATION.json",
+      "bucket": "registry",
+      "bytes": 7555,
+      "sha256": "d459a9ffa60a6052b18fba93a530b18f5d35630328141fc56e3eaee59095e156"
+    },
+    {
+      "path": "PPC-MCTS-01B/PHASE2_ANALYSIS/paired.json",
+      "bucket": "analysis",
+      "bytes": 105227,
+      "sha256": "f72ced7fa1e23e07a792390cae9c4bb347573ac38e1e719e3f43cd30a4eb31d1"
+    },
+    {
+      "path": "PPC-MCTS-01B/PHASE2_ANALYSIS/summary.json",
+      "bucket": "analysis",
+      "bytes": 24940,
+      "sha256": "c16cccd4b1600337c927a7407510fb2bfec5d932b7328714c0b623244baef8ff"
+    },
+    {
+      "path": "PPC-MCTS-01B/PHASE2_FINAL_REPORT.md",
+      "bucket": "report",
+      "bytes": 2494,
+      "sha256": "ef09ef2b1c9cd5ad7967063d71ae665f88d0b1ffc26ad9bb37984c1c5e4ea7be"
+    },
+    {
+      "path": "PPC-MCTS-01B/PHASE2_PREREGISTRATION.json",
+      "bucket": "registry",
+      "bytes": 10003,
+      "sha256": "ae54769b7dd56c18e92e4e441eb81b0fb82673ffe66e0ee1e6cf676858f4433b"
+    },
+    {
+      "path": "PPC-MCTS-01B/PREPARED_TRANSITION_CONTRACT_AUDIT.md",
+      "bucket": "report",
+      "bytes": 21387,
+      "sha256": "042c6555be6c0d4b998e19eb9518aa9e882f9cec33ed8def2d581af1025c95d6"
+    },
+    {
+      "path": "PPC-MCTS-01B/RECOMMENDATION.md",
+      "bucket": "report",
+      "bytes": 10320,
+      "sha256": "18237d9be4f392e34fc713e576b79f1578ea6afbf6e74c57b90cd2015c27a6e4"
+    },
+    {
+      "path": "PPC-MCTS-01B/REPORT_QUALITY_CHECK.md",
+      "bucket": "report",
+      "bytes": 4289,
+      "sha256": "2c2614fdc78ca22c9e8588c6b5203107dea6600dd4dbdae1eef7598e2a93164b"
+    },
+    {
+      "path": "PPC-MCTS-01B/SIMULATION_TRACE_SCHEMA.md",
+      "bucket": "report",
+      "bytes": 9099,
+      "sha256": "688be0d0956ed66173a6854e2de2a885f44919d394621b7e3a0b34c4ff1fe861"
+    },
+    {
+      "path": "PPC-MCTS-01B/SOURCE_PROVENANCE.json",
+      "bucket": "registry",
+      "bytes": 13365,
+      "sha256": "b84aab541addf0110988dfa923016d2500d7bbd50d1aa626c9579cd63eefa3de"
+    },
+    {
+      "path": "PPC-MCTS-01B/STATE_IMMUTABILITY_AND_CHANCE_AUDIT.md",
+      "bucket": "report",
+      "bytes": 13415,
+      "sha256": "7afdf3bafe92bb7fe76e53221c626a58d65531cc18990d9818709182c6119bc8"
+    },
+    {
+      "path": "PPC-MCTS-01B/STATISTICAL_ANALYSIS.md",
+      "bucket": "report",
+      "bytes": 6342,
+      "sha256": "4fbbbbbb17030eb8780910184699336bd3049b8c5af4383fe33dfc3932292c93"
+    },
+    {
+      "path": "PPC-MCTS-01B/TECHNICAL_REPORT_INSERT.md",
+      "bucket": "report",
+      "bytes": 31753,
+      "sha256": "e034ef5c517cd9bea9c5e1293cc220173b35a50e3357d2cc76d91dfa7d8756fe"
+    },
+    {
+      "path": "PPC-MCTS-01B/build/BUILD_OUTPUTS.json",
+      "bucket": "buildOutput",
+      "bytes": 786,
+      "sha256": "48da22a0e7803dc1f79a62447b9eeaec8e9f0e72673e30712f7c40fe559143f8"
+    },
+    {
+      "path": "PPC-MCTS-01B/build/parityFixedSims.mjs",
+      "bucket": "buildOutput",
+      "bytes": 2850570,
+      "sha256": "1cef6942d1e1c9623ab9326ddf0070da3b8f44c1e5a5023c3327002ccddf6c75"
+    },
+    {
+      "path": "PPC-MCTS-01B/build/perfBudget100.mjs",
+      "bucket": "buildOutput",
+      "bytes": 2822543,
+      "sha256": "3bd3292279490f4cef6a461c13cfbffa64f8b65287185b7466858b504a6b544e"
+    },
+    {
+      "path": "PPC-MCTS-01B/build/phase1Parity.mjs",
+      "bucket": "buildOutput",
+      "bytes": 2830536,
+      "sha256": "26f4c66c24c5983818605f8428c756c017291694925d547dfd0d9dd10253b186"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/callsites.json",
+      "bucket": "dataArtefact",
+      "bytes": 10884,
+      "sha256": "a4bf1a9b4ce09d618f8f685d577915ebad5d8b56c6ac0486b49318ef73ee9f34"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/impl-parity-breadth.json",
+      "bucket": "dataArtefact",
+      "bytes": 41200,
+      "sha256": "c0b0de09444d3d1a80b7013b9143ef557dc84cc75c18d07e8b7cfec1bd736cb6"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/impl-parity-smoke.json",
+      "bucket": "dataArtefact",
+      "bytes": 2726,
+      "sha256": "b9130593ac542b32de6a9c6b118be8656f5d78dd88a3ce71e4ac3337224fb43a"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/parity-fixed-sims-smoke.json",
+      "bucket": "dataArtefact",
+      "bytes": 2461,
+      "sha256": "facf9df19748479911f0f97d7d896ae286cfab9ad88d87fa0aaafdcd4a3b2ddc"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/parity.json",
+      "bucket": "dataArtefact",
+      "bytes": 21707,
+      "sha256": "f3a14bab4652c004240f58de6ab2821434d1d885418b13db89c09de14019fc3d"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/perf-smoke.json",
+      "bucket": "dataArtefact",
+      "bytes": 19610,
+      "sha256": "0de0ad52c84f675d58ab64cf8d9545c3792794fa95b024316a31cf42d4a70d18"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-chance-probe/rep-01.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 193506,
+      "sha256": "4300b351e03491966a96b37b85ff86a72be6f456de0ce9734baa395d6dbbecdb"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-chance-probe/rep-01.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 1190,
+      "sha256": "f3c8f1dd2b5c02c2c67499ceb2c82f2e8b32ee933250d5567b91f5c782ece388"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-chance-probe2/rep-01.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 195399,
+      "sha256": "ad3d9eaf429d67d51b24e18b99b8a4a0352c6153b194b4716fadf514038f5d8b"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-chance-probe2/rep-01.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 1256,
+      "sha256": "99aa28b53e976871863acf14ef502946e277933f145070b1ba9089d3b768304a"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-formal-console.log",
+      "bucket": "dataArtefact",
+      "bytes": 53463,
+      "sha256": "838d14fe7884f1f270b5bbecde1f9840d50a4647feb433e4fe3dd1ad8c3f8e6a"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-formal/ENVELOPE.json",
+      "bucket": "dataArtefact",
+      "bytes": 10307,
+      "sha256": "fe469f162ff5d615d16d4f637cac1364995789f2097896f5f277e2620b52c39d"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-formal/orchestrator.log.json",
+      "bucket": "dataArtefact",
+      "bytes": 12301,
+      "sha256": "84c39a092d2549a3d057c0c4f61ccd5612e92c4860cc52f338c2b1d2a581be5f"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-formal/rep-01.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 814519,
+      "sha256": "36ab66eee6e83c2dc3eb122bc1aa23bf0678473f464343571fbbd7e65467aa9d"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-formal/rep-01.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 1209,
+      "sha256": "648d7e3772313602e3444daee62dc0c2bcad4ec9653eb6a4b31eec98a05b55e4"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-formal/rep-02.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 814562,
+      "sha256": "d97b15a40b5b9b922f525d751c78787a9772e8980f8e439ddee50ebd9a48fbd3"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-formal/rep-02.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 1209,
+      "sha256": "8ebf178fe8d0bf6154d93fe68a260e46f4b6e07376ccb5112f8bf7f5204aa547"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-formal/rep-03.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 814554,
+      "sha256": "5fe9f2eaa2625bc3fa9e192617ac53845a224dbb3b5decb3ecd78ec18b7d3ade"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-formal/rep-03.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 1207,
+      "sha256": "0850c199e27911bebf7309f2697718a2869f4b6d589f846c906b1df531e87130"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-formal/rep-04.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 814518,
+      "sha256": "36ca6aefbdd61662db82d3dcb1515e94175dcac074285fee99f77621dd1c7443"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-formal/rep-04.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 1208,
+      "sha256": "05878ed5e61a4733c19249f20967a612c9d6c612f23b6384049c068dfab546d3"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-formal/rep-05.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 814507,
+      "sha256": "d74375b3c3641fd84406a524acdbfe77afd86a549ae380f9e77fb1f43592667c"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-formal/rep-05.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 1209,
+      "sha256": "685f539e1986b94de701734ccd0c06f9d64c30a454f639cd7634e7a6410f3bdb"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-formal/rep-06.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 814537,
+      "sha256": "684bbd35609d4f71dc44e131289aa23d66fd96fe42a1cc53de9899f29fb2d10b"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-formal/rep-06.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 1209,
+      "sha256": "286d19a2ffd8f7570d81ba6fb1fdf75885c2798308f5ca6ce7fd680fdeb02d41"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-formal/rep-07.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 814555,
+      "sha256": "ffd7dbaff48f92cb18af7a4a9eb9f6b50bd543f5d8df91af92a58155a60ce62b"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-formal/rep-07.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 1209,
+      "sha256": "faf09ebc4086656df725451e9d94a234534b519e9a8b42fd497c470c3cfe140a"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-formal/rep-08.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 814496,
+      "sha256": "f2527ed66d84f4f988accc7f003091704ffa99a6fe9d65d8651caac4c9a00881"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-formal/rep-08.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 1209,
+      "sha256": "dcd1cc60093142dd52788c786c6e17a0a702351d46cf1d745ea8dbf874e461cf"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-formal/rep-09.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 814524,
+      "sha256": "04671e239df09998c7cabd647167e12cb1eba6f75d84c44befd96027f283c40d"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-formal/rep-09.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 1209,
+      "sha256": "304d9810cbbb87b3482013dd327808edcde48dba8dc86e5ee0826cdbabb62da9"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-formal/rep-10.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 814613,
+      "sha256": "d6b11b8e31344c462287599d762c5eeac07c4a275f878ca2c43e8f21509d1119"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-formal/rep-10.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 1210,
+      "sha256": "563cf8cce2c36caffe344bf1ae3ec770b4e88ca7372b4f14c11e2d12f13fead6"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-formal/rep-11.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 814581,
+      "sha256": "d23b41526cd841ebb84553339bcdd964d9c96896ebc49730295f6bdb94edf03b"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-formal/rep-11.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 1210,
+      "sha256": "e09cf642a20d6d0d8bde91f7152ed03c153b6a039a129a245186a919c1ee1173"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-formal/rep-12.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 814609,
+      "sha256": "8200a05b2bac370622a51e50af9a74f4d043660ce571c5d17f88839b8963e2eb"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-formal/rep-12.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 1209,
+      "sha256": "688a062a2b1109292f697d8ce733f1c3ea1e1e47d3fa96982618b7c0c5e27735"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-formal/rep-13.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 814569,
+      "sha256": "0e2c607a49b4f4e09a39ca52464b5e8366480d5ef4197d26187b091c681243db"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-formal/rep-13.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 1210,
+      "sha256": "dc8ad8202981178cd3a419fb13065ef4ae31bd01422921e035b75fd2494782e3"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-formal/rep-14.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 814567,
+      "sha256": "fe81e10687dd5f24318855332bc0afb980ed2a286b35709d2d9bc40d332e7142"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-formal/rep-14.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 1210,
+      "sha256": "d7f7313275c6bf4b2846b38d6654b87dc2c81d37e59fe53d2b6a853c3b57247d"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-formal/rep-15.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 814573,
+      "sha256": "57f8e04cb11d769ec5514fd9b54fc860da8b91c8276e01b96fb487b6afab1f9c"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-formal/rep-15.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 1210,
+      "sha256": "d9266a63b267071a47154d06b13319d9c909dc6b9db77a1d5c435760c90c4ff4"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-formal/rep-16.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 814602,
+      "sha256": "275e39e0d801783ec1e50f71fb0956a67fea7e9997b2e9f54c01ca10b3f72cb7"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-formal/rep-16.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 1210,
+      "sha256": "fddda126de608884e358b547f4b95831eb5a76f3808bdfcc4bd8d180fdf9e76f"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-formal/rep-17.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 814558,
+      "sha256": "7f7825007d89420981b612c28d4183f7d8eb94dc1fe051bfe0aa2f77603942b4"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-formal/rep-17.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 1209,
+      "sha256": "5bc0e976c7400701de8b6aed497d656bb16c843fcb62dde6efdae958d4e1477e"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-formal/rep-18.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 814574,
+      "sha256": "9b89d5939ffb55b67ee01178e26f0c23ee9096070c8606c9ea7a5876aade4b27"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-formal/rep-18.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 1210,
+      "sha256": "628797489d0d0be0bff45fed4e251ff9edd34c1817d41a453d00d1c721c89e2a"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-formal/rep-19.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 814570,
+      "sha256": "caa77c9493a09ca6e5ae3dfc4047a614296bd734d14f565d2066a77c0fee413a"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-formal/rep-19.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 1210,
+      "sha256": "9a23993ca93d3180135c2c99830f6e06cf40b803cf50e1eca9baddd655acbb35"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-formal/rep-20.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 814607,
+      "sha256": "4828fccaac33fb9bc9d524a0b786a270487af17e019b319cab4d5e7b531a8b08"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-formal/rep-20.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 1210,
+      "sha256": "83684350222728d700f511a8d08dcc609267e8eae6c549a7588930c84b4bdd8b"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-smoke/rep-01.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 39857,
+      "sha256": "4daf3f4722e2a96924126558d4236a1a54832ec7190d7f58d629708e337796b8"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase1-smoke/rep-01.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 1245,
+      "sha256": "06a22a5c3d971ee32e2b11c533635509342067ffff67dd6d7a25a875b5901971"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal-console.log",
+      "bucket": "dataArtefact",
+      "bytes": 111120,
+      "sha256": "b4ff60d0691bfb98202f4a73367830207cf8a7b6feedc26ec41fe158da046021"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/orchestrator.log.json",
+      "bucket": "dataArtefact",
+      "bytes": 2032,
+      "sha256": "1b3ba26facbbaf46a31e8b7f0f5c09172c9687bf9cb7314ca7f5c937aa2b11e0"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-01.checkpoint.json",
+      "bucket": "dataArtefact",
+      "bytes": 223,
+      "sha256": "c7b885ce1ba422a89c87cefacfc224225527f83c4ae2649e33b00d3158de8fa4"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-01.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 61485,
+      "sha256": "8e066c793e889e2af5608e02a2a54225c8587a3244a5550ef3f4a139c7341cb2"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-01.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 3113,
+      "sha256": "5a0122ac84e9fe6e790f6cef73996ee28c34f1a50180e3d091dc3decbbcca902"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-02.checkpoint.json",
+      "bucket": "dataArtefact",
+      "bytes": 223,
+      "sha256": "39b30e729d09c08df42232f80b5462e3a1308a4c5c265bc9be12891e8347d21d"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-02.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 61441,
+      "sha256": "cbba64f08e65f233ca838d1548aa6addc07f1c81e3ce53453ed1037522a860fe"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-02.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 3121,
+      "sha256": "99bc9505e0b78ea732837d35acff54487297cfdcc336c823fad58710b7156fe2"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-03.checkpoint.json",
+      "bucket": "dataArtefact",
+      "bytes": 223,
+      "sha256": "d57b5334181c25efa0c971d84bbcbe43f179dff9a838e4e760c9025f6db0a900"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-03.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 61553,
+      "sha256": "3b41d402dcb1049b18b6b0a947999c8ba64a6af6913c4ff21630e8ea8f274822"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-03.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 3120,
+      "sha256": "93a24819bac3b2a56665bfea6daf4dcd77a49409109d3d0ccbd30a59ae014c41"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-04.checkpoint.json",
+      "bucket": "dataArtefact",
+      "bytes": 223,
+      "sha256": "1b88dcb7b7a8d4a541ad72a7c33d08a64d8b60f2a0c201bce56f693fce3b1a36"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-04.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 61499,
+      "sha256": "0029383e710e0e227b7ba13bf6812596dbfaed75a85a7133928cab3487615403"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-04.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 3102,
+      "sha256": "3d08deeb95f47aec64ff861790ae4aa79b66f34a9cd1e1484895e5c034de6a4c"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-05.checkpoint.json",
+      "bucket": "dataArtefact",
+      "bytes": 223,
+      "sha256": "ff6793d74375243b4bee18db69412f543dfa85bc2f56da4006ed654f406f7075"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-05.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 61484,
+      "sha256": "af9dd93994172078eae52bf7526d17eea07f588c9d37e81b7984441c3be5f766"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-05.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 3122,
+      "sha256": "728aab8feec31aa745182d24af056f02f8d06b68d00938ee47766cbcf22b5f50"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-06.checkpoint.json",
+      "bucket": "dataArtefact",
+      "bytes": 223,
+      "sha256": "2de3e84fd80b6b442513bb891bbedc95cdc9768ea898e0ad6d0ad40c8063ea86"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-06.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 61474,
+      "sha256": "fe43f37b41783cf07bf6e24757d3a80193634c35c1e20b86f92f07f98d5a42b1"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-06.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 3111,
+      "sha256": "360d112c43c0868684453ae6e8d1ae5153f5cf7d8001766909afef62dfe1b0d0"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-07.checkpoint.json",
+      "bucket": "dataArtefact",
+      "bytes": 223,
+      "sha256": "d785de232429ae7523015e092fc3f5ba36395904ecd717a1d9a2fcc403cde333"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-07.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 61438,
+      "sha256": "4d2f34a1b270f61a86449ddc9d077b3fb081b4505fef2d1562026ef1b3bef0a4"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-07.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 3123,
+      "sha256": "a517994274c45817e632b00ba929f0b8dbedb6d238ab9cf3c875358e995356a3"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-08.checkpoint.json",
+      "bucket": "dataArtefact",
+      "bytes": 223,
+      "sha256": "137147bef5b23d249a57416df2223fda778ed2823916d53d96c53f474da83d7f"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-08.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 61435,
+      "sha256": "2083032687179260c485e5f62ed991018e0f590a8c47ba6a1def179ae5774502"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-08.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 3121,
+      "sha256": "4b6e6d4130fade291659d489e713cfcf3225a299546deeb6015d0a5ec8596ea9"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-09.checkpoint.json",
+      "bucket": "dataArtefact",
+      "bytes": 223,
+      "sha256": "8ef933bfec374a7f6e5cbcd81df1566e4c3eb605ddf79102d4ed27240a23affd"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-09.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 61455,
+      "sha256": "ef8829f1ef3c72cdd5d10aa1659ba4eab3ccb10f0c281a605ee21d5b2384cc41"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-09.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 3122,
+      "sha256": "d72a291c8ba2e7c0c7543e880a5f7dcdf69b752096e4507a9c516a6799709c88"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-10.checkpoint.json",
+      "bucket": "dataArtefact",
+      "bytes": 224,
+      "sha256": "fa4d1bb42fac10a5e0202a064ba2dfffd38c99b48ddedf9c02bf731746b9037f"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-10.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 61605,
+      "sha256": "4a3d22f2fb42421cd75170a7060fa156e89a1b561627341b6f4352d9264d4a4c"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-10.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 3121,
+      "sha256": "b240a6ac44c1dea8ac04ef6ea507463885d022bb8d1ab653532c92547b6e18cc"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-11.checkpoint.json",
+      "bucket": "dataArtefact",
+      "bytes": 224,
+      "sha256": "ae792f6ee458bc80295c56cd222edbdda4fc044073f80e1cb29f5c87f8310880"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-11.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 61642,
+      "sha256": "1f41c6c248b461ec98d6e9a39cef1c969ec67a1234abe823cde6bbb74362c8ed"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-11.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 3089,
+      "sha256": "1cbb12f02cf852686286d8f7008bef9b6dc73719689dfddcfbc8df56eebd36f1"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-12.checkpoint.json",
+      "bucket": "dataArtefact",
+      "bytes": 224,
+      "sha256": "cd75aeb7fc42302eea84a37a3bbb2d74dca14912b411851c1fce0aed7dc606c7"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-12.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 61582,
+      "sha256": "f1beb62877192d188dc678589c4425f6dda9f4d12e4c301477f4cd52179af90e"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-12.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 3104,
+      "sha256": "c02ea0d1043f427b6ddd60e6878c6674dcae49fdbdd89959cad704aeb5561128"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-13.checkpoint.json",
+      "bucket": "dataArtefact",
+      "bytes": 224,
+      "sha256": "75c7ac424822082b047de268f7c976c04813fea4d05cb20596cfd3dd03d8b814"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-13.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 61636,
+      "sha256": "da70b2be05b0348ce2a316fd1f8e0966125db5fb9ff1f3f921f27890cdc9f901"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-13.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 3124,
+      "sha256": "085b5c4905aaead6b9592fb7967533be541a7350ec07c7cc6c03bd819cb8f039"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-14.checkpoint.json",
+      "bucket": "dataArtefact",
+      "bytes": 224,
+      "sha256": "08b7e3f8093af4c6d268e8d7fca76495b19bbbc7fc92572fabc22fa3ad730072"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-14.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 61433,
+      "sha256": "e79da3f30787e4199cd3dd0c0b2a99fec2cba9d9df4a2e46687e80d4ce7d1e6e"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-14.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 3123,
+      "sha256": "0ebb4b0b49e0172b4f6a4a382e6bb4a2bbdedd4801bf90bb22a842d7e50846e8"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-15.checkpoint.json",
+      "bucket": "dataArtefact",
+      "bytes": 224,
+      "sha256": "baa5ba92d67f1542d55b3f9595df90317d568138c3326e5e33e02f0a81cb504c"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-15.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 61460,
+      "sha256": "f26e86c5d58c8981b1076f9f157e307aa53fc3e5bea2920c961e22880bb2da49"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-15.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 3102,
+      "sha256": "6db3fdd20dac4d5eb12f2fccb3aa467905a6207b3a122ca451342e42789f20c6"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-16.checkpoint.json",
+      "bucket": "dataArtefact",
+      "bytes": 224,
+      "sha256": "6e67a4740b3a95d9acb102948859e5ed2364cd5c7f2d70ab241095f45f9f8401"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-16.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 61557,
+      "sha256": "82944008eec16c31718b61cf4542fe4ce7d3972b7ed863525e720de83e2bb084"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-16.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 3103,
+      "sha256": "0eaec2dd9af4e0c5552fb3df2206f5e80d477f961ff097f47b8e6128defaca6c"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-17.checkpoint.json",
+      "bucket": "dataArtefact",
+      "bytes": 224,
+      "sha256": "fe606088b493a24fc548ad42c869229937a03771fa5b1142aebd0534a3e3389a"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-17.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 61446,
+      "sha256": "2116b40601f29c4cfb33caece3467065798e881b67fb2522452b035b99a7992d"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-17.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 3112,
+      "sha256": "5c5ae7faf0af7c9964ee641b1f01e886ba57b06f473bfdd3a9e0338a5fe98f9f"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-18.checkpoint.json",
+      "bucket": "dataArtefact",
+      "bytes": 224,
+      "sha256": "e28b7bd87c45b8311ed005a97255a27fc06875fc5d9f627ec837a387c242de31"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-18.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 61531,
+      "sha256": "1df4b775775ed77092203479ab4d062ca7c7e800d0ecc0e417ce003a35162348"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-18.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 3114,
+      "sha256": "0e11cb985c8430181b9e6e91fa2d0eaac9c874f152479aa5b229a2151b9dc833"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-19.checkpoint.json",
+      "bucket": "dataArtefact",
+      "bytes": 224,
+      "sha256": "b083a1c7f847301699bdd50e3e765b49aac6c61be19663487feaaeca4e8d0ccc"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-19.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 61542,
+      "sha256": "d364fe97b76473015e4dd7868a561655db53368cfef2687f88dffa928a51f0c3"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-19.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 3114,
+      "sha256": "66e2258d2e16a57837c110c36fc4c63d5fb505d460622ede946e4e1dfd1f9ced"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-20.checkpoint.json",
+      "bucket": "dataArtefact",
+      "bytes": 224,
+      "sha256": "a92ae0d40855e8d9b1b70a6f61c9746af10fd80d0692d46f405c715d4828be12"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-20.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 61550,
+      "sha256": "34cef41a79f6bd4767e76d76ce2bff4e26f3efa3116cec4f091329414a286271"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-formal/rep-20.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 3123,
+      "sha256": "6d3f6c452c9bc0128520fbc6c0d5f32470d7ed86f8c682dda8328f1819c0c003"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-smoke-gatec/rep-01.checkpoint.json",
+      "bucket": "dataArtefact",
+      "bytes": 231,
+      "sha256": "4f9865f386bd5eba3ab50828dcc1fcbab603b31cab0b1f820f72823685ed96ff"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-smoke-gatec/rep-01.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 5219,
+      "sha256": "ae8113d92910d9603802bffc344153975f27187df60e256bfa024b37b46f90e1"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-smoke-gatec/rep-01.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 3120,
+      "sha256": "a8ab9b0622775beeb6d5ecf5f010d6f3ec26643a5acdf5c86cd0a08fa4b7b3d4"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-smoke/rep-01.checkpoint.json",
+      "bucket": "dataArtefact",
+      "bytes": 225,
+      "sha256": "a474cf3ae36959bf5f56c3cb4bd2f0a9130486cac7a4516b8e254700c49641df"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-smoke/rep-01.jsonl",
+      "bucket": "dataArtefact",
+      "bytes": 4687,
+      "sha256": "158f7f9fe36808e65569775883f5d96453a83a099eeb25353279273f0af434d4"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/phase2-smoke/rep-01.summary.json",
+      "bucket": "dataArtefact",
+      "bytes": 2906,
+      "sha256": "64178c18871a4e984fd066133bd89c8263f2f269a552d917d34167ad43e629d2"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/vitest-final-verify.log",
+      "bucket": "dataArtefact",
+      "bytes": 6539,
+      "sha256": "f1c4084dc796d4c607dec7c0b7fdbada840128bc84cc412e452a676b2e113c18"
+    },
+    {
+      "path": "PPC-MCTS-01B/data/vitest-gate-recheck.log",
+      "bucket": "dataArtefact",
+      "bytes": 6530,
+      "sha256": "c29dd0ac117337aa4d97e02828ea57b3b6d558de8787b5b473fb5b48b5d84a4c"
+    },
+    {
+      "path": "PPC-MCTS-01B/drivers/lib/arms.ts",
+      "bucket": "driverSource",
+      "bytes": 11401,
+      "sha256": "643879fcfe4d372de8371a2d2a25e98c7ed21e45ee828a56a934d8bcc92a870d"
+    },
+    {
+      "path": "PPC-MCTS-01B/drivers/lib/calibrate.ts",
+      "bucket": "driverSource",
+      "bytes": 1764,
+      "sha256": "b58d1e5def0e4a533a91ebb03151abf5f003ac4b9493260436527a10aa57aa47"
+    },
+    {
+      "path": "PPC-MCTS-01B/drivers/lib/phase1.ts",
+      "bucket": "driverSource",
+      "bytes": 13053,
+      "sha256": "ed25fce284ccca699fe13a811c7ca55e6d3c56f26857956944e416e9af5b12f4"
+    },
+    {
+      "path": "PPC-MCTS-01B/drivers/parityFixedSims.ts",
+      "bucket": "driverSource",
+      "bytes": 13130,
+      "sha256": "e9bd57a68933646c09071313c019505bb4e454bc8f405defb33776326799f14c"
+    },
+    {
+      "path": "PPC-MCTS-01B/drivers/perfBudget100.ts",
+      "bucket": "driverSource",
+      "bytes": 19110,
+      "sha256": "b9767f384b157cb8b7334f8b4a075a655bc579e4f1faaf4ca4a56639b8f384cb"
+    },
+    {
+      "path": "PPC-MCTS-01B/drivers/phase1Parity.ts",
+      "bucket": "driverSource",
+      "bytes": 12383,
+      "sha256": "e713115f0ed22b43793deece0b5c138d0dbbb7f6adb9e360b899fb1985e7caa6"
+    },
+    {
+      "path": "PPC-MCTS-01B/figures/paired-performance-gain.svg",
+      "bucket": "figure",
+      "bytes": 8182,
+      "sha256": "18e6af5061ff9b19b921e96602a05c355a06359b552157d7d0961dad0a00de5a"
+    },
+    {
+      "path": "PPC-MCTS-01B/figures/plan-coverage.svg",
+      "bucket": "figure",
+      "bytes": 4071,
+      "sha256": "36d65382a916c36750c3eae808890d5f835fb6c72f4b9e8f27becc5a86ff2b60"
+    },
+    {
+      "path": "PPC-MCTS-01B/figures/rule-calls-comparison.svg",
+      "bucket": "figure",
+      "bytes": 6072,
+      "sha256": "53cdc48237aabc0cde4f9b28009b726d2b1b4f03b71bf52f8212bb70a209b36f"
+    },
+    {
+      "path": "PPC-MCTS-01B/figures/simulation-throughput.svg",
+      "bucket": "figure",
+      "bytes": 4061,
+      "sha256": "f7d72dae9f3a02b35a369ee36b9ae8cbd7ee04833b3b135532c577632eaba009"
+    },
+    {
+      "path": "PPC-MCTS-01B/figures/transition-reuse-comparison.svg",
+      "bucket": "figure",
+      "bytes": 12120,
+      "sha256": "08265ad3b06760f97b1163ac9cec103ddb8f159fad32c234289a8d93eedb9eec"
+    },
+    {
+      "path": "PPC-MCTS-01B/logs/impl-test-run.log",
+      "bucket": "log",
+      "bytes": 3266,
+      "sha256": "062fb98e98e01e32119a8c095981d77dda93ecc04b1852d72f0b058b276a4af7"
+    },
+    {
+      "path": "PPC-MCTS-01B/logs/probe-run.log",
+      "bucket": "log",
+      "bytes": 789,
+      "sha256": "bacc1216037bd1c439bd6125ff4521d67ff0acc0e187fcc4335fd7d60148a8b3"
+    },
+    {
+      "path": "PPC-MCTS-01B/logs/run1/README.txt",
+      "bucket": "log",
+      "bytes": 951,
+      "sha256": "41ef3ec225774a726adb7e4dc262e1056e7445bc50efb6753576804ead947a57"
+    },
+    {
+      "path": "PPC-MCTS-01B/logs/run1/callsites.run1.json",
+      "bucket": "log",
+      "bytes": 15990,
+      "sha256": "cc618119c98cca0bc10347a8aa61dd499c2eaa12b796e252cd14529bff9360ea"
+    },
+    {
+      "path": "PPC-MCTS-01B/logs/run1/parity.run1.json",
+      "bucket": "log",
+      "bytes": 10597,
+      "sha256": "24655297cf10eb5c4a37a73c51beef5e30aea5f5134b1c9cba4b318bcde850a3"
+    },
+    {
+      "path": "PPC-MCTS-01B/logs/run2-callsites.json",
+      "bucket": "log",
+      "bytes": 10884,
+      "sha256": "a4bf1a9b4ce09d618f8f685d577915ebad5d8b56c6ac0486b49318ef73ee9f34"
+    },
+    {
+      "path": "PPC-MCTS-01B/logs/run2-parity.json",
+      "bucket": "log",
+      "bytes": 21707,
+      "sha256": "f3a14bab4652c004240f58de6ab2821434d1d885418b13db89c09de14019fc3d"
+    },
+    {
+      "path": "PPC-MCTS-01B/probe/callsite.test.ts",
+      "bucket": "probeSource",
+      "bytes": 10850,
+      "sha256": "fa16f34f695096e7f168ad1fee4364033c3dbc33f8beb5d59a74538b6796bc4c"
+    },
+    {
+      "path": "PPC-MCTS-01B/probe/impl/phase1Seam.test.ts",
+      "bucket": "probeSource",
+      "bytes": 13460,
+      "sha256": "9c572aea3dd2c9b6fa5898d1562bd976a227bc98b81189ed346d9080556aa238"
+    },
+    {
+      "path": "PPC-MCTS-01B/probe/impl/rolloutReuseParity.test.ts",
+      "bucket": "probeSource",
+      "bytes": 25856,
+      "sha256": "5352a59c7e0bf0790b35e1eb908102a39304bbf078c8bde544463374f0aa1bf5"
+    },
+    {
+      "path": "PPC-MCTS-01B/probe/impl/vitest.config.mts",
+      "bucket": "probeSource",
+      "bytes": 531,
+      "sha256": "dc435008a25243c1def0db9fa0ef0ae83fa333e324ebdcd69d10a692e78b2f13"
+    },
+    {
+      "path": "PPC-MCTS-01B/probe/parity.test.ts",
+      "bucket": "probeSource",
+      "bytes": 24867,
+      "sha256": "bb0fcd214f8b2e6bfbe911cf9ccab795451fa4c007ea57841020958199ac1224"
+    },
+    {
+      "path": "PPC-MCTS-01B/probe/vitest.config.mts",
+      "bucket": "probeSource",
+      "bytes": 517,
+      "sha256": "93dc6734ba47f162c2c329aaa481f7c29772aa7405efbf576e8bbebe471e2313"
+    },
+    {
+      "path": "PPC-MCTS-01B/proto/trace.ts",
+      "bucket": "prototypeSource",
+      "bytes": 10406,
+      "sha256": "ad5538cbfe52b87bfbb10e77eec2b07a84ad311f6201c4c9c53b39af9bb5ec05"
+    },
+    {
+      "path": "PPC-MCTS-01B/proto/uctBaseline.ts",
+      "bucket": "prototypeSource",
+      "bytes": 32372,
+      "sha256": "7df9d8d1bb42f984f5f866c8444b40f7133b1aa84d43f8229e5b731f38eff068"
+    },
+    {
+      "path": "PPC-MCTS-01B/proto/uctPrepared.ts",
+      "bucket": "prototypeSource",
+      "bytes": 37734,
+      "sha256": "0e6f105088b8df98e3d4a3e45a2ac6ab55f4231c837bdb1f861e4f701c27e3b2"
+    },
+    {
+      "path": "PPC-MCTS-01B/scripts/analyzePhase1.mjs",
+      "bucket": "scriptSource",
+      "bytes": 14552,
+      "sha256": "6d9479514937344adc1f0d898385c1e850f1fe7d1d0d001ce25d72c301704d06"
+    },
+    {
+      "path": "PPC-MCTS-01B/scripts/analyzePhase2.mjs",
+      "bucket": "scriptSource",
+      "bytes": 33432,
+      "sha256": "307dbe2d3d6d85b5a5f7e220ef33003b981d915dace0697326bcd422f06e8e79"
+    },
+    {
+      "path": "PPC-MCTS-01B/scripts/build-drivers.mjs",
+      "bucket": "scriptSource",
+      "bytes": 2028,
+      "sha256": "fb036efa32a13079cb8ecf5ee2bac161423622c40bcf8e6d4345f6a769db55a2"
+    },
+    {
+      "path": "PPC-MCTS-01B/scripts/gen-build-manifest.mjs",
+      "bucket": "scriptSource",
+      "bytes": 5075,
+      "sha256": "7c1bc5f8a67055fa772660eeb3b7d4f3ca75acb1b41cc1fd83dac7b9ad042e6f"
+    },
+    {
+      "path": "PPC-MCTS-01B/scripts/gen-provenance.mjs",
+      "bucket": "scriptSource",
+      "bytes": 8763,
+      "sha256": "0c8d0118bcd144d9f1b12dccd3f08bb4c4f2456dac1949ffaa657b274e727fcf"
+    },
+    {
+      "path": "PPC-MCTS-01B/scripts/makeReportFigures.mjs",
+      "bucket": "scriptSource",
+      "bytes": 11959,
+      "sha256": "1da7db762abe48b3ce2486d6e73db20225511778e2d94fb87327b14b15d6b106"
+    },
+    {
+      "path": "PPC-MCTS-01B/scripts/makeTechnicalInsert.mjs",
+      "bucket": "scriptSource",
+      "bytes": 66453,
+      "sha256": "7cb0a3fc2e296f69eecf4bb4c356775f6d8352f4ed5f5d18a1ab6a5a6e0c7ccb"
+    },
+    {
+      "path": "PPC-MCTS-01B/scripts/runPhase1.mjs",
+      "bucket": "scriptSource",
+      "bytes": 12598,
+      "sha256": "421d8c752ccea0a5adb61ae5dff44d9545afa09afcec35284a6bf7d2979ba796"
+    },
+    {
+      "path": "PPC-MCTS-01B/scripts/runPhase2.mjs",
+      "bucket": "scriptSource",
+      "bytes": 3710,
+      "sha256": "f2011ad88cf6cf57b36f14e310150e990f123cf37113b2e74aeba2e89344b75e"
+    },
+    {
+      "path": "PPC-MCTS-01B/scripts/verify-baseline-fork.mjs",
+      "bucket": "scriptSource",
+      "bytes": 26107,
+      "sha256": "8159db61b939a0513a7f98eddb87c01da7a524ab939c5ef164d13ad34491c7cc"
+    }
+  ]
+}

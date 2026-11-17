@@ -1,0 +1,1676 @@
+{
+  "driver": "parityFixedSims",
+  "label": "fixed-nodes-legacy-rebuild",
+  "phase": "FIXED_NODE_PARITY",
+  "isPhase1": false,
+  "note": "LEGACY MODE — fixed maxNodes sweep, kept byte-compatible with the previous 96-cell regression artefact.",
+  "generatedAt": "2026-11-16T15:49:57.317Z",
+  "wallMs": 167365,
+  "node": "v22.22.2",
+  "fixture": {
+    "path": "src/game/ai/__tests__/fixtures/ppcId01-human-roots.json",
+    "sha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+    "expected": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09"
+  },
+  "config": {
+    "workload": "maxNodes (legacy)",
+    "now": "const 0 (deadline cannot fire)",
+    "maxNodes": [
+      64,
+      200
+    ],
+    "maxHandoffs": 4,
+    "c": 1.4142135623730951,
+    "rolloutModes": [
+      "hybrid",
+      "random"
+    ],
+    "seedFormula": "uctSeed(rootId,'UCT-H',0)"
+  },
+  "cells": [
+    {
+      "root": "G6T1",
+      "mode": "hybrid",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 63,
+      "nodesCreated": 64,
+      "rolloutSteps": 694,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 5691,
+        "prepared": 3051
+      },
+      "impureFallbacks": 0,
+      "digest": "b8c5f649147838b0edda699876ca21ef9c76f7c9c53e8ca5aa27fcfbfe23aaf3"
+    },
+    {
+      "root": "G6T1",
+      "mode": "hybrid",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 199,
+      "nodesCreated": 200,
+      "rolloutSteps": 1956,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 15838,
+        "prepared": 8600
+      },
+      "impureFallbacks": 0,
+      "digest": "b3b067f4057f47697cc9601a8e69782b7a495bbfec48d2f9a7034aa74c6d28c8"
+    },
+    {
+      "root": "G6T1",
+      "mode": "random",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 63,
+      "nodesCreated": 64,
+      "rolloutSteps": 897,
+      "chanceSamples": 18,
+      "ruleCalls": {
+        "baseline": 4693,
+        "prepared": 3956
+      },
+      "impureFallbacks": 0,
+      "digest": "ee8037c4c3c5f71a530b6ffc9012b9ef85dddc25eeab48b15aeff8e32276b867"
+    },
+    {
+      "root": "G6T1",
+      "mode": "random",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 199,
+      "nodesCreated": 200,
+      "rolloutSteps": 2606,
+      "chanceSamples": 58,
+      "ruleCalls": {
+        "baseline": 13638,
+        "prepared": 11520
+      },
+      "impureFallbacks": 0,
+      "digest": "c9e0868859817e582903441fe9fd495d474cbeb6ca89ee1bd5a90d6037160fb0"
+    },
+    {
+      "root": "G6T2",
+      "mode": "hybrid",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 47,
+      "nodesCreated": 64,
+      "rolloutSteps": 624,
+      "chanceSamples": 125,
+      "ruleCalls": {
+        "baseline": 5524,
+        "prepared": 2843
+      },
+      "impureFallbacks": 0,
+      "digest": "55c88a121b01b23f9caf19805e10d419d9c6d47274bbf4bd26eab4a86b76af97"
+    },
+    {
+      "root": "G6T2",
+      "mode": "hybrid",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 101,
+      "nodesCreated": 202,
+      "rolloutSteps": 1302,
+      "chanceSamples": 203,
+      "ruleCalls": {
+        "baseline": 11452,
+        "prepared": 6108
+      },
+      "impureFallbacks": 0,
+      "digest": "e0792fa3cfb94259ce9667818e5a7e888e4bbb629c2cc64a51cca95266038f34"
+    },
+    {
+      "root": "G6T2",
+      "mode": "random",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 50,
+      "nodesCreated": 65,
+      "rolloutSteps": 720,
+      "chanceSamples": 80,
+      "ruleCalls": {
+        "baseline": 3944,
+        "prepared": 3252
+      },
+      "impureFallbacks": 0,
+      "digest": "d8a06fd77ee493d97221cbe76ea865639e529e00ec8bfdb13f44d3749bddb94b"
+    },
+    {
+      "root": "G6T2",
+      "mode": "random",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 98,
+      "nodesCreated": 202,
+      "rolloutSteps": 1342,
+      "chanceSamples": 143,
+      "ruleCalls": {
+        "baseline": 7586,
+        "prepared": 6300
+      },
+      "impureFallbacks": 0,
+      "digest": "5b39bd9b7b68908177ab64c073545e044899e71786ef49038d6da0f05e9a792d"
+    },
+    {
+      "root": "G6T3",
+      "mode": "hybrid",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 50,
+      "nodesCreated": 65,
+      "rolloutSteps": 194,
+      "chanceSamples": 50,
+      "ruleCalls": {
+        "baseline": 2019,
+        "prepared": 1067
+      },
+      "impureFallbacks": 0,
+      "digest": "72ecc0acfbe861c97b4bd2542d35ce8f108c508820f26befd3f45e737c8fea14"
+    },
+    {
+      "root": "G6T3",
+      "mode": "hybrid",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 96,
+      "nodesCreated": 201,
+      "rolloutSteps": 515,
+      "chanceSamples": 96,
+      "ruleCalls": {
+        "baseline": 5348,
+        "prepared": 2894
+      },
+      "impureFallbacks": 0,
+      "digest": "1e2c1199ba2a89bc3374be10474ee542089203937ed047266dcdaaf2ed3c3120"
+    },
+    {
+      "root": "G6T3",
+      "mode": "random",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 47,
+      "nodesCreated": 64,
+      "rolloutSteps": 698,
+      "chanceSamples": 54,
+      "ruleCalls": {
+        "baseline": 3818,
+        "prepared": 3132
+      },
+      "impureFallbacks": 0,
+      "digest": "d1811877b3a717128c32479160a6a2e1163c9dd7020e0cc01e9accec6bf5a016"
+    },
+    {
+      "root": "G6T3",
+      "mode": "random",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 97,
+      "nodesCreated": 201,
+      "rolloutSteps": 1332,
+      "chanceSamples": 108,
+      "ruleCalls": {
+        "baseline": 7538,
+        "prepared": 6222
+      },
+      "impureFallbacks": 0,
+      "digest": "1d44f7c8e97f484dd521309ee940ac44f622f1beda1c7fe6ea26efdbaf4ab9a5"
+    },
+    {
+      "root": "G5T1",
+      "mode": "hybrid",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 63,
+      "nodesCreated": 64,
+      "rolloutSteps": 898,
+      "chanceSamples": 70,
+      "ruleCalls": {
+        "baseline": 7628,
+        "prepared": 3971
+      },
+      "impureFallbacks": 0,
+      "digest": "2edd88d15d59e83d4b8fa46a9e663495858356a8d4a6762a3a7c303cdc2dcd62"
+    },
+    {
+      "root": "G5T1",
+      "mode": "hybrid",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 199,
+      "nodesCreated": 200,
+      "rolloutSteps": 2625,
+      "chanceSamples": 219,
+      "ruleCalls": {
+        "baseline": 22403,
+        "prepared": 11751
+      },
+      "impureFallbacks": 0,
+      "digest": "f09d3428e66cbdb389f636bb7a8c1b0dd1b0d91bb565422e4a3ab02fd26436e2"
+    },
+    {
+      "root": "G5T1",
+      "mode": "random",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 63,
+      "nodesCreated": 64,
+      "rolloutSteps": 943,
+      "chanceSamples": 53,
+      "ruleCalls": {
+        "baseline": 4982,
+        "prepared": 4199
+      },
+      "impureFallbacks": 0,
+      "digest": "ca41368eb0843471b6e247d1f890f43721be018c35ed5513c4f6a13a2642344a"
+    },
+    {
+      "root": "G5T1",
+      "mode": "random",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 199,
+      "nodesCreated": 200,
+      "rolloutSteps": 2758,
+      "chanceSamples": 175,
+      "ruleCalls": {
+        "baseline": 14579,
+        "prepared": 12281
+      },
+      "impureFallbacks": 0,
+      "digest": "88910f875694334e8c143b856cc85dd1c00750ce30942328f142b4bfa3ae38f4"
+    },
+    {
+      "root": "G5T2",
+      "mode": "hybrid",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 61,
+      "nodesCreated": 66,
+      "rolloutSteps": 781,
+      "chanceSamples": 61,
+      "ruleCalls": {
+        "baseline": 7003,
+        "prepared": 3639
+      },
+      "impureFallbacks": 0,
+      "digest": "7a338d9ed651340032534bd48f9ae7b02faa5cf4d2e8e098f63d00e4e3e0ab79"
+    },
+    {
+      "root": "G5T2",
+      "mode": "hybrid",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 108,
+      "nodesCreated": 201,
+      "rolloutSteps": 1214,
+      "chanceSamples": 108,
+      "ruleCalls": {
+        "baseline": 11431,
+        "prepared": 6078
+      },
+      "impureFallbacks": 0,
+      "digest": "e2e06caa2065980a09bc454c6e80b0755d1dcfca92ede0a8ccb20a5c5ceb49e5"
+    },
+    {
+      "root": "G5T2",
+      "mode": "random",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 59,
+      "nodesCreated": 66,
+      "rolloutSteps": 885,
+      "chanceSamples": 59,
+      "ruleCalls": {
+        "baseline": 4694,
+        "prepared": 3885
+      },
+      "impureFallbacks": 0,
+      "digest": "151137abcae011021e44e96c91c6e6a8c55fa4d5e67ba18d71b6343e0cd03652"
+    },
+    {
+      "root": "G5T2",
+      "mode": "random",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 108,
+      "nodesCreated": 201,
+      "rolloutSteps": 1512,
+      "chanceSamples": 108,
+      "ruleCalls": {
+        "baseline": 8413,
+        "prepared": 6993
+      },
+      "impureFallbacks": 0,
+      "digest": "6f2bbd3b1cb2c8d21c142b1ef29311da8330c9c547ba6ce5c6bf7f2e874d3874"
+    },
+    {
+      "root": "G5T3",
+      "mode": "hybrid",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 63,
+      "nodesCreated": 64,
+      "rolloutSteps": 744,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 6422,
+        "prepared": 3409
+      },
+      "impureFallbacks": 0,
+      "digest": "5c37c6f12eb63a01af5bb3ad42dfe9f7476e4444fc6803edc4cf5bf7278200ad"
+    },
+    {
+      "root": "G5T3",
+      "mode": "hybrid",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 199,
+      "nodesCreated": 200,
+      "rolloutSteps": 2160,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 18820,
+        "prepared": 10084
+      },
+      "impureFallbacks": 0,
+      "digest": "ba9ab7459416ff8d376b288d36b59bf6260737c57e1fa5d19632785d3b4fac4c"
+    },
+    {
+      "root": "G5T3",
+      "mode": "random",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 63,
+      "nodesCreated": 64,
+      "rolloutSteps": 973,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 5166,
+        "prepared": 4225
+      },
+      "impureFallbacks": 0,
+      "digest": "13b80ee426734fc285fec2770e290f82175202f45e297d19d71e8040dc75c512"
+    },
+    {
+      "root": "G5T3",
+      "mode": "random",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 199,
+      "nodesCreated": 200,
+      "rolloutSteps": 2852,
+      "chanceSamples": 2,
+      "ruleCalls": {
+        "baseline": 15194,
+        "prepared": 12494
+      },
+      "impureFallbacks": 0,
+      "digest": "3a95b5109ec7173a941accc944838ecdc1bd94d5f372f73bf1c5a8c17b06e972"
+    },
+    {
+      "root": "G5T4",
+      "mode": "hybrid",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 63,
+      "nodesCreated": 64,
+      "rolloutSteps": 118,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 1205,
+        "prepared": 718
+      },
+      "impureFallbacks": 0,
+      "digest": "c2dc6c81d7e48c929c20b6f4a3e3d77a89838dff84f663c11ccd6f35ab64c62b"
+    },
+    {
+      "root": "G5T4",
+      "mode": "hybrid",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 226,
+      "nodesCreated": 200,
+      "rolloutSteps": 411,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 4033,
+        "prepared": 2421
+      },
+      "impureFallbacks": 0,
+      "digest": "a9c16fc0ab85055b5a93fdd74d34891f855cec239cd0acb99e5a0fb5f7ff59b0"
+    },
+    {
+      "root": "G5T4",
+      "mode": "random",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 63,
+      "nodesCreated": 64,
+      "rolloutSteps": 515,
+      "chanceSamples": 1,
+      "ruleCalls": {
+        "baseline": 2762,
+        "prepared": 2346
+      },
+      "impureFallbacks": 0,
+      "digest": "710f149a1dbdc6ad84b16195e10f18683fee47d9c214810742bed46f9932d9af"
+    },
+    {
+      "root": "G5T4",
+      "mode": "random",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 214,
+      "nodesCreated": 200,
+      "rolloutSteps": 1372,
+      "chanceSamples": 3,
+      "ruleCalls": {
+        "baseline": 7481,
+        "prepared": 6371
+      },
+      "impureFallbacks": 0,
+      "digest": "31f9e11677546faadb713cd2f07004c4eb274e47eed87d770e5dbcbbda38e9ae"
+    },
+    {
+      "root": "G2T1",
+      "mode": "hybrid",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 63,
+      "nodesCreated": 64,
+      "rolloutSteps": 916,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 7675,
+        "prepared": 3942
+      },
+      "impureFallbacks": 0,
+      "digest": "2642a4d4328786bc4fe524e19755668a6a8d8c3da803a9c173682f00e736b233"
+    },
+    {
+      "root": "G2T1",
+      "mode": "hybrid",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 199,
+      "nodesCreated": 200,
+      "rolloutSteps": 2735,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 22795,
+        "prepared": 11766
+      },
+      "impureFallbacks": 0,
+      "digest": "64e4a8565cfee1bc25f1abd5e6a73f109843bc15d2156b64381df910325d3174"
+    },
+    {
+      "root": "G2T1",
+      "mode": "random",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 63,
+      "nodesCreated": 64,
+      "rolloutSteps": 899,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 4860,
+        "prepared": 3977
+      },
+      "impureFallbacks": 0,
+      "digest": "bfc58da43e907023966cdd38b486259205658da13ed43ad9e500622958d11535"
+    },
+    {
+      "root": "G2T1",
+      "mode": "random",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 199,
+      "nodesCreated": 200,
+      "rolloutSteps": 2611,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 14033,
+        "prepared": 11506
+      },
+      "impureFallbacks": 0,
+      "digest": "2b47b0081aa5d3972060aa77b99ed3cf8042a01be80762cda97773e102dab8b3"
+    },
+    {
+      "root": "G2T2",
+      "mode": "hybrid",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 63,
+      "nodesCreated": 64,
+      "rolloutSteps": 806,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 6282,
+        "prepared": 3379
+      },
+      "impureFallbacks": 0,
+      "digest": "9ce3dc866e003dae049a664ea292573d7beaec2851cbb447a5215207bcff8d0c"
+    },
+    {
+      "root": "G2T2",
+      "mode": "hybrid",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 199,
+      "nodesCreated": 200,
+      "rolloutSteps": 2164,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 17038,
+        "prepared": 9179
+      },
+      "impureFallbacks": 0,
+      "digest": "b1660e9d539c418622531e6c197d6bb56a94348c0bb891f1840257c25ee9ebe7"
+    },
+    {
+      "root": "G2T2",
+      "mode": "random",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 63,
+      "nodesCreated": 64,
+      "rolloutSteps": 782,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 4067,
+        "prepared": 3289
+      },
+      "impureFallbacks": 0,
+      "digest": "85b56ae56100c9c94030014d37d3ec076c196e6599a2915ac43ff1867e7a9f0c"
+    },
+    {
+      "root": "G2T2",
+      "mode": "random",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 199,
+      "nodesCreated": 200,
+      "rolloutSteps": 2217,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 11599,
+        "prepared": 9402
+      },
+      "impureFallbacks": 0,
+      "digest": "9bc2bf62c1db8a5876ef90d04ce9621cb1d9c914e24a46eac784261108a5a0d5"
+    },
+    {
+      "root": "G2T3",
+      "mode": "hybrid",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 63,
+      "nodesCreated": 64,
+      "rolloutSteps": 819,
+      "chanceSamples": 13,
+      "ruleCalls": {
+        "baseline": 7026,
+        "prepared": 3460
+      },
+      "impureFallbacks": 0,
+      "digest": "eea8d52263c6a81212149a875e42b85089c9b1f4d5afb7ee567b838146301285"
+    },
+    {
+      "root": "G2T3",
+      "mode": "hybrid",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 199,
+      "nodesCreated": 200,
+      "rolloutSteps": 2418,
+      "chanceSamples": 63,
+      "ruleCalls": {
+        "baseline": 20928,
+        "prepared": 10331
+      },
+      "impureFallbacks": 0,
+      "digest": "6c12b0e6637e0172a80fe3edaf58e8f08465b7c6c736086c8b29a711fe6824f6"
+    },
+    {
+      "root": "G2T3",
+      "mode": "random",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 63,
+      "nodesCreated": 64,
+      "rolloutSteps": 794,
+      "chanceSamples": 4,
+      "ruleCalls": {
+        "baseline": 4139,
+        "prepared": 3345
+      },
+      "impureFallbacks": 0,
+      "digest": "621b223733bcffb3cf87245c543b34b5e932924cf967a5866557bd411aa8d00a"
+    },
+    {
+      "root": "G2T3",
+      "mode": "random",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 199,
+      "nodesCreated": 200,
+      "rolloutSteps": 2270,
+      "chanceSamples": 13,
+      "ruleCalls": {
+        "baseline": 11887,
+        "prepared": 9621
+      },
+      "impureFallbacks": 0,
+      "digest": "b65968744bfb3c9b910232ae89862eb50fc00f4dae836308b5f181845d033aa8"
+    },
+    {
+      "root": "G2T4",
+      "mode": "hybrid",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 51,
+      "nodesCreated": 66,
+      "rolloutSteps": 683,
+      "chanceSamples": 153,
+      "ruleCalls": {
+        "baseline": 6404,
+        "prepared": 3175
+      },
+      "impureFallbacks": 0,
+      "digest": "bba39ffd01b9d366460526bb1d110c9a5c4addb82ca00ac653631b2b50c5273a"
+    },
+    {
+      "root": "G2T4",
+      "mode": "hybrid",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 98,
+      "nodesCreated": 200,
+      "rolloutSteps": 1364,
+      "chanceSamples": 295,
+      "ruleCalls": {
+        "baseline": 12910,
+        "prepared": 6518
+      },
+      "impureFallbacks": 0,
+      "digest": "73b2125ed71b9eefa90a89e37bba366c11dce427c6dc19dc82f61fecf142de5d"
+    },
+    {
+      "root": "G2T4",
+      "mode": "random",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 46,
+      "nodesCreated": 65,
+      "rolloutSteps": 673,
+      "chanceSamples": 82,
+      "ruleCalls": {
+        "baseline": 3722,
+        "prepared": 3049
+      },
+      "impureFallbacks": 0,
+      "digest": "e00f58177abc0de4e3ab485c2492c8cf0f87f8ae174e462c8f40078573f6fb28"
+    },
+    {
+      "root": "G2T4",
+      "mode": "random",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 114,
+      "nodesCreated": 200,
+      "rolloutSteps": 1597,
+      "chanceSamples": 183,
+      "ruleCalls": {
+        "baseline": 8944,
+        "prepared": 7347
+      },
+      "impureFallbacks": 0,
+      "digest": "22d92694a5767dde531057971a0d31afb850443875ce4f2ba55806fe695b19c9"
+    },
+    {
+      "root": "G2T5",
+      "mode": "hybrid",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 53,
+      "nodesCreated": 64,
+      "rolloutSteps": 547,
+      "chanceSamples": 53,
+      "ruleCalls": {
+        "baseline": 5295,
+        "prepared": 2626
+      },
+      "impureFallbacks": 0,
+      "digest": "0915a9d81e33961df49821878aa3e6e79c2d16b7ee446ee127de3de576e425ec"
+    },
+    {
+      "root": "G2T5",
+      "mode": "hybrid",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 176,
+      "nodesCreated": 202,
+      "rolloutSteps": 1565,
+      "chanceSamples": 176,
+      "ruleCalls": {
+        "baseline": 15197,
+        "prepared": 7539
+      },
+      "impureFallbacks": 0,
+      "digest": "6390149f5e7db34530bf98916a93adff62b03356fcf312526b4fac5e43ec36ea"
+    },
+    {
+      "root": "G2T5",
+      "mode": "random",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 63,
+      "nodesCreated": 64,
+      "rolloutSteps": 947,
+      "chanceSamples": 63,
+      "ruleCalls": {
+        "baseline": 5031,
+        "prepared": 4144
+      },
+      "impureFallbacks": 0,
+      "digest": "f8f58201450bb72f0a3a334a7413da120c7c0afe2d824aa10a2d44f3101e03bc"
+    },
+    {
+      "root": "G2T5",
+      "mode": "random",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 114,
+      "nodesCreated": 201,
+      "rolloutSteps": 1592,
+      "chanceSamples": 114,
+      "ruleCalls": {
+        "baseline": 8829,
+        "prepared": 7333
+      },
+      "impureFallbacks": 0,
+      "digest": "33839e91622b698bfe8e4328cad12f1a08e81153676a4202f69d4507e87b2739"
+    },
+    {
+      "root": "G2T6",
+      "mode": "hybrid",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 63,
+      "nodesCreated": 64,
+      "rolloutSteps": 486,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 3748,
+        "prepared": 2143
+      },
+      "impureFallbacks": 0,
+      "digest": "2b64c93adada61659b4a518d161c2495cd2d40b916e3efa78f3e24bae489fc14"
+    },
+    {
+      "root": "G2T6",
+      "mode": "hybrid",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 199,
+      "nodesCreated": 200,
+      "rolloutSteps": 1408,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 10692,
+        "prepared": 6219
+      },
+      "impureFallbacks": 0,
+      "digest": "ef9e526f8fc9dade31e56037cee4b3094534b0c092bbfd6968d50136503afe1e"
+    },
+    {
+      "root": "G2T6",
+      "mode": "random",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 63,
+      "nodesCreated": 64,
+      "rolloutSteps": 728,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 3607,
+        "prepared": 3111
+      },
+      "impureFallbacks": 0,
+      "digest": "38055f154b938f2673f70f46122fbc201e476be6bee2cc8ad49f96c1906a3209"
+    },
+    {
+      "root": "G2T6",
+      "mode": "random",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 199,
+      "nodesCreated": 200,
+      "rolloutSteps": 2150,
+      "chanceSamples": 7,
+      "ruleCalls": {
+        "baseline": 10653,
+        "prepared": 9186
+      },
+      "impureFallbacks": 0,
+      "digest": "2635cc5f0f546a85089c4e6e13b082637a85633e04224fb7c157097bcec5146d"
+    },
+    {
+      "root": "G2T7",
+      "mode": "hybrid",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 63,
+      "nodesCreated": 64,
+      "rolloutSteps": 738,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 6112,
+        "prepared": 3112
+      },
+      "impureFallbacks": 0,
+      "digest": "9361ddff4309c9044da00fe494e0c540189ea050c5a2268c5ef596eecb6159b9"
+    },
+    {
+      "root": "G2T7",
+      "mode": "hybrid",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 199,
+      "nodesCreated": 200,
+      "rolloutSteps": 2212,
+      "chanceSamples": 8,
+      "ruleCalls": {
+        "baseline": 18251,
+        "prepared": 9366
+      },
+      "impureFallbacks": 0,
+      "digest": "f60d087a49aa68b49eb1e351002ee9d2661191755475eb7d47ab58830d504986"
+    },
+    {
+      "root": "G2T7",
+      "mode": "random",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 63,
+      "nodesCreated": 64,
+      "rolloutSteps": 824,
+      "chanceSamples": 22,
+      "ruleCalls": {
+        "baseline": 4292,
+        "prepared": 3484
+      },
+      "impureFallbacks": 0,
+      "digest": "655601ae0223b65944e4404d97abf80a87c9eebffd8c0905f9f167312f9478a3"
+    },
+    {
+      "root": "G2T7",
+      "mode": "random",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 199,
+      "nodesCreated": 200,
+      "rolloutSteps": 2440,
+      "chanceSamples": 62,
+      "ruleCalls": {
+        "baseline": 12726,
+        "prepared": 10346
+      },
+      "impureFallbacks": 0,
+      "digest": "309b2f100c8fba2683e0ff7aabbbc414c916846db6be087f3fc8204b9945d525"
+    },
+    {
+      "root": "G2T8",
+      "mode": "hybrid",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 59,
+      "nodesCreated": 66,
+      "rolloutSteps": 278,
+      "chanceSamples": 59,
+      "ruleCalls": {
+        "baseline": 2760,
+        "prepared": 1468
+      },
+      "impureFallbacks": 0,
+      "digest": "d231fcef5bc773a54c6cf2adcfa2fec3e43273ff2a0765a9a46c992a1862f69e"
+    },
+    {
+      "root": "G2T8",
+      "mode": "hybrid",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 143,
+      "nodesCreated": 202,
+      "rolloutSteps": 862,
+      "chanceSamples": 143,
+      "ruleCalls": {
+        "baseline": 8564,
+        "prepared": 4492
+      },
+      "impureFallbacks": 0,
+      "digest": "4b6b64a4eb6a08197567de3aeb9728cfdd397791731cddc57efdfc1e0d576c8d"
+    },
+    {
+      "root": "G2T8",
+      "mode": "random",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 57,
+      "nodesCreated": 66,
+      "rolloutSteps": 837,
+      "chanceSamples": 57,
+      "ruleCalls": {
+        "baseline": 4568,
+        "prepared": 3743
+      },
+      "impureFallbacks": 0,
+      "digest": "f6484327d6a82c30162393db031b86a18d7c66797639b8b99e5869d81f8ba6ef"
+    },
+    {
+      "root": "G2T8",
+      "mode": "random",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 113,
+      "nodesCreated": 200,
+      "rolloutSteps": 1571,
+      "chanceSamples": 114,
+      "ruleCalls": {
+        "baseline": 8861,
+        "prepared": 7322
+      },
+      "impureFallbacks": 0,
+      "digest": "baf9caa81d0c457beea5917652d03b0d9cf45f225849cc05746d4dfcd6a6e346"
+    },
+    {
+      "root": "G1T1",
+      "mode": "hybrid",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 63,
+      "nodesCreated": 64,
+      "rolloutSteps": 839,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 7341,
+        "prepared": 3633
+      },
+      "impureFallbacks": 0,
+      "digest": "99a1d670235439cff8a8eacd909c20e4fba636d4a87c606076605eb5089e56bc"
+    },
+    {
+      "root": "G1T1",
+      "mode": "hybrid",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 199,
+      "nodesCreated": 200,
+      "rolloutSteps": 2600,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 22779,
+        "prepared": 11245
+      },
+      "impureFallbacks": 0,
+      "digest": "77d3b4610e570959039a413bce00e6b269cb98561a1db6aa34389aacfb59c50b"
+    },
+    {
+      "root": "G1T1",
+      "mode": "random",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 63,
+      "nodesCreated": 64,
+      "rolloutSteps": 859,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 4655,
+        "prepared": 3800
+      },
+      "impureFallbacks": 0,
+      "digest": "a67674584862b601e90e95e482e8c41ad59a56ddf7b946bafbdc7851f48aac19"
+    },
+    {
+      "root": "G1T1",
+      "mode": "random",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 199,
+      "nodesCreated": 200,
+      "rolloutSteps": 2587,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 13937,
+        "prepared": 11390
+      },
+      "impureFallbacks": 0,
+      "digest": "af1dded362db2963a41f20e03a6fcdf1b05dcf8f6ef23fb83f5eb72d5974b13a"
+    },
+    {
+      "root": "G1T2",
+      "mode": "hybrid",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 63,
+      "nodesCreated": 64,
+      "rolloutSteps": 839,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 7354,
+        "prepared": 3512
+      },
+      "impureFallbacks": 0,
+      "digest": "b4bd35c61bbd6ef03b00fb946152bf2efd3c1a3324c13626cd75b6beb46198a0"
+    },
+    {
+      "root": "G1T2",
+      "mode": "hybrid",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 199,
+      "nodesCreated": 200,
+      "rolloutSteps": 2476,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 21646,
+        "prepared": 10409
+      },
+      "impureFallbacks": 0,
+      "digest": "ee0610153114e7e7e3177ebd34192bfec115ad33d5c12f5889e80b7a05ebc5f2"
+    },
+    {
+      "root": "G1T2",
+      "mode": "random",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 63,
+      "nodesCreated": 64,
+      "rolloutSteps": 781,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 4036,
+        "prepared": 3267
+      },
+      "impureFallbacks": 0,
+      "digest": "cb9b6206bf716a5e91936bb3202d1713fe75677f8040a36568ed7a0c01cc1812"
+    },
+    {
+      "root": "G1T2",
+      "mode": "random",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 199,
+      "nodesCreated": 200,
+      "rolloutSteps": 2276,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 11870,
+        "prepared": 9622
+      },
+      "impureFallbacks": 0,
+      "digest": "93c9f5fda7cd88f90eed031debcb8f27d1a313cc5328dd180f309c39e18316c6"
+    },
+    {
+      "root": "G1T3",
+      "mode": "hybrid",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 63,
+      "nodesCreated": 64,
+      "rolloutSteps": 754,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 6102,
+        "prepared": 3175
+      },
+      "impureFallbacks": 0,
+      "digest": "e1e84f2d693b6948dae32652eb230ef9e611b59413e61b9a5402249f0d15a0e5"
+    },
+    {
+      "root": "G1T3",
+      "mode": "hybrid",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 199,
+      "nodesCreated": 200,
+      "rolloutSteps": 2168,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 17582,
+        "prepared": 9199
+      },
+      "impureFallbacks": 0,
+      "digest": "db991268d454875c9053a2cfd1bfa0e5ecbe9149c76058ede4181a7682807292"
+    },
+    {
+      "root": "G1T3",
+      "mode": "random",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 63,
+      "nodesCreated": 64,
+      "rolloutSteps": 733,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 3765,
+        "prepared": 3096
+      },
+      "impureFallbacks": 0,
+      "digest": "85073b75f0f2b5bd4c0a1282053be3e8e4b87ad293011d706489ecb0826ad3c8"
+    },
+    {
+      "root": "G1T3",
+      "mode": "random",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 199,
+      "nodesCreated": 200,
+      "rolloutSteps": 2201,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 11384,
+        "prepared": 9331
+      },
+      "impureFallbacks": 0,
+      "digest": "a9399212aa6af8bdba19bba191b343a240b877200d6730b65d9b2b8e794e2b15"
+    },
+    {
+      "root": "G1T4",
+      "mode": "hybrid",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 63,
+      "nodesCreated": 64,
+      "rolloutSteps": 700,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 5497,
+        "prepared": 2975
+      },
+      "impureFallbacks": 0,
+      "digest": "660bdf7d433250d78ac831dcab4da6f2105ab703f9a333bfb821384d462ba40e"
+    },
+    {
+      "root": "G1T4",
+      "mode": "hybrid",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 199,
+      "nodesCreated": 200,
+      "rolloutSteps": 2018,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 15757,
+        "prepared": 8643
+      },
+      "impureFallbacks": 0,
+      "digest": "418cf9e91ff8a15cbdd0ba92bfd267b5d3e349697347852075183f45e25611b3"
+    },
+    {
+      "root": "G1T4",
+      "mode": "random",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 63,
+      "nodesCreated": 64,
+      "rolloutSteps": 752,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 3768,
+        "prepared": 3192
+      },
+      "impureFallbacks": 0,
+      "digest": "a897aa12b2ff40eb38972da2e41882b9a3bcb2191f6aeec581d6cdf2361cff86"
+    },
+    {
+      "root": "G1T4",
+      "mode": "random",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 199,
+      "nodesCreated": 200,
+      "rolloutSteps": 2151,
+      "chanceSamples": 2,
+      "ruleCalls": {
+        "baseline": 10806,
+        "prepared": 9183
+      },
+      "impureFallbacks": 0,
+      "digest": "34a7e1b142647d488533331f59abdbaf979f753bd7e474b14c5a0afb14b3fb33"
+    },
+    {
+      "root": "G1T5",
+      "mode": "hybrid",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 63,
+      "nodesCreated": 64,
+      "rolloutSteps": 887,
+      "chanceSamples": 142,
+      "ruleCalls": {
+        "baseline": 7830,
+        "prepared": 3924
+      },
+      "impureFallbacks": 0,
+      "digest": "f817b700ddbbfacca55640dca69650ed22193ebcac40c58170ad7d6775e739a1"
+    },
+    {
+      "root": "G1T5",
+      "mode": "hybrid",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 180,
+      "nodesCreated": 201,
+      "rolloutSteps": 2261,
+      "chanceSamples": 348,
+      "ruleCalls": {
+        "baseline": 19875,
+        "prepared": 10090
+      },
+      "impureFallbacks": 0,
+      "digest": "3d154ac4383dbd39e2f3db8f7868ac026148665dfbd2b7a09aed99e4a6ece036"
+    },
+    {
+      "root": "G1T5",
+      "mode": "random",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 63,
+      "nodesCreated": 64,
+      "rolloutSteps": 818,
+      "chanceSamples": 72,
+      "ruleCalls": {
+        "baseline": 4356,
+        "prepared": 3554
+      },
+      "impureFallbacks": 0,
+      "digest": "375ee2f56869220c9c998eabf9a9dda225e6d9cd9393eaa9508129c14869dfbd"
+    },
+    {
+      "root": "G1T5",
+      "mode": "random",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 189,
+      "nodesCreated": 200,
+      "rolloutSteps": 2295,
+      "chanceSamples": 248,
+      "ruleCalls": {
+        "baseline": 12267,
+        "prepared": 10020
+      },
+      "impureFallbacks": 0,
+      "digest": "25d3c3fb4daa6d646eb2f658ae6ae917ddc0e489a3f851ce60957993f61d3f04"
+    },
+    {
+      "root": "G1T6",
+      "mode": "hybrid",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 63,
+      "nodesCreated": 64,
+      "rolloutSteps": 924,
+      "chanceSamples": 63,
+      "ruleCalls": {
+        "baseline": 8035,
+        "prepared": 4145
+      },
+      "impureFallbacks": 0,
+      "digest": "51ef5a00216b9fa9a20d6fa1fb885a6bafb033cf9d8adbaf92c38c16ac93a0ae"
+    },
+    {
+      "root": "G1T6",
+      "mode": "hybrid",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 119,
+      "nodesCreated": 202,
+      "rolloutSteps": 1628,
+      "chanceSamples": 119,
+      "ruleCalls": {
+        "baseline": 14298,
+        "prepared": 7570
+      },
+      "impureFallbacks": 0,
+      "digest": "5363c9654e214582ac0d9b345d2561587af7366ebd62c598f5e1fa01d0d13fd7"
+    },
+    {
+      "root": "G1T6",
+      "mode": "random",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 61,
+      "nodesCreated": 64,
+      "rolloutSteps": 924,
+      "chanceSamples": 62,
+      "ruleCalls": {
+        "baseline": 4914,
+        "prepared": 4038
+      },
+      "impureFallbacks": 0,
+      "digest": "2bbdbb7ea87304d12d95a01d6737931f7f3240403228c6cc6e5a816469009ed7"
+    },
+    {
+      "root": "G1T6",
+      "mode": "random",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 119,
+      "nodesCreated": 202,
+      "rolloutSteps": 1708,
+      "chanceSamples": 120,
+      "ruleCalls": {
+        "baseline": 9403,
+        "prepared": 7775
+      },
+      "impureFallbacks": 0,
+      "digest": "67e8bd460dd696049a4a7dbdfee477313c42cedc0fa9bcc8fb7fc01daeaab447"
+    },
+    {
+      "root": "G1T7",
+      "mode": "hybrid",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 63,
+      "nodesCreated": 64,
+      "rolloutSteps": 847,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 7211,
+        "prepared": 3815
+      },
+      "impureFallbacks": 0,
+      "digest": "64254d2ccd0cb78d0b4519aa7cfc39f395aacaed249a9ffa911a87777571e305"
+    },
+    {
+      "root": "G1T7",
+      "mode": "hybrid",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 199,
+      "nodesCreated": 200,
+      "rolloutSteps": 2253,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 19239,
+        "prepared": 10267
+      },
+      "impureFallbacks": 0,
+      "digest": "69592b6bc8f0f41c8c7798fc5bb7ea8f51607c82a5baeb34a9c2c5f212cbea36"
+    },
+    {
+      "root": "G1T7",
+      "mode": "random",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 63,
+      "nodesCreated": 64,
+      "rolloutSteps": 903,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 4779,
+        "prepared": 3976
+      },
+      "impureFallbacks": 0,
+      "digest": "118245cddf14c83a7cc2854f0b275898dff4d88589bd5dbadc72f6ceb4b5f287"
+    },
+    {
+      "root": "G1T7",
+      "mode": "random",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 199,
+      "nodesCreated": 200,
+      "rolloutSteps": 2621,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 13922,
+        "prepared": 11657
+      },
+      "impureFallbacks": 0,
+      "digest": "e0504c8f88dae79e966210e342094d9d2ea4d6dfc6e6dc7e0742b4c67724f588"
+    },
+    {
+      "root": "G1T8",
+      "mode": "hybrid",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 63,
+      "nodesCreated": 64,
+      "rolloutSteps": 437,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 3405,
+        "prepared": 1927
+      },
+      "impureFallbacks": 0,
+      "digest": "41b060d461fe69774a82aa9467c9cc677d318b366833559efca6bac4a810d4ce"
+    },
+    {
+      "root": "G1T8",
+      "mode": "hybrid",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 199,
+      "nodesCreated": 200,
+      "rolloutSteps": 1265,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 9772,
+        "prepared": 5611
+      },
+      "impureFallbacks": 0,
+      "digest": "9f7ee3c31459d6158f54f72fb338b9a77c68b0554f4bfedea97824ca49f6948e"
+    },
+    {
+      "root": "G1T8",
+      "mode": "random",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 63,
+      "nodesCreated": 64,
+      "rolloutSteps": 820,
+      "chanceSamples": 31,
+      "ruleCalls": {
+        "baseline": 4163,
+        "prepared": 3507
+      },
+      "impureFallbacks": 0,
+      "digest": "d5fb7b21a2c0f87db6df0b7d201222b9ebbeaea0cffaf38e6f62a19c1a4c335a"
+    },
+    {
+      "root": "G1T8",
+      "mode": "random",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 199,
+      "nodesCreated": 200,
+      "rolloutSteps": 2339,
+      "chanceSamples": 82,
+      "ruleCalls": {
+        "baseline": 11820,
+        "prepared": 10021
+      },
+      "impureFallbacks": 0,
+      "digest": "911d7e51fa94b7579edeb1f12a4294136a6bc2c28dafb2443d0d4bca94131aa1"
+    },
+    {
+      "root": "G1T9",
+      "mode": "hybrid",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 55,
+      "nodesCreated": 64,
+      "rolloutSteps": 675,
+      "chanceSamples": 163,
+      "ruleCalls": {
+        "baseline": 6578,
+        "prepared": 3158
+      },
+      "impureFallbacks": 0,
+      "digest": "c1d21bcb973c0c033db82fdb0586abe0f350af8b26ff3386cdb06645eecdad27"
+    },
+    {
+      "root": "G1T9",
+      "mode": "hybrid",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 110,
+      "nodesCreated": 201,
+      "rolloutSteps": 1239,
+      "chanceSamples": 287,
+      "ruleCalls": {
+        "baseline": 12405,
+        "prepared": 6118
+      },
+      "impureFallbacks": 0,
+      "digest": "8c1bed991ac61c65a0ed635d60ec37722c04d7b58d40d32ee8b5475004935591"
+    },
+    {
+      "root": "G1T9",
+      "mode": "random",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 56,
+      "nodesCreated": 65,
+      "rolloutSteps": 849,
+      "chanceSamples": 86,
+      "ruleCalls": {
+        "baseline": 4593,
+        "prepared": 3788
+      },
+      "impureFallbacks": 0,
+      "digest": "96a1af0e79e3b3a449a5ef537ba987cdf65b7588a77011d7b124ab3d9942109f"
+    },
+    {
+      "root": "G1T9",
+      "mode": "random",
+      "budget": 200,
+      "pass": true,
+      "diffs": [],
+      "simulations": 112,
+      "nodesCreated": 201,
+      "rolloutSteps": 1543,
+      "chanceSamples": 158,
+      "ruleCalls": {
+        "baseline": 8681,
+        "prepared": 7198
+      },
+      "impureFallbacks": 0,
+      "digest": "3549cc668d58cd2cc34bf57f2ec424f8c4ea31acfc533f2b1e99a0e86562594f"
+    }
+  ],
+  "totals": {
+    "cells": 96,
+    "passed": 96,
+    "failed": 0,
+    "ruleCalls": {
+      "baseline": 878625,
+      "prepared": 570561
+    },
+    "savingFraction": 0.35062057191634655,
+    "impureFallbacks": 0
+  },
+  "verdict": "PASS"
+}

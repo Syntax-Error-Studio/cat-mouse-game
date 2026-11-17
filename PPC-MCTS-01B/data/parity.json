@@ -1,0 +1,1178 @@
+{
+  "provenance": {
+    "generatedBy": "PPC-MCTS-01B/probe/parity.test.ts",
+    "head": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+    "rootFixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+    "bfsMaxDepth": 8,
+    "bfsMaxStatesPerRoot": 400,
+    "note": "corpus states are produced by prepared transitions from the 24 frozen roots plus hand-built specials; CHANCE outcomes are expanded exhaustively (never sampled)"
+  },
+  "totals": {
+    "roots": 24,
+    "states": 9523,
+    "statesWithActions": 9460,
+    "candidates": 41566,
+    "legal": 32423,
+    "illegalCandidates": 9143,
+    "deterministicTransitions": 31391,
+    "chanceTransitions": 1032,
+    "chanceOutcomes": 14953,
+    "droppedStates": 29677,
+    "multiPathHits": 3897,
+    "chanceByAction": {
+      "catStep": 597,
+      "mouseStep": 435
+    }
+  },
+  "ruleCalls": {
+    "legacyTwoStep": 73514,
+    "legacyGeneratorOnly": 41095,
+    "preparedOneStep": 41562,
+    "deltaVsTwoStep": -31952,
+    "deltaVsGenerator": 467,
+    "note": "legacyTwoStep = generateLegalSearchActions(N sims) + one simulateSearchAction per survivor(L sims), i.e. the exact pair uct.ts performs at tree expansion. preparedOneStep = generatePreparedSearchActions(N sims). deltaVsGenerator > 0 because prepared simulates tunnel exits that the legacy GENERATOR never simulated (legacy paid for them in its second step instead)."
+  },
+  "ruleACShortCircuitStates": [
+    {
+      "tag": "special|cat-wedged",
+      "candidates": 4,
+      "ruleCalls": 0
+    }
+  ],
+  "tunnelStates": [
+    {
+      "tag": "G5T1|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G5T1|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G5T1|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G5T1|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G5T4|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G5T4|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G5T4|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G5T4|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G5T4|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G5T4|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G5T4|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G5T4|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G5T4|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G5T4|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G5T4|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G5T4|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G5T4|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G5T4|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G5T4|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G5T4|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G5T4|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G5T4|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G5T4|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G5T4|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G5T4|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G5T4|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G5T4|d6",
+      "exits": 3,
+      "legacy": 3,
+      "prepared": 3
+    },
+    {
+      "tag": "G5T4|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G5T4|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G2T6|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G2T6|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G2T6|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G2T6|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G2T6|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G2T6|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G2T6|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G2T6|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G2T6|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G2T6|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G2T6|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G2T6|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G2T6|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G2T6|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G2T6|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G2T6|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G2T6|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G2T6|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G2T6|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G2T6|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G2T6|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G2T6|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G2T6|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T3|d7",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T3|d7",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T3|d7",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T3|d7",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T3|d7",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T3|d7",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T3|d7",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T3|d7",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T3|d7",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T3|d7",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T3|d7",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T3|d7",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T3|d7",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T3|d7",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T3|d7",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T3|d7",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T3|d7",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T3|d7",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T3|d7",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T4|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T4|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T4|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T4|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T4|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T4|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T4|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T4|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T4|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T4|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T8|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T8|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T8|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T8|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T8|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T8|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T8|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T8|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T8|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T8|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T8|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T8|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T8|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T8|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T8|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T8|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T8|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T8|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T8|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T8|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T8|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T8|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T8|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T8|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T8|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T8|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T8|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T8|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T8|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T8|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T8|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T8|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T8|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T8|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "G1T8|d6",
+      "exits": 4,
+      "legacy": 4,
+      "prepared": 4
+    },
+    {
+      "tag": "special|tunnel-1",
+      "exits": 1,
+      "legacy": 1,
+      "prepared": 1
+    },
+    {
+      "tag": "special|tunnel-3",
+      "exits": 3,
+      "legacy": 3,
+      "prepared": 3
+    }
+  ],
+  "emptyLegalWhilePlaying": [],
+  "trapButterOverlapStates": [],
+  "aliasing": {
+    "statesWithSharedReferences": 31391,
+    "byField": {
+      "config": 31391,
+      "mousePosition": 8911,
+      "butterPositions": 31391,
+      "pendingButterSpawns": 31391,
+      "blockedTunnels": 31389,
+      "tunnelExitChoices": 24231,
+      "gameEventLog": 21079,
+      "butterPositions[]": 31337,
+      "board": 3735,
+      "catPosition": 26215,
+      "board[]": 3735,
+      "trapPosition": 27968,
+      "catActionLog": 26080,
+      "pendingButterSpawns[]": 5336
+    },
+    "examples": [
+      {
+        "tag": "G6T1|d0",
+        "fields": [
+          "config",
+          "mousePosition",
+          "butterPositions",
+          "pendingButterSpawns",
+          "blockedTunnels",
+          "tunnelExitChoices",
+          "gameEventLog",
+          "butterPositions[]"
+        ]
+      },
+      {
+        "tag": "G6T1|d0",
+        "fields": [
+          "config",
+          "mousePosition",
+          "butterPositions",
+          "pendingButterSpawns",
+          "blockedTunnels",
+          "tunnelExitChoices",
+          "gameEventLog",
+          "butterPositions[]"
+        ]
+      },
+      {
+        "tag": "G6T1|d0",
+        "fields": [
+          "config",
+          "mousePosition",
+          "butterPositions",
+          "pendingButterSpawns",
+          "blockedTunnels",
+          "tunnelExitChoices",
+          "gameEventLog",
+          "butterPositions[]"
+        ]
+      },
+      {
+        "tag": "G6T1|d0",
+        "fields": [
+          "config",
+          "mousePosition",
+          "butterPositions",
+          "pendingButterSpawns",
+          "blockedTunnels",
+          "tunnelExitChoices",
+          "gameEventLog",
+          "butterPositions[]"
+        ]
+      },
+      {
+        "tag": "G6T1|d0",
+        "fields": [
+          "board",
+          "config",
+          "catPosition",
+          "mousePosition",
+          "butterPositions",
+          "pendingButterSpawns",
+          "blockedTunnels",
+          "tunnelExitChoices",
+          "gameEventLog",
+          "butterPositions[]",
+          "board[]"
+        ]
+      },
+      {
+        "tag": "G6T1|d1",
+        "fields": [
+          "config",
+          "mousePosition",
+          "butterPositions",
+          "pendingButterSpawns",
+          "blockedTunnels",
+          "tunnelExitChoices",
+          "gameEventLog",
+          "butterPositions[]"
+        ]
+      },
+      {
+        "tag": "G6T1|d1",
+        "fields": [
+          "config",
+          "mousePosition",
+          "butterPositions",
+          "pendingButterSpawns",
+          "blockedTunnels",
+          "tunnelExitChoices",
+          "gameEventLog",
+          "butterPositions[]"
+        ]
+      },
+      {
+        "tag": "G6T1|d1",
+        "fields": [
+          "board",
+          "config",
+          "catPosition",
+          "mousePosition",
+          "butterPositions",
+          "pendingButterSpawns",
+          "blockedTunnels",
+          "tunnelExitChoices",
+          "gameEventLog",
+          "butterPositions[]",
+          "board[]"
+        ]
+      },
+      {
+        "tag": "G6T1|d1",
+        "fields": [
+          "config",
+          "mousePosition",
+          "butterPositions",
+          "pendingButterSpawns",
+          "blockedTunnels",
+          "tunnelExitChoices",
+          "gameEventLog",
+          "butterPositions[]"
+        ]
+      },
+      {
+        "tag": "G6T1|d1",
+        "fields": [
+          "config",
+          "mousePosition",
+          "butterPositions",
+          "pendingButterSpawns",
+          "blockedTunnels",
+          "tunnelExitChoices",
+          "gameEventLog",
+          "butterPositions[]"
+        ]
+      },
+      {
+        "tag": "G6T1|d1",
+        "fields": [
+          "config",
+          "mousePosition",
+          "butterPositions",
+          "pendingButterSpawns",
+          "blockedTunnels",
+          "tunnelExitChoices",
+          "gameEventLog",
+          "butterPositions[]"
+        ]
+      },
+      {
+        "tag": "G6T1|d1",
+        "fields": [
+          "config",
+          "mousePosition",
+          "butterPositions",
+          "pendingButterSpawns",
+          "blockedTunnels",
+          "tunnelExitChoices",
+          "gameEventLog",
+          "butterPositions[]"
+        ]
+      },
+      {
+        "tag": "G6T1|d1",
+        "fields": [
+          "board",
+          "config",
+          "catPosition",
+          "mousePosition",
+          "butterPositions",
+          "pendingButterSpawns",
+          "blockedTunnels",
+          "tunnelExitChoices",
+          "gameEventLog",
+          "butterPositions[]",
+          "board[]"
+        ]
+      },
+      {
+        "tag": "G6T1|d1",
+        "fields": [
+          "config",
+          "mousePosition",
+          "butterPositions",
+          "pendingButterSpawns",
+          "blockedTunnels",
+          "tunnelExitChoices",
+          "gameEventLog",
+          "butterPositions[]"
+        ]
+      },
+      {
+        "tag": "G6T1|d1",
+        "fields": [
+          "config",
+          "mousePosition",
+          "butterPositions",
+          "pendingButterSpawns",
+          "blockedTunnels",
+          "tunnelExitChoices",
+          "gameEventLog",
+          "butterPositions[]"
+        ]
+      },
+      {
+        "tag": "G6T1|d1",
+        "fields": [
+          "board",
+          "config",
+          "catPosition",
+          "mousePosition",
+          "butterPositions",
+          "pendingButterSpawns",
+          "blockedTunnels",
+          "tunnelExitChoices",
+          "gameEventLog",
+          "butterPositions[]",
+          "board[]"
+        ]
+      },
+      {
+        "tag": "G6T1|d1",
+        "fields": [
+          "config",
+          "mousePosition",
+          "butterPositions",
+          "pendingButterSpawns",
+          "blockedTunnels",
+          "tunnelExitChoices",
+          "gameEventLog",
+          "butterPositions[]"
+        ]
+      },
+      {
+        "tag": "G6T1|d1",
+        "fields": [
+          "config",
+          "mousePosition",
+          "butterPositions",
+          "pendingButterSpawns",
+          "blockedTunnels",
+          "tunnelExitChoices",
+          "gameEventLog",
+          "butterPositions[]"
+        ]
+      },
+      {
+        "tag": "G6T1|d1",
+        "fields": [
+          "config",
+          "mousePosition",
+          "butterPositions",
+          "pendingButterSpawns",
+          "blockedTunnels",
+          "tunnelExitChoices",
+          "gameEventLog",
+          "butterPositions[]"
+        ]
+      },
+      {
+        "tag": "G6T1|d1",
+        "fields": [
+          "config",
+          "mousePosition",
+          "butterPositions",
+          "pendingButterSpawns",
+          "blockedTunnels",
+          "tunnelExitChoices",
+          "gameEventLog",
+          "butterPositions[]"
+        ]
+      }
+    ]
+  },
+  "evaluationStability": {
+    "stable": 32423,
+    "unstable": []
+  },
+  "reuseReadStability": {
+    "stable": 31391,
+    "unstable": []
+  },
+  "mismatches": [],
+  "perRoot": {
+    "G6T1": {
+      "states": 400,
+      "dropped": 549,
+      "mismatches": 0
+    },
+    "G6T2": {
+      "states": 400,
+      "dropped": 1685,
+      "mismatches": 0
+    },
+    "G6T3": {
+      "states": 400,
+      "dropped": 1965,
+      "mismatches": 0
+    },
+    "G5T1": {
+      "states": 400,
+      "dropped": 2047,
+      "mismatches": 0
+    },
+    "G5T2": {
+      "states": 400,
+      "dropped": 924,
+      "mismatches": 0
+    },
+    "G5T3": {
+      "states": 400,
+      "dropped": 610,
+      "mismatches": 0
+    },
+    "G5T4": {
+      "states": 400,
+      "dropped": 637,
+      "mismatches": 0
+    },
+    "G2T1": {
+      "states": 400,
+      "dropped": 769,
+      "mismatches": 0
+    },
+    "G2T2": {
+      "states": 400,
+      "dropped": 190,
+      "mismatches": 0
+    },
+    "G2T3": {
+      "states": 400,
+      "dropped": 720,
+      "mismatches": 0
+    },
+    "G2T4": {
+      "states": 400,
+      "dropped": 3260,
+      "mismatches": 0
+    },
+    "G2T5": {
+      "states": 400,
+      "dropped": 918,
+      "mismatches": 0
+    },
+    "G2T6": {
+      "states": 400,
+      "dropped": 571,
+      "mismatches": 0
+    },
+    "G2T7": {
+      "states": 400,
+      "dropped": 1429,
+      "mismatches": 0
+    },
+    "G2T8": {
+      "states": 400,
+      "dropped": 1098,
+      "mismatches": 0
+    },
+    "G1T1": {
+      "states": 400,
+      "dropped": 945,
+      "mismatches": 0
+    },
+    "G1T2": {
+      "states": 400,
+      "dropped": 744,
+      "mismatches": 0
+    },
+    "G1T3": {
+      "states": 400,
+      "dropped": 443,
+      "mismatches": 0
+    },
+    "G1T4": {
+      "states": 308,
+      "dropped": 0,
+      "mismatches": 0
+    },
+    "G1T5": {
+      "states": 400,
+      "dropped": 3423,
+      "mismatches": 0
+    },
+    "G1T6": {
+      "states": 400,
+      "dropped": 827,
+      "mismatches": 0
+    },
+    "G1T7": {
+      "states": 400,
+      "dropped": 894,
+      "mismatches": 0
+    },
+    "G1T8": {
+      "states": 400,
+      "dropped": 2670,
+      "mismatches": 0
+    },
+    "G1T9": {
+      "states": 400,
+      "dropped": 2359,
+      "mismatches": 0
+    }
+  }
+}

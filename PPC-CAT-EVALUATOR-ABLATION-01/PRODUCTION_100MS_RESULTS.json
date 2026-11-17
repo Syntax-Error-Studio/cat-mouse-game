@@ -1,0 +1,3669 @@
+{
+  "artifactId": "PRODUCTION_100MS_RESULTS",
+  "round": "PPC-CAT-EVALUATOR-ABLATION-01",
+  "phase": 5,
+  "generatedAt": "2026-11-15T13:30:10.949Z",
+  "generatedBy": "PPC-CAT-EVALUATOR-ABLATION-01/probe/p5_aggregate.test.ts",
+  "head": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+  "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+  "productionSourceChanged": false,
+  "contract": {
+    "mainSearchBudgetMs": 100,
+    "totalTurnBudgetMs": 150,
+    "refutationEnabled": true,
+    "progressGuardEnabled": false,
+    "sidecarDisabled": false
+  },
+  "protocol": "computeCatAiTrajectory (real entry) → planHardCatTurn (spy WRAPS, never replaces) → resolveHardLeaf() per arm; 5 paired fresh-process rounds, arm order (round+rootIndex)%2; extend to 10 if executed-inconsistent",
+  "nominalWallNote": "150ms is a NOMINAL total-turn wall, NOT a physical certification; depth/nodes/elapsed recorded as ranges, never pinned",
+  "roundsUsed": 5,
+  "roundNumbers": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "summary": {
+    "combos": 48,
+    "executedConsistent": 48,
+    "executedInconsistent": 0,
+    "firstActionConsistent": 48,
+    "baselinePlanConsistent": 48,
+    "finalPlanConsistent": 48,
+    "fallbackCombos": 0,
+    "overrideCombos": 0,
+    "overTurnBudgetObserved": 182,
+    "needsExtension": false,
+    "extendTo": null,
+    "inconsistentExecutedCombos": []
+  },
+  "perRoot": [
+    {
+      "rootId": "G6T1",
+      "e1ModalExecuted": "UTRDL",
+      "h1ModalExecuted": "TDRRD",
+      "e1FirstAction": "U",
+      "h1FirstAction": "T",
+      "actionChangedAt100ms": true,
+      "trajectoryChangedAt100ms": true,
+      "e1ExecutedConsistent": true,
+      "h1ExecutedConsistent": true
+    },
+    {
+      "rootId": "G6T2",
+      "e1ModalExecuted": "UURR",
+      "h1ModalExecuted": "UURR",
+      "e1FirstAction": "U",
+      "h1FirstAction": "U",
+      "actionChangedAt100ms": false,
+      "trajectoryChangedAt100ms": false,
+      "e1ExecutedConsistent": true,
+      "h1ExecutedConsistent": true
+    },
+    {
+      "rootId": "G6T3",
+      "e1ModalExecuted": "RDDD",
+      "h1ModalExecuted": "RDDD",
+      "e1FirstAction": "R",
+      "h1FirstAction": "R",
+      "actionChangedAt100ms": false,
+      "trajectoryChangedAt100ms": false,
+      "e1ExecutedConsistent": true,
+      "h1ExecutedConsistent": true
+    },
+    {
+      "rootId": "G5T1",
+      "e1ModalExecuted": "DLUTR",
+      "h1ModalExecuted": "TRRDD",
+      "e1FirstAction": "D",
+      "h1FirstAction": "T",
+      "actionChangedAt100ms": true,
+      "trajectoryChangedAt100ms": true,
+      "e1ExecutedConsistent": true,
+      "h1ExecutedConsistent": true
+    },
+    {
+      "rootId": "G5T2",
+      "e1ModalExecuted": "DDLL",
+      "h1ModalExecuted": "DDLL",
+      "e1FirstAction": "D",
+      "h1FirstAction": "D",
+      "actionChangedAt100ms": false,
+      "trajectoryChangedAt100ms": false,
+      "e1ExecutedConsistent": true,
+      "h1ExecutedConsistent": true
+    },
+    {
+      "rootId": "G5T3",
+      "e1ModalExecuted": "LLDR",
+      "h1ModalExecuted": "LDDD",
+      "e1FirstAction": "L",
+      "h1FirstAction": "L",
+      "actionChangedAt100ms": false,
+      "trajectoryChangedAt100ms": true,
+      "e1ExecutedConsistent": true,
+      "h1ExecutedConsistent": true
+    },
+    {
+      "rootId": "G5T4",
+      "e1ModalExecuted": "RDLU",
+      "h1ModalExecuted": "RDRR",
+      "e1FirstAction": "R",
+      "h1FirstAction": "R",
+      "actionChangedAt100ms": false,
+      "trajectoryChangedAt100ms": true,
+      "e1ExecutedConsistent": true,
+      "h1ExecutedConsistent": true
+    },
+    {
+      "rootId": "G2T1",
+      "e1ModalExecuted": "TRRRR",
+      "h1ModalExecuted": "TRRRR",
+      "e1FirstAction": "T",
+      "h1FirstAction": "T",
+      "actionChangedAt100ms": false,
+      "trajectoryChangedAt100ms": false,
+      "e1ExecutedConsistent": true,
+      "h1ExecutedConsistent": true
+    },
+    {
+      "rootId": "G2T2",
+      "e1ModalExecuted": "DLUL",
+      "h1ModalExecuted": "DDDD",
+      "e1FirstAction": "D",
+      "h1FirstAction": "D",
+      "actionChangedAt100ms": false,
+      "trajectoryChangedAt100ms": true,
+      "e1ExecutedConsistent": true,
+      "h1ExecutedConsistent": true
+    },
+    {
+      "rootId": "G2T3",
+      "e1ModalExecuted": "LDLD",
+      "h1ModalExecuted": "LDLD",
+      "e1FirstAction": "L",
+      "h1FirstAction": "L",
+      "actionChangedAt100ms": false,
+      "trajectoryChangedAt100ms": false,
+      "e1ExecutedConsistent": true,
+      "h1ExecutedConsistent": true
+    },
+    {
+      "rootId": "G2T4",
+      "e1ModalExecuted": "DLLL",
+      "h1ModalExecuted": "DLLL",
+      "e1FirstAction": "D",
+      "h1FirstAction": "D",
+      "actionChangedAt100ms": false,
+      "trajectoryChangedAt100ms": false,
+      "e1ExecutedConsistent": true,
+      "h1ExecutedConsistent": true
+    },
+    {
+      "rootId": "G2T5",
+      "e1ModalExecuted": "DDDL",
+      "h1ModalExecuted": "DDDL",
+      "e1FirstAction": "D",
+      "h1FirstAction": "D",
+      "actionChangedAt100ms": false,
+      "trajectoryChangedAt100ms": false,
+      "e1ExecutedConsistent": true,
+      "h1ExecutedConsistent": true
+    },
+    {
+      "rootId": "G2T6",
+      "e1ModalExecuted": "LUUU",
+      "h1ModalExecuted": "LUUU",
+      "e1FirstAction": "L",
+      "h1FirstAction": "L",
+      "actionChangedAt100ms": false,
+      "trajectoryChangedAt100ms": false,
+      "e1ExecutedConsistent": true,
+      "h1ExecutedConsistent": true
+    },
+    {
+      "rootId": "G2T7",
+      "e1ModalExecuted": "URUU",
+      "h1ModalExecuted": "URUU",
+      "e1FirstAction": "U",
+      "h1FirstAction": "U",
+      "actionChangedAt100ms": false,
+      "trajectoryChangedAt100ms": false,
+      "e1ExecutedConsistent": true,
+      "h1ExecutedConsistent": true
+    },
+    {
+      "rootId": "G2T8",
+      "e1ModalExecuted": "DDDR",
+      "h1ModalExecuted": "DDDR",
+      "e1FirstAction": "D",
+      "h1FirstAction": "D",
+      "actionChangedAt100ms": false,
+      "trajectoryChangedAt100ms": false,
+      "e1ExecutedConsistent": true,
+      "h1ExecutedConsistent": true
+    },
+    {
+      "rootId": "G1T1",
+      "e1ModalExecuted": "TDDDD",
+      "h1ModalExecuted": "TDDDD",
+      "e1FirstAction": "T",
+      "h1FirstAction": "T",
+      "actionChangedAt100ms": false,
+      "trajectoryChangedAt100ms": false,
+      "e1ExecutedConsistent": true,
+      "h1ExecutedConsistent": true
+    },
+    {
+      "rootId": "G1T2",
+      "e1ModalExecuted": "DRRD",
+      "h1ModalExecuted": "DRRD",
+      "e1FirstAction": "D",
+      "h1FirstAction": "D",
+      "actionChangedAt100ms": false,
+      "trajectoryChangedAt100ms": false,
+      "e1ExecutedConsistent": true,
+      "h1ExecutedConsistent": true
+    },
+    {
+      "rootId": "G1T3",
+      "e1ModalExecuted": "UUUL",
+      "h1ModalExecuted": "RRRR",
+      "e1FirstAction": "U",
+      "h1FirstAction": "R",
+      "actionChangedAt100ms": true,
+      "trajectoryChangedAt100ms": true,
+      "e1ExecutedConsistent": true,
+      "h1ExecutedConsistent": true
+    },
+    {
+      "rootId": "G1T4",
+      "e1ModalExecuted": "LLLL",
+      "h1ModalExecuted": "LLLL",
+      "e1FirstAction": "L",
+      "h1FirstAction": "L",
+      "actionChangedAt100ms": false,
+      "trajectoryChangedAt100ms": false,
+      "e1ExecutedConsistent": true,
+      "h1ExecutedConsistent": true
+    },
+    {
+      "rootId": "G1T5",
+      "e1ModalExecuted": "ULUL",
+      "h1ModalExecuted": "ULUL",
+      "e1FirstAction": "U",
+      "h1FirstAction": "U",
+      "actionChangedAt100ms": false,
+      "trajectoryChangedAt100ms": false,
+      "e1ExecutedConsistent": true,
+      "h1ExecutedConsistent": true
+    },
+    {
+      "rootId": "G1T6",
+      "e1ModalExecuted": "UURD",
+      "h1ModalExecuted": "URRD",
+      "e1FirstAction": "U",
+      "h1FirstAction": "U",
+      "actionChangedAt100ms": false,
+      "trajectoryChangedAt100ms": true,
+      "e1ExecutedConsistent": true,
+      "h1ExecutedConsistent": true
+    },
+    {
+      "rootId": "G1T7",
+      "e1ModalExecuted": "RRRU",
+      "h1ModalExecuted": "RRRL",
+      "e1FirstAction": "R",
+      "h1FirstAction": "R",
+      "actionChangedAt100ms": false,
+      "trajectoryChangedAt100ms": true,
+      "e1ExecutedConsistent": true,
+      "h1ExecutedConsistent": true
+    },
+    {
+      "rootId": "G1T8",
+      "e1ModalExecuted": "LDRL",
+      "h1ModalExecuted": "LLUR",
+      "e1FirstAction": "L",
+      "h1FirstAction": "L",
+      "actionChangedAt100ms": false,
+      "trajectoryChangedAt100ms": true,
+      "e1ExecutedConsistent": true,
+      "h1ExecutedConsistent": true
+    },
+    {
+      "rootId": "G1T9",
+      "e1ModalExecuted": "LLLD",
+      "h1ModalExecuted": "LLDL",
+      "e1FirstAction": "L",
+      "h1FirstAction": "L",
+      "actionChangedAt100ms": false,
+      "trajectoryChangedAt100ms": true,
+      "e1ExecutedConsistent": true,
+      "h1ExecutedConsistent": true
+    }
+  ],
+  "combos": [
+    {
+      "rootId": "G6T1",
+      "arm": "E1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "UTRDL",
+        "UTRDL",
+        "UTRDL",
+        "UTRDL",
+        "UTRDL"
+      ],
+      "firstActions": [
+        "U",
+        "U",
+        "U",
+        "U",
+        "U"
+      ],
+      "baselinePlans": [
+        "UTRDL",
+        "UTRDL",
+        "UTRDL",
+        "UTRDL",
+        "UTRDL"
+      ],
+      "finalPlans": [
+        "UTRDL",
+        "UTRDL",
+        "UTRDL",
+        "UTRDL",
+        "UTRDL"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 1,
+        "max": 1
+      },
+      "attemptedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "nodes": {
+        "min": 582,
+        "max": 1362
+      },
+      "mainElapsedMs": {
+        "min": 100.59199999999998,
+        "max": 101.73399999999992
+      },
+      "turnWallMs": {
+        "min": 136.14139999999986,
+        "max": 151.29610000000002
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 1,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G6T1",
+      "arm": "H1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "TDRRD",
+        "TDRRD",
+        "TDRRD",
+        "TDRRD",
+        "TDRRD"
+      ],
+      "firstActions": [
+        "T",
+        "T",
+        "T",
+        "T",
+        "T"
+      ],
+      "baselinePlans": [
+        "TDRRD",
+        "TDRRD",
+        "TDRRD",
+        "TDRRD",
+        "TDRRD"
+      ],
+      "finalPlans": [
+        "TDRRD",
+        "TDRRD",
+        "TDRRD",
+        "TDRRD",
+        "TDRRD"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 1,
+        "max": 1
+      },
+      "attemptedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "nodes": {
+        "min": 694,
+        "max": 1538
+      },
+      "mainElapsedMs": {
+        "min": 101.09550000000002,
+        "max": 102.48749999999995
+      },
+      "turnWallMs": {
+        "min": 135.6726000000001,
+        "max": 151.39170000000001
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 1,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G6T2",
+      "arm": "E1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "UURR",
+        "UURR",
+        "UURR",
+        "UURR",
+        "UURR"
+      ],
+      "firstActions": [
+        "U",
+        "U",
+        "U",
+        "U",
+        "U"
+      ],
+      "baselinePlans": [
+        "UURR",
+        "UURR",
+        "UURR",
+        "UURR",
+        "UURR"
+      ],
+      "finalPlans": [
+        "UURR",
+        "UURR",
+        "UURR",
+        "UURR",
+        "UURR"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 1,
+        "max": 1
+      },
+      "attemptedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "nodes": {
+        "min": 718,
+        "max": 800
+      },
+      "mainElapsedMs": {
+        "min": 103.12239999999997,
+        "max": 105.44679999999994
+      },
+      "turnWallMs": {
+        "min": 150.3907999999999,
+        "max": 150.6968999999999
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 5,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G6T2",
+      "arm": "H1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "UURR",
+        "UURR",
+        "UURR",
+        "UURR",
+        "UURR"
+      ],
+      "firstActions": [
+        "U",
+        "U",
+        "U",
+        "U",
+        "U"
+      ],
+      "baselinePlans": [
+        "UURR",
+        "UURR",
+        "UURR",
+        "UURR",
+        "UURR"
+      ],
+      "finalPlans": [
+        "UURR",
+        "UURR",
+        "UURR",
+        "UURR",
+        "UURR"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 1,
+        "max": 1
+      },
+      "attemptedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "nodes": {
+        "min": 699,
+        "max": 761
+      },
+      "mainElapsedMs": {
+        "min": 102.65289999999982,
+        "max": 104.35980000000018
+      },
+      "turnWallMs": {
+        "min": 150.35259999999994,
+        "max": 150.66499999999996
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 5,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G6T3",
+      "arm": "E1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "RDDD",
+        "RDDD",
+        "RDDD",
+        "RDDD",
+        "RDDD"
+      ],
+      "firstActions": [
+        "R",
+        "R",
+        "R",
+        "R",
+        "R"
+      ],
+      "baselinePlans": [
+        "RDDD",
+        "RDDD",
+        "RDDD",
+        "RDDD",
+        "RDDD"
+      ],
+      "finalPlans": [
+        "RDDD",
+        "RDDD",
+        "RDDD",
+        "RDDD",
+        "RDDD"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 1,
+        "max": 1
+      },
+      "attemptedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "nodes": {
+        "min": 680,
+        "max": 770
+      },
+      "mainElapsedMs": {
+        "min": 102.66780000000017,
+        "max": 104.06220000000008
+      },
+      "turnWallMs": {
+        "min": 119.57309999999984,
+        "max": 123.12560000000008
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 0,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G6T3",
+      "arm": "H1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "RDDD",
+        "RDDD",
+        "RDDD",
+        "RDDD",
+        "RDDD"
+      ],
+      "firstActions": [
+        "R",
+        "R",
+        "R",
+        "R",
+        "R"
+      ],
+      "baselinePlans": [
+        "RDDD",
+        "RDDD",
+        "RDDD",
+        "RDDD",
+        "RDDD"
+      ],
+      "finalPlans": [
+        "RDDD",
+        "RDDD",
+        "RDDD",
+        "RDDD",
+        "RDDD"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 1,
+        "max": 1
+      },
+      "attemptedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "nodes": {
+        "min": 663,
+        "max": 751
+      },
+      "mainElapsedMs": {
+        "min": 102.79729999999995,
+        "max": 104.3614
+      },
+      "turnWallMs": {
+        "min": 119.25109999999995,
+        "max": 124.1371999999999
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 0,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G5T1",
+      "arm": "E1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "DLUTR",
+        "DLUTR",
+        "DLUTR",
+        "DLUTR",
+        "DLUTR"
+      ],
+      "firstActions": [
+        "D",
+        "D",
+        "D",
+        "D",
+        "D"
+      ],
+      "baselinePlans": [
+        "DLUTR",
+        "DLUTR",
+        "DLUTR",
+        "DLUTR",
+        "DLUTR"
+      ],
+      "finalPlans": [
+        "DLUTR",
+        "DLUTR",
+        "DLUTR",
+        "DLUTR",
+        "DLUTR"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 1,
+        "max": 1
+      },
+      "attemptedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "nodes": {
+        "min": 754,
+        "max": 855
+      },
+      "mainElapsedMs": {
+        "min": 103.31369999999993,
+        "max": 104.46360000000004
+      },
+      "turnWallMs": {
+        "min": 150.4049,
+        "max": 150.4873
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 5,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G5T1",
+      "arm": "H1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "TRRDD",
+        "TRRDD",
+        "TRRDD",
+        "TRRDD",
+        "TRRDD"
+      ],
+      "firstActions": [
+        "T",
+        "T",
+        "T",
+        "T",
+        "T"
+      ],
+      "baselinePlans": [
+        "TRRDD",
+        "TRRDD",
+        "TRRDD",
+        "TRRDD",
+        "TRRDD"
+      ],
+      "finalPlans": [
+        "TRRDD",
+        "TRRDD",
+        "TRRDD",
+        "TRRDD",
+        "TRRDD"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 1,
+        "max": 1
+      },
+      "attemptedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "nodes": {
+        "min": 793,
+        "max": 848
+      },
+      "mainElapsedMs": {
+        "min": 101.52690000000007,
+        "max": 103.01950000000011
+      },
+      "turnWallMs": {
+        "min": 150.35680000000002,
+        "max": 150.57749999999987
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 5,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G5T2",
+      "arm": "E1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "DDLL",
+        "DDLL",
+        "DDLL",
+        "DDLL",
+        "DDLL"
+      ],
+      "firstActions": [
+        "D",
+        "D",
+        "D",
+        "D",
+        "D"
+      ],
+      "baselinePlans": [
+        "DDLL",
+        "DDLL",
+        "DDLL",
+        "DDLL",
+        "DDLL"
+      ],
+      "finalPlans": [
+        "DDLL",
+        "DDLL",
+        "DDLL",
+        "DDLL",
+        "DDLL"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 1,
+        "max": 1
+      },
+      "attemptedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "nodes": {
+        "min": 1058,
+        "max": 1084
+      },
+      "mainElapsedMs": {
+        "min": 100.90240000000017,
+        "max": 101.92560000000003
+      },
+      "turnWallMs": {
+        "min": 147.87699999999995,
+        "max": 150.3543000000002
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 1,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G5T2",
+      "arm": "H1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "DDLL",
+        "DDLL",
+        "DDLL",
+        "DDLL",
+        "DDLL"
+      ],
+      "firstActions": [
+        "D",
+        "D",
+        "D",
+        "D",
+        "D"
+      ],
+      "baselinePlans": [
+        "DDLL",
+        "DDLL",
+        "DDLL",
+        "DDLL",
+        "DDLL"
+      ],
+      "finalPlans": [
+        "DDLL",
+        "DDLL",
+        "DDLL",
+        "DDLL",
+        "DDLL"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 1,
+        "max": 1
+      },
+      "attemptedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "nodes": {
+        "min": 1061,
+        "max": 1101
+      },
+      "mainElapsedMs": {
+        "min": 101.31720000000018,
+        "max": 101.68830000000003
+      },
+      "turnWallMs": {
+        "min": 148.08320000000003,
+        "max": 150.3433
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 2,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G5T3",
+      "arm": "E1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "LLDR",
+        "LLDR",
+        "LLDR",
+        "LLDR",
+        "LLDR"
+      ],
+      "firstActions": [
+        "L",
+        "L",
+        "L",
+        "L",
+        "L"
+      ],
+      "baselinePlans": [
+        "LLDR",
+        "LLDR",
+        "LLDR",
+        "LLDR",
+        "LLDR"
+      ],
+      "finalPlans": [
+        "LLDR",
+        "LLDR",
+        "LLDR",
+        "LLDR",
+        "LLDR"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "attemptedDepth": {
+        "min": 3,
+        "max": 3
+      },
+      "nodes": {
+        "min": 1998,
+        "max": 2097
+      },
+      "mainElapsedMs": {
+        "min": 101.80650000000014,
+        "max": 102.29379999999992
+      },
+      "turnWallMs": {
+        "min": 117.64289999999983,
+        "max": 118.95420000000013
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 0,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G5T3",
+      "arm": "H1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "LDDD",
+        "LDDD",
+        "LDDD",
+        "LDDD",
+        "LDDD"
+      ],
+      "firstActions": [
+        "L",
+        "L",
+        "L",
+        "L",
+        "L"
+      ],
+      "baselinePlans": [
+        "LDDD",
+        "LDDD",
+        "LDDD",
+        "LDDD",
+        "LDDD"
+      ],
+      "finalPlans": [
+        "LDDD",
+        "LDDD",
+        "LDDD",
+        "LDDD",
+        "LDDD"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "attemptedDepth": {
+        "min": 3,
+        "max": 3
+      },
+      "nodes": {
+        "min": 1849,
+        "max": 1870
+      },
+      "mainElapsedMs": {
+        "min": 101.10379999999986,
+        "max": 101.86549999999988
+      },
+      "turnWallMs": {
+        "min": 117.32589999999982,
+        "max": 119.27480000000014
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 0,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G5T4",
+      "arm": "E1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "RDLU",
+        "RDLU",
+        "RDLU",
+        "RDLU",
+        "RDLU"
+      ],
+      "firstActions": [
+        "R",
+        "R",
+        "R",
+        "R",
+        "R"
+      ],
+      "baselinePlans": [
+        "RDLU",
+        "RDLU",
+        "RDLU",
+        "RDLU",
+        "RDLU"
+      ],
+      "finalPlans": [
+        "RDLU",
+        "RDLU",
+        "RDLU",
+        "RDLU",
+        "RDLU"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "attemptedDepth": {
+        "min": 3,
+        "max": 3
+      },
+      "nodes": {
+        "min": 972,
+        "max": 981
+      },
+      "mainElapsedMs": {
+        "min": 102.74139999999989,
+        "max": 103.45809999999983
+      },
+      "turnWallMs": {
+        "min": 102.97739999999976,
+        "max": 103.70850000000019
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 0,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G5T4",
+      "arm": "H1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "RDRR",
+        "RDRR",
+        "RDRR",
+        "RDRR",
+        "RDRR"
+      ],
+      "firstActions": [
+        "R",
+        "R",
+        "R",
+        "R",
+        "R"
+      ],
+      "baselinePlans": [
+        "RDRR",
+        "RDRR",
+        "RDRR",
+        "RDRR",
+        "RDRR"
+      ],
+      "finalPlans": [
+        "RDRR",
+        "RDRR",
+        "RDRR",
+        "RDRR",
+        "RDRR"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "attemptedDepth": {
+        "min": 3,
+        "max": 3
+      },
+      "nodes": {
+        "min": 838,
+        "max": 860
+      },
+      "mainElapsedMs": {
+        "min": 103.81119999999964,
+        "max": 104.91409999999996
+      },
+      "turnWallMs": {
+        "min": 104.03890000000001,
+        "max": 105.1904999999997
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 0,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G2T1",
+      "arm": "E1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "TRRRR",
+        "TRRRR",
+        "TRRRR",
+        "TRRRR",
+        "TRRRR"
+      ],
+      "firstActions": [
+        "T",
+        "T",
+        "T",
+        "T",
+        "T"
+      ],
+      "baselinePlans": [
+        "TRRRR",
+        "TRRRR",
+        "TRRRR",
+        "TRRRR",
+        "TRRRR"
+      ],
+      "finalPlans": [
+        "TRRRR",
+        "TRRRR",
+        "TRRRR",
+        "TRRRR",
+        "TRRRR"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 1,
+        "max": 1
+      },
+      "attemptedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "nodes": {
+        "min": 1394,
+        "max": 1489
+      },
+      "mainElapsedMs": {
+        "min": 100.57100000000037,
+        "max": 100.96059999999989
+      },
+      "turnWallMs": {
+        "min": 136.6351999999997,
+        "max": 150.8135000000002
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 1,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G2T1",
+      "arm": "H1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "TRRRR",
+        "TRRRR",
+        "TRRRR",
+        "TRRRR",
+        "TRRRR"
+      ],
+      "firstActions": [
+        "T",
+        "T",
+        "T",
+        "T",
+        "T"
+      ],
+      "baselinePlans": [
+        "TRRRR",
+        "TRRRR",
+        "TRRRR",
+        "TRRRR",
+        "TRRRR"
+      ],
+      "finalPlans": [
+        "TRRRR",
+        "TRRRR",
+        "TRRRR",
+        "TRRRR",
+        "TRRRR"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 1,
+        "max": 1
+      },
+      "attemptedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "nodes": {
+        "min": 1793,
+        "max": 1861
+      },
+      "mainElapsedMs": {
+        "min": 100.76909999999998,
+        "max": 101.45569999999998
+      },
+      "turnWallMs": {
+        "min": 135.88490000000002,
+        "max": 142.01279999999997
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 0,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G2T2",
+      "arm": "E1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "DLUL",
+        "DLUL",
+        "DLUL",
+        "DLUL",
+        "DLUL"
+      ],
+      "firstActions": [
+        "D",
+        "D",
+        "D",
+        "D",
+        "D"
+      ],
+      "baselinePlans": [
+        "DLUL",
+        "DLUL",
+        "DLUL",
+        "DLUL",
+        "DLUL"
+      ],
+      "finalPlans": [
+        "DLUL",
+        "DLUL",
+        "DLUL",
+        "DLUL",
+        "DLUL"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "attemptedDepth": {
+        "min": 3,
+        "max": 3
+      },
+      "nodes": {
+        "min": 336,
+        "max": 580
+      },
+      "mainElapsedMs": {
+        "min": 103.57670000000007,
+        "max": 107.32790000000023
+      },
+      "turnWallMs": {
+        "min": 150.64420000000018,
+        "max": 150.94349999999986
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 5,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G2T2",
+      "arm": "H1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "DDDD",
+        "DDDD",
+        "DDDD",
+        "DDDD",
+        "DDDD"
+      ],
+      "firstActions": [
+        "D",
+        "D",
+        "D",
+        "D",
+        "D"
+      ],
+      "baselinePlans": [
+        "DDDD",
+        "DDDD",
+        "DDDD",
+        "DDDD",
+        "DDDD"
+      ],
+      "finalPlans": [
+        "DDDD",
+        "DDDD",
+        "DDDD",
+        "DDDD",
+        "DDDD"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "attemptedDepth": {
+        "min": 3,
+        "max": 3
+      },
+      "nodes": {
+        "min": 696,
+        "max": 779
+      },
+      "mainElapsedMs": {
+        "min": 103.59360000000015,
+        "max": 108.43889999999965
+      },
+      "turnWallMs": {
+        "min": 142.1943000000001,
+        "max": 155.56590000000006
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 4,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G2T3",
+      "arm": "E1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "LDLD",
+        "LDLD",
+        "LDLD",
+        "LDLD",
+        "LDLD"
+      ],
+      "firstActions": [
+        "L",
+        "L",
+        "L",
+        "L",
+        "L"
+      ],
+      "baselinePlans": [
+        "LDLD",
+        "LDLD",
+        "LDLD",
+        "LDLD",
+        "LDLD"
+      ],
+      "finalPlans": [
+        "LDLD",
+        "LDLD",
+        "LDLD",
+        "LDLD",
+        "LDLD"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 1,
+        "max": 1
+      },
+      "attemptedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "nodes": {
+        "min": 337,
+        "max": 395
+      },
+      "mainElapsedMs": {
+        "min": 101.48950000000013,
+        "max": 108.24240000000009
+      },
+      "turnWallMs": {
+        "min": 150.69950000000017,
+        "max": 151.7566999999999
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 5,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G2T3",
+      "arm": "H1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "LDLD",
+        "LDLD",
+        "LDLD",
+        "LDLD",
+        "LDLD"
+      ],
+      "firstActions": [
+        "L",
+        "L",
+        "L",
+        "L",
+        "L"
+      ],
+      "baselinePlans": [
+        "LDLD",
+        "LDLD",
+        "LDLD",
+        "LDLD",
+        "LDLD"
+      ],
+      "finalPlans": [
+        "LDLD",
+        "LDLD",
+        "LDLD",
+        "LDLD",
+        "LDLD"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 1,
+        "max": 1
+      },
+      "attemptedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "nodes": {
+        "min": 273,
+        "max": 428
+      },
+      "mainElapsedMs": {
+        "min": 100.50590000000011,
+        "max": 104.5628999999999
+      },
+      "turnWallMs": {
+        "min": 150.61850000000004,
+        "max": 151.0911000000001
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 5,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G2T4",
+      "arm": "E1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "DLLL",
+        "DLLL",
+        "DLLL",
+        "DLLL",
+        "DLLL"
+      ],
+      "firstActions": [
+        "D",
+        "D",
+        "D",
+        "D",
+        "D"
+      ],
+      "baselinePlans": [
+        "DLLL",
+        "DLLL",
+        "DLLL",
+        "DLLL",
+        "DLLL"
+      ],
+      "finalPlans": [
+        "DLLL",
+        "DLLL",
+        "DLLL",
+        "DLLL",
+        "DLLL"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 1,
+        "max": 1
+      },
+      "attemptedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "nodes": {
+        "min": 179,
+        "max": 237
+      },
+      "mainElapsedMs": {
+        "min": 107.67470000000003,
+        "max": 116.07769999999982
+      },
+      "turnWallMs": {
+        "min": 150.45119999999997,
+        "max": 152.4996000000001
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 5,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G2T4",
+      "arm": "H1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "DLLL",
+        "DLLL",
+        "DLLL",
+        "DLLL",
+        "DLLL"
+      ],
+      "firstActions": [
+        "D",
+        "D",
+        "D",
+        "D",
+        "D"
+      ],
+      "baselinePlans": [
+        "DLLL",
+        "DLLL",
+        "DLLL",
+        "DLLL",
+        "DLLL"
+      ],
+      "finalPlans": [
+        "DLLL",
+        "DLLL",
+        "DLLL",
+        "DLLL",
+        "DLLL"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 1,
+        "max": 1
+      },
+      "attemptedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "nodes": {
+        "min": 188,
+        "max": 242
+      },
+      "mainElapsedMs": {
+        "min": 107.53670000000011,
+        "max": 114.60919999999987
+      },
+      "turnWallMs": {
+        "min": 150.76540000000023,
+        "max": 151.32979999999998
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 5,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G2T5",
+      "arm": "E1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "DDDL",
+        "DDDL",
+        "DDDL",
+        "DDDL",
+        "DDDL"
+      ],
+      "firstActions": [
+        "D",
+        "D",
+        "D",
+        "D",
+        "D"
+      ],
+      "baselinePlans": [
+        "DDDL",
+        "DDDL",
+        "DDDL",
+        "DDDL",
+        "DDDL"
+      ],
+      "finalPlans": [
+        "DDDL",
+        "DDDL",
+        "DDDL",
+        "DDDL",
+        "DDDL"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 1,
+        "max": 1
+      },
+      "attemptedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "nodes": {
+        "min": 238,
+        "max": 285
+      },
+      "mainElapsedMs": {
+        "min": 103.5034999999998,
+        "max": 107.48299999999972
+      },
+      "turnWallMs": {
+        "min": 150.66870000000017,
+        "max": 152.51999999999998
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 5,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G2T5",
+      "arm": "H1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "DDDL",
+        "DDDL",
+        "DDDL",
+        "DDDL",
+        "DDDL"
+      ],
+      "firstActions": [
+        "D",
+        "D",
+        "D",
+        "D",
+        "D"
+      ],
+      "baselinePlans": [
+        "DDDL",
+        "DDDL",
+        "DDDL",
+        "DDDL",
+        "DDDL"
+      ],
+      "finalPlans": [
+        "DDDL",
+        "DDDL",
+        "DDDL",
+        "DDDL",
+        "DDDL"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 1,
+        "max": 1
+      },
+      "attemptedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "nodes": {
+        "min": 212,
+        "max": 276
+      },
+      "mainElapsedMs": {
+        "min": 102.64919999999984,
+        "max": 106.94990000000053
+      },
+      "turnWallMs": {
+        "min": 150.73650000000043,
+        "max": 150.91930000000002
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 5,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G2T6",
+      "arm": "E1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "LUUU",
+        "LUUU",
+        "LUUU",
+        "LUUU",
+        "LUUU"
+      ],
+      "firstActions": [
+        "L",
+        "L",
+        "L",
+        "L",
+        "L"
+      ],
+      "baselinePlans": [
+        "LUUU",
+        "LUUU",
+        "LUUU",
+        "LUUU",
+        "LUUU"
+      ],
+      "finalPlans": [
+        "LUUU",
+        "LUUU",
+        "LUUU",
+        "LUUU",
+        "LUUU"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 1,
+        "max": 2
+      },
+      "attemptedDepth": {
+        "min": 2,
+        "max": 3
+      },
+      "nodes": {
+        "min": 427,
+        "max": 512
+      },
+      "mainElapsedMs": {
+        "min": 100.63290000000052,
+        "max": 107.97320000000036
+      },
+      "turnWallMs": {
+        "min": 143.8717999999999,
+        "max": 150.7554
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 3,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G2T6",
+      "arm": "H1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "LUUU",
+        "LUUU",
+        "LUUU",
+        "LUUU",
+        "LUUU"
+      ],
+      "firstActions": [
+        "L",
+        "L",
+        "L",
+        "L",
+        "L"
+      ],
+      "baselinePlans": [
+        "LUUU",
+        "LUUU",
+        "LUUU",
+        "LUUU",
+        "LUUU"
+      ],
+      "finalPlans": [
+        "LUUU",
+        "LUUU",
+        "LUUU",
+        "LUUU",
+        "LUUU"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "attemptedDepth": {
+        "min": 3,
+        "max": 3
+      },
+      "nodes": {
+        "min": 291,
+        "max": 305
+      },
+      "mainElapsedMs": {
+        "min": 106.16830000000027,
+        "max": 109.53430000000026
+      },
+      "turnWallMs": {
+        "min": 149.1899000000003,
+        "max": 152.64860000000044
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 4,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G2T7",
+      "arm": "E1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "URUU",
+        "URUU",
+        "URUU",
+        "URUU",
+        "URUU"
+      ],
+      "firstActions": [
+        "U",
+        "U",
+        "U",
+        "U",
+        "U"
+      ],
+      "baselinePlans": [
+        "URUU",
+        "URUU",
+        "URUU",
+        "URUU",
+        "URUU"
+      ],
+      "finalPlans": [
+        "URUU",
+        "URUU",
+        "URUU",
+        "URUU",
+        "URUU"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 1,
+        "max": 1
+      },
+      "attemptedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "nodes": {
+        "min": 146,
+        "max": 169
+      },
+      "mainElapsedMs": {
+        "min": 112.40559999999914,
+        "max": 121.09180000000015
+      },
+      "turnWallMs": {
+        "min": 150.65399999999954,
+        "max": 150.8764000000001
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 5,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G2T7",
+      "arm": "H1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "URUU",
+        "URUU",
+        "URUU",
+        "URUU",
+        "URUU"
+      ],
+      "firstActions": [
+        "U",
+        "U",
+        "U",
+        "U",
+        "U"
+      ],
+      "baselinePlans": [
+        "URUU",
+        "URUU",
+        "URUU",
+        "URUU",
+        "URUU"
+      ],
+      "finalPlans": [
+        "URUU",
+        "URUU",
+        "URUU",
+        "URUU",
+        "URUU"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 1,
+        "max": 1
+      },
+      "attemptedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "nodes": {
+        "min": 152,
+        "max": 162
+      },
+      "mainElapsedMs": {
+        "min": 112.65479999999934,
+        "max": 117.55020000000059
+      },
+      "turnWallMs": {
+        "min": 150.69819999999982,
+        "max": 150.77199999999993
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 5,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G2T8",
+      "arm": "E1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "DDDR",
+        "DDDR",
+        "DDDR",
+        "DDDR",
+        "DDDR"
+      ],
+      "firstActions": [
+        "D",
+        "D",
+        "D",
+        "D",
+        "D"
+      ],
+      "baselinePlans": [
+        "DDDR",
+        "DDDR",
+        "DDDR",
+        "DDDR",
+        "DDDR"
+      ],
+      "finalPlans": [
+        "DDDR",
+        "DDDR",
+        "DDDR",
+        "DDDR",
+        "DDDR"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 1,
+        "max": 1
+      },
+      "attemptedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "nodes": {
+        "min": 198,
+        "max": 219
+      },
+      "mainElapsedMs": {
+        "min": 103.8739999999998,
+        "max": 108.02020000000084
+      },
+      "turnWallMs": {
+        "min": 150.6872000000003,
+        "max": 150.95579999999973
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 5,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G2T8",
+      "arm": "H1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "DDDR",
+        "DDDR",
+        "DDDR",
+        "DDDR",
+        "DDDR"
+      ],
+      "firstActions": [
+        "D",
+        "D",
+        "D",
+        "D",
+        "D"
+      ],
+      "baselinePlans": [
+        "DDDR",
+        "DDDR",
+        "DDDR",
+        "DDDR",
+        "DDDR"
+      ],
+      "finalPlans": [
+        "DDDR",
+        "DDDR",
+        "DDDR",
+        "DDDR",
+        "DDDR"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 1,
+        "max": 1
+      },
+      "attemptedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "nodes": {
+        "min": 175,
+        "max": 249
+      },
+      "mainElapsedMs": {
+        "min": 103.94979999999941,
+        "max": 109.96929999999975
+      },
+      "turnWallMs": {
+        "min": 150.70859999999993,
+        "max": 150.9351999999999
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 5,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G1T1",
+      "arm": "E1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "TDDDD",
+        "TDDDD",
+        "TDDDD",
+        "TDDDD",
+        "TDDDD"
+      ],
+      "firstActions": [
+        "T",
+        "T",
+        "T",
+        "T",
+        "T"
+      ],
+      "baselinePlans": [
+        "TDDDD",
+        "TDDDD",
+        "TDDDD",
+        "TDDDD",
+        "TDDDD"
+      ],
+      "finalPlans": [
+        "TDDDD",
+        "TDDDD",
+        "TDDDD",
+        "TDDDD",
+        "TDDDD"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 1,
+        "max": 1
+      },
+      "attemptedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "nodes": {
+        "min": 193,
+        "max": 275
+      },
+      "mainElapsedMs": {
+        "min": 102.54400000000078,
+        "max": 104.70150000000012
+      },
+      "turnWallMs": {
+        "min": 150.6853000000001,
+        "max": 151.28309999999965
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 5,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G1T1",
+      "arm": "H1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "TDDDD",
+        "TDDDD",
+        "TDDDD",
+        "TDDDD",
+        "TDDDD"
+      ],
+      "firstActions": [
+        "T",
+        "T",
+        "T",
+        "T",
+        "T"
+      ],
+      "baselinePlans": [
+        "TDDDD",
+        "TDDDD",
+        "TDDDD",
+        "TDDDD",
+        "TDDDD"
+      ],
+      "finalPlans": [
+        "TDDDD",
+        "TDDDD",
+        "TDDDD",
+        "TDDDD",
+        "TDDDD"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 1,
+        "max": 1
+      },
+      "attemptedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "nodes": {
+        "min": 156,
+        "max": 314
+      },
+      "mainElapsedMs": {
+        "min": 102.90150000000085,
+        "max": 106.29860000000008
+      },
+      "turnWallMs": {
+        "min": 150.70070000000032,
+        "max": 150.8834999999999
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 5,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G1T2",
+      "arm": "E1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "DRRD",
+        "DRRD",
+        "DRRD",
+        "DRRD",
+        "DRRD"
+      ],
+      "firstActions": [
+        "D",
+        "D",
+        "D",
+        "D",
+        "D"
+      ],
+      "baselinePlans": [
+        "DRRD",
+        "DRRD",
+        "DRRD",
+        "DRRD",
+        "DRRD"
+      ],
+      "finalPlans": [
+        "DRRD",
+        "DRRD",
+        "DRRD",
+        "DRRD",
+        "DRRD"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 1,
+        "max": 1
+      },
+      "attemptedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "nodes": {
+        "min": 291,
+        "max": 372
+      },
+      "mainElapsedMs": {
+        "min": 101.6842999999999,
+        "max": 103.52349999999933
+      },
+      "turnWallMs": {
+        "min": 150.5568000000003,
+        "max": 151.29749999999967
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 5,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G1T2",
+      "arm": "H1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "DRRD",
+        "DRRD",
+        "DRRD",
+        "DRRD",
+        "DRRD"
+      ],
+      "firstActions": [
+        "D",
+        "D",
+        "D",
+        "D",
+        "D"
+      ],
+      "baselinePlans": [
+        "DRRD",
+        "DRRD",
+        "DRRD",
+        "DRRD",
+        "DRRD"
+      ],
+      "finalPlans": [
+        "DRRD",
+        "DRRD",
+        "DRRD",
+        "DRRD",
+        "DRRD"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 1,
+        "max": 1
+      },
+      "attemptedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "nodes": {
+        "min": 429,
+        "max": 553
+      },
+      "mainElapsedMs": {
+        "min": 101.90959999999995,
+        "max": 104.6902
+      },
+      "turnWallMs": {
+        "min": 150.6259,
+        "max": 151.08410000000003
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 5,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G1T3",
+      "arm": "E1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "UUUL",
+        "UUUL",
+        "UUUL",
+        "UUUL",
+        "UUUL"
+      ],
+      "firstActions": [
+        "U",
+        "U",
+        "U",
+        "U",
+        "U"
+      ],
+      "baselinePlans": [
+        "UUUL",
+        "UUUL",
+        "UUUL",
+        "UUUL",
+        "UUUL"
+      ],
+      "finalPlans": [
+        "UUUL",
+        "UUUL",
+        "UUUL",
+        "UUUL",
+        "UUUL"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "attemptedDepth": {
+        "min": 3,
+        "max": 3
+      },
+      "nodes": {
+        "min": 286,
+        "max": 289
+      },
+      "mainElapsedMs": {
+        "min": 106.67959999999948,
+        "max": 109.55199999999968
+      },
+      "turnWallMs": {
+        "min": 150.65819999999985,
+        "max": 150.95120000000043
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 5,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G1T3",
+      "arm": "H1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "RRRR",
+        "RRRR",
+        "RRRR",
+        "RRRR",
+        "RRRR"
+      ],
+      "firstActions": [
+        "R",
+        "R",
+        "R",
+        "R",
+        "R"
+      ],
+      "baselinePlans": [
+        "RRRR",
+        "RRRR",
+        "RRRR",
+        "RRRR",
+        "RRRR"
+      ],
+      "finalPlans": [
+        "RRRR",
+        "RRRR",
+        "RRRR",
+        "RRRR",
+        "RRRR"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 1,
+        "max": 1
+      },
+      "attemptedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "nodes": {
+        "min": 578,
+        "max": 794
+      },
+      "mainElapsedMs": {
+        "min": 100.6297999999997,
+        "max": 106.23180000000048
+      },
+      "turnWallMs": {
+        "min": 150.70900000000074,
+        "max": 151.17209999999977
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 5,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G1T4",
+      "arm": "E1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "LLLL",
+        "LLLL",
+        "LLLL",
+        "LLLL",
+        "LLLL"
+      ],
+      "firstActions": [
+        "L",
+        "L",
+        "L",
+        "L",
+        "L"
+      ],
+      "baselinePlans": [
+        "LLLL",
+        "LLLL",
+        "LLLL",
+        "LLLL",
+        "LLLL"
+      ],
+      "finalPlans": [
+        "LLLL",
+        "LLLL",
+        "LLLL",
+        "LLLL",
+        "LLLL"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 1,
+        "max": 2
+      },
+      "attemptedDepth": {
+        "min": 2,
+        "max": 3
+      },
+      "nodes": {
+        "min": 417,
+        "max": 581
+      },
+      "mainElapsedMs": {
+        "min": 101.1884,
+        "max": 107.41989999999987
+      },
+      "turnWallMs": {
+        "min": 150.64900000000034,
+        "max": 150.79109999999946
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 5,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G1T4",
+      "arm": "H1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "LLLL",
+        "LLLL",
+        "LLLL",
+        "LLLL",
+        "LLLL"
+      ],
+      "firstActions": [
+        "L",
+        "L",
+        "L",
+        "L",
+        "L"
+      ],
+      "baselinePlans": [
+        "LLLL",
+        "LLLL",
+        "LLLL",
+        "LLLL",
+        "LLLL"
+      ],
+      "finalPlans": [
+        "LLLL",
+        "LLLL",
+        "LLLL",
+        "LLLL",
+        "LLLL"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "attemptedDepth": {
+        "min": 3,
+        "max": 3
+      },
+      "nodes": {
+        "min": 279,
+        "max": 387
+      },
+      "mainElapsedMs": {
+        "min": 107.15200000000004,
+        "max": 107.68209999999999
+      },
+      "turnWallMs": {
+        "min": 150.65509999999995,
+        "max": 151.14410000000044
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 5,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G1T5",
+      "arm": "E1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "ULUL",
+        "ULUL",
+        "ULUL",
+        "ULUL",
+        "ULUL"
+      ],
+      "firstActions": [
+        "U",
+        "U",
+        "U",
+        "U",
+        "U"
+      ],
+      "baselinePlans": [
+        "ULUL",
+        "ULUL",
+        "ULUL",
+        "ULUL",
+        "ULUL"
+      ],
+      "finalPlans": [
+        "ULUL",
+        "ULUL",
+        "ULUL",
+        "ULUL",
+        "ULUL"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 1,
+        "max": 1
+      },
+      "attemptedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "nodes": {
+        "min": 118,
+        "max": 178
+      },
+      "mainElapsedMs": {
+        "min": 132.90589999999975,
+        "max": 142.76599999999962
+      },
+      "turnWallMs": {
+        "min": 150.76990000000023,
+        "max": 151.1211000000003
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 5,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G1T5",
+      "arm": "H1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "ULUL",
+        "ULUL",
+        "ULUL",
+        "ULUL",
+        "ULUL"
+      ],
+      "firstActions": [
+        "U",
+        "U",
+        "U",
+        "U",
+        "U"
+      ],
+      "baselinePlans": [
+        "ULUL",
+        "ULUL",
+        "ULUL",
+        "ULUL",
+        "ULUL"
+      ],
+      "finalPlans": [
+        "ULUL",
+        "ULUL",
+        "ULUL",
+        "ULUL",
+        "ULUL"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 1,
+        "max": 1
+      },
+      "attemptedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "nodes": {
+        "min": 113,
+        "max": 163
+      },
+      "mainElapsedMs": {
+        "min": 132.35490000000027,
+        "max": 142.78940000000057
+      },
+      "turnWallMs": {
+        "min": 150.67929999999978,
+        "max": 151.29699999999957
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 5,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G1T6",
+      "arm": "E1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "UURD",
+        "UURD",
+        "UURD",
+        "UURD",
+        "UURD"
+      ],
+      "firstActions": [
+        "U",
+        "U",
+        "U",
+        "U",
+        "U"
+      ],
+      "baselinePlans": [
+        "UURD",
+        "UURD",
+        "UURD",
+        "UURD",
+        "UURD"
+      ],
+      "finalPlans": [
+        "UURD",
+        "UURD",
+        "UURD",
+        "UURD",
+        "UURD"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 1,
+        "max": 1
+      },
+      "attemptedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "nodes": {
+        "min": 247,
+        "max": 294
+      },
+      "mainElapsedMs": {
+        "min": 106.63270000000011,
+        "max": 110.83470000000034
+      },
+      "turnWallMs": {
+        "min": 150.78049999999985,
+        "max": 151.04579999999987
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 5,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G1T6",
+      "arm": "H1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "URRD",
+        "URRD",
+        "URRD",
+        "URRD",
+        "URRD"
+      ],
+      "firstActions": [
+        "U",
+        "U",
+        "U",
+        "U",
+        "U"
+      ],
+      "baselinePlans": [
+        "URRD",
+        "URRD",
+        "URRD",
+        "URRD",
+        "URRD"
+      ],
+      "finalPlans": [
+        "URRD",
+        "URRD",
+        "URRD",
+        "URRD",
+        "URRD"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 1,
+        "max": 1
+      },
+      "attemptedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "nodes": {
+        "min": 240,
+        "max": 267
+      },
+      "mainElapsedMs": {
+        "min": 103.21430000000055,
+        "max": 109.80259999999998
+      },
+      "turnWallMs": {
+        "min": 150.65769999999975,
+        "max": 150.86449999999968
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 5,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G1T7",
+      "arm": "E1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "RRRU",
+        "RRRU",
+        "RRRU",
+        "RRRU",
+        "RRRU"
+      ],
+      "firstActions": [
+        "R",
+        "R",
+        "R",
+        "R",
+        "R"
+      ],
+      "baselinePlans": [
+        "RRRU",
+        "RRRU",
+        "RRRU",
+        "RRRU",
+        "RRRU"
+      ],
+      "finalPlans": [
+        "RRRU",
+        "RRRU",
+        "RRRU",
+        "RRRU",
+        "RRRU"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 1,
+        "max": 1
+      },
+      "attemptedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "nodes": {
+        "min": 312,
+        "max": 437
+      },
+      "mainElapsedMs": {
+        "min": 103.10800000000017,
+        "max": 105.46830000000045
+      },
+      "turnWallMs": {
+        "min": 150.70569999999952,
+        "max": 150.95520000000033
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 5,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G1T7",
+      "arm": "H1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "RRRL",
+        "RRRL",
+        "RRRL",
+        "RRRL",
+        "RRRL"
+      ],
+      "firstActions": [
+        "R",
+        "R",
+        "R",
+        "R",
+        "R"
+      ],
+      "baselinePlans": [
+        "RRRL",
+        "RRRL",
+        "RRRL",
+        "RRRL",
+        "RRRL"
+      ],
+      "finalPlans": [
+        "RRRL",
+        "RRRL",
+        "RRRL",
+        "RRRL",
+        "RRRL"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 1,
+        "max": 1
+      },
+      "attemptedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "nodes": {
+        "min": 325,
+        "max": 403
+      },
+      "mainElapsedMs": {
+        "min": 105.11340000000018,
+        "max": 108.17799999999988
+      },
+      "turnWallMs": {
+        "min": 150.8068999999996,
+        "max": 150.97990000000027
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 5,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G1T8",
+      "arm": "E1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "LDRL",
+        "LDRL",
+        "LDRL",
+        "LDRL",
+        "LDRL"
+      ],
+      "firstActions": [
+        "L",
+        "L",
+        "L",
+        "L",
+        "L"
+      ],
+      "baselinePlans": [
+        "LDRL",
+        "LDRL",
+        "LDRL",
+        "LDRL",
+        "LDRL"
+      ],
+      "finalPlans": [
+        "LDRL",
+        "LDRL",
+        "LDRL",
+        "LDRL",
+        "LDRL"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 1,
+        "max": 1
+      },
+      "attemptedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "nodes": {
+        "min": 216,
+        "max": 228
+      },
+      "mainElapsedMs": {
+        "min": 110.0616,
+        "max": 111.49250000000029
+      },
+      "turnWallMs": {
+        "min": 150.5590000000002,
+        "max": 151.03440000000046
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 5,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G1T8",
+      "arm": "H1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "LLUR",
+        "LLUR",
+        "LLUR",
+        "LLUR",
+        "LLUR"
+      ],
+      "firstActions": [
+        "L",
+        "L",
+        "L",
+        "L",
+        "L"
+      ],
+      "baselinePlans": [
+        "LLUR",
+        "LLUR",
+        "LLUR",
+        "LLUR",
+        "LLUR"
+      ],
+      "finalPlans": [
+        "LLUR",
+        "LLUR",
+        "LLUR",
+        "LLUR",
+        "LLUR"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 1,
+        "max": 1
+      },
+      "attemptedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "nodes": {
+        "min": 195,
+        "max": 220
+      },
+      "mainElapsedMs": {
+        "min": 109.20610000000033,
+        "max": 112.89030000000002
+      },
+      "turnWallMs": {
+        "min": 150.65740000000005,
+        "max": 150.73389999999927
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 5,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G1T9",
+      "arm": "E1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "LLLD",
+        "LLLD",
+        "LLLD",
+        "LLLD",
+        "LLLD"
+      ],
+      "firstActions": [
+        "L",
+        "L",
+        "L",
+        "L",
+        "L"
+      ],
+      "baselinePlans": [
+        "LLLD",
+        "LLLD",
+        "LLLD",
+        "LLLD",
+        "LLLD"
+      ],
+      "finalPlans": [
+        "LLLD",
+        "LLLD",
+        "LLLD",
+        "LLLD",
+        "LLLD"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 1,
+        "max": 1
+      },
+      "attemptedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "nodes": {
+        "min": 158,
+        "max": 188
+      },
+      "mainElapsedMs": {
+        "min": 106.3143,
+        "max": 112.97159999999985
+      },
+      "turnWallMs": {
+        "min": 150.40279999999984,
+        "max": 150.84050000000025
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 5,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    },
+    {
+      "rootId": "G1T9",
+      "arm": "H1",
+      "roundsUsed": 5,
+      "executedLabels": [
+        "LLDL",
+        "LLDL",
+        "LLDL",
+        "LLDL",
+        "LLDL"
+      ],
+      "firstActions": [
+        "L",
+        "L",
+        "L",
+        "L",
+        "L"
+      ],
+      "baselinePlans": [
+        "LLDL",
+        "LLDL",
+        "LLDL",
+        "LLDL",
+        "LLDL"
+      ],
+      "finalPlans": [
+        "LLDL",
+        "LLDL",
+        "LLDL",
+        "LLDL",
+        "LLDL"
+      ],
+      "executedConsistent": true,
+      "firstActionConsistent": true,
+      "baselineConsistent": true,
+      "finalConsistent": true,
+      "completedDepth": {
+        "min": 1,
+        "max": 1
+      },
+      "attemptedDepth": {
+        "min": 2,
+        "max": 2
+      },
+      "nodes": {
+        "min": 138,
+        "max": 189
+      },
+      "mainElapsedMs": {
+        "min": 107.20769999999993,
+        "max": 108.7581999999993
+      },
+      "turnWallMs": {
+        "min": 150.71330000000034,
+        "max": 151.4324999999999
+      },
+      "deadlineFiredCount": 5,
+      "budgetFiredCount": 0,
+      "fallbackCount": 0,
+      "overrideCount": 0,
+      "matchedPlanCount": 5,
+      "overTurnBudgetCount": 5,
+      "plannerCalls": {
+        "min": 1,
+        "max": 1
+      },
+      "finalPhases": [
+        "playing"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,4506 @@
+{
+  "meta": {
+    "round": "PPC-MCTS-01A",
+    "generatedAt": "2026-11-16T05:37:39.682Z",
+    "head": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+    "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+    "budgets": {
+      "mainMs": 100,
+      "maxHandoffs": 4,
+      "maxNodes": 500000,
+      "ucbC": 1.4142135623730951
+    },
+    "repetition": 1,
+    "note": "Diagnostic re-run of the unchanged UctSearch. Simulation counts are deadline-bound and therefore machine-load sensitive; evaluator call ratios are structural.",
+    "externalLoad": "ai-reliability final run + docmap-studio servers were active during this diagnostic; wall/cpu timings are not official benchmark results."
+  },
+  "perRoot": [
+    {
+      "rootId": "G6T1",
+      "arm": "UCT-R",
+      "rootStateKey": "t__e__e__e__e__e__e__e__e__tm_e__ec_b__e__e__e__e__e__e__e__e__e__e__b__e__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#1,1#0,9#4#0#1,6|2,6##0#0#0#_#1###10:4:3:3:4:2:single:hard",
+      "rootEligible": true,
+      "seed": "PPC-MCTS-01|G6T1|UCT-R|rep=1|h=1700616795",
+      "wallMs": 101.1579999923706,
+      "cpuMs": 234,
+      "searchElapsedMs": 100.0566,
+      "sims": 199,
+      "aborted": 1,
+      "nodes": 201,
+      "chanceNodes": 0,
+      "chanceSamples": 44,
+      "rolloutSteps": 2633,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 199,
+        "mouseBfs": 199,
+        "catBfs": 199,
+        "carryBfs": 199,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 1,
+      "evalPerRolloutStep": 0.075579187238891,
+      "bfsPerEval": 3,
+      "plan": "TCDownCRightCDownCLeft",
+      "treePlanLength": 4,
+      "extensionSteps": 1,
+      "planExtended": true,
+      "planLength": 5,
+      "planCost": 4,
+      "rootAction": "catPlaceTrap:",
+      "rootVisits": 199,
+      "rootMeanReward": -0.0231909703826941,
+      "rootActions": [
+        {
+          "action": "C:ArrowUp",
+          "visits": 39,
+          "meanReward": -0.03138453220186106,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowDown",
+          "visits": 35,
+          "meanReward": -0.0576535794245795,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 40,
+          "meanReward": -0.021980954961974164,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowRight",
+          "visits": 32,
+          "meanReward": -0.08969452163858974,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "T",
+          "visits": 53,
+          "meanReward": 0.044836449443218365,
+          "top": true,
+          "chosen": false
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.06700003147125244,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 0,
+          "mouseBfs": 0,
+          "catBfs": 0,
+          "carryBfs": 0,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 4,
+        "extensionSteps": 1,
+        "planLength": 5
+      },
+      "replayDiag": {
+        "wallMs": 0.09799998998641968,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G6T1",
+      "arm": "UCT-H",
+      "rootStateKey": "t__e__e__e__e__e__e__e__e__tm_e__ec_b__e__e__e__e__e__e__e__e__e__e__b__e__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#1,1#0,9#4#0#1,6|2,6##0#0#0#_#1###10:4:3:3:4:2:single:hard",
+      "rootEligible": true,
+      "seed": "PPC-MCTS-01|G6T1|UCT-H|rep=1|h=2825155953",
+      "wallMs": 100.98199999332428,
+      "cpuMs": 172,
+      "searchElapsedMs": 100.1637,
+      "sims": 22,
+      "aborted": 0,
+      "nodes": 23,
+      "chanceNodes": 0,
+      "chanceSamples": 0,
+      "rolloutSteps": 249,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 896,
+        "mouseBfs": 896,
+        "catBfs": 896,
+        "carryBfs": 896,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 40.72727272727273,
+      "evalPerRolloutStep": 3.5983935742971886,
+      "bfsPerEval": 3,
+      "plan": "CLeftTCDownCRightCRight",
+      "treePlanLength": 3,
+      "extensionSteps": 2,
+      "planExtended": true,
+      "planLength": 5,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowLeft",
+      "rootVisits": 22,
+      "rootMeanReward": 0.017242014577031027,
+      "rootActions": [
+        {
+          "action": "C:ArrowUp",
+          "visits": 4,
+          "meanReward": 0.012864557055689844,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowDown",
+          "visits": 4,
+          "meanReward": 0.008404047781435088,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 5,
+          "meanReward": 0.035507518576013364,
+          "top": true,
+          "chosen": true
+        },
+        {
+          "action": "C:ArrowRight",
+          "visits": 4,
+          "meanReward": 0.008606336244312573,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "T",
+          "visits": 5,
+          "meanReward": 0.016457392697773167,
+          "top": true,
+          "chosen": false
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.6459999680519104,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 7,
+          "mouseBfs": 7,
+          "catBfs": 7,
+          "carryBfs": 7,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 3,
+        "extensionSteps": 2,
+        "planLength": 5
+      },
+      "replayDiag": {
+        "wallMs": 0.09399998188018799,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G6T2",
+      "arm": "UCT-R",
+      "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#3,3#1,6#4#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "rootEligible": false,
+      "seed": "PPC-MCTS-01|G6T2|UCT-R|rep=1|h=1689502330",
+      "wallMs": 100.08799999952316,
+      "cpuMs": 156,
+      "searchElapsedMs": 100.01240000000001,
+      "sims": 268,
+      "aborted": 0,
+      "nodes": 373,
+      "chanceNodes": 109,
+      "chanceSamples": 415,
+      "rolloutSteps": 3696,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 259,
+        "mouseBfs": 259,
+        "catBfs": 259,
+        "carryBfs": 259,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 0.9664179104477612,
+      "evalPerRolloutStep": 0.07007575757575757,
+      "bfsPerEval": 3,
+      "plan": "CLeftCUpCRightCLeft",
+      "treePlanLength": 4,
+      "extensionSteps": 0,
+      "planExtended": false,
+      "planLength": 4,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowLeft",
+      "rootVisits": 268,
+      "rootMeanReward": 0.1284736176982635,
+      "rootActions": [
+        {
+          "action": "C:ArrowUp",
+          "visits": 90,
+          "meanReward": 0.12811318779799283,
+          "top": true,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowDown",
+          "visits": 88,
+          "meanReward": 0.12842445193061425,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 90,
+          "meanReward": 0.12888212079356898,
+          "top": true,
+          "chosen": true
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.004999995231628418,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 0,
+          "mouseBfs": 0,
+          "catBfs": 0,
+          "carryBfs": 0,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 4,
+        "extensionSteps": 0,
+        "planLength": 4
+      },
+      "replayDiag": {
+        "wallMs": 0.07400000095367432,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G6T2",
+      "arm": "UCT-H",
+      "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#3,3#1,6#4#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "rootEligible": false,
+      "seed": "PPC-MCTS-01|G6T2|UCT-H|rep=1|h=3271961404",
+      "wallMs": 100.72000002861023,
+      "cpuMs": 125,
+      "searchElapsedMs": 100.29599999999999,
+      "sims": 16,
+      "aborted": 1,
+      "nodes": 18,
+      "chanceNodes": 0,
+      "chanceSamples": 48,
+      "rolloutSteps": 244,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 1301,
+        "mouseBfs": 1301,
+        "catBfs": 1301,
+        "carryBfs": 1301,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 81.3125,
+      "evalPerRolloutStep": 5.331967213114754,
+      "bfsPerEval": 3,
+      "plan": "CDownCLeftCUpCRight",
+      "treePlanLength": 3,
+      "extensionSteps": 1,
+      "planExtended": true,
+      "planLength": 4,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowDown",
+      "rootVisits": 16,
+      "rootMeanReward": 0.040614495451694176,
+      "rootActions": [
+        {
+          "action": "C:ArrowUp",
+          "visits": 3,
+          "meanReward": -0.27425403864855874,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowDown",
+          "visits": 7,
+          "meanReward": 0.10078610270884139,
+          "top": true,
+          "chosen": true
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 6,
+          "meanReward": 0.1278485540351489,
+          "top": false,
+          "chosen": false
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.3269999623298645,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 4,
+          "mouseBfs": 4,
+          "catBfs": 4,
+          "carryBfs": 4,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 3,
+        "extensionSteps": 1,
+        "planLength": 4
+      },
+      "replayDiag": {
+        "wallMs": 0.08100003004074097,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G6T3",
+      "arm": "UCT-R",
+      "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__em_e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#1,5#7,6#4#0#5,1#8,4:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "rootEligible": false,
+      "seed": "PPC-MCTS-01|G6T3|UCT-R|rep=1|h=3425947969",
+      "wallMs": 100.13999998569489,
+      "cpuMs": 173,
+      "searchElapsedMs": 100.04290000000003,
+      "sims": 279,
+      "aborted": 1,
+      "nodes": 351,
+      "chanceNodes": 102,
+      "chanceSamples": 345,
+      "rolloutSteps": 3801,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 259,
+        "mouseBfs": 259,
+        "catBfs": 259,
+        "carryBfs": 259,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 0.9283154121863799,
+      "evalPerRolloutStep": 0.06813996316758748,
+      "bfsPerEval": 3,
+      "plan": "CRightCUpCDownCDown",
+      "treePlanLength": 4,
+      "extensionSteps": 0,
+      "planExtended": false,
+      "planLength": 4,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowRight",
+      "rootVisits": 279,
+      "rootMeanReward": -0.1306943685525253,
+      "rootActions": [
+        {
+          "action": "C:ArrowUp",
+          "visits": 100,
+          "meanReward": -0.1224677615432725,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 59,
+          "meanReward": -0.22649176214503994,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowRight",
+          "visits": 120,
+          "meanReward": -0.090449489210583,
+          "top": true,
+          "chosen": true
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.013000011444091797,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 0,
+          "mouseBfs": 0,
+          "catBfs": 0,
+          "carryBfs": 0,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 4,
+        "extensionSteps": 0,
+        "planLength": 4
+      },
+      "replayDiag": {
+        "wallMs": 0.07799994945526123,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G6T3",
+      "arm": "UCT-H",
+      "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__em_e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#1,5#7,6#4#0#5,1#8,4:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "rootEligible": false,
+      "seed": "PPC-MCTS-01|G6T3|UCT-H|rep=1|h=1807226699",
+      "wallMs": 100.24099999666214,
+      "cpuMs": 109,
+      "searchElapsedMs": 100.15899999999999,
+      "sims": 64,
+      "aborted": 0,
+      "nodes": 105,
+      "chanceNodes": 20,
+      "chanceSamples": 64,
+      "rolloutSteps": 288,
+      "maxHandoffsReached": 3,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 1043,
+        "mouseBfs": 1043,
+        "catBfs": 1043,
+        "carryBfs": 1043,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 16.296875,
+      "evalPerRolloutStep": 3.6215277777777777,
+      "bfsPerEval": 3,
+      "plan": "CRightCDownCRightCUp",
+      "treePlanLength": 4,
+      "extensionSteps": 0,
+      "planExtended": false,
+      "planLength": 4,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowRight",
+      "rootVisits": 64,
+      "rootMeanReward": -1,
+      "rootActions": [
+        {
+          "action": "C:ArrowUp",
+          "visits": 21,
+          "meanReward": -1,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 21,
+          "meanReward": -1,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowRight",
+          "visits": 22,
+          "meanReward": -1,
+          "top": true,
+          "chosen": true
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.008000016212463379,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 0,
+          "mouseBfs": 0,
+          "catBfs": 0,
+          "carryBfs": 0,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 4,
+        "extensionSteps": 0,
+        "planLength": 4
+      },
+      "replayDiag": {
+        "wallMs": 0.06999999284744263,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G5T1",
+      "arm": "UCT-R",
+      "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__ec_e__b__e__e__e__e__e__e__e__e__p__e__e__b__e__e__e__e__e__e__b__e__e__e__e__b__e__e__e__e__e__e__p__e__e__p__e__e__e__e__e__e__e__e__e__b__e__e__e__b__b__e__e__e__e__e__e__e__e__e__e__p__b__e__b__e__m__m__e__e__e__e__b__b__e__b__m__m__tm_e__e__e__e__e__e__e__e__t__#single#playing#cat#1,1#9,0#4#0#1,6|8,1##0#0#0#_#1###10:4:3:3:4:2:single:hard",
+      "rootEligible": true,
+      "seed": "PPC-MCTS-01|G5T1|UCT-R|rep=1|h=991661394",
+      "wallMs": 100.16600000858307,
+      "cpuMs": 141,
+      "searchElapsedMs": 100.10390000000007,
+      "sims": 308,
+      "aborted": 0,
+      "nodes": 309,
+      "chanceNodes": 0,
+      "chanceSamples": 286,
+      "rolloutSteps": 4147,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 308,
+        "mouseBfs": 308,
+        "catBfs": 308,
+        "carryBfs": 308,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 1,
+      "evalPerRolloutStep": 0.07427055702917772,
+      "bfsPerEval": 3,
+      "plan": "CLeftTCDownCDownCDown",
+      "treePlanLength": 5,
+      "extensionSteps": 0,
+      "planExtended": false,
+      "planLength": 5,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowLeft",
+      "rootVisits": 308,
+      "rootMeanReward": -0.03147161034976711,
+      "rootActions": [
+        {
+          "action": "C:ArrowUp",
+          "visits": 59,
+          "meanReward": -0.0420377450273319,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowDown",
+          "visits": 65,
+          "meanReward": -0.01863769956428294,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 78,
+          "meanReward": 0.01021911749588624,
+          "top": true,
+          "chosen": true
+        },
+        {
+          "action": "C:ArrowRight",
+          "visits": 50,
+          "meanReward": -0.07735230589212022,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "T",
+          "visits": 56,
+          "meanReward": -0.05234025766982876,
+          "top": false,
+          "chosen": false
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.009000003337860107,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 0,
+          "mouseBfs": 0,
+          "catBfs": 0,
+          "carryBfs": 0,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 5,
+        "extensionSteps": 0,
+        "planLength": 5
+      },
+      "replayDiag": {
+        "wallMs": 0.07099997997283936,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G5T1",
+      "arm": "UCT-H",
+      "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__ec_e__b__e__e__e__e__e__e__e__e__p__e__e__b__e__e__e__e__e__e__b__e__e__e__e__b__e__e__e__e__e__e__p__e__e__p__e__e__e__e__e__e__e__e__e__b__e__e__e__b__b__e__e__e__e__e__e__e__e__e__e__p__b__e__b__e__m__m__e__e__e__e__b__b__e__b__m__m__tm_e__e__e__e__e__e__e__e__t__#single#playing#cat#1,1#9,0#4#0#1,6|8,1##0#0#0#_#1###10:4:3:3:4:2:single:hard",
+      "rootEligible": true,
+      "seed": "PPC-MCTS-01|G5T1|UCT-H|rep=1|h=136844068",
+      "wallMs": 101.40700000524521,
+      "cpuMs": 109,
+      "searchElapsedMs": 100.23430000000008,
+      "sims": 14,
+      "aborted": 1,
+      "nodes": 16,
+      "chanceNodes": 0,
+      "chanceSamples": 9,
+      "rolloutSteps": 194,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 1374,
+        "mouseBfs": 1374,
+        "catBfs": 1374,
+        "carryBfs": 1374,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 98.14285714285714,
+      "evalPerRolloutStep": 7.082474226804123,
+      "bfsPerEval": 3,
+      "plan": "CUpCDownCDownTCDown",
+      "treePlanLength": 2,
+      "extensionSteps": 3,
+      "planExtended": true,
+      "planLength": 5,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowUp",
+      "rootVisits": 14,
+      "rootMeanReward": -0.1759011700206737,
+      "rootActions": [
+        {
+          "action": "C:ArrowUp",
+          "visits": 4,
+          "meanReward": 0.0045873127760439275,
+          "top": true,
+          "chosen": true
+        },
+        {
+          "action": "C:ArrowDown",
+          "visits": 3,
+          "meanReward": -0.26267906399753277,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 3,
+          "meanReward": -0.02832750781469716,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowRight",
+          "visits": 2,
+          "meanReward": -0.40244316857822443,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "T",
+          "visits": 2,
+          "meanReward": -0.4015297894002345,
+          "top": false,
+          "chosen": false
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 1.315999984741211,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 12,
+          "mouseBfs": 12,
+          "catBfs": 12,
+          "carryBfs": 12,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 2,
+        "extensionSteps": 3,
+        "planLength": 5
+      },
+      "replayDiag": {
+        "wallMs": 0.156000018119812,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G5T2",
+      "arm": "UCT-R",
+      "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__b__e__e__e__e__e__e__b__ec_e__e__e__b__e__e__e__e__e__e__p__e__e__p__e__e__e__e__e__e__e__e__e__b__e__e__e__b__b__e__e__e__e__e__e__e__e__e__e__p__b__e__b__e__m__m__e__e__e__e__b__b__e__b__m__m__t__e__em_e__e__e__e__e__e__t__#single#playing#cat#3,3#9,2#4#0#1,6#6,6:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "rootEligible": false,
+      "seed": "PPC-MCTS-01|G5T2|UCT-R|rep=1|h=3403620307",
+      "wallMs": 100.14300000667572,
+      "cpuMs": 141,
+      "searchElapsedMs": 100.08619999999996,
+      "sims": 284,
+      "aborted": 0,
+      "nodes": 504,
+      "chanceNodes": 147,
+      "chanceSamples": 284,
+      "rolloutSteps": 3848,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 284,
+        "mouseBfs": 284,
+        "catBfs": 284,
+        "carryBfs": 284,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 1,
+      "evalPerRolloutStep": 0.07380457380457381,
+      "bfsPerEval": 3,
+      "plan": "CDownCDownCDownCRight",
+      "treePlanLength": 4,
+      "extensionSteps": 0,
+      "planExtended": false,
+      "planLength": 4,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowDown",
+      "rootVisits": 284,
+      "rootMeanReward": 0.026385281458360815,
+      "rootActions": [
+        {
+          "action": "C:ArrowUp",
+          "visits": 59,
+          "meanReward": -0.01302826942774475,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowDown",
+          "visits": 83,
+          "meanReward": 0.05570988496957206,
+          "top": true,
+          "chosen": true
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 75,
+          "meanReward": 0.036461639535015154,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowRight",
+          "visits": 67,
+          "meanReward": 0.013485737504638724,
+          "top": false,
+          "chosen": false
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.009000003337860107,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 0,
+          "mouseBfs": 0,
+          "catBfs": 0,
+          "carryBfs": 0,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 4,
+        "extensionSteps": 0,
+        "planLength": 4
+      },
+      "replayDiag": {
+        "wallMs": 0.07499998807907104,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G5T2",
+      "arm": "UCT-H",
+      "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__b__e__e__e__e__e__e__b__ec_e__e__e__b__e__e__e__e__e__e__p__e__e__p__e__e__e__e__e__e__e__e__e__b__e__e__e__b__b__e__e__e__e__e__e__e__e__e__e__p__b__e__b__e__m__m__e__e__e__e__b__b__e__b__m__m__t__e__em_e__e__e__e__e__e__t__#single#playing#cat#3,3#9,2#4#0#1,6#6,6:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "rootEligible": false,
+      "seed": "PPC-MCTS-01|G5T2|UCT-H|rep=1|h=3701534489",
+      "wallMs": 100.56200003623962,
+      "cpuMs": 109,
+      "searchElapsedMs": 100.24689999999987,
+      "sims": 23,
+      "aborted": 1,
+      "nodes": 25,
+      "chanceNodes": 0,
+      "chanceSamples": 23,
+      "rolloutSteps": 309,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 1120,
+        "mouseBfs": 1120,
+        "catBfs": 1120,
+        "carryBfs": 1120,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 48.69565217391305,
+      "evalPerRolloutStep": 3.6245954692556634,
+      "bfsPerEval": 3,
+      "plan": "CDownCDownCUpCDown",
+      "treePlanLength": 3,
+      "extensionSteps": 1,
+      "planExtended": true,
+      "planLength": 4,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowDown",
+      "rootVisits": 23,
+      "rootMeanReward": -0.09136587498827303,
+      "rootActions": [
+        {
+          "action": "C:ArrowUp",
+          "visits": 5,
+          "meanReward": -0.15424367681004844,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowDown",
+          "visits": 6,
+          "meanReward": -0.05196849481367799,
+          "top": true,
+          "chosen": true
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 6,
+          "meanReward": -0.09740663619682306,
+          "top": true,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowRight",
+          "visits": 6,
+          "meanReward": -0.07232432576950516,
+          "top": true,
+          "chosen": false
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.30799996852874756,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 3,
+          "mouseBfs": 3,
+          "catBfs": 3,
+          "carryBfs": 3,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 3,
+        "extensionSteps": 1,
+        "planLength": 4
+      },
+      "replayDiag": {
+        "wallMs": 0.28999996185302734,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G5T3",
+      "arm": "UCT-R",
+      "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__b__e__e__e__e__e__e__b__e__e__e__e__b__e__e__e__e__e__e__p__e__e__p__e__e__e__e__e__ec_e__e__e__b__e__e__e__b__b__e__e__e__e__e__e__e__e__e__e__p__b__e__b__e__m__m__e__e__e__e__b__b__e__b__m__m__t__e__e__e__e__em_e__e__e__t__#single#playing#cat#5,3#9,5#4#0#1,6|6,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "rootEligible": true,
+      "seed": "PPC-MCTS-01|G5T3|UCT-R|rep=1|h=3314741452",
+      "wallMs": 100.11100000143051,
+      "cpuMs": 141,
+      "searchElapsedMs": 100.05500000000006,
+      "sims": 321,
+      "aborted": 0,
+      "nodes": 322,
+      "chanceNodes": 0,
+      "chanceSamples": 0,
+      "rolloutSteps": 4424,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 312,
+        "mouseBfs": 312,
+        "catBfs": 312,
+        "carryBfs": 312,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 0.9719626168224299,
+      "evalPerRolloutStep": 0.0705244122965642,
+      "bfsPerEval": 3,
+      "plan": "CRightCLeftCRightCDown",
+      "treePlanLength": 4,
+      "extensionSteps": 0,
+      "planExtended": false,
+      "planLength": 4,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowRight",
+      "rootVisits": 321,
+      "rootMeanReward": -0.0007459597170229488,
+      "rootActions": [
+        {
+          "action": "C:ArrowUp",
+          "visits": 84,
+          "meanReward": 0.007817337685508323,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowDown",
+          "visits": 83,
+          "meanReward": 0.0013019209501636765,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 59,
+          "meanReward": -0.06361703053902112,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowRight",
+          "visits": 95,
+          "meanReward": 0.028939325559911543,
+          "top": true,
+          "chosen": true
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.009999990463256836,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 0,
+          "mouseBfs": 0,
+          "catBfs": 0,
+          "carryBfs": 0,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 4,
+        "extensionSteps": 0,
+        "planLength": 4
+      },
+      "replayDiag": {
+        "wallMs": 0.07600003480911255,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G5T3",
+      "arm": "UCT-H",
+      "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__b__e__e__e__e__e__e__b__e__e__e__e__b__e__e__e__e__e__e__p__e__e__p__e__e__e__e__e__ec_e__e__e__b__e__e__e__b__b__e__e__e__e__e__e__e__e__e__e__p__b__e__b__e__m__m__e__e__e__e__b__b__e__b__m__m__t__e__e__e__e__em_e__e__e__t__#single#playing#cat#5,3#9,5#4#0#1,6|6,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "rootEligible": true,
+      "seed": "PPC-MCTS-01|G5T3|UCT-H|rep=1|h=1238100266",
+      "wallMs": 100.56200003623962,
+      "cpuMs": 109,
+      "searchElapsedMs": 100.2373,
+      "sims": 26,
+      "aborted": 1,
+      "nodes": 28,
+      "chanceNodes": 0,
+      "chanceSamples": 0,
+      "rolloutSteps": 332,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 1129,
+        "mouseBfs": 1129,
+        "catBfs": 1129,
+        "carryBfs": 1129,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 43.42307692307692,
+      "evalPerRolloutStep": 3.4006024096385543,
+      "bfsPerEval": 3,
+      "plan": "CUpCUpCDownCDown",
+      "treePlanLength": 3,
+      "extensionSteps": 1,
+      "planExtended": true,
+      "planLength": 4,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowUp",
+      "rootVisits": 26,
+      "rootMeanReward": -0.5461230628269641,
+      "rootActions": [
+        {
+          "action": "C:ArrowUp",
+          "visits": 9,
+          "meanReward": -0.34439997963894814,
+          "top": true,
+          "chosen": true
+        },
+        {
+          "action": "C:ArrowDown",
+          "visits": 6,
+          "meanReward": -0.672199989819474,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 5,
+          "meanReward": -0.6066399877833689,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowRight",
+          "visits": 6,
+          "meanReward": -0.672199989819474,
+          "top": false,
+          "chosen": false
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.2580000162124634,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 3,
+          "mouseBfs": 3,
+          "catBfs": 3,
+          "carryBfs": 3,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 3,
+        "extensionSteps": 1,
+        "planLength": 4
+      },
+      "replayDiag": {
+        "wallMs": 0.07500004768371582,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G5T4",
+      "arm": "UCT-R",
+      "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__b__e__e__e__e__e__e__b__e__e__e__e__b__e__e__e__e__e__e__p__e__e__p__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__p__b__e__b__e__m__m__e__e__ec_e__b__b__e__b__m__m__t__e__b__e__e__e__e__e__em_t__#single#playing#cat#8,2#9,8#4#0#1,6|6,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "rootEligible": true,
+      "seed": "PPC-MCTS-01|G5T4|UCT-R|rep=1|h=3669860789",
+      "wallMs": 100.04199999570847,
+      "cpuMs": 141,
+      "searchElapsedMs": 100.00469999999996,
+      "sims": 691,
+      "aborted": 0,
+      "nodes": 423,
+      "chanceNodes": 0,
+      "chanceSamples": 8,
+      "rolloutSteps": 3685,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 280,
+        "mouseBfs": 280,
+        "catBfs": 280,
+        "carryBfs": 280,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 0.40520984081041966,
+      "evalPerRolloutStep": 0.07598371777476255,
+      "bfsPerEval": 3,
+      "plan": "CLeftCUpCDownCUp",
+      "treePlanLength": 4,
+      "extensionSteps": 0,
+      "planExtended": false,
+      "planLength": 4,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowLeft",
+      "rootVisits": 691,
+      "rootMeanReward": -0.5889282872118583,
+      "rootActions": [
+        {
+          "action": "C:ArrowUp",
+          "visits": 245,
+          "meanReward": -0.57658793468302,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 256,
+          "meanReward": -0.5795761486253675,
+          "top": true,
+          "chosen": true
+        },
+        {
+          "action": "C:ArrowRight",
+          "visits": 190,
+          "meanReward": -0.6174416232524222,
+          "top": false,
+          "chosen": false
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.009000003337860107,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 0,
+          "mouseBfs": 0,
+          "catBfs": 0,
+          "carryBfs": 0,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 4,
+        "extensionSteps": 0,
+        "planLength": 4
+      },
+      "replayDiag": {
+        "wallMs": 0.07300001382827759,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G5T4",
+      "arm": "UCT-H",
+      "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__b__e__e__e__e__e__e__b__e__e__e__e__b__e__e__e__e__e__e__p__e__e__p__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__p__b__e__b__e__m__m__e__e__ec_e__b__b__e__b__m__m__t__e__b__e__e__e__e__e__em_t__#single#playing#cat#8,2#9,8#4#0#1,6|6,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "rootEligible": true,
+      "seed": "PPC-MCTS-01|G5T4|UCT-H|rep=1|h=400449423",
+      "wallMs": 100.11500000953674,
+      "cpuMs": 125,
+      "searchElapsedMs": 100.0347999999999,
+      "sims": 200,
+      "aborted": 1,
+      "nodes": 182,
+      "chanceNodes": 0,
+      "chanceSamples": 0,
+      "rolloutSteps": 356,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 998,
+        "mouseBfs": 998,
+        "catBfs": 998,
+        "carryBfs": 998,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 4.99,
+      "evalPerRolloutStep": 2.803370786516854,
+      "bfsPerEval": 3,
+      "plan": "CRightCDownCRightCRight",
+      "treePlanLength": 4,
+      "extensionSteps": 0,
+      "planExtended": false,
+      "planLength": 4,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowRight",
+      "rootVisits": 200,
+      "rootMeanReward": -0.9368251605482004,
+      "rootActions": [
+        {
+          "action": "C:ArrowUp",
+          "visits": 51,
+          "meanReward": -1,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 51,
+          "meanReward": -1,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowRight",
+          "visits": 98,
+          "meanReward": -0.871071756220818,
+          "top": true,
+          "chosen": true
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.009000003337860107,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 0,
+          "mouseBfs": 0,
+          "catBfs": 0,
+          "carryBfs": 0,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 4,
+        "extensionSteps": 0,
+        "planLength": 4
+      },
+      "replayDiag": {
+        "wallMs": 0.07299995422363281,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G2T1",
+      "arm": "UCT-R",
+      "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__ec_e__e__e__e__e__e__b__e__e__e__b__e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__em_e__e__e__e__e__e__e__b__e__e__e__e__e__b__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#1,1#4,9#4#0#5,2|6,1##0#0#0#_#1###10:4:3:3:4:2:single:hard",
+      "rootEligible": true,
+      "seed": "PPC-MCTS-01|G2T1|UCT-R|rep=1|h=3901954503",
+      "wallMs": 100.07599997520447,
+      "cpuMs": 140,
+      "searchElapsedMs": 99.97860000000014,
+      "sims": 350,
+      "aborted": 0,
+      "nodes": 351,
+      "chanceNodes": 0,
+      "chanceSamples": 0,
+      "rolloutSteps": 4384,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 350,
+        "mouseBfs": 350,
+        "catBfs": 350,
+        "carryBfs": 350,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 1,
+      "evalPerRolloutStep": 0.07983576642335767,
+      "bfsPerEval": 3,
+      "plan": "CUpCRightCDownCUp",
+      "treePlanLength": 4,
+      "extensionSteps": 0,
+      "planExtended": false,
+      "planLength": 4,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowUp",
+      "rootVisits": 350,
+      "rootMeanReward": 0.07675967657599983,
+      "rootActions": [
+        {
+          "action": "C:ArrowUp",
+          "visits": 76,
+          "meanReward": 0.09364103151979357,
+          "top": true,
+          "chosen": true
+        },
+        {
+          "action": "C:ArrowDown",
+          "visits": 62,
+          "meanReward": 0.05024341636562032,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 71,
+          "meanReward": 0.0795490064816325,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowRight",
+          "visits": 71,
+          "meanReward": 0.07983171796815913,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "T",
+          "visits": 70,
+          "meanReward": 0.07597207364988556,
+          "top": false,
+          "chosen": false
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.009999990463256836,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 0,
+          "mouseBfs": 0,
+          "catBfs": 0,
+          "carryBfs": 0,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 4,
+        "extensionSteps": 0,
+        "planLength": 4
+      },
+      "replayDiag": {
+        "wallMs": 0.0690000057220459,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G2T1",
+      "arm": "UCT-H",
+      "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__ec_e__e__e__e__e__e__b__e__e__e__b__e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__em_e__e__e__e__e__e__e__b__e__e__e__e__e__b__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#1,1#4,9#4#0#5,2|6,1##0#0#0#_#1###10:4:3:3:4:2:single:hard",
+      "rootEligible": true,
+      "seed": "PPC-MCTS-01|G2T1|UCT-H|rep=1|h=4197205661",
+      "wallMs": 100.9190000295639,
+      "cpuMs": 109,
+      "searchElapsedMs": 100.24289999999996,
+      "sims": 22,
+      "aborted": 1,
+      "nodes": 24,
+      "chanceNodes": 0,
+      "chanceSamples": 0,
+      "rolloutSteps": 335,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 1129,
+        "mouseBfs": 1129,
+        "catBfs": 1129,
+        "carryBfs": 1129,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 51.31818181818182,
+      "evalPerRolloutStep": 3.370149253731343,
+      "bfsPerEval": 3,
+      "plan": "CLeftTCDownCDownCRight",
+      "treePlanLength": 3,
+      "extensionSteps": 2,
+      "planExtended": true,
+      "planLength": 5,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowLeft",
+      "rootVisits": 22,
+      "rootMeanReward": 0.13360187658793388,
+      "rootActions": [
+        {
+          "action": "C:ArrowUp",
+          "visits": 5,
+          "meanReward": 0.16930380639569093,
+          "top": true,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowDown",
+          "visits": 4,
+          "meanReward": 0.10788494720311578,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 5,
+          "meanReward": 0.14343440976851782,
+          "top": true,
+          "chosen": true
+        },
+        {
+          "action": "C:ArrowRight",
+          "visits": 4,
+          "meanReward": 0.09686168493871264,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "T",
+          "visits": 4,
+          "meanReward": 0.13914091888654695,
+          "top": false,
+          "chosen": false
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.562999963760376,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 6,
+          "mouseBfs": 6,
+          "catBfs": 6,
+          "carryBfs": 6,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 3,
+        "extensionSteps": 2,
+        "planLength": 5
+      },
+      "replayDiag": {
+        "wallMs": 0.08600002527236938,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G2T2",
+      "arm": "UCT-R",
+      "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__e__e__e__ec_e__e__b__e__e__e__b__e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__e__e__e__e__e__e__e__e__b__em_e__e__e__e__b__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#1,5#5,8#4#0#5,2|6,1##0#0#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "rootEligible": true,
+      "seed": "PPC-MCTS-01|G2T2|UCT-R|rep=1|h=759669718",
+      "wallMs": 100.11500000953674,
+      "cpuMs": 110,
+      "searchElapsedMs": 100.07040000000006,
+      "sims": 396,
+      "aborted": 1,
+      "nodes": 397,
+      "chanceNodes": 0,
+      "chanceSamples": 0,
+      "rolloutSteps": 4240,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 392,
+        "mouseBfs": 392,
+        "catBfs": 392,
+        "carryBfs": 392,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 0.98989898989899,
+      "evalPerRolloutStep": 0.09245283018867924,
+      "bfsPerEval": 3,
+      "plan": "CRightCRightCDownCDown",
+      "treePlanLength": 4,
+      "extensionSteps": 0,
+      "planExtended": false,
+      "planLength": 4,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowRight",
+      "rootVisits": 396,
+      "rootMeanReward": 0.14886835915245092,
+      "rootActions": [
+        {
+          "action": "C:ArrowUp",
+          "visits": 93,
+          "meanReward": 0.137649542098355,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowDown",
+          "visits": 100,
+          "meanReward": 0.1505496040147708,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 87,
+          "meanReward": 0.12513001110450384,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowRight",
+          "visits": 116,
+          "meanReward": 0.1742171676004716,
+          "top": true,
+          "chosen": true
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.007999956607818604,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 0,
+          "mouseBfs": 0,
+          "catBfs": 0,
+          "carryBfs": 0,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 4,
+        "extensionSteps": 0,
+        "planLength": 4
+      },
+      "replayDiag": {
+        "wallMs": 0.07299995422363281,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G2T2",
+      "arm": "UCT-H",
+      "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__e__e__e__ec_e__e__b__e__e__e__b__e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__e__e__e__e__e__e__e__e__b__em_e__e__e__e__b__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#1,5#5,8#4#0#5,2|6,1##0#0#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "rootEligible": true,
+      "seed": "PPC-MCTS-01|G2T2|UCT-H|rep=1|h=2052387624",
+      "wallMs": 100.78700000047684,
+      "cpuMs": 125,
+      "searchElapsedMs": 100.41250000000014,
+      "sims": 26,
+      "aborted": 1,
+      "nodes": 28,
+      "chanceNodes": 0,
+      "chanceSamples": 0,
+      "rolloutSteps": 355,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 1075,
+        "mouseBfs": 1075,
+        "catBfs": 1075,
+        "carryBfs": 1075,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 41.34615384615385,
+      "evalPerRolloutStep": 3.028169014084507,
+      "bfsPerEval": 3,
+      "plan": "CDownCDownCUpCDown",
+      "treePlanLength": 3,
+      "extensionSteps": 1,
+      "planExtended": true,
+      "planLength": 4,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowDown",
+      "rootVisits": 26,
+      "rootMeanReward": 0.05122822342851141,
+      "rootActions": [
+        {
+          "action": "C:ArrowUp",
+          "visits": 6,
+          "meanReward": 0.048997055115948866,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowDown",
+          "visits": 7,
+          "meanReward": 0.05146997718572969,
+          "top": true,
+          "chosen": true
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 6,
+          "meanReward": 0.048997055115948866,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowRight",
+          "visits": 7,
+          "meanReward": 0.054811329635686065,
+          "top": true,
+          "chosen": false
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.33899998664855957,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 3,
+          "mouseBfs": 3,
+          "catBfs": 3,
+          "carryBfs": 3,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 3,
+        "extensionSteps": 1,
+        "planLength": 4
+      },
+      "replayDiag": {
+        "wallMs": 0.09499996900558472,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G2T3",
+      "arm": "UCT-R",
+      "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__p__e__ec_e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__em_e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__b__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#2,8#4,5#4#0#5,2|6,1##0#0#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "rootEligible": true,
+      "seed": "PPC-MCTS-01|G2T3|UCT-R|rep=1|h=462448365",
+      "wallMs": 100.05900001525879,
+      "cpuMs": 93,
+      "searchElapsedMs": 100.0145,
+      "sims": 336,
+      "aborted": 1,
+      "nodes": 337,
+      "chanceNodes": 0,
+      "chanceSamples": 9,
+      "rolloutSteps": 3668,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 330,
+        "mouseBfs": 330,
+        "catBfs": 330,
+        "carryBfs": 330,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 0.9821428571428571,
+      "evalPerRolloutStep": 0.08996728462377317,
+      "bfsPerEval": 3,
+      "plan": "CDownCDownCLeftCLeft",
+      "treePlanLength": 4,
+      "extensionSteps": 0,
+      "planExtended": false,
+      "planLength": 4,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowDown",
+      "rootVisits": 336,
+      "rootMeanReward": 0.11662528763991203,
+      "rootActions": [
+        {
+          "action": "C:ArrowUp",
+          "visits": 93,
+          "meanReward": 0.1344863478418499,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowDown",
+          "visits": 98,
+          "meanReward": 0.1444332182356437,
+          "top": true,
+          "chosen": true
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 82,
+          "meanReward": 0.10933512157200012,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowRight",
+          "visits": 63,
+          "meanReward": 0.05649096732891017,
+          "top": false,
+          "chosen": false
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.0059999823570251465,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 0,
+          "mouseBfs": 0,
+          "catBfs": 0,
+          "carryBfs": 0,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 4,
+        "extensionSteps": 0,
+        "planLength": 4
+      },
+      "replayDiag": {
+        "wallMs": 0.07400000095367432,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G2T3",
+      "arm": "UCT-H",
+      "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__p__e__ec_e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__em_e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__b__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#2,8#4,5#4#0#5,2|6,1##0#0#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "rootEligible": true,
+      "seed": "PPC-MCTS-01|G2T3|UCT-H|rep=1|h=2788023031",
+      "wallMs": 100.341000020504,
+      "cpuMs": 110,
+      "searchElapsedMs": 100.02829999999994,
+      "sims": 23,
+      "aborted": 1,
+      "nodes": 25,
+      "chanceNodes": 0,
+      "chanceSamples": 3,
+      "rolloutSteps": 314,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 1151,
+        "mouseBfs": 1151,
+        "catBfs": 1151,
+        "carryBfs": 1151,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 50.04347826086956,
+      "evalPerRolloutStep": 3.6656050955414012,
+      "bfsPerEval": 3,
+      "plan": "CDownCDownCUpCDown",
+      "treePlanLength": 3,
+      "extensionSteps": 1,
+      "planExtended": true,
+      "planLength": 4,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowDown",
+      "rootVisits": 23,
+      "rootMeanReward": 0.06851335951165936,
+      "rootActions": [
+        {
+          "action": "C:ArrowUp",
+          "visits": 6,
+          "meanReward": -0.040446151456401847,
+          "top": true,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowDown",
+          "visits": 6,
+          "meanReward": 0.1257024245757026,
+          "top": true,
+          "chosen": true
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 5,
+          "meanReward": 0.08049813617007416,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowRight",
+          "visits": 6,
+          "meanReward": 0.11029649153366494,
+          "top": true,
+          "chosen": false
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.26099997758865356,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 3,
+          "mouseBfs": 3,
+          "catBfs": 3,
+          "carryBfs": 3,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 3,
+        "extensionSteps": 1,
+        "planLength": 4
+      },
+      "replayDiag": {
+        "wallMs": 0.07999998331069946,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G2T4",
+      "arm": "UCT-R",
+      "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__ec_e__e__e__e__e__em_e__e__e__e__b__e__e__e__e__e__b__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#4,6#5,2#4#0#6,1#2,5:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "rootEligible": false,
+      "seed": "PPC-MCTS-01|G2T4|UCT-R|rep=1|h=3076265380",
+      "wallMs": 100.03900003433228,
+      "cpuMs": 94,
+      "searchElapsedMs": 100.00019999999995,
+      "sims": 324,
+      "aborted": 1,
+      "nodes": 365,
+      "chanceNodes": 106,
+      "chanceSamples": 528,
+      "rolloutSteps": 4537,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 315,
+        "mouseBfs": 315,
+        "catBfs": 315,
+        "carryBfs": 315,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 0.9722222222222222,
+      "evalPerRolloutStep": 0.0694291381970465,
+      "bfsPerEval": 3,
+      "plan": "CDownCLeftCLeftCLeft",
+      "treePlanLength": 4,
+      "extensionSteps": 0,
+      "planExtended": false,
+      "planLength": 4,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowDown",
+      "rootVisits": 324,
+      "rootMeanReward": -0.005400681592408504,
+      "rootActions": [
+        {
+          "action": "C:ArrowDown",
+          "visits": 151,
+          "meanReward": 0.04126942526655305,
+          "top": true,
+          "chosen": true
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 109,
+          "meanReward": -0.009371685794237047,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowRight",
+          "visits": 64,
+          "meanReward": -0.10874984843153175,
+          "top": false,
+          "chosen": false
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.004999995231628418,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 0,
+          "mouseBfs": 0,
+          "catBfs": 0,
+          "carryBfs": 0,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 4,
+        "extensionSteps": 0,
+        "planLength": 4
+      },
+      "replayDiag": {
+        "wallMs": 0.08099997043609619,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G2T4",
+      "arm": "UCT-H",
+      "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__ec_e__e__e__e__e__em_e__e__e__e__b__e__e__e__e__e__b__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#4,6#5,2#4#0#6,1#2,5:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "rootEligible": false,
+      "seed": "PPC-MCTS-01|G2T4|UCT-H|rep=1|h=3931082706",
+      "wallMs": 100.6350000500679,
+      "cpuMs": 109,
+      "searchElapsedMs": 100.2502999999997,
+      "sims": 17,
+      "aborted": 1,
+      "nodes": 19,
+      "chanceNodes": 0,
+      "chanceSamples": 52,
+      "rolloutSteps": 243,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 1430,
+        "mouseBfs": 1430,
+        "catBfs": 1430,
+        "carryBfs": 1430,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 84.11764705882354,
+      "evalPerRolloutStep": 5.88477366255144,
+      "bfsPerEval": 3,
+      "plan": "CDownCDownCUpCLeft",
+      "treePlanLength": 3,
+      "extensionSteps": 1,
+      "planExtended": true,
+      "planLength": 4,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowDown",
+      "rootVisits": 17,
+      "rootMeanReward": 0.013059468874409386,
+      "rootActions": [
+        {
+          "action": "C:ArrowDown",
+          "visits": 7,
+          "meanReward": 0.0694982619562081,
+          "top": true,
+          "chosen": true
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 6,
+          "meanReward": 0.061692775060204104,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowRight",
+          "visits": 4,
+          "meanReward": -0.15865837829743046,
+          "top": false,
+          "chosen": false
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.3320000171661377,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 4,
+          "mouseBfs": 4,
+          "catBfs": 4,
+          "carryBfs": 4,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 3,
+        "extensionSteps": 1,
+        "planLength": 4
+      },
+      "replayDiag": {
+        "wallMs": 0.07700002193450928,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G2T5",
+      "arm": "UCT-R",
+      "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__e__e__e__e__ec_e__e__e__b__e__e__e__e__e__b__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__em_e__e__e__e__e__e__t__#single#playing#cat#5,3#9,2#4#0#2,5#4,7:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "rootEligible": false,
+      "seed": "PPC-MCTS-01|G2T5|UCT-R|rep=1|h=2520263979",
+      "wallMs": 100.05900001525879,
+      "cpuMs": 94,
+      "searchElapsedMs": 100.01810000000023,
+      "sims": 331,
+      "aborted": 0,
+      "nodes": 636,
+      "chanceNodes": 188,
+      "chanceSamples": 331,
+      "rolloutSteps": 4392,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 324,
+        "mouseBfs": 324,
+        "catBfs": 324,
+        "carryBfs": 324,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 0.9788519637462235,
+      "evalPerRolloutStep": 0.07377049180327869,
+      "bfsPerEval": 3,
+      "plan": "CDownCUpCDownCLeft",
+      "treePlanLength": 4,
+      "extensionSteps": 0,
+      "planExtended": false,
+      "planLength": 4,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowDown",
+      "rootVisits": 331,
+      "rootMeanReward": 0.1337568642405858,
+      "rootActions": [
+        {
+          "action": "C:ArrowUp",
+          "visits": 66,
+          "meanReward": 0.08897230579486913,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowDown",
+          "visits": 97,
+          "meanReward": 0.1622084590279995,
+          "top": true,
+          "chosen": true
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 83,
+          "meanReward": 0.13388231435558656,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowRight",
+          "visits": 85,
+          "meanReward": 0.13593996781109294,
+          "top": false,
+          "chosen": false
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.004999995231628418,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 0,
+          "mouseBfs": 0,
+          "catBfs": 0,
+          "carryBfs": 0,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 4,
+        "extensionSteps": 0,
+        "planLength": 4
+      },
+      "replayDiag": {
+        "wallMs": 0.06999999284744263,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G2T5",
+      "arm": "UCT-H",
+      "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__e__e__e__e__ec_e__e__e__b__e__e__e__e__e__b__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__em_e__e__e__e__e__e__t__#single#playing#cat#5,3#9,2#4#0#2,5#4,7:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "rootEligible": false,
+      "seed": "PPC-MCTS-01|G2T5|UCT-H|rep=1|h=1970764833",
+      "wallMs": 100.38300001621246,
+      "cpuMs": 125,
+      "searchElapsedMs": 100.07680000000028,
+      "sims": 27,
+      "aborted": 1,
+      "nodes": 29,
+      "chanceNodes": 0,
+      "chanceSamples": 27,
+      "rolloutSteps": 293,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 1151,
+        "mouseBfs": 1151,
+        "catBfs": 1151,
+        "carryBfs": 1151,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 42.629629629629626,
+      "evalPerRolloutStep": 3.9283276450511946,
+      "bfsPerEval": 3,
+      "plan": "CUpCUpCDownCDown",
+      "treePlanLength": 3,
+      "extensionSteps": 1,
+      "planExtended": true,
+      "planLength": 4,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowUp",
+      "rootVisits": 27,
+      "rootMeanReward": 0.19058901118525196,
+      "rootActions": [
+        {
+          "action": "C:ArrowUp",
+          "visits": 10,
+          "meanReward": 0.35143620577447676,
+          "top": true,
+          "chosen": true
+        },
+        {
+          "action": "C:ArrowDown",
+          "visits": 7,
+          "meanReward": 0.272240881156402,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 4,
+          "meanReward": -0.27310830255233626,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowRight",
+          "visits": 6,
+          "meanReward": 0.13638138106192796,
+          "top": false,
+          "chosen": false
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.25700002908706665,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 3,
+          "mouseBfs": 3,
+          "catBfs": 3,
+          "carryBfs": 3,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 3,
+        "extensionSteps": 1,
+        "planLength": 4
+      },
+      "replayDiag": {
+        "wallMs": 0.09599995613098145,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G2T6",
+      "arm": "UCT-R",
+      "rootStateKey": "t__e__e__e__e__e__e__e__e__tm_e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__ec_e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#cat#8,2#0,9#4#0#2,5|4,7##0#0#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "rootEligible": true,
+      "seed": "PPC-MCTS-01|G2T6|UCT-R|rep=1|h=2206993034",
+      "wallMs": 100.05299997329712,
+      "cpuMs": 109,
+      "searchElapsedMs": 100.01449999999977,
+      "sims": 411,
+      "aborted": 0,
+      "nodes": 412,
+      "chanceNodes": 0,
+      "chanceSamples": 12,
+      "rolloutSteps": 4122,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 411,
+        "mouseBfs": 411,
+        "catBfs": 411,
+        "carryBfs": 411,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 1,
+      "evalPerRolloutStep": 0.09970887918486172,
+      "bfsPerEval": 3,
+      "plan": "CRightCUpCUpCUp",
+      "treePlanLength": 4,
+      "extensionSteps": 0,
+      "planExtended": false,
+      "planLength": 4,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowRight",
+      "rootVisits": 411,
+      "rootMeanReward": 0.048444822896546905,
+      "rootActions": [
+        {
+          "action": "C:ArrowDown",
+          "visits": 110,
+          "meanReward": 0.014686214397575816,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 149,
+          "meanReward": 0.062090249104667476,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowRight",
+          "visits": 152,
+          "meanReward": 0.059499286250999796,
+          "top": true,
+          "chosen": true
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.0059999823570251465,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 0,
+          "mouseBfs": 0,
+          "catBfs": 0,
+          "carryBfs": 0,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 4,
+        "extensionSteps": 0,
+        "planLength": 4
+      },
+      "replayDiag": {
+        "wallMs": 0.07300001382827759,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G2T6",
+      "arm": "UCT-H",
+      "rootStateKey": "t__e__e__e__e__e__e__e__e__tm_e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__ec_e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#cat#8,2#0,9#4#0#2,5|4,7##0#0#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "rootEligible": true,
+      "seed": "PPC-MCTS-01|G2T6|UCT-H|rep=1|h=2136202156",
+      "wallMs": 100.14900004863739,
+      "cpuMs": 94,
+      "searchElapsedMs": 100.10600000000022,
+      "sims": 46,
+      "aborted": 1,
+      "nodes": 48,
+      "chanceNodes": 0,
+      "chanceSamples": 0,
+      "rolloutSteps": 343,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 1114,
+        "mouseBfs": 1114,
+        "catBfs": 1114,
+        "carryBfs": 1114,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 24.217391304347824,
+      "evalPerRolloutStep": 3.247813411078717,
+      "bfsPerEval": 3,
+      "plan": "CRightCLeftCRightCUp",
+      "treePlanLength": 4,
+      "extensionSteps": 0,
+      "planExtended": false,
+      "planLength": 4,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowRight",
+      "rootVisits": 46,
+      "rootMeanReward": 0.0646858916371784,
+      "rootActions": [
+        {
+          "action": "C:ArrowDown",
+          "visits": 15,
+          "meanReward": 0.062138832501415116,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 15,
+          "meanReward": 0.062088313640129685,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowRight",
+          "visits": 16,
+          "meanReward": 0.06950898894918962,
+          "top": true,
+          "chosen": true
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.0040000081062316895,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 0,
+          "mouseBfs": 0,
+          "catBfs": 0,
+          "carryBfs": 0,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 4,
+        "extensionSteps": 0,
+        "planLength": 4
+      },
+      "replayDiag": {
+        "wallMs": 0.07299995422363281,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G2T7",
+      "arm": "UCT-R",
+      "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__em_e__ec_e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#cat#5,1#4,9#4#0#2,5|4,7##0#0#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "rootEligible": true,
+      "seed": "PPC-MCTS-01|G2T7|UCT-R|rep=1|h=3504198481",
+      "wallMs": 100.04900002479553,
+      "cpuMs": 110,
+      "searchElapsedMs": 100.00900000000001,
+      "sims": 372,
+      "aborted": 1,
+      "nodes": 374,
+      "chanceNodes": 0,
+      "chanceSamples": 119,
+      "rolloutSteps": 4242,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 372,
+        "mouseBfs": 372,
+        "catBfs": 372,
+        "carryBfs": 372,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 1,
+      "evalPerRolloutStep": 0.0876944837340877,
+      "bfsPerEval": 3,
+      "plan": "CUpCDownCDownCDown",
+      "treePlanLength": 4,
+      "extensionSteps": 0,
+      "planExtended": false,
+      "planLength": 4,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowUp",
+      "rootVisits": 372,
+      "rootMeanReward": -0.012546710265660035,
+      "rootActions": [
+        {
+          "action": "C:ArrowUp",
+          "visits": 105,
+          "meanReward": 0.009266353221552018,
+          "top": true,
+          "chosen": true
+        },
+        {
+          "action": "C:ArrowDown",
+          "visits": 95,
+          "meanReward": -0.006781424600026329,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 79,
+          "meanReward": -0.049895904519229844,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowRight",
+          "visits": 93,
+          "meanReward": -0.011336897989966031,
+          "top": false,
+          "chosen": false
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.004999995231628418,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 0,
+          "mouseBfs": 0,
+          "catBfs": 0,
+          "carryBfs": 0,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 4,
+        "extensionSteps": 0,
+        "planLength": 4
+      },
+      "replayDiag": {
+        "wallMs": 0.07499998807907104,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G2T7",
+      "arm": "UCT-H",
+      "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__em_e__ec_e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#cat#5,1#4,9#4#0#2,5|4,7##0#0#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "rootEligible": true,
+      "seed": "PPC-MCTS-01|G2T7|UCT-H|rep=1|h=232227259",
+      "wallMs": 100.53799998760223,
+      "cpuMs": 93,
+      "searchElapsedMs": 100.1606999999999,
+      "sims": 30,
+      "aborted": 0,
+      "nodes": 31,
+      "chanceNodes": 0,
+      "chanceSamples": 0,
+      "rolloutSteps": 359,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 1135,
+        "mouseBfs": 1135,
+        "catBfs": 1135,
+        "carryBfs": 1135,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 37.833333333333336,
+      "evalPerRolloutStep": 3.161559888579387,
+      "bfsPerEval": 3,
+      "plan": "CDownCDownCUpCUp",
+      "treePlanLength": 3,
+      "extensionSteps": 1,
+      "planExtended": true,
+      "planLength": 4,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowDown",
+      "rootVisits": 30,
+      "rootMeanReward": -0.09026831388654304,
+      "rootActions": [
+        {
+          "action": "C:ArrowUp",
+          "visits": 7,
+          "meanReward": -0.11061217793761506,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowDown",
+          "visits": 8,
+          "meanReward": -0.08160927942921634,
+          "top": true,
+          "chosen": true
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 8,
+          "meanReward": -0.06695699636271156,
+          "top": true,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowRight",
+          "visits": 7,
+          "meanReward": -0.10646199495679468,
+          "top": false,
+          "chosen": false
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.3349999785423279,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 4,
+          "mouseBfs": 4,
+          "catBfs": 4,
+          "carryBfs": 4,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 3,
+        "extensionSteps": 1,
+        "planLength": 4
+      },
+      "replayDiag": {
+        "wallMs": 0.07799994945526123,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G2T8",
+      "arm": "UCT-R",
+      "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__b__e__e__e__ec_e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__em_e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#cat#2,2#4,9#4#0#2,5#8,6:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "rootEligible": false,
+      "seed": "PPC-MCTS-01|G2T8|UCT-R|rep=1|h=2793249864",
+      "wallMs": 100.05300003290176,
+      "cpuMs": 110,
+      "searchElapsedMs": 100.00909999999976,
+      "sims": 337,
+      "aborted": 0,
+      "nodes": 568,
+      "chanceNodes": 162,
+      "chanceSamples": 339,
+      "rolloutSteps": 4557,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 325,
+        "mouseBfs": 325,
+        "catBfs": 325,
+        "carryBfs": 325,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 0.9643916913946587,
+      "evalPerRolloutStep": 0.07131885012069344,
+      "bfsPerEval": 3,
+      "plan": "CRightCRightCLeftCDown",
+      "treePlanLength": 4,
+      "extensionSteps": 0,
+      "planExtended": false,
+      "planLength": 4,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowRight",
+      "rootVisits": 337,
+      "rootMeanReward": 0.005246456172650661,
+      "rootActions": [
+        {
+          "action": "C:ArrowUp",
+          "visits": 63,
+          "meanReward": -0.06143692443750599,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowDown",
+          "visits": 96,
+          "meanReward": 0.029246802878521726,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 77,
+          "meanReward": -0.013355806887784854,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowRight",
+          "visits": 101,
+          "meanReward": 0.03821075271056928,
+          "top": true,
+          "chosen": true
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.004999995231628418,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 0,
+          "mouseBfs": 0,
+          "catBfs": 0,
+          "carryBfs": 0,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 4,
+        "extensionSteps": 0,
+        "planLength": 4
+      },
+      "replayDiag": {
+        "wallMs": 0.06899994611740112,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G2T8",
+      "arm": "UCT-H",
+      "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__b__e__e__e__ec_e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__em_e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#cat#2,2#4,9#4#0#2,5#8,6:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "rootEligible": false,
+      "seed": "PPC-MCTS-01|G2T8|UCT-H|rep=1|h=3648067190",
+      "wallMs": 100.48600000143051,
+      "cpuMs": 93,
+      "searchElapsedMs": 100.33239999999978,
+      "sims": 67,
+      "aborted": 1,
+      "nodes": 85,
+      "chanceNodes": 8,
+      "chanceSamples": 67,
+      "rolloutSteps": 335,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 1192,
+        "mouseBfs": 1192,
+        "catBfs": 1192,
+        "carryBfs": 1192,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 17.791044776119403,
+      "evalPerRolloutStep": 3.5582089552238805,
+      "bfsPerEval": 3,
+      "plan": "CRightCRightCLeftCDown",
+      "treePlanLength": 4,
+      "extensionSteps": 0,
+      "planExtended": false,
+      "planLength": 4,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowRight",
+      "rootVisits": 67,
+      "rootMeanReward": -0.9076894840737026,
+      "rootActions": [
+        {
+          "action": "C:ArrowUp",
+          "visits": 15,
+          "meanReward": -1,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowDown",
+          "visits": 15,
+          "meanReward": -1,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 14,
+          "meanReward": -1,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowRight",
+          "visits": 23,
+          "meanReward": -0.7310954536060033,
+          "top": true,
+          "chosen": true
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.0059999823570251465,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 0,
+          "mouseBfs": 0,
+          "catBfs": 0,
+          "carryBfs": 0,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 4,
+        "extensionSteps": 0,
+        "planLength": 4
+      },
+      "replayDiag": {
+        "wallMs": 0.08699995279312134,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G1T1",
+      "arm": "UCT-R",
+      "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__ec_b__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__e__e__b__e__e__e__e__b__b__b__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#1,1#8,5#4#0#1,4|2,5##0#0#0#_#1###10:4:3:3:4:2:single:hard",
+      "rootEligible": true,
+      "seed": "PPC-MCTS-01|G1T1|UCT-R|rep=1|h=2333459790",
+      "wallMs": 100.04999995231628,
+      "cpuMs": 110,
+      "searchElapsedMs": 100.00509999999986,
+      "sims": 349,
+      "aborted": 1,
+      "nodes": 351,
+      "chanceNodes": 0,
+      "chanceSamples": 0,
+      "rolloutSteps": 4420,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 349,
+        "mouseBfs": 349,
+        "catBfs": 349,
+        "carryBfs": 349,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 1,
+      "evalPerRolloutStep": 0.07895927601809954,
+      "bfsPerEval": 3,
+      "plan": "CLeftTCRightCUpCDown",
+      "treePlanLength": 5,
+      "extensionSteps": 0,
+      "planExtended": false,
+      "planLength": 5,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowLeft",
+      "rootVisits": 349,
+      "rootMeanReward": 0.13400556011404532,
+      "rootActions": [
+        {
+          "action": "C:ArrowUp",
+          "visits": 62,
+          "meanReward": 0.10990749109520966,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowDown",
+          "visits": 75,
+          "meanReward": 0.14932777071342226,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 77,
+          "meanReward": 0.15022025685445783,
+          "top": true,
+          "chosen": true
+        },
+        {
+          "action": "C:ArrowRight",
+          "visits": 62,
+          "meanReward": 0.10873553757248844,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "T",
+          "visits": 73,
+          "meanReward": 0.14308945371376178,
+          "top": false,
+          "chosen": false
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.004999995231628418,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 0,
+          "mouseBfs": 0,
+          "catBfs": 0,
+          "carryBfs": 0,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 5,
+        "extensionSteps": 0,
+        "planLength": 5
+      },
+      "replayDiag": {
+        "wallMs": 0.06800001859664917,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G1T1",
+      "arm": "UCT-H",
+      "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__ec_b__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__e__e__b__e__e__e__e__b__b__b__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#1,1#8,5#4#0#1,4|2,5##0#0#0#_#1###10:4:3:3:4:2:single:hard",
+      "rootEligible": true,
+      "seed": "PPC-MCTS-01|G1T1|UCT-H|rep=1|h=115133680",
+      "wallMs": 100.90000003576279,
+      "cpuMs": 94,
+      "searchElapsedMs": 100.00990000000002,
+      "sims": 21,
+      "aborted": 1,
+      "nodes": 23,
+      "chanceNodes": 0,
+      "chanceSamples": 0,
+      "rolloutSteps": 285,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 1133,
+        "mouseBfs": 1133,
+        "catBfs": 1133,
+        "carryBfs": 1133,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 53.95238095238095,
+      "evalPerRolloutStep": 3.975438596491228,
+      "bfsPerEval": 3,
+      "plan": "CUpCRightCDownTCDown",
+      "treePlanLength": 3,
+      "extensionSteps": 2,
+      "planExtended": true,
+      "planLength": 5,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowUp",
+      "rootVisits": 21,
+      "rootMeanReward": 0.06207958843065472,
+      "rootActions": [
+        {
+          "action": "C:ArrowUp",
+          "visits": 5,
+          "meanReward": 0.06493485268991905,
+          "top": true,
+          "chosen": true
+        },
+        {
+          "action": "C:ArrowDown",
+          "visits": 4,
+          "meanReward": 0.05280470602076624,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 4,
+          "meanReward": 0.06730923912321346,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowRight",
+          "visits": 4,
+          "meanReward": 0.06649694337382192,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "T",
+          "visits": 4,
+          "meanReward": 0.05813838488073676,
+          "top": false,
+          "chosen": false
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.796999990940094,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 9,
+          "mouseBfs": 9,
+          "catBfs": 9,
+          "carryBfs": 9,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 3,
+        "extensionSteps": 2,
+        "planLength": 5
+      },
+      "replayDiag": {
+        "wallMs": 0.09000003337860107,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G1T2",
+      "arm": "UCT-R",
+      "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__e__e__b__e__e__ec_e__b__b__b__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__em_e__e__p__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#5,1#7,4#4#0#1,4|2,5##0#0#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "rootEligible": true,
+      "seed": "PPC-MCTS-01|G1T2|UCT-R|rep=1|h=70996831",
+      "wallMs": 100.04100000858307,
+      "cpuMs": 109,
+      "searchElapsedMs": 100.0002999999997,
+      "sims": 369,
+      "aborted": 1,
+      "nodes": 370,
+      "chanceNodes": 0,
+      "chanceSamples": 0,
+      "rolloutSteps": 3943,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 361,
+        "mouseBfs": 361,
+        "catBfs": 361,
+        "carryBfs": 361,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 0.978319783197832,
+      "evalPerRolloutStep": 0.0915546538168907,
+      "bfsPerEval": 3,
+      "plan": "CDownCRightCDownCLeft",
+      "treePlanLength": 4,
+      "extensionSteps": 0,
+      "planExtended": false,
+      "planLength": 4,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowDown",
+      "rootVisits": 369,
+      "rootMeanReward": 0.24169175788276734,
+      "rootActions": [
+        {
+          "action": "C:ArrowUp",
+          "visits": 78,
+          "meanReward": 0.2094664014848275,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowDown",
+          "visits": 110,
+          "meanReward": 0.2720645043181253,
+          "top": true,
+          "chosen": true
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 85,
+          "meanReward": 0.22545137517759412,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowRight",
+          "visits": 96,
+          "meanReward": 0.24745226018578395,
+          "top": false,
+          "chosen": false
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.0040000081062316895,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 0,
+          "mouseBfs": 0,
+          "catBfs": 0,
+          "carryBfs": 0,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 4,
+        "extensionSteps": 0,
+        "planLength": 4
+      },
+      "replayDiag": {
+        "wallMs": 0.07300001382827759,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G1T2",
+      "arm": "UCT-H",
+      "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__e__e__b__e__e__ec_e__b__b__b__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__em_e__e__p__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#5,1#7,4#4#0#1,4|2,5##0#0#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "rootEligible": true,
+      "seed": "PPC-MCTS-01|G1T2|UCT-H|rep=1|h=1666369893",
+      "wallMs": 100.81099998950958,
+      "cpuMs": 94,
+      "searchElapsedMs": 100.08539999999994,
+      "sims": 20,
+      "aborted": 1,
+      "nodes": 22,
+      "chanceNodes": 0,
+      "chanceSamples": 0,
+      "rolloutSteps": 282,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 1104,
+        "mouseBfs": 1104,
+        "catBfs": 1104,
+        "carryBfs": 1104,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 55.2,
+      "evalPerRolloutStep": 3.9148936170212765,
+      "bfsPerEval": 3,
+      "plan": "CDownCDownCRightCRight",
+      "treePlanLength": 2,
+      "extensionSteps": 2,
+      "planExtended": true,
+      "planLength": 4,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowDown",
+      "rootVisits": 20,
+      "rootMeanReward": 0.06924803707858454,
+      "rootActions": [
+        {
+          "action": "C:ArrowUp",
+          "visits": 5,
+          "meanReward": 0.07359771546599139,
+          "top": true,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowDown",
+          "visits": 5,
+          "meanReward": 0.06050200835924866,
+          "top": true,
+          "chosen": true
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 5,
+          "meanReward": 0.08139608458229004,
+          "top": true,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowRight",
+          "visits": 5,
+          "meanReward": 0.06149633990680805,
+          "top": true,
+          "chosen": false
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.8519999980926514,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 8,
+          "mouseBfs": 8,
+          "catBfs": 8,
+          "carryBfs": 8,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 2,
+        "extensionSteps": 2,
+        "planLength": 4
+      },
+      "replayDiag": {
+        "wallMs": 0.09999996423721313,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G1T3",
+      "arm": "UCT-R",
+      "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__e__e__b__e__e__e__e__b__b__b__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__ec_e__e__e__e__e__m__m__t__e__e__e__e__e__em_e__e__t__#single#playing#cat#8,2#9,6#4#0#1,4|2,5##0#0#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "rootEligible": true,
+      "seed": "PPC-MCTS-01|G1T3|UCT-R|rep=1|h=1692319112",
+      "wallMs": 100.0460000038147,
+      "cpuMs": 125,
+      "searchElapsedMs": 100.00990000000002,
+      "sims": 369,
+      "aborted": 1,
+      "nodes": 371,
+      "chanceNodes": 0,
+      "chanceSamples": 0,
+      "rolloutSteps": 4011,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 357,
+        "mouseBfs": 357,
+        "catBfs": 357,
+        "carryBfs": 357,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 0.967479674796748,
+      "evalPerRolloutStep": 0.08900523560209424,
+      "bfsPerEval": 3,
+      "plan": "CRightCDownCRightCLeft",
+      "treePlanLength": 4,
+      "extensionSteps": 0,
+      "planExtended": false,
+      "planLength": 4,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowRight",
+      "rootVisits": 369,
+      "rootMeanReward": 0.22059530029730814,
+      "rootActions": [
+        {
+          "action": "C:ArrowUp",
+          "visits": 91,
+          "meanReward": 0.21849138362435966,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowDown",
+          "visits": 96,
+          "meanReward": 0.22666050315382177,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 85,
+          "meanReward": 0.2056789568843659,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowRight",
+          "visits": 97,
+          "meanReward": 0.22963742538094933,
+          "top": true,
+          "chosen": true
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.0040000081062316895,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 0,
+          "mouseBfs": 0,
+          "catBfs": 0,
+          "carryBfs": 0,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 4,
+        "extensionSteps": 0,
+        "planLength": 4
+      },
+      "replayDiag": {
+        "wallMs": 0.07100003957748413,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G1T3",
+      "arm": "UCT-H",
+      "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__e__e__b__e__e__e__e__b__b__b__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__ec_e__e__e__e__e__m__m__t__e__e__e__e__e__em_e__e__t__#single#playing#cat#8,2#9,6#4#0#1,4|2,5##0#0#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "rootEligible": true,
+      "seed": "PPC-MCTS-01|G1T3|UCT-H|rep=1|h=2547136438",
+      "wallMs": 100.46499997377396,
+      "cpuMs": 93,
+      "searchElapsedMs": 100.07930000000033,
+      "sims": 23,
+      "aborted": 1,
+      "nodes": 25,
+      "chanceNodes": 0,
+      "chanceSamples": 0,
+      "rolloutSteps": 298,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 1087,
+        "mouseBfs": 1087,
+        "catBfs": 1087,
+        "carryBfs": 1087,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 47.26086956521739,
+      "evalPerRolloutStep": 3.6476510067114094,
+      "bfsPerEval": 3,
+      "plan": "CDownCLeftCUpCRight",
+      "treePlanLength": 3,
+      "extensionSteps": 1,
+      "planExtended": true,
+      "planLength": 4,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowDown",
+      "rootVisits": 23,
+      "rootMeanReward": 0.07654519258419913,
+      "rootActions": [
+        {
+          "action": "C:ArrowUp",
+          "visits": 6,
+          "meanReward": 0.07458162889311208,
+          "top": true,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowDown",
+          "visits": 6,
+          "meanReward": 0.07701325689109324,
+          "top": true,
+          "chosen": true
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 6,
+          "meanReward": 0.0808375458204165,
+          "top": true,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowRight",
+          "visits": 5,
+          "meanReward": 0.07318896796176998,
+          "top": false,
+          "chosen": false
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.33100003004074097,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 4,
+          "mouseBfs": 4,
+          "catBfs": 4,
+          "carryBfs": 4,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 3,
+        "extensionSteps": 1,
+        "planLength": 4
+      },
+      "replayDiag": {
+        "wallMs": 0.078000009059906,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G1T4",
+      "arm": "UCT-R",
+      "rootStateKey": "t__e__e__e__e__e__e__e__e__tm_e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__e__e__b__e__e__e__e__b__b__b__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__e__ec_e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#8,6#0,9#4#0#1,4|2,5##0#0#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "rootEligible": true,
+      "seed": "PPC-MCTS-01|G1T4|UCT-R|rep=1|h=3633725129",
+      "wallMs": 100.10199999809265,
+      "cpuMs": 94,
+      "searchElapsedMs": 100.0621000000001,
+      "sims": 396,
+      "aborted": 0,
+      "nodes": 397,
+      "chanceNodes": 0,
+      "chanceSamples": 13,
+      "rolloutSteps": 4114,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 396,
+        "mouseBfs": 396,
+        "catBfs": 396,
+        "carryBfs": 396,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 1,
+      "evalPerRolloutStep": 0.0962566844919786,
+      "bfsPerEval": 3,
+      "plan": "CLeftCDownCLeftCLeft",
+      "treePlanLength": 4,
+      "extensionSteps": 0,
+      "planExtended": false,
+      "planLength": 4,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowLeft",
+      "rootVisits": 396,
+      "rootMeanReward": 0.015299441241060278,
+      "rootActions": [
+        {
+          "action": "C:ArrowUp",
+          "visits": 100,
+          "meanReward": 0.017965349742572592,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowDown",
+          "visits": 94,
+          "meanReward": 0.005794712280707725,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 101,
+          "meanReward": 0.018679241735244295,
+          "top": true,
+          "chosen": true
+        },
+        {
+          "action": "C:ArrowRight",
+          "visits": 101,
+          "meanReward": 0.01812611274808319,
+          "top": true,
+          "chosen": false
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.009000003337860107,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 0,
+          "mouseBfs": 0,
+          "catBfs": 0,
+          "carryBfs": 0,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 4,
+        "extensionSteps": 0,
+        "planLength": 4
+      },
+      "replayDiag": {
+        "wallMs": 0.09600001573562622,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G1T4",
+      "arm": "UCT-H",
+      "rootStateKey": "t__e__e__e__e__e__e__e__e__tm_e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__e__e__b__e__e__e__e__b__b__b__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__e__ec_e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#8,6#0,9#4#0#1,4|2,5##0#0#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "rootEligible": true,
+      "seed": "PPC-MCTS-01|G1T4|UCT-H|rep=1|h=1661772643",
+      "wallMs": 100.38300001621246,
+      "cpuMs": 110,
+      "searchElapsedMs": 100.00379999999996,
+      "sims": 27,
+      "aborted": 1,
+      "nodes": 28,
+      "chanceNodes": 0,
+      "chanceSamples": 0,
+      "rolloutSteps": 316,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 1093,
+        "mouseBfs": 1093,
+        "catBfs": 1093,
+        "carryBfs": 1093,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 40.48148148148148,
+      "evalPerRolloutStep": 3.4588607594936707,
+      "bfsPerEval": 3,
+      "plan": "CDownCLeftCUpCLeft",
+      "treePlanLength": 3,
+      "extensionSteps": 1,
+      "planExtended": true,
+      "planLength": 4,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowDown",
+      "rootVisits": 27,
+      "rootMeanReward": 0.06998996267795825,
+      "rootActions": [
+        {
+          "action": "C:ArrowUp",
+          "visits": 7,
+          "meanReward": 0.07168857228799343,
+          "top": true,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowDown",
+          "visits": 7,
+          "meanReward": 0.06641678394130665,
+          "top": true,
+          "chosen": true
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 7,
+          "meanReward": 0.07881671477196664,
+          "top": true,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowRight",
+          "visits": 6,
+          "meanReward": 0.06187908254933435,
+          "top": false,
+          "chosen": false
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.3400000333786011,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 4,
+          "mouseBfs": 4,
+          "catBfs": 4,
+          "carryBfs": 4,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 3,
+        "extensionSteps": 1,
+        "planLength": 4
+      },
+      "replayDiag": {
+        "wallMs": 0.08599996566772461,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G1T5",
+      "arm": "UCT-R",
+      "rootStateKey": "t__e__e__e__e__em_e__e__e__t__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__ec_p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#5,5#0,5#4#0#1,4|2,5##0#0#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "rootEligible": true,
+      "seed": "PPC-MCTS-01|G1T5|UCT-R|rep=1|h=2093130498",
+      "wallMs": 100.03800004720688,
+      "cpuMs": 93,
+      "searchElapsedMs": 100.00329999999985,
+      "sims": 367,
+      "aborted": 1,
+      "nodes": 460,
+      "chanceNodes": 50,
+      "chanceSamples": 478,
+      "rolloutSteps": 4108,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 362,
+        "mouseBfs": 362,
+        "catBfs": 362,
+        "carryBfs": 362,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 0.9863760217983651,
+      "evalPerRolloutStep": 0.0881207400194742,
+      "bfsPerEval": 3,
+      "plan": "CUpCLeftCUpCLeft",
+      "treePlanLength": 4,
+      "extensionSteps": 0,
+      "planExtended": false,
+      "planLength": 4,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowUp",
+      "rootVisits": 367,
+      "rootMeanReward": 0.04795194311286197,
+      "rootActions": [
+        {
+          "action": "C:ArrowUp",
+          "visits": 295,
+          "meanReward": 0.08896906394372259,
+          "top": true,
+          "chosen": true
+        },
+        {
+          "action": "C:ArrowDown",
+          "visits": 72,
+          "meanReward": -0.12010431584691417,
+          "top": false,
+          "chosen": false
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.0040000081062316895,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 0,
+          "mouseBfs": 0,
+          "catBfs": 0,
+          "carryBfs": 0,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 4,
+        "extensionSteps": 0,
+        "planLength": 4
+      },
+      "replayDiag": {
+        "wallMs": 0.07199996709823608,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G1T5",
+      "arm": "UCT-H",
+      "rootStateKey": "t__e__e__e__e__em_e__e__e__t__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__ec_p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#5,5#0,5#4#0#1,4|2,5##0#0#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "rootEligible": true,
+      "seed": "PPC-MCTS-01|G1T5|UCT-H|rep=1|h=744131060",
+      "wallMs": 100.47299998998642,
+      "cpuMs": 110,
+      "searchElapsedMs": 100.14480000000003,
+      "sims": 10,
+      "aborted": 1,
+      "nodes": 12,
+      "chanceNodes": 0,
+      "chanceSamples": 26,
+      "rolloutSteps": 173,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 1586,
+        "mouseBfs": 1586,
+        "catBfs": 1586,
+        "carryBfs": 1586,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 158.6,
+      "evalPerRolloutStep": 9.167630057803468,
+      "bfsPerEval": 3,
+      "plan": "CDownCDownCUpCDown",
+      "treePlanLength": 3,
+      "extensionSteps": 1,
+      "planExtended": true,
+      "planLength": 4,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowDown",
+      "rootVisits": 10,
+      "rootMeanReward": -0.21077936661508684,
+      "rootActions": [
+        {
+          "action": "C:ArrowUp",
+          "visits": 4,
+          "meanReward": -0.3630177735406068,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowDown",
+          "visits": 6,
+          "meanReward": -0.10928709533140675,
+          "top": true,
+          "chosen": true
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.27300000190734863,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 3,
+          "mouseBfs": 3,
+          "catBfs": 3,
+          "carryBfs": 3,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 3,
+        "extensionSteps": 1,
+        "planLength": 4
+      },
+      "replayDiag": {
+        "wallMs": 0.0769999623298645,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G1T6",
+      "arm": "UCT-R",
+      "rootStateKey": "t__e__e__e__e__e__em_e__e__t__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__ec_e__b__e__e__b__e__e__e__b__e__e__e__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#3,3#0,6#4#0##5,5:0|8,2:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "rootEligible": false,
+      "seed": "PPC-MCTS-01|G1T6|UCT-R|rep=1|h=3351377155",
+      "wallMs": 100.10599994659424,
+      "cpuMs": 108,
+      "searchElapsedMs": 100.06710000000021,
+      "sims": 338,
+      "aborted": 0,
+      "nodes": 697,
+      "chanceNodes": 206,
+      "chanceSamples": 347,
+      "rolloutSteps": 4453,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 322,
+        "mouseBfs": 322,
+        "catBfs": 322,
+        "carryBfs": 322,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 0.9526627218934911,
+      "evalPerRolloutStep": 0.07231080170671457,
+      "bfsPerEval": 3,
+      "plan": "CRightCUpCLeftCRight",
+      "treePlanLength": 4,
+      "extensionSteps": 0,
+      "planExtended": false,
+      "planLength": 4,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowRight",
+      "rootVisits": 338,
+      "rootMeanReward": 0.1545444376344423,
+      "rootActions": [
+        {
+          "action": "C:ArrowUp",
+          "visits": 90,
+          "meanReward": 0.16356383438803074,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowDown",
+          "visits": 73,
+          "meanReward": 0.12580046115673743,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 73,
+          "meanReward": 0.12653003600813556,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowRight",
+          "visits": 102,
+          "meanReward": 0.1872073385537547,
+          "top": true,
+          "chosen": true
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.004999995231628418,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 0,
+          "mouseBfs": 0,
+          "catBfs": 0,
+          "carryBfs": 0,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 4,
+        "extensionSteps": 0,
+        "planLength": 4
+      },
+      "replayDiag": {
+        "wallMs": 0.07200002670288086,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G1T6",
+      "arm": "UCT-H",
+      "rootStateKey": "t__e__e__e__e__e__em_e__e__t__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__ec_e__b__e__e__b__e__e__e__b__e__e__e__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#3,3#0,6#4#0##5,5:0|8,2:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "rootEligible": false,
+      "seed": "PPC-MCTS-01|G1T6|UCT-H|rep=1|h=1007573993",
+      "wallMs": 100.625,
+      "cpuMs": 110,
+      "searchElapsedMs": 100.23449999999957,
+      "sims": 20,
+      "aborted": 1,
+      "nodes": 22,
+      "chanceNodes": 0,
+      "chanceSamples": 20,
+      "rolloutSteps": 301,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 1162,
+        "mouseBfs": 1162,
+        "catBfs": 1162,
+        "carryBfs": 1162,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 58.1,
+      "evalPerRolloutStep": 3.86046511627907,
+      "bfsPerEval": 3,
+      "plan": "CDownCLeftCUpCRight",
+      "treePlanLength": 3,
+      "extensionSteps": 1,
+      "planExtended": true,
+      "planLength": 4,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowDown",
+      "rootVisits": 20,
+      "rootMeanReward": -0.0370850341579253,
+      "rootActions": [
+        {
+          "action": "C:ArrowUp",
+          "visits": 5,
+          "meanReward": -0.036155056480759375,
+          "top": true,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowDown",
+          "visits": 5,
+          "meanReward": -0.01882206538930195,
+          "top": true,
+          "chosen": true
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 5,
+          "meanReward": -0.06071708920461747,
+          "top": true,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowRight",
+          "visits": 5,
+          "meanReward": -0.03264592555702237,
+          "top": true,
+          "chosen": false
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.3359999656677246,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 4,
+          "mouseBfs": 4,
+          "catBfs": 4,
+          "carryBfs": 4,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 3,
+        "extensionSteps": 1,
+        "planLength": 4
+      },
+      "replayDiag": {
+        "wallMs": 0.08100003004074097,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G1T7",
+      "arm": "UCT-R",
+      "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__b__e__em_e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__ec_e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#3,5#1,8#4#0#5,5|8,2##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "rootEligible": true,
+      "seed": "PPC-MCTS-01|G1T7|UCT-R|rep=1|h=1353437564",
+      "wallMs": 100.05099999904633,
+      "cpuMs": 94,
+      "searchElapsedMs": 100.01809999999932,
+      "sims": 357,
+      "aborted": 0,
+      "nodes": 358,
+      "chanceNodes": 0,
+      "chanceSamples": 1,
+      "rolloutSteps": 4594,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 339,
+        "mouseBfs": 339,
+        "catBfs": 339,
+        "carryBfs": 339,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 0.9495798319327731,
+      "evalPerRolloutStep": 0.07379190248149761,
+      "bfsPerEval": 3,
+      "plan": "CRightCDownCRightCUp",
+      "treePlanLength": 4,
+      "extensionSteps": 0,
+      "planExtended": false,
+      "planLength": 4,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowRight",
+      "rootVisits": 357,
+      "rootMeanReward": 0.1455012748387103,
+      "rootActions": [
+        {
+          "action": "C:ArrowUp",
+          "visits": 102,
+          "meanReward": 0.11788920958359417,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 85,
+          "meanReward": 0.08226103886062923,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowRight",
+          "visits": 170,
+          "meanReward": 0.19368863198082045,
+          "top": true,
+          "chosen": true
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.004999995231628418,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 0,
+          "mouseBfs": 0,
+          "catBfs": 0,
+          "carryBfs": 0,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 4,
+        "extensionSteps": 0,
+        "planLength": 4
+      },
+      "replayDiag": {
+        "wallMs": 0.07100003957748413,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G1T7",
+      "arm": "UCT-H",
+      "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__b__e__em_e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__ec_e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#3,5#1,8#4#0#5,5|8,2##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "rootEligible": true,
+      "seed": "PPC-MCTS-01|G1T7|UCT-H|rep=1|h=4065945786",
+      "wallMs": 100.30000001192093,
+      "cpuMs": 109,
+      "searchElapsedMs": 100.00720000000001,
+      "sims": 23,
+      "aborted": 0,
+      "nodes": 24,
+      "chanceNodes": 0,
+      "chanceSamples": 0,
+      "rolloutSteps": 322,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 1147,
+        "mouseBfs": 1147,
+        "catBfs": 1147,
+        "carryBfs": 1147,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 49.869565217391305,
+      "evalPerRolloutStep": 3.562111801242236,
+      "bfsPerEval": 3,
+      "plan": "CRightCDownCLeftCRight",
+      "treePlanLength": 3,
+      "extensionSteps": 1,
+      "planExtended": true,
+      "planLength": 4,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowRight",
+      "rootVisits": 23,
+      "rootMeanReward": -0.015824503310868248,
+      "rootActions": [
+        {
+          "action": "C:ArrowUp",
+          "visits": 8,
+          "meanReward": -0.0325202594347198,
+          "top": true,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 7,
+          "meanReward": -0.04941265089644805,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowRight",
+          "visits": 8,
+          "meanReward": 0.030260881950365637,
+          "top": true,
+          "chosen": true
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.2720000147819519,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 3,
+          "mouseBfs": 3,
+          "catBfs": 3,
+          "carryBfs": 3,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 3,
+        "extensionSteps": 1,
+        "planLength": 4
+      },
+      "replayDiag": {
+        "wallMs": 0.08199995756149292,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G1T8",
+      "arm": "UCT-R",
+      "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__e__e__e__m__m__tm_e__e__e__e__e__e__e__e__t__#single#playing#cat#2,8#9,0#4#0#5,5|8,2##0#0#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "rootEligible": true,
+      "seed": "PPC-MCTS-01|G1T8|UCT-R|rep=1|h=2168015661",
+      "wallMs": 100.0450000166893,
+      "cpuMs": 94,
+      "searchElapsedMs": 100.00730000000021,
+      "sims": 366,
+      "aborted": 1,
+      "nodes": 368,
+      "chanceNodes": 0,
+      "chanceSamples": 126,
+      "rolloutSteps": 4047,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 366,
+        "mouseBfs": 366,
+        "catBfs": 366,
+        "carryBfs": 366,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 1,
+      "evalPerRolloutStep": 0.0904373610081542,
+      "bfsPerEval": 3,
+      "plan": "CUpCUpCDownCDown",
+      "treePlanLength": 4,
+      "extensionSteps": 0,
+      "planExtended": false,
+      "planLength": 4,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowUp",
+      "rootVisits": 366,
+      "rootMeanReward": -0.08970853129968094,
+      "rootActions": [
+        {
+          "action": "C:ArrowUp",
+          "visits": 132,
+          "meanReward": -0.08129162248237688,
+          "top": true,
+          "chosen": true
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 123,
+          "meanReward": -0.08960742307418405,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowRight",
+          "visits": 111,
+          "meanReward": -0.09982986711607937,
+          "top": false,
+          "chosen": false
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.004999995231628418,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 0,
+          "mouseBfs": 0,
+          "catBfs": 0,
+          "carryBfs": 0,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 4,
+        "extensionSteps": 0,
+        "planLength": 4
+      },
+      "replayDiag": {
+        "wallMs": 0.07300001382827759,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G1T8",
+      "arm": "UCT-H",
+      "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__e__e__e__m__m__tm_e__e__e__e__e__e__e__e__t__#single#playing#cat#2,8#9,0#4#0#5,5|8,2##0#0#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "rootEligible": true,
+      "seed": "PPC-MCTS-01|G1T8|UCT-H|rep=1|h=198623031",
+      "wallMs": 100.60899996757507,
+      "cpuMs": 94,
+      "searchElapsedMs": 100.19799999999941,
+      "sims": 47,
+      "aborted": 1,
+      "nodes": 49,
+      "chanceNodes": 0,
+      "chanceSamples": 0,
+      "rolloutSteps": 333,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 1116,
+        "mouseBfs": 1116,
+        "catBfs": 1116,
+        "carryBfs": 1116,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 23.74468085106383,
+      "evalPerRolloutStep": 3.3513513513513513,
+      "bfsPerEval": 3,
+      "plan": "CLeftCDownCDownCUp",
+      "treePlanLength": 3,
+      "extensionSteps": 1,
+      "planExtended": true,
+      "planLength": 4,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowLeft",
+      "rootVisits": 47,
+      "rootMeanReward": 0.011100952506985649,
+      "rootActions": [
+        {
+          "action": "C:ArrowUp",
+          "visits": 15,
+          "meanReward": 0.006605679611466112,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 16,
+          "meanReward": 0.015768167134494575,
+          "top": true,
+          "chosen": true
+        },
+        {
+          "action": "C:ArrowRight",
+          "visits": 16,
+          "meanReward": 0.010648056219026272,
+          "top": true,
+          "chosen": false
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.39899998903274536,
+        "cpuMs": 15,
+        "eval": {
+          "evaluations": 4,
+          "mouseBfs": 4,
+          "catBfs": 4,
+          "carryBfs": 4,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 3,
+        "extensionSteps": 1,
+        "planLength": 4
+      },
+      "replayDiag": {
+        "wallMs": 0.11500000953674316,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G1T9",
+      "arm": "UCT-R",
+      "rootStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__ec_e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#1,7#8,3#4#0#5,5#8,5:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "rootEligible": false,
+      "seed": "PPC-MCTS-01|G1T9|UCT-R|rep=1|h=2511391766",
+      "wallMs": 100.1269999742508,
+      "cpuMs": 94,
+      "searchElapsedMs": 100.07920000000013,
+      "sims": 310,
+      "aborted": 0,
+      "nodes": 513,
+      "chanceNodes": 149,
+      "chanceSamples": 406,
+      "rolloutSteps": 4159,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 308,
+        "mouseBfs": 308,
+        "catBfs": 308,
+        "carryBfs": 308,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 0.9935483870967742,
+      "evalPerRolloutStep": 0.07405626352488578,
+      "bfsPerEval": 3,
+      "plan": "CDownCRightCRightCLeft",
+      "treePlanLength": 4,
+      "extensionSteps": 0,
+      "planExtended": false,
+      "planLength": 4,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowDown",
+      "rootVisits": 310,
+      "rootMeanReward": -0.22827029744912491,
+      "rootActions": [
+        {
+          "action": "C:ArrowUp",
+          "visits": 74,
+          "meanReward": -0.23949873981580505,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowDown",
+          "visits": 83,
+          "meanReward": -0.2140367812873936,
+          "top": true,
+          "chosen": true
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 77,
+          "meanReward": -0.23085542307854168,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowRight",
+          "visits": 76,
+          "meanReward": -0.23026269788102463,
+          "top": false,
+          "chosen": false
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.004999995231628418,
+        "cpuMs": 0,
+        "eval": {
+          "evaluations": 0,
+          "mouseBfs": 0,
+          "catBfs": 0,
+          "carryBfs": 0,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 4,
+        "extensionSteps": 0,
+        "planLength": 4
+      },
+      "replayDiag": {
+        "wallMs": 0.07400000095367432,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    },
+    {
+      "rootId": "G1T9",
+      "arm": "UCT-H",
+      "rootStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__ec_e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#1,7#8,3#4#0#5,5#8,5:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "rootEligible": false,
+      "seed": "PPC-MCTS-01|G1T9|UCT-H|rep=1|h=3804109672",
+      "wallMs": 100.88499999046326,
+      "cpuMs": 94,
+      "searchElapsedMs": 100.2474000000002,
+      "sims": 16,
+      "aborted": 1,
+      "nodes": 18,
+      "chanceNodes": 0,
+      "chanceSamples": 48,
+      "rolloutSteps": 215,
+      "maxHandoffsReached": 4,
+      "deadlineHit": true,
+      "nodeCapHit": false,
+      "postDeadlineNodeCreations": 0,
+      "eval": {
+        "evaluations": 1367,
+        "mouseBfs": 1367,
+        "catBfs": 1367,
+        "carryBfs": 1367,
+        "carryRouteBfs": 0,
+        "catPushBfs": 0
+      },
+      "evalPerSim": 85.4375,
+      "evalPerRolloutStep": 6.358139534883721,
+      "bfsPerEval": 3,
+      "plan": "CDownCDownCDownCUp",
+      "treePlanLength": 2,
+      "extensionSteps": 2,
+      "planExtended": true,
+      "planLength": 4,
+      "planCost": 4,
+      "rootAction": "catStep:ArrowDown",
+      "rootVisits": 16,
+      "rootMeanReward": -0.2731715509802487,
+      "rootActions": [
+        {
+          "action": "C:ArrowUp",
+          "visits": 4,
+          "meanReward": -0.21955321975914016,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowDown",
+          "visits": 5,
+          "meanReward": -0.21449773347634507,
+          "top": true,
+          "chosen": true
+        },
+        {
+          "action": "C:ArrowLeft",
+          "visits": 3,
+          "meanReward": -0.49189491927927315,
+          "top": false,
+          "chosen": false
+        },
+        {
+          "action": "C:ArrowRight",
+          "visits": 4,
+          "meanReward": -0.2360896278569686,
+          "top": false,
+          "chosen": false
+        }
+      ],
+      "replayOk": true,
+      "replayFullTurnConsumed": true,
+      "extensionDiag": {
+        "wallMs": 0.6570000052452087,
+        "cpuMs": 16,
+        "eval": {
+          "evaluations": 8,
+          "mouseBfs": 8,
+          "catBfs": 8,
+          "carryBfs": 8,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "treeLength": 2,
+        "extensionSteps": 2,
+        "planLength": 4
+      },
+      "replayDiag": {
+        "wallMs": 0.10000002384185791,
+        "cpuMs": 0,
+        "evalCalls": 0
+      }
+    }
+  ],
+  "aggregate": {
+    "uctR": {
+      "n": 24,
+      "totalSims": 8428,
+      "meanSims": 351.1666666666667,
+      "totalEvals": 7880,
+      "meanEvals": 328.3333333333333,
+      "evalsPerSim": 0.9349786426198387,
+      "totalMouseBfs": 7880,
+      "totalCatBfs": 7880,
+      "totalCarryBfs": 7880,
+      "totalRolloutSteps": 98225,
+      "meanRolloutSteps": 4092.7083333333335,
+      "evalsPerRolloutStep": 0.08022397556630186,
+      "meanNodes": 408.6666666666667,
+      "meanChanceNodes": 50.791666666666664,
+      "meanChanceSamples": 170.45833333333334,
+      "meanMaxHandoffs": 4,
+      "meanTreePlanLength": 4.083333333333333,
+      "meanExtensionSteps": 0.041666666666666664,
+      "meanPlanLength": 4.125,
+      "meanCpuMs": 121.16666666666667,
+      "meanWallMs": 100.12320833404858,
+      "usPerSimCpu": 345.0403417180826,
+      "usPerEvalCpu": 369.03553299492387,
+      "extensionTotalEvals": 0,
+      "extensionTotalSteps": 1,
+      "extensionMeanWallMs": 0.009083330631256104,
+      "replayTotalEvals": 0,
+      "replayMeanWallMs": 0.07495833188295364,
+      "fullTurn": 24,
+      "replayOk": 24
+    },
+    "uctH": {
+      "n": 24,
+      "totalSims": 830,
+      "meanSims": 34.583333333333336,
+      "totalEvals": 28033,
+      "meanEvals": 1168.0416666666667,
+      "evalsPerSim": 33.774698795180726,
+      "totalMouseBfs": 28033,
+      "totalCatBfs": 28033,
+      "totalCarryBfs": 28033,
+      "totalRolloutSteps": 7074,
+      "meanRolloutSteps": 294.75,
+      "evalsPerRolloutStep": 3.9628216002261802,
+      "meanNodes": 37.875,
+      "meanChanceNodes": 1.1666666666666667,
+      "meanChanceSamples": 16.125,
+      "meanMaxHandoffs": 3.9583333333333335,
+      "meanTreePlanLength": 3.0416666666666665,
+      "meanExtensionSteps": 1.125,
+      "meanPlanLength": 4.166666666666667,
+      "meanCpuMs": 109.33333333333333,
+      "meanWallMs": 100.59491667648156,
+      "usPerSimCpu": 3161.4457831325303,
+      "usPerEvalCpu": 93.60396675346912,
+      "extensionTotalEvals": 99,
+      "extensionTotalSteps": 27,
+      "extensionMeanWallMs": 0.3844166621565819,
+      "replayTotalEvals": 0,
+      "replayMeanWallMs": 0.09666665643453598,
+      "fullTurn": 24,
+      "replayOk": 24
+    }
+  },
+  "microbench": {
+    "states": 143,
+    "eligibleStates": 117,
+    "results": [
+      {
+        "name": "hybrid",
+        "calls": 429,
+        "eligibleStates": 117,
+        "states": 143,
+        "wallUsP50": 85.8,
+        "wallUsP95": 131.1,
+        "wallUsP99": 193.2,
+        "wallUsMax": 1023.7,
+        "wallUsMean": 92.0244755244755,
+        "cpuMs": 63,
+        "usPerCallCpu": 146.85314685314685,
+        "evalCalls": 429,
+        "bfs": {
+          "evaluations": 429,
+          "mouseBfs": 429,
+          "catBfs": 429,
+          "carryBfs": 429,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "checksum": -56830.75025917345
+      },
+      {
+        "name": "baseline",
+        "calls": 429,
+        "eligibleStates": 117,
+        "states": 143,
+        "wallUsP50": 60.3,
+        "wallUsP95": 73,
+        "wallUsP99": 145.5,
+        "wallUsMax": 769.8,
+        "wallUsMean": 64.5804195804196,
+        "cpuMs": 31,
+        "usPerCallCpu": 72.26107226107226,
+        "evalCalls": 429,
+        "bfs": {
+          "evaluations": 429,
+          "mouseBfs": 429,
+          "catBfs": 429,
+          "carryBfs": 429,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "checksum": -353580.60555234266
+      },
+      {
+        "name": "valuenet",
+        "calls": 429,
+        "eligibleStates": 117,
+        "states": 143,
+        "wallUsP50": 19.7,
+        "wallUsP95": 23.6,
+        "wallUsP99": 35.3,
+        "wallUsMax": 59.4,
+        "wallUsMean": 20.822843822843815,
+        "cpuMs": 0,
+        "usPerCallCpu": 0,
+        "evalCalls": 0,
+        "bfs": {
+          "evaluations": 0,
+          "mouseBfs": 0,
+          "catBfs": 0,
+          "carryBfs": 0,
+          "carryRouteBfs": 0,
+          "catPushBfs": 0
+        },
+        "checksum": 247.06806909431876
+      }
+    ]
+  }
+}

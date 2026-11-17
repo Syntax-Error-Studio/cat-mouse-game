@@ -1,0 +1,238 @@
+{
+  "artifactId": "BASELINE_FAILURE_WITNESS",
+  "round": "PPC-P1-OPENING-STACK-01",
+  "capturedAt": "2026-11-13T14:07:08.560Z",
+  "nodeVersion": "v22.22.2",
+  "sourceFingerprint": {
+    "path": "src/game/openingFairness.ts",
+    "preFixSha256": "27c97202806154a22f878d7c524c82fd00cf7d88dda48b8aa2532dce58aff902",
+    "preFixBytes": 29272,
+    "preFixLines": 723,
+    "preFixLineEnding": "LF",
+    "note": "recursive solve() at line 463; the same file is 9d19279c… / 35834 B / 904 lines after the rewrite"
+  },
+  "minimalReproduction": {
+    "input": {
+      "config": "DEFAULT_CONFIG",
+      "catBaseMoves": 100000
+    },
+    "validateGameConfig": "PASS",
+    "failingCall": "certifyOpening(createInitialState(cfg))",
+    "exception": "RangeError: Maximum call stack size exceeded",
+    "stackTop": [
+      "RangeError: Maximum call stack size exceeded",
+      "at Object.catMove (F:/小猫小鼠/src/game/engine.ts:908:17)",
+      "at simulateSearchAction (F:/小猫小鼠/src/game/ai/simulator.ts:46:26)",
+      "at isEffective (F:/小猫小鼠/src/game/ai/legalActions.ts:72:15)",
+      "at generateLegalSearchActions (F:/小猫小鼠/src/game/ai/legalActions.ts:55:11)",
+      "at solve (F:/小猫小鼠/src/game/openingFairness.ts:463:39)"
+    ],
+    "observations": "createGameState(cfg) throws the same RangeError — the uncontrolled exception escapes the fail-closed path entirely."
+  },
+  "table": [
+    {
+      "catBaseMoves": 4,
+      "preFix": {
+        "validateOk": true,
+        "validateIssues": [],
+        "createInitialState": "ok catMovesLeft=4 mouseMovesLeft=4",
+        "certifyOpening": "ok",
+        "verdict": "CERTIFIED_NO_CERTAIN_CAT_LOSS",
+        "reason": null,
+        "exploredNodes": 931,
+        "createGameState": "ok(state)",
+        "createGameStateStatus": "certified",
+        "errorName": null,
+        "errorMessage": null,
+        "ms": 47
+      },
+      "postFix": {
+        "validateOk": true,
+        "validateIssues": [],
+        "createInitialState": "ok catMovesLeft=4 mouseMovesLeft=4",
+        "certifyOpening": "ok",
+        "verdict": "CERTIFIED_NO_CERTAIN_CAT_LOSS",
+        "reason": null,
+        "exploredNodes": 1862,
+        "createGameState": "ok(state)",
+        "createGameStateStatus": "certified",
+        "errorName": null,
+        "errorMessage": null,
+        "ms": 317
+      }
+    },
+    {
+      "catBaseMoves": 1000,
+      "preFix": {
+        "validateOk": true,
+        "validateIssues": [],
+        "createInitialState": "ok catMovesLeft=1000 mouseMovesLeft=4",
+        "certifyOpening": "ok",
+        "verdict": "UNKNOWN",
+        "reason": "NODE_CAP",
+        "exploredNodes": 20000,
+        "createGameState": "ok(state:null)",
+        "createGameStateStatus": "unverified:NO_CERTIFIED_OPENING",
+        "errorName": null,
+        "errorMessage": null,
+        "ms": 12298
+      },
+      "postFix": {
+        "validateOk": true,
+        "validateIssues": [],
+        "createInitialState": "ok catMovesLeft=1000 mouseMovesLeft=4",
+        "certifyOpening": "ok",
+        "verdict": "UNKNOWN",
+        "reason": "NODE_CAP",
+        "exploredNodes": 20000,
+        "createGameState": "ok(state:null)",
+        "createGameStateStatus": "unverified:NO_CERTIFIED_OPENING",
+        "errorName": null,
+        "errorMessage": null,
+        "ms": 14091
+      }
+    },
+    {
+      "catBaseMoves": 100000,
+      "preFix": {
+        "validateOk": true,
+        "validateIssues": [],
+        "createInitialState": "ok catMovesLeft=100000 mouseMovesLeft=4",
+        "certifyOpening": "THROW RangeError: Maximum call stack size exceeded",
+        "verdict": null,
+        "reason": null,
+        "exploredNodes": null,
+        "createGameState": "THROW RangeError: Maximum call stack size exceeded",
+        "createGameStateStatus": null,
+        "errorName": "RangeError",
+        "errorMessage": "Maximum call stack size exceeded",
+        "ms": 522
+      },
+      "postFix": {
+        "validateOk": true,
+        "validateIssues": [],
+        "createInitialState": "ok catMovesLeft=100000 mouseMovesLeft=4",
+        "certifyOpening": "ok",
+        "verdict": "UNKNOWN",
+        "reason": "NODE_CAP",
+        "exploredNodes": 20000,
+        "createGameState": "ok(state:null)",
+        "createGameStateStatus": "unverified:NO_CERTIFIED_OPENING",
+        "errorName": null,
+        "errorMessage": null,
+        "ms": 25953
+      }
+    },
+    {
+      "catBaseMoves": 6004799503160661,
+      "preFix": {
+        "validateOk": false,
+        "validateIssues": [
+          "invalid:猫每回合的基础步数过大：计划上界 catBaseMoves + 1 + floor(catBaseMoves/2) 必须是可精确表示的整数，因此上限为 6004799503160660（当前 6004799503160661）。"
+        ],
+        "createInitialState": "THROW RangeError: createInitialState: config.catBaseMoves must not exceed 6004799503160660 — the plan bound catBaseMoves + 1 + floor(catBaseMoves/2) must stay an exact integer (got 6004799503160661); use validateGameConfig/createGameState for a fail-closed result",
+        "certifyOpening": "not attempted",
+        "verdict": null,
+        "reason": null,
+        "exploredNodes": null,
+        "createGameState": "ok(state:null)",
+        "createGameStateStatus": "unverified:INVALID_CONFIG",
+        "errorName": "RangeError",
+        "errorMessage": "createInitialState: config.catBaseMoves must not exceed 6004799503160660 — the plan bound catBaseMoves + 1 + floor(catBaseMoves/2) must stay an exact integer (got 6004799503160661); use validateGameConfig/createGameState for a fail-closed result",
+        "ms": 3
+      },
+      "postFix": {
+        "validateOk": false,
+        "validateIssues": [
+          "invalid:猫每回合的基础步数过大：计划上界 catBaseMoves + 1 + floor(catBaseMoves/2) 必须是可精确表示的整数，因此上限为 6004799503160660（当前 6004799503160661）。"
+        ],
+        "createInitialState": "THROW RangeError: createInitialState: config.catBaseMoves must not exceed 6004799503160660 — the plan bound catBaseMoves + 1 + floor(catBaseMoves/2) must stay an exact integer (got 6004799503160661); use validateGameConfig/createGameState for a fail-closed result",
+        "certifyOpening": "not attempted",
+        "verdict": null,
+        "reason": null,
+        "exploredNodes": null,
+        "createGameState": "ok(state:null)",
+        "createGameStateStatus": "unverified:INVALID_CONFIG",
+        "errorName": "RangeError",
+        "errorMessage": "createInitialState: config.catBaseMoves must not exceed 6004799503160660 — the plan bound catBaseMoves + 1 + floor(catBaseMoves/2) must stay an exact integer (got 6004799503160661); use validateGameConfig/createGameState for a fail-closed result",
+        "ms": 14
+      }
+    }
+  ],
+  "recursionCeiling": {
+    "method": "certifyOpening(createInitialState({...DEFAULT_CONFIG, catBaseMoves: m})) on the recursive solver",
+    "completedUpTo": 1000,
+    "firstThrow": null,
+    "perBudget": [
+      {
+        "catBaseMoves": 500,
+        "outcome": "COMPLETED",
+        "ms": 444
+      },
+      {
+        "catBaseMoves": 1000,
+        "outcome": "COMPLETED",
+        "ms": 422
+      },
+      {
+        "catBaseMoves": 1500,
+        "outcome": "THROW RangeError",
+        "ms": 79
+      },
+      {
+        "catBaseMoves": 2000,
+        "outcome": "THROW RangeError",
+        "ms": 61
+      },
+      {
+        "catBaseMoves": 2500,
+        "outcome": "THROW RangeError",
+        "ms": 58
+      },
+      {
+        "catBaseMoves": 3000,
+        "outcome": "THROW RangeError",
+        "ms": 58
+      },
+      {
+        "catBaseMoves": 4000,
+        "outcome": "THROW RangeError",
+        "ms": 56
+      },
+      {
+        "catBaseMoves": 6000,
+        "outcome": "THROW RangeError",
+        "ms": 57
+      },
+      {
+        "catBaseMoves": 20000,
+        "outcome": "THROW RangeError",
+        "ms": 56
+      },
+      {
+        "catBaseMoves": 100000,
+        "outcome": "THROW RangeError",
+        "ms": 58
+      }
+    ],
+    "note": "Every budget at or above the firstThrow value died in 56-79ms, i.e. immediately on frame exhaustion rather than on a search decision."
+  },
+  "classification": {
+    "PRE_FIX_STACK_FAILURE": "REPRODUCED",
+    "kind": "LEGAL_INPUT_TRIGGERED_RUNTIME_EXCEPTION",
+    "notACorrectnessVerdict": "The failure is not UNKNOWN/NO_CERTIFIED_OPENING; it is an unhandled RangeError, so no verdict existed at all.",
+    "numericDomainIntact": "catBaseMoves=6004799503160661 is still rejected at the config layer (INVALID_CONFIG), unchanged from PPC-P1-CHECKPOINT-01."
+  },
+  "logs": [
+    "logs/01_baseline_witness_pre_fix.log",
+    "logs/02_stack_threshold_pre_fix.log",
+    "logs/07_baseline_witness_post.log",
+    "logs/06_stack_threshold_post.log"
+  ],
+  "raw": [
+    "_raw/baseline_witness_pre.json",
+    "_raw/baseline_witness_post.json",
+    "_raw/stack_threshold_pre.json",
+    "_raw/stack_threshold_post.json"
+  ]
+}

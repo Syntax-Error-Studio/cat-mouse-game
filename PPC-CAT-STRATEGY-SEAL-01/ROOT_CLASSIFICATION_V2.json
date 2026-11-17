@@ -1,0 +1,1362 @@
+{
+  "artifactId": "ROOT_CLASSIFICATION_V2",
+  "round": "PPC-CAT-STRATEGY-SEAL-01",
+  "phase": 5,
+  "generatedAt": "2026-11-15T07:29:00.862Z",
+  "generatedBy": "PPC-CAT-STRATEGY-SEAL-01/probe/cohort.test.ts",
+  "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+  "rootCount": 24,
+  "kernel": "seal_lib.ts (prune DISABLED; separate catSurvive; CHANCE=AND; mode-dependent terminals)",
+  "horizon": {
+    "H0": 1,
+    "H1": 2,
+    "cut": "cat node idx >= 2*H"
+  },
+  "cap": 600000,
+  "scheme": [
+    "MOUSE_FORCED_WIN_WITHIN_H0",
+    "MOUSE_FORCED_WIN_WITHIN_H1",
+    "CAT_FORCED_WIN_WITHIN_H1",
+    "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+    "CHANCE_DEPENDENT_OUTCOME",
+    "UNRESOLVED"
+  ],
+  "counts": {
+    "CAT_SURVIVAL_CERTIFIED_WITHIN_H1": 15,
+    "UNRESOLVED": 4,
+    "MOUSE_FORCED_WIN_WITHIN_H0": 4,
+    "MOUSE_FORCED_WIN_WITHIN_H1": 1
+  },
+  "rows": [
+    {
+      "id": "G6T1",
+      "provenance": "REAL_HUMAN_REPLAY",
+      "canonicalSnapshotSha256": "7db19c735c9083f486a93a199706774a3ad08adf612087bc15dd330595aebae1",
+      "previousClass": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "class": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "changedFromPrevious": false,
+      "proofStatus": "PROVEN",
+      "h0MouseForcedWin": false,
+      "h1MouseForcedWin": false,
+      "h1CatSurvive": true,
+      "h1CatForcedWin": false,
+      "stats": {
+        "h0": {
+          "nodes": 17,
+          "truncated": false,
+          "chanceNodes": 2,
+          "chanceOutcomes": 58,
+          "elapsedMs": 3
+        },
+        "h1": {
+          "nodes": 326,
+          "truncated": false,
+          "chanceNodes": 22,
+          "chanceOutcomes": 625,
+          "elapsedMs": 17
+        },
+        "survive": {
+          "nodes": 82970,
+          "truncated": false,
+          "chanceNodes": 1906,
+          "chanceOutcomes": 50258,
+          "elapsedMs": 2355
+        },
+        "catForce": {
+          "nodes": 25301,
+          "truncated": false,
+          "chanceNodes": 0,
+          "chanceOutcomes": 0,
+          "elapsedMs": 641
+        }
+      },
+      "certificate": {
+        "side": "cat",
+        "question": "catSurvive H1",
+        "verdict": "PROVEN",
+        "ok": true,
+        "leaves": 302221,
+        "branches": 82814,
+        "chanceNodes": 1906,
+        "policyMisses": 0,
+        "policySize": 156,
+        "reason": null
+      },
+      "reason": "definite quantifier verdict with independent certificate",
+      "elapsedMs": 5355
+    },
+    {
+      "id": "G6T2",
+      "provenance": "REAL_HUMAN_REPLAY",
+      "canonicalSnapshotSha256": "30a54a57fbf5747d0e1f0f073420809653fb58f9ef2f89e608042ffbc4446656",
+      "previousClass": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "class": "UNRESOLVED",
+      "changedFromPrevious": true,
+      "proofStatus": "UNRESOLVED",
+      "h0MouseForcedWin": false,
+      "h1MouseForcedWin": null,
+      "h1CatSurvive": null,
+      "h1CatForcedWin": false,
+      "stats": {
+        "h0": {
+          "nodes": 116,
+          "truncated": false,
+          "chanceNodes": 5,
+          "chanceOutcomes": 130,
+          "elapsedMs": 4
+        },
+        "h1": {
+          "nodes": 600001,
+          "truncated": true,
+          "chanceNodes": 16227,
+          "chanceOutcomes": 421348,
+          "elapsedMs": 18042
+        },
+        "survive": {
+          "nodes": 600001,
+          "truncated": true,
+          "chanceNodes": 7844,
+          "chanceOutcomes": 199745,
+          "elapsedMs": 17385
+        },
+        "catForce": {
+          "nodes": 11272,
+          "truncated": false,
+          "chanceNodes": 13,
+          "chanceOutcomes": 379,
+          "elapsedMs": 269
+        }
+      },
+      "certificate": null,
+      "reason": "node cap 600000 reached with prune disabled; cannot certify within frozen budget (honest UNRESOLVED, not PASS)",
+      "elapsedMs": 35701
+    },
+    {
+      "id": "G6T3",
+      "provenance": "REAL_HUMAN_REPLAY",
+      "canonicalSnapshotSha256": "1f7d08df825314cb90276104cbc26261bc26065f66aba3bd17ed7c7b0adff6b0",
+      "previousClass": "MOUSE_FORCED_WIN_WITHIN_H0",
+      "class": "MOUSE_FORCED_WIN_WITHIN_H0",
+      "changedFromPrevious": false,
+      "proofStatus": "PROVEN",
+      "h0MouseForcedWin": true,
+      "h1MouseForcedWin": true,
+      "h1CatSurvive": false,
+      "h1CatForcedWin": false,
+      "stats": {
+        "h0": {
+          "nodes": 1568,
+          "truncated": false,
+          "chanceNodes": 154,
+          "chanceOutcomes": 3906,
+          "elapsedMs": 45
+        },
+        "h1": {
+          "nodes": 263038,
+          "truncated": false,
+          "chanceNodes": 6870,
+          "chanceOutcomes": 178110,
+          "elapsedMs": 7718
+        },
+        "survive": {
+          "nodes": 215922,
+          "truncated": false,
+          "chanceNodes": 4408,
+          "chanceOutcomes": 116742,
+          "elapsedMs": 6223
+        },
+        "catForce": {
+          "nodes": 5980,
+          "truncated": false,
+          "chanceNodes": 0,
+          "chanceOutcomes": 0,
+          "elapsedMs": 155
+        }
+      },
+      "certificate": {
+        "side": "mouse",
+        "question": "mouseForce H0",
+        "verdict": "PROVEN",
+        "ok": true,
+        "leaves": 457,
+        "branches": 45,
+        "chanceNodes": 0,
+        "policyMisses": 0,
+        "policySize": 66,
+        "reason": null
+      },
+      "reason": "definite quantifier verdict with independent certificate",
+      "elapsedMs": 14152
+    },
+    {
+      "id": "G5T1",
+      "provenance": "REAL_HUMAN_REPLAY",
+      "canonicalSnapshotSha256": "e5678745fafbdb0ad8d4f84ff3f94e63bca7195573d5f0458a2b8e247fb59c55",
+      "previousClass": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "class": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "changedFromPrevious": false,
+      "proofStatus": "PROVEN",
+      "h0MouseForcedWin": false,
+      "h1MouseForcedWin": false,
+      "h1CatSurvive": true,
+      "h1CatForcedWin": false,
+      "stats": {
+        "h0": {
+          "nodes": 45,
+          "truncated": false,
+          "chanceNodes": 6,
+          "chanceOutcomes": 192,
+          "elapsedMs": 1
+        },
+        "h1": {
+          "nodes": 432,
+          "truncated": false,
+          "chanceNodes": 18,
+          "chanceOutcomes": 566,
+          "elapsedMs": 12
+        },
+        "survive": {
+          "nodes": 22249,
+          "truncated": false,
+          "chanceNodes": 312,
+          "chanceOutcomes": 9194,
+          "elapsedMs": 636
+        },
+        "catForce": {
+          "nodes": 21923,
+          "truncated": false,
+          "chanceNodes": 22,
+          "chanceOutcomes": 782,
+          "elapsedMs": 505
+        }
+      },
+      "certificate": {
+        "side": "cat",
+        "question": "catSurvive H1",
+        "verdict": "PROVEN",
+        "ok": true,
+        "leaves": 76854,
+        "branches": 19901,
+        "chanceNodes": 312,
+        "policyMisses": 0,
+        "policySize": 2348,
+        "reason": null
+      },
+      "reason": "definite quantifier verdict with independent certificate",
+      "elapsedMs": 1854
+    },
+    {
+      "id": "G5T2",
+      "provenance": "REAL_HUMAN_REPLAY",
+      "canonicalSnapshotSha256": "453cc4d288c2b86572400d8f0ac0b1f8d7375ba512126b93377be55d6fc0f2f6",
+      "previousClass": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "class": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "changedFromPrevious": false,
+      "proofStatus": "PROVEN",
+      "h0MouseForcedWin": false,
+      "h1MouseForcedWin": false,
+      "h1CatSurvive": true,
+      "h1CatForcedWin": false,
+      "stats": {
+        "h0": {
+          "nodes": 45,
+          "truncated": false,
+          "chanceNodes": 0,
+          "chanceOutcomes": 0,
+          "elapsedMs": 1
+        },
+        "h1": {
+          "nodes": 295,
+          "truncated": false,
+          "chanceNodes": 2,
+          "chanceOutcomes": 56,
+          "elapsedMs": 8
+        },
+        "survive": {
+          "nodes": 295,
+          "truncated": false,
+          "chanceNodes": 2,
+          "chanceOutcomes": 56,
+          "elapsedMs": 8
+        },
+        "catForce": {
+          "nodes": 5935,
+          "truncated": false,
+          "chanceNodes": 0,
+          "chanceOutcomes": 0,
+          "elapsedMs": 161
+        }
+      },
+      "certificate": {
+        "side": "cat",
+        "question": "catSurvive H1",
+        "verdict": "PROVEN",
+        "ok": true,
+        "leaves": 851,
+        "branches": 215,
+        "chanceNodes": 2,
+        "policyMisses": 0,
+        "policySize": 80,
+        "reason": null
+      },
+      "reason": "definite quantifier verdict with independent certificate",
+      "elapsedMs": 189
+    },
+    {
+      "id": "G5T3",
+      "provenance": "REAL_HUMAN_REPLAY",
+      "canonicalSnapshotSha256": "8f38951c8d0106a0c81a28fe160e85d9f007ebe7e4cd743e4637087851d0d2b7",
+      "previousClass": "MOUSE_FORCED_WIN_WITHIN_H1",
+      "class": "MOUSE_FORCED_WIN_WITHIN_H1",
+      "changedFromPrevious": false,
+      "proofStatus": "PROVEN",
+      "h0MouseForcedWin": false,
+      "h1MouseForcedWin": true,
+      "h1CatSurvive": false,
+      "h1CatForcedWin": false,
+      "stats": {
+        "h0": {
+          "nodes": 41,
+          "truncated": false,
+          "chanceNodes": 0,
+          "chanceOutcomes": 0,
+          "elapsedMs": 1
+        },
+        "h1": {
+          "nodes": 23054,
+          "truncated": false,
+          "chanceNodes": 70,
+          "chanceOutcomes": 1975,
+          "elapsedMs": 585
+        },
+        "survive": {
+          "nodes": 22319,
+          "truncated": false,
+          "chanceNodes": 70,
+          "chanceOutcomes": 1975,
+          "elapsedMs": 558
+        },
+        "catForce": {
+          "nodes": 3423,
+          "truncated": false,
+          "chanceNodes": 0,
+          "chanceOutcomes": 0,
+          "elapsedMs": 82
+        }
+      },
+      "certificate": {
+        "side": "mouse",
+        "question": "mouseForce H1",
+        "verdict": "PROVEN",
+        "ok": true,
+        "leaves": 85951,
+        "branches": 8081,
+        "chanceNodes": 29,
+        "policyMisses": 0,
+        "policySize": 2160,
+        "reason": null
+      },
+      "reason": "definite quantifier verdict with independent certificate",
+      "elapsedMs": 2647
+    },
+    {
+      "id": "G5T4",
+      "provenance": "REAL_HUMAN_REPLAY",
+      "canonicalSnapshotSha256": "8380edc34cdd6821a8ae3ed7b5ac3f8eaad6448aace20ffbaa07ed0b532d982d",
+      "previousClass": "MOUSE_FORCED_WIN_WITHIN_H0",
+      "class": "MOUSE_FORCED_WIN_WITHIN_H0",
+      "changedFromPrevious": false,
+      "proofStatus": "PROVEN",
+      "h0MouseForcedWin": true,
+      "h1MouseForcedWin": true,
+      "h1CatSurvive": false,
+      "h1CatForcedWin": false,
+      "stats": {
+        "h0": {
+          "nodes": 46,
+          "truncated": false,
+          "chanceNodes": 0,
+          "chanceOutcomes": 0,
+          "elapsedMs": 1
+        },
+        "h1": {
+          "nodes": 46,
+          "truncated": false,
+          "chanceNodes": 0,
+          "chanceOutcomes": 0,
+          "elapsedMs": 1
+        },
+        "survive": {
+          "nodes": 46,
+          "truncated": false,
+          "chanceNodes": 0,
+          "chanceOutcomes": 0,
+          "elapsedMs": 1
+        },
+        "catForce": {
+          "nodes": 46,
+          "truncated": false,
+          "chanceNodes": 0,
+          "chanceOutcomes": 0,
+          "elapsedMs": 1
+        }
+      },
+      "certificate": {
+        "side": "mouse",
+        "question": "mouseForce H0",
+        "verdict": "PROVEN",
+        "ok": true,
+        "leaves": 219,
+        "branches": 41,
+        "chanceNodes": 0,
+        "policyMisses": 0,
+        "policySize": 25,
+        "reason": null
+      },
+      "reason": "definite quantifier verdict with independent certificate",
+      "elapsedMs": 7
+    },
+    {
+      "id": "G2T1",
+      "provenance": "REAL_HUMAN_REPLAY",
+      "canonicalSnapshotSha256": "1d3ba08cfc23d37ff0c7ecc9bcb3d0063434d9b0f4e2543ca3244e1a659eee5e",
+      "previousClass": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "class": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "changedFromPrevious": false,
+      "proofStatus": "PROVEN",
+      "h0MouseForcedWin": false,
+      "h1MouseForcedWin": false,
+      "h1CatSurvive": true,
+      "h1CatForcedWin": false,
+      "stats": {
+        "h0": {
+          "nodes": 22,
+          "truncated": false,
+          "chanceNodes": 0,
+          "chanceOutcomes": 0,
+          "elapsedMs": 1
+        },
+        "h1": {
+          "nodes": 185,
+          "truncated": false,
+          "chanceNodes": 3,
+          "chanceOutcomes": 96,
+          "elapsedMs": 5
+        },
+        "survive": {
+          "nodes": 185,
+          "truncated": false,
+          "chanceNodes": 3,
+          "chanceOutcomes": 96,
+          "elapsedMs": 5
+        },
+        "catForce": {
+          "nodes": 27220,
+          "truncated": false,
+          "chanceNodes": 0,
+          "chanceOutcomes": 0,
+          "elapsedMs": 601
+        }
+      },
+      "certificate": {
+        "side": "cat",
+        "question": "catSurvive H1",
+        "verdict": "PROVEN",
+        "ok": true,
+        "leaves": 538,
+        "branches": 121,
+        "chanceNodes": 3,
+        "policyMisses": 0,
+        "policySize": 64,
+        "reason": null
+      },
+      "reason": "definite quantifier verdict with independent certificate",
+      "elapsedMs": 616
+    },
+    {
+      "id": "G2T2",
+      "provenance": "REAL_HUMAN_REPLAY",
+      "canonicalSnapshotSha256": "56c7a052ab37ca911e13b38f3294232ab4cb93631d44f8a12a89dd3ec6e4a1fe",
+      "previousClass": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "class": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "changedFromPrevious": false,
+      "proofStatus": "PROVEN",
+      "h0MouseForcedWin": false,
+      "h1MouseForcedWin": false,
+      "h1CatSurvive": true,
+      "h1CatForcedWin": false,
+      "stats": {
+        "h0": {
+          "nodes": 18,
+          "truncated": false,
+          "chanceNodes": 0,
+          "chanceOutcomes": 0,
+          "elapsedMs": 1
+        },
+        "h1": {
+          "nodes": 125,
+          "truncated": false,
+          "chanceNodes": 1,
+          "chanceOutcomes": 25,
+          "elapsedMs": 4
+        },
+        "survive": {
+          "nodes": 125,
+          "truncated": false,
+          "chanceNodes": 1,
+          "chanceOutcomes": 25,
+          "elapsedMs": 3
+        },
+        "catForce": {
+          "nodes": 3869,
+          "truncated": false,
+          "chanceNodes": 0,
+          "chanceOutcomes": 0,
+          "elapsedMs": 89
+        }
+      },
+      "certificate": {
+        "side": "cat",
+        "question": "catSurvive H1",
+        "verdict": "PROVEN",
+        "ok": true,
+        "leaves": 324,
+        "branches": 77,
+        "chanceNodes": 1,
+        "policyMisses": 0,
+        "policySize": 48,
+        "reason": null
+      },
+      "reason": "definite quantifier verdict with independent certificate",
+      "elapsedMs": 101
+    },
+    {
+      "id": "G2T3",
+      "provenance": "REAL_HUMAN_REPLAY",
+      "canonicalSnapshotSha256": "3ba6a4eeaacaee07bbfcfe2f3d23c5709f4cfbb194dadfcaf6cf78456e289a13",
+      "previousClass": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "class": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "changedFromPrevious": false,
+      "proofStatus": "PROVEN",
+      "h0MouseForcedWin": false,
+      "h1MouseForcedWin": false,
+      "h1CatSurvive": true,
+      "h1CatForcedWin": false,
+      "stats": {
+        "h0": {
+          "nodes": 24,
+          "truncated": false,
+          "chanceNodes": 1,
+          "chanceOutcomes": 28,
+          "elapsedMs": 1
+        },
+        "h1": {
+          "nodes": 340,
+          "truncated": false,
+          "chanceNodes": 25,
+          "chanceOutcomes": 739,
+          "elapsedMs": 10
+        },
+        "survive": {
+          "nodes": 51799,
+          "truncated": false,
+          "chanceNodes": 1107,
+          "chanceOutcomes": 33579,
+          "elapsedMs": 1594
+        },
+        "catForce": {
+          "nodes": 3888,
+          "truncated": false,
+          "chanceNodes": 0,
+          "chanceOutcomes": 0,
+          "elapsedMs": 92
+        }
+      },
+      "certificate": {
+        "side": "cat",
+        "question": "catSurvive H1",
+        "verdict": "PROVEN",
+        "ok": true,
+        "leaves": 199415,
+        "branches": 51619,
+        "chanceNodes": 1107,
+        "policyMisses": 0,
+        "policySize": 180,
+        "reason": null
+      },
+      "reason": "definite quantifier verdict with independent certificate",
+      "elapsedMs": 3317
+    },
+    {
+      "id": "G2T4",
+      "provenance": "REAL_HUMAN_REPLAY",
+      "canonicalSnapshotSha256": "dcc19d14519f8fd380d86cb05a279eced89f9c6b9128718676230c8669240693",
+      "previousClass": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "class": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "changedFromPrevious": false,
+      "proofStatus": "PROVEN",
+      "h0MouseForcedWin": false,
+      "h1MouseForcedWin": false,
+      "h1CatSurvive": true,
+      "h1CatForcedWin": false,
+      "stats": {
+        "h0": {
+          "nodes": 107,
+          "truncated": false,
+          "chanceNodes": 12,
+          "chanceOutcomes": 324,
+          "elapsedMs": 3
+        },
+        "h1": {
+          "nodes": 1165,
+          "truncated": false,
+          "chanceNodes": 52,
+          "chanceOutcomes": 1410,
+          "elapsedMs": 35
+        },
+        "survive": {
+          "nodes": 50340,
+          "truncated": false,
+          "chanceNodes": 1012,
+          "chanceOutcomes": 27300,
+          "elapsedMs": 1563
+        },
+        "catForce": {
+          "nodes": 7159,
+          "truncated": false,
+          "chanceNodes": 2,
+          "chanceOutcomes": 56,
+          "elapsedMs": 196
+        }
+      },
+      "certificate": {
+        "side": "cat",
+        "question": "catSurvive H1",
+        "verdict": "PROVEN",
+        "ok": true,
+        "leaves": 143020,
+        "branches": 35754,
+        "chanceNodes": 858,
+        "policyMisses": 0,
+        "policySize": 3685,
+        "reason": null
+      },
+      "reason": "definite quantifier verdict with independent certificate",
+      "elapsedMs": 3129
+    },
+    {
+      "id": "G2T5",
+      "provenance": "REAL_HUMAN_REPLAY",
+      "canonicalSnapshotSha256": "d3e94fdff264d176db6f4236bd16cafe7ca0b81f59b50050369313568dba214e",
+      "previousClass": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "class": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "changedFromPrevious": false,
+      "proofStatus": "PROVEN",
+      "h0MouseForcedWin": false,
+      "h1MouseForcedWin": false,
+      "h1CatSurvive": true,
+      "h1CatForcedWin": false,
+      "stats": {
+        "h0": {
+          "nodes": 53,
+          "truncated": false,
+          "chanceNodes": 0,
+          "chanceOutcomes": 0,
+          "elapsedMs": 2
+        },
+        "h1": {
+          "nodes": 415,
+          "truncated": false,
+          "chanceNodes": 2,
+          "chanceOutcomes": 60,
+          "elapsedMs": 12
+        },
+        "survive": {
+          "nodes": 415,
+          "truncated": false,
+          "chanceNodes": 2,
+          "chanceOutcomes": 60,
+          "elapsedMs": 13
+        },
+        "catForce": {
+          "nodes": 9445,
+          "truncated": false,
+          "chanceNodes": 0,
+          "chanceOutcomes": 0,
+          "elapsedMs": 249
+        }
+      },
+      "certificate": {
+        "side": "cat",
+        "question": "catSurvive H1",
+        "verdict": "PROVEN",
+        "ok": true,
+        "leaves": 1279,
+        "branches": 299,
+        "chanceNodes": 2,
+        "policyMisses": 0,
+        "policySize": 116,
+        "reason": null
+      },
+      "reason": "definite quantifier verdict with independent certificate",
+      "elapsedMs": 291
+    },
+    {
+      "id": "G2T6",
+      "provenance": "REAL_HUMAN_REPLAY",
+      "canonicalSnapshotSha256": "20f33cea1179b6dc24a88fc5c1ec71f4ca1c3c1b565cb401ee17da85683a3601",
+      "previousClass": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "class": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "changedFromPrevious": false,
+      "proofStatus": "PROVEN",
+      "h0MouseForcedWin": false,
+      "h1MouseForcedWin": false,
+      "h1CatSurvive": true,
+      "h1CatForcedWin": false,
+      "stats": {
+        "h0": {
+          "nodes": 16,
+          "truncated": false,
+          "chanceNodes": 0,
+          "chanceOutcomes": 0,
+          "elapsedMs": 0
+        },
+        "h1": {
+          "nodes": 209,
+          "truncated": false,
+          "chanceNodes": 7,
+          "chanceOutcomes": 195,
+          "elapsedMs": 5
+        },
+        "survive": {
+          "nodes": 3081,
+          "truncated": false,
+          "chanceNodes": 61,
+          "chanceOutcomes": 1715,
+          "elapsedMs": 78
+        },
+        "catForce": {
+          "nodes": 774,
+          "truncated": false,
+          "chanceNodes": 0,
+          "chanceOutcomes": 0,
+          "elapsedMs": 18
+        }
+      },
+      "certificate": {
+        "side": "cat",
+        "question": "catSurvive H1",
+        "verdict": "PROVEN",
+        "ok": true,
+        "leaves": 10389,
+        "branches": 3033,
+        "chanceNodes": 61,
+        "policyMisses": 0,
+        "policySize": 48,
+        "reason": null
+      },
+      "reason": "definite quantifier verdict with independent certificate",
+      "elapsedMs": 180
+    },
+    {
+      "id": "G2T7",
+      "provenance": "REAL_HUMAN_REPLAY",
+      "canonicalSnapshotSha256": "7d16844a86f9078d5af87d3d1f10a4b50e7bd81617441af4c5abf265c9dc38c2",
+      "previousClass": "MOUSE_FORCED_WIN_WITHIN_H1",
+      "class": "UNRESOLVED",
+      "changedFromPrevious": true,
+      "proofStatus": "UNRESOLVED",
+      "h0MouseForcedWin": false,
+      "h1MouseForcedWin": null,
+      "h1CatSurvive": null,
+      "h1CatForcedWin": false,
+      "stats": {
+        "h0": {
+          "nodes": 52,
+          "truncated": false,
+          "chanceNodes": 3,
+          "chanceOutcomes": 91,
+          "elapsedMs": 1
+        },
+        "h1": {
+          "nodes": 600001,
+          "truncated": true,
+          "chanceNodes": 15923,
+          "chanceOutcomes": 484396,
+          "elapsedMs": 18458
+        },
+        "survive": {
+          "nodes": 600001,
+          "truncated": true,
+          "chanceNodes": 15144,
+          "chanceOutcomes": 484451,
+          "elapsedMs": 20343
+        },
+        "catForce": {
+          "nodes": 1950,
+          "truncated": false,
+          "chanceNodes": 0,
+          "chanceOutcomes": 0,
+          "elapsedMs": 43
+        }
+      },
+      "certificate": null,
+      "reason": "node cap 600000 reached with prune disabled; cannot certify within frozen budget (honest UNRESOLVED, not PASS)",
+      "elapsedMs": 38846
+    },
+    {
+      "id": "G2T8",
+      "provenance": "REAL_HUMAN_REPLAY",
+      "canonicalSnapshotSha256": "985b24a76bf5ad8f45975ac703337c17c28ace0811fae3d32dc45514ce3518dc",
+      "previousClass": "MOUSE_FORCED_WIN_WITHIN_H0",
+      "class": "MOUSE_FORCED_WIN_WITHIN_H0",
+      "changedFromPrevious": false,
+      "proofStatus": "PROVEN",
+      "h0MouseForcedWin": true,
+      "h1MouseForcedWin": true,
+      "h1CatSurvive": false,
+      "h1CatForcedWin": false,
+      "stats": {
+        "h0": {
+          "nodes": 3138,
+          "truncated": false,
+          "chanceNodes": 0,
+          "chanceOutcomes": 0,
+          "elapsedMs": 82
+        },
+        "h1": {
+          "nodes": 151888,
+          "truncated": false,
+          "chanceNodes": 442,
+          "chanceOutcomes": 14091,
+          "elapsedMs": 4024
+        },
+        "survive": {
+          "nodes": 226511,
+          "truncated": false,
+          "chanceNodes": 442,
+          "chanceOutcomes": 14091,
+          "elapsedMs": 5905
+        },
+        "catForce": {
+          "nodes": 14383,
+          "truncated": false,
+          "chanceNodes": 0,
+          "chanceOutcomes": 0,
+          "elapsedMs": 286
+        }
+      },
+      "certificate": {
+        "side": "mouse",
+        "question": "mouseForce H0",
+        "verdict": "PROVEN",
+        "ok": true,
+        "leaves": 964,
+        "branches": 88,
+        "chanceNodes": 0,
+        "policyMisses": 0,
+        "policySize": 288,
+        "reason": null
+      },
+      "reason": "definite quantifier verdict with independent certificate",
+      "elapsedMs": 10314
+    },
+    {
+      "id": "G1T1",
+      "provenance": "REAL_HUMAN_REPLAY",
+      "canonicalSnapshotSha256": "def8745ffa0e3c42a7307978441ef57b0b04fba1d84f4511206f9c6f75675632",
+      "previousClass": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "class": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "changedFromPrevious": false,
+      "proofStatus": "PROVEN",
+      "h0MouseForcedWin": false,
+      "h1MouseForcedWin": false,
+      "h1CatSurvive": true,
+      "h1CatForcedWin": false,
+      "stats": {
+        "h0": {
+          "nodes": 27,
+          "truncated": false,
+          "chanceNodes": 0,
+          "chanceOutcomes": 0,
+          "elapsedMs": 1
+        },
+        "h1": {
+          "nodes": 150,
+          "truncated": false,
+          "chanceNodes": 0,
+          "chanceOutcomes": 0,
+          "elapsedMs": 6
+        },
+        "survive": {
+          "nodes": 150,
+          "truncated": false,
+          "chanceNodes": 0,
+          "chanceOutcomes": 0,
+          "elapsedMs": 6
+        },
+        "catForce": {
+          "nodes": 21829,
+          "truncated": false,
+          "chanceNodes": 0,
+          "chanceOutcomes": 0,
+          "elapsedMs": 600
+        }
+      },
+      "certificate": {
+        "side": "cat",
+        "question": "catSurvive H1",
+        "verdict": "PROVEN",
+        "ok": true,
+        "leaves": 435,
+        "branches": 90,
+        "chanceNodes": 0,
+        "policyMisses": 0,
+        "policySize": 60,
+        "reason": null
+      },
+      "reason": "definite quantifier verdict with independent certificate",
+      "elapsedMs": 619
+    },
+    {
+      "id": "G1T2",
+      "provenance": "REAL_HUMAN_REPLAY",
+      "canonicalSnapshotSha256": "c2eb8dc3ce1ddc3e653109d62139a0b92cf626d052d7856d51b7666943f8ff43",
+      "previousClass": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "class": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "changedFromPrevious": false,
+      "proofStatus": "PROVEN",
+      "h0MouseForcedWin": false,
+      "h1MouseForcedWin": false,
+      "h1CatSurvive": true,
+      "h1CatForcedWin": false,
+      "stats": {
+        "h0": {
+          "nodes": 26,
+          "truncated": false,
+          "chanceNodes": 0,
+          "chanceOutcomes": 0,
+          "elapsedMs": 1
+        },
+        "h1": {
+          "nodes": 152,
+          "truncated": false,
+          "chanceNodes": 0,
+          "chanceOutcomes": 0,
+          "elapsedMs": 5
+        },
+        "survive": {
+          "nodes": 152,
+          "truncated": false,
+          "chanceNodes": 0,
+          "chanceOutcomes": 0,
+          "elapsedMs": 4
+        },
+        "catForce": {
+          "nodes": 6518,
+          "truncated": false,
+          "chanceNodes": 0,
+          "chanceOutcomes": 0,
+          "elapsedMs": 173
+        }
+      },
+      "certificate": {
+        "side": "cat",
+        "question": "catSurvive H1",
+        "verdict": "PROVEN",
+        "ok": true,
+        "leaves": 445,
+        "branches": 92,
+        "chanceNodes": 0,
+        "policyMisses": 0,
+        "policySize": 60,
+        "reason": null
+      },
+      "reason": "definite quantifier verdict with independent certificate",
+      "elapsedMs": 189
+    },
+    {
+      "id": "G1T3",
+      "provenance": "REAL_HUMAN_REPLAY",
+      "canonicalSnapshotSha256": "e15e6209f7d64337ac02675b9299b7599f06c9d33abfa41bdc84baea2f089439",
+      "previousClass": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "class": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "changedFromPrevious": false,
+      "proofStatus": "PROVEN",
+      "h0MouseForcedWin": false,
+      "h1MouseForcedWin": false,
+      "h1CatSurvive": true,
+      "h1CatForcedWin": false,
+      "stats": {
+        "h0": {
+          "nodes": 22,
+          "truncated": false,
+          "chanceNodes": 0,
+          "chanceOutcomes": 0,
+          "elapsedMs": 1
+        },
+        "h1": {
+          "nodes": 183,
+          "truncated": false,
+          "chanceNodes": 0,
+          "chanceOutcomes": 0,
+          "elapsedMs": 5
+        },
+        "survive": {
+          "nodes": 183,
+          "truncated": false,
+          "chanceNodes": 0,
+          "chanceOutcomes": 0,
+          "elapsedMs": 6
+        },
+        "catForce": {
+          "nodes": 2483,
+          "truncated": false,
+          "chanceNodes": 0,
+          "chanceOutcomes": 0,
+          "elapsedMs": 67
+        }
+      },
+      "certificate": {
+        "side": "cat",
+        "question": "catSurvive H1",
+        "verdict": "PROVEN",
+        "ok": true,
+        "leaves": 478,
+        "branches": 115,
+        "chanceNodes": 0,
+        "policyMisses": 0,
+        "policySize": 68,
+        "reason": null
+      },
+      "reason": "definite quantifier verdict with independent certificate",
+      "elapsedMs": 86
+    },
+    {
+      "id": "G1T4",
+      "provenance": "REAL_HUMAN_REPLAY",
+      "canonicalSnapshotSha256": "1acd9e356a3ee300c0d2b46d30745e0c9c9553de7230a673495a3a55f4e30d81",
+      "previousClass": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "class": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "changedFromPrevious": false,
+      "proofStatus": "PROVEN",
+      "h0MouseForcedWin": false,
+      "h1MouseForcedWin": false,
+      "h1CatSurvive": true,
+      "h1CatForcedWin": false,
+      "stats": {
+        "h0": {
+          "nodes": 17,
+          "truncated": false,
+          "chanceNodes": 0,
+          "chanceOutcomes": 0,
+          "elapsedMs": 0
+        },
+        "h1": {
+          "nodes": 229,
+          "truncated": false,
+          "chanceNodes": 23,
+          "chanceOutcomes": 699,
+          "elapsedMs": 6
+        },
+        "survive": {
+          "nodes": 10286,
+          "truncated": false,
+          "chanceNodes": 464,
+          "chanceOutcomes": 13747,
+          "elapsedMs": 346
+        },
+        "catForce": {
+          "nodes": 509,
+          "truncated": false,
+          "chanceNodes": 0,
+          "chanceOutcomes": 0,
+          "elapsedMs": 12
+        }
+      },
+      "certificate": {
+        "side": "cat",
+        "question": "catSurvive H1",
+        "verdict": "PROVEN",
+        "ok": true,
+        "leaves": 48158,
+        "branches": 10242,
+        "chanceNodes": 464,
+        "policyMisses": 0,
+        "policySize": 44,
+        "reason": null
+      },
+      "reason": "definite quantifier verdict with independent certificate",
+      "elapsedMs": 706
+    },
+    {
+      "id": "G1T5",
+      "provenance": "REAL_HUMAN_REPLAY",
+      "canonicalSnapshotSha256": "7885fa5f183d972bf2d9d1e852c6c4431d1903e8358ee6d1a72df44a49175f05",
+      "previousClass": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "class": "UNRESOLVED",
+      "changedFromPrevious": true,
+      "proofStatus": "UNRESOLVED",
+      "h0MouseForcedWin": false,
+      "h1MouseForcedWin": false,
+      "h1CatSurvive": null,
+      "h1CatForcedWin": false,
+      "stats": {
+        "h0": {
+          "nodes": 95,
+          "truncated": false,
+          "chanceNodes": 21,
+          "chanceOutcomes": 574,
+          "elapsedMs": 2
+        },
+        "h1": {
+          "nodes": 2173,
+          "truncated": false,
+          "chanceNodes": 247,
+          "chanceOutcomes": 7352,
+          "elapsedMs": 62
+        },
+        "survive": {
+          "nodes": 600001,
+          "truncated": true,
+          "chanceNodes": 20712,
+          "chanceOutcomes": 595808,
+          "elapsedMs": 20056
+        },
+        "catForce": {
+          "nodes": 4959,
+          "truncated": false,
+          "chanceNodes": 3,
+          "chanceOutcomes": 96,
+          "elapsedMs": 135
+        }
+      },
+      "certificate": null,
+      "reason": "node cap 600000 reached with prune disabled; cannot certify within frozen budget (honest UNRESOLVED, not PASS)",
+      "elapsedMs": 20255
+    },
+    {
+      "id": "G1T6",
+      "provenance": "REAL_HUMAN_REPLAY",
+      "canonicalSnapshotSha256": "25f66e8d8a2334c4e9b979252b4cef18b1f4403bf37bfe7a1d75b3c5f4a3bc56",
+      "previousClass": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "class": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "changedFromPrevious": false,
+      "proofStatus": "PROVEN",
+      "h0MouseForcedWin": false,
+      "h1MouseForcedWin": false,
+      "h1CatSurvive": true,
+      "h1CatForcedWin": false,
+      "stats": {
+        "h0": {
+          "nodes": 52,
+          "truncated": false,
+          "chanceNodes": 0,
+          "chanceOutcomes": 0,
+          "elapsedMs": 3
+        },
+        "h1": {
+          "nodes": 462,
+          "truncated": false,
+          "chanceNodes": 5,
+          "chanceOutcomes": 135,
+          "elapsedMs": 13
+        },
+        "survive": {
+          "nodes": 1996,
+          "truncated": false,
+          "chanceNodes": 5,
+          "chanceOutcomes": 135,
+          "elapsedMs": 74
+        },
+        "catForce": {
+          "nodes": 10241,
+          "truncated": false,
+          "chanceNodes": 15,
+          "chanceOutcomes": 458,
+          "elapsedMs": 259
+        }
+      },
+      "certificate": {
+        "side": "cat",
+        "question": "catSurvive H1",
+        "verdict": "PROVEN",
+        "ok": true,
+        "leaves": 6392,
+        "branches": 1883,
+        "chanceNodes": 5,
+        "policyMisses": 0,
+        "policySize": 113,
+        "reason": null
+      },
+      "reason": "definite quantifier verdict with independent certificate",
+      "elapsedMs": 412
+    },
+    {
+      "id": "G1T7",
+      "provenance": "REAL_HUMAN_REPLAY",
+      "canonicalSnapshotSha256": "42a1e276b346f40f7e8cf37d8bfc6e0af1d731dce24f279e0650a440c5f7c366",
+      "previousClass": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "class": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "changedFromPrevious": false,
+      "proofStatus": "PROVEN",
+      "h0MouseForcedWin": false,
+      "h1MouseForcedWin": false,
+      "h1CatSurvive": true,
+      "h1CatForcedWin": false,
+      "stats": {
+        "h0": {
+          "nodes": 50,
+          "truncated": false,
+          "chanceNodes": 0,
+          "chanceOutcomes": 0,
+          "elapsedMs": 1
+        },
+        "h1": {
+          "nodes": 383,
+          "truncated": false,
+          "chanceNodes": 2,
+          "chanceOutcomes": 54,
+          "elapsedMs": 10
+        },
+        "survive": {
+          "nodes": 1033,
+          "truncated": false,
+          "chanceNodes": 2,
+          "chanceOutcomes": 54,
+          "elapsedMs": 31
+        },
+        "catForce": {
+          "nodes": 8176,
+          "truncated": false,
+          "chanceNodes": 0,
+          "chanceOutcomes": 0,
+          "elapsedMs": 181
+        }
+      },
+      "certificate": {
+        "side": "cat",
+        "question": "catSurvive H1",
+        "verdict": "PROVEN",
+        "ok": true,
+        "leaves": 3431,
+        "branches": 936,
+        "chanceNodes": 2,
+        "policyMisses": 0,
+        "policySize": 97,
+        "reason": null
+      },
+      "reason": "definite quantifier verdict with independent certificate",
+      "elapsedMs": 259
+    },
+    {
+      "id": "G1T8",
+      "provenance": "REAL_HUMAN_REPLAY",
+      "canonicalSnapshotSha256": "0f5e6dc0ed42a46d06fb875e51f84f972a0e18bc2aad555e6642fa751ecabde3",
+      "previousClass": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "class": "UNRESOLVED",
+      "changedFromPrevious": true,
+      "proofStatus": "UNRESOLVED",
+      "h0MouseForcedWin": false,
+      "h1MouseForcedWin": false,
+      "h1CatSurvive": null,
+      "h1CatForcedWin": false,
+      "stats": {
+        "h0": {
+          "nodes": 41,
+          "truncated": false,
+          "chanceNodes": 2,
+          "chanceOutcomes": 62,
+          "elapsedMs": 1
+        },
+        "h1": {
+          "nodes": 548,
+          "truncated": false,
+          "chanceNodes": 15,
+          "chanceOutcomes": 466,
+          "elapsedMs": 17
+        },
+        "survive": {
+          "nodes": 600001,
+          "truncated": true,
+          "chanceNodes": 11851,
+          "chanceOutcomes": 340401,
+          "elapsedMs": 17006
+        },
+        "catForce": {
+          "nodes": 3935,
+          "truncated": false,
+          "chanceNodes": 0,
+          "chanceOutcomes": 0,
+          "elapsedMs": 97
+        }
+      },
+      "certificate": null,
+      "reason": "node cap 600000 reached with prune disabled; cannot certify within frozen budget (honest UNRESOLVED, not PASS)",
+      "elapsedMs": 17120
+    },
+    {
+      "id": "G1T9",
+      "provenance": "REAL_HUMAN_REPLAY",
+      "canonicalSnapshotSha256": "5639f7682d7c5f6f0aa78d2a7103374cd4d08b3326c21dcccadc188af54013cf",
+      "previousClass": "MOUSE_FORCED_WIN_WITHIN_H1",
+      "class": "MOUSE_FORCED_WIN_WITHIN_H0",
+      "changedFromPrevious": true,
+      "proofStatus": "PROVEN",
+      "h0MouseForcedWin": true,
+      "h1MouseForcedWin": true,
+      "h1CatSurvive": false,
+      "h1CatForcedWin": false,
+      "stats": {
+        "h0": {
+          "nodes": 24604,
+          "truncated": false,
+          "chanceNodes": 1311,
+          "chanceOutcomes": 38178,
+          "elapsedMs": 782
+        },
+        "h1": {
+          "nodes": 229158,
+          "truncated": false,
+          "chanceNodes": 19211,
+          "chanceOutcomes": 562930,
+          "elapsedMs": 7245
+        },
+        "survive": {
+          "nodes": 45365,
+          "truncated": false,
+          "chanceNodes": 3882,
+          "chanceOutcomes": 111480,
+          "elapsedMs": 1675
+        },
+        "catForce": {
+          "nodes": 2292,
+          "truncated": false,
+          "chanceNodes": 0,
+          "chanceOutcomes": 0,
+          "elapsedMs": 67
+        }
+      },
+      "certificate": {
+        "side": "mouse",
+        "question": "mouseForce H0",
+        "verdict": "PROVEN",
+        "ok": true,
+        "leaves": 19728,
+        "branches": 66,
+        "chanceNodes": 166,
+        "policyMisses": 0,
+        "policySize": 2943,
+        "reason": null
+      },
+      "reason": "definite quantifier verdict with independent certificate",
+      "elapsedMs": 10204
+    }
+  ],
+  "previousCounts": {
+    "CAT_SURVIVAL_CERTIFIED_WITHIN_H1": 18,
+    "MOUSE_FORCED_WIN_WITHIN_H0": 3,
+    "MOUSE_FORCED_WIN_WITHIN_H1": 3
+  },
+  "elapsedMs": 166554
+}

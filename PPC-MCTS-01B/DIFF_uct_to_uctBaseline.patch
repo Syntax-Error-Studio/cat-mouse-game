@@ -1,0 +1,491 @@
+diff --git "a/F:\\\345\260\217\347\214\253\345\260\217\351\274\240\\PPC-MCTS-01\\proto\\uct.ts" "b/F:\\\345\260\217\347\214\253\345\260\217\351\274\240\\PPC-MCTS-01B\\proto\\uctBaseline.ts"
+index 21ea32d..55ce8ba 100644
+--- "a/F:\\\345\260\217\347\214\253\345\260\217\351\274\240\\PPC-MCTS-01\\proto\\uct.ts"
++++ "b/F:\\\345\260\217\347\214\253\345\260\217\351\274\240\\PPC-MCTS-01B\\proto\\uctBaseline.ts"
+@@ -1,18 +1,35 @@
+ /**
+- * PPC-MCTS-01 — Stepwise Stochastic UCT (research prototype).
++ * PPC-MCTS-01B-HARNESS-REPAIR — BASELINE harness fork of `PPC-MCTS-01/proto/uct.ts`.
+  *
+- * Design contract (frozen by the task):
+- *   - transitions/legality = the REAL search kernel:
+- *       generateLegalSearchActions, simulateSearchAction, stateKey, gameAffectingEqual.
+- *   - one node per decision state; CHANCE is an explicit layer that samples one
+- *     validated outcome with the MCTS-owned seeded PRNG (never Math.random).
+- *   - cat-perspective zero-sum value; cat nodes maximise, mouse nodes minimise.
+- *   - UCB1 with c = sqrt(2) (normalised reward in [-1, 1]).
+- *   - depth counted in ACTION-RIGHT HAND-OFFS (not tree plies), horizon H=4.
+- *   - 100 ms wall budget, 500 000 node safety cap, statistics committed only
+- *     for COMPLETE simulations.
+- *   - UCT-R rollout = uniform random; UCT-H rollout = frozen hybrid evaluator.
+- *     Both share the SAME leaf evaluator: hybridEvaluateForCat.
++ * WHY A FORK: Phase 1 must stop both arms after exactly K COMPLETE simulations.
++ * The original prototype stops on `maxNodes` or a wall deadline, which makes the
++ * two arms run different amounts of work and turns "parity" into "parity of
++ * whatever happened to fit". `PPC-MCTS-01/` is frozen by the brief, so the seam
++ * cannot be added there.
++ *
++ * WHAT IS IDENTICAL TO THE FORK PARENT (line-for-line, same order):
++ *   - module-level: `evaluateLeaf`, `isTerminal`, `guidanceValue`,
++ *     `selectRolloutAction` (only a trailing optional trace argument added),
++ *     `actionKey`, `makeDecisionNode`, `makeChanceNode`, `handoffDelta`
++ *   - class: `simulate`, `applyEdge`, `createDecision`, `noteCreation`,
++ *     `selectEdge`, `rollout`, `backprop`, `bestRootEdge`, `extractPlan`
++ *   - every threshold, comparison, tie-break, epsilon and iteration order
++ *   - the RNG construction, the salt constants, the seed derivation
++ *
++ * WHAT IS NEW (and nothing else):
++ *   1. `maxCompletedSimulations?: number` — TEST-ONLY stop seam. The counter is
++ *      tested only at the TOP of the simulation loop, i.e. after a simulation
++ *      has completed and been backpropagated. A simulation is never abandoned
++ *      halfway, and the K-th simulation is always a full one.
++ *   2. `trace?: TraceCollector` — read-only instrumentation. When it is absent
++ *      every recording call is a single null check and the two RNG objects are
++ *      `mulberry32(...)` exactly as before.
++ *
++ * PROOF OBLIGATION (recorded in BASELINE_FORK_PROVENANCE.json):
++ *   with `maxCompletedSimulations` and `trace` both absent, this class must
++ *   produce a byte-identical tree fingerprint, plan, root-action stats and every
++ *   non-timing diagnostic compared with `UctSearch` from the frozen parent.
++ *   That is verified at 96 fixed-node cells and at fixed simulation counts.
+  */
+ import type { GameEngineState } from '../../src/game/engine';
+ import type { RuleSet, SearchAction, SearchTransitionResult } from '../../src/game/ai/searchTypes';
+@@ -23,11 +40,13 @@ import { gameAffectingEqual } from '../../src/game/ai/stateCompare';
+ import { mateActionCost } from '../../src/game/ai/expectiminimax';
+ import { hybridEvaluateForCat } from '../../src/game/ai/hybridLeaf';
+ import { GamePhase, PieceType } from '../../src/game/types';
+-import type { Rng } from './seededRng';
+-import { mulberry32, seedFor, hashString32 } from './seededRng';
+-import { normalizeLeafValue, terminalReward } from './value';
+-import { validateChance, sampleChance } from './chance';
+-import type { ValidatedChance } from './chance';
++import type { Rng } from '../../PPC-MCTS-01/proto/seededRng';
++import { mulberry32, seedFor, hashString32 } from '../../PPC-MCTS-01/proto/seededRng';
++import { normalizeLeafValue, terminalReward } from '../../PPC-MCTS-01/proto/value';
++import { validateChance, sampleChance } from '../../PPC-MCTS-01/proto/chance';
++import type { ValidatedChance } from '../../PPC-MCTS-01/proto/chance';
++import { TraceCollector, countingTraceRng } from './trace';
++import type { Encodable } from './trace';
+ 
+ export type RolloutMode = 'random' | 'hybrid';
+ 
+@@ -47,6 +66,14 @@ export interface UctOptions {
+   now?: () => number;
+   /** Hard cap on primitive rollout actions (safety valve; horizon is primary). */
+   maxRolloutActions?: number;
++  /**
++   * TEST-ONLY stop seam. Stop once exactly this many simulations have
++   * COMPLETED and been backpropagated. Never stops mid-simulation. `undefined`
++   * = the original node-cap / deadline behaviour.
++   */
++  maxCompletedSimulations?: number;
++  /** TEST-ONLY read-only trace sink. `undefined` = no instrumentation at all. */
++  trace?: TraceCollector;
+ }
+ 
+ export type EdgeTransitionKind = 'unvisited' | 'deterministic' | 'chance';
+@@ -111,6 +138,8 @@ export interface UctDiagnostics {
+   deadlineHit: boolean;
+   nodeCapHit: boolean;
+   postDeadlineNodeCreations: number;
++  /** True when the test-only completed-simulation seam decided the stop. */
++  completedSimulationLimitHit: boolean;
+ }
+ 
+ export interface UctResult {
+@@ -126,6 +155,7 @@ export interface UctResult {
+   rootMeanReward: number;
+   diagnostics: UctDiagnostics;
+   chanceSamples: number;
++  planTraceDigest: string | null;
+ }
+ 
+ const ROOT_TRANSITION = { action: null, kind: 'root' as const };
+@@ -219,12 +249,18 @@ function guidanceValue(
+   return acc;
+ }
+ 
++/**
++ * UNCHANGED selection rule. The only addition is an OPTIONAL read-only tap that
++ * records `(stateKey, actionKey, value)` per candidate. The tap runs strictly
++ * AFTER the value is computed and never touches the RNG or the state.
++ */
+ function selectRolloutAction(
+   state: GameEngineState,
+   actions: SearchAction[],
+   mode: RolloutMode,
+   rules: RuleSet,
+   rng: Rng,
++  trace?: { collector: TraceCollector; kind: 'rollout.guidance' | 'plan.guidance' } | null,
+ ): SearchAction {
+   if (actions.length === 1) return actions[0];
+   if (mode === 'random') return actions[rng.int(actions.length)];
+@@ -232,8 +268,10 @@ function selectRolloutAction(
+   const maximize = state.currentPlayer === PieceType.Cat;
+   let bestVal = maximize ? -Infinity : Infinity;
+   let best: number[] = [];
++  const sk = trace ? stateKey(state) : '';
+   for (let i = 0; i < actions.length; i++) {
+     const val = guidanceValue(state, actions[i], rules);
++    if (trace) trace.collector.record(trace.kind, sk, actionKey(actions[i]), val);
+     if (!Number.isFinite(val)) continue;
+     const better = maximize ? val > bestVal + 1e-12 : val < bestVal - 1e-12;
+     const equal = Math.abs(val - bestVal) <= 1e-12;
+@@ -251,9 +289,11 @@ interface SimOutcome {
+   chanceSamples: number;
+   rolloutSteps: number;
+   maxHandoffs: number;
++  leafValue: number;
++  terminal: boolean;
+ }
+ 
+-export class UctSearch {
++export class UctSearchBaseline {
+   private readonly opts: Required<Pick<UctOptions, 'deadlineMs' | 'maxHandoffs' | 'maxNodes' | 'c' | 'seed' | 'rollout'>> & {
+     rules: RuleSet; now: () => number; maxRolloutActions: number;
+   };
+@@ -263,6 +303,13 @@ export class UctSearch {
+   private readonly chanceSalt = 0x9e3779b9;
+   private readonly policySalt = 0x85ebca6b;
+ 
++  // ---- test seam / instrumentation (inert unless explicitly enabled) ----
++  private readonly stopAfterSims: number | null;
++  private readonly trace: TraceCollector | null;
++  private readonly policyDrawCount: () => number;
++  private readonly chanceDrawCount: () => number;
++  // ----------------------------------------------------------------------
++
+   readonly root: UctNode;
+   private createdNodes = 1;
+   private sims = 0;
+@@ -276,6 +323,7 @@ export class UctSearch {
+   private nodeCapHit = false;
+   private postDeadlineCreations = 0;
+   private deadlineReached = false;
++  private completedSimLimitHit = false;
+ 
+   constructor(state: GameEngineState, options: UctOptions) {
+     this.opts = {
+@@ -289,21 +337,66 @@ export class UctSearch {
+       now: options.now ?? (() => performance.now()),
+       maxRolloutActions: options.maxRolloutActions ?? 40,
+     };
+-    this.chanceRng = mulberry32(seedFor([options.seed, 'chance']) >>> 0);
+-    this.policyRng = mulberry32(seedFor([options.seed, 'policy']) >>> 0);
++    // ---- test seam / instrumentation -----------------------------------
++    // When `trace` is absent the two RNGs below are EXACTLY the parent's, and
++    // the draw counters are constant zero.
++    this.stopAfterSims = options.maxCompletedSimulations ?? null;
++    this.trace = options.trace ?? null;
++    if (this.trace) {
++      const chance = countingTraceRng(
++        mulberry32(seedFor([options.seed, 'chance']) >>> 0), this.trace, 'chance',
++      );
++      const policy = countingTraceRng(
++        mulberry32(seedFor([options.seed, 'policy']) >>> 0), this.trace, 'policy',
++      );
++      this.chanceRng = chance.rng;
++      this.policyRng = policy.rng;
++      this.chanceDrawCount = chance.draws;
++      this.policyDrawCount = policy.draws;
++    } else {
++      this.chanceRng = mulberry32(seedFor([options.seed, 'chance']) >>> 0);
++      this.policyRng = mulberry32(seedFor([options.seed, 'policy']) >>> 0);
++      this.chanceDrawCount = () => 0;
++      this.policyDrawCount = () => 0;
++    }
++    // --------------------------------------------------------------------
+     this.deadlineAt = this.opts.now() + Math.max(1, this.opts.deadlineMs);
+     this.root = makeDecisionNode(state, 0, null, 'root', null);
+   }
+ 
++  private tr(kind: Parameters<TraceCollector['record']>[0], ...fields: Encodable[]): void {
++    if (this.trace !== null) this.trace.record(kind, ...fields);
++  }
++
+   run(): UctResult {
+     const t0 = this.opts.now();
+     for (;;) {
++      // ---- test seam: only between simulations, never inside one --------
++      if (this.stopAfterSims !== null && this.sims >= this.stopAfterSims) {
++        this.completedSimLimitHit = true;
++        break;
++      }
++      // ------------------------------------------------------------------
+       if (this.createdNodes >= this.opts.maxNodes) { this.nodeCapHit = true; break; }
+       if (this.sims > 0 && this.opts.now() >= this.deadlineAt) { this.deadlineHit = true; break; }
++      const traceIndex = this.sims;
++      const policyBefore = this.policyDrawCount();
++      const chanceBefore = this.chanceDrawCount();
++      if (this.trace) this.trace.simulationBegin(traceIndex, stateKey(this.root.state));
+       const sim = this.simulate(this.sims === 0);
+       if (!sim.completed) {
+         this.aborted++;
+         this.deadlineHit = true;
++        // `simulationEnd` records the `sim.end` event itself — do not emit a
++        // second one here.
++        if (this.trace) {
++          this.trace.simulationEnd({
++            index: traceIndex, completed: false, reward: 0, leafValue: 0, terminal: false,
++            pathLength: sim.path.length, rolloutSteps: sim.rolloutSteps,
++            chanceSamples: sim.chanceSamples, policyDraws: 0, chanceDraws: 0,
++            maxHandoffs: sim.maxHandoffs,
++          });
++        }
+         break;
+       }
+       this.backprop(sim.path, sim.reward);
+@@ -311,11 +404,23 @@ export class UctSearch {
+       this.chanceSamples += sim.chanceSamples;
+       this.rolloutSteps += sim.rolloutSteps;
+       if (sim.maxHandoffs > this.maxHandoffsReached) this.maxHandoffsReached = sim.maxHandoffs;
++      if (this.trace) {
++        this.trace.simulationEnd({
++          index: traceIndex, completed: true, reward: sim.reward, leafValue: sim.leafValue,
++          terminal: sim.terminal, pathLength: sim.path.length, rolloutSteps: sim.rolloutSteps,
++          chanceSamples: sim.chanceSamples,
++          policyDraws: this.policyDrawCount() - policyBefore,
++          chanceDraws: this.chanceDrawCount() - chanceBefore,
++          maxHandoffs: sim.maxHandoffs,
++        });
++      }
+     }
+     const elapsedMs = this.opts.now() - t0;
+     if (this.sims > 0 && this.opts.now() >= this.deadlineAt) this.deadlineHit = true;
+ 
++    if (this.trace) this.trace.planBegin();
+     const plan = this.extractPlan();
++    const planTraceDigest = this.trace ? this.trace.planEnd() : null;
+     const rootActionStats = this.root.childNodes.map((e) => ({
+       action: e.action,
+       key: e.key,
+@@ -350,8 +455,10 @@ export class UctSearch {
+         deadlineHit: this.deadlineHit,
+         nodeCapHit: this.nodeCapHit,
+         postDeadlineNodeCreations: this.postDeadlineCreations,
++        completedSimulationLimitHit: this.completedSimLimitHit,
+       },
+       chanceSamples: this.chanceSamples,
++      planTraceDigest,
+     };
+   }
+ 
+@@ -364,7 +471,10 @@ export class UctSearch {
+     let chanceSamples = 0;
+     let maxHandoffs = cur.handoffs;
+ 
+-    const aborted = (): SimOutcome => ({ completed: false, path, reward: 0, chanceSamples, rolloutSteps, maxHandoffs });
++    const aborted = (): SimOutcome => ({
++      completed: false, path, reward: 0, chanceSamples, rolloutSteps, maxHandoffs,
++      leafValue: 0, terminal: false,
++    });
+     const checkDeadline = (): boolean => {
+       if (allowOverrunForFirst && this.sims === 0) return false;
+       if (this.deadlineReached) return true;
+@@ -374,11 +484,14 @@ export class UctSearch {
+ 
+     while (true) {
+       if (checkDeadline()) return aborted();
+-      if (isTerminal(cur.state)) break;
+-      if (cur.handoffs >= this.opts.maxHandoffs) break;
++      if (isTerminal(cur.state)) { this.tr('tree.cycle', stateKey(cur.state), 'terminal'); break; }
++      if (cur.handoffs >= this.opts.maxHandoffs) { this.tr('tree.cycle', stateKey(cur.state), 'handoff-cap'); break; }
++
++      this.tr('tree.visit', cur.kind, stateKey(cur.state), String(cur.currentPlayer),
++        cur.handoffs, cur.visitCount, path.length);
+ 
+       if (cur.kind === 'chance') {
+-        if (cur.chanceOutcomes.length === 0) break;
++        if (cur.chanceOutcomes.length === 0) { this.tr('tree.cycle', stateKey(cur.state), 'empty-chance'); break; }
+         const idx = sampleChance(
+           { outcomes: cur.chanceOutcomes.map((o) => ({ state: o.state, weight: o.weight })), weights: cur.chanceOutcomes.map((o) => o.weight), massError: cur.chanceMassError },
+           this.chanceRng,
+@@ -386,6 +499,8 @@ export class UctSearch {
+         chanceSamples++;
+         const oc = cur.chanceOutcomes[idx];
+         oc.samples++;
++        this.tr('tree.chancePick', stateKey(cur.state), idx, stateKey(oc.state),
++          cur.chanceOutcomes.length);
+         if (!oc.child) {
+           oc.child = this.createDecision(oc.state, cur.handoffs + handoffDelta(cur.currentPlayer, oc.state), cur, null, 'chance-outcome');
+         }
+@@ -393,6 +508,7 @@ export class UctSearch {
+         if (keys.has(stateKey(child.state))) {
+           // Cycle: stop here and ROLLOUT from the sampled outcome instead of
+           // re-entering an already-seen position this simulation.
++          this.tr('tree.cycle', stateKey(child.state), 'chance-outcome');
+           cur = child;
+           path.push(child);
+           break;
+@@ -415,11 +531,15 @@ export class UctSearch {
+           child: null,
+         }));
+         cur.expanded = true;
++        this.tr('tree.expand', stateKey(cur.state), cur.childNodes.length);
+         continue; // select one newly available action edge
+       }
+-      if (cur.childNodes.length === 0) break;
++      if (cur.childNodes.length === 0) { this.tr('tree.expand', stateKey(cur.state), 0); break; }
+ 
+       const edge = this.selectEdge(cur);
++      this.tr('tree.edge', stateKey(cur.state), edge.key,
++        edge.child === null ? 'unvisited' : edge.transitionKind,
++        edge.child === null ? null : stateKey(edge.child.state));
+       if (!edge.child) {
+         const made = this.applyEdge(cur, edge, chanceSamples);
+         chanceSamples = made.chanceSamples;
+@@ -434,6 +554,7 @@ export class UctSearch {
+ 
+       const key = stateKey(edge.child.state);
+       if (keys.has(key)) {
++        this.tr('tree.cycle', key, 'deterministic');
+         path.push(edge.child);
+         cur = edge.child;
+         break; // cycle detected → evaluate (rollout) from here
+@@ -450,7 +571,10 @@ export class UctSearch {
+     rolloutSteps += rollout.steps;
+     chanceSamples += rollout.chanceSamples;
+     maxHandoffs = Math.max(maxHandoffs, rollout.maxHandoffs);
+-    return { completed: true, path, reward: rollout.reward, chanceSamples, rolloutSteps, maxHandoffs };
++    return {
++      completed: true, path, reward: rollout.reward, chanceSamples, rolloutSteps,
++      maxHandoffs, leafValue: rollout.leafValue, terminal: rollout.terminal,
++    };
+   }
+ 
+   private applyEdge(
+@@ -472,6 +596,9 @@ export class UctSearch {
+     edge.transitionKind = 'chance';
+     const validated = validateChance(res.outcomes);
+     this.maxMassError = Math.max(this.maxMassError, validated.massError);
++    this.tr('tree.chanceLayer', stateKey(parent.state), actionKey(edge.action),
++      validated.outcomes.length, validated.weights.map((w) => w),
++      validated.outcomes.map((o) => stateKey(o.state)));
+     const chanceNode = makeChanceNode(parent, validated, edge.action);
+     edge.child = chanceNode;
+     this.createdNodes++;
+@@ -521,25 +648,39 @@ export class UctSearch {
+     startHandoffs: number,
+     allowOverrunForFirst: boolean,
+     startKeys: Set<string>,
+-  ): { completed: boolean; reward: number; steps: number; chanceSamples: number; maxHandoffs: number } {
++  ): { completed: boolean; reward: number; steps: number; chanceSamples: number; maxHandoffs: number; leafValue: number; terminal: boolean } {
+     let state = start;
+     let handoffs = startHandoffs;
+     let steps = 0;
+     let chanceSamples = 0;
+     let maxHandoffs = startHandoffs;
+     const keys = new Set(startKeys);
++    const tap = this.trace ? { collector: this.trace, kind: 'rollout.guidance' as const } : null;
+ 
+     while (steps < this.opts.maxRolloutActions) {
+       const t = terminalReward(state);
+-      if (t !== null) return { completed: true, reward: t, steps, chanceSamples, maxHandoffs };
+-      if (handoffs >= this.opts.maxHandoffs) break;
++      if (t !== null) {
++        this.tr('rollout.leaf', stateKey(state), t, true, steps);
++        return { completed: true, reward: t, steps, chanceSamples, maxHandoffs, leafValue: t, terminal: true };
++      }
++      if (handoffs >= this.opts.maxHandoffs) { this.tr('rollout.stop', 'handoff-cap', steps); break; }
+       if (!(allowOverrunForFirst && this.sims === 0)) {
+-        if (this.deadlineReached) return { completed: false, reward: 0, steps, chanceSamples, maxHandoffs };
+-        if (this.opts.now() >= this.deadlineAt) { this.deadlineReached = true; return { completed: false, reward: 0, steps, chanceSamples, maxHandoffs }; }
++        if (this.deadlineReached) {
++          this.tr('rollout.stop', 'deadline', steps);
++          return { completed: false, reward: 0, steps, chanceSamples, maxHandoffs, leafValue: 0, terminal: false };
++        }
++        if (this.opts.now() >= this.deadlineAt) {
++          this.deadlineReached = true;
++          this.tr('rollout.stop', 'deadline', steps);
++          return { completed: false, reward: 0, steps, chanceSamples, maxHandoffs, leafValue: 0, terminal: false };
++        }
+       }
+       const actions = generateLegalSearchActions(state, this.opts.rules);
+-      if (actions.length === 0) break;
+-      const action = selectRolloutAction(state, actions, this.opts.rollout, this.opts.rules, this.policyRng);
++      this.tr('rollout.step', steps, stateKey(state), String(state.currentPlayer),
++        handoffs, actions.length);
++      if (actions.length === 0) { this.tr('rollout.empty', stateKey(state)); break; }
++      const action = selectRolloutAction(state, actions, this.opts.rollout, this.opts.rules, this.policyRng, tap);
++      this.tr('rollout.pick', stateKey(state), actionKey(action), actions.length);
+       const res = simulateSearchAction(state, action, this.opts.rules);
+       let next: GameEngineState;
+       if (res.kind === 'chance') {
+@@ -548,6 +689,7 @@ export class UctSearch {
+         const idx = sampleChance(v, this.chanceRng);
+         chanceSamples++;
+         next = v.outcomes[idx].state;
++        this.tr('rollout.chance', stateKey(state), idx, stateKey(next), v.outcomes.length);
+       } else {
+         next = res.state;
+       }
+@@ -556,11 +698,15 @@ export class UctSearch {
+       maxHandoffs = Math.max(maxHandoffs, handoffs);
+       steps++;
+       const k = stateKey(next);
+-      if (keys.has(k)) { state = next; break; }
++      const cycled = keys.has(k);
++      this.tr('rollout.next', k, handoffs, cycled);
++      if (cycled) { state = next; break; }
+       keys.add(k);
+       state = next;
+     }
+-    return { completed: true, reward: evaluateLeaf(state), steps, chanceSamples, maxHandoffs };
++    const leafValue = evaluateLeaf(state);
++    this.tr('rollout.leaf', stateKey(state), leafValue, false, steps);
++    return { completed: true, reward: leafValue, steps, chanceSamples, maxHandoffs, leafValue, terminal: false };
+   }
+ 
+   private backprop(path: UctNode[], reward: number): void {
+@@ -600,15 +746,20 @@ export class UctSearch {
+     let cur: UctNode | null = this.root;
+     let treeEndedAtHandoff = false;
+     const maxActions = 12;
++    const tap = this.trace ? { collector: this.trace, kind: 'plan.guidance' as const } : null;
+     while (cur && plan.length < maxActions) {
+-      if (cur.state.phase !== GamePhase.Playing || cur.state.currentPlayer !== PieceType.Cat) break;
++      if (cur.state.phase !== GamePhase.Playing || cur.state.currentPlayer !== PieceType.Cat) {
++        this.tr('plan.stop', 'actor', stateKey(cur.state));
++        break;
++      }
+       let best: UctEdge | null = null;
+       for (const e of cur.childNodes) {
+         if (!e.child) continue;
+         if (!best || best.child!.visitCount < e.child.visitCount) best = e;
+         else if (best.child!.visitCount === e.child.visitCount && e.key < best.key) best = e;
+       }
+-      if (!best || !best.child) break;
++      if (!best || !best.child) { this.tr('plan.stop', 'no-child', stateKey(cur.state)); break; }
++      this.tr('plan.edge', stateKey(cur.state), best.key, best.transitionKind);
+       if (best.transitionKind === 'chance' || best.child.kind === 'chance') {
+         // The final cat action of the turn is legal even though the engine
+         // resolves the CAT->MOUSE boundary as a CHANCE successor. Keep the
+@@ -630,17 +781,20 @@ export class UctSearch {
+       if (state.phase !== GamePhase.Playing || state.currentPlayer !== PieceType.Cat || state.catMovesLeft <= 0) break;
+       const actions = generateLegalSearchActions(state, this.opts.rules);
+       if (actions.length === 0) break;
+-      const action = selectRolloutAction(state, actions, this.opts.rollout, this.opts.rules, this.policyRng);
++      const action = selectRolloutAction(state, actions, this.opts.rollout, this.opts.rules, this.policyRng, tap);
++      this.tr('plan.pick', stateKey(state), actionKey(action), actions.length);
+       const res = simulateSearchAction(state, action, this.opts.rules);
+       // The action itself is legal; a CHANCE result is the post-action
+       // CAT->MOUSE boundary. Keep the action, then end the plan at hand-off.
+       if (res.kind === 'chance') {
+         plan.push(action);
+         extensionSteps++;
++        this.tr('plan.extension', stateKey(state), actionKey(action), 'handoff');
+         break;
+       }
+       plan.push(action);
+       extensionSteps++;
++      this.tr('plan.extension', stateKey(state), actionKey(action), 'step');
+       state = res.state;
+     }
+     return { plan, treeLength, extended: extensionSteps > 0, extensionSteps };
+@@ -651,3 +805,5 @@ export class UctSearch {
+ export function uctSeed(rootId: string, algorithm: string, repetition: number): string {
+   return `PPC-MCTS-01|${rootId}|${algorithm}|rep=${repetition}|h=${hashString32(`${rootId}:${algorithm}:${repetition}`)}`;
+ }
++
++export { ROOT_TRANSITION };

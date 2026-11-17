@@ -1,0 +1,110 @@
+{
+  "driver": "parityFixedSims",
+  "label": "SMOKE_NOT_EVIDENCE",
+  "phase": "FIXED_SIMULATION_PARITY",
+  "isPhase1": false,
+  "note": "SMOKE ONLY — proves the driver executes. Not the pre-registered 960-call Phase 1.",
+  "generatedAt": "2026-11-16T09:51:18.975Z",
+  "wallMs": 7311,
+  "node": "v22.22.2",
+  "fixture": {
+    "path": "src/game/ai/__tests__/fixtures/ppcId01-human-roots.json",
+    "sha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+    "expected": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09"
+  },
+  "config": {
+    "now": "const 0 (deadline cannot fire)",
+    "maxNodes": [
+      64
+    ],
+    "maxHandoffs": 4,
+    "c": 1.4142135623730951,
+    "rolloutModes": [
+      "hybrid",
+      "random"
+    ],
+    "seedFormula": "uctSeed(rootId,'UCT-H',0)"
+  },
+  "cells": [
+    {
+      "root": "G2T6",
+      "mode": "hybrid",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 63,
+      "nodesCreated": 64,
+      "rolloutSteps": 486,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 3748,
+        "prepared": 2143
+      },
+      "impureFallbacks": 0,
+      "digest": "2b64c93adada61659b4a518d161c2495cd2d40b916e3efa78f3e24bae489fc14"
+    },
+    {
+      "root": "G2T6",
+      "mode": "random",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 63,
+      "nodesCreated": 64,
+      "rolloutSteps": 728,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 3607,
+        "prepared": 3111
+      },
+      "impureFallbacks": 0,
+      "digest": "38055f154b938f2673f70f46122fbc201e476be6bee2cc8ad49f96c1906a3209"
+    },
+    {
+      "root": "G1T1",
+      "mode": "hybrid",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 63,
+      "nodesCreated": 64,
+      "rolloutSteps": 839,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 7341,
+        "prepared": 3633
+      },
+      "impureFallbacks": 0,
+      "digest": "99a1d670235439cff8a8eacd909c20e4fba636d4a87c606076605eb5089e56bc"
+    },
+    {
+      "root": "G1T1",
+      "mode": "random",
+      "budget": 64,
+      "pass": true,
+      "diffs": [],
+      "simulations": 63,
+      "nodesCreated": 64,
+      "rolloutSteps": 859,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 4655,
+        "prepared": 3800
+      },
+      "impureFallbacks": 0,
+      "digest": "a67674584862b601e90e95e482e8c41ad59a56ddf7b946bafbdc7851f48aac19"
+    }
+  ],
+  "totals": {
+    "cells": 4,
+    "passed": 4,
+    "failed": 0,
+    "ruleCalls": {
+      "baseline": 19351,
+      "prepared": 12687
+    },
+    "savingFraction": 0.34437496770192755,
+    "impureFallbacks": 0
+  },
+  "verdict": "PASS"
+}

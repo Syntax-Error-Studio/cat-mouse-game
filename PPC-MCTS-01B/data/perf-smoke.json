@@ -1,0 +1,757 @@
+{
+  "driver": "perfBudget100",
+  "label": "SMOKE_NOT_EVIDENCE",
+  "phase": "FIXED_BUDGET_PERFORMANCE",
+  "isPhase2": false,
+  "note": "Subset run. The pre-registered Phase 2 is 24 roots x 20 repetitions x 2 arms = 960 calls in 20 fresh processes.",
+  "generatedAt": "2026-11-16T10:06:06.954Z",
+  "wallMs": 1626,
+  "node": "v22.22.2",
+  "pid": 40144,
+  "fixture": {
+    "path": "src/game/ai/__tests__/fixtures/ppcId01-human-roots.json",
+    "sha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09"
+  },
+  "config": {
+    "deadlineMs": 100,
+    "fullTurnBudgetMs": 150,
+    "maxHandoffs": 4,
+    "maxNodes": 500000,
+    "c": 1.4142135623730951,
+    "rollout": "hybrid",
+    "now": "performance.now()",
+    "seedFormula": "uctSeed(rootId,'UCT-H',repetition)"
+  },
+  "calls": [
+    {
+      "arm": "baseline",
+      "root": "G6T1",
+      "repetition": 1,
+      "order": 0,
+      "seed": "PPC-MCTS-01|G6T1|UCT-H|rep=1|h=2825155953",
+      "searchMs": 100.1845,
+      "totalMs": 102.18339999999999,
+      "withinFullTurnBudget": true,
+      "simulations": 12,
+      "nodesCreated": 14,
+      "rolloutSteps": 140,
+      "chanceSamples": 0,
+      "plan": "CLeft CDown CRight T CRight",
+      "planLength": 5,
+      "rootAction": "CLeft",
+      "rootActionStats": [
+        {
+          "key": "C:ArrowUp",
+          "transitionKind": "deterministic",
+          "visits": 2
+        },
+        {
+          "key": "C:ArrowDown",
+          "transitionKind": "deterministic",
+          "visits": 2
+        },
+        {
+          "key": "C:ArrowLeft",
+          "transitionKind": "deterministic",
+          "visits": 3
+        },
+        {
+          "key": "C:ArrowRight",
+          "transitionKind": "deterministic",
+          "visits": 2
+        },
+        {
+          "key": "T",
+          "transitionKind": "deterministic",
+          "visits": 3
+        }
+      ],
+      "replayOk": true,
+      "replayTerminal": false,
+      "mathRandomCalls": 0,
+      "rolloutPreparedSteps": null,
+      "rolloutImpureFallbacks": null
+    },
+    {
+      "arm": "prepared",
+      "root": "G6T1",
+      "repetition": 1,
+      "order": 1,
+      "seed": "PPC-MCTS-01|G6T1|UCT-H|rep=1|h=2825155953",
+      "searchMs": 100.07250000000002,
+      "totalMs": 101.4437,
+      "withinFullTurnBudget": true,
+      "simulations": 21,
+      "nodesCreated": 22,
+      "rolloutSteps": 241,
+      "chanceSamples": 0,
+      "plan": "CLeft T CDown CRight CRight",
+      "planLength": 5,
+      "rootAction": "CLeft",
+      "rootActionStats": [
+        {
+          "key": "C:ArrowUp",
+          "transitionKind": "deterministic",
+          "visits": 4
+        },
+        {
+          "key": "C:ArrowDown",
+          "transitionKind": "deterministic",
+          "visits": 4
+        },
+        {
+          "key": "C:ArrowLeft",
+          "transitionKind": "deterministic",
+          "visits": 5
+        },
+        {
+          "key": "C:ArrowRight",
+          "transitionKind": "deterministic",
+          "visits": 4
+        },
+        {
+          "key": "T",
+          "transitionKind": "deterministic",
+          "visits": 4
+        }
+      ],
+      "replayOk": true,
+      "replayTerminal": false,
+      "mathRandomCalls": 0,
+      "rolloutPreparedSteps": 241,
+      "rolloutImpureFallbacks": 0
+    },
+    {
+      "arm": "baseline",
+      "root": "G5T4",
+      "repetition": 1,
+      "order": 0,
+      "seed": "PPC-MCTS-01|G5T4|UCT-H|rep=1|h=400449423",
+      "searchMs": 100.53109999999998,
+      "totalMs": 100.67269999999996,
+      "withinFullTurnBudget": true,
+      "simulations": 145,
+      "nodesCreated": 146,
+      "rolloutSteps": 218,
+      "chanceSamples": 0,
+      "plan": "CRight CDown CRight CRight",
+      "planLength": 4,
+      "rootAction": "CRight",
+      "rootActionStats": [
+        {
+          "key": "C:ArrowUp",
+          "transitionKind": "deterministic",
+          "visits": 46
+        },
+        {
+          "key": "C:ArrowLeft",
+          "transitionKind": "deterministic",
+          "visits": 47
+        },
+        {
+          "key": "C:ArrowRight",
+          "transitionKind": "deterministic",
+          "visits": 52
+        }
+      ],
+      "replayOk": true,
+      "replayTerminal": false,
+      "mathRandomCalls": 0,
+      "rolloutPreparedSteps": null,
+      "rolloutImpureFallbacks": null
+    },
+    {
+      "arm": "prepared",
+      "root": "G5T4",
+      "repetition": 1,
+      "order": 1,
+      "seed": "PPC-MCTS-01|G5T4|UCT-H|rep=1|h=400449423",
+      "searchMs": 100.11009999999999,
+      "totalMs": 100.27530000000002,
+      "withinFullTurnBudget": true,
+      "simulations": 165,
+      "nodesCreated": 158,
+      "rolloutSteps": 276,
+      "chanceSamples": 0,
+      "plan": "CRight CDown CRight CRight",
+      "planLength": 4,
+      "rootAction": "CRight",
+      "rootActionStats": [
+        {
+          "key": "C:ArrowUp",
+          "transitionKind": "deterministic",
+          "visits": 46
+        },
+        {
+          "key": "C:ArrowLeft",
+          "transitionKind": "deterministic",
+          "visits": 47
+        },
+        {
+          "key": "C:ArrowRight",
+          "transitionKind": "deterministic",
+          "visits": 72
+        }
+      ],
+      "replayOk": true,
+      "replayTerminal": false,
+      "mathRandomCalls": 0,
+      "rolloutPreparedSteps": 284,
+      "rolloutImpureFallbacks": 0
+    },
+    {
+      "arm": "baseline",
+      "root": "G2T6",
+      "repetition": 1,
+      "order": 0,
+      "seed": "PPC-MCTS-01|G2T6|UCT-H|rep=1|h=2136202156",
+      "searchMs": 100.42509999999999,
+      "totalMs": 100.5156,
+      "withinFullTurnBudget": true,
+      "simulations": 36,
+      "nodesCreated": 38,
+      "rolloutSteps": 252,
+      "chanceSamples": 0,
+      "plan": "CDown CLeft CRight CUp",
+      "planLength": 4,
+      "rootAction": "CDown",
+      "rootActionStats": [
+        {
+          "key": "C:ArrowDown",
+          "transitionKind": "deterministic",
+          "visits": 12
+        },
+        {
+          "key": "C:ArrowLeft",
+          "transitionKind": "deterministic",
+          "visits": 12
+        },
+        {
+          "key": "C:ArrowRight",
+          "transitionKind": "deterministic",
+          "visits": 12
+        }
+      ],
+      "replayOk": true,
+      "replayTerminal": false,
+      "mathRandomCalls": 0,
+      "rolloutPreparedSteps": null,
+      "rolloutImpureFallbacks": null
+    },
+    {
+      "arm": "prepared",
+      "root": "G2T6",
+      "repetition": 1,
+      "order": 1,
+      "seed": "PPC-MCTS-01|G2T6|UCT-H|rep=1|h=2136202156",
+      "searchMs": 100.13009999999997,
+      "totalMs": 100.2283000000001,
+      "withinFullTurnBudget": true,
+      "simulations": 39,
+      "nodesCreated": 40,
+      "rolloutSteps": 278,
+      "chanceSamples": 0,
+      "plan": "CDown CLeft CRight CUp",
+      "planLength": 4,
+      "rootAction": "CDown",
+      "rootActionStats": [
+        {
+          "key": "C:ArrowDown",
+          "transitionKind": "deterministic",
+          "visits": 13
+        },
+        {
+          "key": "C:ArrowLeft",
+          "transitionKind": "deterministic",
+          "visits": 13
+        },
+        {
+          "key": "C:ArrowRight",
+          "transitionKind": "deterministic",
+          "visits": 13
+        }
+      ],
+      "replayOk": true,
+      "replayTerminal": false,
+      "mathRandomCalls": 0,
+      "rolloutPreparedSteps": 278,
+      "rolloutImpureFallbacks": 0
+    },
+    {
+      "arm": "baseline",
+      "root": "G1T1",
+      "repetition": 1,
+      "order": 0,
+      "seed": "PPC-MCTS-01|G1T1|UCT-H|rep=1|h=115133680",
+      "searchMs": 100.31539999999995,
+      "totalMs": 101.88470000000007,
+      "withinFullTurnBudget": true,
+      "simulations": 16,
+      "nodesCreated": 18,
+      "rolloutSteps": 218,
+      "chanceSamples": 0,
+      "plan": "CUp CDown CDown T CDown",
+      "planLength": 5,
+      "rootAction": "CUp",
+      "rootActionStats": [
+        {
+          "key": "C:ArrowUp",
+          "transitionKind": "deterministic",
+          "visits": 4
+        },
+        {
+          "key": "C:ArrowDown",
+          "transitionKind": "deterministic",
+          "visits": 3
+        },
+        {
+          "key": "C:ArrowLeft",
+          "transitionKind": "deterministic",
+          "visits": 3
+        },
+        {
+          "key": "C:ArrowRight",
+          "transitionKind": "deterministic",
+          "visits": 3
+        },
+        {
+          "key": "T",
+          "transitionKind": "deterministic",
+          "visits": 3
+        }
+      ],
+      "replayOk": true,
+      "replayTerminal": false,
+      "mathRandomCalls": 0,
+      "rolloutPreparedSteps": null,
+      "rolloutImpureFallbacks": null
+    },
+    {
+      "arm": "prepared",
+      "root": "G1T1",
+      "repetition": 1,
+      "order": 1,
+      "seed": "PPC-MCTS-01|G1T1|UCT-H|rep=1|h=115133680",
+      "searchMs": 100.11500000000001,
+      "totalMs": 101.79920000000004,
+      "withinFullTurnBudget": true,
+      "simulations": 17,
+      "nodesCreated": 18,
+      "rolloutSteps": 231,
+      "chanceSamples": 0,
+      "plan": "CRight CDown CLeft T CDown",
+      "planLength": 5,
+      "rootAction": "CRight",
+      "rootActionStats": [
+        {
+          "key": "C:ArrowUp",
+          "transitionKind": "deterministic",
+          "visits": 4
+        },
+        {
+          "key": "C:ArrowDown",
+          "transitionKind": "deterministic",
+          "visits": 3
+        },
+        {
+          "key": "C:ArrowLeft",
+          "transitionKind": "deterministic",
+          "visits": 3
+        },
+        {
+          "key": "C:ArrowRight",
+          "transitionKind": "deterministic",
+          "visits": 4
+        },
+        {
+          "key": "T",
+          "transitionKind": "deterministic",
+          "visits": 3
+        }
+      ],
+      "replayOk": true,
+      "replayTerminal": false,
+      "mathRandomCalls": 0,
+      "rolloutPreparedSteps": 231,
+      "rolloutImpureFallbacks": 0
+    },
+    {
+      "arm": "prepared",
+      "root": "G6T1",
+      "repetition": 2,
+      "order": 0,
+      "seed": "PPC-MCTS-01|G6T1|UCT-H|rep=2|h=2774823096",
+      "searchMs": 100.44529999999997,
+      "totalMs": 101.26350000000002,
+      "withinFullTurnBudget": true,
+      "simulations": 23,
+      "nodesCreated": 25,
+      "rolloutSteps": 257,
+      "chanceSamples": 0,
+      "plan": "CLeft T CDown CRight CRight",
+      "planLength": 5,
+      "rootAction": "CLeft",
+      "rootActionStats": [
+        {
+          "key": "C:ArrowUp",
+          "transitionKind": "deterministic",
+          "visits": 5
+        },
+        {
+          "key": "C:ArrowDown",
+          "transitionKind": "deterministic",
+          "visits": 4
+        },
+        {
+          "key": "C:ArrowLeft",
+          "transitionKind": "deterministic",
+          "visits": 5
+        },
+        {
+          "key": "C:ArrowRight",
+          "transitionKind": "deterministic",
+          "visits": 4
+        },
+        {
+          "key": "T",
+          "transitionKind": "deterministic",
+          "visits": 5
+        }
+      ],
+      "replayOk": true,
+      "replayTerminal": false,
+      "mathRandomCalls": 0,
+      "rolloutPreparedSteps": 258,
+      "rolloutImpureFallbacks": 0
+    },
+    {
+      "arm": "baseline",
+      "root": "G6T1",
+      "repetition": 2,
+      "order": 1,
+      "seed": "PPC-MCTS-01|G6T1|UCT-H|rep=2|h=2774823096",
+      "searchMs": 100.08619999999996,
+      "totalMs": 101.5281,
+      "withinFullTurnBudget": true,
+      "simulations": 21,
+      "nodesCreated": 23,
+      "rolloutSteps": 241,
+      "chanceSamples": 0,
+      "plan": "CLeft T CDown CRight CRight",
+      "planLength": 5,
+      "rootAction": "CLeft",
+      "rootActionStats": [
+        {
+          "key": "C:ArrowUp",
+          "transitionKind": "deterministic",
+          "visits": 4
+        },
+        {
+          "key": "C:ArrowDown",
+          "transitionKind": "deterministic",
+          "visits": 4
+        },
+        {
+          "key": "C:ArrowLeft",
+          "transitionKind": "deterministic",
+          "visits": 5
+        },
+        {
+          "key": "C:ArrowRight",
+          "transitionKind": "deterministic",
+          "visits": 4
+        },
+        {
+          "key": "T",
+          "transitionKind": "deterministic",
+          "visits": 4
+        }
+      ],
+      "replayOk": true,
+      "replayTerminal": false,
+      "mathRandomCalls": 0,
+      "rolloutPreparedSteps": null,
+      "rolloutImpureFallbacks": null
+    },
+    {
+      "arm": "prepared",
+      "root": "G5T4",
+      "repetition": 2,
+      "order": 0,
+      "seed": "PPC-MCTS-01|G5T4|UCT-H|rep=2|h=417227042",
+      "searchMs": 100.25549999999998,
+      "totalMs": 100.30240000000003,
+      "withinFullTurnBudget": true,
+      "simulations": 174,
+      "nodesCreated": 164,
+      "rolloutSteps": 303,
+      "chanceSamples": 0,
+      "plan": "CRight CDown CRight CRight",
+      "planLength": 4,
+      "rootAction": "CRight",
+      "rootActionStats": [
+        {
+          "key": "C:ArrowUp",
+          "transitionKind": "deterministic",
+          "visits": 47
+        },
+        {
+          "key": "C:ArrowLeft",
+          "transitionKind": "deterministic",
+          "visits": 47
+        },
+        {
+          "key": "C:ArrowRight",
+          "transitionKind": "deterministic",
+          "visits": 80
+        }
+      ],
+      "replayOk": true,
+      "replayTerminal": false,
+      "mathRandomCalls": 0,
+      "rolloutPreparedSteps": 306,
+      "rolloutImpureFallbacks": 0
+    },
+    {
+      "arm": "baseline",
+      "root": "G5T4",
+      "repetition": 2,
+      "order": 1,
+      "seed": "PPC-MCTS-01|G5T4|UCT-H|rep=2|h=417227042",
+      "searchMs": 100.20640000000003,
+      "totalMs": 100.25049999999987,
+      "withinFullTurnBudget": true,
+      "simulations": 170,
+      "nodesCreated": 160,
+      "rolloutSteps": 293,
+      "chanceSamples": 0,
+      "plan": "CRight CDown CRight CRight",
+      "planLength": 4,
+      "rootAction": "CRight",
+      "rootActionStats": [
+        {
+          "key": "C:ArrowUp",
+          "transitionKind": "deterministic",
+          "visits": 47
+        },
+        {
+          "key": "C:ArrowLeft",
+          "transitionKind": "deterministic",
+          "visits": 47
+        },
+        {
+          "key": "C:ArrowRight",
+          "transitionKind": "deterministic",
+          "visits": 76
+        }
+      ],
+      "replayOk": true,
+      "replayTerminal": false,
+      "mathRandomCalls": 0,
+      "rolloutPreparedSteps": null,
+      "rolloutImpureFallbacks": null
+    },
+    {
+      "arm": "prepared",
+      "root": "G2T6",
+      "repetition": 2,
+      "order": 0,
+      "seed": "PPC-MCTS-01|G2T6|UCT-H|rep=2|h=2186535013",
+      "searchMs": 100.36819999999989,
+      "totalMs": 100.76649999999995,
+      "withinFullTurnBudget": true,
+      "simulations": 38,
+      "nodesCreated": 40,
+      "rolloutSteps": 274,
+      "chanceSamples": 0,
+      "plan": "CLeft CDown CRight CUp",
+      "planLength": 4,
+      "rootAction": "CLeft",
+      "rootActionStats": [
+        {
+          "key": "C:ArrowDown",
+          "transitionKind": "deterministic",
+          "visits": 12
+        },
+        {
+          "key": "C:ArrowLeft",
+          "transitionKind": "deterministic",
+          "visits": 13
+        },
+        {
+          "key": "C:ArrowRight",
+          "transitionKind": "deterministic",
+          "visits": 13
+        }
+      ],
+      "replayOk": true,
+      "replayTerminal": false,
+      "mathRandomCalls": 0,
+      "rolloutPreparedSteps": 278,
+      "rolloutImpureFallbacks": 0
+    },
+    {
+      "arm": "baseline",
+      "root": "G2T6",
+      "repetition": 2,
+      "order": 1,
+      "seed": "PPC-MCTS-01|G2T6|UCT-H|rep=2|h=2186535013",
+      "searchMs": 100.03050000000007,
+      "totalMs": 100.40930000000003,
+      "withinFullTurnBudget": true,
+      "simulations": 38,
+      "nodesCreated": 40,
+      "rolloutSteps": 274,
+      "chanceSamples": 0,
+      "plan": "CLeft CDown CRight CUp",
+      "planLength": 4,
+      "rootAction": "CLeft",
+      "rootActionStats": [
+        {
+          "key": "C:ArrowDown",
+          "transitionKind": "deterministic",
+          "visits": 12
+        },
+        {
+          "key": "C:ArrowLeft",
+          "transitionKind": "deterministic",
+          "visits": 13
+        },
+        {
+          "key": "C:ArrowRight",
+          "transitionKind": "deterministic",
+          "visits": 13
+        }
+      ],
+      "replayOk": true,
+      "replayTerminal": false,
+      "mathRandomCalls": 0,
+      "rolloutPreparedSteps": null,
+      "rolloutImpureFallbacks": null
+    },
+    {
+      "arm": "prepared",
+      "root": "G1T1",
+      "repetition": 2,
+      "order": 0,
+      "seed": "PPC-MCTS-01|G1T1|UCT-H|rep=2|h=165466537",
+      "searchMs": 100.33979999999997,
+      "totalMs": 102.08899999999994,
+      "withinFullTurnBudget": true,
+      "simulations": 16,
+      "nodesCreated": 18,
+      "rolloutSteps": 218,
+      "chanceSamples": 0,
+      "plan": "CUp CDown CDown T CDown",
+      "planLength": 5,
+      "rootAction": "CUp",
+      "rootActionStats": [
+        {
+          "key": "C:ArrowUp",
+          "transitionKind": "deterministic",
+          "visits": 4
+        },
+        {
+          "key": "C:ArrowDown",
+          "transitionKind": "deterministic",
+          "visits": 3
+        },
+        {
+          "key": "C:ArrowLeft",
+          "transitionKind": "deterministic",
+          "visits": 3
+        },
+        {
+          "key": "C:ArrowRight",
+          "transitionKind": "deterministic",
+          "visits": 3
+        },
+        {
+          "key": "T",
+          "transitionKind": "deterministic",
+          "visits": 3
+        }
+      ],
+      "replayOk": true,
+      "replayTerminal": false,
+      "mathRandomCalls": 0,
+      "rolloutPreparedSteps": 229,
+      "rolloutImpureFallbacks": 0
+    },
+    {
+      "arm": "baseline",
+      "root": "G1T1",
+      "repetition": 2,
+      "order": 1,
+      "seed": "PPC-MCTS-01|G1T1|UCT-H|rep=2|h=165466537",
+      "searchMs": 100.2315000000001,
+      "totalMs": 101.80780000000004,
+      "withinFullTurnBudget": true,
+      "simulations": 17,
+      "nodesCreated": 18,
+      "rolloutSteps": 231,
+      "chanceSamples": 0,
+      "plan": "CRight CDown CLeft T CDown",
+      "planLength": 5,
+      "rootAction": "CRight",
+      "rootActionStats": [
+        {
+          "key": "C:ArrowUp",
+          "transitionKind": "deterministic",
+          "visits": 4
+        },
+        {
+          "key": "C:ArrowDown",
+          "transitionKind": "deterministic",
+          "visits": 3
+        },
+        {
+          "key": "C:ArrowLeft",
+          "transitionKind": "deterministic",
+          "visits": 3
+        },
+        {
+          "key": "C:ArrowRight",
+          "transitionKind": "deterministic",
+          "visits": 4
+        },
+        {
+          "key": "T",
+          "transitionKind": "deterministic",
+          "visits": 3
+        }
+      ],
+      "replayOk": true,
+      "replayTerminal": false,
+      "mathRandomCalls": 0,
+      "rolloutPreparedSteps": null,
+      "rolloutImpureFallbacks": null
+    }
+  ],
+  "summary": {
+    "baseline": {
+      "calls": 8,
+      "searchMsP50": 100.21895000000006,
+      "searchMsP95": 100.49399999999999,
+      "searchMsP99": 100.52367999999998,
+      "simulationsMedian": 28.5,
+      "simulationsMin": 12,
+      "simulationsMax": 170,
+      "withinFullTurnBudget": 8,
+      "replayOk": 8,
+      "mathRandomCalls": 0
+    },
+    "prepared": {
+      "calls": 8,
+      "searchMsP50": 100.19279999999998,
+      "searchMsP95": 100.41831499999995,
+      "searchMsP99": 100.43990299999997,
+      "simulationsMedian": 30.5,
+      "simulationsMin": 16,
+      "simulationsMax": 174,
+      "withinFullTurnBudget": 8,
+      "replayOk": 8,
+      "mathRandomCalls": 0
+    }
+  }
+}

@@ -1,0 +1,859 @@
+{
+  "artifactId": "BASELINE_MANIFEST",
+  "round": "PPC-P2-PREPARED-TRANSITION-01",
+  "semantics": "The baseline arm is a full copy of src with EXACTLY the differences listed below. Every other file is byte-identical (sha256), so any timing delta is attributable to the three search files.",
+  "head": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+  "arm": {
+    "root": "PPC-P2-PREPARED-TRANSITION-01/arm/src",
+    "fileCount": 165,
+    "onlyInArm": [],
+    "onlyInSrc": [
+      "game/ai/preparedActions.ts",
+      "game/ai/__tests__/preparedTransition.test.ts"
+    ],
+    "differing": [
+      {
+        "rel": "game/ai/expectiminimax.ts",
+        "armSha256": "8ac2698587b426df39efc2bb3b451db89d21477e6c60a30ad90e387dfaad052c",
+        "srcSha256": "50d27da5e9d0d47a1ad70efb542a3ec1510507fd14b825a52729ebb90f6d690c"
+      },
+      {
+        "rel": "game/ai/legalActions.ts",
+        "armSha256": "c32fda291329ed192391ace961b8783e2e36d79e84b60f148ca6c296c05cf1c5",
+        "srcSha256": "27ae2f468d19043425326c2fc42923aeae894a5f84d2e0684ee374808b50eb22"
+      }
+    ]
+  },
+  "provenance": {
+    "expectiminimax": "PPC-P1-CHECKPOINT-01/checkpoint/source (sealed pre-round bytes, sha256 8ac26985…)",
+    "legalActions": "48eaac6c4f3801d351787696ba5876995b64e8d8:src/game/ai/legalActions.ts (blob f517407c4f9c86f9cae949bbefd5ba5c7675567c)",
+    "preparedActions": "removed from the arm (the module did not exist before this round)"
+  },
+  "files": [
+    {
+      "rel": "App.tsx",
+      "sha256": "f817a080485bd26f84bbe0f88ecbc28bd8d8c3b62532dea80f7fe63a18fe1a4a",
+      "bytes": 1491
+    },
+    {
+      "rel": "assets/hero.png",
+      "sha256": "881ffbcaafc212e49addad08846a5b82761355fa20624253af3477ba33262c5c",
+      "bytes": 13057
+    },
+    {
+      "rel": "assets/react.svg",
+      "sha256": "35ef61ed53b323ae94a16a8ec659b3d0af3880698791133f23b084085ab1c2e5",
+      "bytes": 4126
+    },
+    {
+      "rel": "assets/vite.svg",
+      "sha256": "5be21acd42eb7b896e517f4e0f0f11eb5c5d9e54fbbcebe9453f033008fcca6f",
+      "bytes": 8709
+    },
+    {
+      "rel": "components/Board.tsx",
+      "sha256": "b785a8bb08e2f21c9676ee9780458378687053ea38ac26149ad8c8709600fcab",
+      "bytes": 44472
+    },
+    {
+      "rel": "components/dangerAssist.ts",
+      "sha256": "25ab93642a23e45ecdc6dbcf40b723a9668ad9be02e80c01256f6fbee21cbf52",
+      "bytes": 3104
+    },
+    {
+      "rel": "components/DebugInfo.tsx",
+      "sha256": "0b1a8460c163b37090299a7a8fd3beb4a57b4885c2e736e1f7ab0b4d1ce46ef8",
+      "bytes": 36856
+    },
+    {
+      "rel": "components/MenuButton.tsx",
+      "sha256": "549a2d9cbaa198237329e65770b5140e5dfb8f0f491cb4ab470b4b6e68fa3bcc",
+      "bytes": 1160
+    },
+    {
+      "rel": "components/__tests__/dangerUi.test.ts",
+      "sha256": "d59912d0e7745e2c393952d8089f86a95a10669a1653cbdcf7e357c0f72404c1",
+      "bytes": 4382
+    },
+    {
+      "rel": "context/GameContext.tsx",
+      "sha256": "330022da223ffbaa1bc648bfd3df47ca9a66bc7b302d33609b4b68ac875f124c",
+      "bytes": 2113
+    },
+    {
+      "rel": "game/ai/a0ExpectedReturnLeaf.ts",
+      "sha256": "cdbb0b5faba821820f025105ca5fa4dffdaf82c946ff4bab3d7171f3a6452db6",
+      "bytes": 11130
+    },
+    {
+      "rel": "game/ai/a0FrozenModel.ts",
+      "sha256": "27e74cab77a6a0cd09db4203497a627772411cb1de20c7b61393229ad44eabde",
+      "bytes": 9948
+    },
+    {
+      "rel": "game/ai/boundedPlanRefutation.ts",
+      "sha256": "42423439390a39b02c99ea2b23bd739a58e065dbd8ac92d1f0300f7a1add4d80",
+      "bytes": 48681
+    },
+    {
+      "rel": "game/ai/correctedHoleLeaf.ts",
+      "sha256": "f1403d3d945b425f98aa76deac9b6c44d81c317adf88a4b72f17d47b499d9a8a",
+      "bytes": 3189
+    },
+    {
+      "rel": "game/ai/deadlineContext.ts",
+      "sha256": "ced449445d70d1ba88cb20d88415b3c641d670aa886536fcacefa36b4aa50235",
+      "bytes": 14411
+    },
+    {
+      "rel": "game/ai/evaluation.ts",
+      "sha256": "e5246fa9d9976468fad3130b66216b3c214b4f786e9408b9306718bcc1cf8dd3",
+      "bytes": 33959
+    },
+    {
+      "rel": "game/ai/expectiminimax.ts",
+      "sha256": "8ac2698587b426df39efc2bb3b451db89d21477e6c60a30ad90e387dfaad052c",
+      "bytes": 107714
+    },
+    {
+      "rel": "game/ai/forcedLossTieBreak.ts",
+      "sha256": "a27c91f90adbb1e415b5350668304d0d85036f5091b1b648693e72ac88b2cf03",
+      "bytes": 5204
+    },
+    {
+      "rel": "game/ai/gateRaceLeaf.ts",
+      "sha256": "fb0732d559945d8942108272ec0eeee457739827acbcd52ceda032e7b68a4f5e",
+      "bytes": 22629
+    },
+    {
+      "rel": "game/ai/hardHistory.ts",
+      "sha256": "acf1371c8180236723eef85f4ad70c8923c923fac30d3342f2fad943385da031",
+      "bytes": 13736
+    },
+    {
+      "rel": "game/ai/hardTurnPlanner.ts",
+      "sha256": "27b1ce6dc62234d0c822b2b0b6341205ac189b5f76d7662a5d29d9e17ded75ff",
+      "bytes": 36060
+    },
+    {
+      "rel": "game/ai/hybridLeaf.ts",
+      "sha256": "5b93f09ebe3443c6627ece9cbdd5c2296c9159688cdcef1d318de0505597e326",
+      "bytes": 12914
+    },
+    {
+      "rel": "game/ai/hybridRouteLeaf.ts",
+      "sha256": "518779f24934d51ca95b19f12c3c871509d3deeb78e05efb0ff39ee819fac0cd",
+      "bytes": 4659
+    },
+    {
+      "rel": "game/ai/hybridWeights.ts",
+      "sha256": "70b1e09e6a8d667861c1156e0bba445e401e2ede37f8d0bcba43d8050f8f7be6",
+      "bytes": 2391157
+    },
+    {
+      "rel": "game/ai/interceptionGeometry.ts",
+      "sha256": "66583d02349b6bc30b84cb8789d44512ea5dc090e11f282eff040b10ad06c0f4",
+      "bytes": 12219
+    },
+    {
+      "rel": "game/ai/legalActions.ts",
+      "sha256": "c32fda291329ed192391ace961b8783e2e36d79e84b60f148ca6c296c05cf1c5",
+      "bytes": 2851
+    },
+    {
+      "rel": "game/ai/planBound.ts",
+      "sha256": "4a212b75de6b5c47b6402c0745593169f6271a06d0f91fed99b7479f679b3dab",
+      "bytes": 8012
+    },
+    {
+      "rel": "game/ai/planQuality.ts",
+      "sha256": "46979485d568dfff12e2f998353cda95616502a7433ac84c3d31801726090952",
+      "bytes": 30693
+    },
+    {
+      "rel": "game/ai/progressGuard.ts",
+      "sha256": "619a012572f2aefba5400c7bbddb17e4d4f608d897816278e44ed8ccde922914",
+      "bytes": 13668
+    },
+    {
+      "rel": "game/ai/progressGuardLog.ts",
+      "sha256": "74ebc94d988354f0144c65697b1a6b1027000c571d6c217753eabcf67ddde6f9",
+      "bytes": 3837
+    },
+    {
+      "rel": "game/ai/searchConfig.ts",
+      "sha256": "0c960794de784785b8f12ac39fabf141bc1e82afd4cf8dc8d5788de12cabcd5c",
+      "bytes": 5670
+    },
+    {
+      "rel": "game/ai/searchRules.ts",
+      "sha256": "ca99645a2aeed6bfaeb2a4f13b3333791f879cc5dc3bbbc045e199be5e792e9e",
+      "bytes": 2319
+    },
+    {
+      "rel": "game/ai/searchTypes.ts",
+      "sha256": "bf62aec54e3cbf7d5387c473ae66fa071158a509c4cdbe5c991be4e6f44d6355",
+      "bytes": 7423
+    },
+    {
+      "rel": "game/ai/simulator.ts",
+      "sha256": "6d24d4f36d9f7e076fa36c9460ec51c674f1006f9cae00f7f5fb64771516df32",
+      "bytes": 8365
+    },
+    {
+      "rel": "game/ai/stateCompare.ts",
+      "sha256": "7c6339357b7eb0d2687aa4cb2842a7a4f0d51f5b0ab288851b13901e536ad017",
+      "bytes": 4602
+    },
+    {
+      "rel": "game/ai/threatClassifier.ts",
+      "sha256": "298cce31747a8bf4d8fc78a74321f5565738ac672d5b1cc016575595c3936f1b",
+      "bytes": 4281
+    },
+    {
+      "rel": "game/ai/transposition.ts",
+      "sha256": "7b4aa8eb3fab994a4abc77fdf38800ab2a5f9da57d5eb33a1b37075e106c2d64",
+      "bytes": 6784
+    },
+    {
+      "rel": "game/ai/turnBoundary.ts",
+      "sha256": "5295091cd02097d8508e058f1a8dfcc73bc383ee930f2d6fadbab0581af4d0bc",
+      "bytes": 38487
+    },
+    {
+      "rel": "game/ai/turnExecutionStatus.ts",
+      "sha256": "300472a0db1c8792bdacd739a89f6c3b2ed0017d5d3c21eddd3274b959bae36e",
+      "bytes": 3322
+    },
+    {
+      "rel": "game/ai/turnLazy.ts",
+      "sha256": "ef7da60d08d2697e93233284239f6cc52cadcd337032568af360890bd2ccaade",
+      "bytes": 29878
+    },
+    {
+      "rel": "game/ai/__tests__/a0ExpectedReturnLeaf.test.ts",
+      "sha256": "f533693d429c04ad8db7f52f239dc8bc2c9642e22d7255ed56fdb6e3d2d63abe",
+      "bytes": 18146
+    },
+    {
+      "rel": "game/ai/__tests__/a0LeafCallObservation.test.ts",
+      "sha256": "81e81d58a869e51a40ba9f46dd8444d64aea70b9fa9eca25037df67270cd8c2c",
+      "bytes": 10188
+    },
+    {
+      "rel": "game/ai/__tests__/boardPieceAlignment.test.ts",
+      "sha256": "13bf99be9ea3c0f0e620086962d8d3b65f2da5d2e51b4f547090aabbad20e79b",
+      "bytes": 4469
+    },
+    {
+      "rel": "game/ai/__tests__/boundedPlanRefutation.test.ts",
+      "sha256": "aecab5cd960cd7c7a710eba4ebd1a59a6d5efe04a0fbd202703d69b770eb163d",
+      "bytes": 22214
+    },
+    {
+      "rel": "game/ai/__tests__/correctedHoleLeaf.test.ts",
+      "sha256": "41bb43a4d2e074220a171e8da29df73f291c8f3281fc4ce5e1b9a40b3662532b",
+      "bytes": 16823
+    },
+    {
+      "rel": "game/ai/__tests__/countRevisitsParity.test.ts",
+      "sha256": "13315293d0474d53c82eaea5291130432e6d5d1497c5328e680913c9c348fcf6",
+      "bytes": 10822
+    },
+    {
+      "rel": "game/ai/__tests__/evaluation.test.ts",
+      "sha256": "1a83a9ae522ef9b9185e68917d82d3b16073ce3676dd987964a24ef6b63fea60",
+      "bytes": 40543
+    },
+    {
+      "rel": "game/ai/__tests__/evaluationCorpus.ts",
+      "sha256": "2da262f99443db05c8ab16ba53056b417ffffd1d5c75b0fd742729c198a155a7",
+      "bytes": 27655
+    },
+    {
+      "rel": "game/ai/__tests__/expectiminimax.test.ts",
+      "sha256": "521340c59689a6d405d6777b71d6a8a4228850b46403ba352b73008a4ef75688",
+      "bytes": 161383
+    },
+    {
+      "rel": "game/ai/__tests__/fixtures/frozenFixtures.ts",
+      "sha256": "f3cbb2d6cd9e9454a46384adf8cc28fa5c6f05e3a0840714eaaa381c16892190",
+      "bytes": 8757
+    },
+    {
+      "rel": "game/ai/__tests__/fixtures/g4Goldens.ts",
+      "sha256": "e827b420cb4ed7d9a46aaa0adbbe6ded5758c2f2d30e25dd9c1dace2385d2c26",
+      "bytes": 1172
+    },
+    {
+      "rel": "game/ai/__tests__/fixtures/g4_boundaries.d01.json",
+      "sha256": "d797232a5a8a72589ab53b5fbfdef18438dabf8f032e373f6cf325a9e7f498db",
+      "bytes": 20018
+    },
+    {
+      "rel": "game/ai/__tests__/fixtures/game5_turns.f2b14.json",
+      "sha256": "b8030639f9b2980b780da212f5b5c8e30cae1e088466e1408bc4e668af162993",
+      "bytes": 39013
+    },
+    {
+      "rel": "game/ai/__tests__/fixtures/ppcId01-baseline-d1.json",
+      "sha256": "80635906377dbe1e96aa6ef5bf80e48c2da22c213c19f51b205ca0d0438b8467",
+      "bytes": 42327
+    },
+    {
+      "rel": "game/ai/__tests__/fixtures/ppcId01-human-roots.json",
+      "sha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "bytes": 264328
+    },
+    {
+      "rel": "game/ai/__tests__/fixtures/ppcTime01-baseline-planner.json",
+      "sha256": "2c1bab71e11ac59aab2eb2acc93fe221359d44d5e50a90b0651d59ca6c673885",
+      "bytes": 25658
+    },
+    {
+      "rel": "game/ai/__tests__/fixtures/PROVENANCE.json",
+      "sha256": "c76c8d787ca5c6ef0aec99151ae3bec454c829a58f2fda61facb022723a8014e",
+      "bytes": 2932
+    },
+    {
+      "rel": "game/ai/__tests__/fixtures/threat_authority.f03.json",
+      "sha256": "52041b750dad25870e225cff59f28bc3727460e42c22443d25de456a665db21b",
+      "bytes": 3411
+    },
+    {
+      "rel": "game/ai/__tests__/fixtures/turn_roots.f0.json",
+      "sha256": "baf648b8bb49529fc8d05c19977ae2b5e16ca880339061a734a53be93802e1be",
+      "bytes": 37982
+    },
+    {
+      "rel": "game/ai/__tests__/forcedLossTieBreak.test.ts",
+      "sha256": "06c68677ca25871a3885facacdd8ade3b57abe7ad91f95b1ec98154142453adb",
+      "bytes": 10759
+    },
+    {
+      "rel": "game/ai/__tests__/forcedLossTieBreakContract.test.ts",
+      "sha256": "f3caf12cec57ce5eaebb723b0f08ef3b8a5d004e253be1d3a5fe20e2046584cc",
+      "bytes": 32310
+    },
+    {
+      "rel": "game/ai/__tests__/forcedLossTieBreakDeadline.test.ts",
+      "sha256": "0d083b49e38481a232e5b03e7f513ab0fc6bec05dd3051b509041840baa12b12",
+      "bytes": 11702
+    },
+    {
+      "rel": "game/ai/__tests__/forcedLossTieBreakEvaluationParity.test.ts",
+      "sha256": "dde25af239a3cdb95d5986374c877b06d8819f56c011950a11d4ab2db4261754",
+      "bytes": 18406
+    },
+    {
+      "rel": "game/ai/__tests__/forcedLossTieBreakHv14Reachability.test.ts",
+      "sha256": "d0ebb25e5f5927c27bf91f11d4ddcb642e7d515616499473c8c533d87ef8b03a",
+      "bytes": 36228
+    },
+    {
+      "rel": "game/ai/__tests__/frozenFixtureIntegrity.test.ts",
+      "sha256": "b211b74c4225f7bba58fbeaa97d23145e81249a6c5b8c1983ab34b852d0e0e88",
+      "bytes": 6150
+    },
+    {
+      "rel": "game/ai/__tests__/g1t2Fixture.ts",
+      "sha256": "ce02b5e48581ebbf8ac7a5b00db25516e7738cdd11b6d48c35511acdd4854168",
+      "bytes": 4508
+    },
+    {
+      "rel": "game/ai/__tests__/ghostButter.test.ts",
+      "sha256": "fb9916ccdc1dc6ed252a1926d1a9b5c5c22944c26f1d8f3cd62b95a6acc98501",
+      "bytes": 15509
+    },
+    {
+      "rel": "game/ai/__tests__/ghostButterEdge.test.ts",
+      "sha256": "9293fe1aae5080a0a74e92826feafa4864854620c3cea440c8cf490378b87fd3",
+      "bytes": 12350
+    },
+    {
+      "rel": "game/ai/__tests__/hardHistory.test.ts",
+      "sha256": "960878b3d82303b2d1e354c4d0e5a7d7f483858a306f598f4e987f98e544c770",
+      "bytes": 8858
+    },
+    {
+      "rel": "game/ai/__tests__/hardIntegration.test.ts",
+      "sha256": "d2f37db471e06dd55a9055e1f1cca9700747b7862b846031e9b9596d7901fd19",
+      "bytes": 19048
+    },
+    {
+      "rel": "game/ai/__tests__/hardTurnAbsoluteDeadline.test.ts",
+      "sha256": "4ada71d726f907adf5e589d8eac83bdae8d16de82b6ed6385318fec53cdfb877",
+      "bytes": 18024
+    },
+    {
+      "rel": "game/ai/__tests__/hardTurnAbsoluteDeadlineEngine.test.ts",
+      "sha256": "6822a91e4ee058ea46994beb5425df03eb6a47469df370b050a89d51c4842b39",
+      "bytes": 18160
+    },
+    {
+      "rel": "game/ai/__tests__/hv10RootScout.test.ts",
+      "sha256": "1b8669be54c260d22ea81e0e17eb7b59c182fa376e983e5a007fa12ee9f2158e",
+      "bytes": 59775
+    },
+    {
+      "rel": "game/ai/__tests__/hv10RootScout.ts",
+      "sha256": "64ece5b493768cbfe5d7007388b11f585237fe5884eee3a9e076833382b4d23d",
+      "bytes": 64783
+    },
+    {
+      "rel": "game/ai/__tests__/hv11TacticalFix.test.ts",
+      "sha256": "a9c6b16f84755778b32ccfeeb5289636b7af680a7a346e5e0d81ce6fc116c43f",
+      "bytes": 53245
+    },
+    {
+      "rel": "game/ai/__tests__/hv12MouseResponses.test.ts",
+      "sha256": "1363602e4acb6350e984c5d443db09db3366693f8eabb35eed1b198c66307d0f",
+      "bytes": 19611
+    },
+    {
+      "rel": "game/ai/__tests__/hv12MouseResponses.ts",
+      "sha256": "201831ff985254de676e0b5a4b31a8e0498836153b6f0583bf32745b46dd3fba",
+      "bytes": 44283
+    },
+    {
+      "rel": "game/ai/__tests__/hv13DefenceSemantics.test.ts",
+      "sha256": "a1714cff510a2ebc86de9ace08de17fd5f02ec5421a81055cb4aaee4caa2c341",
+      "bytes": 16153
+    },
+    {
+      "rel": "game/ai/__tests__/hv13DefenceSemantics.ts",
+      "sha256": "fee6585a61c5aa2c1db8514c0ac5b2c86a64d4240731b44a2be9b1e4c6d6cc13",
+      "bytes": 8356
+    },
+    {
+      "rel": "game/ai/__tests__/hv14FiveGameForensics.test.ts",
+      "sha256": "99bd3633891533d5f61cd9836c76cf05ff00782f4b6deb1d5d30bb99c40b3e74",
+      "bytes": 45430
+    },
+    {
+      "rel": "game/ai/__tests__/hv15SearchCostForensics.test.ts",
+      "sha256": "ef0a4741fdeb6225ed2787957d2f24d3e6519c0f61b073cac2566bc5b9e8a1cf",
+      "bytes": 26848
+    },
+    {
+      "rel": "game/ai/__tests__/hv15T7ValuePlateau.test.ts",
+      "sha256": "f3aa5156bff90a6db5832d396aa7e910a7acbc62f38f2397b89daa46366577cc",
+      "bytes": 21389
+    },
+    {
+      "rel": "game/ai/__tests__/hv16T7Alternation.test.ts",
+      "sha256": "0bdd238a082743ccd232c51fbb68762283aec73cc45bce5eaf33d7a2b033f113",
+      "bytes": 28869
+    },
+    {
+      "rel": "game/ai/__tests__/hv17T7BoxCausality.test.ts",
+      "sha256": "55523d2ba0e76b4ad26d0673f08f6e5df916a70cb315c7a2ae462b5c682cf5bf",
+      "bytes": 50070
+    },
+    {
+      "rel": "game/ai/__tests__/hv18AvoidableLoss.test.ts",
+      "sha256": "155a8d55617817105553d954dc432faedb48f32f0307294686d60e7f23999b29",
+      "bytes": 54699
+    },
+    {
+      "rel": "game/ai/__tests__/hv18rQuantifierAudit.test.ts",
+      "sha256": "958cd98e8b58ff5eed6d8c89322d46158af087564d101a5a7452d6f178a5977c",
+      "bytes": 41377
+    },
+    {
+      "rel": "game/ai/__tests__/hv19GhostGiftScreen.ts",
+      "sha256": "004ee44eb64bf7084a61d042c9abbb7d60ba3ab6a470ba4d52ab4c33d625cef9",
+      "bytes": 31750
+    },
+    {
+      "rel": "game/ai/__tests__/hv19GhostGiftScreening.test.ts",
+      "sha256": "b7c9a9377783a6912502bbe030ff9c41e9540a78831e54c3e0d72dc411e588af",
+      "bytes": 21109
+    },
+    {
+      "rel": "game/ai/__tests__/hv19Roots.ts",
+      "sha256": "573c095034239f9c3860d03b214368a057a043b1ce4b154e7d70bb9520d22746",
+      "bytes": 9925
+    },
+    {
+      "rel": "game/ai/__tests__/hv19ScreenTiming.test.ts",
+      "sha256": "cd1799c8d576df5114d57e53448db9aeaa835a529d90f142d14d30a88d0823b5",
+      "bytes": 8224
+    },
+    {
+      "rel": "game/ai/__tests__/hv1aForensicsHistory.test.ts",
+      "sha256": "340775ace486234eed656424efc510130bce343d4bb849cfb1f54bb5949b493d",
+      "bytes": 18271
+    },
+    {
+      "rel": "game/ai/__tests__/hv20SidecarAudit.test.ts",
+      "sha256": "64dd77ed9c82b9b3ae5bd85fc3b903831172f3dd799563f64f35d9235ee8aff2",
+      "bytes": 10690
+    },
+    {
+      "rel": "game/ai/__tests__/hv2ArmsComparison.test.ts",
+      "sha256": "e90219a2d244ca07b55c749df1382a6b323442ffda6060308b3f552aafc0f687",
+      "bytes": 9312
+    },
+    {
+      "rel": "game/ai/__tests__/hv2HoleControlAudit.test.ts",
+      "sha256": "4f00d87d37a52649fec55f2aa1d5afb128e80461a7ddaa66b24c253edfbbbde0",
+      "bytes": 8074
+    },
+    {
+      "rel": "game/ai/__tests__/hv2HumanRootForensics.test.ts",
+      "sha256": "7d03da669d7e86a8a4bdd2cd4494f843a287eec0863f6ab7ee2927283715ad64",
+      "bytes": 5498
+    },
+    {
+      "rel": "game/ai/__tests__/hv2PlanTieQuality.test.ts",
+      "sha256": "4455d7314918d676f65b9c5fbc04349a9336d1be4496fbc80d18076fd8720eff",
+      "bytes": 6117
+    },
+    {
+      "rel": "game/ai/__tests__/hv3TieBreakBlindSpot.test.ts",
+      "sha256": "9549ebf707082ce1c850d6e9a13906b00210f1df73cd2c1d2486c034833ce2f9",
+      "bytes": 3493
+    },
+    {
+      "rel": "game/ai/__tests__/hv4H1Game4T5.test.ts",
+      "sha256": "70224b802fd0887f646d7792a461a3c9579579550982ded52b961145875a9d02",
+      "bytes": 41738
+    },
+    {
+      "rel": "game/ai/__tests__/hv4TieQualityForensics.test.ts",
+      "sha256": "bb5c7d5cdc51207b1e29ca620d698dbf1e4c145245711f69e05681610d435fb9",
+      "bytes": 20561
+    },
+    {
+      "rel": "game/ai/__tests__/hv5CauseAdjudication.test.ts",
+      "sha256": "6203ea501e0e812cd7aaf5988cc94b8681444e3e263cff50690faff69df61fb7",
+      "bytes": 16418
+    },
+    {
+      "rel": "game/ai/__tests__/hv5EarlyInterception.test.ts",
+      "sha256": "04f65d425668629880a7293d2eaffa8bce98a1d67351edc31232388da6ebf114",
+      "bytes": 19495
+    },
+    {
+      "rel": "game/ai/__tests__/hv5ForcedLineAuditor.ts",
+      "sha256": "b7ad5753ff09699f28e35ed90aaa1658588b4e79b16034d8d7124af412d42d50",
+      "bytes": 30781
+    },
+    {
+      "rel": "game/ai/__tests__/hv5ProofAudit.test.ts",
+      "sha256": "07722ca4883bbd05e8474a7f7d431261c7f1d20b05ec2afe982bea0ef44b2200",
+      "bytes": 12320
+    },
+    {
+      "rel": "game/ai/__tests__/hv6GateRace.test.ts",
+      "sha256": "6763d58ce04dc7e295eeb7ac1932e497451b54f0ffa78fcf9837ad2868f019df",
+      "bytes": 50624
+    },
+    {
+      "rel": "game/ai/__tests__/hv7ScoreGapAttribution.test.ts",
+      "sha256": "263bac96fc0c208e3f3a9c22fb3a328162ce7f75202ba5464dde544de8cab497",
+      "bytes": 48889
+    },
+    {
+      "rel": "game/ai/__tests__/hv8WitnessPush.test.ts",
+      "sha256": "346281d81198fbdeb1e7f46d215c21936163b1b541ff681cebfbb74b9d5e5449",
+      "bytes": 54934
+    },
+    {
+      "rel": "game/ai/__tests__/hv8WitnessPush.ts",
+      "sha256": "9c923d54c45fd190464439fe9abca17a77083d6039ca9ebb110a9543bc2871ec",
+      "bytes": 29137
+    },
+    {
+      "rel": "game/ai/__tests__/hv9BoundedTactical.test.ts",
+      "sha256": "586631be1b27401dd9d9794ed29c89692d0b2e54b8fe44da2abb424b6a39d267",
+      "bytes": 27929
+    },
+    {
+      "rel": "game/ai/__tests__/hv9BoundedTactical.ts",
+      "sha256": "d83250dc9f1a89f9ed5769f793a1ccab893a318098484cb0f26c5ae471910d2b",
+      "bytes": 18974
+    },
+    {
+      "rel": "game/ai/__tests__/hv9FourStepRoute.test.ts",
+      "sha256": "d59117c31de21120976cf87ad141b18eb44d6a63b48c74b98c747ed08891907e",
+      "bytes": 10055
+    },
+    {
+      "rel": "game/ai/__tests__/hybridGhostDomainSafety.test.ts",
+      "sha256": "a768d873323810521bb22b76db4bd121ad20b62f096e484bac32b40ee0fd64ca",
+      "bytes": 8955
+    },
+    {
+      "rel": "game/ai/__tests__/hybridLeaf.test.ts",
+      "sha256": "2761b365c7e068cbac0d9d084c8557c4259b06d1f013be97d6de2ef0f10598ea",
+      "bytes": 13092
+    },
+    {
+      "rel": "game/ai/__tests__/hybridLeafCallObservation.test.ts",
+      "sha256": "4bbabb3045e902ee20dd3a541a08a5d2bad90f906f05e7b0b6b0337630dad3b5",
+      "bytes": 10570
+    },
+    {
+      "rel": "game/ai/__tests__/hybridLeafG4Falsification.test.ts",
+      "sha256": "fd4d8c1b3dc620c55ba92b891a47360a55e342c1f7495dd45d39770168df4754",
+      "bytes": 2614
+    },
+    {
+      "rel": "game/ai/__tests__/hybridRouteLeaf.test.ts",
+      "sha256": "e166d35ca7e8f3338bb96fda0b4a137be864a38034e6d36f2638bb14addf119d",
+      "bytes": 11942
+    },
+    {
+      "rel": "game/ai/__tests__/m3liteHumanValidationLogging.test.ts",
+      "sha256": "73bd3c13fe36e7445f0e22c6633ed32ad0a7fc3841b9b14d77f95df18866e767",
+      "bytes": 11886
+    },
+    {
+      "rel": "game/ai/__tests__/m3MemoryRepair.test.ts",
+      "sha256": "0965dcef23c9bd0687636a1eedc688384e2b222ac138ff8a40d981ac446f889f",
+      "bytes": 18562
+    },
+    {
+      "rel": "game/ai/__tests__/planActionBoundFixtures.ts",
+      "sha256": "9e6357cdde151d83812e0f4546ba496378187ee7e1775d6cd17a7e3284ee5e08",
+      "bytes": 11825
+    },
+    {
+      "rel": "game/ai/__tests__/planCompletionRepair.test.ts",
+      "sha256": "86c39f3ee3b63915b2a94c2e5273527d1cf53b2624c5f9f051eb6b7c8a7a28a9",
+      "bytes": 9397
+    },
+    {
+      "rel": "game/ai/__tests__/planQuality.test.ts",
+      "sha256": "bf6fd30dfa2182cb002b61ce0c8fe261d9ba4202340ba976b99d4bb1cd157a39",
+      "bytes": 23026
+    },
+    {
+      "rel": "game/ai/__tests__/planReversalAccounting.test.ts",
+      "sha256": "6736d435f89e1018345d39532568f2d50565bc967051561f3dfe8aba6597aa6c",
+      "bytes": 15254
+    },
+    {
+      "rel": "game/ai/__tests__/planTurnActionBound.test.ts",
+      "sha256": "691ff9002cf92b1facf22354d2d325a8ac23efa1cc2359b781e21d219171595a",
+      "bytes": 21958
+    },
+    {
+      "rel": "game/ai/__tests__/productionGhostRuleSet.test.ts",
+      "sha256": "fab68d865e012286b0741e556d45a67b8d2f6b6b700729dc8ee7961aaa50a36d",
+      "bytes": 15116
+    },
+    {
+      "rel": "game/ai/__tests__/progressGuard.test.ts",
+      "sha256": "0d80ee542ca8662088b14a73641ef37f0d0cd3c04d093da2d59a24181f9d0965",
+      "bytes": 34482
+    },
+    {
+      "rel": "game/ai/__tests__/rb2ProductionRootSmoke.test.ts",
+      "sha256": "82239472ce71f3fdb30495122e45a2b9c4663c68d08360b50ecfd55ed25abc2b",
+      "bytes": 14559
+    },
+    {
+      "rel": "game/ai/__tests__/rootBoundEqualPrimary.test.ts",
+      "sha256": "5fa75e2717be416575f05b2f38a30488a305fbc15295ae0788957d8ecb3e9b39",
+      "bytes": 42450
+    },
+    {
+      "rel": "game/ai/__tests__/searchInfra.test.ts",
+      "sha256": "c60e81304bf5325d364db77893d780bf630b36630b2982711ffef86a7e7d5350",
+      "bytes": 23457
+    },
+    {
+      "rel": "game/ai/__tests__/stateIdentityCollision.test.ts",
+      "sha256": "4be1cf487e4af828db7982250abdfd58a576fb2367973edcb0adb8ef4af507e7",
+      "bytes": 26215
+    },
+    {
+      "rel": "game/ai/__tests__/threatClassifier.test.ts",
+      "sha256": "d5f2ec40b92e8b25cb410357ae5de799f6d222567731a0c14f9116c53ca23f83",
+      "bytes": 10744
+    },
+    {
+      "rel": "game/ai/__tests__/threatOrderingProductionConfig.test.ts",
+      "sha256": "51f6d70a3aed1b850418d3eff43247cee8c449ff162ff9d3aa84d6f6ef697fe6",
+      "bytes": 14632
+    },
+    {
+      "rel": "game/ai/__tests__/threatSearch.test.ts",
+      "sha256": "3b9dd0695867c4bd16f5192841f8e251cdb6796761b64a8bf58305aafe22f67f",
+      "bytes": 23390
+    },
+    {
+      "rel": "game/config.ts",
+      "sha256": "60e38c491c81f0b6d962bd32b306373de462cffcc9508b76c5bed02f9f70caae",
+      "bytes": 15048
+    },
+    {
+      "rel": "game/engine.ts",
+      "sha256": "099f9a7b6d97b838c664aa7186be58465e5b01b8052af4b4e4e19a5644d19f06",
+      "bytes": 190506
+    },
+    {
+      "rel": "game/mapDefinition.ts",
+      "sha256": "9623ea50208f614b15a5a18d33b513ab28bd83f0c902dc5b3b627c3a0bf4e7ed",
+      "bytes": 5566
+    },
+    {
+      "rel": "game/mapStorage.ts",
+      "sha256": "b3b8fbc12ea2746b09e980589081472341dcdd71018b2108599d65943c18d736",
+      "bytes": 4108
+    },
+    {
+      "rel": "game/newGame.ts",
+      "sha256": "a3c6b47ed2ee99494262afd9695099cd2f02c25d2c28fde7dd726f301c26eadf",
+      "bytes": 3922
+    },
+    {
+      "rel": "game/openingFairness.ts",
+      "sha256": "9d19279cafefe545ea6fd2d49cd2d412986c0002977c7b37cf3e72787efd7908",
+      "bytes": 35834
+    },
+    {
+      "rel": "game/rules/mobility.ts",
+      "sha256": "db177cf7fd9be9d3e95eee995bb22763c40c122ac97c97b94a5a3b1ff5bc3f8e",
+      "bytes": 6702
+    },
+    {
+      "rel": "game/rules/tunnelRules.ts",
+      "sha256": "e9ad62686be1f9320d7208b7c2786ac88b092ad29ad002d0bb49d731e093515b",
+      "bytes": 6076
+    },
+    {
+      "rel": "game/rules/tunnels.ts",
+      "sha256": "b7eda66b79cf0090161892cb26bc6e4334ee6ed429de9598bc46e2033c960109",
+      "bytes": 2162
+    },
+    {
+      "rel": "game/rules/__tests__/noMoveLoss.test.ts",
+      "sha256": "b3b805aea127729d717941c26a9454d56f1643c65b9bd86209ac004dc195e965",
+      "bytes": 13720
+    },
+    {
+      "rel": "game/rules/__tests__/tunnels.test.ts",
+      "sha256": "0570d2e1dc80caab0a9c259758d7c58126cd34cbd948cd75c20c3a3eea8383de",
+      "bytes": 5621
+    },
+    {
+      "rel": "game/rules/__tests__/turnHandoff.test.ts",
+      "sha256": "283f873d11bae9d82d3f547b12bf8adb48ccd82c7bfb97252f5fcaec60547a86",
+      "bytes": 17633
+    },
+    {
+      "rel": "game/threat/catThreatMap.ts",
+      "sha256": "dd69f9f8883e2d472f07e3e44dd230e18beb473b502ec69aedacc92af5a59bff",
+      "bytes": 11084
+    },
+    {
+      "rel": "game/threat/__tests__/catThreatMap.test.ts",
+      "sha256": "5bdccc7db1d60a57c86c951c369ebfd8fb35088a4fcd8da4585b0f6c79d84450",
+      "bytes": 18867
+    },
+    {
+      "rel": "game/threat/__tests__/hv3RangePreview.test.ts",
+      "sha256": "7d92ebbb4b1de44259f28c9a52e551582b1c7e076bb8fd3a39c87adc2fd2ae47",
+      "bytes": 11620
+    },
+    {
+      "rel": "game/tutorial.ts",
+      "sha256": "f724bc7d8caf2eaf587292f82d1b50579484585c10e1ef36e330d50953ebee0c",
+      "bytes": 8089
+    },
+    {
+      "rel": "game/types.ts",
+      "sha256": "bd1b18c952964c880d9ebed0b2532ec3d021fd5b9d9d70a75fd600eca084a620",
+      "bytes": 3396
+    },
+    {
+      "rel": "game/__tests__/catMoveBudgetInputDomain.test.ts",
+      "sha256": "57d9b51cb9f97678d9c5872c3e9214d3d09cf34c22b1ef222f84921e3edb000a",
+      "bytes": 16231
+    },
+    {
+      "rel": "game/__tests__/gameplayBaseline.test.ts",
+      "sha256": "bd2111db01579f262504d4404e39e1807fc09a8e8559096ef17df2a9936b2df2",
+      "bytes": 6658
+    },
+    {
+      "rel": "game/__tests__/newGameEntry.test.ts",
+      "sha256": "e6ad3fc4fe7080d296ff1ad74bef8ce1cb6d02f8c21d58d07a9106cc5a0bca5d",
+      "bytes": 9478
+    },
+    {
+      "rel": "game/__tests__/openingFairness.test.ts",
+      "sha256": "29bf6252839fb7a1c6e0e52d5c25fa7d1472f4f69e7c0bbe2804f304614c6066",
+      "bytes": 29107
+    },
+    {
+      "rel": "game/__tests__/openingFairnessStackSafety.test.ts",
+      "sha256": "f9ef6537858605e8381a503bc04fe7b09c6462774274f166f70c02b46458fa3f",
+      "bytes": 20127
+    },
+    {
+      "rel": "game/__tests__/smallBoardConfig.test.ts",
+      "sha256": "8ef2a59dc3ddc28a159a5eeedd32f891a11ed0f199eb2ecfc7f361d02845517d",
+      "bytes": 14951
+    },
+    {
+      "rel": "index.css",
+      "sha256": "02ef7cea5086440116089a94115582bf505a8b22d9f3cc6d06fd291e1d4a2d52",
+      "bytes": 899
+    },
+    {
+      "rel": "main.tsx",
+      "sha256": "775ff83ef15ee5af33df7a628645b8ae4d186c4c726db89998b3e59c3f48a65e",
+      "bytes": 660
+    },
+    {
+      "rel": "pages/ChallengesPage.tsx",
+      "sha256": "db399b8392a8722302b99428d7f87a151b6f75cf890c25b908d8e272a0af605a",
+      "bytes": 1145
+    },
+    {
+      "rel": "pages/EditorPage.tsx",
+      "sha256": "01566b5aac427c09c7c85fd0064006053754ca18502efef4818a2776738330d3",
+      "bytes": 21528
+    },
+    {
+      "rel": "pages/GamePage.tsx",
+      "sha256": "de285dc789660f01d0650f273818da7b8415602f8c759b20567ad504cbfe4083",
+      "bytes": 20266
+    },
+    {
+      "rel": "pages/LocalModeSelect.tsx",
+      "sha256": "02b2ee5ec7b1b1adc455ec0aa2f19e909562fe61cba481fb0fb3280687e0951c",
+      "bytes": 1643
+    },
+    {
+      "rel": "pages/MainMenu.tsx",
+      "sha256": "5e59abcd90003ab487398db958436224c9402cbf44b42d7810cf23ac376fdfa0",
+      "bytes": 2768
+    },
+    {
+      "rel": "pages/MatchSetupPage.tsx",
+      "sha256": "839e38ebaafbd1a10153b34331619b2d994b6e653ad20a50ad73d13a09818150",
+      "bytes": 8866
+    },
+    {
+      "rel": "pages/OnlineModeSelect.tsx",
+      "sha256": "84e826da933e132fd56a7cb2654f534d96afa056e3e6b5c12c59931f3f694710",
+      "bytes": 1119
+    },
+    {
+      "rel": "pages/SettingsPage.tsx",
+      "sha256": "bf52e323630eb55ab7ae005c2fa18c39b9f34c3867e858ce7f168a3bd1b856fd",
+      "bytes": 5026
+    },
+    {
+      "rel": "pages/TutorialPage.tsx",
+      "sha256": "4519cd2373f2c40218eca6c39b43be56a81e67890cbcd0cc8d3783eff431db4b",
+      "bytes": 24597
+    }
+  ]
+}

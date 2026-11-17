@@ -1,0 +1,496 @@
+{
+  "_provenance": {
+    "round": "PPC-P2-PREPARED-TRANSITION-01",
+    "rawFile": "_raw/AA_AGGREGATE_aa.json",
+    "rawSha256": "9bba01748eb809ec0e3c43fe305da1989bbf3688dd56acfc138536a1ee94daa7",
+    "what": "20 fresh A/A repetitions (both arms = frozen baseline).",
+    "note": "This file is the raw measurement plus this provenance block. No value was edited."
+  },
+  "round": "PPC-P2-PREPARED-TRANSITION-01",
+  "mode": "aa",
+  "arms": {
+    "A": "baseline",
+    "B": "baseline"
+  },
+  "primaryStatistic": "median of 5 in-process sweeps of the frozen D1 protocol (24 roots, maxNodes=10000)",
+  "pairs": 20,
+  "missingReps": [],
+  "rows": [
+    {
+      "rep": 1,
+      "a": 240.61870000000022,
+      "b": 233.60820000000058,
+      "aArm": "baseline",
+      "bArm": "baseline",
+      "aMin": 236.86670000000026,
+      "bMin": 232.46109999999953,
+      "aFile": "aa_a_01_baseline.json",
+      "bFile": "aa_b_01_baseline.json"
+    },
+    {
+      "rep": 2,
+      "a": 238.30909999999903,
+      "b": 235.18320000000017,
+      "aArm": "baseline",
+      "bArm": "baseline",
+      "aMin": 232.92359999999917,
+      "bMin": 233.90789999999993,
+      "aFile": "aa_a_02_baseline.json",
+      "bFile": "aa_b_02_baseline.json"
+    },
+    {
+      "rep": 3,
+      "a": 236.6706999999999,
+      "b": 237.15880000000016,
+      "aArm": "baseline",
+      "bArm": "baseline",
+      "aMin": 232.17540000000145,
+      "bMin": 235.2517000000007,
+      "aFile": "aa_a_03_baseline.json",
+      "bFile": "aa_b_03_baseline.json"
+    },
+    {
+      "rep": 4,
+      "a": 241.13749999999936,
+      "b": 236.57450000000085,
+      "aArm": "baseline",
+      "bArm": "baseline",
+      "aMin": 235.2302999999995,
+      "bMin": 232.81229999999982,
+      "aFile": "aa_a_04_baseline.json",
+      "bFile": "aa_b_04_baseline.json"
+    },
+    {
+      "rep": 5,
+      "a": 236.23399999999992,
+      "b": 237.01070000000027,
+      "aArm": "baseline",
+      "bArm": "baseline",
+      "aMin": 231.67160000000013,
+      "bMin": 232.25929999999948,
+      "aFile": "aa_a_05_baseline.json",
+      "bFile": "aa_b_05_baseline.json"
+    },
+    {
+      "rep": 6,
+      "a": 235.05830000000037,
+      "b": 242.08929999999987,
+      "aArm": "baseline",
+      "bArm": "baseline",
+      "aMin": 230.1792999999982,
+      "bMin": 233.7901999999999,
+      "aFile": "aa_a_06_baseline.json",
+      "bFile": "aa_b_06_baseline.json"
+    },
+    {
+      "rep": 7,
+      "a": 243.95109999999977,
+      "b": 243.4948000000004,
+      "aArm": "baseline",
+      "bArm": "baseline",
+      "aMin": 235.97280000000046,
+      "bMin": 236.20980000000054,
+      "aFile": "aa_a_07_baseline.json",
+      "bFile": "aa_b_07_baseline.json"
+    },
+    {
+      "rep": 8,
+      "a": 237.3141999999998,
+      "b": 240.63999999999965,
+      "aArm": "baseline",
+      "bArm": "baseline",
+      "aMin": 235.06689999999958,
+      "bMin": 236.6607000000015,
+      "aFile": "aa_a_08_baseline.json",
+      "bFile": "aa_b_08_baseline.json"
+    },
+    {
+      "rep": 9,
+      "a": 240.82300000000032,
+      "b": 235.19640000000004,
+      "aArm": "baseline",
+      "bArm": "baseline",
+      "aMin": 235.24919999999952,
+      "bMin": 232.3121000000001,
+      "aFile": "aa_a_09_baseline.json",
+      "bFile": "aa_b_09_baseline.json"
+    },
+    {
+      "rep": 10,
+      "a": 236.9029000000005,
+      "b": 237.37170000000128,
+      "aArm": "baseline",
+      "bArm": "baseline",
+      "aMin": 234.54280000000063,
+      "bMin": 234.32610000000045,
+      "aFile": "aa_a_10_baseline.json",
+      "bFile": "aa_b_10_baseline.json"
+    },
+    {
+      "rep": 11,
+      "a": 235.4725000000003,
+      "b": 233.83810000000017,
+      "aArm": "baseline",
+      "bArm": "baseline",
+      "aMin": 230.68380000000002,
+      "bMin": 230.5863000000004,
+      "aFile": "aa_a_11_baseline.json",
+      "bFile": "aa_b_11_baseline.json"
+    },
+    {
+      "rep": 12,
+      "a": 239.78439999999978,
+      "b": 239.11330000000044,
+      "aArm": "baseline",
+      "bArm": "baseline",
+      "aMin": 237.99900000000093,
+      "bMin": 234.5627000000004,
+      "aFile": "aa_a_12_baseline.json",
+      "bFile": "aa_b_12_baseline.json"
+    },
+    {
+      "rep": 13,
+      "a": 242.1854999999996,
+      "b": 236.01199999999972,
+      "aArm": "baseline",
+      "bArm": "baseline",
+      "aMin": 233.03139999999985,
+      "bMin": 231.0081999999993,
+      "aFile": "aa_a_13_baseline.json",
+      "bFile": "aa_b_13_baseline.json"
+    },
+    {
+      "rep": 14,
+      "a": 239.03170000000046,
+      "b": 241.2265,
+      "aArm": "baseline",
+      "bArm": "baseline",
+      "aMin": 233.79239999999982,
+      "bMin": 234.1675999999993,
+      "aFile": "aa_a_14_baseline.json",
+      "bFile": "aa_b_14_baseline.json"
+    },
+    {
+      "rep": 15,
+      "a": 239.11130000000026,
+      "b": 237.4065000000005,
+      "aArm": "baseline",
+      "bArm": "baseline",
+      "aMin": 234.76860000000215,
+      "bMin": 232.53269999999907,
+      "aFile": "aa_a_15_baseline.json",
+      "bFile": "aa_b_15_baseline.json"
+    },
+    {
+      "rep": 16,
+      "a": 236.05409999999983,
+      "b": 240.29500000000007,
+      "aArm": "baseline",
+      "bArm": "baseline",
+      "aMin": 230.10509999999977,
+      "bMin": 234.02060000000188,
+      "aFile": "aa_a_16_baseline.json",
+      "bFile": "aa_b_16_baseline.json"
+    },
+    {
+      "rep": 17,
+      "a": 237.1722999999995,
+      "b": 238.76850000000059,
+      "aArm": "baseline",
+      "bArm": "baseline",
+      "aMin": 232.7256000000002,
+      "bMin": 237.23600000000124,
+      "aFile": "aa_a_17_baseline.json",
+      "bFile": "aa_b_17_baseline.json"
+    },
+    {
+      "rep": 18,
+      "a": 251.27359999999908,
+      "b": 243.37399999999957,
+      "aArm": "baseline",
+      "bArm": "baseline",
+      "aMin": 241.79700000000093,
+      "bMin": 241.12730000000124,
+      "aFile": "aa_a_18_baseline.json",
+      "bFile": "aa_b_18_baseline.json"
+    },
+    {
+      "rep": 19,
+      "a": 241.10929999999985,
+      "b": 240.06709999999998,
+      "aArm": "baseline",
+      "bArm": "baseline",
+      "aMin": 238.31199999999944,
+      "bMin": 236.95550000000048,
+      "aFile": "aa_a_19_baseline.json",
+      "bFile": "aa_b_19_baseline.json"
+    },
+    {
+      "rep": 20,
+      "a": 237.0283000000004,
+      "b": 234.87860000000046,
+      "aArm": "baseline",
+      "bArm": "baseline",
+      "aMin": 232.46319999999992,
+      "bMin": 230.77720000000113,
+      "aFile": "aa_a_20_baseline.json",
+      "bFile": "aa_b_20_baseline.json"
+    }
+  ],
+  "summary": {
+    "geometricMeanRatio": 0.9954525748434875,
+    "medianRatio": 0.9972012357768089,
+    "meanLog": -0.004557796147102095,
+    "sdLog": 0.016195905677039157,
+    "tCritical": 2.086,
+    "ci95": [
+      0.9879607827318281,
+      1.0030011778630548
+    ],
+    "worstRatio": 1.029911728281875,
+    "bestRatio": 0.9685617589750792,
+    "speedupPct": 0.4547425156512519
+  },
+  "perRoot": [
+    {
+      "id": "G1T4",
+      "medianAMs": 3.0450000000000728,
+      "medianBMs": 3.0778999999999996,
+      "geoRatio": 1.0168037211421235,
+      "ci95": [
+        1.0043673943976434,
+        1.0293940375757933
+      ]
+    },
+    {
+      "id": "G5T2",
+      "medianAMs": 8.0016999999998,
+      "medianBMs": 8.15079999999989,
+      "geoRatio": 1.0160373358114763,
+      "ci95": [
+        0.9904862151046647,
+        1.042247587114371
+      ]
+    },
+    {
+      "id": "G2T4",
+      "medianAMs": 5.558399999999892,
+      "medianBMs": 5.571200000000317,
+      "geoRatio": 1.0068625315859423,
+      "ci95": [
+        0.9950590978483349,
+        1.018805978161279
+      ]
+    },
+    {
+      "id": "G1T7",
+      "medianAMs": 6.835799999999836,
+      "medianBMs": 6.874199999999973,
+      "geoRatio": 1.006223324539883,
+      "ci95": [
+        0.9958875613648159,
+        1.0166663568531096
+      ]
+    },
+    {
+      "id": "G2T1",
+      "medianAMs": 35.571500000000015,
+      "medianBMs": 35.83120000000008,
+      "geoRatio": 1.0041605331191865,
+      "ci95": [
+        0.9962932663716924,
+        1.012089924030484
+      ]
+    },
+    {
+      "id": "G1T5",
+      "medianAMs": 5.007000000000062,
+      "medianBMs": 5.09089999999992,
+      "geoRatio": 1.0029249529507689,
+      "ci95": [
+        0.9876786018236339,
+        1.018406655154927
+      ]
+    },
+    {
+      "id": "G5T4",
+      "medianAMs": 4.128799999999956,
+      "medianBMs": 4.098300000000108,
+      "geoRatio": 1.002533430403172,
+      "ci95": [
+        0.9791917788074268,
+        1.026431492613272
+      ]
+    },
+    {
+      "id": "G6T2",
+      "medianAMs": 3.89449999999988,
+      "medianBMs": 3.9384999999999764,
+      "geoRatio": 1.002061750232539,
+      "ci95": [
+        0.9858022923205567,
+        1.018589385621538
+      ]
+    },
+    {
+      "id": "G1T1",
+      "medianAMs": 29.822000000000116,
+      "medianBMs": 29.848899999999958,
+      "geoRatio": 1.0001994751807173,
+      "ci95": [
+        0.9900055825889175,
+        1.010498332277769
+      ]
+    },
+    {
+      "id": "G1T3",
+      "medianAMs": 3.963600000000042,
+      "medianBMs": 3.9742999999998574,
+      "geoRatio": 0.9993712131932173,
+      "ci95": [
+        0.9900699835492647,
+        1.0087598234004906
+      ]
+    },
+    {
+      "id": "G2T6",
+      "medianAMs": 4.441000000000031,
+      "medianBMs": 4.45010000000002,
+      "geoRatio": 0.9992064908311727,
+      "ci95": [
+        0.9824174993878517,
+        1.0162823971898527
+      ]
+    },
+    {
+      "id": "G5T3",
+      "medianAMs": 5.443199999999933,
+      "medianBMs": 5.471900000000005,
+      "geoRatio": 0.998933704254662,
+      "ci95": [
+        0.9838022630399856,
+        1.0142978756853938
+      ]
+    },
+    {
+      "id": "G2T7",
+      "medianAMs": 4.629799999999705,
+      "medianBMs": 4.661200000000008,
+      "geoRatio": 0.9977302138340876,
+      "ci95": [
+        0.9875725183479953,
+        1.0079923864858271
+      ]
+    },
+    {
+      "id": "G1T2",
+      "medianAMs": 6.690499999999929,
+      "medianBMs": 6.625299999999925,
+      "geoRatio": 0.9975661689286188,
+      "ci95": [
+        0.9873657920258755,
+        1.0078719249014072
+      ]
+    },
+    {
+      "id": "G6T3",
+      "medianAMs": 3.6669999999999163,
+      "medianBMs": 3.6684000000000196,
+      "geoRatio": 0.9967639214976072,
+      "ci95": [
+        0.9854320608593623,
+        1.0082260915408583
+      ]
+    },
+    {
+      "id": "G2T2",
+      "medianAMs": 3.838600000000042,
+      "medianBMs": 3.811999999999898,
+      "geoRatio": 0.9960370512068515,
+      "ci95": [
+        0.9855691562199318,
+        1.0066161274586938
+      ]
+    },
+    {
+      "id": "G2T8",
+      "medianAMs": 14.592499999999973,
+      "medianBMs": 14.511799999999994,
+      "geoRatio": 0.9956538646002786,
+      "ci95": [
+        0.9842410658025721,
+        1.0071990008719256
+      ]
+    },
+    {
+      "id": "G6T1",
+      "medianAMs": 36.07179999999994,
+      "medianBMs": 36.188699999999926,
+      "geoRatio": 0.9955138020757824,
+      "ci95": [
+        0.9816565404759939,
+        1.0095666755735488
+      ]
+    },
+    {
+      "id": "G1T8",
+      "medianAMs": 5.427500000000009,
+      "medianBMs": 5.461800000000039,
+      "geoRatio": 0.9954985222045215,
+      "ci95": [
+        0.9755188593691215,
+        1.0158873897653684
+      ]
+    },
+    {
+      "id": "G5T1",
+      "medianAMs": 19.85940000000005,
+      "medianBMs": 19.900499999999965,
+      "geoRatio": 0.9951519687723099,
+      "ci95": [
+        0.9838847282292488,
+        1.0065482393793745
+      ]
+    },
+    {
+      "id": "G1T9",
+      "medianAMs": 5.356500000000096,
+      "medianBMs": 5.298699999999826,
+      "geoRatio": 0.9928041354413789,
+      "ci95": [
+        0.9787970022396844,
+        1.0070117185628025
+      ]
+    },
+    {
+      "id": "G2T5",
+      "medianAMs": 9.207499999999982,
+      "medianBMs": 9.107700000000023,
+      "geoRatio": 0.9916943680802882,
+      "ci95": [
+        0.9792522887916412,
+        1.0042945326129493
+      ]
+    },
+    {
+      "id": "G1T6",
+      "medianAMs": 8.75500000000011,
+      "medianBMs": 8.779099999999744,
+      "geoRatio": 0.9910285723381312,
+      "ci95": [
+        0.974570020441162,
+        1.0077650764856967
+      ]
+    },
+    {
+      "id": "G2T3",
+      "medianAMs": 5.939100000000053,
+      "medianBMs": 5.904800000000023,
+      "geoRatio": 0.9905868066814899,
+      "ci95": [
+        0.9784041458772768,
+        1.0029211606534967
+      ]
+    }
+  ]
+}

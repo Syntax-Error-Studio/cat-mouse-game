@@ -1,0 +1,302 @@
+{
+  "schemaVersion": "1.0",
+  "round": "PPC-T1-PCV-01",
+  "type": "READ_ONLY_POSTHOC_MEASUREMENT",
+  "generatedAt": "2026-11-16T06:08:16Z",
+  "worktree": "F:/小猫小鼠",
+  "branch": "ppc/p1-id-state-identity-fix",
+  "head": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+  "status": {
+    "productionSourceChanged": false,
+    "productionWiring": false,
+    "gameRulesChanged": false,
+    "searchMathChanged": false,
+    "sidecarGuardMouseAiChanged": false,
+    "budget100ms150msChanged": false,
+    "selfPlay": "NOT_PERFORMED",
+    "fullRegression": "NOT_PERFORMED",
+    "commit": "NO",
+    "push": "NO",
+    "merge": "NO"
+  },
+  "parameters": {
+    "strata": 48,
+    "observations": 240,
+    "repetitions": 5,
+    "serialFreshProcesses": true,
+    "heavyWorkerConcurrency": 1,
+    "h0NodeCap": 600000,
+    "h1CatSurviveNodeCap": 5000,
+    "pcvWallTargetMs": 25,
+    "verifier": "independent re-enumeration of all opponent actions and all positive-probability chance outcomes"
+  },
+  "identity": {
+    "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+    "p5Sha256": "9d50560f107da52107cb68be94f4ac90214f8a50aabbc948f8f3114215278775",
+    "sealKernelSha256": "453915d3fd3a69bda5d113dd7e5732d20424a7f97cff739cf9b0aeee576a779b",
+    "gameplaySha256": "e000778b114bea02ef09634085172ea435be143335721aa0cd04114afb2afd34",
+    "preregistrationSha256": "3dd79a40fda42af91056c3662fbb92ae0ad0da2c9fa9e50670eea139f3b06bfc"
+  },
+  "inputs": [
+    {
+      "role": "frozen_gameplay_rules",
+      "path": "F:/小猫小鼠/GAMEPLAY.md",
+      "sha256": "e000778b114bea02ef09634085172ea435be143335721aa0cd04114afb2afd34",
+      "bytes": 21128
+    },
+    {
+      "role": "frozen_human_roots_fixture",
+      "path": "F:/小猫小鼠/src/game/ai/__tests__/fixtures/ppcId01-human-roots.json",
+      "sha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "bytes": 264328
+    },
+    {
+      "role": "p5_production_100ms_observations",
+      "path": "F:/小猫小鼠/PPC-CAT-EVALUATOR-ABLATION-01/PRODUCTION_100MS_RESULTS.json",
+      "sha256": "9d50560f107da52107cb68be94f4ac90214f8a50aabbc948f8f3114215278775",
+      "bytes": 73487
+    },
+    {
+      "role": "p4_h1_certificates_read_only_annotation",
+      "path": "F:/小猫小鼠/PPC-CAT-EVALUATOR-ABLATION-01/QUANTIFIER_CERTIFICATES.json",
+      "sha256": "2a0a807740bc1f6108958898ec0912d404b83e37224ff44110983ced7ceee4e9",
+      "bytes": 197423
+    },
+    {
+      "role": "frozen_quantifier_kernel",
+      "path": "F:/小猫小鼠/PPC-CAT-STRATEGY-SEAL-01/probe/seal_lib.ts",
+      "sha256": "453915d3fd3a69bda5d113dd7e5732d20424a7f97cff739cf9b0aeee576a779b",
+      "bytes": 21012
+    },
+    {
+      "role": "production_prepared_actions",
+      "path": "F:/小猫小鼠/src/game/ai/preparedActions.ts",
+      "sha256": "67b76ad3de53fee6d3d32f9bc8ab9a02b52234857b23b7fc9091bd92011ad764",
+      "bytes": 5405
+    },
+    {
+      "role": "production_expectiminimax",
+      "path": "F:/小猫小鼠/src/game/ai/expectiminimax.ts",
+      "sha256": "50d27da5e9d0d47a1ad70efb542a3ec1510507fd14b825a52729ebb90f6d690c",
+      "bytes": 109353
+    },
+    {
+      "role": "production_engine",
+      "path": "F:/小猫小鼠/src/game/engine.ts",
+      "sha256": "099f9a7b6d97b838c664aa7186be58465e5b01b8052af4b4e4e19a5644d19f06",
+      "bytes": 190506
+    },
+    {
+      "role": "p2_prepared_transition_manifest",
+      "path": "F:/小猫小鼠/PPC-P2-PREPARED-TRANSITION-01/SOURCE_MANIFEST.json",
+      "sha256": "3e52a131d2337b44d91a79dd02e922e7f70ade0859440b91f1e51ac195ba8360",
+      "bytes": 2922
+    },
+    {
+      "role": "p2_final_decision",
+      "path": "F:/小猫小鼠/PPC-P2-PREPARED-TRANSITION-01/FINAL_DECISION.json",
+      "sha256": "bc7ef40c994dbca736e52a05da286065fb08a21af8ca1257e0af32f5f113d2cb",
+      "bytes": 13755
+    },
+    {
+      "role": "seal_manifest",
+      "path": "F:/小猫小鼠/PPC-CAT-STRATEGY-SEAL-01/SOURCE_MANIFEST.json",
+      "sha256": "7138b75d8d6dbc4ddd32dcf98d05b548bceb39636f6513fac31a47ac00b0902f",
+      "bytes": 5264
+    },
+    {
+      "role": "seal_sums",
+      "path": "F:/小猫小鼠/PPC-CAT-STRATEGY-SEAL-01/SHA256SUMS.txt",
+      "sha256": "f197046f6ee5b5475e9c57defb942b472a07d5b223b2ff9c6ce48ae394624a77",
+      "bytes": 2441
+    },
+    {
+      "role": "seal_verification",
+      "path": "F:/小猫小鼠/PPC-CAT-STRATEGY-SEAL-01/SEAL_VERIFICATION.json",
+      "sha256": "800765639c631b3fdd6b348887774f6423f8f1c1a52760a45d3827b698ad60a3",
+      "bytes": 1315
+    },
+    {
+      "role": "erratum",
+      "path": "F:/小猫小鼠/PPC-CAT-EVALUATOR-ABLATION-01-ERRATUM-01/ERRATUM.md",
+      "sha256": "1cf68d934e5061093aa4e708430aa2f755d1beaa88517e7fdad8af1f16d67b88",
+      "bytes": 18195
+    },
+    {
+      "role": "erratum_results",
+      "path": "F:/小猫小鼠/PPC-CAT-EVALUATOR-ABLATION-01-ERRATUM-01/ERRATUM_RESULTS.json",
+      "sha256": "36b318414a7a2dfd4139abfdb89e4721ed3e640b44cf583f4b6fa501343354ed",
+      "bytes": 8109
+    },
+    {
+      "role": "foundation_manifest",
+      "path": "F:/小猫小鼠/PPC-T1-FOUNDATION-01/SOURCE_MANIFEST.json",
+      "sha256": "c1aa916f8cf01601c6bba3fd427ef8c77a2039571e681cc27230a2fc08504a61",
+      "bytes": 13493
+    },
+    {
+      "role": "foundation_report",
+      "path": "F:/小猫小鼠/PPC-T1-FOUNDATION-01/REPORT.md",
+      "sha256": "393825a01822df05f3c79b100e98ad30cc435178e82bfc9b1493c491800a2eb4",
+      "bytes": 39409
+    },
+    {
+      "role": "frozen_next_stage_preregistration",
+      "path": "F:/小猫小鼠/PPC-T1-FOUNDATION-01/NEXT_STAGE_PREREGISTRATION.json",
+      "sha256": "3dd79a40fda42af91056c3662fbb92ae0ad0da2c9fa9e50670eea139f3b06bfc",
+      "bytes": 13476
+    }
+  ],
+  "methods": [
+    {
+      "path": "PPC-T1-PCV-01/probe/pcv_lib.ts",
+      "sha256": "3f556dbcdb72fe4fc3ab0926f2281ac6d99f9206b75d8a87989cff229173a5b9",
+      "bytes": 12658
+    },
+    {
+      "path": "PPC-T1-PCV-01/probe/pcv.test.ts",
+      "sha256": "a6a5688e79e6347b7d307856006bfe5ff253393c29826a15bb1e3f9ad4c264d8",
+      "bytes": 10112
+    },
+    {
+      "path": "PPC-T1-PCV-01/probe/replay.test.ts",
+      "sha256": "fc501bed8a305fc2f5dbb3338e1be915d10791926388efa0d2818aa9f4900f76",
+      "bytes": 3630
+    },
+    {
+      "path": "PPC-T1-PCV-01/probe/pilot.test.ts",
+      "sha256": "3bd01ea313af640bcf3aa9d42e5bbbd32f1a3458f024e1395cd58a4dff933682",
+      "bytes": 3033
+    },
+    {
+      "path": "PPC-T1-PCV-01/probe/aggregate.mjs",
+      "sha256": "3eff8e59813fcb73b9db917cd338fa2b3d5f58ee8f36fd18aedf929e3161a013",
+      "bytes": 23742
+    },
+    {
+      "path": "PPC-T1-PCV-01/probe/vitest.config.mts",
+      "sha256": "ad40d90c833ef8e779465bc754cadbfc51c94c7acac919d5522530addeebc7cf",
+      "bytes": 532
+    }
+  ],
+  "outputs": [
+    {
+      "role": "report",
+      "path": "PPC-T1-PCV-01/REPORT.md",
+      "sha256": "6b5702f779663b5086f5340ea5ed7e6508a7a666a3399b2dc6d68774a675776b",
+      "bytes": 28640
+    },
+    {
+      "role": "preregistration_amendment",
+      "path": "PPC-T1-PCV-01/PREREGISTRATION_AMENDMENT.md",
+      "sha256": "a7fccf0c0020751f6b5bb67b869345c604ac4b970baee47a0c1a13523b473f7a",
+      "bytes": 9943
+    },
+    {
+      "role": "resource_safety_log",
+      "path": "PPC-T1-PCV-01/RESOURCE_SAFETY_LOG.md",
+      "sha256": "b270a532f1e178063532c059647d31e951def66f65f0bbb671f5543b47fe20fc",
+      "bytes": 6241
+    },
+    {
+      "role": "observations_240",
+      "path": "PPC-T1-PCV-01/OBSERVATIONS_240.json",
+      "sha256": "2a7c44f73e86a6cb663f4018a8b573b73f17bffe500e9c04e3d823df8510ebc3",
+      "bytes": 918585
+    },
+    {
+      "role": "root_arm_summary_48",
+      "path": "PPC-T1-PCV-01/ROOT_ARM_SUMMARY.csv",
+      "sha256": "36be5cf169ced6aa925ff6b37ec4dd05257cc4146fde239ac30aa11c60dcb46b",
+      "bytes": 15210
+    },
+    {
+      "role": "proof_results",
+      "path": "PPC-T1-PCV-01/PROOF_RESULTS.json",
+      "sha256": "3ccef93d914b4c1702078bcaafd612386bd5d953b70d729ccba3825ab1c272ca",
+      "bytes": 879491
+    },
+    {
+      "role": "certificate_verification",
+      "path": "PPC-T1-PCV-01/CERTIFICATE_VERIFICATION.json",
+      "sha256": "d1c9dd49e3d889b06a0a148e82a3d6303628b19a9a084d005c08d1eeaf476f4e",
+      "bytes": 74715
+    },
+    {
+      "role": "aggregate",
+      "path": "PPC-T1-PCV-01/_raw/AGGREGATE.json",
+      "sha256": "47c70768274a35536cfe54c91c7f0fcd71d222cbca774ac5cddb253a12e24210",
+      "bytes": 12148
+    },
+    {
+      "role": "raw_rep_1",
+      "path": "PPC-T1-PCV-01/_raw/rep1.json",
+      "sha256": "0cf79086a0eb1ffff71f1d8df4b713ccc465b57fcba7e9f8d8dc5b95bc0847f1",
+      "bytes": 840767
+    },
+    {
+      "role": "raw_rep_2",
+      "path": "PPC-T1-PCV-01/_raw/rep2.json",
+      "sha256": "6bc7e3eaed613566db67504852d720d0bff30cdb90824d299e3f6383e6203093",
+      "bytes": 840795
+    },
+    {
+      "role": "raw_rep_3",
+      "path": "PPC-T1-PCV-01/_raw/rep3.json",
+      "sha256": "775915f86f38cde5505e2163efdbbb95d0f0d88ed26c636e50aa4cc571441e64",
+      "bytes": 840788
+    },
+    {
+      "role": "raw_rep_4",
+      "path": "PPC-T1-PCV-01/_raw/rep4.json",
+      "sha256": "822f9dafc732a29381e21868c9e92e4f2b36ad587184ed6812aa2b874c5ab0eb",
+      "bytes": 840897
+    },
+    {
+      "role": "raw_rep_5",
+      "path": "PPC-T1-PCV-01/_raw/rep5.json",
+      "sha256": "7692fab15188c6ebfb5c883c686420efde354a7775d437e944467e4afbc3b785",
+      "bytes": 840884
+    },
+    {
+      "role": "replay_all",
+      "path": "PPC-T1-PCV-01/_raw/replay_all.json",
+      "sha256": "7a4b36601fa3653264c10b7f80cf62e00d77efe4f2f68ef2adec6c743c00d198",
+      "bytes": 112029
+    },
+    {
+      "role": "pilot_probe",
+      "path": "PPC-T1-PCV-01/_raw/pilot.json",
+      "sha256": "3a9239223eb8e80d613e1b468e85dbd34d5dda455865bdea7f4cff609fe3dcf7",
+      "bytes": 16507
+    },
+    {
+      "role": "run_log",
+      "path": "PPC-T1-PCV-01/logs/run_log.txt",
+      "sha256": "03fefaad8945661ed74dbb1a96f6420d4e5ceaa3e2fe4f19193ec7f2bd47c8f9",
+      "bytes": 392
+    }
+  ],
+  "gateSummary": {
+    "G0_identity": "PASS",
+    "G1_zero_false_proofs": "PASS",
+    "G2_strong_coverage": "PASS (28/48 full; 20/48 phase1 min)",
+    "G3_budget_feasibility": "FAIL (1/48 >=40ms; 6/48 >=20ms)",
+    "G4_no_plan_change": "PASS",
+    "G5_binding": "PASS (0 plan identity failures)",
+    "G6_no_upgrade": "PASS",
+    "decision": "AMBER",
+    "escalation": "NOT_TRIGGERED"
+  },
+  "excludes": {
+    "self": "SOURCE_MANIFEST.json intentionally contains no SHA256 of itself",
+    "sha256sums": "SHA256SUMS.txt is generated after this manifest and records the manifest digest; it is not hashed here to avoid a circular dependency"
+  },
+  "notes": [
+    "All 240 observations are retained; no repetition was removed or replaced.",
+    "Certificates bind to the actual FINAL_SELECTED_PLAN and its post-prefix stateKey, not to search.bestAction or baselinePlan.",
+    "The 20 SURVIVES_WITHIN_H0 strata are a weak one-mouse-turn guarantee and must not be upgraded to H1 safety.",
+    "The 8 H1 catSurvive=false strata are not counted as forced-win proofs; false means the survival claim failed, not that the mouse win was certified.",
+    "Prior P4 annotations are read-only and do not alter this round's classification."
+  ]
+}

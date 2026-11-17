@@ -1,0 +1,3806 @@
+{
+  "artefact": "BASELINE_FORK_PROVENANCE",
+  "gate": "GATE_B",
+  "generatedAt": "2026-11-16T16:47:36.768Z",
+  "node": "v22.22.2",
+  "head": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+  "branch": "ppc/p1-id-state-identity-fix",
+  "parent": {
+    "path": "PPC-MCTS-01/proto/uct.ts",
+    "sha256": "508a65bf53b63555bc4d3f8de7199b8607a8544572bb0e55850445cdffa2c53a",
+    "bytes": 24053,
+    "mutableByThisRound": false,
+    "note": "PPC-MCTS-01 is frozen by the round brief; the seam cannot be added there."
+  },
+  "fork": {
+    "path": "PPC-MCTS-01B/proto/uctBaseline.ts",
+    "sha256": "7df9d8d1bb42f984f5f866c8444b40f7133b1aa84d43f8229e5b731f38eff068",
+    "bytes": 32372,
+    "diffPatch": "PPC-MCTS-01B/DIFF_uct_to_uctBaseline.patch",
+    "diffStat": {
+      "added": 195,
+      "removed": 39
+    }
+  },
+  "preparedFork": {
+    "path": "PPC-MCTS-01B/proto/uctPrepared.ts",
+    "sha256": "0e6f105088b8df98e3d4a3e45a2ac6ab55f4231c837bdb1f861e4f701c27e3b2",
+    "note": "Receives the SAME seam and the SAME trace event points, so \"same stop mechanism\" is structural rather than asserted."
+  },
+  "claim": {
+    "statement": "Apart from (a) the test-only maxCompletedSimulations stop seam and (b) read-only trace instrumentation, the fork performs the same computation as the frozen parent: same thresholds, same tie-breaks, same epsilon comparisons, same iteration order, same RNG construction and seed derivation, same tree expansion, same CHANCE handling, same plan extraction.",
+    "whyNotATextStrippingProof": "Line-level stripping cannot establish semantic identity (a stripper that deletes the wrong brace still produces a diff of zero, and a catch-all category can force the residue to zero without proving anything). The claim is therefore evidenced twice: every changed line names the parent line it replaces (classification.perLine, UNCLASSIFIED_DIFF_LINES = 0), and the runtime behaviour is compared in probe/impl/phase1Seam.test.ts H1 over 96 fixed-node cells on every comparable field."
+  },
+  "classification": {
+    "unclassifiedDiffLines": 0,
+    "categories": [
+      {
+        "name": "HEADER_COMMENT",
+        "why": "Provenance header of the fork. Comments only; no executable content.",
+        "added": 30,
+        "removed": 0
+      },
+      {
+        "name": "COMMENT_OR_BLANK",
+        "why": "Comment or blank line. No executable content.",
+        "added": 26,
+        "removed": 13
+      },
+      {
+        "name": "IMPORT_SPECIFIER",
+        "why": "Same modules, re-based to the fork directory, plus the read-only trace module. No runtime logic.",
+        "added": 7,
+        "removed": 5
+      },
+      {
+        "name": "CLASS_RENAME",
+        "why": "`UctSearch` → `UctSearchBaseline` so the two arms can be imported side by side. Rename only.",
+        "added": 1,
+        "removed": 1
+      },
+      {
+        "name": "SEAM_STOP_HOOK",
+        "why": "Test-only `maxCompletedSimulations` seam: field, option, guarded stop at the TOP of the simulation loop, reported flag. With no value passed it is null and the guard never runs.",
+        "added": 8,
+        "removed": 0
+      },
+      {
+        "name": "RNG_INIT_BRANCH",
+        "why": "The two RNG objects are constructed behind an `if (trace)` branch. Without a sink the branch executes the parent's two `mulberry32(seedFor([...]))` calls verbatim.",
+        "added": 14,
+        "removed": 2
+      },
+      {
+        "name": "TRACE_PLUMBING",
+        "why": "Read-only trace sink: option, field, constructor wiring, helper, plan digest hand-off. Emits values it already has; consumes no RNG and mutates no state.",
+        "added": 27,
+        "removed": 0
+      },
+      {
+        "name": "TRACE_EVENT_CALL",
+        "why": "One `this.tr(...)` emission on its own line. Pure observation of values already computed.",
+        "added": 27,
+        "removed": 0
+      },
+      {
+        "name": "TRACE_CALL_ARGUMENT",
+        "why": "Continuation line (or closing `});`) of a multi-line trace emission. The emitted values are already-computed locals; nothing is read that was not read without the sink.",
+        "added": 15,
+        "removed": 0
+      },
+      {
+        "name": "LEAF_VALUE_CARRY",
+        "why": "`SimOutcome` and the rollout return carry `leafValue` / `terminal` so the trace can record what the reward came from. The value itself is unchanged, still computed once, still returned as `reward`.",
+        "added": 10,
+        "removed": 0
+      },
+      {
+        "name": "GUIDANCE_TAP_ARGUMENT",
+        "why": "`selectRolloutAction(..., tap)` — one extra trailing argument. The function reads it only to record `guidanceValue`; RNG calls and the returned index are unchanged.",
+        "added": 2,
+        "removed": 2
+      },
+      {
+        "name": "STRUCTURAL_LINE",
+        "why": "Brace / bracket / `else` continuation created by splitting a one-line statement into an observed branch. No statement of its own.",
+        "added": 16,
+        "removed": 0
+      },
+      {
+        "name": "STATEMENT_SPLIT",
+        "why": "A one-line `break;` / `return {...}` became a recorded form. Control flow preserved: the same condition, the same body, the same exit.",
+        "added": 1,
+        "removed": 3
+      },
+      {
+        "name": "RE_EXPORT_FOR_COMPANION",
+        "why": "Re-exports a constant that already exists in the parent (`ROOT_TRANSITION`) so the prepared fork can share it. Adds no runtime behaviour to this module.",
+        "added": 1,
+        "removed": 0
+      },
+      {
+        "name": "SIGNATURE_WIDENED_SOURCE",
+        "why": "Parent return-type annotation; the fork adds `leafValue: number; terminal: boolean` to the same annotation. Types only — erases at runtime.",
+        "added": 0,
+        "removed": 1
+      },
+      {
+        "name": "STATEMENT_SPLIT_OPEN",
+        "why": "Opening line of a block the parent wrote as a one-liner `if (COND) { body }`. Same condition, same body, same exit; the block exists so a trace emission can sit inside it.",
+        "added": 4,
+        "removed": 0
+      },
+      {
+        "name": "CONDITION_HOIST",
+        "why": "A side-effect-free condition was bound to a local so the same boolean can be recorded. The parent tested the identical expression inline.",
+        "added": 1,
+        "removed": 0
+      },
+      {
+        "name": "CONDITION_HOIST_USE",
+        "why": "The parent one-line branch with the hoisted expression substituted by its local. Body byte-identical.",
+        "added": 1,
+        "removed": 0
+      },
+      {
+        "name": "INLINE_BODY_SPLIT",
+        "why": "A statement lifted out of a parent one-liner onto its own line, textually identical.",
+        "added": 4,
+        "removed": 0
+      },
+      {
+        "name": "STATEMENT_SPLIT_SOURCE",
+        "why": "Parent one-liner whose statements now appear on separate fork lines; every part is listed as evidence.",
+        "added": 0,
+        "removed": 12
+      }
+    ],
+    "perLine": [
+      {
+        "side": "parent",
+        "lineNo": 2,
+        "parentAnchor": 2,
+        "line": "* PPC-MCTS-01 — Stepwise Stochastic UCT (research prototype).",
+        "context": [
+          "1: /**",
+          "3:  *",
+          "4:  * Design contract (frozen by the task):"
+        ],
+        "category": "COMMENT_OR_BLANK",
+        "why": "Comment or blank line. No executable content.",
+        "evidence": null
+      },
+      {
+        "side": "parent",
+        "lineNo": 4,
+        "parentAnchor": 4,
+        "line": "* Design contract (frozen by the task):",
+        "context": [
+          "2:  * PPC-MCTS-01 — Stepwise Stochastic UCT (research prototype).",
+          "3:  *",
+          "5:  *   - transitions/legality = the REAL search kernel:",
+          "6:  *       generateLegalSearchActions, simulateSearchAction, stateKey, gameAffectingEqual."
+        ],
+        "category": "COMMENT_OR_BLANK",
+        "why": "Comment or blank line. No executable content.",
+        "evidence": null
+      },
+      {
+        "side": "parent",
+        "lineNo": 5,
+        "parentAnchor": 5,
+        "line": "*   - transitions/legality = the REAL search kernel:",
+        "context": [
+          "3:  *",
+          "4:  * Design contract (frozen by the task):",
+          "6:  *       generateLegalSearchActions, simulateSearchAction, stateKey, gameAffectingEqual.",
+          "7:  *   - one node per decision state; CHANCE is an explicit layer that samples one"
+        ],
+        "category": "COMMENT_OR_BLANK",
+        "why": "Comment or blank line. No executable content.",
+        "evidence": null
+      },
+      {
+        "side": "parent",
+        "lineNo": 6,
+        "parentAnchor": 6,
+        "line": "*       generateLegalSearchActions, simulateSearchAction, stateKey, gameAffectingEqual.",
+        "context": [
+          "4:  * Design contract (frozen by the task):",
+          "5:  *   - transitions/legality = the REAL search kernel:",
+          "7:  *   - one node per decision state; CHANCE is an explicit layer that samples one",
+          "8:  *     validated outcome with the MCTS-owned seeded PRNG (never Math.random)."
+        ],
+        "category": "COMMENT_OR_BLANK",
+        "why": "Comment or blank line. No executable content.",
+        "evidence": null
+      },
+      {
+        "side": "parent",
+        "lineNo": 7,
+        "parentAnchor": 7,
+        "line": "*   - one node per decision state; CHANCE is an explicit layer that samples one",
+        "context": [
+          "5:  *   - transitions/legality = the REAL search kernel:",
+          "6:  *       generateLegalSearchActions, simulateSearchAction, stateKey, gameAffectingEqual.",
+          "8:  *     validated outcome with the MCTS-owned seeded PRNG (never Math.random).",
+          "9:  *   - cat-perspective zero-sum value; cat nodes maximise, mouse nodes minimise."
+        ],
+        "category": "COMMENT_OR_BLANK",
+        "why": "Comment or blank line. No executable content.",
+        "evidence": null
+      },
+      {
+        "side": "parent",
+        "lineNo": 8,
+        "parentAnchor": 8,
+        "line": "*     validated outcome with the MCTS-owned seeded PRNG (never Math.random).",
+        "context": [
+          "6:  *       generateLegalSearchActions, simulateSearchAction, stateKey, gameAffectingEqual.",
+          "7:  *   - one node per decision state; CHANCE is an explicit layer that samples one",
+          "9:  *   - cat-perspective zero-sum value; cat nodes maximise, mouse nodes minimise.",
+          "10:  *   - UCB1 with c = sqrt(2) (normalised reward in [-1, 1])."
+        ],
+        "category": "COMMENT_OR_BLANK",
+        "why": "Comment or blank line. No executable content.",
+        "evidence": null
+      },
+      {
+        "side": "parent",
+        "lineNo": 9,
+        "parentAnchor": 9,
+        "line": "*   - cat-perspective zero-sum value; cat nodes maximise, mouse nodes minimise.",
+        "context": [
+          "7:  *   - one node per decision state; CHANCE is an explicit layer that samples one",
+          "8:  *     validated outcome with the MCTS-owned seeded PRNG (never Math.random).",
+          "10:  *   - UCB1 with c = sqrt(2) (normalised reward in [-1, 1]).",
+          "11:  *   - depth counted in ACTION-RIGHT HAND-OFFS (not tree plies), horizon H=4."
+        ],
+        "category": "COMMENT_OR_BLANK",
+        "why": "Comment or blank line. No executable content.",
+        "evidence": null
+      },
+      {
+        "side": "parent",
+        "lineNo": 10,
+        "parentAnchor": 10,
+        "line": "*   - UCB1 with c = sqrt(2) (normalised reward in [-1, 1]).",
+        "context": [
+          "8:  *     validated outcome with the MCTS-owned seeded PRNG (never Math.random).",
+          "9:  *   - cat-perspective zero-sum value; cat nodes maximise, mouse nodes minimise.",
+          "11:  *   - depth counted in ACTION-RIGHT HAND-OFFS (not tree plies), horizon H=4.",
+          "12:  *   - 100 ms wall budget, 500 000 node safety cap, statistics committed only"
+        ],
+        "category": "COMMENT_OR_BLANK",
+        "why": "Comment or blank line. No executable content.",
+        "evidence": null
+      },
+      {
+        "side": "parent",
+        "lineNo": 11,
+        "parentAnchor": 11,
+        "line": "*   - depth counted in ACTION-RIGHT HAND-OFFS (not tree plies), horizon H=4.",
+        "context": [
+          "9:  *   - cat-perspective zero-sum value; cat nodes maximise, mouse nodes minimise.",
+          "10:  *   - UCB1 with c = sqrt(2) (normalised reward in [-1, 1]).",
+          "12:  *   - 100 ms wall budget, 500 000 node safety cap, statistics committed only",
+          "13:  *     for COMPLETE simulations."
+        ],
+        "category": "COMMENT_OR_BLANK",
+        "why": "Comment or blank line. No executable content.",
+        "evidence": null
+      },
+      {
+        "side": "parent",
+        "lineNo": 12,
+        "parentAnchor": 12,
+        "line": "*   - 100 ms wall budget, 500 000 node safety cap, statistics committed only",
+        "context": [
+          "10:  *   - UCB1 with c = sqrt(2) (normalised reward in [-1, 1]).",
+          "11:  *   - depth counted in ACTION-RIGHT HAND-OFFS (not tree plies), horizon H=4.",
+          "13:  *     for COMPLETE simulations.",
+          "14:  *   - UCT-R rollout = uniform random; UCT-H rollout = frozen hybrid evaluator."
+        ],
+        "category": "COMMENT_OR_BLANK",
+        "why": "Comment or blank line. No executable content.",
+        "evidence": null
+      },
+      {
+        "side": "parent",
+        "lineNo": 13,
+        "parentAnchor": 13,
+        "line": "*     for COMPLETE simulations.",
+        "context": [
+          "11:  *   - depth counted in ACTION-RIGHT HAND-OFFS (not tree plies), horizon H=4.",
+          "12:  *   - 100 ms wall budget, 500 000 node safety cap, statistics committed only",
+          "14:  *   - UCT-R rollout = uniform random; UCT-H rollout = frozen hybrid evaluator.",
+          "15:  *     Both share the SAME leaf evaluator: hybridEvaluateForCat."
+        ],
+        "category": "COMMENT_OR_BLANK",
+        "why": "Comment or blank line. No executable content.",
+        "evidence": null
+      },
+      {
+        "side": "parent",
+        "lineNo": 14,
+        "parentAnchor": 14,
+        "line": "*   - UCT-R rollout = uniform random; UCT-H rollout = frozen hybrid evaluator.",
+        "context": [
+          "12:  *   - 100 ms wall budget, 500 000 node safety cap, statistics committed only",
+          "13:  *     for COMPLETE simulations.",
+          "15:  *     Both share the SAME leaf evaluator: hybridEvaluateForCat.",
+          "16:  */"
+        ],
+        "category": "COMMENT_OR_BLANK",
+        "why": "Comment or blank line. No executable content.",
+        "evidence": null
+      },
+      {
+        "side": "parent",
+        "lineNo": 15,
+        "parentAnchor": 15,
+        "line": "*     Both share the SAME leaf evaluator: hybridEvaluateForCat.",
+        "context": [
+          "13:  *     for COMPLETE simulations.",
+          "14:  *   - UCT-R rollout = uniform random; UCT-H rollout = frozen hybrid evaluator.",
+          "16:  */",
+          "17: import type { GameEngineState } from '../../src/game/engine';"
+        ],
+        "category": "COMMENT_OR_BLANK",
+        "why": "Comment or blank line. No executable content.",
+        "evidence": null
+      },
+      {
+        "side": "parent",
+        "lineNo": 26,
+        "parentAnchor": 26,
+        "line": "import type { Rng } from './seededRng';",
+        "context": [
+          "24: import { hybridEvaluateForCat } from '../../src/game/ai/hybridLeaf';",
+          "25: import { GamePhase, PieceType } from '../../src/game/types';",
+          "27: import { mulberry32, seedFor, hashString32 } from './seededRng';",
+          "28: import { normalizeLeafValue, terminalReward } from './value';"
+        ],
+        "category": "IMPORT_SPECIFIER",
+        "why": "Same modules, re-based to the fork directory, plus the read-only trace module. No runtime logic.",
+        "evidence": null
+      },
+      {
+        "side": "parent",
+        "lineNo": 27,
+        "parentAnchor": 27,
+        "line": "import { mulberry32, seedFor, hashString32 } from './seededRng';",
+        "context": [
+          "25: import { GamePhase, PieceType } from '../../src/game/types';",
+          "26: import type { Rng } from './seededRng';",
+          "28: import { normalizeLeafValue, terminalReward } from './value';",
+          "29: import { validateChance, sampleChance } from './chance';"
+        ],
+        "category": "IMPORT_SPECIFIER",
+        "why": "Same modules, re-based to the fork directory, plus the read-only trace module. No runtime logic.",
+        "evidence": null
+      },
+      {
+        "side": "parent",
+        "lineNo": 28,
+        "parentAnchor": 28,
+        "line": "import { normalizeLeafValue, terminalReward } from './value';",
+        "context": [
+          "26: import type { Rng } from './seededRng';",
+          "27: import { mulberry32, seedFor, hashString32 } from './seededRng';",
+          "29: import { validateChance, sampleChance } from './chance';",
+          "30: import type { ValidatedChance } from './chance';"
+        ],
+        "category": "IMPORT_SPECIFIER",
+        "why": "Same modules, re-based to the fork directory, plus the read-only trace module. No runtime logic.",
+        "evidence": null
+      },
+      {
+        "side": "parent",
+        "lineNo": 29,
+        "parentAnchor": 29,
+        "line": "import { validateChance, sampleChance } from './chance';",
+        "context": [
+          "27: import { mulberry32, seedFor, hashString32 } from './seededRng';",
+          "28: import { normalizeLeafValue, terminalReward } from './value';",
+          "30: import type { ValidatedChance } from './chance';",
+          "31: "
+        ],
+        "category": "IMPORT_SPECIFIER",
+        "why": "Same modules, re-based to the fork directory, plus the read-only trace module. No runtime logic.",
+        "evidence": null
+      },
+      {
+        "side": "parent",
+        "lineNo": 30,
+        "parentAnchor": 30,
+        "line": "import type { ValidatedChance } from './chance';",
+        "context": [
+          "28: import { normalizeLeafValue, terminalReward } from './value';",
+          "29: import { validateChance, sampleChance } from './chance';",
+          "31: ",
+          "32: export type RolloutMode = 'random' | 'hybrid';"
+        ],
+        "category": "IMPORT_SPECIFIER",
+        "why": "Same modules, re-based to the fork directory, plus the read-only trace module. No runtime logic.",
+        "evidence": null
+      },
+      {
+        "side": "parent",
+        "lineNo": 256,
+        "parentAnchor": 256,
+        "line": "export class UctSearch {",
+        "context": [
+          "254: }",
+          "255: ",
+          "257:   private readonly opts: Required<Pick<UctOptions, 'deadlineMs' | 'maxHandoffs' | 'maxNodes' | 'c' | 'seed' | 'rollout'>> & {",
+          "258:     rules: RuleSet; now: () => number; maxRolloutActions: number;"
+        ],
+        "category": "CLASS_RENAME",
+        "why": "`UctSearch` → `UctSearchBaseline` so the two arms can be imported side by side. Rename only.",
+        "evidence": null
+      },
+      {
+        "side": "parent",
+        "lineNo": 292,
+        "parentAnchor": 292,
+        "line": "this.chanceRng = mulberry32(seedFor([options.seed, 'chance']) >>> 0);",
+        "context": [
+          "290:       maxRolloutActions: options.maxRolloutActions ?? 40,",
+          "291:     };",
+          "293:     this.policyRng = mulberry32(seedFor([options.seed, 'policy']) >>> 0);",
+          "294:     this.deadlineAt = this.opts.now() + Math.max(1, this.opts.deadlineMs);"
+        ],
+        "category": "RNG_INIT_BRANCH",
+        "why": "The two RNG objects are constructed behind an `if (trace)` branch. Without a sink the branch executes the parent's two `mulberry32(seedFor([...]))` calls verbatim.",
+        "evidence": {
+          "counterpartSide": "fork",
+          "counterpartLineNo": 357,
+          "counterpartLine": "this.chanceRng = mulberry32(seedFor([options.seed, 'chance']) >>> 0);"
+        }
+      },
+      {
+        "side": "parent",
+        "lineNo": 293,
+        "parentAnchor": 293,
+        "line": "this.policyRng = mulberry32(seedFor([options.seed, 'policy']) >>> 0);",
+        "context": [
+          "291:     };",
+          "292:     this.chanceRng = mulberry32(seedFor([options.seed, 'chance']) >>> 0);",
+          "294:     this.deadlineAt = this.opts.now() + Math.max(1, this.opts.deadlineMs);",
+          "295:     this.root = makeDecisionNode(state, 0, null, 'root', null);"
+        ],
+        "category": "RNG_INIT_BRANCH",
+        "why": "The two RNG objects are constructed behind an `if (trace)` branch. Without a sink the branch executes the parent's two `mulberry32(seedFor([...]))` calls verbatim.",
+        "evidence": {
+          "counterpartSide": "fork",
+          "counterpartLineNo": 358,
+          "counterpartLine": "this.policyRng = mulberry32(seedFor([options.seed, 'policy']) >>> 0);"
+        }
+      },
+      {
+        "side": "parent",
+        "lineNo": 367,
+        "parentAnchor": 367,
+        "line": "const aborted = (): SimOutcome => ({ completed: false, path, reward: 0, chanceSamples, rolloutSteps, maxHandoffs });",
+        "context": [
+          "365:     let maxHandoffs = cur.handoffs;",
+          "366: ",
+          "368:     const checkDeadline = (): boolean => {",
+          "369:       if (allowOverrunForFirst && this.sims === 0) return false;"
+        ],
+        "category": "STATEMENT_SPLIT",
+        "why": "A one-line `break;` / `return {...}` became a recorded form. Control flow preserved: the same condition, the same body, the same exit.",
+        "evidence": {
+          "counterpartSide": "fork",
+          "counterpartLineNo": 474,
+          "counterpartLine": "const aborted = (): SimOutcome => ({"
+        }
+      },
+      {
+        "side": "parent",
+        "lineNo": 377,
+        "parentAnchor": 377,
+        "line": "if (isTerminal(cur.state)) break;",
+        "context": [
+          "375:     while (true) {",
+          "376:       if (checkDeadline()) return aborted();",
+          "378:       if (cur.handoffs >= this.opts.maxHandoffs) break;",
+          "379: "
+        ],
+        "category": "STATEMENT_SPLIT_SOURCE",
+        "why": "Parent wrote this branch on one line. The fork re-opens the SAME condition as a block (cited below) so a trace emission can sit between the condition and the exit. Same condition object, same exit.",
+        "evidence": {
+          "condition": "isTerminal(cur.state)",
+          "forkOpenerLineNo": 487,
+          "forkOpenerLine": "if (isTerminal(cur.state)) { this.tr('tree.cycle', stateKey(cur.state), 'terminal'); break; }",
+          "parentLine": "if (isTerminal(cur.state)) break;"
+        }
+      },
+      {
+        "side": "parent",
+        "lineNo": 378,
+        "parentAnchor": 378,
+        "line": "if (cur.handoffs >= this.opts.maxHandoffs) break;",
+        "context": [
+          "376:       if (checkDeadline()) return aborted();",
+          "377:       if (isTerminal(cur.state)) break;",
+          "379: ",
+          "380:       if (cur.kind === 'chance') {"
+        ],
+        "category": "STATEMENT_SPLIT_SOURCE",
+        "why": "Parent wrote this branch on one line. The fork re-opens the SAME condition as a block (cited below) so a trace emission can sit between the condition and the exit. Same condition object, same exit.",
+        "evidence": {
+          "condition": "cur.handoffs >= this.opts.maxHandoffs",
+          "forkOpenerLineNo": 488,
+          "forkOpenerLine": "if (cur.handoffs >= this.opts.maxHandoffs) { this.tr('tree.cycle', stateKey(cur.state), 'handoff-cap'); break; }",
+          "parentLine": "if (cur.handoffs >= this.opts.maxHandoffs) break;"
+        }
+      },
+      {
+        "side": "parent",
+        "lineNo": 381,
+        "parentAnchor": 381,
+        "line": "if (cur.chanceOutcomes.length === 0) break;",
+        "context": [
+          "379: ",
+          "380:       if (cur.kind === 'chance') {",
+          "382:         const idx = sampleChance(",
+          "383:           { outcomes: cur.chanceOutcomes.map((o) => ({ state: o.state, weight: o.weight })), weights: cur.chanceOutcomes.map((o) => o.weight), massError: cur.chanceMassError },"
+        ],
+        "category": "STATEMENT_SPLIT_SOURCE",
+        "why": "Parent wrote this branch on one line. The fork re-opens the SAME condition as a block (cited below) so a trace emission can sit between the condition and the exit. Same condition object, same exit.",
+        "evidence": {
+          "condition": "cur.chanceOutcomes.length === 0",
+          "forkOpenerLineNo": 494,
+          "forkOpenerLine": "if (cur.chanceOutcomes.length === 0) { this.tr('tree.cycle', stateKey(cur.state), 'empty-chance'); break; }",
+          "parentLine": "if (cur.chanceOutcomes.length === 0) break;"
+        }
+      },
+      {
+        "side": "parent",
+        "lineNo": 420,
+        "parentAnchor": 420,
+        "line": "if (cur.childNodes.length === 0) break;",
+        "context": [
+          "418:         continue; // select one newly available action edge",
+          "419:       }",
+          "421: ",
+          "422:       const edge = this.selectEdge(cur);"
+        ],
+        "category": "STATEMENT_SPLIT_SOURCE",
+        "why": "Parent wrote this branch on one line. The fork re-opens the SAME condition as a block (cited below) so a trace emission can sit between the condition and the exit. Same condition object, same exit.",
+        "evidence": {
+          "condition": "cur.childNodes.length === 0",
+          "forkOpenerLineNo": 537,
+          "forkOpenerLine": "if (cur.childNodes.length === 0) { this.tr('tree.expand', stateKey(cur.state), 0); break; }",
+          "parentLine": "if (cur.childNodes.length === 0) break;"
+        }
+      },
+      {
+        "side": "parent",
+        "lineNo": 453,
+        "parentAnchor": 453,
+        "line": "return { completed: true, path, reward: rollout.reward, chanceSamples, rolloutSteps, maxHandoffs };",
+        "context": [
+          "451:     chanceSamples += rollout.chanceSamples;",
+          "452:     maxHandoffs = Math.max(maxHandoffs, rollout.maxHandoffs);",
+          "454:   }",
+          "455: "
+        ],
+        "category": "STATEMENT_SPLIT",
+        "why": "A one-line `break;` / `return {...}` became a recorded form. Control flow preserved: the same condition, the same body, the same exit.",
+        "evidence": {
+          "counterpartSide": "fork",
+          "counterpartLineNo": 574,
+          "counterpartLine": "return {"
+        }
+      },
+      {
+        "side": "parent",
+        "lineNo": 524,
+        "parentAnchor": 524,
+        "line": "): { completed: boolean; reward: number; steps: number; chanceSamples: number; maxHandoffs: number } {",
+        "context": [
+          "522:     allowOverrunForFirst: boolean,",
+          "523:     startKeys: Set<string>,",
+          "525:     let state = start;",
+          "526:     let handoffs = startHandoffs;"
+        ],
+        "category": "SIGNATURE_WIDENED_SOURCE",
+        "why": "Parent return-type annotation; the fork adds `leafValue: number; terminal: boolean` to the same annotation. Types only — erases at runtime.",
+        "evidence": null
+      },
+      {
+        "side": "parent",
+        "lineNo": 534,
+        "parentAnchor": 534,
+        "line": "if (t !== null) return { completed: true, reward: t, steps, chanceSamples, maxHandoffs };",
+        "context": [
+          "532:     while (steps < this.opts.maxRolloutActions) {",
+          "533:       const t = terminalReward(state);",
+          "535:       if (handoffs >= this.opts.maxHandoffs) break;",
+          "536:       if (!(allowOverrunForFirst && this.sims === 0)) {"
+        ],
+        "category": "STATEMENT_SPLIT_SOURCE",
+        "why": "Parent wrote this branch on one line. The fork re-opens the SAME condition as a block (cited below) so a trace emission can sit between the condition and the exit. Same condition object, same exit.",
+        "evidence": {
+          "condition": "t !== null",
+          "forkOpenerLineNo": 662,
+          "forkOpenerLine": "if (t !== null) {",
+          "parentLine": "if (t !== null) return { completed: true, reward: t, steps, chanceSamples, maxHandoffs };"
+        }
+      },
+      {
+        "side": "parent",
+        "lineNo": 535,
+        "parentAnchor": 535,
+        "line": "if (handoffs >= this.opts.maxHandoffs) break;",
+        "context": [
+          "533:       const t = terminalReward(state);",
+          "534:       if (t !== null) return { completed: true, reward: t, steps, chanceSamples, maxHandoffs };",
+          "536:       if (!(allowOverrunForFirst && this.sims === 0)) {",
+          "537:         if (this.deadlineReached) return { completed: false, reward: 0, steps, chanceSamples, maxHandoffs };"
+        ],
+        "category": "STATEMENT_SPLIT_SOURCE",
+        "why": "Parent wrote this branch on one line. The fork re-opens the SAME condition as a block (cited below) so a trace emission can sit between the condition and the exit. Same condition object, same exit.",
+        "evidence": {
+          "condition": "handoffs >= this.opts.maxHandoffs",
+          "forkOpenerLineNo": 666,
+          "forkOpenerLine": "if (handoffs >= this.opts.maxHandoffs) { this.tr('rollout.stop', 'handoff-cap', steps); break; }",
+          "parentLine": "if (handoffs >= this.opts.maxHandoffs) break;"
+        }
+      },
+      {
+        "side": "parent",
+        "lineNo": 537,
+        "parentAnchor": 537,
+        "line": "if (this.deadlineReached) return { completed: false, reward: 0, steps, chanceSamples, maxHandoffs };",
+        "context": [
+          "535:       if (handoffs >= this.opts.maxHandoffs) break;",
+          "536:       if (!(allowOverrunForFirst && this.sims === 0)) {",
+          "538:         if (this.opts.now() >= this.deadlineAt) { this.deadlineReached = true; return { completed: false, reward: 0, steps, chanceSamples, maxHandoffs }; }",
+          "539:       }"
+        ],
+        "category": "STATEMENT_SPLIT_SOURCE",
+        "why": "Parent wrote this branch on one line. The fork re-opens the SAME condition as a block (cited below) so a trace emission can sit between the condition and the exit. Same condition object, same exit.",
+        "evidence": {
+          "condition": "this.deadlineReached",
+          "forkOpenerLineNo": 668,
+          "forkOpenerLine": "if (this.deadlineReached) {",
+          "parentLine": "if (this.deadlineReached) return { completed: false, reward: 0, steps, chanceSamples, maxHandoffs };"
+        }
+      },
+      {
+        "side": "parent",
+        "lineNo": 538,
+        "parentAnchor": 538,
+        "line": "if (this.opts.now() >= this.deadlineAt) { this.deadlineReached = true; return { completed: false, reward: 0, steps, chanceSamples, maxHandoffs }; }",
+        "context": [
+          "536:       if (!(allowOverrunForFirst && this.sims === 0)) {",
+          "537:         if (this.deadlineReached) return { completed: false, reward: 0, steps, chanceSamples, maxHandoffs };",
+          "539:       }",
+          "540:       const actions = generateLegalSearchActions(state, this.opts.rules);"
+        ],
+        "category": "STATEMENT_SPLIT_SOURCE",
+        "why": "Parent wrote this branch on one line. The fork re-opens the SAME condition as a block (cited below) so a trace emission can sit between the condition and the exit. Same condition object, same exit.",
+        "evidence": {
+          "condition": "this.opts.now() >= this.deadlineAt",
+          "forkOpenerLineNo": 672,
+          "forkOpenerLine": "if (this.opts.now() >= this.deadlineAt) {",
+          "parentLine": "if (this.opts.now() >= this.deadlineAt) { this.deadlineReached = true; return { completed: false, reward: 0, steps, chanceSamples, maxHandoffs }; }"
+        }
+      },
+      {
+        "side": "parent",
+        "lineNo": 541,
+        "parentAnchor": 541,
+        "line": "if (actions.length === 0) break;",
+        "context": [
+          "539:       }",
+          "540:       const actions = generateLegalSearchActions(state, this.opts.rules);",
+          "542:       const action = selectRolloutAction(state, actions, this.opts.rollout, this.opts.rules, this.policyRng);",
+          "543:       const res = simulateSearchAction(state, action, this.opts.rules);"
+        ],
+        "category": "STATEMENT_SPLIT_SOURCE",
+        "why": "Parent wrote this branch on one line. The fork re-opens the SAME condition as a block (cited below) so a trace emission can sit between the condition and the exit. Same condition object, same exit.",
+        "evidence": {
+          "condition": "actions.length === 0",
+          "forkOpenerLineNo": 681,
+          "forkOpenerLine": "if (actions.length === 0) { this.tr('rollout.empty', stateKey(state)); break; }",
+          "parentLine": "if (actions.length === 0) break;"
+        }
+      },
+      {
+        "side": "parent",
+        "lineNo": 542,
+        "parentAnchor": 542,
+        "line": "const action = selectRolloutAction(state, actions, this.opts.rollout, this.opts.rules, this.policyRng);",
+        "context": [
+          "540:       const actions = generateLegalSearchActions(state, this.opts.rules);",
+          "541:       if (actions.length === 0) break;",
+          "543:       const res = simulateSearchAction(state, action, this.opts.rules);",
+          "544:       let next: GameEngineState;"
+        ],
+        "category": "GUIDANCE_TAP_ARGUMENT",
+        "why": "`selectRolloutAction(..., tap)` — one extra trailing argument. The function reads it only to record `guidanceValue`; RNG calls and the returned index are unchanged.",
+        "evidence": null
+      },
+      {
+        "side": "parent",
+        "lineNo": 559,
+        "parentAnchor": 559,
+        "line": "if (keys.has(k)) { state = next; break; }",
+        "context": [
+          "557:       steps++;",
+          "558:       const k = stateKey(next);",
+          "560:       keys.add(k);",
+          "561:       state = next;"
+        ],
+        "category": "STATEMENT_SPLIT_SOURCE",
+        "why": "Parent one-liner `if (keys.has(k)) { ... }`. The fork hoists the condition into `const cycled = keys.has(k);` (line 701) and keeps the body byte-identical at line 703. Same branch, same exit.",
+        "evidence": {
+          "hoistAtLine": 701,
+          "hoistLine": "const cycled = keys.has(k);",
+          "useAtLine": 703,
+          "useLine": "if (cycled) { state = next; break; }"
+        }
+      },
+      {
+        "side": "parent",
+        "lineNo": 563,
+        "parentAnchor": 563,
+        "line": "return { completed: true, reward: evaluateLeaf(state), steps, chanceSamples, maxHandoffs };",
+        "context": [
+          "561:       state = next;",
+          "562:     }",
+          "564:   }",
+          "565: "
+        ],
+        "category": "STATEMENT_SPLIT",
+        "why": "A one-line `break;` / `return {...}` became a recorded form. Control flow preserved: the same condition, the same body, the same exit.",
+        "evidence": {
+          "counterpartSide": "fork",
+          "counterpartLineNo": 574,
+          "counterpartLine": "return {"
+        }
+      },
+      {
+        "side": "parent",
+        "lineNo": 604,
+        "parentAnchor": 604,
+        "line": "if (cur.state.phase !== GamePhase.Playing || cur.state.currentPlayer !== PieceType.Cat) break;",
+        "context": [
+          "602:     const maxActions = 12;",
+          "603:     while (cur && plan.length < maxActions) {",
+          "605:       let best: UctEdge | null = null;",
+          "606:       for (const e of cur.childNodes) {"
+        ],
+        "category": "STATEMENT_SPLIT_SOURCE",
+        "why": "Parent wrote this branch on one line. The fork re-opens the SAME condition as a block (cited below) so a trace emission can sit between the condition and the exit. Same condition object, same exit.",
+        "evidence": {
+          "condition": "cur.state.phase !== GamePhase.Playing || cur.state.currentPlayer !== PieceType.Cat",
+          "forkOpenerLineNo": 751,
+          "forkOpenerLine": "if (cur.state.phase !== GamePhase.Playing || cur.state.currentPlayer !== PieceType.Cat) {",
+          "parentLine": "if (cur.state.phase !== GamePhase.Playing || cur.state.currentPlayer !== PieceType.Cat) break;"
+        }
+      },
+      {
+        "side": "parent",
+        "lineNo": 611,
+        "parentAnchor": 611,
+        "line": "if (!best || !best.child) break;",
+        "context": [
+          "609:         else if (best.child!.visitCount === e.child.visitCount && e.key < best.key) best = e;",
+          "610:       }",
+          "612:       if (best.transitionKind === 'chance' || best.child.kind === 'chance') {",
+          "613:         // The final cat action of the turn is legal even though the engine"
+        ],
+        "category": "STATEMENT_SPLIT_SOURCE",
+        "why": "Parent wrote this branch on one line. The fork re-opens the SAME condition as a block (cited below) so a trace emission can sit between the condition and the exit. Same condition object, same exit.",
+        "evidence": {
+          "condition": "!best || !best.child",
+          "forkOpenerLineNo": 761,
+          "forkOpenerLine": "if (!best || !best.child) { this.tr('plan.stop', 'no-child', stateKey(cur.state)); break; }",
+          "parentLine": "if (!best || !best.child) break;"
+        }
+      },
+      {
+        "side": "parent",
+        "lineNo": 633,
+        "parentAnchor": 633,
+        "line": "const action = selectRolloutAction(state, actions, this.opts.rollout, this.opts.rules, this.policyRng);",
+        "context": [
+          "631:       const actions = generateLegalSearchActions(state, this.opts.rules);",
+          "632:       if (actions.length === 0) break;",
+          "634:       const res = simulateSearchAction(state, action, this.opts.rules);",
+          "635:       // The action itself is legal; a CHANCE result is the post-action"
+        ],
+        "category": "GUIDANCE_TAP_ARGUMENT",
+        "why": "`selectRolloutAction(..., tap)` — one extra trailing argument. The function reads it only to record `guidanceValue`; RNG calls and the returned index are unchanged.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 2,
+        "parentAnchor": 2,
+        "line": "* PPC-MCTS-01B-HARNESS-REPAIR — BASELINE harness fork of `PPC-MCTS-01/proto/uct.ts`.",
+        "context": [
+          "1: /**",
+          "3:  *",
+          "4:  * WHY A FORK: Phase 1 must stop both arms after exactly K COMPLETE simulations."
+        ],
+        "category": "HEADER_COMMENT",
+        "why": "Provenance header of the fork. Comments only; no executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 4,
+        "parentAnchor": 15,
+        "line": "* WHY A FORK: Phase 1 must stop both arms after exactly K COMPLETE simulations.",
+        "context": [
+          "2:  * PPC-MCTS-01B-HARNESS-REPAIR — BASELINE harness fork of `PPC-MCTS-01/proto/uct.ts`.",
+          "3:  *",
+          "5:  * The original prototype stops on `maxNodes` or a wall deadline, which makes the",
+          "6:  * two arms run different amounts of work and turns \"parity\" into \"parity of"
+        ],
+        "category": "HEADER_COMMENT",
+        "why": "Provenance header of the fork. Comments only; no executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 5,
+        "parentAnchor": 15,
+        "line": "* The original prototype stops on `maxNodes` or a wall deadline, which makes the",
+        "context": [
+          "3:  *",
+          "4:  * WHY A FORK: Phase 1 must stop both arms after exactly K COMPLETE simulations.",
+          "6:  * two arms run different amounts of work and turns \"parity\" into \"parity of",
+          "7:  * whatever happened to fit\". `PPC-MCTS-01/` is frozen by the brief, so the seam"
+        ],
+        "category": "HEADER_COMMENT",
+        "why": "Provenance header of the fork. Comments only; no executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 6,
+        "parentAnchor": 15,
+        "line": "* two arms run different amounts of work and turns \"parity\" into \"parity of",
+        "context": [
+          "4:  * WHY A FORK: Phase 1 must stop both arms after exactly K COMPLETE simulations.",
+          "5:  * The original prototype stops on `maxNodes` or a wall deadline, which makes the",
+          "7:  * whatever happened to fit\". `PPC-MCTS-01/` is frozen by the brief, so the seam",
+          "8:  * cannot be added there."
+        ],
+        "category": "HEADER_COMMENT",
+        "why": "Provenance header of the fork. Comments only; no executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 7,
+        "parentAnchor": 15,
+        "line": "* whatever happened to fit\". `PPC-MCTS-01/` is frozen by the brief, so the seam",
+        "context": [
+          "5:  * The original prototype stops on `maxNodes` or a wall deadline, which makes the",
+          "6:  * two arms run different amounts of work and turns \"parity\" into \"parity of",
+          "8:  * cannot be added there.",
+          "9:  *"
+        ],
+        "category": "HEADER_COMMENT",
+        "why": "Provenance header of the fork. Comments only; no executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 8,
+        "parentAnchor": 15,
+        "line": "* cannot be added there.",
+        "context": [
+          "6:  * two arms run different amounts of work and turns \"parity\" into \"parity of",
+          "7:  * whatever happened to fit\". `PPC-MCTS-01/` is frozen by the brief, so the seam",
+          "9:  *",
+          "10:  * WHAT IS IDENTICAL TO THE FORK PARENT (line-for-line, same order):"
+        ],
+        "category": "HEADER_COMMENT",
+        "why": "Provenance header of the fork. Comments only; no executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 9,
+        "parentAnchor": 15,
+        "line": "*",
+        "context": [
+          "7:  * whatever happened to fit\". `PPC-MCTS-01/` is frozen by the brief, so the seam",
+          "8:  * cannot be added there.",
+          "10:  * WHAT IS IDENTICAL TO THE FORK PARENT (line-for-line, same order):",
+          "11:  *   - module-level: `evaluateLeaf`, `isTerminal`, `guidanceValue`,"
+        ],
+        "category": "HEADER_COMMENT",
+        "why": "Provenance header of the fork. Comments only; no executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 10,
+        "parentAnchor": 15,
+        "line": "* WHAT IS IDENTICAL TO THE FORK PARENT (line-for-line, same order):",
+        "context": [
+          "8:  * cannot be added there.",
+          "9:  *",
+          "11:  *   - module-level: `evaluateLeaf`, `isTerminal`, `guidanceValue`,",
+          "12:  *     `selectRolloutAction` (only a trailing optional trace argument added),"
+        ],
+        "category": "HEADER_COMMENT",
+        "why": "Provenance header of the fork. Comments only; no executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 11,
+        "parentAnchor": 15,
+        "line": "*   - module-level: `evaluateLeaf`, `isTerminal`, `guidanceValue`,",
+        "context": [
+          "9:  *",
+          "10:  * WHAT IS IDENTICAL TO THE FORK PARENT (line-for-line, same order):",
+          "12:  *     `selectRolloutAction` (only a trailing optional trace argument added),",
+          "13:  *     `actionKey`, `makeDecisionNode`, `makeChanceNode`, `handoffDelta`"
+        ],
+        "category": "HEADER_COMMENT",
+        "why": "Provenance header of the fork. Comments only; no executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 12,
+        "parentAnchor": 15,
+        "line": "*     `selectRolloutAction` (only a trailing optional trace argument added),",
+        "context": [
+          "10:  * WHAT IS IDENTICAL TO THE FORK PARENT (line-for-line, same order):",
+          "11:  *   - module-level: `evaluateLeaf`, `isTerminal`, `guidanceValue`,",
+          "13:  *     `actionKey`, `makeDecisionNode`, `makeChanceNode`, `handoffDelta`",
+          "14:  *   - class: `simulate`, `applyEdge`, `createDecision`, `noteCreation`,"
+        ],
+        "category": "HEADER_COMMENT",
+        "why": "Provenance header of the fork. Comments only; no executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 13,
+        "parentAnchor": 15,
+        "line": "*     `actionKey`, `makeDecisionNode`, `makeChanceNode`, `handoffDelta`",
+        "context": [
+          "11:  *   - module-level: `evaluateLeaf`, `isTerminal`, `guidanceValue`,",
+          "12:  *     `selectRolloutAction` (only a trailing optional trace argument added),",
+          "14:  *   - class: `simulate`, `applyEdge`, `createDecision`, `noteCreation`,",
+          "15:  *     `selectEdge`, `rollout`, `backprop`, `bestRootEdge`, `extractPlan`"
+        ],
+        "category": "HEADER_COMMENT",
+        "why": "Provenance header of the fork. Comments only; no executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 14,
+        "parentAnchor": 15,
+        "line": "*   - class: `simulate`, `applyEdge`, `createDecision`, `noteCreation`,",
+        "context": [
+          "12:  *     `selectRolloutAction` (only a trailing optional trace argument added),",
+          "13:  *     `actionKey`, `makeDecisionNode`, `makeChanceNode`, `handoffDelta`",
+          "15:  *     `selectEdge`, `rollout`, `backprop`, `bestRootEdge`, `extractPlan`",
+          "16:  *   - every threshold, comparison, tie-break, epsilon and iteration order"
+        ],
+        "category": "HEADER_COMMENT",
+        "why": "Provenance header of the fork. Comments only; no executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 15,
+        "parentAnchor": 15,
+        "line": "*     `selectEdge`, `rollout`, `backprop`, `bestRootEdge`, `extractPlan`",
+        "context": [
+          "13:  *     `actionKey`, `makeDecisionNode`, `makeChanceNode`, `handoffDelta`",
+          "14:  *   - class: `simulate`, `applyEdge`, `createDecision`, `noteCreation`,",
+          "16:  *   - every threshold, comparison, tie-break, epsilon and iteration order",
+          "17:  *   - the RNG construction, the salt constants, the seed derivation"
+        ],
+        "category": "HEADER_COMMENT",
+        "why": "Provenance header of the fork. Comments only; no executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 16,
+        "parentAnchor": 15,
+        "line": "*   - every threshold, comparison, tie-break, epsilon and iteration order",
+        "context": [
+          "14:  *   - class: `simulate`, `applyEdge`, `createDecision`, `noteCreation`,",
+          "15:  *     `selectEdge`, `rollout`, `backprop`, `bestRootEdge`, `extractPlan`",
+          "17:  *   - the RNG construction, the salt constants, the seed derivation",
+          "18:  *"
+        ],
+        "category": "HEADER_COMMENT",
+        "why": "Provenance header of the fork. Comments only; no executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 17,
+        "parentAnchor": 15,
+        "line": "*   - the RNG construction, the salt constants, the seed derivation",
+        "context": [
+          "15:  *     `selectEdge`, `rollout`, `backprop`, `bestRootEdge`, `extractPlan`",
+          "16:  *   - every threshold, comparison, tie-break, epsilon and iteration order",
+          "18:  *",
+          "19:  * WHAT IS NEW (and nothing else):"
+        ],
+        "category": "HEADER_COMMENT",
+        "why": "Provenance header of the fork. Comments only; no executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 18,
+        "parentAnchor": 15,
+        "line": "*",
+        "context": [
+          "16:  *   - every threshold, comparison, tie-break, epsilon and iteration order",
+          "17:  *   - the RNG construction, the salt constants, the seed derivation",
+          "19:  * WHAT IS NEW (and nothing else):",
+          "20:  *   1. `maxCompletedSimulations?: number` — TEST-ONLY stop seam. The counter is"
+        ],
+        "category": "HEADER_COMMENT",
+        "why": "Provenance header of the fork. Comments only; no executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 19,
+        "parentAnchor": 15,
+        "line": "* WHAT IS NEW (and nothing else):",
+        "context": [
+          "17:  *   - the RNG construction, the salt constants, the seed derivation",
+          "18:  *",
+          "20:  *   1. `maxCompletedSimulations?: number` — TEST-ONLY stop seam. The counter is",
+          "21:  *      tested only at the TOP of the simulation loop, i.e. after a simulation"
+        ],
+        "category": "HEADER_COMMENT",
+        "why": "Provenance header of the fork. Comments only; no executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 20,
+        "parentAnchor": 15,
+        "line": "*   1. `maxCompletedSimulations?: number` — TEST-ONLY stop seam. The counter is",
+        "context": [
+          "18:  *",
+          "19:  * WHAT IS NEW (and nothing else):",
+          "21:  *      tested only at the TOP of the simulation loop, i.e. after a simulation",
+          "22:  *      has completed and been backpropagated. A simulation is never abandoned"
+        ],
+        "category": "HEADER_COMMENT",
+        "why": "Provenance header of the fork. Comments only; no executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 21,
+        "parentAnchor": 15,
+        "line": "*      tested only at the TOP of the simulation loop, i.e. after a simulation",
+        "context": [
+          "19:  * WHAT IS NEW (and nothing else):",
+          "20:  *   1. `maxCompletedSimulations?: number` — TEST-ONLY stop seam. The counter is",
+          "22:  *      has completed and been backpropagated. A simulation is never abandoned",
+          "23:  *      halfway, and the K-th simulation is always a full one."
+        ],
+        "category": "HEADER_COMMENT",
+        "why": "Provenance header of the fork. Comments only; no executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 22,
+        "parentAnchor": 15,
+        "line": "*      has completed and been backpropagated. A simulation is never abandoned",
+        "context": [
+          "20:  *   1. `maxCompletedSimulations?: number` — TEST-ONLY stop seam. The counter is",
+          "21:  *      tested only at the TOP of the simulation loop, i.e. after a simulation",
+          "23:  *      halfway, and the K-th simulation is always a full one.",
+          "24:  *   2. `trace?: TraceCollector` — read-only instrumentation. When it is absent"
+        ],
+        "category": "HEADER_COMMENT",
+        "why": "Provenance header of the fork. Comments only; no executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 23,
+        "parentAnchor": 15,
+        "line": "*      halfway, and the K-th simulation is always a full one.",
+        "context": [
+          "21:  *      tested only at the TOP of the simulation loop, i.e. after a simulation",
+          "22:  *      has completed and been backpropagated. A simulation is never abandoned",
+          "24:  *   2. `trace?: TraceCollector` — read-only instrumentation. When it is absent",
+          "25:  *      every recording call is a single null check and the two RNG objects are"
+        ],
+        "category": "HEADER_COMMENT",
+        "why": "Provenance header of the fork. Comments only; no executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 24,
+        "parentAnchor": 15,
+        "line": "*   2. `trace?: TraceCollector` — read-only instrumentation. When it is absent",
+        "context": [
+          "22:  *      has completed and been backpropagated. A simulation is never abandoned",
+          "23:  *      halfway, and the K-th simulation is always a full one.",
+          "25:  *      every recording call is a single null check and the two RNG objects are",
+          "26:  *      `mulberry32(...)` exactly as before."
+        ],
+        "category": "HEADER_COMMENT",
+        "why": "Provenance header of the fork. Comments only; no executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 25,
+        "parentAnchor": 15,
+        "line": "*      every recording call is a single null check and the two RNG objects are",
+        "context": [
+          "23:  *      halfway, and the K-th simulation is always a full one.",
+          "24:  *   2. `trace?: TraceCollector` — read-only instrumentation. When it is absent",
+          "26:  *      `mulberry32(...)` exactly as before.",
+          "27:  *"
+        ],
+        "category": "HEADER_COMMENT",
+        "why": "Provenance header of the fork. Comments only; no executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 26,
+        "parentAnchor": 15,
+        "line": "*      `mulberry32(...)` exactly as before.",
+        "context": [
+          "24:  *   2. `trace?: TraceCollector` — read-only instrumentation. When it is absent",
+          "25:  *      every recording call is a single null check and the two RNG objects are",
+          "27:  *",
+          "28:  * PROOF OBLIGATION (recorded in BASELINE_FORK_PROVENANCE.json):"
+        ],
+        "category": "HEADER_COMMENT",
+        "why": "Provenance header of the fork. Comments only; no executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 27,
+        "parentAnchor": 15,
+        "line": "*",
+        "context": [
+          "25:  *      every recording call is a single null check and the two RNG objects are",
+          "26:  *      `mulberry32(...)` exactly as before.",
+          "28:  * PROOF OBLIGATION (recorded in BASELINE_FORK_PROVENANCE.json):",
+          "29:  *   with `maxCompletedSimulations` and `trace` both absent, this class must"
+        ],
+        "category": "HEADER_COMMENT",
+        "why": "Provenance header of the fork. Comments only; no executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 28,
+        "parentAnchor": 15,
+        "line": "* PROOF OBLIGATION (recorded in BASELINE_FORK_PROVENANCE.json):",
+        "context": [
+          "26:  *      `mulberry32(...)` exactly as before.",
+          "27:  *",
+          "29:  *   with `maxCompletedSimulations` and `trace` both absent, this class must",
+          "30:  *   produce a byte-identical tree fingerprint, plan, root-action stats and every"
+        ],
+        "category": "HEADER_COMMENT",
+        "why": "Provenance header of the fork. Comments only; no executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 29,
+        "parentAnchor": 15,
+        "line": "*   with `maxCompletedSimulations` and `trace` both absent, this class must",
+        "context": [
+          "27:  *",
+          "28:  * PROOF OBLIGATION (recorded in BASELINE_FORK_PROVENANCE.json):",
+          "30:  *   produce a byte-identical tree fingerprint, plan, root-action stats and every",
+          "31:  *   non-timing diagnostic compared with `UctSearch` from the frozen parent."
+        ],
+        "category": "HEADER_COMMENT",
+        "why": "Provenance header of the fork. Comments only; no executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 30,
+        "parentAnchor": 15,
+        "line": "*   produce a byte-identical tree fingerprint, plan, root-action stats and every",
+        "context": [
+          "28:  * PROOF OBLIGATION (recorded in BASELINE_FORK_PROVENANCE.json):",
+          "29:  *   with `maxCompletedSimulations` and `trace` both absent, this class must",
+          "31:  *   non-timing diagnostic compared with `UctSearch` from the frozen parent.",
+          "32:  *   That is verified at 96 fixed-node cells and at fixed simulation counts."
+        ],
+        "category": "HEADER_COMMENT",
+        "why": "Provenance header of the fork. Comments only; no executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 31,
+        "parentAnchor": 15,
+        "line": "*   non-timing diagnostic compared with `UctSearch` from the frozen parent.",
+        "context": [
+          "29:  *   with `maxCompletedSimulations` and `trace` both absent, this class must",
+          "30:  *   produce a byte-identical tree fingerprint, plan, root-action stats and every",
+          "32:  *   That is verified at 96 fixed-node cells and at fixed simulation counts.",
+          "33:  */"
+        ],
+        "category": "HEADER_COMMENT",
+        "why": "Provenance header of the fork. Comments only; no executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 32,
+        "parentAnchor": 15,
+        "line": "*   That is verified at 96 fixed-node cells and at fixed simulation counts.",
+        "context": [
+          "30:  *   produce a byte-identical tree fingerprint, plan, root-action stats and every",
+          "31:  *   non-timing diagnostic compared with `UctSearch` from the frozen parent.",
+          "33:  */",
+          "34: import type { GameEngineState } from '../../src/game/engine';"
+        ],
+        "category": "HEADER_COMMENT",
+        "why": "Provenance header of the fork. Comments only; no executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 43,
+        "parentAnchor": 30,
+        "line": "import type { Rng } from '../../PPC-MCTS-01/proto/seededRng';",
+        "context": [
+          "41: import { hybridEvaluateForCat } from '../../src/game/ai/hybridLeaf';",
+          "42: import { GamePhase, PieceType } from '../../src/game/types';",
+          "44: import { mulberry32, seedFor, hashString32 } from '../../PPC-MCTS-01/proto/seededRng';",
+          "45: import { normalizeLeafValue, terminalReward } from '../../PPC-MCTS-01/proto/value';"
+        ],
+        "category": "IMPORT_SPECIFIER",
+        "why": "Same modules, re-based to the fork directory, plus the read-only trace module. No runtime logic.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 44,
+        "parentAnchor": 30,
+        "line": "import { mulberry32, seedFor, hashString32 } from '../../PPC-MCTS-01/proto/seededRng';",
+        "context": [
+          "42: import { GamePhase, PieceType } from '../../src/game/types';",
+          "43: import type { Rng } from '../../PPC-MCTS-01/proto/seededRng';",
+          "45: import { normalizeLeafValue, terminalReward } from '../../PPC-MCTS-01/proto/value';",
+          "46: import { validateChance, sampleChance } from '../../PPC-MCTS-01/proto/chance';"
+        ],
+        "category": "IMPORT_SPECIFIER",
+        "why": "Same modules, re-based to the fork directory, plus the read-only trace module. No runtime logic.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 45,
+        "parentAnchor": 30,
+        "line": "import { normalizeLeafValue, terminalReward } from '../../PPC-MCTS-01/proto/value';",
+        "context": [
+          "43: import type { Rng } from '../../PPC-MCTS-01/proto/seededRng';",
+          "44: import { mulberry32, seedFor, hashString32 } from '../../PPC-MCTS-01/proto/seededRng';",
+          "46: import { validateChance, sampleChance } from '../../PPC-MCTS-01/proto/chance';",
+          "47: import type { ValidatedChance } from '../../PPC-MCTS-01/proto/chance';"
+        ],
+        "category": "IMPORT_SPECIFIER",
+        "why": "Same modules, re-based to the fork directory, plus the read-only trace module. No runtime logic.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 46,
+        "parentAnchor": 30,
+        "line": "import { validateChance, sampleChance } from '../../PPC-MCTS-01/proto/chance';",
+        "context": [
+          "44: import { mulberry32, seedFor, hashString32 } from '../../PPC-MCTS-01/proto/seededRng';",
+          "45: import { normalizeLeafValue, terminalReward } from '../../PPC-MCTS-01/proto/value';",
+          "47: import type { ValidatedChance } from '../../PPC-MCTS-01/proto/chance';",
+          "48: import { TraceCollector, countingTraceRng } from './trace';"
+        ],
+        "category": "IMPORT_SPECIFIER",
+        "why": "Same modules, re-based to the fork directory, plus the read-only trace module. No runtime logic.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 47,
+        "parentAnchor": 30,
+        "line": "import type { ValidatedChance } from '../../PPC-MCTS-01/proto/chance';",
+        "context": [
+          "45: import { normalizeLeafValue, terminalReward } from '../../PPC-MCTS-01/proto/value';",
+          "46: import { validateChance, sampleChance } from '../../PPC-MCTS-01/proto/chance';",
+          "48: import { TraceCollector, countingTraceRng } from './trace';",
+          "49: import type { Encodable } from './trace';"
+        ],
+        "category": "IMPORT_SPECIFIER",
+        "why": "Same modules, re-based to the fork directory, plus the read-only trace module. No runtime logic.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 48,
+        "parentAnchor": 30,
+        "line": "import { TraceCollector, countingTraceRng } from './trace';",
+        "context": [
+          "46: import { validateChance, sampleChance } from '../../PPC-MCTS-01/proto/chance';",
+          "47: import type { ValidatedChance } from '../../PPC-MCTS-01/proto/chance';",
+          "49: import type { Encodable } from './trace';",
+          "50: "
+        ],
+        "category": "IMPORT_SPECIFIER",
+        "why": "Same modules, re-based to the fork directory, plus the read-only trace module. No runtime logic.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 49,
+        "parentAnchor": 30,
+        "line": "import type { Encodable } from './trace';",
+        "context": [
+          "47: import type { ValidatedChance } from '../../PPC-MCTS-01/proto/chance';",
+          "48: import { TraceCollector, countingTraceRng } from './trace';",
+          "50: ",
+          "51: export type RolloutMode = 'random' | 'hybrid';"
+        ],
+        "category": "IMPORT_SPECIFIER",
+        "why": "Same modules, re-based to the fork directory, plus the read-only trace module. No runtime logic.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 69,
+        "parentAnchor": 48,
+        "line": "/**",
+        "context": [
+          "67:   /** Hard cap on primitive rollout actions (safety valve; horizon is primary). */",
+          "68:   maxRolloutActions?: number;",
+          "70:    * TEST-ONLY stop seam. Stop once exactly this many simulations have",
+          "71:    * COMPLETED and been backpropagated. Never stops mid-simulation. `undefined`"
+        ],
+        "category": "COMMENT_OR_BLANK",
+        "why": "Comment or blank line. No executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 70,
+        "parentAnchor": 48,
+        "line": "* TEST-ONLY stop seam. Stop once exactly this many simulations have",
+        "context": [
+          "68:   maxRolloutActions?: number;",
+          "69:   /**",
+          "71:    * COMPLETED and been backpropagated. Never stops mid-simulation. `undefined`",
+          "72:    * = the original node-cap / deadline behaviour."
+        ],
+        "category": "COMMENT_OR_BLANK",
+        "why": "Comment or blank line. No executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 71,
+        "parentAnchor": 48,
+        "line": "* COMPLETED and been backpropagated. Never stops mid-simulation. `undefined`",
+        "context": [
+          "69:   /**",
+          "70:    * TEST-ONLY stop seam. Stop once exactly this many simulations have",
+          "72:    * = the original node-cap / deadline behaviour.",
+          "73:    */"
+        ],
+        "category": "COMMENT_OR_BLANK",
+        "why": "Comment or blank line. No executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 72,
+        "parentAnchor": 48,
+        "line": "* = the original node-cap / deadline behaviour.",
+        "context": [
+          "70:    * TEST-ONLY stop seam. Stop once exactly this many simulations have",
+          "71:    * COMPLETED and been backpropagated. Never stops mid-simulation. `undefined`",
+          "73:    */",
+          "74:   maxCompletedSimulations?: number;"
+        ],
+        "category": "COMMENT_OR_BLANK",
+        "why": "Comment or blank line. No executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 73,
+        "parentAnchor": 48,
+        "line": "*/",
+        "context": [
+          "71:    * COMPLETED and been backpropagated. Never stops mid-simulation. `undefined`",
+          "72:    * = the original node-cap / deadline behaviour.",
+          "74:   maxCompletedSimulations?: number;",
+          "75:   /** TEST-ONLY read-only trace sink. `undefined` = no instrumentation at all. */"
+        ],
+        "category": "COMMENT_OR_BLANK",
+        "why": "Comment or blank line. No executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 74,
+        "parentAnchor": 48,
+        "line": "maxCompletedSimulations?: number;",
+        "context": [
+          "72:    * = the original node-cap / deadline behaviour.",
+          "73:    */",
+          "75:   /** TEST-ONLY read-only trace sink. `undefined` = no instrumentation at all. */",
+          "76:   trace?: TraceCollector;"
+        ],
+        "category": "SEAM_STOP_HOOK",
+        "why": "Test-only `maxCompletedSimulations` seam: field, option, guarded stop at the TOP of the simulation loop, reported flag. With no value passed it is null and the guard never runs.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 75,
+        "parentAnchor": 48,
+        "line": "/** TEST-ONLY read-only trace sink. `undefined` = no instrumentation at all. */",
+        "context": [
+          "73:    */",
+          "74:   maxCompletedSimulations?: number;",
+          "76:   trace?: TraceCollector;",
+          "77: }"
+        ],
+        "category": "COMMENT_OR_BLANK",
+        "why": "Comment or blank line. No executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 76,
+        "parentAnchor": 48,
+        "line": "trace?: TraceCollector;",
+        "context": [
+          "74:   maxCompletedSimulations?: number;",
+          "75:   /** TEST-ONLY read-only trace sink. `undefined` = no instrumentation at all. */",
+          "77: }",
+          "78: "
+        ],
+        "category": "TRACE_PLUMBING",
+        "why": "Read-only trace sink: option, field, constructor wiring, helper, plan digest hand-off. Emits values it already has; consumes no RNG and mutates no state.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 141,
+        "parentAnchor": 112,
+        "line": "/** True when the test-only completed-simulation seam decided the stop. */",
+        "context": [
+          "139:   nodeCapHit: boolean;",
+          "140:   postDeadlineNodeCreations: number;",
+          "142:   completedSimulationLimitHit: boolean;",
+          "143: }"
+        ],
+        "category": "COMMENT_OR_BLANK",
+        "why": "Comment or blank line. No executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 142,
+        "parentAnchor": 112,
+        "line": "completedSimulationLimitHit: boolean;",
+        "context": [
+          "140:   postDeadlineNodeCreations: number;",
+          "141:   /** True when the test-only completed-simulation seam decided the stop. */",
+          "143: }",
+          "144: "
+        ],
+        "category": "SEAM_STOP_HOOK",
+        "why": "Test-only `maxCompletedSimulations` seam: field, option, guarded stop at the TOP of the simulation loop, reported flag. With no value passed it is null and the guard never runs.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 158,
+        "parentAnchor": 127,
+        "line": "planTraceDigest: string | null;",
+        "context": [
+          "156:   diagnostics: UctDiagnostics;",
+          "157:   chanceSamples: number;",
+          "159: }",
+          "160: "
+        ],
+        "category": "TRACE_PLUMBING",
+        "why": "Read-only trace sink: option, field, constructor wiring, helper, plan digest hand-off. Emits values it already has; consumes no RNG and mutates no state.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 252,
+        "parentAnchor": 220,
+        "line": "/**",
+        "context": [
+          "250: }",
+          "251: ",
+          "253:  * UNCHANGED selection rule. The only addition is an OPTIONAL read-only tap that",
+          "254:  * records `(stateKey, actionKey, value)` per candidate. The tap runs strictly"
+        ],
+        "category": "COMMENT_OR_BLANK",
+        "why": "Comment or blank line. No executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 253,
+        "parentAnchor": 220,
+        "line": "* UNCHANGED selection rule. The only addition is an OPTIONAL read-only tap that",
+        "context": [
+          "251: ",
+          "252: /**",
+          "254:  * records `(stateKey, actionKey, value)` per candidate. The tap runs strictly",
+          "255:  * AFTER the value is computed and never touches the RNG or the state."
+        ],
+        "category": "COMMENT_OR_BLANK",
+        "why": "Comment or blank line. No executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 254,
+        "parentAnchor": 220,
+        "line": "* records `(stateKey, actionKey, value)` per candidate. The tap runs strictly",
+        "context": [
+          "252: /**",
+          "253:  * UNCHANGED selection rule. The only addition is an OPTIONAL read-only tap that",
+          "255:  * AFTER the value is computed and never touches the RNG or the state.",
+          "256:  */"
+        ],
+        "category": "COMMENT_OR_BLANK",
+        "why": "Comment or blank line. No executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 255,
+        "parentAnchor": 220,
+        "line": "* AFTER the value is computed and never touches the RNG or the state.",
+        "context": [
+          "253:  * UNCHANGED selection rule. The only addition is an OPTIONAL read-only tap that",
+          "254:  * records `(stateKey, actionKey, value)` per candidate. The tap runs strictly",
+          "256:  */",
+          "257: function selectRolloutAction("
+        ],
+        "category": "COMMENT_OR_BLANK",
+        "why": "Comment or blank line. No executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 256,
+        "parentAnchor": 220,
+        "line": "*/",
+        "context": [
+          "254:  * records `(stateKey, actionKey, value)` per candidate. The tap runs strictly",
+          "255:  * AFTER the value is computed and never touches the RNG or the state.",
+          "257: function selectRolloutAction(",
+          "258:   state: GameEngineState,"
+        ],
+        "category": "COMMENT_OR_BLANK",
+        "why": "Comment or blank line. No executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 263,
+        "parentAnchor": 226,
+        "line": "trace?: { collector: TraceCollector; kind: 'rollout.guidance' | 'plan.guidance' } | null,",
+        "context": [
+          "261:   rules: RuleSet,",
+          "262:   rng: Rng,",
+          "264: ): SearchAction {",
+          "265:   if (actions.length === 1) return actions[0];"
+        ],
+        "category": "TRACE_PLUMBING",
+        "why": "Read-only trace sink: option, field, constructor wiring, helper, plan digest hand-off. Emits values it already has; consumes no RNG and mutates no state.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 271,
+        "parentAnchor": 233,
+        "line": "const sk = trace ? stateKey(state) : '';",
+        "context": [
+          "269:   let bestVal = maximize ? -Infinity : Infinity;",
+          "270:   let best: number[] = [];",
+          "272:   for (let i = 0; i < actions.length; i++) {",
+          "273:     const val = guidanceValue(state, actions[i], rules);"
+        ],
+        "category": "TRACE_PLUMBING",
+        "why": "Read-only trace sink: option, field, constructor wiring, helper, plan digest hand-off. Emits values it already has; consumes no RNG and mutates no state.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 274,
+        "parentAnchor": 235,
+        "line": "if (trace) trace.collector.record(trace.kind, sk, actionKey(actions[i]), val);",
+        "context": [
+          "272:   for (let i = 0; i < actions.length; i++) {",
+          "273:     const val = guidanceValue(state, actions[i], rules);",
+          "275:     if (!Number.isFinite(val)) continue;",
+          "276:     const better = maximize ? val > bestVal + 1e-12 : val < bestVal - 1e-12;"
+        ],
+        "category": "TRACE_PLUMBING",
+        "why": "Read-only trace sink: option, field, constructor wiring, helper, plan digest hand-off. Emits values it already has; consumes no RNG and mutates no state.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 292,
+        "parentAnchor": 252,
+        "line": "leafValue: number;",
+        "context": [
+          "290:   rolloutSteps: number;",
+          "291:   maxHandoffs: number;",
+          "293:   terminal: boolean;",
+          "294: }"
+        ],
+        "category": "LEAF_VALUE_CARRY",
+        "why": "`SimOutcome` and the rollout return carry `leafValue` / `terminal` so the trace can record what the reward came from. The value itself is unchanged, still computed once, still returned as `reward`.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 293,
+        "parentAnchor": 252,
+        "line": "terminal: boolean;",
+        "context": [
+          "291:   maxHandoffs: number;",
+          "292:   leafValue: number;",
+          "294: }",
+          "295: "
+        ],
+        "category": "LEAF_VALUE_CARRY",
+        "why": "`SimOutcome` and the rollout return carry `leafValue` / `terminal` so the trace can record what the reward came from. The value itself is unchanged, still computed once, still returned as `reward`.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 296,
+        "parentAnchor": 256,
+        "line": "export class UctSearchBaseline {",
+        "context": [
+          "294: }",
+          "295: ",
+          "297:   private readonly opts: Required<Pick<UctOptions, 'deadlineMs' | 'maxHandoffs' | 'maxNodes' | 'c' | 'seed' | 'rollout'>> & {",
+          "298:     rules: RuleSet; now: () => number; maxRolloutActions: number;"
+        ],
+        "category": "CLASS_RENAME",
+        "why": "`UctSearch` → `UctSearchBaseline` so the two arms can be imported side by side. Rename only.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 306,
+        "parentAnchor": 264,
+        "line": "// ---- test seam / instrumentation (inert unless explicitly enabled) ----",
+        "context": [
+          "304:   private readonly policySalt = 0x85ebca6b;",
+          "305: ",
+          "307:   private readonly stopAfterSims: number | null;",
+          "308:   private readonly trace: TraceCollector | null;"
+        ],
+        "category": "COMMENT_OR_BLANK",
+        "why": "Comment or blank line. No executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 307,
+        "parentAnchor": 264,
+        "line": "private readonly stopAfterSims: number | null;",
+        "context": [
+          "305: ",
+          "306:   // ---- test seam / instrumentation (inert unless explicitly enabled) ----",
+          "308:   private readonly trace: TraceCollector | null;",
+          "309:   private readonly policyDrawCount: () => number;"
+        ],
+        "category": "SEAM_STOP_HOOK",
+        "why": "Test-only `maxCompletedSimulations` seam: field, option, guarded stop at the TOP of the simulation loop, reported flag. With no value passed it is null and the guard never runs.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 308,
+        "parentAnchor": 264,
+        "line": "private readonly trace: TraceCollector | null;",
+        "context": [
+          "306:   // ---- test seam / instrumentation (inert unless explicitly enabled) ----",
+          "307:   private readonly stopAfterSims: number | null;",
+          "309:   private readonly policyDrawCount: () => number;",
+          "310:   private readonly chanceDrawCount: () => number;"
+        ],
+        "category": "TRACE_PLUMBING",
+        "why": "Read-only trace sink: option, field, constructor wiring, helper, plan digest hand-off. Emits values it already has; consumes no RNG and mutates no state.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 309,
+        "parentAnchor": 264,
+        "line": "private readonly policyDrawCount: () => number;",
+        "context": [
+          "307:   private readonly stopAfterSims: number | null;",
+          "308:   private readonly trace: TraceCollector | null;",
+          "310:   private readonly chanceDrawCount: () => number;",
+          "311:   // ----------------------------------------------------------------------"
+        ],
+        "category": "RNG_INIT_BRANCH",
+        "why": "The two RNG objects are constructed behind an `if (trace)` branch. Without a sink the branch executes the parent's two `mulberry32(seedFor([...]))` calls verbatim.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 310,
+        "parentAnchor": 264,
+        "line": "private readonly chanceDrawCount: () => number;",
+        "context": [
+          "308:   private readonly trace: TraceCollector | null;",
+          "309:   private readonly policyDrawCount: () => number;",
+          "311:   // ----------------------------------------------------------------------",
+          "312: "
+        ],
+        "category": "RNG_INIT_BRANCH",
+        "why": "The two RNG objects are constructed behind an `if (trace)` branch. Without a sink the branch executes the parent's two `mulberry32(seedFor([...]))` calls verbatim.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 311,
+        "parentAnchor": 264,
+        "line": "// ----------------------------------------------------------------------",
+        "context": [
+          "309:   private readonly policyDrawCount: () => number;",
+          "310:   private readonly chanceDrawCount: () => number;",
+          "312: ",
+          "313:   readonly root: UctNode;"
+        ],
+        "category": "COMMENT_OR_BLANK",
+        "why": "Comment or blank line. No executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 312,
+        "parentAnchor": 264,
+        "line": "",
+        "context": [
+          "310:   private readonly chanceDrawCount: () => number;",
+          "311:   // ----------------------------------------------------------------------",
+          "313:   readonly root: UctNode;",
+          "314:   private createdNodes = 1;"
+        ],
+        "category": "COMMENT_OR_BLANK",
+        "why": "Comment or blank line. No executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 326,
+        "parentAnchor": 277,
+        "line": "private completedSimLimitHit = false;",
+        "context": [
+          "324:   private postDeadlineCreations = 0;",
+          "325:   private deadlineReached = false;",
+          "327: ",
+          "328:   constructor(state: GameEngineState, options: UctOptions) {"
+        ],
+        "category": "SEAM_STOP_HOOK",
+        "why": "Test-only `maxCompletedSimulations` seam: field, option, guarded stop at the TOP of the simulation loop, reported flag. With no value passed it is null and the guard never runs.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 340,
+        "parentAnchor": 293,
+        "line": "// ---- test seam / instrumentation -----------------------------------",
+        "context": [
+          "338:       maxRolloutActions: options.maxRolloutActions ?? 40,",
+          "339:     };",
+          "341:     // When `trace` is absent the two RNGs below are EXACTLY the parent's, and",
+          "342:     // the draw counters are constant zero."
+        ],
+        "category": "COMMENT_OR_BLANK",
+        "why": "Comment or blank line. No executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 341,
+        "parentAnchor": 293,
+        "line": "// When `trace` is absent the two RNGs below are EXACTLY the parent's, and",
+        "context": [
+          "339:     };",
+          "340:     // ---- test seam / instrumentation -----------------------------------",
+          "342:     // the draw counters are constant zero.",
+          "343:     this.stopAfterSims = options.maxCompletedSimulations ?? null;"
+        ],
+        "category": "COMMENT_OR_BLANK",
+        "why": "Comment or blank line. No executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 342,
+        "parentAnchor": 293,
+        "line": "// the draw counters are constant zero.",
+        "context": [
+          "340:     // ---- test seam / instrumentation -----------------------------------",
+          "341:     // When `trace` is absent the two RNGs below are EXACTLY the parent's, and",
+          "343:     this.stopAfterSims = options.maxCompletedSimulations ?? null;",
+          "344:     this.trace = options.trace ?? null;"
+        ],
+        "category": "COMMENT_OR_BLANK",
+        "why": "Comment or blank line. No executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 343,
+        "parentAnchor": 293,
+        "line": "this.stopAfterSims = options.maxCompletedSimulations ?? null;",
+        "context": [
+          "341:     // When `trace` is absent the two RNGs below are EXACTLY the parent's, and",
+          "342:     // the draw counters are constant zero.",
+          "344:     this.trace = options.trace ?? null;",
+          "345:     if (this.trace) {"
+        ],
+        "category": "SEAM_STOP_HOOK",
+        "why": "Test-only `maxCompletedSimulations` seam: field, option, guarded stop at the TOP of the simulation loop, reported flag. With no value passed it is null and the guard never runs.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 344,
+        "parentAnchor": 293,
+        "line": "this.trace = options.trace ?? null;",
+        "context": [
+          "342:     // the draw counters are constant zero.",
+          "343:     this.stopAfterSims = options.maxCompletedSimulations ?? null;",
+          "345:     if (this.trace) {",
+          "346:       const chance = countingTraceRng("
+        ],
+        "category": "TRACE_PLUMBING",
+        "why": "Read-only trace sink: option, field, constructor wiring, helper, plan digest hand-off. Emits values it already has; consumes no RNG and mutates no state.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 345,
+        "parentAnchor": 293,
+        "line": "if (this.trace) {",
+        "context": [
+          "343:     this.stopAfterSims = options.maxCompletedSimulations ?? null;",
+          "344:     this.trace = options.trace ?? null;",
+          "346:       const chance = countingTraceRng(",
+          "347:         mulberry32(seedFor([options.seed, 'chance']) >>> 0), this.trace, 'chance',"
+        ],
+        "category": "TRACE_PLUMBING",
+        "why": "Read-only trace sink: option, field, constructor wiring, helper, plan digest hand-off. Emits values it already has; consumes no RNG and mutates no state.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 346,
+        "parentAnchor": 293,
+        "line": "const chance = countingTraceRng(",
+        "context": [
+          "344:     this.trace = options.trace ?? null;",
+          "345:     if (this.trace) {",
+          "347:         mulberry32(seedFor([options.seed, 'chance']) >>> 0), this.trace, 'chance',",
+          "348:       );"
+        ],
+        "category": "TRACE_PLUMBING",
+        "why": "Read-only trace sink: option, field, constructor wiring, helper, plan digest hand-off. Emits values it already has; consumes no RNG and mutates no state.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 347,
+        "parentAnchor": 293,
+        "line": "mulberry32(seedFor([options.seed, 'chance']) >>> 0), this.trace, 'chance',",
+        "context": [
+          "345:     if (this.trace) {",
+          "346:       const chance = countingTraceRng(",
+          "348:       );",
+          "349:       const policy = countingTraceRng("
+        ],
+        "category": "TRACE_PLUMBING",
+        "why": "Read-only trace sink: option, field, constructor wiring, helper, plan digest hand-off. Emits values it already has; consumes no RNG and mutates no state.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 348,
+        "parentAnchor": 293,
+        "line": ");",
+        "context": [
+          "346:       const chance = countingTraceRng(",
+          "347:         mulberry32(seedFor([options.seed, 'chance']) >>> 0), this.trace, 'chance',",
+          "349:       const policy = countingTraceRng(",
+          "350:         mulberry32(seedFor([options.seed, 'policy']) >>> 0), this.trace, 'policy',"
+        ],
+        "category": "STRUCTURAL_LINE",
+        "why": "Brace / bracket / `else` continuation created by splitting a one-line statement into an observed branch. No statement of its own.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 349,
+        "parentAnchor": 293,
+        "line": "const policy = countingTraceRng(",
+        "context": [
+          "347:         mulberry32(seedFor([options.seed, 'chance']) >>> 0), this.trace, 'chance',",
+          "348:       );",
+          "350:         mulberry32(seedFor([options.seed, 'policy']) >>> 0), this.trace, 'policy',",
+          "351:       );"
+        ],
+        "category": "TRACE_PLUMBING",
+        "why": "Read-only trace sink: option, field, constructor wiring, helper, plan digest hand-off. Emits values it already has; consumes no RNG and mutates no state.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 350,
+        "parentAnchor": 293,
+        "line": "mulberry32(seedFor([options.seed, 'policy']) >>> 0), this.trace, 'policy',",
+        "context": [
+          "348:       );",
+          "349:       const policy = countingTraceRng(",
+          "351:       );",
+          "352:       this.chanceRng = chance.rng;"
+        ],
+        "category": "TRACE_PLUMBING",
+        "why": "Read-only trace sink: option, field, constructor wiring, helper, plan digest hand-off. Emits values it already has; consumes no RNG and mutates no state.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 351,
+        "parentAnchor": 293,
+        "line": ");",
+        "context": [
+          "349:       const policy = countingTraceRng(",
+          "350:         mulberry32(seedFor([options.seed, 'policy']) >>> 0), this.trace, 'policy',",
+          "352:       this.chanceRng = chance.rng;",
+          "353:       this.policyRng = policy.rng;"
+        ],
+        "category": "STRUCTURAL_LINE",
+        "why": "Brace / bracket / `else` continuation created by splitting a one-line statement into an observed branch. No statement of its own.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 352,
+        "parentAnchor": 293,
+        "line": "this.chanceRng = chance.rng;",
+        "context": [
+          "350:         mulberry32(seedFor([options.seed, 'policy']) >>> 0), this.trace, 'policy',",
+          "351:       );",
+          "353:       this.policyRng = policy.rng;",
+          "354:       this.chanceDrawCount = chance.draws;"
+        ],
+        "category": "RNG_INIT_BRANCH",
+        "why": "The two RNG objects are constructed behind an `if (trace)` branch. Without a sink the branch executes the parent's two `mulberry32(seedFor([...]))` calls verbatim.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 353,
+        "parentAnchor": 293,
+        "line": "this.policyRng = policy.rng;",
+        "context": [
+          "351:       );",
+          "352:       this.chanceRng = chance.rng;",
+          "354:       this.chanceDrawCount = chance.draws;",
+          "355:       this.policyDrawCount = policy.draws;"
+        ],
+        "category": "RNG_INIT_BRANCH",
+        "why": "The two RNG objects are constructed behind an `if (trace)` branch. Without a sink the branch executes the parent's two `mulberry32(seedFor([...]))` calls verbatim.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 354,
+        "parentAnchor": 293,
+        "line": "this.chanceDrawCount = chance.draws;",
+        "context": [
+          "352:       this.chanceRng = chance.rng;",
+          "353:       this.policyRng = policy.rng;",
+          "355:       this.policyDrawCount = policy.draws;",
+          "356:     } else {"
+        ],
+        "category": "RNG_INIT_BRANCH",
+        "why": "The two RNG objects are constructed behind an `if (trace)` branch. Without a sink the branch executes the parent's two `mulberry32(seedFor([...]))` calls verbatim.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 355,
+        "parentAnchor": 293,
+        "line": "this.policyDrawCount = policy.draws;",
+        "context": [
+          "353:       this.policyRng = policy.rng;",
+          "354:       this.chanceDrawCount = chance.draws;",
+          "356:     } else {",
+          "357:       this.chanceRng = mulberry32(seedFor([options.seed, 'chance']) >>> 0);"
+        ],
+        "category": "RNG_INIT_BRANCH",
+        "why": "The two RNG objects are constructed behind an `if (trace)` branch. Without a sink the branch executes the parent's two `mulberry32(seedFor([...]))` calls verbatim.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 356,
+        "parentAnchor": 293,
+        "line": "} else {",
+        "context": [
+          "354:       this.chanceDrawCount = chance.draws;",
+          "355:       this.policyDrawCount = policy.draws;",
+          "357:       this.chanceRng = mulberry32(seedFor([options.seed, 'chance']) >>> 0);",
+          "358:       this.policyRng = mulberry32(seedFor([options.seed, 'policy']) >>> 0);"
+        ],
+        "category": "STRUCTURAL_LINE",
+        "why": "Brace / bracket / `else` continuation created by splitting a one-line statement into an observed branch. No statement of its own.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 357,
+        "parentAnchor": 293,
+        "line": "this.chanceRng = mulberry32(seedFor([options.seed, 'chance']) >>> 0);",
+        "context": [
+          "355:       this.policyDrawCount = policy.draws;",
+          "356:     } else {",
+          "358:       this.policyRng = mulberry32(seedFor([options.seed, 'policy']) >>> 0);",
+          "359:       this.chanceDrawCount = () => 0;"
+        ],
+        "category": "RNG_INIT_BRANCH",
+        "why": "The two RNG objects are constructed behind an `if (trace)` branch. Without a sink the branch executes the parent's two `mulberry32(seedFor([...]))` calls verbatim.",
+        "evidence": {
+          "counterpartSide": "parent",
+          "counterpartLineNo": 292,
+          "counterpartLine": "this.chanceRng = mulberry32(seedFor([options.seed, 'chance']) >>> 0);"
+        }
+      },
+      {
+        "side": "fork",
+        "lineNo": 358,
+        "parentAnchor": 293,
+        "line": "this.policyRng = mulberry32(seedFor([options.seed, 'policy']) >>> 0);",
+        "context": [
+          "356:     } else {",
+          "357:       this.chanceRng = mulberry32(seedFor([options.seed, 'chance']) >>> 0);",
+          "359:       this.chanceDrawCount = () => 0;",
+          "360:       this.policyDrawCount = () => 0;"
+        ],
+        "category": "RNG_INIT_BRANCH",
+        "why": "The two RNG objects are constructed behind an `if (trace)` branch. Without a sink the branch executes the parent's two `mulberry32(seedFor([...]))` calls verbatim.",
+        "evidence": {
+          "counterpartSide": "parent",
+          "counterpartLineNo": 293,
+          "counterpartLine": "this.policyRng = mulberry32(seedFor([options.seed, 'policy']) >>> 0);"
+        }
+      },
+      {
+        "side": "fork",
+        "lineNo": 359,
+        "parentAnchor": 293,
+        "line": "this.chanceDrawCount = () => 0;",
+        "context": [
+          "357:       this.chanceRng = mulberry32(seedFor([options.seed, 'chance']) >>> 0);",
+          "358:       this.policyRng = mulberry32(seedFor([options.seed, 'policy']) >>> 0);",
+          "360:       this.policyDrawCount = () => 0;",
+          "361:     }"
+        ],
+        "category": "RNG_INIT_BRANCH",
+        "why": "The two RNG objects are constructed behind an `if (trace)` branch. Without a sink the branch executes the parent's two `mulberry32(seedFor([...]))` calls verbatim.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 360,
+        "parentAnchor": 293,
+        "line": "this.policyDrawCount = () => 0;",
+        "context": [
+          "358:       this.policyRng = mulberry32(seedFor([options.seed, 'policy']) >>> 0);",
+          "359:       this.chanceDrawCount = () => 0;",
+          "361:     }",
+          "362:     // --------------------------------------------------------------------"
+        ],
+        "category": "RNG_INIT_BRANCH",
+        "why": "The two RNG objects are constructed behind an `if (trace)` branch. Without a sink the branch executes the parent's two `mulberry32(seedFor([...]))` calls verbatim.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 361,
+        "parentAnchor": 293,
+        "line": "}",
+        "context": [
+          "359:       this.chanceDrawCount = () => 0;",
+          "360:       this.policyDrawCount = () => 0;",
+          "362:     // --------------------------------------------------------------------",
+          "363:     this.deadlineAt = this.opts.now() + Math.max(1, this.opts.deadlineMs);"
+        ],
+        "category": "STRUCTURAL_LINE",
+        "why": "Brace / bracket / `else` continuation created by splitting a one-line statement into an observed branch. No statement of its own.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 362,
+        "parentAnchor": 293,
+        "line": "// --------------------------------------------------------------------",
+        "context": [
+          "360:       this.policyDrawCount = () => 0;",
+          "361:     }",
+          "363:     this.deadlineAt = this.opts.now() + Math.max(1, this.opts.deadlineMs);",
+          "364:     this.root = makeDecisionNode(state, 0, null, 'root', null);"
+        ],
+        "category": "COMMENT_OR_BLANK",
+        "why": "Comment or blank line. No executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 367,
+        "parentAnchor": 296,
+        "line": "private tr(kind: Parameters<TraceCollector['record']>[0], ...fields: Encodable[]): void {",
+        "context": [
+          "365:   }",
+          "366: ",
+          "368:     if (this.trace !== null) this.trace.record(kind, ...fields);",
+          "369:   }"
+        ],
+        "category": "TRACE_PLUMBING",
+        "why": "Read-only trace sink: option, field, constructor wiring, helper, plan digest hand-off. Emits values it already has; consumes no RNG and mutates no state.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 368,
+        "parentAnchor": 296,
+        "line": "if (this.trace !== null) this.trace.record(kind, ...fields);",
+        "context": [
+          "366: ",
+          "367:   private tr(kind: Parameters<TraceCollector['record']>[0], ...fields: Encodable[]): void {",
+          "369:   }",
+          "370: "
+        ],
+        "category": "TRACE_PLUMBING",
+        "why": "Read-only trace sink: option, field, constructor wiring, helper, plan digest hand-off. Emits values it already has; consumes no RNG and mutates no state.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 369,
+        "parentAnchor": 296,
+        "line": "}",
+        "context": [
+          "367:   private tr(kind: Parameters<TraceCollector['record']>[0], ...fields: Encodable[]): void {",
+          "368:     if (this.trace !== null) this.trace.record(kind, ...fields);",
+          "370: ",
+          "371:   run(): UctResult {"
+        ],
+        "category": "STRUCTURAL_LINE",
+        "why": "Brace / bracket / `else` continuation created by splitting a one-line statement into an observed branch. No statement of its own.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 370,
+        "parentAnchor": 296,
+        "line": "",
+        "context": [
+          "368:     if (this.trace !== null) this.trace.record(kind, ...fields);",
+          "369:   }",
+          "371:   run(): UctResult {",
+          "372:     const t0 = this.opts.now();"
+        ],
+        "category": "COMMENT_OR_BLANK",
+        "why": "Comment or blank line. No executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 374,
+        "parentAnchor": 299,
+        "line": "// ---- test seam: only between simulations, never inside one --------",
+        "context": [
+          "372:     const t0 = this.opts.now();",
+          "373:     for (;;) {",
+          "375:       if (this.stopAfterSims !== null && this.sims >= this.stopAfterSims) {",
+          "376:         this.completedSimLimitHit = true;"
+        ],
+        "category": "COMMENT_OR_BLANK",
+        "why": "Comment or blank line. No executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 375,
+        "parentAnchor": 299,
+        "line": "if (this.stopAfterSims !== null && this.sims >= this.stopAfterSims) {",
+        "context": [
+          "373:     for (;;) {",
+          "374:       // ---- test seam: only between simulations, never inside one --------",
+          "376:         this.completedSimLimitHit = true;",
+          "377:         break;"
+        ],
+        "category": "SEAM_STOP_HOOK",
+        "why": "Test-only `maxCompletedSimulations` seam: field, option, guarded stop at the TOP of the simulation loop, reported flag. With no value passed it is null and the guard never runs.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 376,
+        "parentAnchor": 299,
+        "line": "this.completedSimLimitHit = true;",
+        "context": [
+          "374:       // ---- test seam: only between simulations, never inside one --------",
+          "375:       if (this.stopAfterSims !== null && this.sims >= this.stopAfterSims) {",
+          "377:         break;",
+          "378:       }"
+        ],
+        "category": "SEAM_STOP_HOOK",
+        "why": "Test-only `maxCompletedSimulations` seam: field, option, guarded stop at the TOP of the simulation loop, reported flag. With no value passed it is null and the guard never runs.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 377,
+        "parentAnchor": 299,
+        "line": "break;",
+        "context": [
+          "375:       if (this.stopAfterSims !== null && this.sims >= this.stopAfterSims) {",
+          "376:         this.completedSimLimitHit = true;",
+          "378:       }",
+          "379:       // ------------------------------------------------------------------"
+        ],
+        "category": "STRUCTURAL_LINE",
+        "why": "Brace / bracket / `else` continuation created by splitting a one-line statement into an observed branch. No statement of its own.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 378,
+        "parentAnchor": 299,
+        "line": "}",
+        "context": [
+          "376:         this.completedSimLimitHit = true;",
+          "377:         break;",
+          "379:       // ------------------------------------------------------------------",
+          "380:       if (this.createdNodes >= this.opts.maxNodes) { this.nodeCapHit = true; break; }"
+        ],
+        "category": "STRUCTURAL_LINE",
+        "why": "Brace / bracket / `else` continuation created by splitting a one-line statement into an observed branch. No statement of its own.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 379,
+        "parentAnchor": 299,
+        "line": "// ------------------------------------------------------------------",
+        "context": [
+          "377:         break;",
+          "378:       }",
+          "380:       if (this.createdNodes >= this.opts.maxNodes) { this.nodeCapHit = true; break; }",
+          "381:       if (this.sims > 0 && this.opts.now() >= this.deadlineAt) { this.deadlineHit = true; break; }"
+        ],
+        "category": "COMMENT_OR_BLANK",
+        "why": "Comment or blank line. No executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 382,
+        "parentAnchor": 301,
+        "line": "const traceIndex = this.sims;",
+        "context": [
+          "380:       if (this.createdNodes >= this.opts.maxNodes) { this.nodeCapHit = true; break; }",
+          "381:       if (this.sims > 0 && this.opts.now() >= this.deadlineAt) { this.deadlineHit = true; break; }",
+          "383:       const policyBefore = this.policyDrawCount();",
+          "384:       const chanceBefore = this.chanceDrawCount();"
+        ],
+        "category": "TRACE_PLUMBING",
+        "why": "Read-only trace sink: option, field, constructor wiring, helper, plan digest hand-off. Emits values it already has; consumes no RNG and mutates no state.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 383,
+        "parentAnchor": 301,
+        "line": "const policyBefore = this.policyDrawCount();",
+        "context": [
+          "381:       if (this.sims > 0 && this.opts.now() >= this.deadlineAt) { this.deadlineHit = true; break; }",
+          "382:       const traceIndex = this.sims;",
+          "384:       const chanceBefore = this.chanceDrawCount();",
+          "385:       if (this.trace) this.trace.simulationBegin(traceIndex, stateKey(this.root.state));"
+        ],
+        "category": "RNG_INIT_BRANCH",
+        "why": "The two RNG objects are constructed behind an `if (trace)` branch. Without a sink the branch executes the parent's two `mulberry32(seedFor([...]))` calls verbatim.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 384,
+        "parentAnchor": 301,
+        "line": "const chanceBefore = this.chanceDrawCount();",
+        "context": [
+          "382:       const traceIndex = this.sims;",
+          "383:       const policyBefore = this.policyDrawCount();",
+          "385:       if (this.trace) this.trace.simulationBegin(traceIndex, stateKey(this.root.state));",
+          "386:       const sim = this.simulate(this.sims === 0);"
+        ],
+        "category": "RNG_INIT_BRANCH",
+        "why": "The two RNG objects are constructed behind an `if (trace)` branch. Without a sink the branch executes the parent's two `mulberry32(seedFor([...]))` calls verbatim.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 385,
+        "parentAnchor": 301,
+        "line": "if (this.trace) this.trace.simulationBegin(traceIndex, stateKey(this.root.state));",
+        "context": [
+          "383:       const policyBefore = this.policyDrawCount();",
+          "384:       const chanceBefore = this.chanceDrawCount();",
+          "386:       const sim = this.simulate(this.sims === 0);",
+          "387:       if (!sim.completed) {"
+        ],
+        "category": "TRACE_PLUMBING",
+        "why": "Read-only trace sink: option, field, constructor wiring, helper, plan digest hand-off. Emits values it already has; consumes no RNG and mutates no state.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 390,
+        "parentAnchor": 305,
+        "line": "// `simulationEnd` records the `sim.end` event itself — do not emit a",
+        "context": [
+          "388:         this.aborted++;",
+          "389:         this.deadlineHit = true;",
+          "391:         // second one here.",
+          "392:         if (this.trace) {"
+        ],
+        "category": "COMMENT_OR_BLANK",
+        "why": "Comment or blank line. No executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 391,
+        "parentAnchor": 305,
+        "line": "// second one here.",
+        "context": [
+          "389:         this.deadlineHit = true;",
+          "390:         // `simulationEnd` records the `sim.end` event itself — do not emit a",
+          "392:         if (this.trace) {",
+          "393:           this.trace.simulationEnd({"
+        ],
+        "category": "COMMENT_OR_BLANK",
+        "why": "Comment or blank line. No executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 392,
+        "parentAnchor": 305,
+        "line": "if (this.trace) {",
+        "context": [
+          "390:         // `simulationEnd` records the `sim.end` event itself — do not emit a",
+          "391:         // second one here.",
+          "393:           this.trace.simulationEnd({",
+          "394:             index: traceIndex, completed: false, reward: 0, leafValue: 0, terminal: false,"
+        ],
+        "category": "TRACE_PLUMBING",
+        "why": "Read-only trace sink: option, field, constructor wiring, helper, plan digest hand-off. Emits values it already has; consumes no RNG and mutates no state.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 393,
+        "parentAnchor": 305,
+        "line": "this.trace.simulationEnd({",
+        "context": [
+          "391:         // second one here.",
+          "392:         if (this.trace) {",
+          "394:             index: traceIndex, completed: false, reward: 0, leafValue: 0, terminal: false,",
+          "395:             pathLength: sim.path.length, rolloutSteps: sim.rolloutSteps,"
+        ],
+        "category": "TRACE_PLUMBING",
+        "why": "Read-only trace sink: option, field, constructor wiring, helper, plan digest hand-off. Emits values it already has; consumes no RNG and mutates no state.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 394,
+        "parentAnchor": 305,
+        "line": "index: traceIndex, completed: false, reward: 0, leafValue: 0, terminal: false,",
+        "context": [
+          "392:         if (this.trace) {",
+          "393:           this.trace.simulationEnd({",
+          "395:             pathLength: sim.path.length, rolloutSteps: sim.rolloutSteps,",
+          "396:             chanceSamples: sim.chanceSamples, policyDraws: 0, chanceDraws: 0,"
+        ],
+        "category": "TRACE_PLUMBING",
+        "why": "Read-only trace sink: option, field, constructor wiring, helper, plan digest hand-off. Emits values it already has; consumes no RNG and mutates no state.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 395,
+        "parentAnchor": 305,
+        "line": "pathLength: sim.path.length, rolloutSteps: sim.rolloutSteps,",
+        "context": [
+          "393:           this.trace.simulationEnd({",
+          "394:             index: traceIndex, completed: false, reward: 0, leafValue: 0, terminal: false,",
+          "396:             chanceSamples: sim.chanceSamples, policyDraws: 0, chanceDraws: 0,",
+          "397:             maxHandoffs: sim.maxHandoffs,"
+        ],
+        "category": "TRACE_CALL_ARGUMENT",
+        "why": "Continuation line (or closing `});`) of a multi-line trace emission. The emitted values are already-computed locals; nothing is read that was not read without the sink.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 396,
+        "parentAnchor": 305,
+        "line": "chanceSamples: sim.chanceSamples, policyDraws: 0, chanceDraws: 0,",
+        "context": [
+          "394:             index: traceIndex, completed: false, reward: 0, leafValue: 0, terminal: false,",
+          "395:             pathLength: sim.path.length, rolloutSteps: sim.rolloutSteps,",
+          "397:             maxHandoffs: sim.maxHandoffs,",
+          "398:           });"
+        ],
+        "category": "TRACE_CALL_ARGUMENT",
+        "why": "Continuation line (or closing `});`) of a multi-line trace emission. The emitted values are already-computed locals; nothing is read that was not read without the sink.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 397,
+        "parentAnchor": 305,
+        "line": "maxHandoffs: sim.maxHandoffs,",
+        "context": [
+          "395:             pathLength: sim.path.length, rolloutSteps: sim.rolloutSteps,",
+          "396:             chanceSamples: sim.chanceSamples, policyDraws: 0, chanceDraws: 0,",
+          "398:           });",
+          "399:         }"
+        ],
+        "category": "TRACE_CALL_ARGUMENT",
+        "why": "Continuation line (or closing `});`) of a multi-line trace emission. The emitted values are already-computed locals; nothing is read that was not read without the sink.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 398,
+        "parentAnchor": 305,
+        "line": "});",
+        "context": [
+          "396:             chanceSamples: sim.chanceSamples, policyDraws: 0, chanceDraws: 0,",
+          "397:             maxHandoffs: sim.maxHandoffs,",
+          "399:         }",
+          "400:         break;"
+        ],
+        "category": "TRACE_CALL_ARGUMENT",
+        "why": "Continuation line (or closing `});`) of a multi-line trace emission. The emitted values are already-computed locals; nothing is read that was not read without the sink.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 399,
+        "parentAnchor": 305,
+        "line": "}",
+        "context": [
+          "397:             maxHandoffs: sim.maxHandoffs,",
+          "398:           });",
+          "400:         break;",
+          "401:       }"
+        ],
+        "category": "STRUCTURAL_LINE",
+        "why": "Brace / bracket / `else` continuation created by splitting a one-line statement into an observed branch. No statement of its own.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 407,
+        "parentAnchor": 312,
+        "line": "if (this.trace) {",
+        "context": [
+          "405:       this.rolloutSteps += sim.rolloutSteps;",
+          "406:       if (sim.maxHandoffs > this.maxHandoffsReached) this.maxHandoffsReached = sim.maxHandoffs;",
+          "408:         this.trace.simulationEnd({",
+          "409:           index: traceIndex, completed: true, reward: sim.reward, leafValue: sim.leafValue,"
+        ],
+        "category": "TRACE_PLUMBING",
+        "why": "Read-only trace sink: option, field, constructor wiring, helper, plan digest hand-off. Emits values it already has; consumes no RNG and mutates no state.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 408,
+        "parentAnchor": 312,
+        "line": "this.trace.simulationEnd({",
+        "context": [
+          "406:       if (sim.maxHandoffs > this.maxHandoffsReached) this.maxHandoffsReached = sim.maxHandoffs;",
+          "407:       if (this.trace) {",
+          "409:           index: traceIndex, completed: true, reward: sim.reward, leafValue: sim.leafValue,",
+          "410:           terminal: sim.terminal, pathLength: sim.path.length, rolloutSteps: sim.rolloutSteps,"
+        ],
+        "category": "TRACE_PLUMBING",
+        "why": "Read-only trace sink: option, field, constructor wiring, helper, plan digest hand-off. Emits values it already has; consumes no RNG and mutates no state.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 409,
+        "parentAnchor": 312,
+        "line": "index: traceIndex, completed: true, reward: sim.reward, leafValue: sim.leafValue,",
+        "context": [
+          "407:       if (this.trace) {",
+          "408:         this.trace.simulationEnd({",
+          "410:           terminal: sim.terminal, pathLength: sim.path.length, rolloutSteps: sim.rolloutSteps,",
+          "411:           chanceSamples: sim.chanceSamples,"
+        ],
+        "category": "TRACE_PLUMBING",
+        "why": "Read-only trace sink: option, field, constructor wiring, helper, plan digest hand-off. Emits values it already has; consumes no RNG and mutates no state.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 410,
+        "parentAnchor": 312,
+        "line": "terminal: sim.terminal, pathLength: sim.path.length, rolloutSteps: sim.rolloutSteps,",
+        "context": [
+          "408:         this.trace.simulationEnd({",
+          "409:           index: traceIndex, completed: true, reward: sim.reward, leafValue: sim.leafValue,",
+          "411:           chanceSamples: sim.chanceSamples,",
+          "412:           policyDraws: this.policyDrawCount() - policyBefore,"
+        ],
+        "category": "TRACE_CALL_ARGUMENT",
+        "why": "Continuation line (or closing `});`) of a multi-line trace emission. The emitted values are already-computed locals; nothing is read that was not read without the sink.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 411,
+        "parentAnchor": 312,
+        "line": "chanceSamples: sim.chanceSamples,",
+        "context": [
+          "409:           index: traceIndex, completed: true, reward: sim.reward, leafValue: sim.leafValue,",
+          "410:           terminal: sim.terminal, pathLength: sim.path.length, rolloutSteps: sim.rolloutSteps,",
+          "412:           policyDraws: this.policyDrawCount() - policyBefore,",
+          "413:           chanceDraws: this.chanceDrawCount() - chanceBefore,"
+        ],
+        "category": "TRACE_CALL_ARGUMENT",
+        "why": "Continuation line (or closing `});`) of a multi-line trace emission. The emitted values are already-computed locals; nothing is read that was not read without the sink.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 412,
+        "parentAnchor": 312,
+        "line": "policyDraws: this.policyDrawCount() - policyBefore,",
+        "context": [
+          "410:           terminal: sim.terminal, pathLength: sim.path.length, rolloutSteps: sim.rolloutSteps,",
+          "411:           chanceSamples: sim.chanceSamples,",
+          "413:           chanceDraws: this.chanceDrawCount() - chanceBefore,",
+          "414:           maxHandoffs: sim.maxHandoffs,"
+        ],
+        "category": "RNG_INIT_BRANCH",
+        "why": "The two RNG objects are constructed behind an `if (trace)` branch. Without a sink the branch executes the parent's two `mulberry32(seedFor([...]))` calls verbatim.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 413,
+        "parentAnchor": 312,
+        "line": "chanceDraws: this.chanceDrawCount() - chanceBefore,",
+        "context": [
+          "411:           chanceSamples: sim.chanceSamples,",
+          "412:           policyDraws: this.policyDrawCount() - policyBefore,",
+          "414:           maxHandoffs: sim.maxHandoffs,",
+          "415:         });"
+        ],
+        "category": "RNG_INIT_BRANCH",
+        "why": "The two RNG objects are constructed behind an `if (trace)` branch. Without a sink the branch executes the parent's two `mulberry32(seedFor([...]))` calls verbatim.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 414,
+        "parentAnchor": 312,
+        "line": "maxHandoffs: sim.maxHandoffs,",
+        "context": [
+          "412:           policyDraws: this.policyDrawCount() - policyBefore,",
+          "413:           chanceDraws: this.chanceDrawCount() - chanceBefore,",
+          "415:         });",
+          "416:       }"
+        ],
+        "category": "TRACE_CALL_ARGUMENT",
+        "why": "Continuation line (or closing `});`) of a multi-line trace emission. The emitted values are already-computed locals; nothing is read that was not read without the sink.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 415,
+        "parentAnchor": 312,
+        "line": "});",
+        "context": [
+          "413:           chanceDraws: this.chanceDrawCount() - chanceBefore,",
+          "414:           maxHandoffs: sim.maxHandoffs,",
+          "416:       }",
+          "417:     }"
+        ],
+        "category": "TRACE_CALL_ARGUMENT",
+        "why": "Continuation line (or closing `});`) of a multi-line trace emission. The emitted values are already-computed locals; nothing is read that was not read without the sink.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 416,
+        "parentAnchor": 312,
+        "line": "}",
+        "context": [
+          "414:           maxHandoffs: sim.maxHandoffs,",
+          "415:         });",
+          "417:     }",
+          "418:     const elapsedMs = this.opts.now() - t0;"
+        ],
+        "category": "STRUCTURAL_LINE",
+        "why": "Brace / bracket / `else` continuation created by splitting a one-line statement into an observed branch. No statement of its own.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 421,
+        "parentAnchor": 316,
+        "line": "if (this.trace) this.trace.planBegin();",
+        "context": [
+          "419:     if (this.sims > 0 && this.opts.now() >= this.deadlineAt) this.deadlineHit = true;",
+          "420: ",
+          "422:     const plan = this.extractPlan();",
+          "423:     const planTraceDigest = this.trace ? this.trace.planEnd() : null;"
+        ],
+        "category": "TRACE_PLUMBING",
+        "why": "Read-only trace sink: option, field, constructor wiring, helper, plan digest hand-off. Emits values it already has; consumes no RNG and mutates no state.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 423,
+        "parentAnchor": 317,
+        "line": "const planTraceDigest = this.trace ? this.trace.planEnd() : null;",
+        "context": [
+          "421:     if (this.trace) this.trace.planBegin();",
+          "422:     const plan = this.extractPlan();",
+          "424:     const rootActionStats = this.root.childNodes.map((e) => ({",
+          "425:       action: e.action,"
+        ],
+        "category": "TRACE_PLUMBING",
+        "why": "Read-only trace sink: option, field, constructor wiring, helper, plan digest hand-off. Emits values it already has; consumes no RNG and mutates no state.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 458,
+        "parentAnchor": 351,
+        "line": "completedSimulationLimitHit: this.completedSimLimitHit,",
+        "context": [
+          "456:         nodeCapHit: this.nodeCapHit,",
+          "457:         postDeadlineNodeCreations: this.postDeadlineCreations,",
+          "459:       },",
+          "460:       chanceSamples: this.chanceSamples,"
+        ],
+        "category": "SEAM_STOP_HOOK",
+        "why": "Test-only `maxCompletedSimulations` seam: field, option, guarded stop at the TOP of the simulation loop, reported flag. With no value passed it is null and the guard never runs.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 461,
+        "parentAnchor": 353,
+        "line": "planTraceDigest,",
+        "context": [
+          "459:       },",
+          "460:       chanceSamples: this.chanceSamples,",
+          "462:     };",
+          "463:   }"
+        ],
+        "category": "TRACE_PLUMBING",
+        "why": "Read-only trace sink: option, field, constructor wiring, helper, plan digest hand-off. Emits values it already has; consumes no RNG and mutates no state.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 474,
+        "parentAnchor": 367,
+        "line": "const aborted = (): SimOutcome => ({",
+        "context": [
+          "472:     let maxHandoffs = cur.handoffs;",
+          "473: ",
+          "475:       completed: false, path, reward: 0, chanceSamples, rolloutSteps, maxHandoffs,",
+          "476:       leafValue: 0, terminal: false,"
+        ],
+        "category": "STATEMENT_SPLIT",
+        "why": "A one-line `break;` / `return {...}` became a recorded form. Control flow preserved: the same condition, the same body, the same exit.",
+        "evidence": {
+          "counterpartSide": "parent",
+          "counterpartLineNo": 367,
+          "counterpartLine": "const aborted = (): SimOutcome => ({ completed: false, path, reward: 0, chanceSamples, rolloutSteps, maxHandoffs });"
+        }
+      },
+      {
+        "side": "fork",
+        "lineNo": 475,
+        "parentAnchor": 367,
+        "line": "completed: false, path, reward: 0, chanceSamples, rolloutSteps, maxHandoffs,",
+        "context": [
+          "473: ",
+          "474:     const aborted = (): SimOutcome => ({",
+          "476:       leafValue: 0, terminal: false,",
+          "477:     });"
+        ],
+        "category": "INLINE_BODY_SPLIT",
+        "why": "Statement lifted out of a parent one-liner. Textually the same statement; it now occupies its own line so a trace emission can sit beside it.",
+        "evidence": {
+          "lineNo": 367,
+          "line": "const aborted = (): SimOutcome => ({ completed: false, path, reward: 0, chanceSamples, rolloutSteps, maxHandoffs });"
+        }
+      },
+      {
+        "side": "fork",
+        "lineNo": 476,
+        "parentAnchor": 367,
+        "line": "leafValue: 0, terminal: false,",
+        "context": [
+          "474:     const aborted = (): SimOutcome => ({",
+          "475:       completed: false, path, reward: 0, chanceSamples, rolloutSteps, maxHandoffs,",
+          "477:     });",
+          "478:     const checkDeadline = (): boolean => {"
+        ],
+        "category": "LEAF_VALUE_CARRY",
+        "why": "`SimOutcome` and the rollout return carry `leafValue` / `terminal` so the trace can record what the reward came from. The value itself is unchanged, still computed once, still returned as `reward`.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 477,
+        "parentAnchor": 367,
+        "line": "});",
+        "context": [
+          "475:       completed: false, path, reward: 0, chanceSamples, rolloutSteps, maxHandoffs,",
+          "476:       leafValue: 0, terminal: false,",
+          "478:     const checkDeadline = (): boolean => {",
+          "479:       if (allowOverrunForFirst && this.sims === 0) return false;"
+        ],
+        "category": "STRUCTURAL_LINE",
+        "why": "Brace / bracket / `else` continuation created by splitting a one-line statement into an observed branch. No statement of its own.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 487,
+        "parentAnchor": 378,
+        "line": "if (isTerminal(cur.state)) { this.tr('tree.cycle', stateKey(cur.state), 'terminal'); break; }",
+        "context": [
+          "485:     while (true) {",
+          "486:       if (checkDeadline()) return aborted();",
+          "488:       if (cur.handoffs >= this.opts.maxHandoffs) { this.tr('tree.cycle', stateKey(cur.state), 'handoff-cap'); break; }",
+          "489: "
+        ],
+        "category": "TRACE_EVENT_CALL",
+        "why": "One `this.tr(...)` emission on its own line. Pure observation of values already computed.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 488,
+        "parentAnchor": 378,
+        "line": "if (cur.handoffs >= this.opts.maxHandoffs) { this.tr('tree.cycle', stateKey(cur.state), 'handoff-cap'); break; }",
+        "context": [
+          "486:       if (checkDeadline()) return aborted();",
+          "487:       if (isTerminal(cur.state)) { this.tr('tree.cycle', stateKey(cur.state), 'terminal'); break; }",
+          "489: ",
+          "490:       this.tr('tree.visit', cur.kind, stateKey(cur.state), String(cur.currentPlayer),"
+        ],
+        "category": "TRACE_EVENT_CALL",
+        "why": "One `this.tr(...)` emission on its own line. Pure observation of values already computed.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 489,
+        "parentAnchor": 378,
+        "line": "",
+        "context": [
+          "487:       if (isTerminal(cur.state)) { this.tr('tree.cycle', stateKey(cur.state), 'terminal'); break; }",
+          "488:       if (cur.handoffs >= this.opts.maxHandoffs) { this.tr('tree.cycle', stateKey(cur.state), 'handoff-cap'); break; }",
+          "490:       this.tr('tree.visit', cur.kind, stateKey(cur.state), String(cur.currentPlayer),",
+          "491:         cur.handoffs, cur.visitCount, path.length);"
+        ],
+        "category": "COMMENT_OR_BLANK",
+        "why": "Comment or blank line. No executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 490,
+        "parentAnchor": 378,
+        "line": "this.tr('tree.visit', cur.kind, stateKey(cur.state), String(cur.currentPlayer),",
+        "context": [
+          "488:       if (cur.handoffs >= this.opts.maxHandoffs) { this.tr('tree.cycle', stateKey(cur.state), 'handoff-cap'); break; }",
+          "489: ",
+          "491:         cur.handoffs, cur.visitCount, path.length);",
+          "492: "
+        ],
+        "category": "TRACE_EVENT_CALL",
+        "why": "One `this.tr(...)` emission on its own line. Pure observation of values already computed.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 491,
+        "parentAnchor": 378,
+        "line": "cur.handoffs, cur.visitCount, path.length);",
+        "context": [
+          "489: ",
+          "490:       this.tr('tree.visit', cur.kind, stateKey(cur.state), String(cur.currentPlayer),",
+          "492: ",
+          "493:       if (cur.kind === 'chance') {"
+        ],
+        "category": "TRACE_CALL_ARGUMENT",
+        "why": "Continuation line (or closing `});`) of a multi-line trace emission. The emitted values are already-computed locals; nothing is read that was not read without the sink.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 494,
+        "parentAnchor": 381,
+        "line": "if (cur.chanceOutcomes.length === 0) { this.tr('tree.cycle', stateKey(cur.state), 'empty-chance'); break; }",
+        "context": [
+          "492: ",
+          "493:       if (cur.kind === 'chance') {",
+          "495:         const idx = sampleChance(",
+          "496:           { outcomes: cur.chanceOutcomes.map((o) => ({ state: o.state, weight: o.weight })), weights: cur.chanceOutcomes.map((o) => o.weight), massError: cur.chanceMassError },"
+        ],
+        "category": "TRACE_EVENT_CALL",
+        "why": "One `this.tr(...)` emission on its own line. Pure observation of values already computed.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 502,
+        "parentAnchor": 387,
+        "line": "this.tr('tree.chancePick', stateKey(cur.state), idx, stateKey(oc.state),",
+        "context": [
+          "500:         const oc = cur.chanceOutcomes[idx];",
+          "501:         oc.samples++;",
+          "503:           cur.chanceOutcomes.length);",
+          "504:         if (!oc.child) {"
+        ],
+        "category": "TRACE_EVENT_CALL",
+        "why": "One `this.tr(...)` emission on its own line. Pure observation of values already computed.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 503,
+        "parentAnchor": 387,
+        "line": "cur.chanceOutcomes.length);",
+        "context": [
+          "501:         oc.samples++;",
+          "502:         this.tr('tree.chancePick', stateKey(cur.state), idx, stateKey(oc.state),",
+          "504:         if (!oc.child) {",
+          "505:           oc.child = this.createDecision(oc.state, cur.handoffs + handoffDelta(cur.currentPlayer, oc.state), cur, null, 'chance-outcome');"
+        ],
+        "category": "TRACE_CALL_ARGUMENT",
+        "why": "Continuation line (or closing `});`) of a multi-line trace emission. The emitted values are already-computed locals; nothing is read that was not read without the sink.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 511,
+        "parentAnchor": 394,
+        "line": "this.tr('tree.cycle', stateKey(child.state), 'chance-outcome');",
+        "context": [
+          "509:           // Cycle: stop here and ROLLOUT from the sampled outcome instead of",
+          "510:           // re-entering an already-seen position this simulation.",
+          "512:           cur = child;",
+          "513:           path.push(child);"
+        ],
+        "category": "TRACE_EVENT_CALL",
+        "why": "One `this.tr(...)` emission on its own line. Pure observation of values already computed.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 534,
+        "parentAnchor": 416,
+        "line": "this.tr('tree.expand', stateKey(cur.state), cur.childNodes.length);",
+        "context": [
+          "532:         }));",
+          "533:         cur.expanded = true;",
+          "535:         continue; // select one newly available action edge",
+          "536:       }"
+        ],
+        "category": "TRACE_EVENT_CALL",
+        "why": "One `this.tr(...)` emission on its own line. Pure observation of values already computed.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 537,
+        "parentAnchor": 420,
+        "line": "if (cur.childNodes.length === 0) { this.tr('tree.expand', stateKey(cur.state), 0); break; }",
+        "context": [
+          "535:         continue; // select one newly available action edge",
+          "536:       }",
+          "538: ",
+          "539:       const edge = this.selectEdge(cur);"
+        ],
+        "category": "TRACE_EVENT_CALL",
+        "why": "One `this.tr(...)` emission on its own line. Pure observation of values already computed.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 540,
+        "parentAnchor": 421,
+        "line": "this.tr('tree.edge', stateKey(cur.state), edge.key,",
+        "context": [
+          "538: ",
+          "539:       const edge = this.selectEdge(cur);",
+          "541:         edge.child === null ? 'unvisited' : edge.transitionKind,",
+          "542:         edge.child === null ? null : stateKey(edge.child.state));"
+        ],
+        "category": "TRACE_EVENT_CALL",
+        "why": "One `this.tr(...)` emission on its own line. Pure observation of values already computed.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 541,
+        "parentAnchor": 421,
+        "line": "edge.child === null ? 'unvisited' : edge.transitionKind,",
+        "context": [
+          "539:       const edge = this.selectEdge(cur);",
+          "540:       this.tr('tree.edge', stateKey(cur.state), edge.key,",
+          "542:         edge.child === null ? null : stateKey(edge.child.state));",
+          "543:       if (!edge.child) {"
+        ],
+        "category": "TRACE_CALL_ARGUMENT",
+        "why": "Continuation line (or closing `});`) of a multi-line trace emission. The emitted values are already-computed locals; nothing is read that was not read without the sink.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 542,
+        "parentAnchor": 421,
+        "line": "edge.child === null ? null : stateKey(edge.child.state));",
+        "context": [
+          "540:       this.tr('tree.edge', stateKey(cur.state), edge.key,",
+          "541:         edge.child === null ? 'unvisited' : edge.transitionKind,",
+          "543:       if (!edge.child) {",
+          "544:         const made = this.applyEdge(cur, edge, chanceSamples);"
+        ],
+        "category": "TRACE_CALL_ARGUMENT",
+        "why": "Continuation line (or closing `});`) of a multi-line trace emission. The emitted values are already-computed locals; nothing is read that was not read without the sink.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 557,
+        "parentAnchor": 435,
+        "line": "this.tr('tree.cycle', key, 'deterministic');",
+        "context": [
+          "555:       const key = stateKey(edge.child.state);",
+          "556:       if (keys.has(key)) {",
+          "558:         path.push(edge.child);",
+          "559:         cur = edge.child;"
+        ],
+        "category": "TRACE_EVENT_CALL",
+        "why": "One `this.tr(...)` emission on its own line. Pure observation of values already computed.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 574,
+        "parentAnchor": 453,
+        "line": "return {",
+        "context": [
+          "572:     chanceSamples += rollout.chanceSamples;",
+          "573:     maxHandoffs = Math.max(maxHandoffs, rollout.maxHandoffs);",
+          "575:       completed: true, path, reward: rollout.reward, chanceSamples, rolloutSteps,",
+          "576:       maxHandoffs, leafValue: rollout.leafValue, terminal: rollout.terminal,"
+        ],
+        "category": "INLINE_BODY_SPLIT",
+        "why": "Statement lifted out of a parent one-liner. Textually the same statement; it now occupies its own line so a trace emission can sit beside it.",
+        "evidence": {
+          "lineNo": 453,
+          "line": "return { completed: true, path, reward: rollout.reward, chanceSamples, rolloutSteps, maxHandoffs };"
+        }
+      },
+      {
+        "side": "fork",
+        "lineNo": 575,
+        "parentAnchor": 453,
+        "line": "completed: true, path, reward: rollout.reward, chanceSamples, rolloutSteps,",
+        "context": [
+          "573:     maxHandoffs = Math.max(maxHandoffs, rollout.maxHandoffs);",
+          "574:     return {",
+          "576:       maxHandoffs, leafValue: rollout.leafValue, terminal: rollout.terminal,",
+          "577:     };"
+        ],
+        "category": "INLINE_BODY_SPLIT",
+        "why": "Statement lifted out of a parent one-liner. Textually the same statement; it now occupies its own line so a trace emission can sit beside it.",
+        "evidence": {
+          "lineNo": 453,
+          "line": "return { completed: true, path, reward: rollout.reward, chanceSamples, rolloutSteps, maxHandoffs };"
+        }
+      },
+      {
+        "side": "fork",
+        "lineNo": 576,
+        "parentAnchor": 453,
+        "line": "maxHandoffs, leafValue: rollout.leafValue, terminal: rollout.terminal,",
+        "context": [
+          "574:     return {",
+          "575:       completed: true, path, reward: rollout.reward, chanceSamples, rolloutSteps,",
+          "577:     };",
+          "578:   }"
+        ],
+        "category": "LEAF_VALUE_CARRY",
+        "why": "`SimOutcome` and the rollout return carry `leafValue` / `terminal` so the trace can record what the reward came from. The value itself is unchanged, still computed once, still returned as `reward`.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 577,
+        "parentAnchor": 453,
+        "line": "};",
+        "context": [
+          "575:       completed: true, path, reward: rollout.reward, chanceSamples, rolloutSteps,",
+          "576:       maxHandoffs, leafValue: rollout.leafValue, terminal: rollout.terminal,",
+          "578:   }",
+          "579: "
+        ],
+        "category": "STRUCTURAL_LINE",
+        "why": "Brace / bracket / `else` continuation created by splitting a one-line statement into an observed branch. No statement of its own.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 599,
+        "parentAnchor": 473,
+        "line": "this.tr('tree.chanceLayer', stateKey(parent.state), actionKey(edge.action),",
+        "context": [
+          "597:     const validated = validateChance(res.outcomes);",
+          "598:     this.maxMassError = Math.max(this.maxMassError, validated.massError);",
+          "600:       validated.outcomes.length, validated.weights.map((w) => w),",
+          "601:       validated.outcomes.map((o) => stateKey(o.state)));"
+        ],
+        "category": "TRACE_EVENT_CALL",
+        "why": "One `this.tr(...)` emission on its own line. Pure observation of values already computed.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 600,
+        "parentAnchor": 473,
+        "line": "validated.outcomes.length, validated.weights.map((w) => w),",
+        "context": [
+          "598:     this.maxMassError = Math.max(this.maxMassError, validated.massError);",
+          "599:     this.tr('tree.chanceLayer', stateKey(parent.state), actionKey(edge.action),",
+          "601:       validated.outcomes.map((o) => stateKey(o.state)));",
+          "602:     const chanceNode = makeChanceNode(parent, validated, edge.action);"
+        ],
+        "category": "TRACE_CALL_ARGUMENT",
+        "why": "Continuation line (or closing `});`) of a multi-line trace emission. The emitted values are already-computed locals; nothing is read that was not read without the sink.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 601,
+        "parentAnchor": 473,
+        "line": "validated.outcomes.map((o) => stateKey(o.state)));",
+        "context": [
+          "599:     this.tr('tree.chanceLayer', stateKey(parent.state), actionKey(edge.action),",
+          "600:       validated.outcomes.length, validated.weights.map((w) => w),",
+          "602:     const chanceNode = makeChanceNode(parent, validated, edge.action);",
+          "603:     edge.child = chanceNode;"
+        ],
+        "category": "TRACE_CALL_ARGUMENT",
+        "why": "Continuation line (or closing `});`) of a multi-line trace emission. The emitted values are already-computed locals; nothing is read that was not read without the sink.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 651,
+        "parentAnchor": 524,
+        "line": "): { completed: boolean; reward: number; steps: number; chanceSamples: number; maxHandoffs: number; leafValue: number; terminal: boolean } {",
+        "context": [
+          "649:     allowOverrunForFirst: boolean,",
+          "650:     startKeys: Set<string>,",
+          "652:     let state = start;",
+          "653:     let handoffs = startHandoffs;"
+        ],
+        "category": "LEAF_VALUE_CARRY",
+        "why": "`SimOutcome` and the rollout return carry `leafValue` / `terminal` so the trace can record what the reward came from. The value itself is unchanged, still computed once, still returned as `reward`.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 658,
+        "parentAnchor": 529,
+        "line": "const tap = this.trace ? { collector: this.trace, kind: 'rollout.guidance' as const } : null;",
+        "context": [
+          "656:     let maxHandoffs = startHandoffs;",
+          "657:     const keys = new Set(startKeys);",
+          "659: ",
+          "660:     while (steps < this.opts.maxRolloutActions) {"
+        ],
+        "category": "TRACE_PLUMBING",
+        "why": "Read-only trace sink: option, field, constructor wiring, helper, plan digest hand-off. Emits values it already has; consumes no RNG and mutates no state.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 662,
+        "parentAnchor": 535,
+        "line": "if (t !== null) {",
+        "context": [
+          "660:     while (steps < this.opts.maxRolloutActions) {",
+          "661:       const t = terminalReward(state);",
+          "663:         this.tr('rollout.leaf', stateKey(state), t, true, steps);",
+          "664:         return { completed: true, reward: t, steps, chanceSamples, maxHandoffs, leafValue: t, terminal: true };"
+        ],
+        "category": "STATEMENT_SPLIT_OPEN",
+        "why": "Opening line of a block that the parent wrote as `if (COND) { ...body... }` on one line. Same condition object, same body statements (listed as INLINE_BODY_SPLIT), same exit.",
+        "evidence": {
+          "lineNo": 534,
+          "line": "if (t !== null) return { completed: true, reward: t, steps, chanceSamples, maxHandoffs };"
+        }
+      },
+      {
+        "side": "fork",
+        "lineNo": 663,
+        "parentAnchor": 535,
+        "line": "this.tr('rollout.leaf', stateKey(state), t, true, steps);",
+        "context": [
+          "661:       const t = terminalReward(state);",
+          "662:       if (t !== null) {",
+          "664:         return { completed: true, reward: t, steps, chanceSamples, maxHandoffs, leafValue: t, terminal: true };",
+          "665:       }"
+        ],
+        "category": "TRACE_EVENT_CALL",
+        "why": "One `this.tr(...)` emission on its own line. Pure observation of values already computed.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 664,
+        "parentAnchor": 535,
+        "line": "return { completed: true, reward: t, steps, chanceSamples, maxHandoffs, leafValue: t, terminal: true };",
+        "context": [
+          "662:       if (t !== null) {",
+          "663:         this.tr('rollout.leaf', stateKey(state), t, true, steps);",
+          "665:       }",
+          "666:       if (handoffs >= this.opts.maxHandoffs) { this.tr('rollout.stop', 'handoff-cap', steps); break; }"
+        ],
+        "category": "LEAF_VALUE_CARRY",
+        "why": "`SimOutcome` and the rollout return carry `leafValue` / `terminal` so the trace can record what the reward came from. The value itself is unchanged, still computed once, still returned as `reward`.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 665,
+        "parentAnchor": 535,
+        "line": "}",
+        "context": [
+          "663:         this.tr('rollout.leaf', stateKey(state), t, true, steps);",
+          "664:         return { completed: true, reward: t, steps, chanceSamples, maxHandoffs, leafValue: t, terminal: true };",
+          "666:       if (handoffs >= this.opts.maxHandoffs) { this.tr('rollout.stop', 'handoff-cap', steps); break; }",
+          "667:       if (!(allowOverrunForFirst && this.sims === 0)) {"
+        ],
+        "category": "STRUCTURAL_LINE",
+        "why": "Brace / bracket / `else` continuation created by splitting a one-line statement into an observed branch. No statement of its own.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 666,
+        "parentAnchor": 535,
+        "line": "if (handoffs >= this.opts.maxHandoffs) { this.tr('rollout.stop', 'handoff-cap', steps); break; }",
+        "context": [
+          "664:         return { completed: true, reward: t, steps, chanceSamples, maxHandoffs, leafValue: t, terminal: true };",
+          "665:       }",
+          "667:       if (!(allowOverrunForFirst && this.sims === 0)) {",
+          "668:         if (this.deadlineReached) {"
+        ],
+        "category": "TRACE_EVENT_CALL",
+        "why": "One `this.tr(...)` emission on its own line. Pure observation of values already computed.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 668,
+        "parentAnchor": 538,
+        "line": "if (this.deadlineReached) {",
+        "context": [
+          "666:       if (handoffs >= this.opts.maxHandoffs) { this.tr('rollout.stop', 'handoff-cap', steps); break; }",
+          "667:       if (!(allowOverrunForFirst && this.sims === 0)) {",
+          "669:           this.tr('rollout.stop', 'deadline', steps);",
+          "670:           return { completed: false, reward: 0, steps, chanceSamples, maxHandoffs, leafValue: 0, terminal: false };"
+        ],
+        "category": "STATEMENT_SPLIT_OPEN",
+        "why": "Opening line of a block that the parent wrote as `if (COND) { ...body... }` on one line. Same condition object, same body statements (listed as INLINE_BODY_SPLIT), same exit.",
+        "evidence": {
+          "lineNo": 537,
+          "line": "if (this.deadlineReached) return { completed: false, reward: 0, steps, chanceSamples, maxHandoffs };"
+        }
+      },
+      {
+        "side": "fork",
+        "lineNo": 669,
+        "parentAnchor": 538,
+        "line": "this.tr('rollout.stop', 'deadline', steps);",
+        "context": [
+          "667:       if (!(allowOverrunForFirst && this.sims === 0)) {",
+          "668:         if (this.deadlineReached) {",
+          "670:           return { completed: false, reward: 0, steps, chanceSamples, maxHandoffs, leafValue: 0, terminal: false };",
+          "671:         }"
+        ],
+        "category": "TRACE_EVENT_CALL",
+        "why": "One `this.tr(...)` emission on its own line. Pure observation of values already computed.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 670,
+        "parentAnchor": 538,
+        "line": "return { completed: false, reward: 0, steps, chanceSamples, maxHandoffs, leafValue: 0, terminal: false };",
+        "context": [
+          "668:         if (this.deadlineReached) {",
+          "669:           this.tr('rollout.stop', 'deadline', steps);",
+          "671:         }",
+          "672:         if (this.opts.now() >= this.deadlineAt) {"
+        ],
+        "category": "LEAF_VALUE_CARRY",
+        "why": "`SimOutcome` and the rollout return carry `leafValue` / `terminal` so the trace can record what the reward came from. The value itself is unchanged, still computed once, still returned as `reward`.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 671,
+        "parentAnchor": 538,
+        "line": "}",
+        "context": [
+          "669:           this.tr('rollout.stop', 'deadline', steps);",
+          "670:           return { completed: false, reward: 0, steps, chanceSamples, maxHandoffs, leafValue: 0, terminal: false };",
+          "672:         if (this.opts.now() >= this.deadlineAt) {",
+          "673:           this.deadlineReached = true;"
+        ],
+        "category": "STRUCTURAL_LINE",
+        "why": "Brace / bracket / `else` continuation created by splitting a one-line statement into an observed branch. No statement of its own.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 672,
+        "parentAnchor": 538,
+        "line": "if (this.opts.now() >= this.deadlineAt) {",
+        "context": [
+          "670:           return { completed: false, reward: 0, steps, chanceSamples, maxHandoffs, leafValue: 0, terminal: false };",
+          "671:         }",
+          "673:           this.deadlineReached = true;",
+          "674:           this.tr('rollout.stop', 'deadline', steps);"
+        ],
+        "category": "STATEMENT_SPLIT_OPEN",
+        "why": "Opening line of a block that the parent wrote as `if (COND) { ...body... }` on one line. Same condition object, same body statements (listed as INLINE_BODY_SPLIT), same exit.",
+        "evidence": {
+          "lineNo": 538,
+          "line": "if (this.opts.now() >= this.deadlineAt) { this.deadlineReached = true; return { completed: false, reward: 0, steps, chanceSamples, maxHandoffs }; }"
+        }
+      },
+      {
+        "side": "fork",
+        "lineNo": 673,
+        "parentAnchor": 538,
+        "line": "this.deadlineReached = true;",
+        "context": [
+          "671:         }",
+          "672:         if (this.opts.now() >= this.deadlineAt) {",
+          "674:           this.tr('rollout.stop', 'deadline', steps);",
+          "675:           return { completed: false, reward: 0, steps, chanceSamples, maxHandoffs, leafValue: 0, terminal: false };"
+        ],
+        "category": "INLINE_BODY_SPLIT",
+        "why": "Statement lifted out of a parent one-liner. Textually the same statement; it now occupies its own line so a trace emission can sit beside it.",
+        "evidence": {
+          "lineNo": 538,
+          "line": "if (this.opts.now() >= this.deadlineAt) { this.deadlineReached = true; return { completed: false, reward: 0, steps, chanceSamples, maxHandoffs }; }"
+        }
+      },
+      {
+        "side": "fork",
+        "lineNo": 674,
+        "parentAnchor": 538,
+        "line": "this.tr('rollout.stop', 'deadline', steps);",
+        "context": [
+          "672:         if (this.opts.now() >= this.deadlineAt) {",
+          "673:           this.deadlineReached = true;",
+          "675:           return { completed: false, reward: 0, steps, chanceSamples, maxHandoffs, leafValue: 0, terminal: false };",
+          "676:         }"
+        ],
+        "category": "TRACE_EVENT_CALL",
+        "why": "One `this.tr(...)` emission on its own line. Pure observation of values already computed.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 675,
+        "parentAnchor": 538,
+        "line": "return { completed: false, reward: 0, steps, chanceSamples, maxHandoffs, leafValue: 0, terminal: false };",
+        "context": [
+          "673:           this.deadlineReached = true;",
+          "674:           this.tr('rollout.stop', 'deadline', steps);",
+          "676:         }",
+          "677:       }"
+        ],
+        "category": "LEAF_VALUE_CARRY",
+        "why": "`SimOutcome` and the rollout return carry `leafValue` / `terminal` so the trace can record what the reward came from. The value itself is unchanged, still computed once, still returned as `reward`.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 676,
+        "parentAnchor": 538,
+        "line": "}",
+        "context": [
+          "674:           this.tr('rollout.stop', 'deadline', steps);",
+          "675:           return { completed: false, reward: 0, steps, chanceSamples, maxHandoffs, leafValue: 0, terminal: false };",
+          "677:       }",
+          "678:       const actions = generateLegalSearchActions(state, this.opts.rules);"
+        ],
+        "category": "STRUCTURAL_LINE",
+        "why": "Brace / bracket / `else` continuation created by splitting a one-line statement into an observed branch. No statement of its own.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 679,
+        "parentAnchor": 542,
+        "line": "this.tr('rollout.step', steps, stateKey(state), String(state.currentPlayer),",
+        "context": [
+          "677:       }",
+          "678:       const actions = generateLegalSearchActions(state, this.opts.rules);",
+          "680:         handoffs, actions.length);",
+          "681:       if (actions.length === 0) { this.tr('rollout.empty', stateKey(state)); break; }"
+        ],
+        "category": "TRACE_EVENT_CALL",
+        "why": "One `this.tr(...)` emission on its own line. Pure observation of values already computed.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 680,
+        "parentAnchor": 542,
+        "line": "handoffs, actions.length);",
+        "context": [
+          "678:       const actions = generateLegalSearchActions(state, this.opts.rules);",
+          "679:       this.tr('rollout.step', steps, stateKey(state), String(state.currentPlayer),",
+          "681:       if (actions.length === 0) { this.tr('rollout.empty', stateKey(state)); break; }",
+          "682:       const action = selectRolloutAction(state, actions, this.opts.rollout, this.opts.rules, this.policyRng, tap);"
+        ],
+        "category": "TRACE_CALL_ARGUMENT",
+        "why": "Continuation line (or closing `});`) of a multi-line trace emission. The emitted values are already-computed locals; nothing is read that was not read without the sink.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 681,
+        "parentAnchor": 542,
+        "line": "if (actions.length === 0) { this.tr('rollout.empty', stateKey(state)); break; }",
+        "context": [
+          "679:       this.tr('rollout.step', steps, stateKey(state), String(state.currentPlayer),",
+          "680:         handoffs, actions.length);",
+          "682:       const action = selectRolloutAction(state, actions, this.opts.rollout, this.opts.rules, this.policyRng, tap);",
+          "683:       this.tr('rollout.pick', stateKey(state), actionKey(action), actions.length);"
+        ],
+        "category": "TRACE_EVENT_CALL",
+        "why": "One `this.tr(...)` emission on its own line. Pure observation of values already computed.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 682,
+        "parentAnchor": 542,
+        "line": "const action = selectRolloutAction(state, actions, this.opts.rollout, this.opts.rules, this.policyRng, tap);",
+        "context": [
+          "680:         handoffs, actions.length);",
+          "681:       if (actions.length === 0) { this.tr('rollout.empty', stateKey(state)); break; }",
+          "683:       this.tr('rollout.pick', stateKey(state), actionKey(action), actions.length);",
+          "684:       const res = simulateSearchAction(state, action, this.opts.rules);"
+        ],
+        "category": "GUIDANCE_TAP_ARGUMENT",
+        "why": "`selectRolloutAction(..., tap)` — one extra trailing argument. The function reads it only to record `guidanceValue`; RNG calls and the returned index are unchanged.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 683,
+        "parentAnchor": 542,
+        "line": "this.tr('rollout.pick', stateKey(state), actionKey(action), actions.length);",
+        "context": [
+          "681:       if (actions.length === 0) { this.tr('rollout.empty', stateKey(state)); break; }",
+          "682:       const action = selectRolloutAction(state, actions, this.opts.rollout, this.opts.rules, this.policyRng, tap);",
+          "684:       const res = simulateSearchAction(state, action, this.opts.rules);",
+          "685:       let next: GameEngineState;"
+        ],
+        "category": "TRACE_EVENT_CALL",
+        "why": "One `this.tr(...)` emission on its own line. Pure observation of values already computed.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 692,
+        "parentAnchor": 549,
+        "line": "this.tr('rollout.chance', stateKey(state), idx, stateKey(next), v.outcomes.length);",
+        "context": [
+          "690:         chanceSamples++;",
+          "691:         next = v.outcomes[idx].state;",
+          "693:       } else {",
+          "694:         next = res.state;"
+        ],
+        "category": "TRACE_EVENT_CALL",
+        "why": "One `this.tr(...)` emission on its own line. Pure observation of values already computed.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 701,
+        "parentAnchor": 559,
+        "line": "const cycled = keys.has(k);",
+        "context": [
+          "699:       steps++;",
+          "700:       const k = stateKey(next);",
+          "702:       this.tr('rollout.next', k, handoffs, cycled);",
+          "703:       if (cycled) { state = next; break; }"
+        ],
+        "category": "CONDITION_HOIST",
+        "why": "The parent tested this expression inline in `if (COND) { body }`; the fork binds it to a local so the same boolean can be recorded. Side-effect free: the expression is a Set membership test.",
+        "evidence": {
+          "lineNo": 559,
+          "line": "if (keys.has(k)) { state = next; break; }"
+        }
+      },
+      {
+        "side": "fork",
+        "lineNo": 702,
+        "parentAnchor": 559,
+        "line": "this.tr('rollout.next', k, handoffs, cycled);",
+        "context": [
+          "700:       const k = stateKey(next);",
+          "701:       const cycled = keys.has(k);",
+          "703:       if (cycled) { state = next; break; }",
+          "704:       keys.add(k);"
+        ],
+        "category": "TRACE_EVENT_CALL",
+        "why": "One `this.tr(...)` emission on its own line. Pure observation of values already computed.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 703,
+        "parentAnchor": 559,
+        "line": "if (cycled) { state = next; break; }",
+        "context": [
+          "701:       const cycled = keys.has(k);",
+          "702:       this.tr('rollout.next', k, handoffs, cycled);",
+          "704:       keys.add(k);",
+          "705:       state = next;"
+        ],
+        "category": "CONDITION_HOIST_USE",
+        "why": "Same one-line branch as the parent, with `keys.has(k)` replaced by the local `cycled` bound to exactly that expression one line above. Body byte-identical.",
+        "evidence": {
+          "lineNo": 559,
+          "line": "if (keys.has(k)) { state = next; break; }",
+          "hoistAtLine": 701,
+          "hoistExpr": "keys.has(k)"
+        }
+      },
+      {
+        "side": "fork",
+        "lineNo": 707,
+        "parentAnchor": 563,
+        "line": "const leafValue = evaluateLeaf(state);",
+        "context": [
+          "705:       state = next;",
+          "706:     }",
+          "708:     this.tr('rollout.leaf', stateKey(state), leafValue, false, steps);",
+          "709:     return { completed: true, reward: leafValue, steps, chanceSamples, maxHandoffs, leafValue, terminal: false };"
+        ],
+        "category": "LEAF_VALUE_CARRY",
+        "why": "`SimOutcome` and the rollout return carry `leafValue` / `terminal` so the trace can record what the reward came from. The value itself is unchanged, still computed once, still returned as `reward`.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 708,
+        "parentAnchor": 563,
+        "line": "this.tr('rollout.leaf', stateKey(state), leafValue, false, steps);",
+        "context": [
+          "706:     }",
+          "707:     const leafValue = evaluateLeaf(state);",
+          "709:     return { completed: true, reward: leafValue, steps, chanceSamples, maxHandoffs, leafValue, terminal: false };",
+          "710:   }"
+        ],
+        "category": "TRACE_EVENT_CALL",
+        "why": "One `this.tr(...)` emission on its own line. Pure observation of values already computed.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 709,
+        "parentAnchor": 563,
+        "line": "return { completed: true, reward: leafValue, steps, chanceSamples, maxHandoffs, leafValue, terminal: false };",
+        "context": [
+          "707:     const leafValue = evaluateLeaf(state);",
+          "708:     this.tr('rollout.leaf', stateKey(state), leafValue, false, steps);",
+          "710:   }",
+          "711: "
+        ],
+        "category": "LEAF_VALUE_CARRY",
+        "why": "`SimOutcome` and the rollout return carry `leafValue` / `terminal` so the trace can record what the reward came from. The value itself is unchanged, still computed once, still returned as `reward`.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 749,
+        "parentAnchor": 601,
+        "line": "const tap = this.trace ? { collector: this.trace, kind: 'plan.guidance' as const } : null;",
+        "context": [
+          "747:     let treeEndedAtHandoff = false;",
+          "748:     const maxActions = 12;",
+          "750:     while (cur && plan.length < maxActions) {",
+          "751:       if (cur.state.phase !== GamePhase.Playing || cur.state.currentPlayer !== PieceType.Cat) {"
+        ],
+        "category": "TRACE_PLUMBING",
+        "why": "Read-only trace sink: option, field, constructor wiring, helper, plan digest hand-off. Emits values it already has; consumes no RNG and mutates no state.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 751,
+        "parentAnchor": 604,
+        "line": "if (cur.state.phase !== GamePhase.Playing || cur.state.currentPlayer !== PieceType.Cat) {",
+        "context": [
+          "749:     const tap = this.trace ? { collector: this.trace, kind: 'plan.guidance' as const } : null;",
+          "750:     while (cur && plan.length < maxActions) {",
+          "752:         this.tr('plan.stop', 'actor', stateKey(cur.state));",
+          "753:         break;"
+        ],
+        "category": "STATEMENT_SPLIT_OPEN",
+        "why": "Opening line of a block that the parent wrote as `if (COND) { ...body... }` on one line. Same condition object, same body statements (listed as INLINE_BODY_SPLIT), same exit.",
+        "evidence": {
+          "lineNo": 604,
+          "line": "if (cur.state.phase !== GamePhase.Playing || cur.state.currentPlayer !== PieceType.Cat) break;"
+        }
+      },
+      {
+        "side": "fork",
+        "lineNo": 752,
+        "parentAnchor": 604,
+        "line": "this.tr('plan.stop', 'actor', stateKey(cur.state));",
+        "context": [
+          "750:     while (cur && plan.length < maxActions) {",
+          "751:       if (cur.state.phase !== GamePhase.Playing || cur.state.currentPlayer !== PieceType.Cat) {",
+          "753:         break;",
+          "754:       }"
+        ],
+        "category": "TRACE_EVENT_CALL",
+        "why": "One `this.tr(...)` emission on its own line. Pure observation of values already computed.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 753,
+        "parentAnchor": 604,
+        "line": "break;",
+        "context": [
+          "751:       if (cur.state.phase !== GamePhase.Playing || cur.state.currentPlayer !== PieceType.Cat) {",
+          "752:         this.tr('plan.stop', 'actor', stateKey(cur.state));",
+          "754:       }",
+          "755:       let best: UctEdge | null = null;"
+        ],
+        "category": "STRUCTURAL_LINE",
+        "why": "Brace / bracket / `else` continuation created by splitting a one-line statement into an observed branch. No statement of its own.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 754,
+        "parentAnchor": 604,
+        "line": "}",
+        "context": [
+          "752:         this.tr('plan.stop', 'actor', stateKey(cur.state));",
+          "753:         break;",
+          "755:       let best: UctEdge | null = null;",
+          "756:       for (const e of cur.childNodes) {"
+        ],
+        "category": "STRUCTURAL_LINE",
+        "why": "Brace / bracket / `else` continuation created by splitting a one-line statement into an observed branch. No statement of its own.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 761,
+        "parentAnchor": 611,
+        "line": "if (!best || !best.child) { this.tr('plan.stop', 'no-child', stateKey(cur.state)); break; }",
+        "context": [
+          "759:         else if (best.child!.visitCount === e.child.visitCount && e.key < best.key) best = e;",
+          "760:       }",
+          "762:       this.tr('plan.edge', stateKey(cur.state), best.key, best.transitionKind);",
+          "763:       if (best.transitionKind === 'chance' || best.child.kind === 'chance') {"
+        ],
+        "category": "TRACE_EVENT_CALL",
+        "why": "One `this.tr(...)` emission on its own line. Pure observation of values already computed.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 762,
+        "parentAnchor": 611,
+        "line": "this.tr('plan.edge', stateKey(cur.state), best.key, best.transitionKind);",
+        "context": [
+          "760:       }",
+          "761:       if (!best || !best.child) { this.tr('plan.stop', 'no-child', stateKey(cur.state)); break; }",
+          "763:       if (best.transitionKind === 'chance' || best.child.kind === 'chance') {",
+          "764:         // The final cat action of the turn is legal even though the engine"
+        ],
+        "category": "TRACE_EVENT_CALL",
+        "why": "One `this.tr(...)` emission on its own line. Pure observation of values already computed.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 784,
+        "parentAnchor": 633,
+        "line": "const action = selectRolloutAction(state, actions, this.opts.rollout, this.opts.rules, this.policyRng, tap);",
+        "context": [
+          "782:       const actions = generateLegalSearchActions(state, this.opts.rules);",
+          "783:       if (actions.length === 0) break;",
+          "785:       this.tr('plan.pick', stateKey(state), actionKey(action), actions.length);",
+          "786:       const res = simulateSearchAction(state, action, this.opts.rules);"
+        ],
+        "category": "GUIDANCE_TAP_ARGUMENT",
+        "why": "`selectRolloutAction(..., tap)` — one extra trailing argument. The function reads it only to record `guidanceValue`; RNG calls and the returned index are unchanged.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 785,
+        "parentAnchor": 633,
+        "line": "this.tr('plan.pick', stateKey(state), actionKey(action), actions.length);",
+        "context": [
+          "783:       if (actions.length === 0) break;",
+          "784:       const action = selectRolloutAction(state, actions, this.opts.rollout, this.opts.rules, this.policyRng, tap);",
+          "786:       const res = simulateSearchAction(state, action, this.opts.rules);",
+          "787:       // The action itself is legal; a CHANCE result is the post-action"
+        ],
+        "category": "TRACE_EVENT_CALL",
+        "why": "One `this.tr(...)` emission on its own line. Pure observation of values already computed.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 792,
+        "parentAnchor": 638,
+        "line": "this.tr('plan.extension', stateKey(state), actionKey(action), 'handoff');",
+        "context": [
+          "790:         plan.push(action);",
+          "791:         extensionSteps++;",
+          "793:         break;",
+          "794:       }"
+        ],
+        "category": "TRACE_EVENT_CALL",
+        "why": "One `this.tr(...)` emission on its own line. Pure observation of values already computed.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 797,
+        "parentAnchor": 642,
+        "line": "this.tr('plan.extension', stateKey(state), actionKey(action), 'step');",
+        "context": [
+          "795:       plan.push(action);",
+          "796:       extensionSteps++;",
+          "798:       state = res.state;",
+          "799:     }"
+        ],
+        "category": "TRACE_EVENT_CALL",
+        "why": "One `this.tr(...)` emission on its own line. Pure observation of values already computed.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 808,
+        "parentAnchor": 652,
+        "line": "",
+        "context": [
+          "806:   return `PPC-MCTS-01|${rootId}|${algorithm}|rep=${repetition}|h=${hashString32(`${rootId}:${algorithm}:${repetition}`)}`;",
+          "807: }",
+          "809: export { ROOT_TRANSITION };",
+          "810: "
+        ],
+        "category": "COMMENT_OR_BLANK",
+        "why": "Comment or blank line. No executable content.",
+        "evidence": null
+      },
+      {
+        "side": "fork",
+        "lineNo": 809,
+        "parentAnchor": 652,
+        "line": "export { ROOT_TRANSITION };",
+        "context": [
+          "807: }",
+          "808: ",
+          "810: "
+        ],
+        "category": "RE_EXPORT_FOR_COMPANION",
+        "why": "Re-exports a constant that already exists in the parent (`ROOT_TRANSITION`) so the prepared fork can share it. Adds no runtime behaviour to this module.",
+        "evidence": null
+      }
+    ],
+    "unclassified": []
+  },
+  "runtimeEvidence": {
+    "test": "PPC-MCTS-01B/probe/impl/phase1Seam.test.ts",
+    "cases": [
+      "H1 fork vs parent, 96 fixed-node cells, all comparable fields identical",
+      "H2 maxCompletedSimulations yields exactly K, seam reported, no node-cap/deadline stop",
+      "H3 digest stream is a prefix — the seam stops between simulations",
+      "H4 trace is RNG-neutral (whole-tree equality with and without a sink)",
+      "H5 trace is deterministic and identical across arms for the same decisions",
+      "H6 CHANCE is reached and both arms stay in lockstep",
+      "H7 whole-tree digest is stable and discriminating"
+    ],
+    "result": "PASS (see HARNESS_CORRECTNESS_REPORT.md)"
+  }
+}

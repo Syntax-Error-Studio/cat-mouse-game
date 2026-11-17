@@ -1,0 +1,52 @@
+{
+  "round": "PPC-D2-PCV-COUNTERLINE-01",
+  "phase": "G4_CERTIFICATE_VERIFICATION",
+  "candidateCount": 4,
+  "uniqueFrontierCount": 1,
+  "frontierGroups": {
+    "057fcfcc50a329bb82de5e95cb042cbd8a6b147283d36a7a0e84de40985ff563": {
+      "candidates": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "shared": true
+    }
+  },
+  "proofDeterminism": {
+    "rep1ProjectionSha256": "078f7abe92e47f52171dac31f4d463cce9cb44a7258acbda2f9997f4f3725ae0",
+    "rep2ProjectionSha256": "078f7abe92e47f52171dac31f4d463cce9cb44a7258acbda2f9997f4f3725ae0",
+    "match": true,
+    "freshProcesses": 2,
+    "serial": true
+  },
+  "searchDeterminism": {
+    "rep1ProjectionSha256": "ec0d49379897fdc62a6dffead6392bf2f7271699c5b2b42d7900840adca563d1",
+    "rep2ProjectionSha256": "ec0d49379897fdc62a6dffead6392bf2f7271699c5b2b42d7900840adca563d1",
+    "match": true,
+    "rep1Nodes": 2727890,
+    "rep2Nodes": 2727890,
+    "nodeCountMatch": true
+  },
+  "certificateReuse": {
+    "policy": "reuse allowed only on identical canonical state + chance successors + stateKey + snapshot SHA + mode/H/startIdx + cap + proof semantics + kernel SHA + cert hash; independent verifier still executed",
+    "groups": [
+      {
+        "frontierCanonicalSha256": "057fcfcc50a329bb82de5e95cb042cbd8a6b147283d36a7a0e84de40985ff563",
+        "candidates": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "shared": true,
+        "reason": "identical post-prefix canonical state"
+      }
+    ],
+    "independentVerifierExecutedPerCandidate": true
+  },
+  "verificationFailures": 0,
+  "falseProven": 0,
+  "falseProvenNote": "no candidate is PROVEN while any branch is non-PROVEN; verified by allProven = AND over branches"
+}

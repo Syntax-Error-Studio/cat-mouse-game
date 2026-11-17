@@ -1,0 +1,4324 @@
+{
+  "cells": [
+    {
+      "root": "G6T1",
+      "repetition": 1,
+      "baselineSims": 11,
+      "preparedSims": 20,
+      "diff": 9,
+      "baselinePlannerMs": 102.54280000000001,
+      "preparedPlannerMs": 103.33230000000003
+    },
+    {
+      "root": "G6T2",
+      "repetition": 1,
+      "baselineSims": 12,
+      "preparedSims": 12,
+      "diff": 0,
+      "baselinePlannerMs": 105.53680000000003,
+      "preparedPlannerMs": 100.88060000000002
+    },
+    {
+      "root": "G6T3",
+      "repetition": 1,
+      "baselineSims": 55,
+      "preparedSims": 56,
+      "diff": 1,
+      "baselinePlannerMs": 100.37810000000002,
+      "preparedPlannerMs": 100.43110000000001
+    },
+    {
+      "root": "G5T1",
+      "repetition": 1,
+      "baselineSims": 12,
+      "preparedSims": 12,
+      "diff": 0,
+      "baselinePlannerMs": 101.64170000000001,
+      "preparedPlannerMs": 103.34230000000002
+    },
+    {
+      "root": "G5T2",
+      "repetition": 1,
+      "baselineSims": 18,
+      "preparedSims": 18,
+      "diff": 0,
+      "baselinePlannerMs": 100.51919999999996,
+      "preparedPlannerMs": 100.66339999999991
+    },
+    {
+      "root": "G5T3",
+      "repetition": 1,
+      "baselineSims": 19,
+      "preparedSims": 20,
+      "diff": 1,
+      "baselinePlannerMs": 100.37149999999997,
+      "preparedPlannerMs": 100.7204999999999
+    },
+    {
+      "root": "G5T4",
+      "repetition": 1,
+      "baselineSims": 165,
+      "preparedSims": 162,
+      "diff": -3,
+      "baselinePlannerMs": 100.07330000000002,
+      "preparedPlannerMs": 100.19520000000011
+    },
+    {
+      "root": "G2T1",
+      "repetition": 1,
+      "baselineSims": 16,
+      "preparedSims": 18,
+      "diff": 2,
+      "baselinePlannerMs": 101.98309999999992,
+      "preparedPlannerMs": 101.52089999999998
+    },
+    {
+      "root": "G2T2",
+      "repetition": 1,
+      "baselineSims": 21,
+      "preparedSims": 22,
+      "diff": 1,
+      "baselinePlannerMs": 100.53819999999996,
+      "preparedPlannerMs": 100.5974000000001
+    },
+    {
+      "root": "G2T3",
+      "repetition": 1,
+      "baselineSims": 19,
+      "preparedSims": 19,
+      "diff": 0,
+      "baselinePlannerMs": 100.45990000000006,
+      "preparedPlannerMs": 100.64609999999993
+    },
+    {
+      "root": "G2T4",
+      "repetition": 1,
+      "baselineSims": 13,
+      "preparedSims": 12,
+      "diff": -1,
+      "baselinePlannerMs": 100.92839999999978,
+      "preparedPlannerMs": 101.10739999999987
+    },
+    {
+      "root": "G2T5",
+      "repetition": 1,
+      "baselineSims": 21,
+      "preparedSims": 21,
+      "diff": 0,
+      "baselinePlannerMs": 100.68920000000026,
+      "preparedPlannerMs": 100.67840000000024
+    },
+    {
+      "root": "G2T6",
+      "repetition": 1,
+      "baselineSims": 39,
+      "preparedSims": 38,
+      "diff": -1,
+      "baselinePlannerMs": 100.31719999999996,
+      "preparedPlannerMs": 100.68249999999989
+    },
+    {
+      "root": "G2T7",
+      "repetition": 1,
+      "baselineSims": 22,
+      "preparedSims": 22,
+      "diff": 0,
+      "baselinePlannerMs": 100.58149999999978,
+      "preparedPlannerMs": 100.55330000000004
+    },
+    {
+      "root": "G2T8",
+      "repetition": 1,
+      "baselineSims": 58,
+      "preparedSims": 58,
+      "diff": 0,
+      "baselinePlannerMs": 100.58960000000025,
+      "preparedPlannerMs": 100.88520000000017
+    },
+    {
+      "root": "G1T1",
+      "repetition": 1,
+      "baselineSims": 16,
+      "preparedSims": 17,
+      "diff": 1,
+      "baselinePlannerMs": 101.84870000000001,
+      "preparedPlannerMs": 101.63340000000017
+    },
+    {
+      "root": "G1T2",
+      "repetition": 1,
+      "baselineSims": 16,
+      "preparedSims": 16,
+      "diff": 0,
+      "baselinePlannerMs": 101.23639999999978,
+      "preparedPlannerMs": 101.25829999999996
+    },
+    {
+      "root": "G1T3",
+      "repetition": 1,
+      "baselineSims": 19,
+      "preparedSims": 19,
+      "diff": 0,
+      "baselinePlannerMs": 100.77259999999978,
+      "preparedPlannerMs": 100.80570000000034
+    },
+    {
+      "root": "G1T4",
+      "repetition": 1,
+      "baselineSims": 21,
+      "preparedSims": 21,
+      "diff": 0,
+      "baselinePlannerMs": 100.61220000000003,
+      "preparedPlannerMs": 100.54869999999983
+    },
+    {
+      "root": "G1T5",
+      "repetition": 1,
+      "baselineSims": 8,
+      "preparedSims": 8,
+      "diff": 0,
+      "baselinePlannerMs": 104.00530000000026,
+      "preparedPlannerMs": 101.14730000000009
+    },
+    {
+      "root": "G1T6",
+      "repetition": 1,
+      "baselineSims": 15,
+      "preparedSims": 16,
+      "diff": 1,
+      "baselinePlannerMs": 100.89500000000044,
+      "preparedPlannerMs": 100.70449999999983
+    },
+    {
+      "root": "G1T7",
+      "repetition": 1,
+      "baselineSims": 17,
+      "preparedSims": 18,
+      "diff": 1,
+      "baselinePlannerMs": 100.54659999999967,
+      "preparedPlannerMs": 100.6891999999998
+    },
+    {
+      "root": "G1T8",
+      "repetition": 1,
+      "baselineSims": 38,
+      "preparedSims": 38,
+      "diff": 0,
+      "baselinePlannerMs": 100.67090000000007,
+      "preparedPlannerMs": 100.68950000000041
+    },
+    {
+      "root": "G1T9",
+      "repetition": 1,
+      "baselineSims": 14,
+      "preparedSims": 14,
+      "diff": 0,
+      "baselinePlannerMs": 102.20800000000054,
+      "preparedPlannerMs": 102.29239999999936
+    },
+    {
+      "root": "G6T1",
+      "repetition": 2,
+      "baselineSims": 18,
+      "preparedSims": 12,
+      "diff": -6,
+      "baselinePlannerMs": 102.3132,
+      "preparedPlannerMs": 102.4819
+    },
+    {
+      "root": "G6T2",
+      "repetition": 2,
+      "baselineSims": 11,
+      "preparedSims": 13,
+      "diff": 2,
+      "baselinePlannerMs": 102.83659999999998,
+      "preparedPlannerMs": 101.1798
+    },
+    {
+      "root": "G6T3",
+      "repetition": 2,
+      "baselineSims": 55,
+      "preparedSims": 55,
+      "diff": 0,
+      "baselinePlannerMs": 100.92289999999991,
+      "preparedPlannerMs": 100.85669999999999
+    },
+    {
+      "root": "G5T1",
+      "repetition": 2,
+      "baselineSims": 12,
+      "preparedSims": 12,
+      "diff": 0,
+      "baselinePlannerMs": 101.50839999999994,
+      "preparedPlannerMs": 103.67560000000003
+    },
+    {
+      "root": "G5T2",
+      "repetition": 2,
+      "baselineSims": 18,
+      "preparedSims": 17,
+      "diff": -1,
+      "baselinePlannerMs": 100.82650000000001,
+      "preparedPlannerMs": 100.61259999999993
+    },
+    {
+      "root": "G5T3",
+      "repetition": 2,
+      "baselineSims": 20,
+      "preparedSims": 20,
+      "diff": 0,
+      "baselinePlannerMs": 100.55819999999994,
+      "preparedPlannerMs": 100.32160000000022
+    },
+    {
+      "root": "G5T4",
+      "repetition": 2,
+      "baselineSims": 167,
+      "preparedSims": 163,
+      "diff": -4,
+      "baselinePlannerMs": 100.38790000000017,
+      "preparedPlannerMs": 100.31749999999988
+    },
+    {
+      "root": "G2T1",
+      "repetition": 2,
+      "baselineSims": 16,
+      "preparedSims": 17,
+      "diff": 1,
+      "baselinePlannerMs": 101.87830000000008,
+      "preparedPlannerMs": 101.92100000000005
+    },
+    {
+      "root": "G2T2",
+      "repetition": 2,
+      "baselineSims": 21,
+      "preparedSims": 21,
+      "diff": 0,
+      "baselinePlannerMs": 100.63020000000006,
+      "preparedPlannerMs": 100.44949999999994
+    },
+    {
+      "root": "G2T3",
+      "repetition": 2,
+      "baselineSims": 18,
+      "preparedSims": 19,
+      "diff": 1,
+      "baselinePlannerMs": 100.50070000000028,
+      "preparedPlannerMs": 100.46010000000001
+    },
+    {
+      "root": "G2T4",
+      "repetition": 2,
+      "baselineSims": 15,
+      "preparedSims": 15,
+      "diff": 0,
+      "baselinePlannerMs": 102.70029999999997,
+      "preparedPlannerMs": 100.61720000000014
+    },
+    {
+      "root": "G2T5",
+      "repetition": 2,
+      "baselineSims": 19,
+      "preparedSims": 19,
+      "diff": 0,
+      "baselinePlannerMs": 100.61239999999998,
+      "preparedPlannerMs": 100.66929999999957
+    },
+    {
+      "root": "G2T6",
+      "repetition": 2,
+      "baselineSims": 37,
+      "preparedSims": 38,
+      "diff": 1,
+      "baselinePlannerMs": 100.39829999999984,
+      "preparedPlannerMs": 100.6907000000001
+    },
+    {
+      "root": "G2T7",
+      "repetition": 2,
+      "baselineSims": 22,
+      "preparedSims": 21,
+      "diff": -1,
+      "baselinePlannerMs": 100.67669999999998,
+      "preparedPlannerMs": 100.6545000000001
+    },
+    {
+      "root": "G2T8",
+      "repetition": 2,
+      "baselineSims": 56,
+      "preparedSims": 56,
+      "diff": 0,
+      "baselinePlannerMs": 100.57850000000008,
+      "preparedPlannerMs": 100.60089999999991
+    },
+    {
+      "root": "G1T1",
+      "repetition": 2,
+      "baselineSims": 16,
+      "preparedSims": 17,
+      "diff": 1,
+      "baselinePlannerMs": 101.69889999999987,
+      "preparedPlannerMs": 102.1536000000001
+    },
+    {
+      "root": "G1T2",
+      "repetition": 2,
+      "baselineSims": 16,
+      "preparedSims": 16,
+      "diff": 0,
+      "baselinePlannerMs": 100.99159999999983,
+      "preparedPlannerMs": 101.4081000000001
+    },
+    {
+      "root": "G1T3",
+      "repetition": 2,
+      "baselineSims": 18,
+      "preparedSims": 18,
+      "diff": 0,
+      "baselinePlannerMs": 100.89569999999958,
+      "preparedPlannerMs": 100.89609999999993
+    },
+    {
+      "root": "G1T4",
+      "repetition": 2,
+      "baselineSims": 21,
+      "preparedSims": 21,
+      "diff": 0,
+      "baselinePlannerMs": 100.89949999999999,
+      "preparedPlannerMs": 100.9375
+    },
+    {
+      "root": "G1T5",
+      "repetition": 2,
+      "baselineSims": 8,
+      "preparedSims": 8,
+      "diff": 0,
+      "baselinePlannerMs": 101.02619999999979,
+      "preparedPlannerMs": 100.63680000000022
+    },
+    {
+      "root": "G1T6",
+      "repetition": 2,
+      "baselineSims": 15,
+      "preparedSims": 15,
+      "diff": 0,
+      "baselinePlannerMs": 100.75660000000062,
+      "preparedPlannerMs": 101.56990000000042
+    },
+    {
+      "root": "G1T7",
+      "repetition": 2,
+      "baselineSims": 17,
+      "preparedSims": 18,
+      "diff": 1,
+      "baselinePlannerMs": 100.69260000000031,
+      "preparedPlannerMs": 100.7541999999994
+    },
+    {
+      "root": "G1T8",
+      "repetition": 2,
+      "baselineSims": 37,
+      "preparedSims": 38,
+      "diff": 1,
+      "baselinePlannerMs": 100.60960000000068,
+      "preparedPlannerMs": 100.70289999999932
+    },
+    {
+      "root": "G1T9",
+      "repetition": 2,
+      "baselineSims": 13,
+      "preparedSims": 14,
+      "diff": 1,
+      "baselinePlannerMs": 100.69220000000041,
+      "preparedPlannerMs": 102.23099999999977
+    },
+    {
+      "root": "G6T1",
+      "repetition": 3,
+      "baselineSims": 11,
+      "preparedSims": 19,
+      "diff": 8,
+      "baselinePlannerMs": 102.13749999999999,
+      "preparedPlannerMs": 102.45160000000001
+    },
+    {
+      "root": "G6T2",
+      "repetition": 3,
+      "baselineSims": 12,
+      "preparedSims": 11,
+      "diff": -1,
+      "baselinePlannerMs": 100.91160000000002,
+      "preparedPlannerMs": 101.36610000000002
+    },
+    {
+      "root": "G6T3",
+      "repetition": 3,
+      "baselineSims": 55,
+      "preparedSims": 54,
+      "diff": -1,
+      "baselinePlannerMs": 100.53960000000001,
+      "preparedPlannerMs": 100.26459999999997
+    },
+    {
+      "root": "G5T1",
+      "repetition": 3,
+      "baselineSims": 12,
+      "preparedSims": 13,
+      "diff": 1,
+      "baselinePlannerMs": 103.2743999999999,
+      "preparedPlannerMs": 101.7931000000001
+    },
+    {
+      "root": "G5T2",
+      "repetition": 3,
+      "baselineSims": 18,
+      "preparedSims": 19,
+      "diff": 1,
+      "baselinePlannerMs": 100.49249999999995,
+      "preparedPlannerMs": 100.69259999999997
+    },
+    {
+      "root": "G5T3",
+      "repetition": 3,
+      "baselineSims": 21,
+      "preparedSims": 21,
+      "diff": 0,
+      "baselinePlannerMs": 100.57459999999992,
+      "preparedPlannerMs": 100.57209999999986
+    },
+    {
+      "root": "G5T4",
+      "repetition": 3,
+      "baselineSims": 162,
+      "preparedSims": 160,
+      "diff": -2,
+      "baselinePlannerMs": 100.15570000000002,
+      "preparedPlannerMs": 100.31060000000002
+    },
+    {
+      "root": "G2T1",
+      "repetition": 3,
+      "baselineSims": 16,
+      "preparedSims": 17,
+      "diff": 1,
+      "baselinePlannerMs": 101.88370000000009,
+      "preparedPlannerMs": 101.88879999999995
+    },
+    {
+      "root": "G2T2",
+      "repetition": 3,
+      "baselineSims": 21,
+      "preparedSims": 21,
+      "diff": 0,
+      "baselinePlannerMs": 100.73119999999994,
+      "preparedPlannerMs": 100.6876000000002
+    },
+    {
+      "root": "G2T3",
+      "repetition": 3,
+      "baselineSims": 18,
+      "preparedSims": 19,
+      "diff": 1,
+      "baselinePlannerMs": 100.68029999999999,
+      "preparedPlannerMs": 100.76790000000028
+    },
+    {
+      "root": "G2T4",
+      "repetition": 3,
+      "baselineSims": 13,
+      "preparedSims": 14,
+      "diff": 1,
+      "baselinePlannerMs": 100.82379999999966,
+      "preparedPlannerMs": 102.29430000000002
+    },
+    {
+      "root": "G2T5",
+      "repetition": 3,
+      "baselineSims": 19,
+      "preparedSims": 20,
+      "diff": 1,
+      "baselinePlannerMs": 100.69499999999971,
+      "preparedPlannerMs": 100.84469999999965
+    },
+    {
+      "root": "G2T6",
+      "repetition": 3,
+      "baselineSims": 38,
+      "preparedSims": 38,
+      "diff": 0,
+      "baselinePlannerMs": 100.49170000000004,
+      "preparedPlannerMs": 100.66860000000042
+    },
+    {
+      "root": "G2T7",
+      "repetition": 3,
+      "baselineSims": 23,
+      "preparedSims": 23,
+      "diff": 0,
+      "baselinePlannerMs": 100.68339999999989,
+      "preparedPlannerMs": 100.47680000000037
+    },
+    {
+      "root": "G2T8",
+      "repetition": 3,
+      "baselineSims": 54,
+      "preparedSims": 56,
+      "diff": 2,
+      "baselinePlannerMs": 100.53919999999971,
+      "preparedPlannerMs": 100.18960000000015
+    },
+    {
+      "root": "G1T1",
+      "repetition": 3,
+      "baselineSims": 16,
+      "preparedSims": 17,
+      "diff": 1,
+      "baselinePlannerMs": 102.14110000000028,
+      "preparedPlannerMs": 101.78600000000006
+    },
+    {
+      "root": "G1T2",
+      "repetition": 3,
+      "baselineSims": 16,
+      "preparedSims": 16,
+      "diff": 0,
+      "baselinePlannerMs": 101.16260000000011,
+      "preparedPlannerMs": 100.9973
+    },
+    {
+      "root": "G1T3",
+      "repetition": 3,
+      "baselineSims": 18,
+      "preparedSims": 19,
+      "diff": 1,
+      "baselinePlannerMs": 101.34889999999996,
+      "preparedPlannerMs": 100.54059999999981
+    },
+    {
+      "root": "G1T4",
+      "repetition": 3,
+      "baselineSims": 22,
+      "preparedSims": 21,
+      "diff": -1,
+      "baselinePlannerMs": 100.76490000000013,
+      "preparedPlannerMs": 100.56359999999995
+    },
+    {
+      "root": "G1T5",
+      "repetition": 3,
+      "baselineSims": 8,
+      "preparedSims": 8,
+      "diff": 0,
+      "baselinePlannerMs": 101.17630000000008,
+      "preparedPlannerMs": 101.17229999999972
+    },
+    {
+      "root": "G1T6",
+      "repetition": 3,
+      "baselineSims": 15,
+      "preparedSims": 16,
+      "diff": 1,
+      "baselinePlannerMs": 101.0011000000004,
+      "preparedPlannerMs": 101.15990000000056
+    },
+    {
+      "root": "G1T7",
+      "repetition": 3,
+      "baselineSims": 18,
+      "preparedSims": 18,
+      "diff": 0,
+      "baselinePlannerMs": 100.83230000000003,
+      "preparedPlannerMs": 100.54200000000037
+    },
+    {
+      "root": "G1T8",
+      "repetition": 3,
+      "baselineSims": 37,
+      "preparedSims": 37,
+      "diff": 0,
+      "baselinePlannerMs": 100.45539999999983,
+      "preparedPlannerMs": 100.6248999999998
+    },
+    {
+      "root": "G1T9",
+      "repetition": 3,
+      "baselineSims": 14,
+      "preparedSims": 14,
+      "diff": 0,
+      "baselinePlannerMs": 100.8152,
+      "preparedPlannerMs": 101.04760000000078
+    },
+    {
+      "root": "G6T1",
+      "repetition": 4,
+      "baselineSims": 18,
+      "preparedSims": 11,
+      "diff": -7,
+      "baselinePlannerMs": 102.31379999999999,
+      "preparedPlannerMs": 103.32679999999999
+    },
+    {
+      "root": "G6T2",
+      "repetition": 4,
+      "baselineSims": 11,
+      "preparedSims": 14,
+      "diff": 3,
+      "baselinePlannerMs": 101.0589,
+      "preparedPlannerMs": 102.1368
+    },
+    {
+      "root": "G6T3",
+      "repetition": 4,
+      "baselineSims": 55,
+      "preparedSims": 54,
+      "diff": -1,
+      "baselinePlannerMs": 100.1463,
+      "preparedPlannerMs": 100.34540000000004
+    },
+    {
+      "root": "G5T1",
+      "repetition": 4,
+      "baselineSims": 12,
+      "preparedSims": 12,
+      "diff": 0,
+      "baselinePlannerMs": 103.5344,
+      "preparedPlannerMs": 101.55509999999992
+    },
+    {
+      "root": "G5T2",
+      "repetition": 4,
+      "baselineSims": 18,
+      "preparedSims": 18,
+      "diff": 0,
+      "baselinePlannerMs": 100.82010000000002,
+      "preparedPlannerMs": 100.5818999999999
+    },
+    {
+      "root": "G5T3",
+      "repetition": 4,
+      "baselineSims": 20,
+      "preparedSims": 21,
+      "diff": 1,
+      "baselinePlannerMs": 100.62649999999985,
+      "preparedPlannerMs": 100.49019999999996
+    },
+    {
+      "root": "G5T4",
+      "repetition": 4,
+      "baselineSims": 170,
+      "preparedSims": 162,
+      "diff": -8,
+      "baselinePlannerMs": 100.10879999999997,
+      "preparedPlannerMs": 100.28649999999993
+    },
+    {
+      "root": "G2T1",
+      "repetition": 4,
+      "baselineSims": 17,
+      "preparedSims": 17,
+      "diff": 0,
+      "baselinePlannerMs": 101.87540000000013,
+      "preparedPlannerMs": 101.90710000000013
+    },
+    {
+      "root": "G2T2",
+      "repetition": 4,
+      "baselineSims": 21,
+      "preparedSims": 21,
+      "diff": 0,
+      "baselinePlannerMs": 100.6599000000001,
+      "preparedPlannerMs": 100.6688999999999
+    },
+    {
+      "root": "G2T3",
+      "repetition": 4,
+      "baselineSims": 18,
+      "preparedSims": 19,
+      "diff": 1,
+      "baselinePlannerMs": 100.48969999999986,
+      "preparedPlannerMs": 100.5462
+    },
+    {
+      "root": "G2T4",
+      "repetition": 4,
+      "baselineSims": 13,
+      "preparedSims": 13,
+      "diff": 0,
+      "baselinePlannerMs": 101.03660000000036,
+      "preparedPlannerMs": 101.54979999999978
+    },
+    {
+      "root": "G2T5",
+      "repetition": 4,
+      "baselineSims": 20,
+      "preparedSims": 20,
+      "diff": 0,
+      "baselinePlannerMs": 100.75300000000016,
+      "preparedPlannerMs": 100.88190000000031
+    },
+    {
+      "root": "G2T6",
+      "repetition": 4,
+      "baselineSims": 38,
+      "preparedSims": 38,
+      "diff": 0,
+      "baselinePlannerMs": 100.48129999999992,
+      "preparedPlannerMs": 100.779
+    },
+    {
+      "root": "G2T7",
+      "repetition": 4,
+      "baselineSims": 22,
+      "preparedSims": 23,
+      "diff": 1,
+      "baselinePlannerMs": 100.56759999999986,
+      "preparedPlannerMs": 100.74210000000039
+    },
+    {
+      "root": "G2T8",
+      "repetition": 4,
+      "baselineSims": 55,
+      "preparedSims": 55,
+      "diff": 0,
+      "baselinePlannerMs": 100.88999999999987,
+      "preparedPlannerMs": 101.18219999999974
+    },
+    {
+      "root": "G1T1",
+      "repetition": 4,
+      "baselineSims": 16,
+      "preparedSims": 15,
+      "diff": -1,
+      "baselinePlannerMs": 101.65170000000035,
+      "preparedPlannerMs": 101.86140000000023
+    },
+    {
+      "root": "G1T2",
+      "repetition": 4,
+      "baselineSims": 16,
+      "preparedSims": 16,
+      "diff": 0,
+      "baselinePlannerMs": 101.17520000000013,
+      "preparedPlannerMs": 101.46320000000014
+    },
+    {
+      "root": "G1T3",
+      "repetition": 4,
+      "baselineSims": 18,
+      "preparedSims": 18,
+      "diff": 0,
+      "baselinePlannerMs": 101.13310000000001,
+      "preparedPlannerMs": 101.51099999999997
+    },
+    {
+      "root": "G1T4",
+      "repetition": 4,
+      "baselineSims": 19,
+      "preparedSims": 21,
+      "diff": 2,
+      "baselinePlannerMs": 100.82279999999992,
+      "preparedPlannerMs": 100.62099999999964
+    },
+    {
+      "root": "G1T5",
+      "repetition": 4,
+      "baselineSims": 7,
+      "preparedSims": 7,
+      "diff": 0,
+      "baselinePlannerMs": 100.41810000000032,
+      "preparedPlannerMs": 101.78639999999996
+    },
+    {
+      "root": "G1T6",
+      "repetition": 4,
+      "baselineSims": 16,
+      "preparedSims": 15,
+      "diff": -1,
+      "baselinePlannerMs": 101.0592999999999,
+      "preparedPlannerMs": 100.97260000000006
+    },
+    {
+      "root": "G1T7",
+      "repetition": 4,
+      "baselineSims": 18,
+      "preparedSims": 18,
+      "diff": 0,
+      "baselinePlannerMs": 100.78480000000036,
+      "preparedPlannerMs": 100.62490000000071
+    },
+    {
+      "root": "G1T8",
+      "repetition": 4,
+      "baselineSims": 37,
+      "preparedSims": 38,
+      "diff": 1,
+      "baselinePlannerMs": 100.65979999999945,
+      "preparedPlannerMs": 100.66330000000016
+    },
+    {
+      "root": "G1T9",
+      "repetition": 4,
+      "baselineSims": 14,
+      "preparedSims": 14,
+      "diff": 0,
+      "baselinePlannerMs": 100.65110000000004,
+      "preparedPlannerMs": 100.65689999999995
+    },
+    {
+      "root": "G6T1",
+      "repetition": 5,
+      "baselineSims": 11,
+      "preparedSims": 19,
+      "diff": 8,
+      "baselinePlannerMs": 102.16069999999999,
+      "preparedPlannerMs": 102.56
+    },
+    {
+      "root": "G6T2",
+      "repetition": 5,
+      "baselineSims": 13,
+      "preparedSims": 11,
+      "diff": -2,
+      "baselinePlannerMs": 101.54070000000002,
+      "preparedPlannerMs": 102.0584
+    },
+    {
+      "root": "G6T3",
+      "repetition": 5,
+      "baselineSims": 55,
+      "preparedSims": 55,
+      "diff": 0,
+      "baselinePlannerMs": 100.5591,
+      "preparedPlannerMs": 100.36429999999996
+    },
+    {
+      "root": "G5T1",
+      "repetition": 5,
+      "baselineSims": 12,
+      "preparedSims": 12,
+      "diff": 0,
+      "baselinePlannerMs": 102.79070000000002,
+      "preparedPlannerMs": 102.05390000000011
+    },
+    {
+      "root": "G5T2",
+      "repetition": 5,
+      "baselineSims": 17,
+      "preparedSims": 18,
+      "diff": 1,
+      "baselinePlannerMs": 100.58550000000002,
+      "preparedPlannerMs": 100.97350000000006
+    },
+    {
+      "root": "G5T3",
+      "repetition": 5,
+      "baselineSims": 21,
+      "preparedSims": 21,
+      "diff": 0,
+      "baselinePlannerMs": 100.48970000000008,
+      "preparedPlannerMs": 100.48360000000002
+    },
+    {
+      "root": "G5T4",
+      "repetition": 5,
+      "baselineSims": 162,
+      "preparedSims": 161,
+      "diff": -1,
+      "baselinePlannerMs": 100.30259999999998,
+      "preparedPlannerMs": 100.37670000000003
+    },
+    {
+      "root": "G2T1",
+      "repetition": 5,
+      "baselineSims": 17,
+      "preparedSims": 17,
+      "diff": 0,
+      "baselinePlannerMs": 101.63150000000019,
+      "preparedPlannerMs": 101.82460000000015
+    },
+    {
+      "root": "G2T2",
+      "repetition": 5,
+      "baselineSims": 21,
+      "preparedSims": 22,
+      "diff": 1,
+      "baselinePlannerMs": 100.5005000000001,
+      "preparedPlannerMs": 100.61699999999996
+    },
+    {
+      "root": "G2T3",
+      "repetition": 5,
+      "baselineSims": 19,
+      "preparedSims": 18,
+      "diff": -1,
+      "baselinePlannerMs": 100.69119999999998,
+      "preparedPlannerMs": 100.60220000000004
+    },
+    {
+      "root": "G2T4",
+      "repetition": 5,
+      "baselineSims": 14,
+      "preparedSims": 14,
+      "diff": 0,
+      "baselinePlannerMs": 100.50660000000016,
+      "preparedPlannerMs": 101.95969999999988
+    },
+    {
+      "root": "G2T5",
+      "repetition": 5,
+      "baselineSims": 21,
+      "preparedSims": 22,
+      "diff": 1,
+      "baselinePlannerMs": 100.68820000000005,
+      "preparedPlannerMs": 100.91620000000012
+    },
+    {
+      "root": "G2T6",
+      "repetition": 5,
+      "baselineSims": 38,
+      "preparedSims": 39,
+      "diff": 1,
+      "baselinePlannerMs": 100.45910000000003,
+      "preparedPlannerMs": 100.39280000000008
+    },
+    {
+      "root": "G2T7",
+      "repetition": 5,
+      "baselineSims": 23,
+      "preparedSims": 22,
+      "diff": -1,
+      "baselinePlannerMs": 100.70910000000003,
+      "preparedPlannerMs": 100.52649999999994
+    },
+    {
+      "root": "G2T8",
+      "repetition": 5,
+      "baselineSims": 59,
+      "preparedSims": 58,
+      "diff": -1,
+      "baselinePlannerMs": 100.5652,
+      "preparedPlannerMs": 100.83050000000003
+    },
+    {
+      "root": "G1T1",
+      "repetition": 5,
+      "baselineSims": 16,
+      "preparedSims": 16,
+      "diff": 0,
+      "baselinePlannerMs": 101.80289999999968,
+      "preparedPlannerMs": 102.21900000000005
+    },
+    {
+      "root": "G1T2",
+      "repetition": 5,
+      "baselineSims": 15,
+      "preparedSims": 16,
+      "diff": 1,
+      "baselinePlannerMs": 101.14150000000018,
+      "preparedPlannerMs": 101.25109999999995
+    },
+    {
+      "root": "G1T3",
+      "repetition": 5,
+      "baselineSims": 18,
+      "preparedSims": 19,
+      "diff": 1,
+      "baselinePlannerMs": 100.99879999999985,
+      "preparedPlannerMs": 100.60359999999991
+    },
+    {
+      "root": "G1T4",
+      "repetition": 5,
+      "baselineSims": 21,
+      "preparedSims": 21,
+      "diff": 0,
+      "baselinePlannerMs": 100.77359999999999,
+      "preparedPlannerMs": 100.87530000000015
+    },
+    {
+      "root": "G1T5",
+      "repetition": 5,
+      "baselineSims": 8,
+      "preparedSims": 8,
+      "diff": 0,
+      "baselinePlannerMs": 100.76010000000042,
+      "preparedPlannerMs": 102.32919999999967
+    },
+    {
+      "root": "G1T6",
+      "repetition": 5,
+      "baselineSims": 15,
+      "preparedSims": 16,
+      "diff": 1,
+      "baselinePlannerMs": 100.96870000000035,
+      "preparedPlannerMs": 100.97820000000047
+    },
+    {
+      "root": "G1T7",
+      "repetition": 5,
+      "baselineSims": 18,
+      "preparedSims": 18,
+      "diff": 0,
+      "baselinePlannerMs": 100.80050000000028,
+      "preparedPlannerMs": 100.58699999999953
+    },
+    {
+      "root": "G1T8",
+      "repetition": 5,
+      "baselineSims": 38,
+      "preparedSims": 38,
+      "diff": 0,
+      "baselinePlannerMs": 100.86989999999969,
+      "preparedPlannerMs": 100.76570000000083
+    },
+    {
+      "root": "G1T9",
+      "repetition": 5,
+      "baselineSims": 14,
+      "preparedSims": 14,
+      "diff": 0,
+      "baselinePlannerMs": 101.98689999999988,
+      "preparedPlannerMs": 101.16550000000007
+    },
+    {
+      "root": "G6T1",
+      "repetition": 6,
+      "baselineSims": 18,
+      "preparedSims": 11,
+      "diff": -7,
+      "baselinePlannerMs": 102.0053,
+      "preparedPlannerMs": 103.42200000000001
+    },
+    {
+      "root": "G6T2",
+      "repetition": 6,
+      "baselineSims": 11,
+      "preparedSims": 13,
+      "diff": 2,
+      "baselinePlannerMs": 101.21710000000002,
+      "preparedPlannerMs": 101.09530000000001
+    },
+    {
+      "root": "G6T3",
+      "repetition": 6,
+      "baselineSims": 55,
+      "preparedSims": 54,
+      "diff": -1,
+      "baselinePlannerMs": 100.37520000000006,
+      "preparedPlannerMs": 100.52230000000003
+    },
+    {
+      "root": "G5T1",
+      "repetition": 6,
+      "baselineSims": 12,
+      "preparedSims": 10,
+      "diff": -2,
+      "baselinePlannerMs": 101.75119999999993,
+      "preparedPlannerMs": 101.98479999999995
+    },
+    {
+      "root": "G5T2",
+      "repetition": 6,
+      "baselineSims": 19,
+      "preparedSims": 19,
+      "diff": 0,
+      "baselinePlannerMs": 100.67309999999998,
+      "preparedPlannerMs": 100.553
+    },
+    {
+      "root": "G5T3",
+      "repetition": 6,
+      "baselineSims": 19,
+      "preparedSims": 20,
+      "diff": 1,
+      "baselinePlannerMs": 100.3264999999999,
+      "preparedPlannerMs": 100.75620000000004
+    },
+    {
+      "root": "G5T4",
+      "repetition": 6,
+      "baselineSims": 165,
+      "preparedSims": 162,
+      "diff": -3,
+      "baselinePlannerMs": 100.38440000000014,
+      "preparedPlannerMs": 100.10020000000009
+    },
+    {
+      "root": "G2T1",
+      "repetition": 6,
+      "baselineSims": 17,
+      "preparedSims": 17,
+      "diff": 0,
+      "baselinePlannerMs": 101.96690000000012,
+      "preparedPlannerMs": 101.78980000000001
+    },
+    {
+      "root": "G2T2",
+      "repetition": 6,
+      "baselineSims": 21,
+      "preparedSims": 22,
+      "diff": 1,
+      "baselinePlannerMs": 100.57870000000003,
+      "preparedPlannerMs": 100.6724999999999
+    },
+    {
+      "root": "G2T3",
+      "repetition": 6,
+      "baselineSims": 18,
+      "preparedSims": 19,
+      "diff": 1,
+      "baselinePlannerMs": 100.70830000000024,
+      "preparedPlannerMs": 100.88160000000016
+    },
+    {
+      "root": "G2T4",
+      "repetition": 6,
+      "baselineSims": 13,
+      "preparedSims": 13,
+      "diff": 0,
+      "baselinePlannerMs": 100.82679999999982,
+      "preparedPlannerMs": 100.98689999999988
+    },
+    {
+      "root": "G2T5",
+      "repetition": 6,
+      "baselineSims": 20,
+      "preparedSims": 20,
+      "diff": 0,
+      "baselinePlannerMs": 100.80499999999984,
+      "preparedPlannerMs": 100.79340000000002
+    },
+    {
+      "root": "G2T6",
+      "repetition": 6,
+      "baselineSims": 39,
+      "preparedSims": 39,
+      "diff": 0,
+      "baselinePlannerMs": 100.11419999999998,
+      "preparedPlannerMs": 100.08019999999988
+    },
+    {
+      "root": "G2T7",
+      "repetition": 6,
+      "baselineSims": 23,
+      "preparedSims": 23,
+      "diff": 0,
+      "baselinePlannerMs": 100.70510000000013,
+      "preparedPlannerMs": 100.49299999999994
+    },
+    {
+      "root": "G2T8",
+      "repetition": 6,
+      "baselineSims": 56,
+      "preparedSims": 56,
+      "diff": 0,
+      "baselinePlannerMs": 100.07810000000018,
+      "preparedPlannerMs": 100.07139999999981
+    },
+    {
+      "root": "G1T1",
+      "repetition": 6,
+      "baselineSims": 16,
+      "preparedSims": 16,
+      "diff": 0,
+      "baselinePlannerMs": 101.75869999999986,
+      "preparedPlannerMs": 102.68090000000029
+    },
+    {
+      "root": "G1T2",
+      "repetition": 6,
+      "baselineSims": 16,
+      "preparedSims": 16,
+      "diff": 0,
+      "baselinePlannerMs": 100.9994999999999,
+      "preparedPlannerMs": 101.10159999999996
+    },
+    {
+      "root": "G1T3",
+      "repetition": 6,
+      "baselineSims": 18,
+      "preparedSims": 19,
+      "diff": 1,
+      "baselinePlannerMs": 101.30389999999989,
+      "preparedPlannerMs": 100.91120000000001
+    },
+    {
+      "root": "G1T4",
+      "repetition": 6,
+      "baselineSims": 21,
+      "preparedSims": 21,
+      "diff": 0,
+      "baselinePlannerMs": 100.6854000000003,
+      "preparedPlannerMs": 100.58920000000035
+    },
+    {
+      "root": "G1T5",
+      "repetition": 6,
+      "baselineSims": 7,
+      "preparedSims": 7,
+      "diff": 0,
+      "baselinePlannerMs": 102.33609999999999,
+      "preparedPlannerMs": 100.9022
+    },
+    {
+      "root": "G1T6",
+      "repetition": 6,
+      "baselineSims": 15,
+      "preparedSims": 16,
+      "diff": 1,
+      "baselinePlannerMs": 100.92180000000008,
+      "preparedPlannerMs": 100.80040000000008
+    },
+    {
+      "root": "G1T7",
+      "repetition": 6,
+      "baselineSims": 18,
+      "preparedSims": 18,
+      "diff": 0,
+      "baselinePlannerMs": 100.48810000000049,
+      "preparedPlannerMs": 100.79460000000017
+    },
+    {
+      "root": "G1T8",
+      "repetition": 6,
+      "baselineSims": 37,
+      "preparedSims": 37,
+      "diff": 0,
+      "baselinePlannerMs": 100.99099999999999,
+      "preparedPlannerMs": 100.63979999999992
+    },
+    {
+      "root": "G1T9",
+      "repetition": 6,
+      "baselineSims": 14,
+      "preparedSims": 14,
+      "diff": 0,
+      "baselinePlannerMs": 101.65090000000055,
+      "preparedPlannerMs": 101.4390000000003
+    },
+    {
+      "root": "G6T1",
+      "repetition": 7,
+      "baselineSims": 12,
+      "preparedSims": 19,
+      "diff": 7,
+      "baselinePlannerMs": 102.18459999999999,
+      "preparedPlannerMs": 102.39969999999997
+    },
+    {
+      "root": "G6T2",
+      "repetition": 7,
+      "baselineSims": 12,
+      "preparedSims": 11,
+      "diff": -1,
+      "baselinePlannerMs": 102.64609999999999,
+      "preparedPlannerMs": 101.0016
+    },
+    {
+      "root": "G6T3",
+      "repetition": 7,
+      "baselineSims": 56,
+      "preparedSims": 55,
+      "diff": -1,
+      "baselinePlannerMs": 100.21550000000002,
+      "preparedPlannerMs": 100.21270000000004
+    },
+    {
+      "root": "G5T1",
+      "repetition": 7,
+      "baselineSims": 12,
+      "preparedSims": 13,
+      "diff": 1,
+      "baselinePlannerMs": 103.15070000000003,
+      "preparedPlannerMs": 101.60430000000008
+    },
+    {
+      "root": "G5T2",
+      "repetition": 7,
+      "baselineSims": 17,
+      "preparedSims": 17,
+      "diff": 0,
+      "baselinePlannerMs": 100.48170000000005,
+      "preparedPlannerMs": 100.54049999999995
+    },
+    {
+      "root": "G5T3",
+      "repetition": 7,
+      "baselineSims": 20,
+      "preparedSims": 21,
+      "diff": 1,
+      "baselinePlannerMs": 100.36200000000008,
+      "preparedPlannerMs": 100.56780000000003
+    },
+    {
+      "root": "G5T4",
+      "repetition": 7,
+      "baselineSims": 163,
+      "preparedSims": 160,
+      "diff": -3,
+      "baselinePlannerMs": 100.1422,
+      "preparedPlannerMs": 100.30179999999996
+    },
+    {
+      "root": "G2T1",
+      "repetition": 7,
+      "baselineSims": 17,
+      "preparedSims": 17,
+      "diff": 0,
+      "baselinePlannerMs": 101.91559999999981,
+      "preparedPlannerMs": 101.81039999999985
+    },
+    {
+      "root": "G2T2",
+      "repetition": 7,
+      "baselineSims": 21,
+      "preparedSims": 21,
+      "diff": 0,
+      "baselinePlannerMs": 100.41949999999997,
+      "preparedPlannerMs": 100.68870000000015
+    },
+    {
+      "root": "G2T3",
+      "repetition": 7,
+      "baselineSims": 18,
+      "preparedSims": 19,
+      "diff": 1,
+      "baselinePlannerMs": 100.5951,
+      "preparedPlannerMs": 100.61979999999994
+    },
+    {
+      "root": "G2T4",
+      "repetition": 7,
+      "baselineSims": 14,
+      "preparedSims": 14,
+      "diff": 0,
+      "baselinePlannerMs": 100.5907000000002,
+      "preparedPlannerMs": 100.48720000000003
+    },
+    {
+      "root": "G2T5",
+      "repetition": 7,
+      "baselineSims": 20,
+      "preparedSims": 20,
+      "diff": 0,
+      "baselinePlannerMs": 100.6922999999997,
+      "preparedPlannerMs": 100.7832999999996
+    },
+    {
+      "root": "G2T6",
+      "repetition": 7,
+      "baselineSims": 37,
+      "preparedSims": 38,
+      "diff": 1,
+      "baselinePlannerMs": 100.58330000000024,
+      "preparedPlannerMs": 100.63670000000002
+    },
+    {
+      "root": "G2T7",
+      "repetition": 7,
+      "baselineSims": 22,
+      "preparedSims": 22,
+      "diff": 0,
+      "baselinePlannerMs": 100.73160000000007,
+      "preparedPlannerMs": 100.76679999999988
+    },
+    {
+      "root": "G2T8",
+      "repetition": 7,
+      "baselineSims": 60,
+      "preparedSims": 59,
+      "diff": -1,
+      "baselinePlannerMs": 100.59360000000015,
+      "preparedPlannerMs": 100.66179999999986
+    },
+    {
+      "root": "G1T1",
+      "repetition": 7,
+      "baselineSims": 16,
+      "preparedSims": 17,
+      "diff": 1,
+      "baselinePlannerMs": 101.68279999999959,
+      "preparedPlannerMs": 102.02790000000005
+    },
+    {
+      "root": "G1T2",
+      "repetition": 7,
+      "baselineSims": 15,
+      "preparedSims": 16,
+      "diff": 1,
+      "baselinePlannerMs": 101.21579999999994,
+      "preparedPlannerMs": 101.13720000000012
+    },
+    {
+      "root": "G1T3",
+      "repetition": 7,
+      "baselineSims": 18,
+      "preparedSims": 18,
+      "diff": 0,
+      "baselinePlannerMs": 101.03839999999991,
+      "preparedPlannerMs": 100.80470000000014
+    },
+    {
+      "root": "G1T4",
+      "repetition": 7,
+      "baselineSims": 21,
+      "preparedSims": 21,
+      "diff": 0,
+      "baselinePlannerMs": 100.69440000000031,
+      "preparedPlannerMs": 100.60979999999972
+    },
+    {
+      "root": "G1T5",
+      "repetition": 7,
+      "baselineSims": 8,
+      "preparedSims": 8,
+      "diff": 0,
+      "baselinePlannerMs": 101.32639999999992,
+      "preparedPlannerMs": 100.5911000000001
+    },
+    {
+      "root": "G1T6",
+      "repetition": 7,
+      "baselineSims": 15,
+      "preparedSims": 15,
+      "diff": 0,
+      "baselinePlannerMs": 100.98970000000008,
+      "preparedPlannerMs": 101.67619999999988
+    },
+    {
+      "root": "G1T7",
+      "repetition": 7,
+      "baselineSims": 18,
+      "preparedSims": 18,
+      "diff": 0,
+      "baselinePlannerMs": 100.59220000000005,
+      "preparedPlannerMs": 100.83570000000054
+    },
+    {
+      "root": "G1T8",
+      "repetition": 7,
+      "baselineSims": 37,
+      "preparedSims": 37,
+      "diff": 0,
+      "baselinePlannerMs": 100.59099999999944,
+      "preparedPlannerMs": 100.6849000000002
+    },
+    {
+      "root": "G1T9",
+      "repetition": 7,
+      "baselineSims": 13,
+      "preparedSims": 13,
+      "diff": 0,
+      "baselinePlannerMs": 100.94869999999992,
+      "preparedPlannerMs": 100.86390000000029
+    },
+    {
+      "root": "G6T1",
+      "repetition": 8,
+      "baselineSims": 18,
+      "preparedSims": 12,
+      "diff": -6,
+      "baselinePlannerMs": 102.33589999999998,
+      "preparedPlannerMs": 102.87299999999999
+    },
+    {
+      "root": "G6T2",
+      "repetition": 8,
+      "baselineSims": 10,
+      "preparedSims": 14,
+      "diff": 4,
+      "baselinePlannerMs": 101.14089999999999,
+      "preparedPlannerMs": 101.10820000000001
+    },
+    {
+      "root": "G6T3",
+      "repetition": 8,
+      "baselineSims": 55,
+      "preparedSims": 54,
+      "diff": -1,
+      "baselinePlannerMs": 100.50689999999997,
+      "preparedPlannerMs": 100.63820000000004
+    },
+    {
+      "root": "G5T1",
+      "repetition": 8,
+      "baselineSims": 12,
+      "preparedSims": 12,
+      "diff": 0,
+      "baselinePlannerMs": 103.5018,
+      "preparedPlannerMs": 101.97169999999994
+    },
+    {
+      "root": "G5T2",
+      "repetition": 8,
+      "baselineSims": 19,
+      "preparedSims": 18,
+      "diff": -1,
+      "baselinePlannerMs": 100.8297,
+      "preparedPlannerMs": 100.80489999999998
+    },
+    {
+      "root": "G5T3",
+      "repetition": 8,
+      "baselineSims": 20,
+      "preparedSims": 20,
+      "diff": 0,
+      "baselinePlannerMs": 100.32439999999997,
+      "preparedPlannerMs": 100.60139999999978
+    },
+    {
+      "root": "G5T4",
+      "repetition": 8,
+      "baselineSims": 167,
+      "preparedSims": 162,
+      "diff": -5,
+      "baselinePlannerMs": 100.39019999999982,
+      "preparedPlannerMs": 100.12239999999997
+    },
+    {
+      "root": "G2T1",
+      "repetition": 8,
+      "baselineSims": 17,
+      "preparedSims": 17,
+      "diff": 0,
+      "baselinePlannerMs": 101.7523000000001,
+      "preparedPlannerMs": 101.64879999999994
+    },
+    {
+      "root": "G2T2",
+      "repetition": 8,
+      "baselineSims": 21,
+      "preparedSims": 21,
+      "diff": 0,
+      "baselinePlannerMs": 100.4041000000002,
+      "preparedPlannerMs": 100.52729999999997
+    },
+    {
+      "root": "G2T3",
+      "repetition": 8,
+      "baselineSims": 18,
+      "preparedSims": 18,
+      "diff": 0,
+      "baselinePlannerMs": 100.68830000000003,
+      "preparedPlannerMs": 100.6606999999999
+    },
+    {
+      "root": "G2T4",
+      "repetition": 8,
+      "baselineSims": 14,
+      "preparedSims": 14,
+      "diff": 0,
+      "baselinePlannerMs": 100.4711000000002,
+      "preparedPlannerMs": 100.44169999999986
+    },
+    {
+      "root": "G2T5",
+      "repetition": 8,
+      "baselineSims": 20,
+      "preparedSims": 20,
+      "diff": 0,
+      "baselinePlannerMs": 100.85729999999967,
+      "preparedPlannerMs": 100.91219999999976
+    },
+    {
+      "root": "G2T6",
+      "repetition": 8,
+      "baselineSims": 37,
+      "preparedSims": 38,
+      "diff": 1,
+      "baselinePlannerMs": 100.61529999999993,
+      "preparedPlannerMs": 101.02959999999985
+    },
+    {
+      "root": "G2T7",
+      "repetition": 8,
+      "baselineSims": 22,
+      "preparedSims": 23,
+      "diff": 1,
+      "baselinePlannerMs": 100.69090000000006,
+      "preparedPlannerMs": 100.73799999999983
+    },
+    {
+      "root": "G2T8",
+      "repetition": 8,
+      "baselineSims": 58,
+      "preparedSims": 57,
+      "diff": -1,
+      "baselinePlannerMs": 100.7778000000003,
+      "preparedPlannerMs": 100.87260000000015
+    },
+    {
+      "root": "G1T1",
+      "repetition": 8,
+      "baselineSims": 16,
+      "preparedSims": 17,
+      "diff": 1,
+      "baselinePlannerMs": 101.85280000000012,
+      "preparedPlannerMs": 101.8768
+    },
+    {
+      "root": "G1T2",
+      "repetition": 8,
+      "baselineSims": 16,
+      "preparedSims": 17,
+      "diff": 1,
+      "baselinePlannerMs": 101.34450000000015,
+      "preparedPlannerMs": 100.85179999999991
+    },
+    {
+      "root": "G1T3",
+      "repetition": 8,
+      "baselineSims": 18,
+      "preparedSims": 18,
+      "diff": 0,
+      "baselinePlannerMs": 100.73869999999988,
+      "preparedPlannerMs": 101.13350000000037
+    },
+    {
+      "root": "G1T4",
+      "repetition": 8,
+      "baselineSims": 21,
+      "preparedSims": 21,
+      "diff": 0,
+      "baselinePlannerMs": 100.73579999999993,
+      "preparedPlannerMs": 100.80409999999983
+    },
+    {
+      "root": "G1T5",
+      "repetition": 8,
+      "baselineSims": 8,
+      "preparedSims": 8,
+      "diff": 0,
+      "baselinePlannerMs": 101.2800000000002,
+      "preparedPlannerMs": 104.46329999999989
+    },
+    {
+      "root": "G1T6",
+      "repetition": 8,
+      "baselineSims": 15,
+      "preparedSims": 15,
+      "diff": 0,
+      "baselinePlannerMs": 100.95530000000053,
+      "preparedPlannerMs": 100.8733000000002
+    },
+    {
+      "root": "G1T7",
+      "repetition": 8,
+      "baselineSims": 18,
+      "preparedSims": 18,
+      "diff": 0,
+      "baselinePlannerMs": 100.48509999999987,
+      "preparedPlannerMs": 100.77850000000035
+    },
+    {
+      "root": "G1T8",
+      "repetition": 8,
+      "baselineSims": 38,
+      "preparedSims": 38,
+      "diff": 0,
+      "baselinePlannerMs": 100.54160000000047,
+      "preparedPlannerMs": 101.17569999999978
+    },
+    {
+      "root": "G1T9",
+      "repetition": 8,
+      "baselineSims": 14,
+      "preparedSims": 14,
+      "diff": 0,
+      "baselinePlannerMs": 102.69920000000002,
+      "preparedPlannerMs": 101.11470000000008
+    },
+    {
+      "root": "G6T1",
+      "repetition": 9,
+      "baselineSims": 12,
+      "preparedSims": 19,
+      "diff": 7,
+      "baselinePlannerMs": 102.3758,
+      "preparedPlannerMs": 102.57479999999998
+    },
+    {
+      "root": "G6T2",
+      "repetition": 9,
+      "baselineSims": 13,
+      "preparedSims": 12,
+      "diff": -1,
+      "baselinePlannerMs": 101.56630000000001,
+      "preparedPlannerMs": 100.80709999999999
+    },
+    {
+      "root": "G6T3",
+      "repetition": 9,
+      "baselineSims": 55,
+      "preparedSims": 55,
+      "diff": 0,
+      "baselinePlannerMs": 100.38100000000003,
+      "preparedPlannerMs": 100.35739999999998
+    },
+    {
+      "root": "G5T1",
+      "repetition": 9,
+      "baselineSims": 11,
+      "preparedSims": 12,
+      "diff": 1,
+      "baselinePlannerMs": 102.01670000000001,
+      "preparedPlannerMs": 102.12580000000003
+    },
+    {
+      "root": "G5T2",
+      "repetition": 9,
+      "baselineSims": 18,
+      "preparedSims": 18,
+      "diff": 0,
+      "baselinePlannerMs": 100.67960000000005,
+      "preparedPlannerMs": 100.5951
+    },
+    {
+      "root": "G5T3",
+      "repetition": 9,
+      "baselineSims": 20,
+      "preparedSims": 21,
+      "diff": 1,
+      "baselinePlannerMs": 100.63689999999997,
+      "preparedPlannerMs": 100.43190000000004
+    },
+    {
+      "root": "G5T4",
+      "repetition": 9,
+      "baselineSims": 163,
+      "preparedSims": 159,
+      "diff": -4,
+      "baselinePlannerMs": 100.50739999999996,
+      "preparedPlannerMs": 100.39189999999985
+    },
+    {
+      "root": "G2T1",
+      "repetition": 9,
+      "baselineSims": 16,
+      "preparedSims": 17,
+      "diff": 1,
+      "baselinePlannerMs": 101.96229999999991,
+      "preparedPlannerMs": 101.87920000000008
+    },
+    {
+      "root": "G2T2",
+      "repetition": 9,
+      "baselineSims": 21,
+      "preparedSims": 22,
+      "diff": 1,
+      "baselinePlannerMs": 100.5308,
+      "preparedPlannerMs": 100.56539999999995
+    },
+    {
+      "root": "G2T3",
+      "repetition": 9,
+      "baselineSims": 19,
+      "preparedSims": 19,
+      "diff": 0,
+      "baselinePlannerMs": 100.60829999999987,
+      "preparedPlannerMs": 100.64700000000016
+    },
+    {
+      "root": "G2T4",
+      "repetition": 9,
+      "baselineSims": 14,
+      "preparedSims": 14,
+      "diff": 0,
+      "baselinePlannerMs": 100.77439999999979,
+      "preparedPlannerMs": 100.60449999999992
+    },
+    {
+      "root": "G2T5",
+      "repetition": 9,
+      "baselineSims": 19,
+      "preparedSims": 19,
+      "diff": 0,
+      "baselinePlannerMs": 100.54879999999957,
+      "preparedPlannerMs": 100.49049999999988
+    },
+    {
+      "root": "G2T6",
+      "repetition": 9,
+      "baselineSims": 39,
+      "preparedSims": 39,
+      "diff": 0,
+      "baselinePlannerMs": 100.07420000000002,
+      "preparedPlannerMs": 100.1271999999999
+    },
+    {
+      "root": "G2T7",
+      "repetition": 9,
+      "baselineSims": 22,
+      "preparedSims": 23,
+      "diff": 1,
+      "baselinePlannerMs": 100.58149999999978,
+      "preparedPlannerMs": 100.57600000000002
+    },
+    {
+      "root": "G2T8",
+      "repetition": 9,
+      "baselineSims": 56,
+      "preparedSims": 56,
+      "diff": 0,
+      "baselinePlannerMs": 100.1298999999999,
+      "preparedPlannerMs": 100.39339999999993
+    },
+    {
+      "root": "G1T1",
+      "repetition": 9,
+      "baselineSims": 16,
+      "preparedSims": 16,
+      "diff": 0,
+      "baselinePlannerMs": 101.79770000000008,
+      "preparedPlannerMs": 101.66510000000017
+    },
+    {
+      "root": "G1T2",
+      "repetition": 9,
+      "baselineSims": 16,
+      "preparedSims": 16,
+      "diff": 0,
+      "baselinePlannerMs": 101.48739999999998,
+      "preparedPlannerMs": 100.99489999999969
+    },
+    {
+      "root": "G1T3",
+      "repetition": 9,
+      "baselineSims": 18,
+      "preparedSims": 17,
+      "diff": -1,
+      "baselinePlannerMs": 101.35100000000011,
+      "preparedPlannerMs": 101.45209999999997
+    },
+    {
+      "root": "G1T4",
+      "repetition": 9,
+      "baselineSims": 19,
+      "preparedSims": 22,
+      "diff": 3,
+      "baselinePlannerMs": 100.51159999999982,
+      "preparedPlannerMs": 100.89840000000004
+    },
+    {
+      "root": "G1T5",
+      "repetition": 9,
+      "baselineSims": 8,
+      "preparedSims": 8,
+      "diff": 0,
+      "baselinePlannerMs": 102.55510000000004,
+      "preparedPlannerMs": 100.81210000000056
+    },
+    {
+      "root": "G1T6",
+      "repetition": 9,
+      "baselineSims": 15,
+      "preparedSims": 16,
+      "diff": 1,
+      "baselinePlannerMs": 101.0014000000001,
+      "preparedPlannerMs": 101.13689999999951
+    },
+    {
+      "root": "G1T7",
+      "repetition": 9,
+      "baselineSims": 17,
+      "preparedSims": 18,
+      "diff": 1,
+      "baselinePlannerMs": 100.53200000000015,
+      "preparedPlannerMs": 100.52909999999974
+    },
+    {
+      "root": "G1T8",
+      "repetition": 9,
+      "baselineSims": 37,
+      "preparedSims": 37,
+      "diff": 0,
+      "baselinePlannerMs": 100.6895999999997,
+      "preparedPlannerMs": 100.73559999999998
+    },
+    {
+      "root": "G1T9",
+      "repetition": 9,
+      "baselineSims": 13,
+      "preparedSims": 12,
+      "diff": -1,
+      "baselinePlannerMs": 104.15249999999924,
+      "preparedPlannerMs": 101.05879999999979
+    },
+    {
+      "root": "G6T1",
+      "repetition": 10,
+      "baselineSims": 18,
+      "preparedSims": 12,
+      "diff": -6,
+      "baselinePlannerMs": 102.33539999999996,
+      "preparedPlannerMs": 102.5931
+    },
+    {
+      "root": "G6T2",
+      "repetition": 10,
+      "baselineSims": 11,
+      "preparedSims": 13,
+      "diff": 2,
+      "baselinePlannerMs": 100.59989999999999,
+      "preparedPlannerMs": 100.60889999999995
+    },
+    {
+      "root": "G6T3",
+      "repetition": 10,
+      "baselineSims": 55,
+      "preparedSims": 53,
+      "diff": -2,
+      "baselinePlannerMs": 100.84759999999994,
+      "preparedPlannerMs": 100.23539999999997
+    },
+    {
+      "root": "G5T1",
+      "repetition": 10,
+      "baselineSims": 12,
+      "preparedSims": 13,
+      "diff": 1,
+      "baselinePlannerMs": 101.92840000000001,
+      "preparedPlannerMs": 101.65919999999994
+    },
+    {
+      "root": "G5T2",
+      "repetition": 10,
+      "baselineSims": 18,
+      "preparedSims": 17,
+      "diff": -1,
+      "baselinePlannerMs": 100.64850000000001,
+      "preparedPlannerMs": 100.84379999999999
+    },
+    {
+      "root": "G5T3",
+      "repetition": 10,
+      "baselineSims": 20,
+      "preparedSims": 21,
+      "diff": 1,
+      "baselinePlannerMs": 100.81629999999996,
+      "preparedPlannerMs": 100.62260000000015
+    },
+    {
+      "root": "G5T4",
+      "repetition": 10,
+      "baselineSims": 161,
+      "preparedSims": 152,
+      "diff": -9,
+      "baselinePlannerMs": 100.27800000000002,
+      "preparedPlannerMs": 100.08879999999999
+    },
+    {
+      "root": "G2T1",
+      "repetition": 10,
+      "baselineSims": 17,
+      "preparedSims": 17,
+      "diff": 0,
+      "baselinePlannerMs": 102.13889999999992,
+      "preparedPlannerMs": 101.68219999999997
+    },
+    {
+      "root": "G2T2",
+      "repetition": 10,
+      "baselineSims": 21,
+      "preparedSims": 21,
+      "diff": 0,
+      "baselinePlannerMs": 100.63999999999987,
+      "preparedPlannerMs": 100.6217999999999
+    },
+    {
+      "root": "G2T3",
+      "repetition": 10,
+      "baselineSims": 18,
+      "preparedSims": 19,
+      "diff": 1,
+      "baselinePlannerMs": 100.58609999999999,
+      "preparedPlannerMs": 100.70979999999986
+    },
+    {
+      "root": "G2T4",
+      "repetition": 10,
+      "baselineSims": 13,
+      "preparedSims": 13,
+      "diff": 0,
+      "baselinePlannerMs": 100.66989999999987,
+      "preparedPlannerMs": 100.78359999999975
+    },
+    {
+      "root": "G2T5",
+      "repetition": 10,
+      "baselineSims": 21,
+      "preparedSims": 21,
+      "diff": 0,
+      "baselinePlannerMs": 100.6251000000002,
+      "preparedPlannerMs": 100.90809999999965
+    },
+    {
+      "root": "G2T6",
+      "repetition": 10,
+      "baselineSims": 38,
+      "preparedSims": 39,
+      "diff": 1,
+      "baselinePlannerMs": 100.56359999999995,
+      "preparedPlannerMs": 100.45319999999992
+    },
+    {
+      "root": "G2T7",
+      "repetition": 10,
+      "baselineSims": 22,
+      "preparedSims": 23,
+      "diff": 1,
+      "baselinePlannerMs": 100.61679999999978,
+      "preparedPlannerMs": 100.69430000000011
+    },
+    {
+      "root": "G2T8",
+      "repetition": 10,
+      "baselineSims": 58,
+      "preparedSims": 58,
+      "diff": 0,
+      "baselinePlannerMs": 100.97330000000011,
+      "preparedPlannerMs": 100.6273000000001
+    },
+    {
+      "root": "G1T1",
+      "repetition": 10,
+      "baselineSims": 16,
+      "preparedSims": 17,
+      "diff": 1,
+      "baselinePlannerMs": 101.81919999999991,
+      "preparedPlannerMs": 101.85090000000037
+    },
+    {
+      "root": "G1T2",
+      "repetition": 10,
+      "baselineSims": 16,
+      "preparedSims": 16,
+      "diff": 0,
+      "baselinePlannerMs": 101.45910000000003,
+      "preparedPlannerMs": 101.28179999999975
+    },
+    {
+      "root": "G1T3",
+      "repetition": 10,
+      "baselineSims": 19,
+      "preparedSims": 19,
+      "diff": 0,
+      "baselinePlannerMs": 100.57910000000038,
+      "preparedPlannerMs": 100.67169999999987
+    },
+    {
+      "root": "G1T4",
+      "repetition": 10,
+      "baselineSims": 21,
+      "preparedSims": 21,
+      "diff": 0,
+      "baselinePlannerMs": 100.77570000000014,
+      "preparedPlannerMs": 100.72310000000016
+    },
+    {
+      "root": "G1T5",
+      "repetition": 10,
+      "baselineSims": 8,
+      "preparedSims": 8,
+      "diff": 0,
+      "baselinePlannerMs": 102.3447000000001,
+      "preparedPlannerMs": 103.1573999999996
+    },
+    {
+      "root": "G1T6",
+      "repetition": 10,
+      "baselineSims": 15,
+      "preparedSims": 15,
+      "diff": 0,
+      "baselinePlannerMs": 101.20550000000003,
+      "preparedPlannerMs": 101.13540000000012
+    },
+    {
+      "root": "G1T7",
+      "repetition": 10,
+      "baselineSims": 18,
+      "preparedSims": 18,
+      "diff": 0,
+      "baselinePlannerMs": 100.69100000000071,
+      "preparedPlannerMs": 100.76540000000023
+    },
+    {
+      "root": "G1T8",
+      "repetition": 10,
+      "baselineSims": 38,
+      "preparedSims": 38,
+      "diff": 0,
+      "baselinePlannerMs": 100.53259999999955,
+      "preparedPlannerMs": 100.60080000000016
+    },
+    {
+      "root": "G1T9",
+      "repetition": 10,
+      "baselineSims": 14,
+      "preparedSims": 14,
+      "diff": 0,
+      "baselinePlannerMs": 100.79640000000018,
+      "preparedPlannerMs": 101.89950000000044
+    },
+    {
+      "root": "G6T1",
+      "repetition": 11,
+      "baselineSims": 12,
+      "preparedSims": 19,
+      "diff": 7,
+      "baselinePlannerMs": 102.26720000000002,
+      "preparedPlannerMs": 102.40480000000002
+    },
+    {
+      "root": "G6T2",
+      "repetition": 11,
+      "baselineSims": 13,
+      "preparedSims": 11,
+      "diff": -2,
+      "baselinePlannerMs": 106.3895,
+      "preparedPlannerMs": 101.0521
+    },
+    {
+      "root": "G6T3",
+      "repetition": 11,
+      "baselineSims": 55,
+      "preparedSims": 55,
+      "diff": 0,
+      "baselinePlannerMs": 100.48339999999996,
+      "preparedPlannerMs": 100.30160000000001
+    },
+    {
+      "root": "G5T1",
+      "repetition": 11,
+      "baselineSims": 12,
+      "preparedSims": 12,
+      "diff": 0,
+      "baselinePlannerMs": 101.5748000000001,
+      "preparedPlannerMs": 101.60350000000005
+    },
+    {
+      "root": "G5T2",
+      "repetition": 11,
+      "baselineSims": 17,
+      "preparedSims": 18,
+      "diff": 1,
+      "baselinePlannerMs": 100.84120000000007,
+      "preparedPlannerMs": 100.47640000000001
+    },
+    {
+      "root": "G5T3",
+      "repetition": 11,
+      "baselineSims": 20,
+      "preparedSims": 21,
+      "diff": 1,
+      "baselinePlannerMs": 100.69669999999996,
+      "preparedPlannerMs": 100.88170000000014
+    },
+    {
+      "root": "G5T4",
+      "repetition": 11,
+      "baselineSims": 168,
+      "preparedSims": 162,
+      "diff": -6,
+      "baselinePlannerMs": 100.21820000000002,
+      "preparedPlannerMs": 100.25779999999986
+    },
+    {
+      "root": "G2T1",
+      "repetition": 11,
+      "baselineSims": 17,
+      "preparedSims": 17,
+      "diff": 0,
+      "baselinePlannerMs": 102.00569999999993,
+      "preparedPlannerMs": 101.88570000000004
+    },
+    {
+      "root": "G2T2",
+      "repetition": 11,
+      "baselineSims": 21,
+      "preparedSims": 22,
+      "diff": 1,
+      "baselinePlannerMs": 100.5159000000001,
+      "preparedPlannerMs": 100.8714
+    },
+    {
+      "root": "G2T3",
+      "repetition": 11,
+      "baselineSims": 18,
+      "preparedSims": 19,
+      "diff": 1,
+      "baselinePlannerMs": 100.61539999999991,
+      "preparedPlannerMs": 100.6777999999997
+    },
+    {
+      "root": "G2T4",
+      "repetition": 11,
+      "baselineSims": 13,
+      "preparedSims": 13,
+      "diff": 0,
+      "baselinePlannerMs": 100.66100000000006,
+      "preparedPlannerMs": 100.64450000000033
+    },
+    {
+      "root": "G2T5",
+      "repetition": 11,
+      "baselineSims": 20,
+      "preparedSims": 20,
+      "diff": 0,
+      "baselinePlannerMs": 100.70959999999968,
+      "preparedPlannerMs": 100.92679999999973
+    },
+    {
+      "root": "G2T6",
+      "repetition": 11,
+      "baselineSims": 38,
+      "preparedSims": 39,
+      "diff": 1,
+      "baselinePlannerMs": 100.6237000000001,
+      "preparedPlannerMs": 100.25910000000022
+    },
+    {
+      "root": "G2T7",
+      "repetition": 11,
+      "baselineSims": 22,
+      "preparedSims": 22,
+      "diff": 0,
+      "baselinePlannerMs": 100.39490000000023,
+      "preparedPlannerMs": 100.46489999999994
+    },
+    {
+      "root": "G2T8",
+      "repetition": 11,
+      "baselineSims": 57,
+      "preparedSims": 57,
+      "diff": 0,
+      "baselinePlannerMs": 100.65549999999985,
+      "preparedPlannerMs": 100.49309999999969
+    },
+    {
+      "root": "G1T1",
+      "repetition": 11,
+      "baselineSims": 16,
+      "preparedSims": 17,
+      "diff": 1,
+      "baselinePlannerMs": 101.69230000000016,
+      "preparedPlannerMs": 102.29430000000002
+    },
+    {
+      "root": "G1T2",
+      "repetition": 11,
+      "baselineSims": 15,
+      "preparedSims": 16,
+      "diff": 1,
+      "baselinePlannerMs": 100.99929999999995,
+      "preparedPlannerMs": 101.50419999999986
+    },
+    {
+      "root": "G1T3",
+      "repetition": 11,
+      "baselineSims": 18,
+      "preparedSims": 19,
+      "diff": 1,
+      "baselinePlannerMs": 101.2175000000002,
+      "preparedPlannerMs": 100.70170000000007
+    },
+    {
+      "root": "G1T4",
+      "repetition": 11,
+      "baselineSims": 21,
+      "preparedSims": 21,
+      "diff": 0,
+      "baselinePlannerMs": 100.81800000000021,
+      "preparedPlannerMs": 100.96050000000014
+    },
+    {
+      "root": "G1T5",
+      "repetition": 11,
+      "baselineSims": 7,
+      "preparedSims": 7,
+      "diff": 0,
+      "baselinePlannerMs": 100.77250000000004,
+      "preparedPlannerMs": 100.53430000000026
+    },
+    {
+      "root": "G1T6",
+      "repetition": 11,
+      "baselineSims": 15,
+      "preparedSims": 13,
+      "diff": -2,
+      "baselinePlannerMs": 100.82769999999982,
+      "preparedPlannerMs": 101.79790000000048
+    },
+    {
+      "root": "G1T7",
+      "repetition": 11,
+      "baselineSims": 15,
+      "preparedSims": 18,
+      "diff": 3,
+      "baselinePlannerMs": 100.99749999999949,
+      "preparedPlannerMs": 100.81940000000031
+    },
+    {
+      "root": "G1T8",
+      "repetition": 11,
+      "baselineSims": 37,
+      "preparedSims": 38,
+      "diff": 1,
+      "baselinePlannerMs": 100.70089999999982,
+      "preparedPlannerMs": 100.73369999999977
+    },
+    {
+      "root": "G1T9",
+      "repetition": 11,
+      "baselineSims": 13,
+      "preparedSims": 13,
+      "diff": 0,
+      "baselinePlannerMs": 100.82319999999982,
+      "preparedPlannerMs": 102.42950000000019
+    },
+    {
+      "root": "G6T1",
+      "repetition": 12,
+      "baselineSims": 19,
+      "preparedSims": 12,
+      "diff": -7,
+      "baselinePlannerMs": 102.18810000000002,
+      "preparedPlannerMs": 102.8094
+    },
+    {
+      "root": "G6T2",
+      "repetition": 12,
+      "baselineSims": 10,
+      "preparedSims": 13,
+      "diff": 3,
+      "baselinePlannerMs": 102.2765,
+      "preparedPlannerMs": 101.48830000000004
+    },
+    {
+      "root": "G6T3",
+      "repetition": 12,
+      "baselineSims": 54,
+      "preparedSims": 53,
+      "diff": -1,
+      "baselinePlannerMs": 100.37009999999998,
+      "preparedPlannerMs": 100.3435
+    },
+    {
+      "root": "G5T1",
+      "repetition": 12,
+      "baselineSims": 12,
+      "preparedSims": 12,
+      "diff": 0,
+      "baselinePlannerMs": 101.95500000000004,
+      "preparedPlannerMs": 103.34530000000007
+    },
+    {
+      "root": "G5T2",
+      "repetition": 12,
+      "baselineSims": 18,
+      "preparedSims": 18,
+      "diff": 0,
+      "baselinePlannerMs": 100.59089999999992,
+      "preparedPlannerMs": 100.9251999999999
+    },
+    {
+      "root": "G5T3",
+      "repetition": 12,
+      "baselineSims": 20,
+      "preparedSims": 21,
+      "diff": 1,
+      "baselinePlannerMs": 100.45750000000021,
+      "preparedPlannerMs": 100.7373
+    },
+    {
+      "root": "G5T4",
+      "repetition": 12,
+      "baselineSims": 163,
+      "preparedSims": 154,
+      "diff": -9,
+      "baselinePlannerMs": 100.19620000000009,
+      "preparedPlannerMs": 100.36670000000004
+    },
+    {
+      "root": "G2T1",
+      "repetition": 12,
+      "baselineSims": 17,
+      "preparedSims": 17,
+      "diff": 0,
+      "baselinePlannerMs": 101.77330000000006,
+      "preparedPlannerMs": 101.86430000000018
+    },
+    {
+      "root": "G2T2",
+      "repetition": 12,
+      "baselineSims": 21,
+      "preparedSims": 22,
+      "diff": 1,
+      "baselinePlannerMs": 100.62880000000018,
+      "preparedPlannerMs": 100.44700000000012
+    },
+    {
+      "root": "G2T3",
+      "repetition": 12,
+      "baselineSims": 18,
+      "preparedSims": 19,
+      "diff": 1,
+      "baselinePlannerMs": 101.08670000000006,
+      "preparedPlannerMs": 100.71620000000007
+    },
+    {
+      "root": "G2T4",
+      "repetition": 12,
+      "baselineSims": 13,
+      "preparedSims": 14,
+      "diff": 1,
+      "baselinePlannerMs": 100.77340000000004,
+      "preparedPlannerMs": 101.26850000000013
+    },
+    {
+      "root": "G2T5",
+      "repetition": 12,
+      "baselineSims": 20,
+      "preparedSims": 20,
+      "diff": 0,
+      "baselinePlannerMs": 100.67589999999973,
+      "preparedPlannerMs": 100.77469999999994
+    },
+    {
+      "root": "G2T6",
+      "repetition": 12,
+      "baselineSims": 38,
+      "preparedSims": 38,
+      "diff": 0,
+      "baselinePlannerMs": 100.54710000000023,
+      "preparedPlannerMs": 100.99200000000019
+    },
+    {
+      "root": "G2T7",
+      "repetition": 12,
+      "baselineSims": 23,
+      "preparedSims": 23,
+      "diff": 0,
+      "baselinePlannerMs": 100.83230000000003,
+      "preparedPlannerMs": 100.77289999999994
+    },
+    {
+      "root": "G2T8",
+      "repetition": 12,
+      "baselineSims": 59,
+      "preparedSims": 59,
+      "diff": 0,
+      "baselinePlannerMs": 100.61060000000043,
+      "preparedPlannerMs": 100.67020000000002
+    },
+    {
+      "root": "G1T1",
+      "repetition": 12,
+      "baselineSims": 16,
+      "preparedSims": 17,
+      "diff": 1,
+      "baselinePlannerMs": 101.76319999999987,
+      "preparedPlannerMs": 101.78830000000016
+    },
+    {
+      "root": "G1T2",
+      "repetition": 12,
+      "baselineSims": 16,
+      "preparedSims": 16,
+      "diff": 0,
+      "baselinePlannerMs": 101.43249999999989,
+      "preparedPlannerMs": 101.36770000000024
+    },
+    {
+      "root": "G1T3",
+      "repetition": 12,
+      "baselineSims": 18,
+      "preparedSims": 18,
+      "diff": 0,
+      "baselinePlannerMs": 100.80529999999999,
+      "preparedPlannerMs": 101.07409999999982
+    },
+    {
+      "root": "G1T4",
+      "repetition": 12,
+      "baselineSims": 21,
+      "preparedSims": 21,
+      "diff": 0,
+      "baselinePlannerMs": 100.70820000000003,
+      "preparedPlannerMs": 100.50369999999975
+    },
+    {
+      "root": "G1T5",
+      "repetition": 12,
+      "baselineSims": 7,
+      "preparedSims": 8,
+      "diff": 1,
+      "baselinePlannerMs": 103.31929999999966,
+      "preparedPlannerMs": 104.27799999999979
+    },
+    {
+      "root": "G1T6",
+      "repetition": 12,
+      "baselineSims": 15,
+      "preparedSims": 14,
+      "diff": -1,
+      "baselinePlannerMs": 101.3742999999995,
+      "preparedPlannerMs": 101.0039999999999
+    },
+    {
+      "root": "G1T7",
+      "repetition": 12,
+      "baselineSims": 18,
+      "preparedSims": 17,
+      "diff": -1,
+      "baselinePlannerMs": 100.95350000000053,
+      "preparedPlannerMs": 100.78219999999965
+    },
+    {
+      "root": "G1T8",
+      "repetition": 12,
+      "baselineSims": 38,
+      "preparedSims": 38,
+      "diff": 0,
+      "baselinePlannerMs": 100.55419999999958,
+      "preparedPlannerMs": 100.62029999999959
+    },
+    {
+      "root": "G1T9",
+      "repetition": 12,
+      "baselineSims": 14,
+      "preparedSims": 14,
+      "diff": 0,
+      "baselinePlannerMs": 101.23129999999946,
+      "preparedPlannerMs": 102.9391999999998
+    },
+    {
+      "root": "G6T1",
+      "repetition": 13,
+      "baselineSims": 11,
+      "preparedSims": 19,
+      "diff": 8,
+      "baselinePlannerMs": 102.09779999999999,
+      "preparedPlannerMs": 102.23330000000001
+    },
+    {
+      "root": "G6T2",
+      "repetition": 13,
+      "baselineSims": 12,
+      "preparedSims": 10,
+      "diff": -2,
+      "baselinePlannerMs": 103.21340000000004,
+      "preparedPlannerMs": 100.77890000000002
+    },
+    {
+      "root": "G6T3",
+      "repetition": 13,
+      "baselineSims": 54,
+      "preparedSims": 54,
+      "diff": 0,
+      "baselinePlannerMs": 100.17820000000006,
+      "preparedPlannerMs": 100.51959999999997
+    },
+    {
+      "root": "G5T1",
+      "repetition": 13,
+      "baselineSims": 12,
+      "preparedSims": 12,
+      "diff": 0,
+      "baselinePlannerMs": 103.95100000000002,
+      "preparedPlannerMs": 102.07769999999994
+    },
+    {
+      "root": "G5T2",
+      "repetition": 13,
+      "baselineSims": 17,
+      "preparedSims": 18,
+      "diff": 1,
+      "baselinePlannerMs": 100.82890000000009,
+      "preparedPlannerMs": 100.75360000000012
+    },
+    {
+      "root": "G5T3",
+      "repetition": 13,
+      "baselineSims": 19,
+      "preparedSims": 20,
+      "diff": 1,
+      "baselinePlannerMs": 100.35940000000005,
+      "preparedPlannerMs": 100.55659999999989
+    },
+    {
+      "root": "G5T4",
+      "repetition": 13,
+      "baselineSims": 163,
+      "preparedSims": 162,
+      "diff": -1,
+      "baselinePlannerMs": 100.16560000000004,
+      "preparedPlannerMs": 100.09960000000001
+    },
+    {
+      "root": "G2T1",
+      "repetition": 13,
+      "baselineSims": 17,
+      "preparedSims": 17,
+      "diff": 0,
+      "baselinePlannerMs": 101.77580000000012,
+      "preparedPlannerMs": 101.7826
+    },
+    {
+      "root": "G2T2",
+      "repetition": 13,
+      "baselineSims": 21,
+      "preparedSims": 21,
+      "diff": 0,
+      "baselinePlannerMs": 100.74310000000014,
+      "preparedPlannerMs": 100.74579999999992
+    },
+    {
+      "root": "G2T3",
+      "repetition": 13,
+      "baselineSims": 18,
+      "preparedSims": 19,
+      "diff": 1,
+      "baselinePlannerMs": 100.48000000000002,
+      "preparedPlannerMs": 100.49030000000016
+    },
+    {
+      "root": "G2T4",
+      "repetition": 13,
+      "baselineSims": 14,
+      "preparedSims": 14,
+      "diff": 0,
+      "baselinePlannerMs": 102.81500000000005,
+      "preparedPlannerMs": 101.35800000000017
+    },
+    {
+      "root": "G2T5",
+      "repetition": 13,
+      "baselineSims": 20,
+      "preparedSims": 20,
+      "diff": 0,
+      "baselinePlannerMs": 100.7768000000001,
+      "preparedPlannerMs": 100.71300000000019
+    },
+    {
+      "root": "G2T6",
+      "repetition": 13,
+      "baselineSims": 38,
+      "preparedSims": 37,
+      "diff": -1,
+      "baselinePlannerMs": 100.57070000000022,
+      "preparedPlannerMs": 100.60249999999996
+    },
+    {
+      "root": "G2T7",
+      "repetition": 13,
+      "baselineSims": 22,
+      "preparedSims": 22,
+      "diff": 0,
+      "baselinePlannerMs": 100.49410000000034,
+      "preparedPlannerMs": 100.65830000000005
+    },
+    {
+      "root": "G2T8",
+      "repetition": 13,
+      "baselineSims": 60,
+      "preparedSims": 56,
+      "diff": -4,
+      "baselinePlannerMs": 100.63830000000007,
+      "preparedPlannerMs": 100.67180000000008
+    },
+    {
+      "root": "G1T1",
+      "repetition": 13,
+      "baselineSims": 16,
+      "preparedSims": 16,
+      "diff": 0,
+      "baselinePlannerMs": 101.86709999999994,
+      "preparedPlannerMs": 101.86779999999999
+    },
+    {
+      "root": "G1T2",
+      "repetition": 13,
+      "baselineSims": 15,
+      "preparedSims": 15,
+      "diff": 0,
+      "baselinePlannerMs": 100.97069999999985,
+      "preparedPlannerMs": 101.38130000000001
+    },
+    {
+      "root": "G1T3",
+      "repetition": 13,
+      "baselineSims": 18,
+      "preparedSims": 19,
+      "diff": 1,
+      "baselinePlannerMs": 101.07850000000008,
+      "preparedPlannerMs": 100.83899999999994
+    },
+    {
+      "root": "G1T4",
+      "repetition": 13,
+      "baselineSims": 21,
+      "preparedSims": 21,
+      "diff": 0,
+      "baselinePlannerMs": 100.38279999999986,
+      "preparedPlannerMs": 100.92140000000018
+    },
+    {
+      "root": "G1T5",
+      "repetition": 13,
+      "baselineSims": 8,
+      "preparedSims": 8,
+      "diff": 0,
+      "baselinePlannerMs": 102.88470000000007,
+      "preparedPlannerMs": 102.05240000000049
+    },
+    {
+      "root": "G1T6",
+      "repetition": 13,
+      "baselineSims": 14,
+      "preparedSims": 15,
+      "diff": 1,
+      "baselinePlannerMs": 100.93379999999979,
+      "preparedPlannerMs": 100.92109999999957
+    },
+    {
+      "root": "G1T7",
+      "repetition": 13,
+      "baselineSims": 17,
+      "preparedSims": 17,
+      "diff": 0,
+      "baselinePlannerMs": 100.57750000000033,
+      "preparedPlannerMs": 100.66420000000016
+    },
+    {
+      "root": "G1T8",
+      "repetition": 13,
+      "baselineSims": 36,
+      "preparedSims": 38,
+      "diff": 2,
+      "baselinePlannerMs": 100.52250000000004,
+      "preparedPlannerMs": 100.68910000000051
+    },
+    {
+      "root": "G1T9",
+      "repetition": 13,
+      "baselineSims": 13,
+      "preparedSims": 13,
+      "diff": 0,
+      "baselinePlannerMs": 100.90390000000025,
+      "preparedPlannerMs": 100.98030000000017
+    },
+    {
+      "root": "G6T1",
+      "repetition": 14,
+      "baselineSims": 18,
+      "preparedSims": 12,
+      "diff": -6,
+      "baselinePlannerMs": 102.55970000000002,
+      "preparedPlannerMs": 102.8817
+    },
+    {
+      "root": "G6T2",
+      "repetition": 14,
+      "baselineSims": 12,
+      "preparedSims": 13,
+      "diff": 1,
+      "baselinePlannerMs": 102.303,
+      "preparedPlannerMs": 100.9846
+    },
+    {
+      "root": "G6T3",
+      "repetition": 14,
+      "baselineSims": 55,
+      "preparedSims": 54,
+      "diff": -1,
+      "baselinePlannerMs": 100.3528,
+      "preparedPlannerMs": 100.46350000000001
+    },
+    {
+      "root": "G5T1",
+      "repetition": 14,
+      "baselineSims": 12,
+      "preparedSims": 13,
+      "diff": 1,
+      "baselinePlannerMs": 101.82230000000004,
+      "preparedPlannerMs": 102.13379999999995
+    },
+    {
+      "root": "G5T2",
+      "repetition": 14,
+      "baselineSims": 17,
+      "preparedSims": 17,
+      "diff": 0,
+      "baselinePlannerMs": 100.75609999999995,
+      "preparedPlannerMs": 100.87830000000008
+    },
+    {
+      "root": "G5T3",
+      "repetition": 14,
+      "baselineSims": 20,
+      "preparedSims": 20,
+      "diff": 0,
+      "baselinePlannerMs": 100.2978999999998,
+      "preparedPlannerMs": 100.66110000000003
+    },
+    {
+      "root": "G5T4",
+      "repetition": 14,
+      "baselineSims": 170,
+      "preparedSims": 160,
+      "diff": -10,
+      "baselinePlannerMs": 100.34109999999987,
+      "preparedPlannerMs": 100.27230000000009
+    },
+    {
+      "root": "G2T1",
+      "repetition": 14,
+      "baselineSims": 17,
+      "preparedSims": 17,
+      "diff": 0,
+      "baselinePlannerMs": 101.72919999999999,
+      "preparedPlannerMs": 102.01379999999995
+    },
+    {
+      "root": "G2T2",
+      "repetition": 14,
+      "baselineSims": 21,
+      "preparedSims": 21,
+      "diff": 0,
+      "baselinePlannerMs": 100.63540000000012,
+      "preparedPlannerMs": 100.59230000000002
+    },
+    {
+      "root": "G2T3",
+      "repetition": 14,
+      "baselineSims": 18,
+      "preparedSims": 19,
+      "diff": 1,
+      "baselinePlannerMs": 100.64740000000006,
+      "preparedPlannerMs": 100.51330000000007
+    },
+    {
+      "root": "G2T4",
+      "repetition": 14,
+      "baselineSims": 13,
+      "preparedSims": 13,
+      "diff": 0,
+      "baselinePlannerMs": 100.71849999999995,
+      "preparedPlannerMs": 100.80149999999958
+    },
+    {
+      "root": "G2T5",
+      "repetition": 14,
+      "baselineSims": 20,
+      "preparedSims": 20,
+      "diff": 0,
+      "baselinePlannerMs": 100.61499999999978,
+      "preparedPlannerMs": 100.79370000000017
+    },
+    {
+      "root": "G2T6",
+      "repetition": 14,
+      "baselineSims": 38,
+      "preparedSims": 39,
+      "diff": 1,
+      "baselinePlannerMs": 100.63809999999967,
+      "preparedPlannerMs": 100.52930000000015
+    },
+    {
+      "root": "G2T7",
+      "repetition": 14,
+      "baselineSims": 22,
+      "preparedSims": 23,
+      "diff": 1,
+      "baselinePlannerMs": 100.72910000000002,
+      "preparedPlannerMs": 100.42430000000013
+    },
+    {
+      "root": "G2T8",
+      "repetition": 14,
+      "baselineSims": 57,
+      "preparedSims": 57,
+      "diff": 0,
+      "baselinePlannerMs": 100.69440000000031,
+      "preparedPlannerMs": 100.8116
+    },
+    {
+      "root": "G1T1",
+      "repetition": 14,
+      "baselineSims": 16,
+      "preparedSims": 16,
+      "diff": 0,
+      "baselinePlannerMs": 101.82450000000017,
+      "preparedPlannerMs": 102.08069999999998
+    },
+    {
+      "root": "G1T2",
+      "repetition": 14,
+      "baselineSims": 16,
+      "preparedSims": 16,
+      "diff": 0,
+      "baselinePlannerMs": 101.23770000000013,
+      "preparedPlannerMs": 101.3445999999999
+    },
+    {
+      "root": "G1T3",
+      "repetition": 14,
+      "baselineSims": 18,
+      "preparedSims": 18,
+      "diff": 0,
+      "baselinePlannerMs": 100.99110000000019,
+      "preparedPlannerMs": 100.8730999999998
+    },
+    {
+      "root": "G1T4",
+      "repetition": 14,
+      "baselineSims": 21,
+      "preparedSims": 21,
+      "diff": 0,
+      "baselinePlannerMs": 100.57809999999972,
+      "preparedPlannerMs": 100.94750000000022
+    },
+    {
+      "root": "G1T5",
+      "repetition": 14,
+      "baselineSims": 8,
+      "preparedSims": 8,
+      "diff": 0,
+      "baselinePlannerMs": 101.19779999999992,
+      "preparedPlannerMs": 101.5934000000002
+    },
+    {
+      "root": "G1T6",
+      "repetition": 14,
+      "baselineSims": 15,
+      "preparedSims": 15,
+      "diff": 0,
+      "baselinePlannerMs": 100.78710000000046,
+      "preparedPlannerMs": 100.79709999999977
+    },
+    {
+      "root": "G1T7",
+      "repetition": 14,
+      "baselineSims": 17,
+      "preparedSims": 17,
+      "diff": 0,
+      "baselinePlannerMs": 100.86350000000039,
+      "preparedPlannerMs": 100.70930000000044
+    },
+    {
+      "root": "G1T8",
+      "repetition": 14,
+      "baselineSims": 37,
+      "preparedSims": 37,
+      "diff": 0,
+      "baselinePlannerMs": 100.7541999999994,
+      "preparedPlannerMs": 100.57110000000011
+    },
+    {
+      "root": "G1T9",
+      "repetition": 14,
+      "baselineSims": 14,
+      "preparedSims": 14,
+      "diff": 0,
+      "baselinePlannerMs": 101.83809999999994,
+      "preparedPlannerMs": 101.10989999999947
+    },
+    {
+      "root": "G6T1",
+      "repetition": 15,
+      "baselineSims": 11,
+      "preparedSims": 18,
+      "diff": 7,
+      "baselinePlannerMs": 102.28559999999999,
+      "preparedPlannerMs": 102.6745
+    },
+    {
+      "root": "G6T2",
+      "repetition": 15,
+      "baselineSims": 13,
+      "preparedSims": 12,
+      "diff": -1,
+      "baselinePlannerMs": 103.887,
+      "preparedPlannerMs": 101.0743
+    },
+    {
+      "root": "G6T3",
+      "repetition": 15,
+      "baselineSims": 54,
+      "preparedSims": 54,
+      "diff": 0,
+      "baselinePlannerMs": 100.65750000000003,
+      "preparedPlannerMs": 100.34930000000008
+    },
+    {
+      "root": "G5T1",
+      "repetition": 15,
+      "baselineSims": 12,
+      "preparedSims": 13,
+      "diff": 1,
+      "baselinePlannerMs": 102.11019999999996,
+      "preparedPlannerMs": 102.50450000000001
+    },
+    {
+      "root": "G5T2",
+      "repetition": 15,
+      "baselineSims": 16,
+      "preparedSims": 17,
+      "diff": 1,
+      "baselinePlannerMs": 100.72140000000002,
+      "preparedPlannerMs": 100.90729999999996
+    },
+    {
+      "root": "G5T3",
+      "repetition": 15,
+      "baselineSims": 19,
+      "preparedSims": 21,
+      "diff": 2,
+      "baselinePlannerMs": 100.31420000000003,
+      "preparedPlannerMs": 100.52619999999979
+    },
+    {
+      "root": "G5T4",
+      "repetition": 15,
+      "baselineSims": 169,
+      "preparedSims": 164,
+      "diff": -5,
+      "baselinePlannerMs": 100.24879999999985,
+      "preparedPlannerMs": 100.09490000000005
+    },
+    {
+      "root": "G2T1",
+      "repetition": 15,
+      "baselineSims": 16,
+      "preparedSims": 17,
+      "diff": 1,
+      "baselinePlannerMs": 101.99310000000014,
+      "preparedPlannerMs": 101.80749999999989
+    },
+    {
+      "root": "G2T2",
+      "repetition": 15,
+      "baselineSims": 20,
+      "preparedSims": 21,
+      "diff": 1,
+      "baselinePlannerMs": 100.51760000000013,
+      "preparedPlannerMs": 100.76549999999997
+    },
+    {
+      "root": "G2T3",
+      "repetition": 15,
+      "baselineSims": 18,
+      "preparedSims": 18,
+      "diff": 0,
+      "baselinePlannerMs": 100.78549999999996,
+      "preparedPlannerMs": 100.56349999999975
+    },
+    {
+      "root": "G2T4",
+      "repetition": 15,
+      "baselineSims": 13,
+      "preparedSims": 14,
+      "diff": 1,
+      "baselinePlannerMs": 100.75,
+      "preparedPlannerMs": 100.9078999999997
+    },
+    {
+      "root": "G2T5",
+      "repetition": 15,
+      "baselineSims": 19,
+      "preparedSims": 19,
+      "diff": 0,
+      "baselinePlannerMs": 100.7166000000002,
+      "preparedPlannerMs": 100.90169999999989
+    },
+    {
+      "root": "G2T6",
+      "repetition": 15,
+      "baselineSims": 38,
+      "preparedSims": 36,
+      "diff": -2,
+      "baselinePlannerMs": 100.87750000000005,
+      "preparedPlannerMs": 100.09429999999975
+    },
+    {
+      "root": "G2T7",
+      "repetition": 15,
+      "baselineSims": 22,
+      "preparedSims": 22,
+      "diff": 0,
+      "baselinePlannerMs": 100.55500000000029,
+      "preparedPlannerMs": 100.68939999999975
+    },
+    {
+      "root": "G2T8",
+      "repetition": 15,
+      "baselineSims": 58,
+      "preparedSims": 57,
+      "diff": -1,
+      "baselinePlannerMs": 100.65049999999974,
+      "preparedPlannerMs": 100.79979999999978
+    },
+    {
+      "root": "G1T1",
+      "repetition": 15,
+      "baselineSims": 16,
+      "preparedSims": 16,
+      "diff": 0,
+      "baselinePlannerMs": 102.02879999999959,
+      "preparedPlannerMs": 102.07340000000022
+    },
+    {
+      "root": "G1T2",
+      "repetition": 15,
+      "baselineSims": 15,
+      "preparedSims": 16,
+      "diff": 1,
+      "baselinePlannerMs": 101.32589999999982,
+      "preparedPlannerMs": 101.51189999999997
+    },
+    {
+      "root": "G1T3",
+      "repetition": 15,
+      "baselineSims": 18,
+      "preparedSims": 18,
+      "diff": 0,
+      "baselinePlannerMs": 100.84940000000006,
+      "preparedPlannerMs": 100.83619999999974
+    },
+    {
+      "root": "G1T4",
+      "repetition": 15,
+      "baselineSims": 21,
+      "preparedSims": 21,
+      "diff": 0,
+      "baselinePlannerMs": 100.44860000000017,
+      "preparedPlannerMs": 100.60059999999976
+    },
+    {
+      "root": "G1T5",
+      "repetition": 15,
+      "baselineSims": 7,
+      "preparedSims": 7,
+      "diff": 0,
+      "baselinePlannerMs": 106.89540000000034,
+      "preparedPlannerMs": 104.1573999999996
+    },
+    {
+      "root": "G1T6",
+      "repetition": 15,
+      "baselineSims": 14,
+      "preparedSims": 15,
+      "diff": 1,
+      "baselinePlannerMs": 101.0622000000003,
+      "preparedPlannerMs": 100.81750000000011
+    },
+    {
+      "root": "G1T7",
+      "repetition": 15,
+      "baselineSims": 17,
+      "preparedSims": 17,
+      "diff": 0,
+      "baselinePlannerMs": 100.4350000000004,
+      "preparedPlannerMs": 100.4931000000006
+    },
+    {
+      "root": "G1T8",
+      "repetition": 15,
+      "baselineSims": 37,
+      "preparedSims": 37,
+      "diff": 0,
+      "baselinePlannerMs": 100.57620000000043,
+      "preparedPlannerMs": 100.8153999999995
+    },
+    {
+      "root": "G1T9",
+      "repetition": 15,
+      "baselineSims": 14,
+      "preparedSims": 14,
+      "diff": 0,
+      "baselinePlannerMs": 102.14269999999942,
+      "preparedPlannerMs": 101.64009999999962
+    },
+    {
+      "root": "G6T1",
+      "repetition": 16,
+      "baselineSims": 18,
+      "preparedSims": 11,
+      "diff": -7,
+      "baselinePlannerMs": 102.75730000000001,
+      "preparedPlannerMs": 102.9528
+    },
+    {
+      "root": "G6T2",
+      "repetition": 16,
+      "baselineSims": 11,
+      "preparedSims": 13,
+      "diff": 2,
+      "baselinePlannerMs": 102.81819999999999,
+      "preparedPlannerMs": 100.61440000000005
+    },
+    {
+      "root": "G6T3",
+      "repetition": 16,
+      "baselineSims": 54,
+      "preparedSims": 52,
+      "diff": -2,
+      "baselinePlannerMs": 100.44050000000004,
+      "preparedPlannerMs": 100.21490000000006
+    },
+    {
+      "root": "G5T1",
+      "repetition": 16,
+      "baselineSims": 12,
+      "preparedSims": 12,
+      "diff": 0,
+      "baselinePlannerMs": 101.82399999999996,
+      "preparedPlannerMs": 103.66459999999995
+    },
+    {
+      "root": "G5T2",
+      "repetition": 16,
+      "baselineSims": 18,
+      "preparedSims": 18,
+      "diff": 0,
+      "baselinePlannerMs": 100.46270000000004,
+      "preparedPlannerMs": 100.69330000000002
+    },
+    {
+      "root": "G5T3",
+      "repetition": 16,
+      "baselineSims": 20,
+      "preparedSims": 20,
+      "diff": 0,
+      "baselinePlannerMs": 100.30610000000001,
+      "preparedPlannerMs": 100.52039999999988
+    },
+    {
+      "root": "G5T4",
+      "repetition": 16,
+      "baselineSims": 163,
+      "preparedSims": 157,
+      "diff": -6,
+      "baselinePlannerMs": 100.47569999999996,
+      "preparedPlannerMs": 100.11759999999981
+    },
+    {
+      "root": "G2T1",
+      "repetition": 16,
+      "baselineSims": 16,
+      "preparedSims": 17,
+      "diff": 1,
+      "baselinePlannerMs": 101.71050000000014,
+      "preparedPlannerMs": 101.75720000000001
+    },
+    {
+      "root": "G2T2",
+      "repetition": 16,
+      "baselineSims": 21,
+      "preparedSims": 21,
+      "diff": 0,
+      "baselinePlannerMs": 100.65460000000007,
+      "preparedPlannerMs": 100.5963999999999
+    },
+    {
+      "root": "G2T3",
+      "repetition": 16,
+      "baselineSims": 18,
+      "preparedSims": 18,
+      "diff": 0,
+      "baselinePlannerMs": 100.81190000000015,
+      "preparedPlannerMs": 100.76290000000017
+    },
+    {
+      "root": "G2T4",
+      "repetition": 16,
+      "baselineSims": 13,
+      "preparedSims": 14,
+      "diff": 1,
+      "baselinePlannerMs": 100.8444999999997,
+      "preparedPlannerMs": 102.98919999999998
+    },
+    {
+      "root": "G2T5",
+      "repetition": 16,
+      "baselineSims": 20,
+      "preparedSims": 20,
+      "diff": 0,
+      "baselinePlannerMs": 100.60009999999966,
+      "preparedPlannerMs": 100.6859999999997
+    },
+    {
+      "root": "G2T6",
+      "repetition": 16,
+      "baselineSims": 37,
+      "preparedSims": 37,
+      "diff": 0,
+      "baselinePlannerMs": 100.52529999999979,
+      "preparedPlannerMs": 100.82819999999992
+    },
+    {
+      "root": "G2T7",
+      "repetition": 16,
+      "baselineSims": 22,
+      "preparedSims": 21,
+      "diff": -1,
+      "baselinePlannerMs": 100.7521999999999,
+      "preparedPlannerMs": 100.44780000000037
+    },
+    {
+      "root": "G2T8",
+      "repetition": 16,
+      "baselineSims": 58,
+      "preparedSims": 57,
+      "diff": -1,
+      "baselinePlannerMs": 100.48630000000003,
+      "preparedPlannerMs": 100.82470000000012
+    },
+    {
+      "root": "G1T1",
+      "repetition": 16,
+      "baselineSims": 16,
+      "preparedSims": 16,
+      "diff": 0,
+      "baselinePlannerMs": 101.86130000000003,
+      "preparedPlannerMs": 101.8081000000002
+    },
+    {
+      "root": "G1T2",
+      "repetition": 16,
+      "baselineSims": 16,
+      "preparedSims": 16,
+      "diff": 0,
+      "baselinePlannerMs": 101.40419999999995,
+      "preparedPlannerMs": 101.12580000000025
+    },
+    {
+      "root": "G1T3",
+      "repetition": 16,
+      "baselineSims": 17,
+      "preparedSims": 18,
+      "diff": 1,
+      "baselinePlannerMs": 101.13280000000032,
+      "preparedPlannerMs": 100.77260000000024
+    },
+    {
+      "root": "G1T4",
+      "repetition": 16,
+      "baselineSims": 21,
+      "preparedSims": 21,
+      "diff": 0,
+      "baselinePlannerMs": 100.54239999999982,
+      "preparedPlannerMs": 100.86419999999998
+    },
+    {
+      "root": "G1T5",
+      "repetition": 16,
+      "baselineSims": 8,
+      "preparedSims": 8,
+      "diff": 0,
+      "baselinePlannerMs": 101.12729999999965,
+      "preparedPlannerMs": 101.18020000000024
+    },
+    {
+      "root": "G1T6",
+      "repetition": 16,
+      "baselineSims": 15,
+      "preparedSims": 15,
+      "diff": 0,
+      "baselinePlannerMs": 100.98409999999967,
+      "preparedPlannerMs": 101.24179999999978
+    },
+    {
+      "root": "G1T7",
+      "repetition": 16,
+      "baselineSims": 18,
+      "preparedSims": 18,
+      "diff": 0,
+      "baselinePlannerMs": 100.96640000000025,
+      "preparedPlannerMs": 100.97879999999986
+    },
+    {
+      "root": "G1T8",
+      "repetition": 16,
+      "baselineSims": 37,
+      "preparedSims": 37,
+      "diff": 0,
+      "baselinePlannerMs": 100.77260000000024,
+      "preparedPlannerMs": 100.4402
+    },
+    {
+      "root": "G1T9",
+      "repetition": 16,
+      "baselineSims": 14,
+      "preparedSims": 14,
+      "diff": 0,
+      "baselinePlannerMs": 101.00990000000002,
+      "preparedPlannerMs": 100.9342000000006
+    },
+    {
+      "root": "G6T1",
+      "repetition": 17,
+      "baselineSims": 12,
+      "preparedSims": 19,
+      "diff": 7,
+      "baselinePlannerMs": 102.0422,
+      "preparedPlannerMs": 102.34149999999997
+    },
+    {
+      "root": "G6T2",
+      "repetition": 17,
+      "baselineSims": 12,
+      "preparedSims": 12,
+      "diff": 0,
+      "baselinePlannerMs": 101.02429999999998,
+      "preparedPlannerMs": 100.71319999999997
+    },
+    {
+      "root": "G6T3",
+      "repetition": 17,
+      "baselineSims": 54,
+      "preparedSims": 54,
+      "diff": 0,
+      "baselinePlannerMs": 100.2656,
+      "preparedPlannerMs": 100.33609999999999
+    },
+    {
+      "root": "G5T1",
+      "repetition": 17,
+      "baselineSims": 11,
+      "preparedSims": 11,
+      "diff": 0,
+      "baselinePlannerMs": 103.07080000000008,
+      "preparedPlannerMs": 102.89609999999993
+    },
+    {
+      "root": "G5T2",
+      "repetition": 17,
+      "baselineSims": 18,
+      "preparedSims": 18,
+      "diff": 0,
+      "baselinePlannerMs": 100.7808,
+      "preparedPlannerMs": 100.47609999999986
+    },
+    {
+      "root": "G5T3",
+      "repetition": 17,
+      "baselineSims": 21,
+      "preparedSims": 20,
+      "diff": -1,
+      "baselinePlannerMs": 100.60189999999989,
+      "preparedPlannerMs": 100.68269999999984
+    },
+    {
+      "root": "G5T4",
+      "repetition": 17,
+      "baselineSims": 163,
+      "preparedSims": 161,
+      "diff": -2,
+      "baselinePlannerMs": 100.34370000000013,
+      "preparedPlannerMs": 100.49190000000021
+    },
+    {
+      "root": "G2T1",
+      "repetition": 17,
+      "baselineSims": 17,
+      "preparedSims": 17,
+      "diff": 0,
+      "baselinePlannerMs": 101.63670000000002,
+      "preparedPlannerMs": 101.94959999999992
+    },
+    {
+      "root": "G2T2",
+      "repetition": 17,
+      "baselineSims": 21,
+      "preparedSims": 21,
+      "diff": 0,
+      "baselinePlannerMs": 100.40339999999992,
+      "preparedPlannerMs": 100.67370000000005
+    },
+    {
+      "root": "G2T3",
+      "repetition": 17,
+      "baselineSims": 18,
+      "preparedSims": 18,
+      "diff": 0,
+      "baselinePlannerMs": 100.6851999999999,
+      "preparedPlannerMs": 100.8157000000001
+    },
+    {
+      "root": "G2T4",
+      "repetition": 17,
+      "baselineSims": 14,
+      "preparedSims": 14,
+      "diff": 0,
+      "baselinePlannerMs": 101.36230000000023,
+      "preparedPlannerMs": 100.87390000000005
+    },
+    {
+      "root": "G2T5",
+      "repetition": 17,
+      "baselineSims": 21,
+      "preparedSims": 22,
+      "diff": 1,
+      "baselinePlannerMs": 100.4025999999999,
+      "preparedPlannerMs": 100.5974000000001
+    },
+    {
+      "root": "G2T6",
+      "repetition": 17,
+      "baselineSims": 38,
+      "preparedSims": 38,
+      "diff": 0,
+      "baselinePlannerMs": 100.66959999999972,
+      "preparedPlannerMs": 100.62969999999996
+    },
+    {
+      "root": "G2T7",
+      "repetition": 17,
+      "baselineSims": 21,
+      "preparedSims": 22,
+      "diff": 1,
+      "baselinePlannerMs": 100.7817,
+      "preparedPlannerMs": 100.53620000000001
+    },
+    {
+      "root": "G2T8",
+      "repetition": 17,
+      "baselineSims": 57,
+      "preparedSims": 56,
+      "diff": -1,
+      "baselinePlannerMs": 100.16980000000012,
+      "preparedPlannerMs": 100.37300000000005
+    },
+    {
+      "root": "G1T1",
+      "repetition": 17,
+      "baselineSims": 16,
+      "preparedSims": 16,
+      "diff": 0,
+      "baselinePlannerMs": 101.66159999999991,
+      "preparedPlannerMs": 101.67020000000002
+    },
+    {
+      "root": "G1T2",
+      "repetition": 17,
+      "baselineSims": 16,
+      "preparedSims": 16,
+      "diff": 0,
+      "baselinePlannerMs": 101.10959999999977,
+      "preparedPlannerMs": 101.20330000000013
+    },
+    {
+      "root": "G1T3",
+      "repetition": 17,
+      "baselineSims": 19,
+      "preparedSims": 19,
+      "diff": 0,
+      "baselinePlannerMs": 100.80540000000019,
+      "preparedPlannerMs": 100.67479999999978
+    },
+    {
+      "root": "G1T4",
+      "repetition": 17,
+      "baselineSims": 21,
+      "preparedSims": 22,
+      "diff": 1,
+      "baselinePlannerMs": 100.65200000000004,
+      "preparedPlannerMs": 100.74040000000014
+    },
+    {
+      "root": "G1T5",
+      "repetition": 17,
+      "baselineSims": 7,
+      "preparedSims": 8,
+      "diff": 1,
+      "baselinePlannerMs": 100.66139999999996,
+      "preparedPlannerMs": 102.83370000000014
+    },
+    {
+      "root": "G1T6",
+      "repetition": 17,
+      "baselineSims": 15,
+      "preparedSims": 16,
+      "diff": 1,
+      "baselinePlannerMs": 101.21179999999913,
+      "preparedPlannerMs": 101.09019999999964
+    },
+    {
+      "root": "G1T7",
+      "repetition": 17,
+      "baselineSims": 18,
+      "preparedSims": 18,
+      "diff": 0,
+      "baselinePlannerMs": 100.94120000000021,
+      "preparedPlannerMs": 100.67990000000009
+    },
+    {
+      "root": "G1T8",
+      "repetition": 17,
+      "baselineSims": 37,
+      "preparedSims": 32,
+      "diff": -5,
+      "baselinePlannerMs": 100.55429999999978,
+      "preparedPlannerMs": 100.65419999999995
+    },
+    {
+      "root": "G1T9",
+      "repetition": 17,
+      "baselineSims": 13,
+      "preparedSims": 14,
+      "diff": 1,
+      "baselinePlannerMs": 101.15869999999995,
+      "preparedPlannerMs": 100.68669999999929
+    },
+    {
+      "root": "G6T1",
+      "repetition": 18,
+      "baselineSims": 18,
+      "preparedSims": 11,
+      "diff": -7,
+      "baselinePlannerMs": 102.1214,
+      "preparedPlannerMs": 103.78659999999999
+    },
+    {
+      "root": "G6T2",
+      "repetition": 18,
+      "baselineSims": 10,
+      "preparedSims": 12,
+      "diff": 2,
+      "baselinePlannerMs": 101.35480000000001,
+      "preparedPlannerMs": 102.89480000000003
+    },
+    {
+      "root": "G6T3",
+      "repetition": 18,
+      "baselineSims": 54,
+      "preparedSims": 54,
+      "diff": 0,
+      "baselinePlannerMs": 100.55770000000007,
+      "preparedPlannerMs": 100.57830000000001
+    },
+    {
+      "root": "G5T1",
+      "repetition": 18,
+      "baselineSims": 12,
+      "preparedSims": 12,
+      "diff": 0,
+      "baselinePlannerMs": 101.92240000000004,
+      "preparedPlannerMs": 103.08319999999992
+    },
+    {
+      "root": "G5T2",
+      "repetition": 18,
+      "baselineSims": 17,
+      "preparedSims": 17,
+      "diff": 0,
+      "baselinePlannerMs": 100.83989999999994,
+      "preparedPlannerMs": 100.53520000000003
+    },
+    {
+      "root": "G5T3",
+      "repetition": 18,
+      "baselineSims": 20,
+      "preparedSims": 20,
+      "diff": 0,
+      "baselinePlannerMs": 100.32119999999986,
+      "preparedPlannerMs": 100.49390000000017
+    },
+    {
+      "root": "G5T4",
+      "repetition": 18,
+      "baselineSims": 165,
+      "preparedSims": 160,
+      "diff": -5,
+      "baselinePlannerMs": 100.21309999999994,
+      "preparedPlannerMs": 100.22960000000012
+    },
+    {
+      "root": "G2T1",
+      "repetition": 18,
+      "baselineSims": 17,
+      "preparedSims": 17,
+      "diff": 0,
+      "baselinePlannerMs": 101.80000000000018,
+      "preparedPlannerMs": 101.83560000000011
+    },
+    {
+      "root": "G2T2",
+      "repetition": 18,
+      "baselineSims": 21,
+      "preparedSims": 21,
+      "diff": 0,
+      "baselinePlannerMs": 100.67169999999987,
+      "preparedPlannerMs": 100.55769999999984
+    },
+    {
+      "root": "G2T3",
+      "repetition": 18,
+      "baselineSims": 18,
+      "preparedSims": 19,
+      "diff": 1,
+      "baselinePlannerMs": 100.42319999999995,
+      "preparedPlannerMs": 100.46279999999979
+    },
+    {
+      "root": "G2T4",
+      "repetition": 18,
+      "baselineSims": 13,
+      "preparedSims": 13,
+      "diff": 0,
+      "baselinePlannerMs": 100.7183,
+      "preparedPlannerMs": 100.84180000000015
+    },
+    {
+      "root": "G2T5",
+      "repetition": 18,
+      "baselineSims": 19,
+      "preparedSims": 19,
+      "diff": 0,
+      "baselinePlannerMs": 100.79860000000008,
+      "preparedPlannerMs": 100.85580000000027
+    },
+    {
+      "root": "G2T6",
+      "repetition": 18,
+      "baselineSims": 38,
+      "preparedSims": 38,
+      "diff": 0,
+      "baselinePlannerMs": 100.53960000000006,
+      "preparedPlannerMs": 100.7804000000001
+    },
+    {
+      "root": "G2T7",
+      "repetition": 18,
+      "baselineSims": 22,
+      "preparedSims": 23,
+      "diff": 1,
+      "baselinePlannerMs": 100.4359999999997,
+      "preparedPlannerMs": 100.65000000000009
+    },
+    {
+      "root": "G2T8",
+      "repetition": 18,
+      "baselineSims": 55,
+      "preparedSims": 54,
+      "diff": -1,
+      "baselinePlannerMs": 100.34159999999974,
+      "preparedPlannerMs": 100.07380000000012
+    },
+    {
+      "root": "G1T1",
+      "repetition": 18,
+      "baselineSims": 16,
+      "preparedSims": 17,
+      "diff": 1,
+      "baselinePlannerMs": 101.69700000000012,
+      "preparedPlannerMs": 101.91170000000011
+    },
+    {
+      "root": "G1T2",
+      "repetition": 18,
+      "baselineSims": 16,
+      "preparedSims": 16,
+      "diff": 0,
+      "baselinePlannerMs": 101.26789999999983,
+      "preparedPlannerMs": 101.42039999999997
+    },
+    {
+      "root": "G1T3",
+      "repetition": 18,
+      "baselineSims": 18,
+      "preparedSims": 19,
+      "diff": 1,
+      "baselinePlannerMs": 101.02240000000029,
+      "preparedPlannerMs": 100.54959999999983
+    },
+    {
+      "root": "G1T4",
+      "repetition": 18,
+      "baselineSims": 21,
+      "preparedSims": 21,
+      "diff": 0,
+      "baselinePlannerMs": 100.9034999999999,
+      "preparedPlannerMs": 100.71860000000015
+    },
+    {
+      "root": "G1T5",
+      "repetition": 18,
+      "baselineSims": 8,
+      "preparedSims": 8,
+      "diff": 0,
+      "baselinePlannerMs": 100.83019999999988,
+      "preparedPlannerMs": 100.71389999999974
+    },
+    {
+      "root": "G1T6",
+      "repetition": 18,
+      "baselineSims": 16,
+      "preparedSims": 15,
+      "diff": -1,
+      "baselinePlannerMs": 101.04129999999986,
+      "preparedPlannerMs": 100.79330000000027
+    },
+    {
+      "root": "G1T7",
+      "repetition": 18,
+      "baselineSims": 18,
+      "preparedSims": 18,
+      "diff": 0,
+      "baselinePlannerMs": 100.72720000000027,
+      "preparedPlannerMs": 100.82400000000052
+    },
+    {
+      "root": "G1T8",
+      "repetition": 18,
+      "baselineSims": 37,
+      "preparedSims": 38,
+      "diff": 1,
+      "baselinePlannerMs": 100.65689999999995,
+      "preparedPlannerMs": 100.73120000000017
+    },
+    {
+      "root": "G1T9",
+      "repetition": 18,
+      "baselineSims": 14,
+      "preparedSims": 14,
+      "diff": 0,
+      "baselinePlannerMs": 101.09850000000006,
+      "preparedPlannerMs": 101.4375
+    },
+    {
+      "root": "G6T1",
+      "repetition": 19,
+      "baselineSims": 12,
+      "preparedSims": 20,
+      "diff": 8,
+      "baselinePlannerMs": 102.3251,
+      "preparedPlannerMs": 102.42670000000004
+    },
+    {
+      "root": "G6T2",
+      "repetition": 19,
+      "baselineSims": 12,
+      "preparedSims": 10,
+      "diff": -2,
+      "baselinePlannerMs": 102.37220000000002,
+      "preparedPlannerMs": 101.69290000000001
+    },
+    {
+      "root": "G6T3",
+      "repetition": 19,
+      "baselineSims": 54,
+      "preparedSims": 54,
+      "diff": 0,
+      "baselinePlannerMs": 100.27069999999998,
+      "preparedPlannerMs": 100.27729999999997
+    },
+    {
+      "root": "G5T1",
+      "repetition": 19,
+      "baselineSims": 13,
+      "preparedSims": 13,
+      "diff": 0,
+      "baselinePlannerMs": 102.12900000000002,
+      "preparedPlannerMs": 101.8134
+    },
+    {
+      "root": "G5T2",
+      "repetition": 19,
+      "baselineSims": 18,
+      "preparedSims": 19,
+      "diff": 1,
+      "baselinePlannerMs": 100.73530000000005,
+      "preparedPlannerMs": 100.91340000000002
+    },
+    {
+      "root": "G5T3",
+      "repetition": 19,
+      "baselineSims": 20,
+      "preparedSims": 21,
+      "diff": 1,
+      "baselinePlannerMs": 100.33580000000006,
+      "preparedPlannerMs": 100.3715000000002
+    },
+    {
+      "root": "G5T4",
+      "repetition": 19,
+      "baselineSims": 162,
+      "preparedSims": 159,
+      "diff": -3,
+      "baselinePlannerMs": 100.12979999999993,
+      "preparedPlannerMs": 100.36980000000017
+    },
+    {
+      "root": "G2T1",
+      "repetition": 19,
+      "baselineSims": 16,
+      "preparedSims": 17,
+      "diff": 1,
+      "baselinePlannerMs": 101.8574000000001,
+      "preparedPlannerMs": 101.82799999999997
+    },
+    {
+      "root": "G2T2",
+      "repetition": 19,
+      "baselineSims": 21,
+      "preparedSims": 22,
+      "diff": 1,
+      "baselinePlannerMs": 100.44900000000007,
+      "preparedPlannerMs": 100.86079999999993
+    },
+    {
+      "root": "G2T3",
+      "repetition": 19,
+      "baselineSims": 19,
+      "preparedSims": 19,
+      "diff": 0,
+      "baselinePlannerMs": 100.55080000000021,
+      "preparedPlannerMs": 100.98930000000018
+    },
+    {
+      "root": "G2T4",
+      "repetition": 19,
+      "baselineSims": 14,
+      "preparedSims": 14,
+      "diff": 0,
+      "baselinePlannerMs": 102.29700000000003,
+      "preparedPlannerMs": 100.77530000000024
+    },
+    {
+      "root": "G2T5",
+      "repetition": 19,
+      "baselineSims": 20,
+      "preparedSims": 21,
+      "diff": 1,
+      "baselinePlannerMs": 100.7139000000002,
+      "preparedPlannerMs": 100.99479999999994
+    },
+    {
+      "root": "G2T6",
+      "repetition": 19,
+      "baselineSims": 38,
+      "preparedSims": 38,
+      "diff": 0,
+      "baselinePlannerMs": 100.6850999999997,
+      "preparedPlannerMs": 100.50550000000021
+    },
+    {
+      "root": "G2T7",
+      "repetition": 19,
+      "baselineSims": 22,
+      "preparedSims": 23,
+      "diff": 1,
+      "baselinePlannerMs": 100.54659999999967,
+      "preparedPlannerMs": 100.4357
+    },
+    {
+      "root": "G2T8",
+      "repetition": 19,
+      "baselineSims": 56,
+      "preparedSims": 57,
+      "diff": 1,
+      "baselinePlannerMs": 100.70280000000002,
+      "preparedPlannerMs": 100.16779999999972
+    },
+    {
+      "root": "G1T1",
+      "repetition": 19,
+      "baselineSims": 17,
+      "preparedSims": 17,
+      "diff": 0,
+      "baselinePlannerMs": 101.77750000000015,
+      "preparedPlannerMs": 102.16879999999992
+    },
+    {
+      "root": "G1T2",
+      "repetition": 19,
+      "baselineSims": 16,
+      "preparedSims": 16,
+      "diff": 0,
+      "baselinePlannerMs": 101.21579999999994,
+      "preparedPlannerMs": 101.27590000000009
+    },
+    {
+      "root": "G1T3",
+      "repetition": 19,
+      "baselineSims": 18,
+      "preparedSims": 19,
+      "diff": 1,
+      "baselinePlannerMs": 100.96340000000009,
+      "preparedPlannerMs": 100.85429999999997
+    },
+    {
+      "root": "G1T4",
+      "repetition": 19,
+      "baselineSims": 21,
+      "preparedSims": 22,
+      "diff": 1,
+      "baselinePlannerMs": 100.51159999999982,
+      "preparedPlannerMs": 100.7464
+    },
+    {
+      "root": "G1T5",
+      "repetition": 19,
+      "baselineSims": 7,
+      "preparedSims": 7,
+      "diff": 0,
+      "baselinePlannerMs": 100.6889000000001,
+      "preparedPlannerMs": 101.16850000000022
+    },
+    {
+      "root": "G1T6",
+      "repetition": 19,
+      "baselineSims": 15,
+      "preparedSims": 15,
+      "diff": 0,
+      "baselinePlannerMs": 100.76469999999972,
+      "preparedPlannerMs": 100.86080000000038
+    },
+    {
+      "root": "G1T7",
+      "repetition": 19,
+      "baselineSims": 18,
+      "preparedSims": 18,
+      "diff": 0,
+      "baselinePlannerMs": 100.55619999999999,
+      "preparedPlannerMs": 100.83390000000054
+    },
+    {
+      "root": "G1T8",
+      "repetition": 19,
+      "baselineSims": 38,
+      "preparedSims": 38,
+      "diff": 0,
+      "baselinePlannerMs": 100.77810000000045,
+      "preparedPlannerMs": 100.88910000000033
+    },
+    {
+      "root": "G1T9",
+      "repetition": 19,
+      "baselineSims": 14,
+      "preparedSims": 14,
+      "diff": 0,
+      "baselinePlannerMs": 100.79240000000027,
+      "preparedPlannerMs": 102.9387999999999
+    },
+    {
+      "root": "G6T1",
+      "repetition": 20,
+      "baselineSims": 18,
+      "preparedSims": 12,
+      "diff": -6,
+      "baselinePlannerMs": 102.1154,
+      "preparedPlannerMs": 103.2784
+    },
+    {
+      "root": "G6T2",
+      "repetition": 20,
+      "baselineSims": 10,
+      "preparedSims": 12,
+      "diff": 2,
+      "baselinePlannerMs": 101.03320000000002,
+      "preparedPlannerMs": 100.82049999999998
+    },
+    {
+      "root": "G6T3",
+      "repetition": 20,
+      "baselineSims": 55,
+      "preparedSims": 53,
+      "diff": -2,
+      "baselinePlannerMs": 100.13660000000004,
+      "preparedPlannerMs": 100.32149999999996
+    },
+    {
+      "root": "G5T1",
+      "repetition": 20,
+      "baselineSims": 13,
+      "preparedSims": 13,
+      "diff": 0,
+      "baselinePlannerMs": 101.95089999999993,
+      "preparedPlannerMs": 101.81479999999999
+    },
+    {
+      "root": "G5T2",
+      "repetition": 20,
+      "baselineSims": 18,
+      "preparedSims": 18,
+      "diff": 0,
+      "baselinePlannerMs": 100.769,
+      "preparedPlannerMs": 100.48910000000001
+    },
+    {
+      "root": "G5T3",
+      "repetition": 20,
+      "baselineSims": 20,
+      "preparedSims": 21,
+      "diff": 1,
+      "baselinePlannerMs": 100.35490000000004,
+      "preparedPlannerMs": 100.48209999999995
+    },
+    {
+      "root": "G5T4",
+      "repetition": 20,
+      "baselineSims": 166,
+      "preparedSims": 155,
+      "diff": -11,
+      "baselinePlannerMs": 100.14570000000003,
+      "preparedPlannerMs": 100.1848
+    },
+    {
+      "root": "G2T1",
+      "repetition": 20,
+      "baselineSims": 17,
+      "preparedSims": 17,
+      "diff": 0,
+      "baselinePlannerMs": 101.60500000000002,
+      "preparedPlannerMs": 101.94340000000011
+    },
+    {
+      "root": "G2T2",
+      "repetition": 20,
+      "baselineSims": 21,
+      "preparedSims": 21,
+      "diff": 0,
+      "baselinePlannerMs": 100.4342999999999,
+      "preparedPlannerMs": 100.53580000000011
+    },
+    {
+      "root": "G2T3",
+      "repetition": 20,
+      "baselineSims": 18,
+      "preparedSims": 19,
+      "diff": 1,
+      "baselinePlannerMs": 100.67229999999995,
+      "preparedPlannerMs": 100.61809999999991
+    },
+    {
+      "root": "G2T4",
+      "repetition": 20,
+      "baselineSims": 14,
+      "preparedSims": 15,
+      "diff": 1,
+      "baselinePlannerMs": 100.75810000000001,
+      "preparedPlannerMs": 100.68040000000019
+    },
+    {
+      "root": "G2T5",
+      "repetition": 20,
+      "baselineSims": 20,
+      "preparedSims": 20,
+      "diff": 0,
+      "baselinePlannerMs": 100.97870000000012,
+      "preparedPlannerMs": 100.65959999999995
+    },
+    {
+      "root": "G2T6",
+      "repetition": 20,
+      "baselineSims": 38,
+      "preparedSims": 39,
+      "diff": 1,
+      "baselinePlannerMs": 100.51049999999987,
+      "preparedPlannerMs": 100.54660000000013
+    },
+    {
+      "root": "G2T7",
+      "repetition": 20,
+      "baselineSims": 22,
+      "preparedSims": 22,
+      "diff": 0,
+      "baselinePlannerMs": 100.61709999999994,
+      "preparedPlannerMs": 100.85890000000018
+    },
+    {
+      "root": "G2T8",
+      "repetition": 20,
+      "baselineSims": 56,
+      "preparedSims": 55,
+      "diff": -1,
+      "baselinePlannerMs": 100.39350000000013,
+      "preparedPlannerMs": 100.16879999999992
+    },
+    {
+      "root": "G1T1",
+      "repetition": 20,
+      "baselineSims": 16,
+      "preparedSims": 17,
+      "diff": 1,
+      "baselinePlannerMs": 101.8101999999999,
+      "preparedPlannerMs": 102.20100000000002
+    },
+    {
+      "root": "G1T2",
+      "repetition": 20,
+      "baselineSims": 16,
+      "preparedSims": 16,
+      "diff": 0,
+      "baselinePlannerMs": 101.21050000000014,
+      "preparedPlannerMs": 101.0661
+    },
+    {
+      "root": "G1T3",
+      "repetition": 20,
+      "baselineSims": 19,
+      "preparedSims": 19,
+      "diff": 0,
+      "baselinePlannerMs": 100.7838999999999,
+      "preparedPlannerMs": 100.76130000000012
+    },
+    {
+      "root": "G1T4",
+      "repetition": 20,
+      "baselineSims": 21,
+      "preparedSims": 21,
+      "diff": 0,
+      "baselinePlannerMs": 100.56910000000016,
+      "preparedPlannerMs": 100.79089999999997
+    },
+    {
+      "root": "G1T5",
+      "repetition": 20,
+      "baselineSims": 8,
+      "preparedSims": 8,
+      "diff": 0,
+      "baselinePlannerMs": 100.4377999999997,
+      "preparedPlannerMs": 100.43049999999994
+    },
+    {
+      "root": "G1T6",
+      "repetition": 20,
+      "baselineSims": 15,
+      "preparedSims": 15,
+      "diff": 0,
+      "baselinePlannerMs": 101.19400000000041,
+      "preparedPlannerMs": 101.64930000000004
+    },
+    {
+      "root": "G1T7",
+      "repetition": 20,
+      "baselineSims": 18,
+      "preparedSims": 18,
+      "diff": 0,
+      "baselinePlannerMs": 100.53359999999975,
+      "preparedPlannerMs": 100.80110000000059
+    },
+    {
+      "root": "G1T8",
+      "repetition": 20,
+      "baselineSims": 38,
+      "preparedSims": 38,
+      "diff": 0,
+      "baselinePlannerMs": 100.4958000000006,
+      "preparedPlannerMs": 100.57229999999981
+    },
+    {
+      "root": "G1T9",
+      "repetition": 20,
+      "baselineSims": 13,
+      "preparedSims": 14,
+      "diff": 1,
+      "baselinePlannerMs": 100.76020000000062,
+      "preparedPlannerMs": 100.95809999999983
+    }
+  ]
+}

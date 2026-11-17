@@ -1,0 +1,390 @@
+{
+  "generatedAt": "2026-11-14T16:55:55.277Z",
+  "generatedBy": "PPC-CAT-STRATEGY-01/probe/planner_audit.test.ts",
+  "head": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+  "root": "G6T2",
+  "provenance": "REAL_HUMAN_REPLAY",
+  "rootState": {
+    "phase": "playing",
+    "currentPlayer": "cat",
+    "cat": "3,3",
+    "mouse": "1,6",
+    "catMovesLeft": 4,
+    "mouseMovesLeft": 0,
+    "mouseHasButter": true,
+    "mouseSkillActive": false,
+    "butterPositions": [
+      "2,6"
+    ],
+    "pendingButterSpawns": [
+      "5,1:0"
+    ],
+    "pendingButterPlacementDebt": 0,
+    "trapPosition": "1,1",
+    "catTrapsRemaining": 0,
+    "blockedTunnels": []
+  },
+  "protocols": {
+    "fixedDepth": "createSearchContext(rules, 400000, TT, AB, ordering, 0, false) + leafEvaluator=evaluateCorrectedHoleForCat + capturePlan + searchBestAction(state, N)",
+    "production": "planHardCatTurn({timeBudgetMs:100, maxDepthTurns:4, refutation:{enabled:true, totalTurnBudgetMs:150}})"
+  },
+  "fixedDepthResults": [
+    {
+      "protocol": "FIXED-D1",
+      "bestAction": "U",
+      "plan": [
+        "U",
+        "U",
+        "R",
+        "R"
+      ],
+      "planString": "UURR",
+      "value": -447.2368421052632,
+      "mate": null,
+      "completed": true,
+      "nodes": 20,
+      "elapsedMs": 23,
+      "rootValues": [
+        {
+          "action": "U",
+          "value": -447.2368421052632
+        },
+        {
+          "action": "D",
+          "value": -552.3684210526316
+        },
+        {
+          "action": "L",
+          "value": -552.3684210526316
+        }
+      ],
+      "tacticalVerdictOfPlan": {
+        "ok": true,
+        "branches": 1,
+        "verdict": "MOUSE_FORCED_WIN_WITHIN_H1"
+      }
+    },
+    {
+      "protocol": "FIXED-D2",
+      "bestAction": "D",
+      "plan": [
+        "D",
+        "R",
+        "R",
+        "R"
+      ],
+      "planString": "DRRR",
+      "value": -1054,
+      "mate": null,
+      "completed": true,
+      "nodes": 39461,
+      "elapsedMs": 10769,
+      "rootValues": [
+        {
+          "action": "U",
+          "value": -1145.4473684210525
+        },
+        {
+          "action": "D",
+          "value": -1054
+        },
+        {
+          "action": "L",
+          "value": -1145.4473684210525
+        }
+      ],
+      "tacticalVerdictOfPlan": {
+        "ok": true,
+        "branches": 1,
+        "verdict": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1"
+      }
+    },
+    {
+      "protocol": "FIXED-D3",
+      "bestAction": "D",
+      "plan": [
+        "D"
+      ],
+      "planString": "D",
+      "value": -280.31578947368416,
+      "mate": null,
+      "completed": false,
+      "nodes": 400000,
+      "elapsedMs": 80192,
+      "rootValues": [
+        {
+          "action": "U",
+          "value": -426.63157894736844
+        },
+        {
+          "action": "D",
+          "value": -280.31578947368416
+        },
+        {
+          "action": "L",
+          "value": -483.60526315789474
+        }
+      ],
+      "tacticalVerdictOfPlan": null
+    }
+  ],
+  "fixedDepthWithProductionLeaf": [
+    {
+      "protocol": "FIXED-D1 (production leaf evaluateForCat)",
+      "bestAction": "U",
+      "planString": "UURR",
+      "value": -247.23684210526318,
+      "mate": null,
+      "completed": true,
+      "nodes": 20,
+      "elapsedMs": 12,
+      "rootValues": [
+        {
+          "action": "U",
+          "value": -247.23684210526318
+        },
+        {
+          "action": "D",
+          "value": -345
+        },
+        {
+          "action": "L",
+          "value": -345
+        }
+      ],
+      "tacticalVerdictOfPlan": {
+        "ok": true,
+        "branches": 1,
+        "verdict": "MOUSE_FORCED_WIN_WITHIN_H1"
+      }
+    },
+    {
+      "protocol": "FIXED-D2 (production leaf evaluateForCat)",
+      "bestAction": "U",
+      "planString": "ULDR",
+      "value": -658.2105263157898,
+      "mate": null,
+      "completed": true,
+      "nodes": 39461,
+      "elapsedMs": 13715,
+      "rootValues": [
+        {
+          "action": "U",
+          "value": -658.2105263157898
+        },
+        {
+          "action": "D",
+          "value": -658.2105263157898
+        },
+        {
+          "action": "L",
+          "value": -658.2105263157898
+        }
+      ],
+      "tacticalVerdictOfPlan": {
+        "ok": true,
+        "branches": 1,
+        "verdict": "MOUSE_FORCED_WIN_WITHIN_H1"
+      }
+    }
+  ],
+  "productionResult": {
+    "protocol": "PROD-100ms(+150ms sidecar)",
+    "bestAction": "U",
+    "plan": [
+      "U",
+      "U",
+      "R",
+      "R"
+    ],
+    "planString": "UURR",
+    "value": -247.23684210526318,
+    "mate": null,
+    "completedDepth": 1,
+    "attemptedDepth": 2,
+    "hasSolution": true,
+    "deadlineFired": true,
+    "budgetFired": false,
+    "nodes": 239,
+    "elapsedMs": 153,
+    "planStatus": "planned",
+    "fallback": false,
+    "placedTrap": false,
+    "rootValues": [
+      {
+        "action": "U",
+        "value": -247.23684210526318,
+        "mate": null,
+        "bound": "exact"
+      },
+      {
+        "action": "D",
+        "value": -345,
+        "mate": null,
+        "bound": "exact"
+      },
+      {
+        "action": "L",
+        "value": -345,
+        "mate": null,
+        "bound": "exact"
+      }
+    ],
+    "refutation": {
+      "refutationEnabled": true,
+      "refutationTriggered": true,
+      "candidateCount": 0,
+      "baselineProbeStatus": null,
+      "baselineRefutationWitness": [],
+      "candidatesProbed": 0,
+      "candidateStatuses": [],
+      "pathCount": 0,
+      "exactLocalChecks": 0,
+      "refutationCpuMs": 0,
+      "refutationWallMs": 35.243800000011106,
+      "overrideEligible": false,
+      "overrideUsed": false,
+      "selectedPlanSource": "baseline",
+      "sidecarAbortReason": "deadline",
+      "deadlineControl": {
+        "deadline": {
+          "kind": "FINITE_ABSOLUTE",
+          "deadlineAtMs": 92617.1469,
+          "clockOrigin": "performance.now",
+          "totalDeadlineClockReads": 1074
+        },
+        "finite": {
+          "kind": "FINITE_ABSOLUTE",
+          "deadlineAtMs": 92617.1469,
+          "clockOrigin": "performance.now",
+          "totalDeadlineClockReads": 1074
+        },
+        "deadlineAbort": true,
+        "abortPhase": "selection_interception",
+        "deadlineObservedAtMs": 92617.4244,
+        "candidateCount": 0,
+        "partialCommitCount": 0
+      }
+    },
+    "tacticalVerdictOfPlan": {
+      "ok": true,
+      "branches": 1,
+      "verdict": "MOUSE_FORCED_WIN_WITHIN_H1"
+    }
+  },
+  "independentTacticalReference": {
+    "horizon": "H1",
+    "method": "exact boolean quantifier over the real RuleSet (probe/lib.ts forcesWinWithin)",
+    "safePlans": [
+      {
+        "plan": [
+          "D",
+          "R",
+          "D",
+          "R"
+        ],
+        "source": "traceCatDefense (H1)",
+        "planString": "DRDR",
+        "verdict": {
+          "ok": true,
+          "branches": 1,
+          "verdict": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1"
+        }
+      },
+      {
+        "plan": [
+          "D",
+          "R",
+          "R",
+          "R"
+        ],
+        "source": "historical alternative",
+        "planString": "DRRR",
+        "verdict": {
+          "ok": true,
+          "branches": 1,
+          "verdict": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1"
+        }
+      }
+    ],
+    "catOpeningsWinningForMouse": [
+      "U",
+      "L"
+    ],
+    "catOpeningsSafe": [
+      "D"
+    ]
+  },
+  "attribution": {
+    "class": "SEARCH_HORIZON_LIMITATION",
+    "coFactors": [
+      "EVALUATION_BLINDSPOT"
+    ],
+    "why": [
+      "固定 D1 选择 UURR（值 -447.237），该计划经精确量词证明为 MOUSE_FORCED_WIN_WITHIN_H1。",
+      "在 corrected-hole 评价下，固定 D2 改选 DRRR（值 -1054.000），该计划证明为 CAT_SURVIVAL_CERTIFIED_WITHIN_H1 ⇒ 视界不足确实会直接导致误选。",
+      "但在生产实际使用的 evaluateForCat(E1) 下，固定 D2 仍选择 ULDR（值 -658.211），其战术判定为 MOUSE_FORCED_WIN_WITHIN_H1。",
+      "E1 在 D2 只给出 1 个不同根值（-658.210526316）——安全开局与致命开局在数值上完全并列，评价函数对此毫无区分力，最终由同分打破规则（顺序取 U）决定。",
+      "corrected-hole 评价在 D2 能分出 2 档（-1145.447368421 / -1054.000000000），安全开局 D 严格最优。",
+      "生产 100ms 与固定 D1 完全一致（UURR / -247.23684210526318），completedDepth=1，deadlineFired=true。",
+      "结论：主因是视界（D1 未建模对手应手），但修复不能只靠加深度——叶评价（E1 对「鼠带油 + 幽灵黄油」的计时威胁不敏感）是并存的第二缺陷。"
+    ],
+    "rejected": {
+      "TACTICAL_PLANNING_FAILURE": "规划器输出的是一致、合法、可执行的计划（UURR 四步都在步数预算内），失败点是计划的选择而非计划的构造。",
+      "GENUINE_FORCED_LOSS": "存在能证明安全的合法猫计划（DRDR / DRRR），因此不是本局面必败。",
+      "UNRESOLVED": "不适用：所有相关判定的量词搜索均未截断（cap=600k）。"
+    }
+  },
+  "evaluatorComparison": {
+    "note": "同一局面、同一固定深度下两个叶评价的区分力对比。",
+    "atD2": {
+      "productionLeaf_evaluateForCat": {
+        "plan": "ULDR",
+        "distinctRootValues": 1,
+        "rootValues": [
+          {
+            "action": "U",
+            "value": -658.2105263157898
+          },
+          {
+            "action": "D",
+            "value": -658.2105263157898
+          },
+          {
+            "action": "L",
+            "value": -658.2105263157898
+          }
+        ],
+        "tacticalVerdictOfPlan": {
+          "ok": true,
+          "branches": 1,
+          "verdict": "MOUSE_FORCED_WIN_WITHIN_H1"
+        }
+      },
+      "correctedHoleLeaf": {
+        "plan": "DRRR",
+        "distinctRootValues": 2,
+        "rootValues": [
+          {
+            "action": "U",
+            "value": -1145.4473684210525
+          },
+          {
+            "action": "D",
+            "value": -1054
+          },
+          {
+            "action": "L",
+            "value": -1145.4473684210525
+          }
+        ],
+        "tacticalVerdictOfPlan": {
+          "ok": true,
+          "branches": 1,
+          "verdict": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1"
+        }
+      }
+    }
+  },
+  "decisionQuality": "TACTICAL_DECISION_ERROR"
+}

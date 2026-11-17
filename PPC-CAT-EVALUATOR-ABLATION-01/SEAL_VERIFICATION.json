@@ -1,0 +1,174 @@
+{
+  "artifactId": "SEAL_VERIFICATION",
+  "round": "PPC-CAT-EVALUATOR-ABLATION-01",
+  "phase": 8,
+  "generatedAt": "2026-11-15T13:52:08.831Z",
+  "generatedBy": "PPC-CAT-EVALUATOR-ABLATION-01/probe/seal.mjs",
+  "head": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+  "headLive": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+  "hashAlgorithm": "sha256 over raw bytes",
+  "contentFileCount": 126,
+  "manifest": {
+    "path": "SOURCE_MANIFEST.json",
+    "selfExcluded": true,
+    "sha256": "5d5a63774675add6ee401a64e6998cd5989751e4226e7260c33761a9285f7e83",
+    "bytes": 29118
+  },
+  "sha256sums": {
+    "path": "SHA256SUMS.txt",
+    "sha256": "9218ca6f6a70ff460280c06bc43d04dede74a0bd64432a0203462076bdd57c77",
+    "bytes": 12603,
+    "recordsManifestDigest": true
+  },
+  "restoreMd": {
+    "path": "RESTORE.md",
+    "sha256": "34d80a464be9762f8cd1966268c446915227928d4eb22a8ddebce97318e42b05",
+    "bytes": 2351,
+    "inArchive": false
+  },
+  "archive": {
+    "path": "F:\\ppc-checkpoints\\PPC-CAT-EVALUATOR-ABLATION-01-candidate.tar.gz",
+    "sha256": "d174a6a84c35fcf095179ccb4b05cd40cf530c09a50aaf669299d7d1e05ce4a4",
+    "bytes": 355702,
+    "memberCount": 128,
+    "outsideRepo": true,
+    "refusedOverwrite": true
+  },
+  "restore": {
+    "dir": "F:\\ppc-checkpoints\\_restore_ablation01",
+    "outsideRepo": true,
+    "filesChecked": 128,
+    "mismatches": 0,
+    "lineEndingMismatches": 0,
+    "missing": 0,
+    "extra": 0,
+    "missingFiles": [],
+    "extraFiles": [],
+    "allByteIdentical": true,
+    "mismatchDetail": []
+  },
+  "workingTree": {
+    "roundModifiedProduction": false,
+    "roundStartProxy": "2026-11-15T12:16:23.771Z",
+    "changedDuringRound": [],
+    "workingTreeDiffersFromHead": true,
+    "allPatchesPredateRound": true,
+    "leafSourcesMatchHead": true,
+    "headMatchesFrozen": true,
+    "preExistingPatchInventory": [
+      {
+        "file": "src/game/ai/__tests__/expectiminimax.test.ts",
+        "added": 14,
+        "deleted": 1,
+        "mtime": "2026-11-13T09:10:41.384Z",
+        "predatesRoundStart": true
+      },
+      {
+        "file": "src/game/ai/__tests__/forcedLossTieBreakHv14Reachability.test.ts",
+        "added": 107,
+        "deleted": 6,
+        "mtime": "2026-11-13T09:09:12.174Z",
+        "predatesRoundStart": true
+      },
+      {
+        "file": "src/game/ai/__tests__/hv14FiveGameForensics.test.ts",
+        "added": 22,
+        "deleted": 3,
+        "mtime": "2026-11-13T05:17:40.567Z",
+        "predatesRoundStart": true
+      },
+      {
+        "file": "src/game/ai/__tests__/hv2PlanTieQuality.test.ts",
+        "added": 24,
+        "deleted": 20,
+        "mtime": "2026-11-13T05:45:05.406Z",
+        "predatesRoundStart": true
+      },
+      {
+        "file": "src/game/ai/__tests__/m3liteHumanValidationLogging.test.ts",
+        "added": 8,
+        "deleted": 3,
+        "mtime": "2026-11-13T05:54:26.077Z",
+        "predatesRoundStart": true
+      },
+      {
+        "file": "src/game/ai/__tests__/progressGuard.test.ts",
+        "added": 29,
+        "deleted": 5,
+        "mtime": "2026-11-13T05:54:38.799Z",
+        "predatesRoundStart": true
+      },
+      {
+        "file": "src/game/ai/deadlineContext.ts",
+        "added": 97,
+        "deleted": 2,
+        "mtime": "2026-11-12T13:59:17.790Z",
+        "predatesRoundStart": true
+      },
+      {
+        "file": "src/game/ai/expectiminimax.ts",
+        "added": 65,
+        "deleted": 16,
+        "mtime": "2026-11-14T05:07:02.639Z",
+        "predatesRoundStart": true
+      },
+      {
+        "file": "src/game/ai/hardTurnPlanner.ts",
+        "added": 48,
+        "deleted": 7,
+        "mtime": "2026-11-12T13:59:38.594Z",
+        "predatesRoundStart": true
+      },
+      {
+        "file": "src/game/ai/legalActions.ts",
+        "added": 11,
+        "deleted": 30,
+        "mtime": "2026-11-14T04:36:16.777Z",
+        "predatesRoundStart": true
+      },
+      {
+        "file": "src/game/ai/planQuality.ts",
+        "added": 118,
+        "deleted": 17,
+        "mtime": "2026-11-13T13:13:59.004Z",
+        "predatesRoundStart": true
+      },
+      {
+        "file": "src/game/ai/transposition.ts",
+        "added": 43,
+        "deleted": 1,
+        "mtime": "2026-11-12T13:11:39.976Z",
+        "predatesRoundStart": true
+      },
+      {
+        "file": "src/game/config.ts",
+        "added": 37,
+        "deleted": 0,
+        "mtime": "2026-11-13T13:13:37.762Z",
+        "predatesRoundStart": true
+      },
+      {
+        "file": "src/game/engine.ts",
+        "added": 108,
+        "deleted": 5,
+        "mtime": "2026-11-13T13:13:51.762Z",
+        "predatesRoundStart": true
+      },
+      {
+        "file": "src/game/openingFairness.ts",
+        "added": 284,
+        "deleted": 103,
+        "mtime": "2026-11-13T14:10:25.294Z",
+        "predatesRoundStart": true
+      }
+    ]
+  },
+  "frozenFixture": {
+    "path": "src/game/ai/__tests__/fixtures/ppcId01-human-roots.json",
+    "sha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+    "matches": true
+  },
+  "selfReferenceCycleBroken": true,
+  "crlfLfFalseProof": "NONE — every digest is over raw Buffer bytes; restore compared byte-for-byte AND line-ending-class",
+  "previousRoundOverwritten": false
+}

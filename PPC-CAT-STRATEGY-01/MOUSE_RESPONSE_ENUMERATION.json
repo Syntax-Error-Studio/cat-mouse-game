@@ -1,0 +1,821 @@
+{
+  "generatedAt": "2026-11-14T16:58:11.616Z",
+  "generatedBy": "PPC-CAT-STRATEGY-01/probe/tactical_tree.test.ts",
+  "root": "G6T2",
+  "provenance": "REAL_HUMAN_REPLAY",
+  "horizon": {
+    "name": "H1",
+    "hParam": 2
+  },
+  "catOpeningScreening": {
+    "openings": [
+      "U",
+      "D",
+      "L"
+    ],
+    "note": "R 被箱子占据，不是合法首步（真实规则枚举结果）。每个开局都从根状态出发、用精确布尔量词在 H1 下判定（cap=600k，无截断）。",
+    "measured": [
+      {
+        "step": "U",
+        "mouseForcedWin": true,
+        "verdict": "MOUSE_FORCED_WIN_WITHIN_H1",
+        "nodes": 68162,
+        "transitions": 169696,
+        "elapsedMs": 6197
+      },
+      {
+        "step": "D",
+        "mouseForcedWin": false,
+        "verdict": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+        "nodes": 58106,
+        "transitions": 142927,
+        "elapsedMs": 5201
+      },
+      {
+        "step": "L",
+        "mouseForcedWin": true,
+        "verdict": "MOUSE_FORCED_WIN_WITHIN_H1",
+        "nodes": 77595,
+        "transitions": 195248,
+        "elapsedMs": 7415
+      }
+    ]
+  },
+  "ghostBoundaryAfterUurr": {
+    "outcomes": 1,
+    "horizonIdx": 1,
+    "interpretation": "CAT→MOUSE 边界确实是 CHANCE 节点，但本局只有一个正概率结果（pending ghost 的公告格未被占用，直接物化），权重 1.0 ⇒ 该边界不产生分支。鼠的逃脱不依赖这里的随机结果；真正的随机源是鼠拾取时的公告（29 个候选）。"
+  },
+  "mouseFirstResponsesOnGhostBranch1": {
+    "branchState": {
+      "phase": "playing",
+      "currentPlayer": "mouse",
+      "cat": "1,5",
+      "mouse": "1,6",
+      "catMovesLeft": 0,
+      "mouseMovesLeft": 3,
+      "mouseHasButter": true,
+      "mouseSkillActive": false,
+      "butterPositions": [
+        "2,6",
+        "5,1"
+      ],
+      "pendingButterSpawns": [],
+      "pendingButterPlacementDebt": 0,
+      "trapPosition": "1,1",
+      "catTrapsRemaining": 0,
+      "blockedTunnels": []
+    },
+    "branchHorizonIdx": 1,
+    "complete": true,
+    "responses": [
+      {
+        "action": "U",
+        "mouseStillForcesWinWithinH1": true,
+        "childNodes": 4458,
+        "childState": {
+          "phase": "playing",
+          "currentPlayer": "mouse",
+          "cat": "1,5",
+          "mouse": "0,6",
+          "catMovesLeft": 0,
+          "mouseMovesLeft": 2,
+          "mouseHasButter": true,
+          "mouseSkillActive": false,
+          "butterPositions": [
+            "2,6",
+            "5,1"
+          ],
+          "pendingButterSpawns": [],
+          "pendingButterPlacementDebt": 0,
+          "trapPosition": "1,1",
+          "catTrapsRemaining": 0,
+          "blockedTunnels": []
+        }
+      },
+      {
+        "action": "D*",
+        "mouseStillForcesWinWithinH1": true,
+        "childNodes": 4458,
+        "childState": null
+      },
+      {
+        "action": "R",
+        "mouseStillForcesWinWithinH1": true,
+        "childNodes": 4458,
+        "childState": {
+          "phase": "playing",
+          "currentPlayer": "mouse",
+          "cat": "1,5",
+          "mouse": "1,7",
+          "catMovesLeft": 0,
+          "mouseMovesLeft": 2,
+          "mouseHasButter": true,
+          "mouseSkillActive": false,
+          "butterPositions": [
+            "2,6",
+            "5,1"
+          ],
+          "pendingButterSpawns": [],
+          "pendingButterPlacementDebt": 0,
+          "trapPosition": "1,1",
+          "catTrapsRemaining": 0,
+          "blockedTunnels": []
+        }
+      },
+      {
+        "action": "S",
+        "mouseStillForcesWinWithinH1": true,
+        "childNodes": 4458,
+        "childState": {
+          "phase": "playing",
+          "currentPlayer": "mouse",
+          "cat": "1,5",
+          "mouse": "1,6",
+          "catMovesLeft": 0,
+          "mouseMovesLeft": 6,
+          "mouseHasButter": false,
+          "mouseSkillActive": true,
+          "butterPositions": [
+            "2,6",
+            "5,1"
+          ],
+          "pendingButterSpawns": [],
+          "pendingButterPlacementDebt": 0,
+          "trapPosition": "1,1",
+          "catTrapsRemaining": 0,
+          "blockedTunnels": []
+        }
+      }
+    ],
+    "witnessChoice": "S"
+  },
+  "witnessLine": {
+    "purpose": "MOUSE_WIN_WITNESS：∃猫线 × ∃CHANCE 分支 × ∃鼠线 → MouseWins（不等于强制获胜）",
+    "plan": [
+      "c:U",
+      "c:U",
+      "c:R",
+      "c:R",
+      "m:S",
+      "m:D",
+      "m:D",
+      "m:D",
+      "m:D",
+      "m:D",
+      "m:D",
+      "c:R",
+      "c:D",
+      "c:D",
+      "c:D",
+      "m:R",
+      "m:R"
+    ],
+    "chanceLog": [
+      "CHANCE R: 1 outcomes, picked #1 weight=1.000000 ghosts=[-]",
+      "CHANCE D: 29 outcomes, picked #1 weight=0.034483 ghosts=[1,8]",
+      "CHANCE D: 1 outcomes, picked #1 weight=1.000000 ghosts=[-]"
+    ],
+    "finalPhase": "mouse_wins",
+    "legalSets": [
+      [
+        "U",
+        "D",
+        "L"
+      ],
+      [
+        "U",
+        "D",
+        "L"
+      ],
+      [
+        "U",
+        "D",
+        "R"
+      ],
+      [
+        "U",
+        "L",
+        "R"
+      ],
+      [
+        "U",
+        "D",
+        "R",
+        "S"
+      ],
+      [
+        "U",
+        "D",
+        "R"
+      ],
+      [
+        "U",
+        "D"
+      ],
+      [
+        "U",
+        "D",
+        "R"
+      ],
+      [
+        "U",
+        "D",
+        "L",
+        "R"
+      ],
+      [
+        "U",
+        "D",
+        "L",
+        "R"
+      ],
+      [
+        "U",
+        "D",
+        "R"
+      ],
+      [
+        "U",
+        "L",
+        "R"
+      ],
+      [
+        "U",
+        "D",
+        "L",
+        "R"
+      ],
+      [
+        "U",
+        "D",
+        "R"
+      ],
+      [
+        "U",
+        "D",
+        "R"
+      ],
+      [
+        "U",
+        "L",
+        "R",
+        "S"
+      ],
+      [
+        "U",
+        "D",
+        "L",
+        "R",
+        "S"
+      ]
+    ],
+    "steps": [
+      {
+        "i": 0,
+        "action": "c:U",
+        "actor": "cat",
+        "legalSetAtDecisionPoint": [
+          "U",
+          "D",
+          "L"
+        ],
+        "alternativeCount": 3,
+        "horizonIdxAfter": 0,
+        "state": {
+          "phase": "playing",
+          "currentPlayer": "cat",
+          "cat": "2,3",
+          "mouse": "1,6",
+          "catMovesLeft": 3,
+          "mouseMovesLeft": 0,
+          "mouseHasButter": true,
+          "mouseSkillActive": false,
+          "butterPositions": [
+            "2,6"
+          ],
+          "pendingButterSpawns": [
+            "5,1:0"
+          ],
+          "pendingButterPlacementDebt": 0,
+          "trapPosition": "1,1",
+          "catTrapsRemaining": 0,
+          "blockedTunnels": []
+        }
+      },
+      {
+        "i": 1,
+        "action": "c:U",
+        "actor": "cat",
+        "legalSetAtDecisionPoint": [
+          "U",
+          "D",
+          "L"
+        ],
+        "alternativeCount": 3,
+        "horizonIdxAfter": 0,
+        "state": {
+          "phase": "playing",
+          "currentPlayer": "cat",
+          "cat": "1,3",
+          "mouse": "1,6",
+          "catMovesLeft": 2,
+          "mouseMovesLeft": 0,
+          "mouseHasButter": true,
+          "mouseSkillActive": false,
+          "butterPositions": [
+            "2,6"
+          ],
+          "pendingButterSpawns": [
+            "5,1:0"
+          ],
+          "pendingButterPlacementDebt": 0,
+          "trapPosition": "1,1",
+          "catTrapsRemaining": 0,
+          "blockedTunnels": []
+        }
+      },
+      {
+        "i": 2,
+        "action": "c:R",
+        "actor": "cat",
+        "legalSetAtDecisionPoint": [
+          "U",
+          "D",
+          "R"
+        ],
+        "alternativeCount": 3,
+        "horizonIdxAfter": 0,
+        "state": {
+          "phase": "playing",
+          "currentPlayer": "cat",
+          "cat": "1,4",
+          "mouse": "1,6",
+          "catMovesLeft": 1,
+          "mouseMovesLeft": 0,
+          "mouseHasButter": true,
+          "mouseSkillActive": false,
+          "butterPositions": [
+            "2,6"
+          ],
+          "pendingButterSpawns": [
+            "5,1:0"
+          ],
+          "pendingButterPlacementDebt": 0,
+          "trapPosition": "1,1",
+          "catTrapsRemaining": 0,
+          "blockedTunnels": []
+        }
+      },
+      {
+        "i": 3,
+        "action": "c:R",
+        "actor": "cat",
+        "legalSetAtDecisionPoint": [
+          "U",
+          "L",
+          "R"
+        ],
+        "alternativeCount": 3,
+        "horizonIdxAfter": 1,
+        "state": {
+          "phase": "playing",
+          "currentPlayer": "mouse",
+          "cat": "1,5",
+          "mouse": "1,6",
+          "catMovesLeft": 0,
+          "mouseMovesLeft": 3,
+          "mouseHasButter": true,
+          "mouseSkillActive": false,
+          "butterPositions": [
+            "2,6",
+            "5,1"
+          ],
+          "pendingButterSpawns": [],
+          "pendingButterPlacementDebt": 0,
+          "trapPosition": "1,1",
+          "catTrapsRemaining": 0,
+          "blockedTunnels": []
+        }
+      },
+      {
+        "i": 4,
+        "action": "m:S",
+        "actor": "mouse",
+        "legalSetAtDecisionPoint": [
+          "U",
+          "D",
+          "R",
+          "S"
+        ],
+        "alternativeCount": 4,
+        "horizonIdxAfter": 1,
+        "state": {
+          "phase": "playing",
+          "currentPlayer": "mouse",
+          "cat": "1,5",
+          "mouse": "1,6",
+          "catMovesLeft": 0,
+          "mouseMovesLeft": 6,
+          "mouseHasButter": false,
+          "mouseSkillActive": true,
+          "butterPositions": [
+            "2,6",
+            "5,1"
+          ],
+          "pendingButterSpawns": [],
+          "pendingButterPlacementDebt": 0,
+          "trapPosition": "1,1",
+          "catTrapsRemaining": 0,
+          "blockedTunnels": []
+        }
+      },
+      {
+        "i": 5,
+        "action": "m:D",
+        "actor": "mouse",
+        "legalSetAtDecisionPoint": [
+          "U",
+          "D",
+          "R"
+        ],
+        "alternativeCount": 3,
+        "horizonIdxAfter": 1,
+        "state": {
+          "phase": "playing",
+          "currentPlayer": "mouse",
+          "cat": "1,5",
+          "mouse": "2,6",
+          "catMovesLeft": 0,
+          "mouseMovesLeft": 5,
+          "mouseHasButter": true,
+          "mouseSkillActive": true,
+          "butterPositions": [
+            "5,1"
+          ],
+          "pendingButterSpawns": [
+            "1,8:0"
+          ],
+          "pendingButterPlacementDebt": 0,
+          "trapPosition": "1,1",
+          "catTrapsRemaining": 0,
+          "blockedTunnels": []
+        }
+      },
+      {
+        "i": 6,
+        "action": "m:D",
+        "actor": "mouse",
+        "legalSetAtDecisionPoint": [
+          "U",
+          "D"
+        ],
+        "alternativeCount": 2,
+        "horizonIdxAfter": 1,
+        "state": {
+          "phase": "playing",
+          "currentPlayer": "mouse",
+          "cat": "1,5",
+          "mouse": "3,6",
+          "catMovesLeft": 0,
+          "mouseMovesLeft": 4,
+          "mouseHasButter": true,
+          "mouseSkillActive": true,
+          "butterPositions": [
+            "5,1"
+          ],
+          "pendingButterSpawns": [
+            "1,8:0"
+          ],
+          "pendingButterPlacementDebt": 0,
+          "trapPosition": "1,1",
+          "catTrapsRemaining": 0,
+          "blockedTunnels": []
+        }
+      },
+      {
+        "i": 7,
+        "action": "m:D",
+        "actor": "mouse",
+        "legalSetAtDecisionPoint": [
+          "U",
+          "D",
+          "R"
+        ],
+        "alternativeCount": 3,
+        "horizonIdxAfter": 1,
+        "state": {
+          "phase": "playing",
+          "currentPlayer": "mouse",
+          "cat": "1,5",
+          "mouse": "4,6",
+          "catMovesLeft": 0,
+          "mouseMovesLeft": 3,
+          "mouseHasButter": true,
+          "mouseSkillActive": true,
+          "butterPositions": [
+            "5,1"
+          ],
+          "pendingButterSpawns": [
+            "1,8:0"
+          ],
+          "pendingButterPlacementDebt": 0,
+          "trapPosition": "1,1",
+          "catTrapsRemaining": 0,
+          "blockedTunnels": []
+        }
+      },
+      {
+        "i": 8,
+        "action": "m:D",
+        "actor": "mouse",
+        "legalSetAtDecisionPoint": [
+          "U",
+          "D",
+          "L",
+          "R"
+        ],
+        "alternativeCount": 4,
+        "horizonIdxAfter": 1,
+        "state": {
+          "phase": "playing",
+          "currentPlayer": "mouse",
+          "cat": "1,5",
+          "mouse": "5,6",
+          "catMovesLeft": 0,
+          "mouseMovesLeft": 2,
+          "mouseHasButter": true,
+          "mouseSkillActive": true,
+          "butterPositions": [
+            "5,1"
+          ],
+          "pendingButterSpawns": [
+            "1,8:0"
+          ],
+          "pendingButterPlacementDebt": 0,
+          "trapPosition": "1,1",
+          "catTrapsRemaining": 0,
+          "blockedTunnels": []
+        }
+      },
+      {
+        "i": 9,
+        "action": "m:D",
+        "actor": "mouse",
+        "legalSetAtDecisionPoint": [
+          "U",
+          "D",
+          "L",
+          "R"
+        ],
+        "alternativeCount": 4,
+        "horizonIdxAfter": 1,
+        "state": {
+          "phase": "playing",
+          "currentPlayer": "mouse",
+          "cat": "1,5",
+          "mouse": "6,6",
+          "catMovesLeft": 0,
+          "mouseMovesLeft": 1,
+          "mouseHasButter": true,
+          "mouseSkillActive": true,
+          "butterPositions": [
+            "5,1"
+          ],
+          "pendingButterSpawns": [
+            "1,8:0"
+          ],
+          "pendingButterPlacementDebt": 0,
+          "trapPosition": "1,1",
+          "catTrapsRemaining": 0,
+          "blockedTunnels": []
+        }
+      },
+      {
+        "i": 10,
+        "action": "m:D",
+        "actor": "mouse",
+        "legalSetAtDecisionPoint": [
+          "U",
+          "D",
+          "R"
+        ],
+        "alternativeCount": 3,
+        "horizonIdxAfter": 2,
+        "state": {
+          "phase": "playing",
+          "currentPlayer": "cat",
+          "cat": "1,5",
+          "mouse": "7,6",
+          "catMovesLeft": 4,
+          "mouseMovesLeft": 0,
+          "mouseHasButter": true,
+          "mouseSkillActive": false,
+          "butterPositions": [
+            "5,1"
+          ],
+          "pendingButterSpawns": [
+            "1,8:0"
+          ],
+          "pendingButterPlacementDebt": 0,
+          "trapPosition": "1,1",
+          "catTrapsRemaining": 0,
+          "blockedTunnels": []
+        }
+      },
+      {
+        "i": 11,
+        "action": "c:R",
+        "actor": "cat",
+        "legalSetAtDecisionPoint": [
+          "U",
+          "L",
+          "R"
+        ],
+        "alternativeCount": 3,
+        "horizonIdxAfter": 2,
+        "state": {
+          "phase": "playing",
+          "currentPlayer": "cat",
+          "cat": "1,6",
+          "mouse": "7,6",
+          "catMovesLeft": 3,
+          "mouseMovesLeft": 0,
+          "mouseHasButter": true,
+          "mouseSkillActive": false,
+          "butterPositions": [
+            "5,1"
+          ],
+          "pendingButterSpawns": [
+            "1,8:0"
+          ],
+          "pendingButterPlacementDebt": 0,
+          "trapPosition": "1,1",
+          "catTrapsRemaining": 0,
+          "blockedTunnels": []
+        }
+      },
+      {
+        "i": 12,
+        "action": "c:D",
+        "actor": "cat",
+        "legalSetAtDecisionPoint": [
+          "U",
+          "D",
+          "L",
+          "R"
+        ],
+        "alternativeCount": 4,
+        "horizonIdxAfter": 2,
+        "state": {
+          "phase": "playing",
+          "currentPlayer": "cat",
+          "cat": "2,6",
+          "mouse": "7,6",
+          "catMovesLeft": 2,
+          "mouseMovesLeft": 0,
+          "mouseHasButter": true,
+          "mouseSkillActive": false,
+          "butterPositions": [
+            "5,1"
+          ],
+          "pendingButterSpawns": [
+            "1,8:0"
+          ],
+          "pendingButterPlacementDebt": 0,
+          "trapPosition": "1,1",
+          "catTrapsRemaining": 0,
+          "blockedTunnels": []
+        }
+      },
+      {
+        "i": 13,
+        "action": "c:D",
+        "actor": "cat",
+        "legalSetAtDecisionPoint": [
+          "U",
+          "D",
+          "R"
+        ],
+        "alternativeCount": 3,
+        "horizonIdxAfter": 2,
+        "state": {
+          "phase": "playing",
+          "currentPlayer": "cat",
+          "cat": "3,6",
+          "mouse": "7,6",
+          "catMovesLeft": 1,
+          "mouseMovesLeft": 0,
+          "mouseHasButter": true,
+          "mouseSkillActive": false,
+          "butterPositions": [
+            "5,1"
+          ],
+          "pendingButterSpawns": [
+            "1,8:0"
+          ],
+          "pendingButterPlacementDebt": 0,
+          "trapPosition": "1,1",
+          "catTrapsRemaining": 0,
+          "blockedTunnels": []
+        }
+      },
+      {
+        "i": 14,
+        "action": "c:D",
+        "actor": "cat",
+        "legalSetAtDecisionPoint": [
+          "U",
+          "D",
+          "R"
+        ],
+        "alternativeCount": 3,
+        "horizonIdxAfter": 3,
+        "state": {
+          "phase": "playing",
+          "currentPlayer": "mouse",
+          "cat": "4,6",
+          "mouse": "7,6",
+          "catMovesLeft": 0,
+          "mouseMovesLeft": 3,
+          "mouseHasButter": true,
+          "mouseSkillActive": false,
+          "butterPositions": [
+            "5,1",
+            "1,8"
+          ],
+          "pendingButterSpawns": [],
+          "pendingButterPlacementDebt": 0,
+          "trapPosition": "1,1",
+          "catTrapsRemaining": 0,
+          "blockedTunnels": []
+        }
+      },
+      {
+        "i": 15,
+        "action": "m:R",
+        "actor": "mouse",
+        "legalSetAtDecisionPoint": [
+          "U",
+          "L",
+          "R",
+          "S"
+        ],
+        "alternativeCount": 4,
+        "horizonIdxAfter": 3,
+        "state": {
+          "phase": "playing",
+          "currentPlayer": "mouse",
+          "cat": "4,6",
+          "mouse": "7,7",
+          "catMovesLeft": 0,
+          "mouseMovesLeft": 2,
+          "mouseHasButter": true,
+          "mouseSkillActive": false,
+          "butterPositions": [
+            "5,1",
+            "1,8"
+          ],
+          "pendingButterSpawns": [],
+          "pendingButterPlacementDebt": 0,
+          "trapPosition": "1,1",
+          "catTrapsRemaining": 0,
+          "blockedTunnels": []
+        }
+      },
+      {
+        "i": 16,
+        "action": "m:R",
+        "actor": "mouse",
+        "legalSetAtDecisionPoint": [
+          "U",
+          "D",
+          "L",
+          "R",
+          "S"
+        ],
+        "alternativeCount": 5,
+        "horizonIdxAfter": 3,
+        "state": {
+          "phase": "mouse_wins",
+          "currentPlayer": "mouse",
+          "cat": "4,6",
+          "mouse": "7,8",
+          "catMovesLeft": 0,
+          "mouseMovesLeft": 2,
+          "mouseHasButter": false,
+          "mouseSkillActive": false,
+          "butterPositions": [
+            "5,1",
+            "1,8"
+          ],
+          "pendingButterSpawns": [],
+          "pendingButterPlacementDebt": 0,
+          "trapPosition": "1,1",
+          "catTrapsRemaining": 0,
+          "blockedTunnels": []
+        }
+      }
+    ]
+  }
+}

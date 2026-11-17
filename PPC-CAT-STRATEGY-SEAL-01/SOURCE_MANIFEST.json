@@ -1,0 +1,165 @@
+{
+  "artifactId": "SOURCE_MANIFEST",
+  "round": "PPC-CAT-STRATEGY-SEAL-01",
+  "phase": 7,
+  "generatedAt": "2026-11-15T08:07:22.432Z",
+  "generatedBy": "PPC-CAT-STRATEGY-SEAL-01/probe/seal.mjs",
+  "head": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+  "selfExcluded": true,
+  "selfSha256": null,
+  "selfReferenceNote": "This manifest deliberately carries NO digest of itself. Its digest is recorded externally in SHA256SUMS.txt (which is itself anchored by SEAL_VERIFICATION.json).",
+  "sealingOutputsExcluded": [
+    "SOURCE_MANIFEST.json",
+    "SHA256SUMS.txt",
+    "SEAL_VERIFICATION.json"
+  ],
+  "hashAlgorithm": "sha256 over raw file bytes (CRLF/LF agnostic)",
+  "contentFileCount": 24,
+  "files": [
+    {
+      "path": "CHANCE_LOGIC_COUNTEREXAMPLES.json",
+      "sha256": "f8342f4ec375f5b3e0a67526a07ac6fd68b8fe8d512fabfcc4eb8c142dfedd3f",
+      "bytes": 5665
+    },
+    {
+      "path": "E1_CORRECTED_HOLE_ATTRIBUTION.json",
+      "sha256": "fab308b06af42110746eb672751b38dd3521ba9f5f44903d0c185525ed936476",
+      "bytes": 315964
+    },
+    {
+      "path": "EVALUATOR_SHADOW_RECOMMENDATION.md",
+      "sha256": "9580a3c3827844d88ffb7264626a94b0190ef548a53cb43b26d44a36890b9e93",
+      "bytes": 14258
+    },
+    {
+      "path": "G6T2_RECERTIFICATION.json",
+      "sha256": "5c5aa4d0bef980d4eb20de37319131dfb0320ef3eb8965c570a76d2a2ec89993",
+      "bytes": 7854
+    },
+    {
+      "path": "G6T3_RECERTIFICATION.json",
+      "sha256": "05446d9a3a9bc1ba9588ca475e6f6ec7f7bbe018347648c1f470f4d066d4a8ba",
+      "bytes": 30176
+    },
+    {
+      "path": "QUANTIFIER_AUDIT.md",
+      "sha256": "9eb14e9bc04f97b01e862eaef68db007f00fda4fd5278eb70038a11e8343ef9e",
+      "bytes": 9199
+    },
+    {
+      "path": "REGRESSION_RESULTS.json",
+      "sha256": "45a329d538c8f12266f830946cfe6ac09d0983534f354b151729fd33fade3b16",
+      "bytes": 12151
+    },
+    {
+      "path": "REPORT.md",
+      "sha256": "061d5cc1a289e8144bc9d456efed41e9997bf0ecb1b2d434ba2c9de551149a07",
+      "bytes": 22769
+    },
+    {
+      "path": "RESOURCE_SAFETY_LOG.md",
+      "sha256": "d8634033bfbfb50be77a0d1e4e11ccb432724e903fc298d73d19bc9a52fdcb15",
+      "bytes": 5598
+    },
+    {
+      "path": "ROOT_CLASSIFICATION_V2.json",
+      "sha256": "298c2c7018325a4639d4ef371a5a2ff1b5a829098636018235bf5905f262b0db",
+      "bytes": 38057
+    },
+    {
+      "path": "STRATEGY_CERTIFICATE_VERIFICATION.json",
+      "sha256": "3d51cd1b89f9a4017f18ee198d2ce80c2e7b625c4edc39f81194056a829b575c",
+      "bytes": 1348
+    },
+    {
+      "path": "_raw/source_integrity.json",
+      "sha256": "54d39e0a08a2250198aec3caa66b72b4dec51dffada8ebebfbe58db554264bfe",
+      "bytes": 12653
+    },
+    {
+      "path": "logs/attribution_run.log",
+      "sha256": "3ea979d8e219a50ebc8acefc021963157052eb3abdaece97dfe99e505ccb087c",
+      "bytes": 10470
+    },
+    {
+      "path": "logs/cohort_run.log",
+      "sha256": "151be59a793f21468bb04d6801aadd9c4a237ac2638cea490f7d0b178f4e52ea",
+      "bytes": 4002
+    },
+    {
+      "path": "logs/counterexamples_run.log",
+      "sha256": "be7eefed3048f5016bfb7540a92f49c2963a9bea729dd72c26281ac7891a7430",
+      "bytes": 1964
+    },
+    {
+      "path": "logs/recertify_g6t3_smoke.log",
+      "sha256": "9071789ed36c96a350606396813f69d48647540f02e193ba1eb8c3414cd8bd66",
+      "bytes": 1761
+    },
+    {
+      "path": "probe/attribution.test.ts",
+      "sha256": "5b1edf6165d8852e923a11ed8d25c0b3606eca2222643a871aaac3eb327f6c77",
+      "bytes": 22806
+    },
+    {
+      "path": "probe/cohort.test.ts",
+      "sha256": "07ebd85abc54cd8f184161820d1cae4aaa7202ee159a90cb38f9b63dc6f56063",
+      "bytes": 7554
+    },
+    {
+      "path": "probe/counterexamples.test.ts",
+      "sha256": "f053f241a8cbb0fc2849f8a75d46ba98ec1c5d90379b894e3a3bd5fb269be6aa",
+      "bytes": 10905
+    },
+    {
+      "path": "probe/recertify.test.ts",
+      "sha256": "570b9af0f1b4d0b88efb47e6a6a3584afde31e09073fd936b6b4b85a631ef83a",
+      "bytes": 12324
+    },
+    {
+      "path": "probe/seal.mjs",
+      "sha256": "b4af96ba256ec746e093e2c0010abf07d165b5e432b82dfdacf712d5589d2de7",
+      "bytes": 7734
+    },
+    {
+      "path": "probe/seal_lib.ts",
+      "sha256": "453915d3fd3a69bda5d113dd7e5732d20424a7f97cff739cf9b0aeee576a779b",
+      "bytes": 21012
+    },
+    {
+      "path": "probe/seal_util.ts",
+      "sha256": "7154b1edb1b026b5124c5e3eb4deebaf544ba4baac8806e89ae7c4098c461287",
+      "bytes": 2459
+    },
+    {
+      "path": "probe/vitest.config.mts",
+      "sha256": "e2ab44993192983f83ab41021e21d981fa7dd921652161d9ba407307cd4ceeaa",
+      "bytes": 622
+    }
+  ],
+  "sourceIntegrity": {
+    "evidence": "_raw/source_integrity.json",
+    "modifiedChecked": 29,
+    "modifiedMismatches": 0,
+    "depsChecked": 16,
+    "depsMismatches": 0,
+    "totalMismatches": 0,
+    "productionSourceChanged": false,
+    "gameRulesChanged": false,
+    "searchMathChanged": false,
+    "h1Changed": false,
+    "sidecarChanged": false
+  },
+  "frozenInputs": [
+    {
+      "path": "src/game/ai/__tests__/fixtures/ppcId01-human-roots.json",
+      "sha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "bytes": 264328
+    },
+    {
+      "path": "GAMEPLAY.md",
+      "sha256": "e000778b114bea02ef09634085172ea435be143335721aa0cd04114afb2afd34",
+      "bytes": 21128
+    }
+  ]
+}

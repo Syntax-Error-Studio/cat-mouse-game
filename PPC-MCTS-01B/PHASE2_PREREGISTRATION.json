@@ -1,0 +1,218 @@
+{
+  "experiment": "PPC-MCTS-01B / PHASE2_FIXED_100MS_BUDGET",
+  "round": "PPC-MCTS-01B-HARNESS-REPAIR",
+  "status": "PRE_REGISTERED_NOT_STARTED",
+  "statusMeaning": "The driver is repaired and smoke-verified. The formal envelope has NOT been launched and must not be launched before external review and explicit authorisation.",
+  "registeredAt": "2026-11-16T15:40:00Z",
+  "isolatedDirectory": "PPC-MCTS-01B/",
+  "productionSourcesTouched": false,
+  "purpose": "Measure the wall-clock difference between UCT-H-BASELINE and UCT-H-PREPARED under the production planning budget (100 ms main search, 150 ms full turn), one fresh process per repetition, strictly serial.",
+  "constants": {
+    "PHASE2_ROOTS": 24,
+    "PHASE2_REPETITIONS": 20,
+    "PHASE2_ARMS": 2,
+    "TOTAL_SEARCH_CALLS": 960,
+    "FRESH_NODE_PROCESSES": 20,
+    "CALLS_PER_PROCESS": 48,
+    "MAIN_SEARCH_BUDGET_MS": 100,
+    "FULL_TURN_BUDGET_MS": 150,
+    "MAX_HANDOFFS": 4,
+    "MAX_NODES": 500000,
+    "UCB_C": 1.4142135623730951,
+    "ROLLOUT_MODE": "hybrid (both arms)",
+    "HEAVY_WORKER_CONCURRENCY": 1,
+    "SERIAL_FRESH_REPETITIONS": true
+  },
+  "arms": {
+    "UCT-H-BASELINE": {
+      "module": "PPC-MCTS-01/proto/uct.ts",
+      "class": "UctSearch",
+      "why": "production-faithful: no seam, no instrumentation, zero added branches"
+    },
+    "UCT-H-PREPARED": {
+      "module": "PPC-MCTS-01B/proto/uctPrepared.ts",
+      "class": "UctSearchPrepared",
+      "why": "rollout-only prepared-transition reuse",
+      "caveat": "carries the Phase 1 seam and trace points, both inert here (no maxCompletedSimulations, no trace sink). The residual cost is one null check per recorded site, and it is charged to the PREPARED arm, i.e. against the hypothesis."
+    }
+  },
+  "timing": {
+    "searchMs": {
+      "definition": "result.diagnostics.elapsedMs — the searcher's own measurement, taken inside run() before extractPlan",
+      "includes": [
+        "tree descent",
+        "expansion",
+        "rollout",
+        "backprop"
+      ],
+      "excludes": [
+        "constructor",
+        "extractPlan",
+        "offline replay"
+      ]
+    },
+    "plannerWallMs": {
+      "definition": "wall clock from constructing the searcher to having the complete plan back",
+      "includes": [
+        "constructor",
+        "run()",
+        "extractPlan()"
+      ],
+      "excludes": [
+        "offline replay"
+      ],
+      "measuredBy": "drivers/lib/arms.ts runArm(): t0 before `new UctSearch(...)`, t1 after `search.run()`"
+    },
+    "replayMs": {
+      "definition": "wall clock of replayPlanWithEngine(root.state, plan)",
+      "rule": "NEVER charged to the planning budget; recorded as its own field"
+    },
+    "replayInclusiveTotalMs": {
+      "definition": "plannerWallMs + replayMs",
+      "role": "this is the quantity the Pilot's 150 ms rule actually tests"
+    },
+    "planOverheadMs": {
+      "definition": "plannerWallMs - searchMs",
+      "meaning": "constructor + extractPlan"
+    },
+    "validationEndToEndMs": {
+      "definition": "plannerWallMs + replayMs",
+      "role": "validation quantity only — how long the whole check took. Never a production budget, never reported as planning time."
+    }
+  },
+  "requiredFieldsPerCall": [
+    "arm",
+    "root",
+    "repetition",
+    "seed",
+    "order",
+    "searchMs",
+    "plannerWallMs",
+    "replayMs",
+    "replayInclusiveTotalMs",
+    "planOverheadMs",
+    "simulations",
+    "nodesCreated",
+    "rolloutSteps",
+    "chanceSamples",
+    "treePlanLength",
+    "extensionSteps",
+    "planLength",
+    "planActionCost",
+    "plan",
+    "rootAction",
+    "rootActionStats",
+    "deadlineFired",
+    "budgetFired",
+    "withinFullTurnBudget",
+    "plannerWithinFullTurnBudget",
+    "replayOk",
+    "replayTerminal",
+    "replaySteps",
+    "mathRandomCalls",
+    "ruleCalls",
+    "rolloutPreparedSteps",
+    "rolloutImpureFallbacks",
+    "error",
+    "errorStack",
+    "validationEndToEndMs",
+    "withinPlanner150ms",
+    "legacyPilotComparable150ms",
+    "planFullTurnConsumed"
+  ],
+  "execution": {
+    "buildFirst": "node PPC-MCTS-01B/scripts/build-drivers.mjs  →  PPC-MCTS-01B/build/perfBudget100.mjs",
+    "forbiddenRunner": "vite-node and vitest must never be used for timing: their SSR shims make the hybrid leaf evaluator ~7x slower (691 us vs 97 us per call), which collapses 100 ms to ~2 simulations.",
+    "singleProcess": "node PPC-MCTS-01B/build/perfBudget100.mjs --rep=<1..20>",
+    "orchestrator": "node PPC-MCTS-01B/scripts/runPhase2.mjs --confirm=PHASE2_FORMAL_APPROVED",
+    "orchestratorMechanism": "spawnSync: the next process is started only after the previous child has EXITED",
+    "armOrder": "repetition odd  → baseline, prepared;  repetition even → prepared, baseline (recorded per call in `order`)",
+    "refuses": [
+      "more than one repetition in a single process",
+      "a partial root set outside --smoke",
+      "starting without --confirm=PHASE2_FORMAL_APPROVED"
+    ]
+  },
+  "safety": {
+    "checkpoint": "After every root the driver writes rep-NN.checkpoint.json with the number of completed arm-records.",
+    "appendOnly": "Every call is appended to the JSONL the moment it finishes. A crash or a kill can never delete an earlier result.",
+    "resume": "On restart the driver parses the existing JSONL and skips the (root, arm) cells it already holds, then appends. A torn final line is ignored, never rewritten.",
+    "noCherryPicking": "A slow sample may not be re-run for a better number. A failed call is recorded with error + errorStack and stays in the file."
+  },
+  "statistics": {
+    "perArm": [
+      "plannerMsP50 / P95 / P99",
+      "searchMsP50 / P95",
+      "replayMsP50",
+      "simulations median / min / max",
+      "count of withinFullTurnBudget under the Pilot rule",
+      "count of withinFullTurnBudget under the planner-only reading",
+      "deadlineFired / budgetFired counts",
+      "replayOk count",
+      "total math.random draws"
+    ],
+    "notSpecifiedHere": "The paired comparison statistic (per-cell ratio, geometric mean, confidence interval) is a Phase 2 ANALYSIS decision and must be pre-registered separately before the envelope runs. This file freezes only the measurement, not the inference."
+  },
+  "smokeEvidenceStatus": {
+    "run": "PPC-MCTS-01B/data/phase2-smoke/",
+    "label": "SMOKE_NOT_EVIDENCE",
+    "shape": "2 roots x 1 repetition x 2 arms = 4 calls",
+    "role": "proves the bundled driver executes and that the three timing quantities are separated; carries no evidential weight about performance"
+  },
+  "notStarted": {
+    "formal960": true,
+    "phase1": true,
+    "selfPlay": true,
+    "formalV2_1700Groups": true,
+    "exhaustiveOracle": true
+  },
+  "budgetRules": {
+    "authoritative": {
+      "field": "withinPlanner150ms",
+      "expression": "plannerWallMs <= 150",
+      "why": "Production planning must not be charged for the offline replay. plannerWallMs is constructor → run() → extractPlan() and contains no replay.",
+      "status": "AUTHORITATIVE for Phase 2 reporting"
+    },
+    "legacyPilotComparable": {
+      "field": "legacyPilotComparable150ms",
+      "expression": "plannerWallMs + replayMs <= 150",
+      "why": "Reproduces the original Pilot boundary verbatim so no historical number has to be reinterpreted.",
+      "provenance": {
+        "claim": "This reproduces the original Pilot's rule EXACTLY, including its replay-inclusiveness.",
+        "evidence": [
+          {
+            "file": "PPC-MCTS-01/proto/harness.ts",
+            "line": 35,
+            "code": "export const FULL_TURN_BUDGET_MS = 150;"
+          },
+          {
+            "file": "PPC-MCTS-01/proto/harness.ts",
+            "line": 204,
+            "code": "withinFullTurnBudget: base.totalMs <= FULL_TURN_BUDGET_MS,"
+          },
+          {
+            "file": "PPC-MCTS-01/proto/harness.ts",
+            "lines": "290-310",
+            "code": "const t0 = performance.now(); ... guard = withMathRandomGuard(() => { const search = new UctSearch(...); return search.run(); }); const replay = replayPlanWithEngine(root.state, result.plan); const totalMs = performance.now() - t0;",
+            "reading": "totalMs spans constructor → run → offline replay, so the Pilot's 150 ms test INCLUDES the replay."
+          }
+        ],
+        "consequence": "A replay-exclusive reading would be more permissive than the Pilot and is therefore NOT used as the headline boolean."
+      },
+      "status": "RECORDED SEPARATELY — never substituted for the authoritative rule, never used to restate Pilot data",
+      "unresolvedCaveat": {
+        "issue": "The Pilot's t0 is taken marginally earlier than this harness's t0 (the Pilot installs its Math.random guard inside the timed interval; this harness installs a count-only tap just before t0).",
+        "magnitude": "sub-microsecond per call",
+        "action": "Declared, not silently smoothed. It cannot move a 150 ms decision."
+      }
+    },
+    "changeFromHarnessRepairRound": {
+      "previous": "The harness-repair round used the replay-inclusive reading as the headline boolean (withinFullTurnBudget).",
+      "now": "The final task book fixes withinPlanner150ms = plannerWallMs <= 150 as the headline and requires the Pilot-compatible value to be kept as its own field.",
+      "consequence": "Both booleans are emitted on every call; the two deprecated aliases (withinFullTurnBudget, plannerWithinFullTurnBudget) are still written so earlier artefacts stay readable.",
+      "dataImpact": "Phase 2 had not been run when this changed, so no measured result is reinterpreted."
+    }
+  },
+  "driverNote": "drivers/perfBudget100.ts emits every field above; planFullTurnConsumed comes from replay.ts fullTurnConsumed.",
+  "requiredFieldsNote": "Every entry is emitted on every call by drivers/perfBudget100.ts. planFullTurnConsumed comes from replay.ts fullTurnConsumed. The deprecated aliases withinFullTurnBudget / plannerWithinFullTurnBudget are still emitted for readability of earlier artefacts."
+}

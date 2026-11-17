@@ -1,0 +1,169 @@
+{
+  "round": "PPC-D2-PCV-COUNTERLINE-01",
+  "phase": "G2_PLAN_REPLAYS",
+  "rootId": "G1T9",
+  "replayDriver": "replayPlan (PPC-T1-PCV-01/probe/pcv_lib.ts, real generatePreparedSearchActions)",
+  "crossCheckDriver": "applyPrefix (PPC-CAT-STRATEGY-SEAL-01/probe/seal_lib.ts)",
+  "candidates": [
+    {
+      "legalIndex": 0,
+      "rootAction": "U",
+      "extracted": true,
+      "rejection": null,
+      "planString": "UDDR",
+      "replayOk": true,
+      "replayStatus": "VALID_MOUSE_FRONTIER",
+      "replayReason": null,
+      "replayCrossCheck": true,
+      "replaySteps": [
+        {
+          "label": "U",
+          "transitionKind": "deterministic",
+          "branches": 1
+        },
+        {
+          "label": "D",
+          "transitionKind": "deterministic",
+          "branches": 1
+        },
+        {
+          "label": "D",
+          "transitionKind": "deterministic",
+          "branches": 1
+        },
+        {
+          "label": "R",
+          "transitionKind": "chance",
+          "branches": 1
+        }
+      ],
+      "postPrefixStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "postPrefixStateKeys": [
+        "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+      ],
+      "chanceBranchCount": 1,
+      "chanceProbabilitySum": 1,
+      "chanceAllPositive": true
+    },
+    {
+      "legalIndex": 1,
+      "rootAction": "D",
+      "extracted": true,
+      "rejection": null,
+      "planString": "DUDR",
+      "replayOk": true,
+      "replayStatus": "VALID_MOUSE_FRONTIER",
+      "replayReason": null,
+      "replayCrossCheck": true,
+      "replaySteps": [
+        {
+          "label": "D",
+          "transitionKind": "deterministic",
+          "branches": 1
+        },
+        {
+          "label": "U",
+          "transitionKind": "deterministic",
+          "branches": 1
+        },
+        {
+          "label": "D",
+          "transitionKind": "deterministic",
+          "branches": 1
+        },
+        {
+          "label": "R",
+          "transitionKind": "chance",
+          "branches": 1
+        }
+      ],
+      "postPrefixStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "postPrefixStateKeys": [
+        "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+      ],
+      "chanceBranchCount": 1,
+      "chanceProbabilitySum": 1,
+      "chanceAllPositive": true
+    },
+    {
+      "legalIndex": 2,
+      "rootAction": "L",
+      "extracted": true,
+      "rejection": null,
+      "planString": "LDRR",
+      "replayOk": true,
+      "replayStatus": "VALID_MOUSE_FRONTIER",
+      "replayReason": null,
+      "replayCrossCheck": true,
+      "replaySteps": [
+        {
+          "label": "L",
+          "transitionKind": "deterministic",
+          "branches": 1
+        },
+        {
+          "label": "D",
+          "transitionKind": "deterministic",
+          "branches": 1
+        },
+        {
+          "label": "R",
+          "transitionKind": "deterministic",
+          "branches": 1
+        },
+        {
+          "label": "R",
+          "transitionKind": "chance",
+          "branches": 1
+        }
+      ],
+      "postPrefixStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "postPrefixStateKeys": [
+        "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+      ],
+      "chanceBranchCount": 1,
+      "chanceProbabilitySum": 1,
+      "chanceAllPositive": true
+    },
+    {
+      "legalIndex": 3,
+      "rootAction": "R",
+      "extracted": true,
+      "rejection": null,
+      "planString": "RUDD",
+      "replayOk": true,
+      "replayStatus": "VALID_MOUSE_FRONTIER",
+      "replayReason": null,
+      "replayCrossCheck": true,
+      "replaySteps": [
+        {
+          "label": "R",
+          "transitionKind": "deterministic",
+          "branches": 1
+        },
+        {
+          "label": "U",
+          "transitionKind": "deterministic",
+          "branches": 1
+        },
+        {
+          "label": "D",
+          "transitionKind": "deterministic",
+          "branches": 1
+        },
+        {
+          "label": "D",
+          "transitionKind": "chance",
+          "branches": 1
+        }
+      ],
+      "postPrefixStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "postPrefixStateKeys": [
+        "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+      ],
+      "chanceBranchCount": 1,
+      "chanceProbabilitySum": 1,
+      "chanceAllPositive": true
+    }
+  ]
+}

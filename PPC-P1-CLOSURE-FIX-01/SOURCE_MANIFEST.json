@@ -1,0 +1,335 @@
+{
+  "artifactId": "SOURCE_MANIFEST",
+  "round": "PPC-P1-CLOSURE-FIX-01",
+  "project": "Project Perfect Cat",
+  "date": "2026-11-13",
+  "branch": "ppc/p1-id-state-identity-fix",
+  "head": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+  "sha256Method": "sha256 over the raw on-disk bytes (binary read, 1 MiB chunks). For HEAD baselines, sha256 over the exact stdout bytes of `git show HEAD:<path>`, which is the LF-normalised blob — see lineEnding caveat.",
+  "lineEndingCaveat": "core.autocrlf = true and two working-tree files are CRLF (src/game/engine.ts, src/game/ai/__tests__/expectiminimax.test.ts). For those, candidateSha256 (on-disk bytes) and headBaselineContentSha256 (LF blob) are NOT the same convention. Both are recorded explicitly; never compare one to the other.",
+  "files": [
+    {
+      "path": "src/game/config.ts",
+      "role": "production",
+      "attributionRound": "PPC-P1-CLOSURE-FIX-01",
+      "headBaselineContentSha256": "3930cad8aad46588da289ce1b073328c89da1083c28bc95e566bfe0fcb4cc20c",
+      "headBaselinePresent": true,
+      "preFixDiskSha256": "3930cad8aad46588da289ce1b073328c89da1083c28bc95e566bfe0fcb4cc20c",
+      "preFixSource": "head-unmodified",
+      "candidateSha256": "978c6c9f35553cad09f81bb96feda494e0f429799b61a9bf6dd4fb0fd104e900",
+      "candidateBytes": 13975,
+      "lineEnding": "LF",
+      "note": "config.ts was unchanged from HEAD before this round and is an LF file, so the on-disk sha256 equals the HEAD blob sha256"
+    },
+    {
+      "path": "src/game/engine.ts",
+      "role": "production",
+      "attributionRound": "PPC-P1-CLOSURE-FIX-01",
+      "headBaselineContentSha256": "ed72d0c92e0ef140cba1b8cd8def3b4e30b3df741fb233efd14f756456bae0f5",
+      "headBaselinePresent": true,
+      "preFixDiskSha256": "dbb5377af22a6471e31c899f9debe896e9e74a629f4fb50a47753bd492810f3e",
+      "preFixSource": "verified-by-reconstruction",
+      "candidateSha256": "5a51e837b2c56516779c3f886c2acd9482fec2cbe15a8afb1984878df1b5154e",
+      "candidateBytes": 189446,
+      "lineEnding": "CRLF",
+      "note": "reconstructed from pre_fix_snapshot/tracked.diff.bin; git blob hash 21c4860 matches the patch post-image; LF-normalised variant hashes a750f860, the CRLF variant hashes dbb5377a which is exactly what PPC-P1-TIME-01 recorded"
+    },
+    {
+      "path": "src/game/ai/planBound.ts",
+      "role": "production",
+      "attributionRound": "PPC-P1-CLOSURE-FIX-01",
+      "headBaselineContentSha256": null,
+      "headBaselinePresent": false,
+      "preFixDiskSha256": "99c269f90e3d",
+      "preFixSource": "prior-manifest-prefix",
+      "candidateSha256": "f1427ae19dd6f87db30190209de02f39541f197691c60349fb99d04e242a49cb",
+      "candidateBytes": 5615,
+      "lineEnding": "LF",
+      "note": "PPC-P1-PLAN-01 recorded 99c269f9; LF file, reconstruction matched at full length"
+    },
+    {
+      "path": "src/game/ai/planQuality.ts",
+      "role": "production",
+      "attributionRound": "PPC-P1-CLOSURE-FIX-01",
+      "headBaselineContentSha256": "16a9894d6df50b7e75a55ffec3864b0d535a0d2b247c514fae55b916fb3e3dad",
+      "headBaselinePresent": true,
+      "preFixDiskSha256": "f97dd2045733e1aa",
+      "preFixSource": "verified-by-reconstruction",
+      "candidateSha256": "d8ecdd26afc9e790d4f471c1e5d198af5da0afe8de56009e1a7c45e4586ce51e",
+      "candidateBytes": 30602,
+      "lineEnding": "LF"
+    },
+    {
+      "path": "src/game/ai/expectiminimax.ts",
+      "role": "production",
+      "attributionRound": "PPC-P1-CLOSURE-FIX-01",
+      "headBaselineContentSha256": "9b976ec9bdbfd2cc02f6bdbb1f28b8a47a7c7759d4119e35964e077b4593ce45",
+      "headBaselinePresent": true,
+      "preFixDiskSha256": "42b6e71f0cf784c7",
+      "preFixSource": "verified-by-reconstruction",
+      "candidateSha256": "8ac2698587b426df39efc2bb3b451db89d21477e6c60a30ad90e387dfaad052c",
+      "candidateBytes": 107714,
+      "lineEnding": "LF"
+    },
+    {
+      "path": "src/game/__tests__/catMoveBudgetInputDomain.test.ts",
+      "role": "test",
+      "attributionRound": "PPC-P1-CLOSURE-FIX-01",
+      "headBaselineContentSha256": null,
+      "headBaselinePresent": false,
+      "preFixDiskSha256": null,
+      "preFixSource": "new-file",
+      "candidateSha256": "854a601ccc2955ddb11cc36426647ab8c5fd77db995fc462cbd820409f206767",
+      "candidateBytes": 12690,
+      "lineEnding": "LF"
+    },
+    {
+      "path": "src/game/ai/__tests__/planActionBoundFixtures.ts",
+      "role": "test-fixture",
+      "attributionRound": "PPC-P1-CLOSURE-FIX-01",
+      "headBaselineContentSha256": null,
+      "headBaselinePresent": false,
+      "preFixDiskSha256": "1da29be55729",
+      "preFixSource": "prior-manifest-prefix",
+      "candidateSha256": "9e6357cdde151d83812e0f4546ba496378187ee7e1775d6cd17a7e3284ee5e08",
+      "candidateBytes": 11825,
+      "lineEnding": "LF"
+    },
+    {
+      "path": "src/game/ai/__tests__/forcedLossTieBreakHv14Reachability.test.ts",
+      "role": "test",
+      "attributionRound": "PPC-P1-CLOSURE-FIX-01",
+      "headBaselineContentSha256": "7eb2b6299c8f74d4845a5ed34239e93ed9e91a6d1e036d715d9d513b63ff762b",
+      "headBaselinePresent": true,
+      "preFixDiskSha256": "7eb2b6299c8f74d4845a5ed34239e93ed9e91a6d1e036d715d9d513b63ff762b",
+      "preFixSource": "head-unmodified",
+      "candidateSha256": "d0ebb25e5f5927c27bf91f11d4ddcb642e7d515616499473c8c533d87ef8b03a",
+      "candidateBytes": 36228,
+      "lineEnding": "LF",
+      "note": "the test file was unchanged from HEAD before this round and is an LF file, so the on-disk sha256 equals the HEAD blob sha256"
+    },
+    {
+      "path": "src/game/ai/__tests__/expectiminimax.test.ts",
+      "role": "test",
+      "attributionRound": "PPC-P1-CLOSURE-FIX-01",
+      "headBaselineContentSha256": "e4f415cf4da910ecafb6275af3fdf3a84b5581b06ba36c470552fc96ade8fbb4",
+      "headBaselinePresent": true,
+      "preFixDiskSha256": "1f10220223335048",
+      "preFixSource": "computed",
+      "candidateSha256": "521340c59689a6d405d6777b71d6a8a4228850b46403ba352b73008a4ef75688",
+      "candidateBytes": 161383,
+      "lineEnding": "CRLF",
+      "note": "HEAD blob is LF (e4f415cf); the working-tree copy is CRLF, so its on-disk sha256 is 1f102202"
+    }
+  ],
+  "explainedDivergences": [
+    {
+      "path": "src/game/engine.ts",
+      "previouslyDeclaredSha256Prefix": "dbb5377a",
+      "declaredBy": "PPC-P1-TIME-01 / PPC-P1-PLAN-01 / PPC-P1-QUALITY-01",
+      "nowOnDiskSha256Prefix": "5a51e837",
+      "explainedBy": "PPC-P1-CLOSURE-FIX-01 modified this file under explicit authorisation",
+      "reason": "createInitialState front assertion"
+    },
+    {
+      "path": "src/game/ai/planBound.ts",
+      "previouslyDeclaredSha256Prefix": "99c269f9",
+      "declaredBy": "PPC-P1-PLAN-01 / PPC-P1-QUALITY-01",
+      "nowOnDiskSha256Prefix": "f1427ae1",
+      "explainedBy": "PPC-P1-CLOSURE-FIX-01 modified this file under explicit authorisation",
+      "reason": "hasCertifiableCatMoveBudget + non-flooring catTurnMoveBudget"
+    },
+    {
+      "path": "src/game/ai/planQuality.ts",
+      "previouslyDeclaredSha256Prefix": "f97dd204",
+      "declaredBy": "PPC-P1-QUALITY-01",
+      "nowOnDiskSha256Prefix": "d8ecdd26",
+      "explainedBy": "PPC-P1-CLOSURE-FIX-01 modified this file under explicit authorisation",
+      "reason": "4 fail-closed gates in the plan extractors"
+    },
+    {
+      "path": "src/game/ai/expectiminimax.ts",
+      "previouslyDeclaredSha256Prefix": "42b6e71f",
+      "declaredBy": "PPC-P1-PLAN-01 / PPC-P1-QUALITY-01",
+      "nowOnDiskSha256Prefix": "8ac26985",
+      "explainedBy": "PPC-P1-CLOSURE-FIX-01 modified this file under explicit authorisation",
+      "reason": "buildCatTurnPlan fail-closed gate"
+    },
+    {
+      "path": "src/game/ai/__tests__/planActionBoundFixtures.ts",
+      "previouslyDeclaredSha256Prefix": "1da29be5",
+      "declaredBy": "PPC-P1-PLAN-01 / PPC-P1-QUALITY-01",
+      "nowOnDiskSha256Prefix": "9e6357cd",
+      "explainedBy": "PPC-P1-CLOSURE-FIX-01 modified this file under explicit authorisation",
+      "reason": "catTurnRoot honours opts.catBaseMoves"
+    }
+  ],
+  "crossCheckSummary": {
+    "manifestsScanned": 6,
+    "distinctClaimedPaths": 31,
+    "directMatchAgainstDisk": 26,
+    "supersededByThisRound": 5,
+    "UNEXPLAINED_DIVERGENCE": 0,
+    "rawTable": "PPC-P1-CLOSURE-FIX-01/_raw/manifest_crosscheck.json"
+  },
+  "artifacts": [
+    {
+      "path": "PPC-P1-CLOSURE-FIX-01/REPORT.md",
+      "sha256": "a775494aab39d4a9fbc3cc41b0fd08df08d6132cce0a1fb78a381a5d06f35f7d",
+      "bytes": 16126
+    },
+    {
+      "path": "PPC-P1-CLOSURE-FIX-01/INPUT_DOMAIN_DECISION.md",
+      "sha256": "4db3cf517e74b71ddacc642b9d8d7bb7948ac5572be091bfe7f28049c5c0d76e",
+      "bytes": 7439
+    },
+    {
+      "path": "PPC-P1-CLOSURE-FIX-01/CORRECTNESS_RESULTS.json",
+      "sha256": "d7b0910a8c3f60a026cbcddd1d7a92f9f0ed2bdce1622c190eeab6f0794f037d",
+      "bytes": 14149
+    },
+    {
+      "path": "PPC-P1-CLOSURE-FIX-01/HV14_REPRODUCTION_GAP.json",
+      "sha256": "9e62aacc0806b76be808551e50d9755be837d3b48f6a28cfb572c7127d6b4706",
+      "bytes": 12290
+    },
+    {
+      "path": "PPC-P1-CLOSURE-FIX-01/REGRESSION_TRIAGE.md",
+      "sha256": "10c10ae482d3992b790be717d61627070d93fc238306489aab23d87f6aa5033c",
+      "bytes": 7057
+    },
+    {
+      "path": "PPC-P1-CLOSURE-FIX-01/P1_ID_MANIFEST_RECONSTRUCTION.md",
+      "sha256": "797a023f051b102500224ed8f409a5d73d23ebd1a5bdc03ec13b9d26b49f9f65",
+      "bytes": 4619
+    },
+    {
+      "path": "PPC-P1-CLOSURE-FIX-01/CHECKPOINT_MANIFEST.json",
+      "sha256": "2bbda53c1364d48d6a540eeb78aaef62fed3cbec7fdd0015fb87b2aa9d573e57",
+      "bytes": 11388
+    },
+    {
+      "path": "PPC-P1-CLOSURE-FIX-01/REMAINING_GATES.md",
+      "sha256": "3fdecd2dbd18313e002b6ab33edc517bb495a74270583a88cb2c66dd14c11f7c",
+      "bytes": 5302
+    },
+    {
+      "path": "PPC-P1-CLOSURE-FIX-01/logs/01_input_domain.log",
+      "sha256": "599c51a2a4a0ba70c1d9e7c2a564ce916d8eeb1f4958a749f2bb8a9e2252805c",
+      "bytes": 1909
+    },
+    {
+      "path": "PPC-P1-CLOSURE-FIX-01/logs/02_plan_bound.log",
+      "sha256": "9511480552106250c39e2ba8355d66f1352f5f67bd9caa4624a1890868929f59",
+      "bytes": 773
+    },
+    {
+      "path": "PPC-P1-CLOSURE-FIX-01/logs/03_plan_reversal.log",
+      "sha256": "03bf9d2dee751834e4022fc55374c7bb5317bfff01d218fdc4c4b3f02e3b1e4f",
+      "bytes": 550
+    },
+    {
+      "path": "PPC-P1-CLOSURE-FIX-01/logs/04_progress_guard.log",
+      "sha256": "061c056cf21e7ec8a4ba0722df569dd057a91faca0690a9b36bdc353a027d0c7",
+      "bytes": 1037
+    },
+    {
+      "path": "PPC-P1-CLOSURE-FIX-01/logs/05_hv14_forensics.log",
+      "sha256": "6d1aabd256f58c338a9614417896d0a8bdfa1367279fc26031e2c5b17c2402c1",
+      "bytes": 15557
+    },
+    {
+      "path": "PPC-P1-CLOSURE-FIX-01/logs/06_hv14_flt.log",
+      "sha256": "ed4434326dac7f1b5c9dcf2070c6dd35f1a0ddcce3e7782ea2f372ae0bee2598",
+      "bytes": 6064
+    },
+    {
+      "path": "PPC-P1-CLOSURE-FIX-01/logs/07_t1eb.log",
+      "sha256": "9f830a525c510c59463301d6ddcc6cf4f97dc0f33195904bbff85d7367793e70",
+      "bytes": 3057
+    },
+    {
+      "path": "PPC-P1-CLOSURE-FIX-01/logs/08_tsc.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "PPC-P1-CLOSURE-FIX-01/logs/09_build.log",
+      "sha256": "cf364f3de3163cc304aeb98bf62bb3055967d2d1baae5493c2eb51468f1ffa3b",
+      "bytes": 934
+    },
+    {
+      "path": "PPC-P1-CLOSURE-FIX-01/logs/10_default_map_parity.log",
+      "sha256": "7119e012126e2b2beff06705fd08ce7cb0565e40669b419519c16cd5d4051330",
+      "bytes": 1132
+    },
+    {
+      "path": "PPC-P1-CLOSURE-FIX-01/logs/tsc_step1.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "PPC-P1-CLOSURE-FIX-01/logs/tsc_step2.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "PPC-P1-CLOSURE-FIX-01/logs/tsc_step3.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "PPC-P1-CLOSURE-FIX-01/_raw/changed_files.json",
+      "sha256": "11317b42a3da1b58ab3c9147b7bb6f8f1949cbcbdd33119799fe437ea8c0934b",
+      "bytes": 4016
+    },
+    {
+      "path": "PPC-P1-CLOSURE-FIX-01/_raw/manifest_crosscheck.json",
+      "sha256": "ca66c3b6e9e259c6c3b86adaf97f9b2bd92237df97e300722f95420196373326",
+      "bytes": 7183
+    },
+    {
+      "path": "PPC-P1-CLOSURE-FIX-01/pre_fix_snapshot/status_pre.txt",
+      "sha256": "c2f9e3db0615ec67b385a66a5abc78d57d268911cc487365f24e4ba81c057e81",
+      "bytes": 19577
+    },
+    {
+      "path": "PPC-P1-CLOSURE-FIX-01/pre_fix_snapshot/tracked.diff.bin",
+      "sha256": "8e382c8677aaac50434e68d483d111839376b3381ec36cc5da901263932960cb",
+      "bytes": 45099
+    },
+    {
+      "path": "PPC-P1-ID-01/SOURCE_MANIFEST.json",
+      "sha256": "424b9e81131b391f9b47d5b02f99130f94f6abb972c7c28d3bea69c118369b24",
+      "bytes": 6591
+    },
+    {
+      "path": "PPC-P1-CLOSURE-FIX-01/probe/README.md",
+      "sha256": "34ffecd27ffe5f48017adf0dd82757636594a5b0a0cbe7aefbf89a34eeee923e",
+      "bytes": 1237
+    }
+  ],
+  "guardState": {
+    "commit": "NO",
+    "push": "NO",
+    "merge": "NO",
+    "reset": "NO",
+    "clean": "NO",
+    "stash": "NO",
+    "rebase": "NO",
+    "productionFilesChangedThisRound": 5,
+    "testFilesChangedThisRound": 3,
+    "newTestFilesThisRound": 1,
+    "newManifestsThisRound": 1
+  },
+  "invariants": {
+    "SEARCH_MATH_CHANGED": "NO",
+    "H1_WEIGHTS_CHANGED": "NO",
+    "TT_SEMANTICS_CHANGED": "NO",
+    "SIDECAR_POLICY_CHANGED": "NO",
+    "GAMEPLAY_INTEGER_RULES_CHANGED": "NO",
+    "BUDGET_100MS_CHANGED": "NO",
+    "BUDGET_150MS_CHANGED": "NO",
+    "FROZEN_FIXTURE_ORIGINALS_MODIFIED": "NO"
+  }
+}

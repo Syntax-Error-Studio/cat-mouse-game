@@ -1,0 +1,52 @@
+# PPC-T2-PCV-RESCUE-01 SHA256SUMS
+# Generated: 2026-11-16T07:06:26Z
+# Verify hashes: sha256sum -c SHA256SUMS.txt
+# SHA256SUMS.txt itself is excluded; its own digest is reported by the harness.
+# Byte lengths are commented so the hash lines remain verifiable.
+#
+3351036f445e843c876d3629ea7698abd1e56c704aaffadeca74151cd7ef050a  ./ALTERNATIVE_PROOF_RESULTS.json
+0a0e837169a551aaef5eebe4ad7d82cbf6e063290820eab31c373da712724649  ./BASELINE_CERTIFICATES.json
+8f5a3f9d99ac2f61c895255e72650b3761418cb58ff5152b7d5e94619f8fc3ed  ./CANDIDATE_PLANS.json
+a07464f1242647ebebe527232c55c1293052fd57f2491fbb4c3826bfb0abf016  ./CANDIDATE_SOURCE_AUDIT.md
+2b8b31c02390153ba8806daf9c5bc601b5399ab8ffe670ce3e705d91eb0c286f  ./CERTIFICATE_VERIFICATION.json
+12c74d16d1f46c60a36570e4e4c9ad52a595eacf2a4d2f52cf0aa4f026e79d49  ./REPORT.md
+0eb4973d21f3e2b43a157d6c6c0310311b63e8a51d8d53bd52aa3bc9b71cd882  ./RESCUE_MATRIX.csv
+73c594e81d524b3de589c07d18c0c2c1cb1cafbdaa589d616705e1c19b5a5e17  ./RESOURCE_SAFETY_LOG.md
+b6b5b493b275efdc5952c040e0d18a3c89ee4a7e18928b5da577f5a9b08e5041  ./SOURCE_MANIFEST.json
+3ca85afc15a65d14658fe5f77bd7fda5b1fe5cc8feb2f5a950e30edb756c33a1  ./_raw/AGGREGATE.json
+ccd1925c1a4b489e330bd014c1dcc57434e1ab0e3c895c1f994c38f825e716f7  ./_raw/CANDIDATE_FREEZE.json
+820c903c14d9c9d6cfc3749476b395882a2dd3c7094fa7a3cce7186aea7ceda0  ./_raw/D1_CROSSCHECK.json
+215616c99cf4c23d00d3a25c83ecd94ef75ccc26bab409e58de7072e0f10d066  ./_raw/FRONTIER_INSPECTION.json
+50a2ff2d1c1e7645baca6c3686ab53b94738a51fda7fd23c59cf5291f4a24832  ./_raw/candidate_generation_summary.json
+50170ff37f8ab816ba9125ad9022778c1dc8d281d862b32e5b9054a16861e0b6  ./_raw/proof_rep1.json
+3c044e2c6d9c3b9daf514952aa7c50158fca2ac00964d01ebb6eb4e514aa9833  ./_raw/proof_rep2.json
+a0e8180b819ae2f4969a3b8990c1e0b20345812b8c8d14fe116620df2acb57bd  ./probe/aggregate_rescue.mjs
+6552f554d8b5873d10b4d5ae1f3b24fb3964821f93a9cb652a89dfe86473cf59  ./probe/generate_candidates.test.ts
+1391f08a16ca02e93cacc5858264f4c20e3ad3186e60342cc7ead1717c24f391  ./probe/inspect_frontier.test.ts
+1d30fdbd3804ece6096cc8f7e2307e1d16aba9d527199da9c5ba503f70344733  ./probe/prove_alternatives.test.ts
+1015fdc2daf1427dad3297e5828e0183d2270c9c7913556d61dfd85bb9ec0d60  ./probe/rescue_lib.ts
+79ca71fd440b0c5ec20e5842485620ce9f57ecc1a499e3b3860479f60b853a01  ./probe/vitest.config.mts
+#
+# Byte lengths
+# 211920  ./ALTERNATIVE_PROOF_RESULTS.json
+# 91994  ./BASELINE_CERTIFICATES.json
+# 87474  ./CANDIDATE_PLANS.json
+# 7414  ./CANDIDATE_SOURCE_AUDIT.md
+# 260920  ./CERTIFICATE_VERIFICATION.json
+# 12767  ./REPORT.md
+# 9353  ./RESCUE_MATRIX.csv
+# 4778  ./RESOURCE_SAFETY_LOG.md
+# 12066  ./SOURCE_MANIFEST.json
+# 4232  ./_raw/AGGREGATE.json
+# 343  ./_raw/CANDIDATE_FREEZE.json
+# 1715  ./_raw/D1_CROSSCHECK.json
+# 1952  ./_raw/FRONTIER_INSPECTION.json
+# 19078  ./_raw/candidate_generation_summary.json
+# 299027  ./_raw/proof_rep1.json
+# 299020  ./_raw/proof_rep2.json
+# 12608  ./probe/aggregate_rescue.mjs
+# 5948  ./probe/generate_candidates.test.ts
+# 2393  ./probe/inspect_frontier.test.ts
+# 14801  ./probe/prove_alternatives.test.ts
+# 19178  ./probe/rescue_lib.ts
+# 546  ./probe/vitest.config.mts

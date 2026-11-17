@@ -58,6 +58,87 @@
 /** Which of the two paths this context is on. */
 export type DeadlineKind = 'NO_DEADLINE' | 'FINITE_ABSOLUTE';
 
+/**
+ * PPC-P1-TIME-01 — ONE CAT TURN's absolute time identity.
+ *
+ * The planner used to read `now()` at the top of every call and build
+ * `now() + timeBudgetMs` / `now() + totalTurnBudgetMs` from it, so the
+ * 100 ms / 150 ms windows were per-CALL windows. A turn that fell back to the
+ * legacy heuristic re-entered the planner once per remaining cat move, and each
+ * of those calls was handed a brand-new full window: a four-move turn could be
+ * granted up to 5 x 100 ms of main search against a contract that says 100 ms
+ * per TURN.
+ *
+ * This type is that contract, made data. It is minted ONCE — by the cat-turn
+ * entry point — from ONE clock read of ONE clock, and then threaded BY
+ * REFERENCE into every planner call that turn makes. Nothing downstream can
+ * mint a window from a fresh clock read, because nothing downstream is given a
+ * clock it could use for that: `now` here IS the turn's clock, and the two
+ * instants are absolute in it.
+ *
+ * It is deliberately NOT a `DeadlineContext`: those describe "the wall that
+ * bounds the work a call is about to do", and there are two of them per turn
+ * with different semantics (main search vs. sidecar/guard). This is the pair of
+ * outer bounds the turn imposes, plus the clock they live on.
+ */
+export interface TurnDeadlineIdentity {
+  /** The instant the cat turn began, on `now`. */
+  readonly startedAtMs: number;
+  /** ABSOLUTE last instant at which a main search may start/continue. */
+  readonly mainSearchDeadlineAtMs: number;
+  /** ABSOLUTE last instant for the whole turn (main search + sidecar + guard). */
+  readonly totalTurnDeadlineAtMs: number;
+  /** The monotonic clock the two instants above are expressed in. Carried by
+   *  reference so every consumer samples the SAME clock — a consumer that
+   *  opened its own would reintroduce the mixed-origin bug this replaces. */
+  readonly now: () => number;
+  readonly origin: 'performance.now';
+}
+
+/**
+ * Mint one turn's identity. The only way to create a turn window.
+ *
+ * @param startedAtMs        the turn's start instant, already read on `now`
+ * @param mainSearchBudgetMs nominal main-search budget for the WHOLE turn
+ * @param totalTurnBudgetMs  nominal total-turn budget for the WHOLE turn
+ * @param now                the clock; defaults to `performance.now`
+ */
+export function makeTurnDeadlineIdentity(
+  startedAtMs: number,
+  mainSearchBudgetMs: number,
+  totalTurnBudgetMs: number,
+  now?: () => number,
+): TurnDeadlineIdentity {
+  const clock = now ?? monotonicNow;
+  if (!Number.isFinite(startedAtMs)) {
+    throw new Error(`makeTurnDeadlineIdentity: start ${startedAtMs} is not a finite instant`);
+  }
+  const mainSearchDeadlineAtMs = startedAtMs + mainSearchBudgetMs;
+  const totalTurnDeadlineAtMs = startedAtMs + totalTurnBudgetMs;
+  // A main window that outlives the turn it belongs to is not a narrower
+  // contract, it is an unenforceable one — fail loud instead of quietly
+  // clamping, so the caller cannot believe it raised the turn budget.
+  if (mainSearchDeadlineAtMs > totalTurnDeadlineAtMs) {
+    throw new Error(
+      `makeTurnDeadlineIdentity: main-search deadline ${mainSearchDeadlineAtMs} is later than the ` +
+      `turn deadline ${totalTurnDeadlineAtMs} — the main search may not outlive its turn`,
+    );
+  }
+  return {
+    startedAtMs,
+    mainSearchDeadlineAtMs,
+    totalTurnDeadlineAtMs,
+    now: clock,
+    origin: 'performance.now',
+  };
+}
+
+/** Is the main-search window of `id` still open at instant `nowMs`? A closed
+ *  window means no new main search may be started for this turn. */
+export function mainSearchWindowOpen(id: TurnDeadlineIdentity, nowMs: number): boolean {
+  return nowMs < id.mainSearchDeadlineAtMs;
+}
+
 /** Where the shared deadline was observed to have passed. `none` = never. */
 export type DeadlineAbortPhase =
   | 'none'
@@ -101,8 +182,22 @@ export interface FiniteDeadline {
 
 export type DeadlineContext = NoDeadline | FiniteDeadline;
 
-const defaultClock = (): number =>
-  (typeof performance !== 'undefined' ? performance.now() : 0);
+/**
+ * The one monotonic clock of the AI layer. `performance.now()` where available
+ * (browsers, Node >= 16), `Date.now()` only as a last resort — and never mixed:
+ * a single turn's `TurnDeadlineIdentity` is built from whichever this returns,
+ * and every consumer samples that same function reference.
+ *
+ * PPC-P1-TIME-01: exported because the cat-turn entry point (`engine.ts`) now
+ * mints the turn's identity, and it must read the SAME clock the planner and
+ * the search read. Previously each layer had its own `performance.now()`
+ * fallback expression; they happened to agree, which is not the same as being
+ * one clock.
+ */
+export const monotonicNow = (): number =>
+  (typeof performance !== 'undefined' ? performance.now() : Date.now());
+
+const defaultClock = monotonicNow;
 
 /**
  * The only way to open a total-deadline window.

@@ -1,0 +1,58 @@
+{
+  "archive": "F:/ppc-checkpoints/PPC-P2-PREPARED-TRANSITION-01-candidate.tar.gz",
+  "archiveSha256": "8da211e034dd514ed58f3871381a458183c737336c9a6ca99b59d261a3e70f58",
+  "archiveSha256Claimed": "8da211e034dd514ed58f3871381a458183c737336c9a6ca99b59d261a3e70f58",
+  "archiveSha256MatchesDigestFile": true,
+  "archiveBytes": 461609,
+  "extractedTo": "C:\\Users\\zheng\\AppData\\Local\\Temp\\ppc-p2-restore-DQNMVr",
+  "memberCount": 183,
+  "manifestMemberCount": 182,
+  "missing": 0,
+  "extra": 0,
+  "selfManifestPresent": true,
+  "selfManifestNote": "ARCHIVE_MANIFEST.json is the one documented non-member (a manifest cannot carry its own sha256). Its integrity is covered by ARCHIVE_SHA256.txt (= the digest of the whole tarball).",
+  "shaMismatch": 0,
+  "sizeMismatch": 0,
+  "missingList": [],
+  "sourceMatches": [
+    {
+      "path": "src/game/ai/preparedActions.ts",
+      "archiveSha256": "67b76ad3de53fee6d3d32f9bc8ab9a02b52234857b23b7fc9091bd92011ad764",
+      "worktreeSha256": "67b76ad3de53fee6d3d32f9bc8ab9a02b52234857b23b7fc9091bd92011ad764",
+      "equal": true
+    },
+    {
+      "path": "src/game/ai/legalActions.ts",
+      "archiveSha256": "27ae2f468d19043425326c2fc42923aeae894a5f84d2e0684ee374808b50eb22",
+      "worktreeSha256": "27ae2f468d19043425326c2fc42923aeae894a5f84d2e0684ee374808b50eb22",
+      "equal": true
+    },
+    {
+      "path": "src/game/ai/expectiminimax.ts",
+      "archiveSha256": "50d27da5e9d0d47a1ad70efb542a3ec1510507fd14b825a52729ebb90f6d690c",
+      "worktreeSha256": "50d27da5e9d0d47a1ad70efb542a3ec1510507fd14b825a52729ebb90f6d690c",
+      "equal": true
+    },
+    {
+      "path": "src/game/ai/__tests__/preparedTransition.test.ts",
+      "archiveSha256": "249ac63e2239f261fb3711ae90fd597af40334a3d0c32df31eb637638dc0255c",
+      "worktreeSha256": "249ac63e2239f261fb3711ae90fd597af40334a3d0c32df31eb637638dc0255c",
+      "equal": true
+    }
+  ],
+  "armRebuild": {
+    "armFileCount": 165,
+    "differing": [
+      "game/ai/expectiminimax.ts",
+      "game/ai/legalActions.ts"
+    ],
+    "onlyInSrc": [
+      "game/ai/preparedActions.ts",
+      "game/ai/__tests__/preparedTransition.test.ts"
+    ],
+    "unresolved": [],
+    "resolved": 165
+  },
+  "verdict": "PASS",
+  "lines": []
+}

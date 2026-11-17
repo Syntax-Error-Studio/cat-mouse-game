@@ -43,9 +43,17 @@ import { applyNoMoveLoss } from './rules/mobility';
 // binding) is deliberately NEVER imported by engine.
 import { planHardCatTurn } from './ai/hardTurnPlanner';
 import type { HardSearchDebug } from './ai/hardTurnPlanner';
+import {
+  makeTurnDeadlineIdentity, mainSearchWindowOpen, monotonicNow,
+  type TurnDeadlineIdentity,
+} from './ai/deadlineContext';
 import type { HardSearchHistoryEntry, HardRefutationDiag } from './ai/hardHistory';
 import { pushHardHistory, makeHardHistoryEntry, nextHardHistoryTurn } from './ai/hardHistory';
 import { stateKey } from './ai/transposition';
+// PPC-P1-CHECKPOINT-01: the numerically-representable cat move budget limit.
+// `ai/planBound` imports engine only as `import type` (erased at runtime), so
+// this stays a one-way engine -> ai edge.
+import { MAX_CERTIFIABLE_CAT_MOVE_BUDGET } from './ai/planBound';
 import type { RuleSet, SearchAction } from './ai/searchTypes';
 import { DEFAULT_SEARCH_CONFIG, HARD_TRIAL, HARD_PROGRESS_GUARD_CONFIG } from './ai/searchConfig';
 // G0.4E-1 — feature-flagged Hybrid leaf (default OFF; resolveHardLeaf picks the
@@ -521,6 +529,38 @@ function sanitizeItemOverlaps(state: GameEngineState): GameEngineState {
 // --- Public API ---
 
 export function createInitialState(config: GameConfig = DEFAULT_CONFIG): GameEngineState {
+  // PPC-P1-CLOSURE-FIX-01 — this raw constructor must not be a backdoor around
+  // the cat move-budget contract that `validateGameConfig` (and therefore
+  // `createGameState`) enforces. `catMovesLeft` is seeded straight from
+  // `config.catBaseMoves` below, so an invalid base budget would be copied into
+  // a running state that no plan extractor can certify.
+  //
+  // This is a front assertion, not a silent repair: normalising here (floor /
+  // clamp) would turn an illegal config into a plausible-looking turn. Callers
+  // that want a fail-closed *result* use `createGameState`, which returns
+  // `state: null` instead of throwing.
+  //
+  // PPC-P1-CHECKPOINT-01 — the upper end is the same contract: a budget whose
+  // plan bound is not exactly representable is refused, not clamped. Without
+  // this, a huge budget reaches the opening-fairness solver, whose recursion
+  // depth is bounded by the turn ("Maximum call stack size exceeded" instead of
+  // a diagnosis).
+  if (!Number.isSafeInteger(config.catBaseMoves) || config.catBaseMoves < 1) {
+    throw new RangeError(
+      'createInitialState: config.catBaseMoves must be a positive safe integer '
+      + `(got ${String(config.catBaseMoves)}); use validateGameConfig/createGameState `
+      + 'for a fail-closed result',
+    );
+  }
+  if (config.catBaseMoves > MAX_CERTIFIABLE_CAT_MOVE_BUDGET) {
+    throw new RangeError(
+      'createInitialState: config.catBaseMoves must not exceed '
+      + `${MAX_CERTIFIABLE_CAT_MOVE_BUDGET} — the plan bound `
+      + 'catBaseMoves + 1 + floor(catBaseMoves/2) must stay an exact integer '
+      + `(got ${String(config.catBaseMoves)}); use validateGameConfig/createGameState `
+      + 'for a fail-closed result',
+    );
+  }
   const tunnelCorners = getTunnelCorners(config);
   const board = createInitialBoard(config, tunnelCorners);
 
@@ -3856,7 +3896,20 @@ function refutationDiagFromDebug(debug: HardSearchDebug): HardRefutationDiag | u
   };
 }
 
-export function catAiMove(state: GameEngineState): GameEngineState | null {
+export function catAiMove(
+  state: GameEngineState,
+  /**
+   * PPC-P1-TIME-01 — the cat TURN's absolute time identity, when this call is
+   * one step of a turn that has already started (i.e. a fallback re-plan).
+   *
+   * Omitted ⇒ this call owns its whole turn and the planner mints its own
+   * window, exactly as before (that is what a standalone `catAiMove` means).
+   * Supplied ⇒ no new window exists: the main search may only spend what is
+   * left of the turn's original window, and if that window has already closed
+   * this call goes straight to the legacy heuristic instead of searching.
+   */
+  turnDeadline?: TurnDeadlineIdentity,
+): GameEngineState | null {
   state = sanitizeItemOverlaps(state);
   if (state.currentPlayer !== PieceType.Cat || state.phase !== GamePhase.Playing) return null;
   if (state.catMovesLeft <= 0) return null;
@@ -3871,6 +3924,21 @@ export function catAiMove(state: GameEngineState): GameEngineState | null {
     return catAiEasy(state);
   }
   if (difficulty === DifficultyConst.Hard) {
+    // PPC-P1-TIME-01: the turn's main-search window is CLOSED. Re-entering the
+    // planner here would start a full search after the wall the turn was given
+    // (historically: a fresh `now() + 100` on every fallback step). Skip it and
+    // use the cheap heuristic this branch was always going to end at. The log
+    // line keeps the abort visible in the turn's own action log — an AI that
+    // had no time to plan is NOT a cat with no legal moves (RULE-A).
+    if (turnDeadline && !mainSearchWindowOpen(turnDeadline, turnDeadline.now())) {
+      const closed = logFallback(
+        state,
+        `SEARCH_FALLBACK reason=turn_main_window_closed elapsed_since_turn_start=${
+          (turnDeadline.now() - turnDeadline.startedAtMs).toFixed(1)
+        }ms budget=${(turnDeadline.mainSearchDeadlineAtMs - turnDeadline.startedAtMs).toFixed(0)}ms`,
+      );
+      return catAiHard(closed);
+    }
     const plan = planHardCatTurn(state, {
       rules: createEngineRuleSet(),
       timeBudgetMs: DEFAULT_SEARCH_CONFIG.timeBudgetMsPerCatTurn,
@@ -3879,6 +3947,9 @@ export function catAiMove(state: GameEngineState): GameEngineState | null {
       // G0.4E-1 — active Hard leaf by feature flag (default baseline =
       // evaluateForCat). Both Hard call sites use the SAME resolver.
       leafEvaluator: resolveHardLeaf(),
+      // PPC-P1-TIME-01: inherit the turn's absolute windows when this is a
+      // fallback step; the planner then never mints a second full budget.
+      turnDeadline,
     });
     state = { ...state, lastHardSearch: plan.debug };
     const first = plan.plan[0] ?? plan.bestAction;
@@ -3951,7 +4022,20 @@ export type CatAiStep = {
  * Each step represents one cat move. The array includes the starting state.
  * Returns null if cat is not currently moving.
  */
-export function computeCatAiTrajectory(state: GameEngineState): CatAiStep[] | null {
+export function computeCatAiTrajectory(
+  state: GameEngineState,
+  /**
+   * PPC-P1-TIME-01 — monotonic clock used to mint this cat turn's absolute
+   * deadline identity. Defaults to the AI layer's one clock; a test injects a
+   * fake clock to place the turn at a chosen instant.
+   *
+   * This is the ONLY place a Hard cat turn's time budget is created: the two
+   * absolute instants below are threaded into every planner call the turn makes
+   * (first plan and all fallback re-plans), so a turn that fails its plan can
+   * never be granted a second full 100 ms / 150 ms window.
+   */
+  now: () => number = monotonicNow,
+): CatAiStep[] | null {
   if (state.currentPlayer !== PieceType.Cat || state.phase !== GamePhase.Playing) return null;
   if (state.catMovesLeft <= 0) return null;
 
@@ -3987,6 +4071,11 @@ export function computeCatAiTrajectory(state: GameEngineState): CatAiStep[] | nu
   // Memory classification is computed from THIS root + the final executed
   // state — never from replaying the plan from the final state.
   let progressGuardExecutionRoot: GameEngineState | null = null;
+  // PPC-P1-TIME-01: THIS cat turn's absolute time identity — minted ONCE here,
+  // before the first planner call, and handed to every subsequent planner call
+  // the turn makes (the fallback re-plans in the loop below). `null` for a
+  // non-Hard turn, which never plans.
+  let hardTurnDeadline: TurnDeadlineIdentity | null = null;
   // G0.2: 1-based turn index (debug only). PPC-HV-1A P0-1: derived from the
   // max RETAINED turn, never from the array length — the window rolls at
   // HARD_HISTORY_LIMIT, and length+1 froze every turn after #20 onto "21".
@@ -3994,6 +4083,18 @@ export function computeCatAiTrajectory(state: GameEngineState): CatAiStep[] | nu
   if (isHardTurn) {
     progressGuardExecutionRoot = current;
     const hardMainBudgetMs = DEFAULT_SEARCH_CONFIG.timeBudgetMsPerCatTurn;
+    // PPC-P1-TIME-01: ONE time identity for the WHOLE cat turn. The old code let
+    // every planner call mint `now() + 100` / `now() + 150` for itself, so a
+    // turn whose plan was empty / truncated / invalid was granted a fresh full
+    // window on each remaining cat move (1 + catBaseMoves windows in total).
+    // From here on, the turn owns exactly one of each, and `catAiMove` below
+    // can only spend what is LEFT of them.
+    hardTurnDeadline = makeTurnDeadlineIdentity(
+      now(),
+      hardMainBudgetMs,
+      HARD_TRIAL.totalTurnBudgetMs,
+      now,
+    );
     const planned = planHardCatTurn(current, {
       rules: createEngineRuleSet(),
       timeBudgetMs: hardMainBudgetMs,
@@ -4001,6 +4102,8 @@ export function computeCatAiTrajectory(state: GameEngineState): CatAiStep[] | nu
       refutation: { enabled: HARD_TRIAL.refutationEnabled, totalTurnBudgetMs: HARD_TRIAL.totalTurnBudgetMs },
       // G0.4E-1 — same resolver as catAiMove (feature flag; default baseline).
       leafEvaluator: resolveHardLeaf(),
+      // PPC-P1-TIME-01: the turn's windows, not this call's.
+      turnDeadline: hardTurnDeadline,
     });
     // F1B (HARD_SEARCH debug): persist the debug record onto the state so the
     // UI debug panel can render it (with copy). Debug-only — excluded from
@@ -4080,7 +4183,7 @@ export function computeCatAiTrajectory(state: GameEngineState): CatAiStep[] | nu
           `SEARCH_FALLBACK reason=plan_action_invalid action=${action.type}`,
         );
         hardPlanActions = null; // fall back to legacy for the rest of the turn
-        nextState = catAiMove(current);
+        nextState = catAiMove(current, hardTurnDeadline ?? undefined);
       } else {
         execFacts.appliedPlanActions.push(action);
         nextState = applied.state;
@@ -4097,9 +4200,9 @@ export function computeCatAiTrajectory(state: GameEngineState): CatAiStep[] | nu
         `SEARCH_FALLBACK reason=plan_exhausted plan_len=${hardPlanActions.length} remaining_moves=${current.catMovesLeft}`,
       );
       hardPlanActions = null; // fall back to legacy for the rest of the turn
-      nextState = catAiMove(current);
+      nextState = catAiMove(current, hardTurnDeadline ?? undefined);
     } else {
-      nextState = catAiMove(current);
+      nextState = catAiMove(current, hardTurnDeadline ?? undefined);
     }
 
     // AI returned null — cat is truly stuck (no valid moves at all).

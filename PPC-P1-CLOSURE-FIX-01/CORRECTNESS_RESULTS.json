@@ -1,0 +1,235 @@
+{
+  "artifactId": "CORRECTNESS_RESULTS",
+  "round": "PPC-P1-CLOSURE-FIX-01",
+  "project": "Project Perfect Cat",
+  "date": "2026-11-13",
+  "branch": "ppc/p1-id-state-identity-fix",
+  "head": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+
+  "executionSummary": {
+    "testFilesExecuted": 8,
+    "testsExecuted": 128,
+    "testsPassed": 128,
+    "testsFailed": 0,
+    "fullSuiteRerun": "NOT_PERFORMED",
+    "tsc": "PASS (exit 0, empty log)",
+    "viteBuild": "PASS (exit 0, 96 modules, 7.09s)",
+    "perFile": [
+      { "log": "logs/01_input_domain.log", "file": "src/game/__tests__/catMoveBudgetInputDomain.test.ts", "tests": 13, "passed": 13 },
+      { "log": "logs/02_plan_bound.log", "file": "src/game/ai/__tests__/planTurnActionBound.test.ts", "tests": 19, "passed": 19 },
+      { "log": "logs/03_plan_reversal.log", "file": "src/game/ai/__tests__/planReversalAccounting.test.ts", "tests": 9, "passed": 9 },
+      { "log": "logs/04_progress_guard.log", "file": "src/game/ai/__tests__/progressGuard.test.ts", "tests": 31, "passed": 31 },
+      { "log": "logs/05_hv14_forensics.log", "file": "src/game/ai/__tests__/hv14FiveGameForensics.test.ts", "tests": 16, "passed": 16 },
+      { "log": "logs/06_hv14_flt.log", "file": "src/game/ai/__tests__/forcedLossTieBreakHv14Reachability.test.ts", "tests": 4, "passed": 4 },
+      { "log": "logs/07_t1eb.log", "file": "src/game/ai/__tests__/expectiminimax.test.ts -t 'T1E-B A/B/K'", "tests": 1, "passed": 1, "skipped": 88 },
+      { "log": "logs/10_default_map_parity.log", "file": "src/game/ai/__tests__/stateIdentityCollision.test.ts", "tests": 35, "passed": 35 }
+    ]
+  },
+
+  "gates": [
+    {
+      "id": "CF-0",
+      "title": "分支、HEAD、历史四轮文件保全",
+      "verdict": "PASS",
+      "evidence": [
+        "git rev-parse --abbrev-ref HEAD = ppc/p1-id-state-identity-fix",
+        "git rev-parse HEAD = 48eaac6c4f3801d351787696ba5876995b64e8d8 (unchanged; 0 commits this round)",
+        "pre_fix_snapshot/tracked.diff.bin (45,099 B) and pre_fix_snapshot/status_pre.txt (19,577 B) captured BEFORE any edit",
+        "Delivery dirs PPC-P1-ID-01 / TIME-01 / TIME-02 / PLAN-01 / QUALITY-01 / CLOSURE-01 all present and unmodified (no file inside them was rewritten this round except the newly added PPC-P1-ID-01/SOURCE_MANIFEST.json)",
+        "Protected untracked file 纸制版作业-…-第二次.doc sha256 = 505bd083d753adde9c0e41362a175f0aec8dd806444601e9951526350006b626, mtime 2026-10-16 20:50:04 — untouched",
+        "No commit / push / merge / reset / clean / stash performed"
+      ],
+      "note": "3 of the 7 frozen fingerprints are byte-identical to the carried candidates (transposition 7b4aa8eb, deadlineContext ced44944, hardTurnPlanner 27b1ce6d). The other 4 were intentionally modified BY THIS ROUND under explicit authorization (see frozenFingerprintStatus)."
+    },
+    {
+      "id": "CF-1",
+      "title": "猫基础移动预算输入域明确",
+      "verdict": "PASS",
+      "evidence": [
+        "INPUT_DOMAIN_DECISION.md states the contract: Number.isSafeInteger(catBaseMoves) && catBaseMoves >= 1",
+        "src/game/config.ts validateGameConfig pushes kind:'invalid' when the contract is violated",
+        "src/game/ai/planBound.ts exports hasCertifiableCatMoveBudget + catTurnMoveBudget (0 for non-certifiable, never a floored guess)"
+      ]
+    },
+    {
+      "id": "CF-2",
+      "title": "非整数、非有限、负数和零预算被拒绝",
+      "verdict": "PASS",
+      "evidence": [
+        "catMoveBudgetInputDomain.test.ts > CF-1/CF-2 accepts 1,2,4,9,12 and rejects 2.5, 0, -1, -0.5, NaN, +Infinity, -Infinity, 2^53+2",
+        "Each rejected value yields exactly ONE issue whose message names the cat budget and whose kind is 'invalid'",
+        "createGameState fails closed for every rejected value: state === null, status.kind === 'unverified', status.reason === 'INVALID_CONFIG'"
+      ]
+    },
+    {
+      "id": "CF-3",
+      "title": "原始状态构造入口不能绕过合同",
+      "verdict": "PASS",
+      "evidence": [
+        "createInitialState(config) throws RangeError for every rejected value (8/8), never silently normalises",
+        "Every accepted value still constructs: catMovesLeft === catBaseMoves, config.catBaseMoves preserved",
+        "Default 10x10 opening: catMovesLeft=4, mouseMovesLeft, catTrapsRemaining=1, trapPosition=null all unchanged; two constructions of the same fixed layout produce the identical stateKey"
+      ]
+    },
+    {
+      "id": "CF-4",
+      "title": "非法运行时预算不能生成已认证完整计划",
+      "verdict": "PASS",
+      "evidence": [
+        "hasCertifiableCatMoveBudget false for 2.5 / NaN / +Infinity / -Infinity / -1; catTurnMoveBudget returns 0 for all of them",
+        "buildPlanForFirstAction -> [], buildCandidate -> null, buildCatTurnPlan -> [], extractBestCatTurnPlan -> [] for all five values",
+        "planFullTurnCompleteness returns TRUNCATED with reason containing 'invalid cat move budget' for the empty plan AND for every single-action plan (the exact case the old code mis-certified for NaN)",
+        "catMovesLeft === 0 stays LEGAL: hasCertifiableCatMoveBudget true, completeness COMPLETE_TURN_BOUNDARY with an empty plan"
+      ]
+    },
+    {
+      "id": "CF-5",
+      "title": "正常整数配置及默认地图完全不变",
+      "verdict": "PASS",
+      "evidence": [
+        "stateIdentityCollision.test.ts 35/35 (1.43s), including ID-5: 24 real human roots, new keys byte-identical to the pre-fix keys (24/24), and fixed-D1 output equal field-by-field to the frozen pre-fix artifact fixtures/ppcId01-baseline-d1.json (value, mate, action, catTurnPlan, all diagnostics, ttSize)",
+        "validateGameConfig(DEFAULT_CONFIG).ok === true with an empty issues array",
+        "maxCatTurnPlanActions(M=4) === 7 (below the legacy constant 8); maxCatTurnPlanActions(M=9) === 14",
+        "Default-map M=4 bound is unchanged, so no default-map plan can be affected by the bound"
+      ]
+    },
+    {
+      "id": "CF-6",
+      "title": "P1-PLAN-01 原 19 项测试继续通过",
+      "verdict": "PASS",
+      "evidence": ["logs/02_plan_bound.log: 19 passed / 19, exit 0"],
+      "note": "The fixture planActionBoundFixtures.catTurnRoot was corrected this round to honour opts.catBaseMoves (it had been pinned to 4). All 19 original assertions still pass under the corrected fixture, so none of them depended on the mis-wiring."
+    },
+    {
+      "id": "CF-7",
+      "title": "P1-QUALITY-01 新 9 项测试继续通过",
+      "verdict": "PASS",
+      "evidence": ["logs/03_plan_reversal.log: 9 passed / 9, exit 0"]
+    },
+    {
+      "id": "CF-8",
+      "title": "T1E-B A/B/K 在独立 120 秒预算下通过",
+      "verdict": "PASS",
+      "evidence": [
+        "logs/07_t1eb.log: 1 passed | 88 skipped, exit 0, tests 18.89s",
+        "The explicit budget is `}, 120_000);` on that single test; the global testTimeout and vitest.config.* are untouched",
+        "Node count, depth (4), TT / alpha-beta / move-ordering flags and every assertion are unchanged — two searches still compared field by field (bestAction, value, mate, completedDepth, attemptedDepth, completed)",
+        "Environment variance is the actual cause of the old red: identical sources measured 42.4s (frozen HEAD arm) and 43.4s (candidate) during a slow period, and 17.2s / 18.9s during a fast one — a 2.4x swing spanning both sides of the 30s default"
+      ]
+    },
+    {
+      "id": "CF-9",
+      "title": "GAME3 T4 例外精确登记，原始日志不变",
+      "verdict": "PASS",
+      "evidence": [
+        "GAME3_H1.txt sha256 = a7598bf6403bf441f9624dc1fa9738aca820d6434d389a9507e2fdbf6af543d7, asserted by the test's own LOG_SHA256 table; the file was never opened for writing",
+        "HV14_REPRODUCTION_GAP.json registers game/turn/loggedStateKey/loggedRootValue/loggedMate/currentRootValue/currentMate/originalLogSha256/currentStateIdentity/witness/realEngineReplay/mouseNoLegalMoveEvidence/classification",
+        "The test asserts the LOGGED value and mate exactly (i.e. it proves the root really is the one on record), then asserts the CURRENT value and mate exactly (999996 / cat) — a tolerance-free pair, not a relaxation",
+        "classification = STALE_ENGINE_BLINDSPOT"
+      ]
+    },
+    {
+      "id": "CF-10",
+      "title": "HV14 其余 44 根逐值匹配",
+      "verdict": "PASS",
+      "evidence": [
+        "logs/06_hv14_flt.log: FLT-HV14-4 reruns=45 reproduced=44 staleBlindspots=1",
+        "The 44 comparisons are strict toBe() equality on value AND mate — no tolerance, no 'not worse than' rewrite",
+        "Independent corpus-wide recomputation (probe that does not abort): identity 45/45, value 44/45, mate 44/45, deviations 1"
+      ]
+    },
+    {
+      "id": "CF-11",
+      "title": "HV14 第 494 行之后所有断言真实执行并通过",
+      "verdict": "PASS",
+      "evidence": [
+        "The test now runs to completion (4 passed), so the assertions that the historical throw had been masking were actually evaluated:",
+        "boundMismatchEntries = 12  (> 0, as the contract requires)",
+        "conflictTurns = 1, planBranchesConflictKeys = 2  (> 0)",
+        "overwrittenPlanChanges = 0",
+        "firingRoots = ['GAME1T4'] (exactly one, as asserted)",
+        "truncatedRootCandidates = 0",
+        "missingSuccessorBranches = 0",
+        "selectorPlanChanges = 0, totalNodes = 12,706"
+      ],
+      "note": "This is the gate that could not be evaluated in PPC-P1-CLOSURE-01 because the test threw at its first mismatch."
+    },
+    {
+      "id": "CF-12",
+      "title": "P1-ID manifest 补档完成",
+      "verdict": "PASS",
+      "evidence": [
+        "PPC-P1-ID-01/SOURCE_MANIFEST.json created with RECONSTRUCTED_PROVENANCE_MANIFEST = true and an explicit notice that it did not exist during the original run",
+        "Records path, head baseline SHA, candidate SHA, byte size, attribution round, evidence locations, the sha256 method, and the cross-verification sources",
+        "Consistency checks all true: candidate 7b4aa8eb…, HEAD baseline 2eea65ff…, human-roots fixture 1a59787a…",
+        "P1_ID_MANIFEST_RECONSTRUCTION.md documents the reconstruction basis and its limits"
+      ]
+    },
+    {
+      "id": "CF-13",
+      "title": "四轮来源 SHA 无未解释差异",
+      "verdict": "PASS",
+      "evidence": [
+        "31 distinct paths claimed across all manifests; 26 match current disk byte-for-byte",
+        "5 diverge, and all 5 are files THIS ROUND modified under authorization (expectiminimax, planBound, planQuality, engine, planActionBoundFixtures)",
+        "UNEXPLAINED_DIVERGENCE = 0",
+        "Raw table: _raw/manifest_crosscheck.json"
+      ]
+    },
+    {
+      "id": "CF-14",
+      "title": "TypeScript 与 Vite 构建通过",
+      "verdict": "PASS",
+      "evidence": [
+        "npx tsc -b -> exit 0, log empty (logs/08_tsc.log, 0 bytes)",
+        "npm run build -> exit 0, 96 modules transformed, 'built in 7.09s', dist/index-BX1JG_L4.js 2,713.67 kB (logs/09_build.log)"
+      ],
+      "note": "Bundle hash/size moved from index-1PsQB1O8.js 2,713.01 kB to index-BX1JG_L4.js 2,713.67 kB (+0.66 kB), consistent with the added validation code; this is a source change, not a build regression."
+    },
+    {
+      "id": "CF-15",
+      "title": "没有新的正确性失败，所有已知失败均有归因",
+      "verdict": "PASS_WITH_DECLARED_SCOPE",
+      "declaredScope": "8 test files / 128 tests + tsc + vite build. The 982-test full suite was NOT rerun (forbidden this round).",
+      "evidence": [
+        "0 failures in every executed file",
+        "T1E-B: root cause was the environment, not the code — same sources span 17.2s..43.4s; budget widened to 120_000 with zero assertion change",
+        "FLT-HV14-4: the single divergent root is registered as a stale-engine blindspot with an independently verified real-engine win; the other 44 are exact",
+        "No test was skipped, no assertion deleted, no tolerance introduced, no node count / depth / TT / alpha-beta / ordering flag changed"
+      ],
+      "notClaimed": [
+        "That the full 982-test suite is green (it was not run)",
+        "That all four rounds are therefore globally correct (only this round's declared scope is certified)"
+      ]
+    }
+  ],
+
+  "frozenFingerprintStatus": {
+    "note": "The seven carried candidates were the frozen inputs of PPC-P1-CLOSURE-01. Four of them are intentionally superseded by this round; three remain byte-identical.",
+    "files": [
+      { "path": "src/game/ai/transposition.ts", "carried": "7b4aa8eb", "disk": "7b4aa8eb", "status": "UNCHANGED_THIS_ROUND" },
+      { "path": "src/game/ai/deadlineContext.ts", "carried": "ced44944", "disk": "ced44944", "status": "UNCHANGED_THIS_ROUND" },
+      { "path": "src/game/ai/hardTurnPlanner.ts", "carried": "27b1ce6d", "disk": "27b1ce6d", "status": "UNCHANGED_THIS_ROUND" },
+      { "path": "src/game/engine.ts", "carried": "dbb5377a", "disk": "5a51e837", "status": "MODIFIED_THIS_ROUND", "why": "createInitialState front assertion (cat move budget)" },
+      { "path": "src/game/ai/planBound.ts", "carried": "99c269f9", "disk": "f1427ae1", "status": "MODIFIED_THIS_ROUND", "why": "hasCertifiableCatMoveBudget + non-flooring budget" },
+      { "path": "src/game/ai/expectiminimax.ts", "carried": "42b6e71f", "disk": "8ac26985", "status": "MODIFIED_THIS_ROUND", "why": "buildCatTurnPlan fail-closed gate" },
+      { "path": "src/game/ai/planQuality.ts", "carried": "f97dd204", "disk": "d8ecdd26", "status": "MODIFIED_THIS_ROUND", "why": "4 fail-closed gates in the plan extractors" }
+    ]
+  },
+
+  "invariants": {
+    "SEARCH_MATH_CHANGED": "NO",
+    "H1_WEIGHTS_CHANGED": "NO",
+    "TT_SEMANTICS_CHANGED": "NO",
+    "SIDECAR_POLICY_CHANGED": "NO",
+    "GAMEPLAY_INTEGER_RULES_CHANGED": "NO",
+    "BUDGET_100MS_CHANGED": "NO",
+    "BUDGET_150MS_CHANGED": "NO",
+    "GLOBAL_TEST_TIMEOUT_CHANGED": "NO",
+    "VITEST_CONFIG_CHANGED": "NO",
+    "FROZEN_FIXTURE_ORIGINALS_MODIFIED": "NO",
+    "ASSERTIONS_DELETED_OR_TOLERATED": "NONE",
+    "HEAVY_WORKER_CONCURRENCY": 1,
+    "SERIAL_FRESH_REPETITIONS": true
+  }
+}

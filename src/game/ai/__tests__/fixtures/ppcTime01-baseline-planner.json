@@ -1,0 +1,1189 @@
+{
+  "sourceGitSha": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+  "capturedOn": "pre-fix (P1-ID candidate tree, no shared turn deadline)",
+  "protocol": {
+    "depthTurns": 1,
+    "maxNodes": 10000,
+    "clock": "frozen at 1000ms",
+    "timeBudgetMs": 100000,
+    "leafEvaluator": "evaluateCorrectedHoleForCat",
+    "refutation": "disabled",
+    "note": "Frozen clock makes the wall-clock deadline non-binding, so this witness is deterministic."
+  },
+  "records": [
+    {
+      "id": "G6T1",
+      "completed": true,
+      "value": -1691.7631578947369,
+      "mate": null,
+      "completedDepth": 1,
+      "attemptedDepth": 1,
+      "deadlineFired": false,
+      "budgetFired": false,
+      "plan": [
+        "T",
+        "D",
+        "R",
+        "R",
+        "D"
+      ],
+      "bestAction": "T",
+      "planStatus": "planned",
+      "rootActions": [
+        {
+          "action": "U",
+          "value": -1810.7105263157896,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "R",
+          "value": -1783.342105263158,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "T",
+          "value": -1691.7631578947369,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "D",
+          "value": -1751.7631578947369,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "L",
+          "value": -1810.7105263157896,
+          "mate": null,
+          "bound": "exact"
+        }
+      ],
+      "nodes": 159,
+      "ttHits": 50,
+      "ttExactHits": 50,
+      "alphaBetaCutoffs": 0,
+      "orderedNodes": 160,
+      "phase": "playing"
+    },
+    {
+      "id": "G6T2",
+      "completed": true,
+      "value": -447.2368421052632,
+      "mate": null,
+      "completedDepth": 1,
+      "attemptedDepth": 1,
+      "deadlineFired": false,
+      "budgetFired": false,
+      "plan": [
+        "U",
+        "U",
+        "R",
+        "R"
+      ],
+      "bestAction": "U",
+      "planStatus": "planned",
+      "rootActions": [
+        {
+          "action": "U",
+          "value": -447.2368421052632,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "D",
+          "value": -552.3684210526316,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "L",
+          "value": -552.3684210526316,
+          "mate": null,
+          "bound": "exact"
+        }
+      ],
+      "nodes": 20,
+      "ttHits": 12,
+      "ttExactHits": 12,
+      "alphaBetaCutoffs": 0,
+      "orderedNodes": 21,
+      "phase": "playing"
+    },
+    {
+      "id": "G6T3",
+      "completed": true,
+      "value": -970.3947368421052,
+      "mate": null,
+      "completedDepth": 1,
+      "attemptedDepth": 1,
+      "deadlineFired": false,
+      "budgetFired": false,
+      "plan": [
+        "R",
+        "D",
+        "D",
+        "D"
+      ],
+      "bestAction": "R",
+      "planStatus": "planned",
+      "rootActions": [
+        {
+          "action": "R",
+          "value": -970.3947368421052,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "U",
+          "value": -1501.7105263157896,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "L",
+          "value": -1501.7105263157896,
+          "mate": null,
+          "bound": "exact"
+        }
+      ],
+      "nodes": 19,
+      "ttHits": 13,
+      "ttExactHits": 13,
+      "alphaBetaCutoffs": 0,
+      "orderedNodes": 20,
+      "phase": "playing"
+    },
+    {
+      "id": "G5T1",
+      "completed": true,
+      "value": -1894.921052631579,
+      "mate": null,
+      "completedDepth": 1,
+      "attemptedDepth": 1,
+      "deadlineFired": false,
+      "budgetFired": false,
+      "plan": [
+        "T",
+        "R",
+        "R",
+        "D",
+        "D"
+      ],
+      "bestAction": "T",
+      "planStatus": "planned",
+      "rootActions": [
+        {
+          "action": "D",
+          "value": -1978.6052631578948,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "L",
+          "value": -1927.0263157894738,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "T",
+          "value": -1894.921052631579,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "U",
+          "value": -1927.0263157894738,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "R",
+          "value": -1954.921052631579,
+          "mate": null,
+          "bound": "exact"
+        }
+      ],
+      "nodes": 108,
+      "ttHits": 38,
+      "ttExactHits": 38,
+      "alphaBetaCutoffs": 0,
+      "orderedNodes": 109,
+      "phase": "playing"
+    },
+    {
+      "id": "G5T2",
+      "completed": true,
+      "value": -1136.8796992481202,
+      "mate": null,
+      "completedDepth": 1,
+      "attemptedDepth": 1,
+      "deadlineFired": false,
+      "budgetFired": false,
+      "plan": [
+        "D",
+        "D",
+        "L",
+        "L"
+      ],
+      "bestAction": "D",
+      "planStatus": "planned",
+      "rootActions": [
+        {
+          "action": "D",
+          "value": -1136.8796992481202,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "L",
+          "value": -1136.8796992481202,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "U",
+          "value": -1188.5902255639098,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "R",
+          "value": -1188.5902255639098,
+          "mate": null,
+          "bound": "exact"
+        }
+      ],
+      "nodes": 37,
+      "ttHits": 13,
+      "ttExactHits": 13,
+      "alphaBetaCutoffs": 0,
+      "orderedNodes": 38,
+      "phase": "playing"
+    },
+    {
+      "id": "G5T3",
+      "completed": true,
+      "value": -772.2368421052631,
+      "mate": null,
+      "completedDepth": 1,
+      "attemptedDepth": 1,
+      "deadlineFired": false,
+      "budgetFired": false,
+      "plan": [
+        "L",
+        "D",
+        "D",
+        "D"
+      ],
+      "bestAction": "L",
+      "planStatus": "planned",
+      "rootActions": [
+        {
+          "action": "D",
+          "value": -1635.921052631579,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "R",
+          "value": -1562.1052631578948,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "U",
+          "value": -1635.921052631579,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "L",
+          "value": -772.2368421052631,
+          "mate": null,
+          "bound": "exact"
+        }
+      ],
+      "nodes": 28,
+      "ttHits": 14,
+      "ttExactHits": 14,
+      "alphaBetaCutoffs": 0,
+      "orderedNodes": 29,
+      "phase": "playing"
+    },
+    {
+      "id": "G5T4",
+      "completed": true,
+      "value": -1740.7894736842106,
+      "mate": null,
+      "completedDepth": 1,
+      "attemptedDepth": 1,
+      "deadlineFired": false,
+      "budgetFired": false,
+      "plan": [
+        "R",
+        "D",
+        "R",
+        "R"
+      ],
+      "bestAction": "R",
+      "planStatus": "planned",
+      "rootActions": [
+        {
+          "action": "R",
+          "value": -1740.7894736842106,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "U",
+          "value": -1973.421052631579,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "L",
+          "value": -1973.421052631579,
+          "mate": null,
+          "bound": "exact"
+        }
+      ],
+      "nodes": 20,
+      "ttHits": 10,
+      "ttExactHits": 10,
+      "alphaBetaCutoffs": 0,
+      "orderedNodes": 21,
+      "phase": "playing"
+    },
+    {
+      "id": "G2T1",
+      "completed": true,
+      "value": -641.4473684210526,
+      "mate": null,
+      "completedDepth": 1,
+      "attemptedDepth": 1,
+      "deadlineFired": false,
+      "budgetFired": false,
+      "plan": [
+        "T",
+        "R",
+        "R",
+        "R",
+        "R"
+      ],
+      "bestAction": "T",
+      "planStatus": "planned",
+      "rootActions": [
+        {
+          "action": "D",
+          "value": -967.6315789473684,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "R",
+          "value": -701.4473684210526,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "T",
+          "value": -641.4473684210526,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "U",
+          "value": -1082.5,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "L",
+          "value": -1082.5,
+          "mate": null,
+          "bound": "exact"
+        }
+      ],
+      "nodes": 154,
+      "ttHits": 40,
+      "ttExactHits": 40,
+      "alphaBetaCutoffs": 0,
+      "orderedNodes": 155,
+      "phase": "playing"
+    },
+    {
+      "id": "G2T2",
+      "completed": true,
+      "value": 67.23684210526312,
+      "mate": null,
+      "completedDepth": 1,
+      "attemptedDepth": 1,
+      "deadlineFired": false,
+      "budgetFired": false,
+      "plan": [
+        "D",
+        "D",
+        "D",
+        "R"
+      ],
+      "bestAction": "D",
+      "planStatus": "planned",
+      "rootActions": [
+        {
+          "action": "D",
+          "value": 67.23684210526312,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "R",
+          "value": -129.4736842105263,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "U",
+          "value": -336.31578947368416,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "L",
+          "value": -336.31578947368416,
+          "mate": null,
+          "bound": "exact"
+        }
+      ],
+      "nodes": 22,
+      "ttHits": 18,
+      "ttExactHits": 18,
+      "alphaBetaCutoffs": 0,
+      "orderedNodes": 23,
+      "phase": "playing"
+    },
+    {
+      "id": "G2T3",
+      "completed": true,
+      "value": -216.05263157894734,
+      "mate": null,
+      "completedDepth": 1,
+      "attemptedDepth": 1,
+      "deadlineFired": false,
+      "budgetFired": false,
+      "plan": [
+        "L",
+        "D",
+        "L",
+        "D"
+      ],
+      "bestAction": "L",
+      "planStatus": "planned",
+      "rootActions": [
+        {
+          "action": "D",
+          "value": -303.157894736842,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "L",
+          "value": -216.05263157894734,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "U",
+          "value": -383.1578947368421,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "R",
+          "value": -383.1578947368421,
+          "mate": null,
+          "bound": "exact"
+        }
+      ],
+      "nodes": 32,
+      "ttHits": 14,
+      "ttExactHits": 14,
+      "alphaBetaCutoffs": 0,
+      "orderedNodes": 33,
+      "phase": "playing"
+    },
+    {
+      "id": "G2T4",
+      "completed": true,
+      "value": -1.8421052631579187,
+      "mate": null,
+      "completedDepth": 1,
+      "attemptedDepth": 1,
+      "deadlineFired": false,
+      "budgetFired": false,
+      "plan": [
+        "D",
+        "L",
+        "L",
+        "L"
+      ],
+      "bestAction": "D",
+      "planStatus": "planned",
+      "rootActions": [
+        {
+          "action": "D",
+          "value": -1.8421052631579187,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "L",
+          "value": -1.8421052631579187,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "R",
+          "value": -204.0643274853802,
+          "mate": null,
+          "bound": "exact"
+        }
+      ],
+      "nodes": 27,
+      "ttHits": 9,
+      "ttExactHits": 9,
+      "alphaBetaCutoffs": 0,
+      "orderedNodes": 28,
+      "phase": "playing"
+    },
+    {
+      "id": "G2T5",
+      "completed": true,
+      "value": 332.2267206477733,
+      "mate": null,
+      "completedDepth": 1,
+      "attemptedDepth": 1,
+      "deadlineFired": false,
+      "budgetFired": false,
+      "plan": [
+        "D",
+        "D",
+        "D",
+        "L"
+      ],
+      "bestAction": "D",
+      "planStatus": "planned",
+      "rootActions": [
+        {
+          "action": "D",
+          "value": 332.2267206477733,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "L",
+          "value": -566.3533834586466,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "U",
+          "value": -699.6428571428571,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "R",
+          "value": -593.327067669173,
+          "mate": null,
+          "bound": "exact"
+        }
+      ],
+      "nodes": 42,
+      "ttHits": 17,
+      "ttExactHits": 17,
+      "alphaBetaCutoffs": 0,
+      "orderedNodes": 43,
+      "phase": "playing"
+    },
+    {
+      "id": "G2T6",
+      "completed": true,
+      "value": -1302.421052631579,
+      "mate": null,
+      "completedDepth": 1,
+      "attemptedDepth": 1,
+      "deadlineFired": false,
+      "budgetFired": false,
+      "plan": [
+        "R",
+        "U",
+        "R",
+        "D"
+      ],
+      "bestAction": "D",
+      "planStatus": "planned",
+      "rootActions": [
+        {
+          "action": "R",
+          "value": -1302.421052631579,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "D",
+          "value": -1302.421052631579,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "L",
+          "value": -1302.421052631579,
+          "mate": null,
+          "bound": "exact"
+        }
+      ],
+      "nodes": 22,
+      "ttHits": 11,
+      "ttExactHits": 11,
+      "alphaBetaCutoffs": 0,
+      "orderedNodes": 23,
+      "phase": "playing"
+    },
+    {
+      "id": "G2T7",
+      "completed": true,
+      "value": -1604.5263157894738,
+      "mate": null,
+      "completedDepth": 1,
+      "attemptedDepth": 1,
+      "deadlineFired": false,
+      "budgetFired": false,
+      "plan": [
+        "U",
+        "R",
+        "U",
+        "U"
+      ],
+      "bestAction": "U",
+      "planStatus": "planned",
+      "rootActions": [
+        {
+          "action": "U",
+          "value": -1604.5263157894738,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "R",
+          "value": -1604.5263157894738,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "D",
+          "value": -1988.2105263157896,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "L",
+          "value": -1768.7368421052631,
+          "mate": null,
+          "bound": "exact"
+        }
+      ],
+      "nodes": 26,
+      "ttHits": 20,
+      "ttExactHits": 20,
+      "alphaBetaCutoffs": 0,
+      "orderedNodes": 27,
+      "phase": "playing"
+    },
+    {
+      "id": "G2T8",
+      "completed": true,
+      "value": -1283.9035087719299,
+      "mate": null,
+      "completedDepth": 1,
+      "attemptedDepth": 1,
+      "deadlineFired": false,
+      "budgetFired": false,
+      "plan": [
+        "D",
+        "D",
+        "D",
+        "R"
+      ],
+      "bestAction": "D",
+      "planStatus": "planned",
+      "rootActions": [
+        {
+          "action": "D",
+          "value": -1283.9035087719299,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "R",
+          "value": -1314.8245614035088,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "U",
+          "value": -1551.6666666666667,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "L",
+          "value": -1611.2719298245615,
+          "mate": null,
+          "bound": "exact"
+        }
+      ],
+      "nodes": 65,
+      "ttHits": 14,
+      "ttExactHits": 14,
+      "alphaBetaCutoffs": 0,
+      "orderedNodes": 66,
+      "phase": "playing"
+    },
+    {
+      "id": "G1T1",
+      "completed": true,
+      "value": -490.0526315789473,
+      "mate": null,
+      "completedDepth": 1,
+      "attemptedDepth": 1,
+      "deadlineFired": false,
+      "budgetFired": false,
+      "plan": [
+        "T",
+        "D",
+        "D",
+        "D",
+        "D"
+      ],
+      "bestAction": "T",
+      "planStatus": "planned",
+      "rootActions": [
+        {
+          "action": "D",
+          "value": -550.0526315789473,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "R",
+          "value": -785.8421052631578,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "T",
+          "value": -490.0526315789473,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "U",
+          "value": -725.8421052631577,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "L",
+          "value": -725.8421052631577,
+          "mate": null,
+          "bound": "exact"
+        }
+      ],
+      "nodes": 141,
+      "ttHits": 49,
+      "ttExactHits": 49,
+      "alphaBetaCutoffs": 0,
+      "orderedNodes": 142,
+      "phase": "playing"
+    },
+    {
+      "id": "G1T2",
+      "completed": true,
+      "value": 459.68421052631584,
+      "mate": null,
+      "completedDepth": 1,
+      "attemptedDepth": 1,
+      "deadlineFired": false,
+      "budgetFired": false,
+      "plan": [
+        "D",
+        "R",
+        "R",
+        "D"
+      ],
+      "bestAction": "D",
+      "planStatus": "planned",
+      "rootActions": [
+        {
+          "action": "D",
+          "value": 459.68421052631584,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "R",
+          "value": 459.68421052631584,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "U",
+          "value": 117.84210526315792,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "L",
+          "value": 117.84210526315792,
+          "mate": null,
+          "bound": "exact"
+        }
+      ],
+      "nodes": 31,
+      "ttHits": 17,
+      "ttExactHits": 17,
+      "alphaBetaCutoffs": 0,
+      "orderedNodes": 32,
+      "phase": "playing"
+    },
+    {
+      "id": "G1T3",
+      "completed": true,
+      "value": 63.89473684210526,
+      "mate": null,
+      "completedDepth": 1,
+      "attemptedDepth": 1,
+      "deadlineFired": false,
+      "budgetFired": false,
+      "plan": [
+        "R",
+        "R",
+        "R",
+        "R"
+      ],
+      "bestAction": "R",
+      "planStatus": "planned",
+      "rootActions": [
+        {
+          "action": "D",
+          "value": -67.0263157894737,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "R",
+          "value": 63.89473684210526,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "U",
+          "value": -136.5,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "L",
+          "value": -136.5,
+          "mate": null,
+          "bound": "exact"
+        }
+      ],
+      "nodes": 23,
+      "ttHits": 22,
+      "ttExactHits": 22,
+      "alphaBetaCutoffs": 0,
+      "orderedNodes": 24,
+      "phase": "playing"
+    },
+    {
+      "id": "G1T4",
+      "completed": true,
+      "value": -1407.6842105263158,
+      "mate": null,
+      "completedDepth": 1,
+      "attemptedDepth": 1,
+      "deadlineFired": false,
+      "budgetFired": false,
+      "plan": [
+        "U",
+        "L",
+        "D",
+        "R"
+      ],
+      "bestAction": "U",
+      "planStatus": "planned",
+      "rootActions": [
+        {
+          "action": "U",
+          "value": -1407.6842105263158,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "R",
+          "value": -1407.6842105263158,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "D",
+          "value": -1407.6842105263158,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "L",
+          "value": -1407.6842105263158,
+          "mate": null,
+          "bound": "exact"
+        }
+      ],
+      "nodes": 18,
+      "ttHits": 15,
+      "ttExactHits": 15,
+      "alphaBetaCutoffs": 0,
+      "orderedNodes": 18,
+      "phase": "playing"
+    },
+    {
+      "id": "G1T5",
+      "completed": true,
+      "value": -534.6578947368421,
+      "mate": null,
+      "completedDepth": 1,
+      "attemptedDepth": 1,
+      "deadlineFired": false,
+      "budgetFired": false,
+      "plan": [
+        "U",
+        "L",
+        "U",
+        "L"
+      ],
+      "bestAction": "U",
+      "planStatus": "planned",
+      "rootActions": [
+        {
+          "action": "U",
+          "value": -534.6578947368421,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "D",
+          "value": -685.0526315789474,
+          "mate": null,
+          "bound": "exact"
+        }
+      ],
+      "nodes": 21,
+      "ttHits": 6,
+      "ttExactHits": 6,
+      "alphaBetaCutoffs": 0,
+      "orderedNodes": 22,
+      "phase": "playing"
+    },
+    {
+      "id": "G1T6",
+      "completed": true,
+      "value": -135.6578947368421,
+      "mate": null,
+      "completedDepth": 1,
+      "attemptedDepth": 1,
+      "deadlineFired": false,
+      "budgetFired": false,
+      "plan": [
+        "U",
+        "R",
+        "R",
+        "D"
+      ],
+      "bestAction": "U",
+      "planStatus": "planned",
+      "rootActions": [
+        {
+          "action": "U",
+          "value": -135.6578947368421,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "R",
+          "value": -135.6578947368421,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "D",
+          "value": -363.6052631578948,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "L",
+          "value": -433.0263157894737,
+          "mate": null,
+          "bound": "exact"
+        }
+      ],
+      "nodes": 38,
+      "ttHits": 16,
+      "ttExactHits": 16,
+      "alphaBetaCutoffs": 0,
+      "orderedNodes": 39,
+      "phase": "playing"
+    },
+    {
+      "id": "G1T7",
+      "completed": true,
+      "value": 69.96338672768866,
+      "mate": null,
+      "completedDepth": 1,
+      "attemptedDepth": 1,
+      "deadlineFired": false,
+      "budgetFired": false,
+      "plan": [
+        "R",
+        "R",
+        "R",
+        "L"
+      ],
+      "bestAction": "R",
+      "planStatus": "planned",
+      "rootActions": [
+        {
+          "action": "U",
+          "value": -12.302005012531367,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "R",
+          "value": 69.96338672768866,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "L",
+          "value": -574.1165413533834,
+          "mate": null,
+          "bound": "exact"
+        }
+      ],
+      "nodes": 30,
+      "ttHits": 14,
+      "ttExactHits": 14,
+      "alphaBetaCutoffs": 0,
+      "orderedNodes": 31,
+      "phase": "playing"
+    },
+    {
+      "id": "G1T8",
+      "completed": true,
+      "value": -1775.578947368421,
+      "mate": null,
+      "completedDepth": 1,
+      "attemptedDepth": 1,
+      "deadlineFired": false,
+      "budgetFired": false,
+      "plan": [
+        "L",
+        "L",
+        "U",
+        "R"
+      ],
+      "bestAction": "L",
+      "planStatus": "planned",
+      "rootActions": [
+        {
+          "action": "L",
+          "value": -1775.578947368421,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "U",
+          "value": -1793.342105263158,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "R",
+          "value": -1793.342105263158,
+          "mate": null,
+          "bound": "exact"
+        }
+      ],
+      "nodes": 24,
+      "ttHits": 12,
+      "ttExactHits": 12,
+      "alphaBetaCutoffs": 0,
+      "orderedNodes": 25,
+      "phase": "playing"
+    },
+    {
+      "id": "G1T9",
+      "completed": true,
+      "value": -1526.0526315789475,
+      "mate": null,
+      "completedDepth": 1,
+      "attemptedDepth": 1,
+      "deadlineFired": false,
+      "budgetFired": false,
+      "plan": [
+        "L",
+        "L",
+        "D",
+        "L"
+      ],
+      "bestAction": "L",
+      "planStatus": "planned",
+      "rootActions": [
+        {
+          "action": "D",
+          "value": -1588.5526315789475,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "L",
+          "value": -1526.0526315789475,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "U",
+          "value": -1684.342105263158,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "action": "R",
+          "value": -1684.342105263158,
+          "mate": null,
+          "bound": "exact"
+        }
+      ],
+      "nodes": 27,
+      "ttHits": 17,
+      "ttExactHits": 17,
+      "alphaBetaCutoffs": 0,
+      "orderedNodes": 28,
+      "phase": "playing"
+    }
+  ]
+}

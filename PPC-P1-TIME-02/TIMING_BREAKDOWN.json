@@ -1,0 +1,1802 @@
+{
+  "protocol": "DIAGNOSTIC ONLY — 4 frozen roots × bounded repetitions, single process, serial, no parallelism, no heavy benchmark. Not an authority.",
+  "targets": [
+    "G1T1",
+    "G1T5",
+    "G1T4",
+    "G5T4"
+  ],
+  "reps": 5,
+  "runtime": "v22.22.2",
+  "arms": {
+    "A_prod": "src/game (no probe code)",
+    "B_arm_off": "instrumented arm, sink disabled",
+    "C_arm_on": "instrumented arm, sink enabled"
+  },
+  "rows": [
+    {
+      "id": "G1T1",
+      "rep": 0,
+      "armA_wallMs": 151.684,
+      "armB_wallMs": 151.588,
+      "armC_wallMs": 150.756,
+      "summary": {
+        "wallMs": 150.73520000000008,
+        "plannerBlockMs": 150.40509999999995,
+        "searchCallMs": 103.66230000000041,
+        "searchCoreMs": 103.4398000000001,
+        "searchPostPlanMs": 0.19039999999995416,
+        "sidecarMs": 46.30209999999988,
+        "deadlineAtMs": 2467.8858,
+        "firstDeadlineObservationAtMs": 2468.0543,
+        "detectionOverrunMs": 0.16849999999976717,
+        "postDetectionReturnMs": 3.53,
+        "completedDepth": 1,
+        "attemptedDepth": 2,
+        "nodes": 636,
+        "deadlineCutoffs": 16,
+        "turnOvershootVsTotalWallMs": 0.722,
+        "plannerInvocations": 1,
+        "executorStepWallsMs": [
+          0.096,
+          0.023,
+          0.012,
+          0.01,
+          0.011
+        ],
+        "hardCallWallsMs": [],
+        "hardPhaseTotalsMs": {
+          "mousePlans": 0,
+          "emergency": 0,
+          "trapStand": 0,
+          "candidateLoop": 0
+        },
+        "searchStats": {
+          "stateKeyCalls": 1171,
+          "stateKeyMs": 8.609600000002501,
+          "legalActionsCalls": 638,
+          "legalActionsMs": 24.67429999999922,
+          "transitionCalls": 2125,
+          "transitionMs": 13.38550000000805,
+          "evaluateCalls": 254,
+          "evaluateMs": 38.942100000001574,
+          "ttProbeCalls": 709,
+          "ttStoreCalls": 168,
+          "orderingSortCalls": 638,
+          "orderingSortMs": 0.3504000000011729,
+          "repeatedLeafEvals": 210,
+          "uniqueLeafKeys": 254
+        },
+        "plannerCalls": [
+          {
+            "ms": 150.381,
+            "searchMs": 103.662,
+            "completedDepth": 1,
+            "nodes": 636
+          }
+        ],
+        "sidecarTotalMs": 46.302,
+        "sidecarDetail": [
+          {
+            "ms": 46.30209999999988,
+            "overrideUsed": false,
+            "abort": "deadline",
+            "triggered": true
+          }
+        ],
+        "plannerEnterToSearchStartMs": 0.029,
+        "searchReturnToPlannerReturnMs": 46.714,
+        "planDecidedToExecDoneMs": 0.156,
+        "execDoneToTurnReturnMs": 0.037,
+        "fallbackReasons": []
+      },
+      "counters": {
+        "catMove": 3597,
+        "catPlaceTrap": 256,
+        "nodeDeadlineHits": 16,
+        "evalAfterDl": 16,
+        "abortEvalMs": 3.02829999999949,
+        "abortEvalCount": 16,
+        "applyPlanCatAction": 5
+      },
+      "evalCounters": {
+        "evaluations": 255,
+        "mouseBfs": 255,
+        "catBfs": 255,
+        "carryMouseBfs": 255
+      }
+    },
+    {
+      "id": "G1T1",
+      "rep": 1,
+      "armA_wallMs": 150.572,
+      "armB_wallMs": 150.631,
+      "armC_wallMs": 150.467,
+      "summary": {
+        "wallMs": 150.45919999999978,
+        "plannerBlockMs": 150.26239999999962,
+        "searchCallMs": 101.73279999999977,
+        "searchCoreMs": 101.6273000000001,
+        "searchPostPlanMs": 0.07960000000002765,
+        "sidecarMs": 48.26499999999987,
+        "deadlineAtMs": 2922.3098,
+        "firstDeadlineObservationAtMs": 2922.3559,
+        "detectionOverrunMs": 0.04610000000002401,
+        "postDetectionReturnMs": 1.729,
+        "completedDepth": 1,
+        "attemptedDepth": 2,
+        "nodes": 738,
+        "deadlineCutoffs": 15,
+        "turnOvershootVsTotalWallMs": 0.452,
+        "plannerInvocations": 1,
+        "executorStepWallsMs": [
+          0.032,
+          0.022,
+          0.007,
+          0.006,
+          0.007
+        ],
+        "hardCallWallsMs": [],
+        "hardPhaseTotalsMs": {
+          "mousePlans": 0,
+          "emergency": 0,
+          "trapStand": 0,
+          "candidateLoop": 0
+        },
+        "searchStats": {
+          "stateKeyCalls": 1295,
+          "stateKeyMs": 7.460699999995541,
+          "legalActionsCalls": 740,
+          "legalActionsMs": 35.53200000000061,
+          "transitionCalls": 2456,
+          "transitionMs": 11.369300000000749,
+          "evaluateCalls": 267,
+          "evaluateMs": 32.795700000000124,
+          "ttProbeCalls": 811,
+          "ttStoreCalls": 168,
+          "orderingSortCalls": 740,
+          "orderingSortMs": 0.23640000000614236,
+          "repeatedLeafEvals": 219,
+          "uniqueLeafKeys": 267
+        },
+        "plannerCalls": [
+          {
+            "ms": 150.232,
+            "searchMs": 101.733,
+            "completedDepth": 1,
+            "nodes": 738
+          }
+        ],
+        "sidecarTotalMs": 48.265,
+        "sidecarDetail": [
+          {
+            "ms": 48.26499999999987,
+            "overrideUsed": false,
+            "abort": "deadline",
+            "triggered": true
+          }
+        ],
+        "plannerEnterToSearchStartMs": 0.036,
+        "searchReturnToPlannerReturnMs": 48.494,
+        "planDecidedToExecDoneMs": 0.075,
+        "execDoneToTurnReturnMs": 0.021,
+        "fallbackReasons": []
+      },
+      "counters": {
+        "catMove": 3665,
+        "catPlaceTrap": 264,
+        "nodeDeadlineHits": 15,
+        "evalAfterDl": 15,
+        "abortEvalMs": 1.4552999999991698,
+        "abortEvalCount": 15,
+        "applyPlanCatAction": 5
+      },
+      "evalCounters": {
+        "evaluations": 268,
+        "mouseBfs": 268,
+        "catBfs": 268,
+        "carryMouseBfs": 268
+      }
+    },
+    {
+      "id": "G1T1",
+      "rep": 2,
+      "armA_wallMs": 150.524,
+      "armB_wallMs": 150.404,
+      "armC_wallMs": 150.367,
+      "summary": {
+        "wallMs": 150.35770000000002,
+        "plannerBlockMs": 150.20540000000028,
+        "searchCallMs": 101.86769999999979,
+        "searchCoreMs": 101.74529999999959,
+        "searchPostPlanMs": 0.09470000000010259,
+        "sidecarMs": 48.11340000000018,
+        "deadlineAtMs": 3374.7687,
+        "firstDeadlineObservationAtMs": 3374.9948,
+        "detectionOverrunMs": 0.2260999999998603,
+        "postDetectionReturnMs": 1.661,
+        "completedDepth": 1,
+        "attemptedDepth": 2,
+        "nodes": 1108,
+        "deadlineCutoffs": 16,
+        "turnOvershootVsTotalWallMs": 0.354,
+        "plannerInvocations": 1,
+        "executorStepWallsMs": [
+          0.015,
+          0.018,
+          0.006,
+          0.006,
+          0.006
+        ],
+        "hardCallWallsMs": [],
+        "hardPhaseTotalsMs": {
+          "mousePlans": 0,
+          "emergency": 0,
+          "trapStand": 0,
+          "candidateLoop": 0
+        },
+        "searchStats": {
+          "stateKeyCalls": 1749,
+          "stateKeyMs": 8.887299999993502,
+          "legalActionsCalls": 1110,
+          "legalActionsMs": 26.621200000002773,
+          "transitionCalls": 3657,
+          "transitionMs": 17.003999999996722,
+          "evaluateCalls": 273,
+          "evaluateMs": 30.757999999999356,
+          "ttProbeCalls": 1181,
+          "ttStoreCalls": 169,
+          "orderingSortCalls": 1110,
+          "orderingSortMs": 0.32280000000037035,
+          "repeatedLeafEvals": 297,
+          "uniqueLeafKeys": 273
+        },
+        "plannerCalls": [
+          {
+            "ms": 150.191,
+            "searchMs": 101.868,
+            "completedDepth": 1,
+            "nodes": 1108
+          }
+        ],
+        "sidecarTotalMs": 48.113,
+        "sidecarDetail": [
+          {
+            "ms": 48.11340000000018,
+            "overrideUsed": false,
+            "abort": "deadline",
+            "triggered": true
+          }
+        ],
+        "plannerEnterToSearchStartMs": 0.015,
+        "searchReturnToPlannerReturnMs": 48.323,
+        "planDecidedToExecDoneMs": 0.051,
+        "execDoneToTurnReturnMs": 0.021,
+        "fallbackReasons": []
+      },
+      "counters": {
+        "catMove": 3929,
+        "catPlaceTrap": 284,
+        "nodeDeadlineHits": 16,
+        "evalAfterDl": 16,
+        "abortEvalMs": 1.3758999999995467,
+        "abortEvalCount": 16,
+        "applyPlanCatAction": 5
+      },
+      "evalCounters": {
+        "evaluations": 274,
+        "mouseBfs": 274,
+        "catBfs": 274,
+        "carryMouseBfs": 274
+      }
+    },
+    {
+      "id": "G1T1",
+      "rep": 3,
+      "armA_wallMs": 150.441,
+      "armB_wallMs": 150.412,
+      "armC_wallMs": 150.416,
+      "summary": {
+        "wallMs": 150.41020000000026,
+        "plannerBlockMs": 150.25800000000027,
+        "searchCallMs": 101.03800000000001,
+        "searchCoreMs": 100.91699999999992,
+        "searchPostPlanMs": 0.0830999999998312,
+        "sidecarMs": 49.00789999999961,
+        "deadlineAtMs": 3827.3145,
+        "firstDeadlineObservationAtMs": 3827.3493,
+        "detectionOverrunMs": 0.034799999999904685,
+        "postDetectionReturnMs": 1.022,
+        "completedDepth": 1,
+        "attemptedDepth": 2,
+        "nodes": 1063,
+        "deadlineCutoffs": 7,
+        "turnOvershootVsTotalWallMs": 0.407,
+        "plannerInvocations": 1,
+        "executorStepWallsMs": [
+          0.012,
+          0.011,
+          0.006,
+          0.006,
+          0.006
+        ],
+        "hardCallWallsMs": [],
+        "hardPhaseTotalsMs": {
+          "mousePlans": 0,
+          "emergency": 0,
+          "trapStand": 0,
+          "candidateLoop": 0
+        },
+        "searchStats": {
+          "stateKeyCalls": 1685,
+          "stateKeyMs": 8.252999999995609,
+          "legalActionsCalls": 1065,
+          "legalActionsMs": 24.98270000000457,
+          "transitionCalls": 3510,
+          "transitionMs": 17.021999999988566,
+          "evaluateCalls": 266,
+          "evaluateMs": 32.72960000000194,
+          "ttProbeCalls": 1136,
+          "ttStoreCalls": 168,
+          "orderingSortCalls": 1065,
+          "orderingSortMs": 0.8021000000085223,
+          "repeatedLeafEvals": 285,
+          "uniqueLeafKeys": 266
+        },
+        "plannerCalls": [
+          {
+            "ms": 150.243,
+            "searchMs": 101.038,
+            "completedDepth": 1,
+            "nodes": 1063
+          }
+        ],
+        "sidecarTotalMs": 49.008,
+        "sidecarDetail": [
+          {
+            "ms": 49.00789999999961,
+            "overrideUsed": false,
+            "abort": "baseline_not_refuted",
+            "triggered": true
+          }
+        ],
+        "plannerEnterToSearchStartMs": 0.015,
+        "searchReturnToPlannerReturnMs": 49.205,
+        "planDecidedToExecDoneMs": 0.043,
+        "execDoneToTurnReturnMs": 0.018,
+        "fallbackReasons": []
+      },
+      "counters": {
+        "catMove": 3873,
+        "catPlaceTrap": 278,
+        "nodeDeadlineHits": 7,
+        "evalAfterDl": 7,
+        "abortEvalMs": 0.7762999999990825,
+        "abortEvalCount": 7,
+        "applyPlanCatAction": 5
+      },
+      "evalCounters": {
+        "evaluations": 267,
+        "mouseBfs": 267,
+        "catBfs": 267,
+        "carryMouseBfs": 267
+      }
+    },
+    {
+      "id": "G1T1",
+      "rep": 4,
+      "armA_wallMs": 150.433,
+      "armB_wallMs": 150.472,
+      "armC_wallMs": 150.499,
+      "summary": {
+        "wallMs": 150.4957000000004,
+        "plannerBlockMs": 150.35140000000047,
+        "searchCallMs": 101.47040000000015,
+        "searchCoreMs": 101.31860000000052,
+        "searchPostPlanMs": 0.11999999999989086,
+        "sidecarMs": 48.627700000000004,
+        "deadlineAtMs": 4280.0522,
+        "firstDeadlineObservationAtMs": 4280.088,
+        "detectionOverrunMs": 0.035799999999653664,
+        "postDetectionReturnMs": 1.459,
+        "completedDepth": 1,
+        "attemptedDepth": 2,
+        "nodes": 1139,
+        "deadlineCutoffs": 20,
+        "turnOvershootVsTotalWallMs": 0.492,
+        "plannerInvocations": 1,
+        "executorStepWallsMs": [
+          0.013,
+          0.011,
+          0.006,
+          0.006,
+          0.006
+        ],
+        "hardCallWallsMs": [],
+        "hardPhaseTotalsMs": {
+          "mousePlans": 0,
+          "emergency": 0,
+          "trapStand": 0,
+          "candidateLoop": 0
+        },
+        "searchStats": {
+          "stateKeyCalls": 1790,
+          "stateKeyMs": 8.9347999999909,
+          "legalActionsCalls": 1141,
+          "legalActionsMs": 25.485700000001998,
+          "transitionCalls": 3761,
+          "transitionMs": 18.142000000019834,
+          "evaluateCalls": 275,
+          "evaluateMs": 30.27080000001206,
+          "ttProbeCalls": 1212,
+          "ttStoreCalls": 169,
+          "orderingSortCalls": 1141,
+          "orderingSortMs": 0.3117000000247572,
+          "repeatedLeafEvals": 305,
+          "uniqueLeafKeys": 275
+        },
+        "plannerCalls": [
+          {
+            "ms": 150.333,
+            "searchMs": 101.47,
+            "completedDepth": 1,
+            "nodes": 1139
+          }
+        ],
+        "sidecarTotalMs": 48.628,
+        "sidecarDetail": [
+          {
+            "ms": 48.627700000000004,
+            "overrideUsed": false,
+            "abort": "deadline",
+            "triggered": true
+          }
+        ],
+        "plannerEnterToSearchStartMs": 0.02,
+        "searchReturnToPlannerReturnMs": 48.861,
+        "planDecidedToExecDoneMs": 0.042,
+        "execDoneToTurnReturnMs": 0.022,
+        "fallbackReasons": []
+      },
+      "counters": {
+        "catMove": 3953,
+        "catPlaceTrap": 286,
+        "nodeDeadlineHits": 19,
+        "evalAfterDl": 19,
+        "abortEvalMs": 1.1600000000016735,
+        "abortEvalCount": 19,
+        "evalDeadlineHits": 1,
+        "applyPlanCatAction": 5
+      },
+      "evalCounters": {
+        "evaluations": 276,
+        "mouseBfs": 276,
+        "catBfs": 276,
+        "carryMouseBfs": 276
+      }
+    },
+    {
+      "id": "G1T5",
+      "rep": 0,
+      "armA_wallMs": 150.72,
+      "armB_wallMs": 150.746,
+      "armC_wallMs": 150.434,
+      "summary": {
+        "wallMs": 150.42090000000007,
+        "plannerBlockMs": 150.2548999999999,
+        "searchCallMs": 116.22499999999945,
+        "searchCoreMs": 116.1206000000002,
+        "searchPostPlanMs": 0.09799999999995634,
+        "sidecarMs": 33.828199999999924,
+        "deadlineAtMs": 4733.1051,
+        "firstDeadlineObservationAtMs": 4733.1181,
+        "detectionOverrunMs": 0.012999999999919964,
+        "postDetectionReturnMs": 16.223,
+        "completedDepth": 1,
+        "attemptedDepth": 2,
+        "nodes": 437,
+        "deadlineCutoffs": 100,
+        "turnOvershootVsTotalWallMs": 0.418,
+        "plannerInvocations": 1,
+        "executorStepWallsMs": [
+          0.032,
+          0.01,
+          0.007,
+          0.007
+        ],
+        "hardCallWallsMs": [],
+        "hardPhaseTotalsMs": {
+          "mousePlans": 0,
+          "emergency": 0,
+          "trapStand": 0,
+          "candidateLoop": 0
+        },
+        "searchStats": {
+          "stateKeyCalls": 1879,
+          "stateKeyMs": 11.532800000010866,
+          "legalActionsCalls": 439,
+          "legalActionsMs": 10.472199999981058,
+          "transitionCalls": 1376,
+          "transitionMs": 8.181100000007973,
+          "evaluateCalls": 628,
+          "evaluateMs": 74.93500000000404,
+          "ttProbeCalls": 880,
+          "ttStoreCalls": 428,
+          "orderingSortCalls": 438,
+          "orderingSortMs": 0.15280000000348082,
+          "repeatedLeafEvals": 373,
+          "uniqueLeafKeys": 628
+        },
+        "plannerCalls": [
+          {
+            "ms": 150.249,
+            "searchMs": 116.225,
+            "completedDepth": 1,
+            "nodes": 437
+          }
+        ],
+        "sidecarTotalMs": 33.828,
+        "sidecarDetail": [
+          {
+            "ms": 33.828199999999924,
+            "overrideUsed": false,
+            "abort": "deadline",
+            "triggered": true
+          }
+        ],
+        "plannerEnterToSearchStartMs": 0.01,
+        "searchReturnToPlannerReturnMs": 34.02,
+        "planDecidedToExecDoneMs": 0.058,
+        "execDoneToTurnReturnMs": 0.023,
+        "fallbackReasons": []
+      },
+      "counters": {
+        "catMove": 416,
+        "nodeDeadlineHits": 98,
+        "evalAfterDl": 128,
+        "abortEvalMs": 11.99869999999737,
+        "abortEvalCount": 98,
+        "evalDeadlineHits": 2,
+        "applyPlanCatAction": 4
+      },
+      "evalCounters": {
+        "evaluations": 629,
+        "mouseBfs": 629,
+        "catBfs": 629,
+        "carryMouseBfs": 629
+      }
+    },
+    {
+      "id": "G1T5",
+      "rep": 1,
+      "armA_wallMs": 150.396,
+      "armB_wallMs": 150.345,
+      "armC_wallMs": 150.388,
+      "summary": {
+        "wallMs": 150.38410000000022,
+        "plannerBlockMs": 150.22850000000017,
+        "searchCallMs": 112.54300000000057,
+        "searchCoreMs": 112.44369999999981,
+        "searchPostPlanMs": 0.09150000000045111,
+        "sidecarMs": 37.51800000000003,
+        "deadlineAtMs": 5185.7016,
+        "firstDeadlineObservationAtMs": 5185.7241,
+        "detectionOverrunMs": 0.02250000000003638,
+        "postDetectionReturnMs": 12.528,
+        "completedDepth": 1,
+        "attemptedDepth": 2,
+        "nodes": 569,
+        "deadlineCutoffs": 87,
+        "turnOvershootVsTotalWallMs": 0.382,
+        "plannerInvocations": 1,
+        "executorStepWallsMs": [
+          0.031,
+          0.01,
+          0.006,
+          0.006
+        ],
+        "hardCallWallsMs": [],
+        "hardPhaseTotalsMs": {
+          "mousePlans": 0,
+          "emergency": 0,
+          "trapStand": 0,
+          "candidateLoop": 0
+        },
+        "searchStats": {
+          "stateKeyCalls": 2275,
+          "stateKeyMs": 11.337499999998727,
+          "legalActionsCalls": 571,
+          "legalActionsMs": 10.364799999985735,
+          "transitionCalls": 1772,
+          "transitionMs": 8.462199999989025,
+          "evaluateCalls": 668,
+          "evaluateMs": 71.66420000000926,
+          "ttProbeCalls": 1117,
+          "ttStoreCalls": 560,
+          "orderingSortCalls": 570,
+          "orderingSortMs": 0.16139999998904386,
+          "repeatedLeafEvals": 492,
+          "uniqueLeafKeys": 668
+        },
+        "plannerCalls": [
+          {
+            "ms": 150.222,
+            "searchMs": 112.543,
+            "completedDepth": 1,
+            "nodes": 569
+          }
+        ],
+        "sidecarTotalMs": 37.518,
+        "sidecarDetail": [
+          {
+            "ms": 37.51800000000003,
+            "overrideUsed": false,
+            "abort": "deadline",
+            "triggered": true
+          }
+        ],
+        "plannerEnterToSearchStartMs": 0.006,
+        "searchReturnToPlannerReturnMs": 37.679,
+        "planDecidedToExecDoneMs": 0.053,
+        "execDoneToTurnReturnMs": 0.025,
+        "fallbackReasons": []
+      },
+      "counters": {
+        "catMove": 416,
+        "nodeDeadlineHits": 85,
+        "evalAfterDl": 115,
+        "abortEvalMs": 8.698999999997795,
+        "abortEvalCount": 85,
+        "evalDeadlineHits": 2,
+        "applyPlanCatAction": 4
+      },
+      "evalCounters": {
+        "evaluations": 669,
+        "mouseBfs": 669,
+        "catBfs": 669,
+        "carryMouseBfs": 669
+      }
+    },
+    {
+      "id": "G1T5",
+      "rep": 2,
+      "armA_wallMs": 150.403,
+      "armB_wallMs": 150.572,
+      "armC_wallMs": 150.335,
+      "summary": {
+        "wallMs": 150.33160000000044,
+        "plannerBlockMs": 150.1898000000001,
+        "searchCallMs": 111.99389999999948,
+        "searchCoreMs": 111.89309999999932,
+        "searchPostPlanMs": 0.09389999999984866,
+        "sidecarMs": 38.03700000000026,
+        "deadlineAtMs": 5640.5052,
+        "firstDeadlineObservationAtMs": 5640.5376,
+        "detectionOverrunMs": 0.03240000000005239,
+        "postDetectionReturnMs": 11.972,
+        "completedDepth": 1,
+        "attemptedDepth": 2,
+        "nodes": 544,
+        "deadlineCutoffs": 88,
+        "turnOvershootVsTotalWallMs": 0.33,
+        "plannerInvocations": 1,
+        "executorStepWallsMs": [
+          0.024,
+          0.009,
+          0.006,
+          0.006
+        ],
+        "hardCallWallsMs": [],
+        "hardPhaseTotalsMs": {
+          "mousePlans": 0,
+          "emergency": 0,
+          "trapStand": 0,
+          "candidateLoop": 0
+        },
+        "searchStats": {
+          "stateKeyCalls": 2199,
+          "stateKeyMs": 13.735000000010587,
+          "legalActionsCalls": 546,
+          "legalActionsMs": 10.632099999990714,
+          "transitionCalls": 1696,
+          "transitionMs": 9.246899999986454,
+          "evaluateCalls": 659,
+          "evaluateMs": 67.94249999999738,
+          "ttProbeCalls": 1072,
+          "ttStoreCalls": 535,
+          "orderingSortCalls": 545,
+          "orderingSortMs": 0.1415000000197324,
+          "repeatedLeafEvals": 470,
+          "uniqueLeafKeys": 659
+        },
+        "plannerCalls": [
+          {
+            "ms": 150.181,
+            "searchMs": 111.994,
+            "completedDepth": 1,
+            "nodes": 544
+          }
+        ],
+        "sidecarTotalMs": 38.037,
+        "sidecarDetail": [
+          {
+            "ms": 38.03700000000026,
+            "overrideUsed": false,
+            "abort": "deadline",
+            "triggered": true
+          }
+        ],
+        "plannerEnterToSearchStartMs": 0.009,
+        "searchReturnToPlannerReturnMs": 38.187,
+        "planDecidedToExecDoneMs": 0.045,
+        "execDoneToTurnReturnMs": 0.028,
+        "fallbackReasons": []
+      },
+      "counters": {
+        "catMove": 416,
+        "nodeDeadlineHits": 86,
+        "evalAfterDl": 116,
+        "abortEvalMs": 8.374999999998181,
+        "abortEvalCount": 86,
+        "evalDeadlineHits": 2,
+        "applyPlanCatAction": 4
+      },
+      "evalCounters": {
+        "evaluations": 660,
+        "mouseBfs": 660,
+        "catBfs": 660,
+        "carryMouseBfs": 660
+      }
+    },
+    {
+      "id": "G1T5",
+      "rep": 3,
+      "armA_wallMs": 150.614,
+      "armB_wallMs": 150.342,
+      "armC_wallMs": 150.32,
+      "summary": {
+        "wallMs": 150.3164999999999,
+        "plannerBlockMs": 150.18039999999928,
+        "searchCallMs": 112.86849999999959,
+        "searchCoreMs": 112.77620000000024,
+        "searchPostPlanMs": 0.08479999999963184,
+        "sidecarMs": 37.15990000000056,
+        "deadlineAtMs": 6092.8373,
+        "firstDeadlineObservationAtMs": 6093.1942,
+        "detectionOverrunMs": 0.3568999999997686,
+        "postDetectionReturnMs": 12.518,
+        "completedDepth": 1,
+        "attemptedDepth": 2,
+        "nodes": 567,
+        "deadlineCutoffs": 87,
+        "turnOvershootVsTotalWallMs": 0.315,
+        "plannerInvocations": 1,
+        "executorStepWallsMs": [
+          0.023,
+          0.01,
+          0.006,
+          0.006
+        ],
+        "hardCallWallsMs": [],
+        "hardPhaseTotalsMs": {
+          "mousePlans": 0,
+          "emergency": 0,
+          "trapStand": 0,
+          "candidateLoop": 0
+        },
+        "searchStats": {
+          "stateKeyCalls": 2269,
+          "stateKeyMs": 11.53609999996661,
+          "legalActionsCalls": 569,
+          "legalActionsMs": 10.273200000002362,
+          "transitionCalls": 1766,
+          "transitionMs": 8.653899999985697,
+          "evaluateCalls": 667,
+          "evaluateMs": 71.22960000000148,
+          "ttProbeCalls": 1114,
+          "ttStoreCalls": 558,
+          "orderingSortCalls": 568,
+          "orderingSortMs": 0.14450000000488217,
+          "repeatedLeafEvals": 490,
+          "uniqueLeafKeys": 667
+        },
+        "plannerCalls": [
+          {
+            "ms": 150.175,
+            "searchMs": 112.868,
+            "completedDepth": 1,
+            "nodes": 567
+          }
+        ],
+        "sidecarTotalMs": 37.16,
+        "sidecarDetail": [
+          {
+            "ms": 37.15990000000056,
+            "overrideUsed": false,
+            "abort": "deadline",
+            "triggered": true
+          }
+        ],
+        "plannerEnterToSearchStartMs": 0.005,
+        "searchReturnToPlannerReturnMs": 37.307,
+        "planDecidedToExecDoneMs": 0.046,
+        "execDoneToTurnReturnMs": 0.023,
+        "fallbackReasons": []
+      },
+      "counters": {
+        "catMove": 416,
+        "nodeDeadlineHits": 85,
+        "evalAfterDl": 115,
+        "abortEvalMs": 8.673500000000786,
+        "abortEvalCount": 85,
+        "evalDeadlineHits": 2,
+        "applyPlanCatAction": 4
+      },
+      "evalCounters": {
+        "evaluations": 668,
+        "mouseBfs": 668,
+        "catBfs": 668,
+        "carryMouseBfs": 668
+      }
+    },
+    {
+      "id": "G1T5",
+      "rep": 4,
+      "armA_wallMs": 150.418,
+      "armB_wallMs": 150.349,
+      "armC_wallMs": 150.391,
+      "summary": {
+        "wallMs": 150.3876999999993,
+        "plannerBlockMs": 150.23250000000007,
+        "searchCallMs": 111.72209999999995,
+        "searchCoreMs": 111.63630000000012,
+        "searchPostPlanMs": 0.07840000000032887,
+        "sidecarMs": 38.352600000000166,
+        "deadlineAtMs": 6545.0605,
+        "firstDeadlineObservationAtMs": 6545.0815,
+        "detectionOverrunMs": 0.021000000000640284,
+        "postDetectionReturnMs": 11.708,
+        "completedDepth": 1,
+        "attemptedDepth": 2,
+        "nodes": 603,
+        "deadlineCutoffs": 79,
+        "turnOvershootVsTotalWallMs": 0.386,
+        "plannerInvocations": 1,
+        "executorStepWallsMs": [
+          0.021,
+          0.009,
+          0.012,
+          0.006
+        ],
+        "hardCallWallsMs": [],
+        "hardPhaseTotalsMs": {
+          "mousePlans": 0,
+          "emergency": 0,
+          "trapStand": 0,
+          "candidateLoop": 0
+        },
+        "searchStats": {
+          "stateKeyCalls": 2376,
+          "stateKeyMs": 12.007600000021739,
+          "legalActionsCalls": 605,
+          "legalActionsMs": 10.518799999991643,
+          "transitionCalls": 1873,
+          "transitionMs": 8.669599999966522,
+          "evaluateCalls": 675,
+          "evaluateMs": 69.78760000000148,
+          "ttProbeCalls": 1179,
+          "ttStoreCalls": 595,
+          "orderingSortCalls": 604,
+          "orderingSortMs": 0.14070000000992877,
+          "repeatedLeafEvals": 524,
+          "uniqueLeafKeys": 675
+        },
+        "plannerCalls": [
+          {
+            "ms": 150.227,
+            "searchMs": 111.722,
+            "completedDepth": 1,
+            "nodes": 603
+          }
+        ],
+        "sidecarTotalMs": 38.353,
+        "sidecarDetail": [
+          {
+            "ms": 38.352600000000166,
+            "overrideUsed": false,
+            "abort": "deadline",
+            "triggered": true
+          }
+        ],
+        "plannerEnterToSearchStartMs": 0.006,
+        "searchReturnToPlannerReturnMs": 38.505,
+        "planDecidedToExecDoneMs": 0.049,
+        "execDoneToTurnReturnMs": 0.032,
+        "fallbackReasons": []
+      },
+      "counters": {
+        "catMove": 416,
+        "nodeDeadlineHits": 78,
+        "evalAfterDl": 108,
+        "abortEvalMs": 7.614599999998973,
+        "abortEvalCount": 78,
+        "evalDeadlineHits": 1,
+        "applyPlanCatAction": 4
+      },
+      "evalCounters": {
+        "evaluations": 676,
+        "mouseBfs": 676,
+        "catBfs": 676,
+        "carryMouseBfs": 676
+      }
+    },
+    {
+      "id": "G1T4",
+      "rep": 0,
+      "armA_wallMs": 125.737,
+      "armB_wallMs": 127.584,
+      "armC_wallMs": 119.228,
+      "summary": {
+        "wallMs": 119.22419999999966,
+        "plannerBlockMs": 119.09059999999954,
+        "searchCallMs": 101.10800000000017,
+        "searchCoreMs": 100.98429999999917,
+        "searchPostPlanMs": 0.11640000000079453,
+        "sidecarMs": 17.81790000000001,
+        "deadlineAtMs": 6949.8704,
+        "firstDeadlineObservationAtMs": 6949.8844,
+        "detectionOverrunMs": 0.014000000000123691,
+        "postDetectionReturnMs": 1.1,
+        "completedDepth": 2,
+        "attemptedDepth": 3,
+        "nodes": 925,
+        "deadlineCutoffs": 10,
+        "turnOvershootVsTotalWallMs": -30.778,
+        "plannerInvocations": 1,
+        "executorStepWallsMs": [
+          0.019,
+          0.007,
+          0.006,
+          0.005
+        ],
+        "hardCallWallsMs": [],
+        "hardPhaseTotalsMs": {
+          "mousePlans": 0,
+          "emergency": 0,
+          "trapStand": 0,
+          "candidateLoop": 0
+        },
+        "searchStats": {
+          "stateKeyCalls": 1941,
+          "stateKeyMs": 10.59789999997247,
+          "legalActionsCalls": 928,
+          "legalActionsMs": 20.097700000023906,
+          "transitionCalls": 2967,
+          "transitionMs": 15.085000000009131,
+          "evaluateCalls": 339,
+          "evaluateMs": 37.86789999999928,
+          "ttProbeCalls": 1208,
+          "ttStoreCalls": 268,
+          "orderingSortCalls": 925,
+          "orderingSortMs": 0.26200000001426815,
+          "repeatedLeafEvals": 397,
+          "uniqueLeafKeys": 339
+        },
+        "plannerCalls": [
+          {
+            "ms": 119.085,
+            "searchMs": 101.108,
+            "completedDepth": 2,
+            "nodes": 925
+          }
+        ],
+        "sidecarTotalMs": 17.818,
+        "sidecarDetail": [
+          {
+            "ms": 17.81790000000001,
+            "overrideUsed": false,
+            "abort": "baseline_not_refuted",
+            "triggered": true
+          }
+        ],
+        "plannerEnterToSearchStartMs": 0.005,
+        "searchReturnToPlannerReturnMs": 17.978,
+        "planDecidedToExecDoneMs": 0.038,
+        "execDoneToTurnReturnMs": 0.018,
+        "fallbackReasons": []
+      },
+      "counters": {
+        "catMove": 3945,
+        "nodeDeadlineHits": 10,
+        "evalAfterDl": 10,
+        "abortEvalMs": 0.856299999998555,
+        "abortEvalCount": 10,
+        "applyPlanCatAction": 4
+      },
+      "evalCounters": {
+        "evaluations": 340,
+        "mouseBfs": 340,
+        "catBfs": 340,
+        "carryMouseBfs": 340
+      }
+    },
+    {
+      "id": "G1T4",
+      "rep": 1,
+      "armA_wallMs": 119.782,
+      "armB_wallMs": 121.164,
+      "armC_wallMs": 120.01,
+      "summary": {
+        "wallMs": 120.0060999999996,
+        "plannerBlockMs": 119.85149999999976,
+        "searchCallMs": 101.87660000000051,
+        "searchCoreMs": 101.74189999999999,
+        "searchPostPlanMs": 0.12590000000000146,
+        "sidecarMs": 17.79790000000048,
+        "deadlineAtMs": 7311.0174,
+        "firstDeadlineObservationAtMs": 7311.0439,
+        "detectionOverrunMs": 0.026499999999941792,
+        "postDetectionReturnMs": 1.857,
+        "completedDepth": 2,
+        "attemptedDepth": 3,
+        "nodes": 943,
+        "deadlineCutoffs": 15,
+        "turnOvershootVsTotalWallMs": -29.996,
+        "plannerInvocations": 1,
+        "executorStepWallsMs": [
+          0.024,
+          0.007,
+          0.006,
+          0.006
+        ],
+        "hardCallWallsMs": [],
+        "hardPhaseTotalsMs": {
+          "mousePlans": 0,
+          "emergency": 0,
+          "trapStand": 0,
+          "candidateLoop": 0
+        },
+        "searchStats": {
+          "stateKeyCalls": 1973,
+          "stateKeyMs": 11.40769999999793,
+          "legalActionsCalls": 946,
+          "legalActionsMs": 19.11779999999817,
+          "transitionCalls": 3023,
+          "transitionMs": 14.637000000016997,
+          "evaluateCalls": 345,
+          "evaluateMs": 41.25210000000061,
+          "ttProbeCalls": 1235,
+          "ttStoreCalls": 270,
+          "orderingSortCalls": 943,
+          "orderingSortMs": 0.23070000000188884,
+          "repeatedLeafEvals": 396,
+          "uniqueLeafKeys": 345
+        },
+        "plannerCalls": [
+          {
+            "ms": 119.846,
+            "searchMs": 101.877,
+            "completedDepth": 2,
+            "nodes": 943
+          }
+        ],
+        "sidecarTotalMs": 17.798,
+        "sidecarDetail": [
+          {
+            "ms": 17.79790000000048,
+            "overrideUsed": false,
+            "abort": "baseline_not_refuted",
+            "triggered": true
+          }
+        ],
+        "plannerEnterToSearchStartMs": 0.005,
+        "searchReturnToPlannerReturnMs": 17.97,
+        "planDecidedToExecDoneMs": 0.044,
+        "execDoneToTurnReturnMs": 0.031,
+        "fallbackReasons": []
+      },
+      "counters": {
+        "catMove": 3989,
+        "nodeDeadlineHits": 15,
+        "evalAfterDl": 15,
+        "abortEvalMs": 1.5375000000003638,
+        "abortEvalCount": 15,
+        "applyPlanCatAction": 4
+      },
+      "evalCounters": {
+        "evaluations": 346,
+        "mouseBfs": 346,
+        "catBfs": 346,
+        "carryMouseBfs": 346
+      }
+    },
+    {
+      "id": "G1T4",
+      "rep": 2,
+      "armA_wallMs": 120.084,
+      "armB_wallMs": 120.456,
+      "armC_wallMs": 120.971,
+      "summary": {
+        "wallMs": 120.96650000000045,
+        "plannerBlockMs": 120.83200000000033,
+        "searchCallMs": 102.09159999999974,
+        "searchCoreMs": 101.95610000000033,
+        "searchPostPlanMs": 0.12749999999959982,
+        "sidecarMs": 18.577300000000832,
+        "deadlineAtMs": 7672.5111,
+        "firstDeadlineObservationAtMs": 7672.6881,
+        "detectionOverrunMs": 0.17700000000058935,
+        "postDetectionReturnMs": 1.921,
+        "completedDepth": 2,
+        "attemptedDepth": 3,
+        "nodes": 944,
+        "deadlineCutoffs": 12,
+        "turnOvershootVsTotalWallMs": -29.036,
+        "plannerInvocations": 1,
+        "executorStepWallsMs": [
+          0.021,
+          0.007,
+          0.006,
+          0.006
+        ],
+        "hardCallWallsMs": [],
+        "hardPhaseTotalsMs": {
+          "mousePlans": 0,
+          "emergency": 0,
+          "trapStand": 0,
+          "candidateLoop": 0
+        },
+        "searchStats": {
+          "stateKeyCalls": 1976,
+          "stateKeyMs": 10.253999999987172,
+          "legalActionsCalls": 947,
+          "legalActionsMs": 19.27230000000418,
+          "transitionCalls": 3026,
+          "transitionMs": 14.075499999973545,
+          "evaluateCalls": 343,
+          "evaluateMs": 41.645700000013676,
+          "ttProbeCalls": 1238,
+          "ttStoreCalls": 271,
+          "orderingSortCalls": 944,
+          "orderingSortMs": 0.2389000000193846,
+          "repeatedLeafEvals": 398,
+          "uniqueLeafKeys": 343
+        },
+        "plannerCalls": [
+          {
+            "ms": 120.826,
+            "searchMs": 102.092,
+            "completedDepth": 2,
+            "nodes": 944
+          }
+        ],
+        "sidecarTotalMs": 18.577,
+        "sidecarDetail": [
+          {
+            "ms": 18.577300000000832,
+            "overrideUsed": false,
+            "abort": "baseline_not_refuted",
+            "triggered": true
+          }
+        ],
+        "plannerEnterToSearchStartMs": 0.005,
+        "searchReturnToPlannerReturnMs": 18.735,
+        "planDecidedToExecDoneMs": 0.04,
+        "execDoneToTurnReturnMs": 0.02,
+        "fallbackReasons": []
+      },
+      "counters": {
+        "catMove": 3996,
+        "nodeDeadlineHits": 12,
+        "evalAfterDl": 12,
+        "abortEvalMs": 1.1993000000011307,
+        "abortEvalCount": 12,
+        "applyPlanCatAction": 4
+      },
+      "evalCounters": {
+        "evaluations": 344,
+        "mouseBfs": 344,
+        "catBfs": 344,
+        "carryMouseBfs": 344
+      }
+    },
+    {
+      "id": "G1T4",
+      "rep": 3,
+      "armA_wallMs": 121.014,
+      "armB_wallMs": 121.53,
+      "armC_wallMs": 121.852,
+      "summary": {
+        "wallMs": 121.84740000000056,
+        "plannerBlockMs": 121.70760000000064,
+        "searchCallMs": 101.97360000000026,
+        "searchCoreMs": 101.83930000000055,
+        "searchPostPlanMs": 0.1242999999994936,
+        "sidecarMs": 19.570800000000418,
+        "deadlineAtMs": 8037.0105,
+        "firstDeadlineObservationAtMs": 8037.1842,
+        "detectionOverrunMs": 0.17369999999937136,
+        "postDetectionReturnMs": 1.807,
+        "completedDepth": 2,
+        "attemptedDepth": 3,
+        "nodes": 988,
+        "deadlineCutoffs": 15,
+        "turnOvershootVsTotalWallMs": -28.155,
+        "plannerInvocations": 1,
+        "executorStepWallsMs": [
+          0.022,
+          0.007,
+          0.006,
+          0.007
+        ],
+        "hardCallWallsMs": [],
+        "hardPhaseTotalsMs": {
+          "mousePlans": 0,
+          "emergency": 0,
+          "trapStand": 0,
+          "candidateLoop": 0
+        },
+        "searchStats": {
+          "stateKeyCalls": 2055,
+          "stateKeyMs": 10.453700000001845,
+          "legalActionsCalls": 991,
+          "legalActionsMs": 21.52059999999983,
+          "transitionCalls": 3158,
+          "transitionMs": 15.003200000006473,
+          "evaluateCalls": 349,
+          "evaluateMs": 38.71669999999722,
+          "ttProbeCalls": 1307,
+          "ttStoreCalls": 285,
+          "orderingSortCalls": 987,
+          "orderingSortMs": 0.2642999999852691,
+          "repeatedLeafEvals": 402,
+          "uniqueLeafKeys": 349
+        },
+        "plannerCalls": [
+          {
+            "ms": 121.702,
+            "searchMs": 101.974,
+            "completedDepth": 2,
+            "nodes": 988
+          }
+        ],
+        "sidecarTotalMs": 19.571,
+        "sidecarDetail": [
+          {
+            "ms": 19.570800000000418,
+            "overrideUsed": false,
+            "abort": "baseline_not_refuted",
+            "triggered": true
+          }
+        ],
+        "plannerEnterToSearchStartMs": 0.005,
+        "searchReturnToPlannerReturnMs": 19.729,
+        "planDecidedToExecDoneMs": 0.043,
+        "execDoneToTurnReturnMs": 0.02,
+        "fallbackReasons": []
+      },
+      "counters": {
+        "catMove": 4115,
+        "nodeDeadlineHits": 15,
+        "evalAfterDl": 15,
+        "abortEvalMs": 1.4890999999979613,
+        "abortEvalCount": 15,
+        "applyPlanCatAction": 4
+      },
+      "evalCounters": {
+        "evaluations": 350,
+        "mouseBfs": 350,
+        "catBfs": 350,
+        "carryMouseBfs": 350
+      }
+    },
+    {
+      "id": "G1T4",
+      "rep": 4,
+      "armA_wallMs": 120.89,
+      "armB_wallMs": 120.949,
+      "armC_wallMs": 121.14,
+      "summary": {
+        "wallMs": 121.13559999999961,
+        "plannerBlockMs": 121.0028000000002,
+        "searchCallMs": 102.21519999999873,
+        "searchCoreMs": 102.07250000000022,
+        "searchPostPlanMs": 0.13320000000021537,
+        "sidecarMs": 18.623099999998885,
+        "deadlineAtMs": 8401.7168,
+        "firstDeadlineObservationAtMs": 8402.1226,
+        "detectionOverrunMs": 0.405800000000454,
+        "postDetectionReturnMs": 1.816,
+        "completedDepth": 2,
+        "attemptedDepth": 3,
+        "nodes": 988,
+        "deadlineCutoffs": 15,
+        "turnOvershootVsTotalWallMs": -28.866,
+        "plannerInvocations": 1,
+        "executorStepWallsMs": [
+          0.02,
+          0.007,
+          0.006,
+          0.006
+        ],
+        "hardCallWallsMs": [],
+        "hardPhaseTotalsMs": {
+          "mousePlans": 0,
+          "emergency": 0,
+          "trapStand": 0,
+          "candidateLoop": 0
+        },
+        "searchStats": {
+          "stateKeyCalls": 2055,
+          "stateKeyMs": 9.967500000011569,
+          "legalActionsCalls": 991,
+          "legalActionsMs": 19.227400000034322,
+          "transitionCalls": 3158,
+          "transitionMs": 15.388199999930293,
+          "evaluateCalls": 349,
+          "evaluateMs": 41.26520000000528,
+          "ttProbeCalls": 1307,
+          "ttStoreCalls": 285,
+          "orderingSortCalls": 987,
+          "orderingSortMs": 0.23710000002756715,
+          "repeatedLeafEvals": 402,
+          "uniqueLeafKeys": 349
+        },
+        "plannerCalls": [
+          {
+            "ms": 120.997,
+            "searchMs": 102.215,
+            "completedDepth": 2,
+            "nodes": 988
+          }
+        ],
+        "sidecarTotalMs": 18.623,
+        "sidecarDetail": [
+          {
+            "ms": 18.623099999998885,
+            "overrideUsed": false,
+            "abort": "baseline_not_refuted",
+            "triggered": true
+          }
+        ],
+        "plannerEnterToSearchStartMs": 0.006,
+        "searchReturnToPlannerReturnMs": 18.782,
+        "planDecidedToExecDoneMs": 0.04,
+        "execDoneToTurnReturnMs": 0.019,
+        "fallbackReasons": []
+      },
+      "counters": {
+        "catMove": 4115,
+        "nodeDeadlineHits": 15,
+        "evalAfterDl": 15,
+        "abortEvalMs": 1.499099999999089,
+        "abortEvalCount": 15,
+        "applyPlanCatAction": 4
+      },
+      "evalCounters": {
+        "evaluations": 350,
+        "mouseBfs": 350,
+        "catBfs": 350,
+        "carryMouseBfs": 350
+      }
+    },
+    {
+      "id": "G5T4",
+      "rep": 0,
+      "armA_wallMs": 105.596,
+      "armB_wallMs": 105.807,
+      "armC_wallMs": 104.509,
+      "summary": {
+        "wallMs": 104.50540000000001,
+        "plannerBlockMs": 104.38470000000052,
+        "searchCallMs": 104.25710000000072,
+        "searchCoreMs": 104.13040000000001,
+        "searchPostPlanMs": 0.11920000000100117,
+        "sidecarMs": 0,
+        "deadlineAtMs": 8735.2744,
+        "firstDeadlineObservationAtMs": 8735.4306,
+        "detectionOverrunMs": 0.15619999999944412,
+        "postDetectionReturnMs": 4.108,
+        "completedDepth": 2,
+        "attemptedDepth": 3,
+        "nodes": 726,
+        "deadlineCutoffs": 38,
+        "turnOvershootVsTotalWallMs": -45.497,
+        "plannerInvocations": 1,
+        "executorStepWallsMs": [
+          0.011,
+          0.007,
+          0.008,
+          0.006
+        ],
+        "hardCallWallsMs": [],
+        "hardPhaseTotalsMs": {
+          "mousePlans": 0,
+          "emergency": 0,
+          "trapStand": 0,
+          "candidateLoop": 0
+        },
+        "searchStats": {
+          "stateKeyCalls": 1627,
+          "stateKeyMs": 8.950199999990218,
+          "legalActionsCalls": 729,
+          "legalActionsMs": 18.764300000013463,
+          "transitionCalls": 2341,
+          "transitionMs": 12.402499999998327,
+          "evaluateCalls": 435,
+          "evaluateMs": 49.559200000026976,
+          "ttProbeCalls": 895,
+          "ttStoreCalls": 343,
+          "orderingSortCalls": 727,
+          "orderingSortMs": 0.26829999999790743,
+          "repeatedLeafEvals": 209,
+          "uniqueLeafKeys": 435
+        },
+        "plannerCalls": [
+          {
+            "ms": 104.378,
+            "searchMs": 104.257,
+            "completedDepth": 2,
+            "nodes": 726
+          }
+        ],
+        "sidecarTotalMs": 0,
+        "sidecarDetail": [],
+        "plannerEnterToSearchStartMs": 0.006,
+        "searchReturnToPlannerReturnMs": 0.122,
+        "planDecidedToExecDoneMs": 0.032,
+        "execDoneToTurnReturnMs": 0.018,
+        "fallbackReasons": []
+      },
+      "counters": {
+        "catMove": 3998,
+        "nodeDeadlineHits": 37,
+        "evalAfterDl": 37,
+        "abortEvalMs": 3.547999999997046,
+        "abortEvalCount": 37,
+        "evalDeadlineHits": 1,
+        "applyPlanCatAction": 4
+      },
+      "evalCounters": {
+        "evaluations": 436,
+        "mouseBfs": 436,
+        "catBfs": 436,
+        "carryMouseBfs": 436
+      }
+    },
+    {
+      "id": "G5T4",
+      "rep": 1,
+      "armA_wallMs": 103.921,
+      "armB_wallMs": 103.747,
+      "armC_wallMs": 105.219,
+      "summary": {
+        "wallMs": 105.21509999999944,
+        "plannerBlockMs": 105.02599999999984,
+        "searchCallMs": 104.89069999999992,
+        "searchCoreMs": 104.76159999999982,
+        "searchPostPlanMs": 0.12129999999888241,
+        "sidecarMs": 0,
+        "deadlineAtMs": 9048.6582,
+        "firstDeadlineObservationAtMs": 9048.7172,
+        "detectionOverrunMs": 0.058999999999286956,
+        "postDetectionReturnMs": 4.837,
+        "completedDepth": 2,
+        "attemptedDepth": 3,
+        "nodes": 752,
+        "deadlineCutoffs": 37,
+        "turnOvershootVsTotalWallMs": -44.787,
+        "plannerInvocations": 1,
+        "executorStepWallsMs": [
+          0.016,
+          0.04,
+          0.01,
+          0.006
+        ],
+        "hardCallWallsMs": [],
+        "hardPhaseTotalsMs": {
+          "mousePlans": 0,
+          "emergency": 0,
+          "trapStand": 0,
+          "candidateLoop": 0
+        },
+        "searchStats": {
+          "stateKeyCalls": 1691,
+          "stateKeyMs": 9.23529999994571,
+          "legalActionsCalls": 755,
+          "legalActionsMs": 18.0507000000307,
+          "transitionCalls": 2426,
+          "transitionMs": 12.547800000011193,
+          "evaluateCalls": 453,
+          "evaluateMs": 50.73290000000634,
+          "ttProbeCalls": 930,
+          "ttStoreCalls": 362,
+          "orderingSortCalls": 753,
+          "orderingSortMs": 0.23999999999978172,
+          "repeatedLeafEvals": 220,
+          "uniqueLeafKeys": 453
+        },
+        "plannerCalls": [
+          {
+            "ms": 105.021,
+            "searchMs": 104.891,
+            "completedDepth": 2,
+            "nodes": 752
+          }
+        ],
+        "sidecarTotalMs": 0,
+        "sidecarDetail": [],
+        "plannerEnterToSearchStartMs": 0.004,
+        "searchReturnToPlannerReturnMs": 0.131,
+        "planDecidedToExecDoneMs": 0.074,
+        "execDoneToTurnReturnMs": 0.022,
+        "fallbackReasons": []
+      },
+      "counters": {
+        "catMove": 4180,
+        "nodeDeadlineHits": 36,
+        "evalAfterDl": 36,
+        "abortEvalMs": 3.998799999986659,
+        "abortEvalCount": 36,
+        "evalDeadlineHits": 1,
+        "applyPlanCatAction": 4
+      },
+      "evalCounters": {
+        "evaluations": 454,
+        "mouseBfs": 454,
+        "catBfs": 454,
+        "carryMouseBfs": 454
+      }
+    },
+    {
+      "id": "G5T4",
+      "rep": 2,
+      "armA_wallMs": 103.961,
+      "armB_wallMs": 104.19,
+      "armC_wallMs": 104.565,
+      "summary": {
+        "wallMs": 104.56100000000151,
+        "plannerBlockMs": 104.42230000000018,
+        "searchCallMs": 104.28839999999946,
+        "searchCoreMs": 104.16480000000047,
+        "searchPostPlanMs": 0.11639999999897555,
+        "sidecarMs": 0,
+        "deadlineAtMs": 9363.1155,
+        "firstDeadlineObservationAtMs": 9363.1779,
+        "detectionOverrunMs": 0.06240000000070722,
+        "postDetectionReturnMs": 4.232,
+        "completedDepth": 2,
+        "attemptedDepth": 3,
+        "nodes": 758,
+        "deadlineCutoffs": 36,
+        "turnOvershootVsTotalWallMs": -45.441,
+        "plannerInvocations": 1,
+        "executorStepWallsMs": [
+          0.016,
+          0.007,
+          0.009,
+          0.006
+        ],
+        "hardCallWallsMs": [],
+        "hardPhaseTotalsMs": {
+          "mousePlans": 0,
+          "emergency": 0,
+          "trapStand": 0,
+          "candidateLoop": 0
+        },
+        "searchStats": {
+          "stateKeyCalls": 1709,
+          "stateKeyMs": 9.20679999996537,
+          "legalActionsCalls": 761,
+          "legalActionsMs": 18.391400000007707,
+          "transitionCalls": 2444,
+          "transitionMs": 12.471000000057757,
+          "evaluateCalls": 459,
+          "evaluateMs": 50.57269999998789,
+          "ttProbeCalls": 939,
+          "ttStoreCalls": 367,
+          "orderingSortCalls": 759,
+          "orderingSortMs": 0.25329999999121355,
+          "repeatedLeafEvals": 223,
+          "uniqueLeafKeys": 459
+        },
+        "plannerCalls": [
+          {
+            "ms": 104.416,
+            "searchMs": 104.288,
+            "completedDepth": 2,
+            "nodes": 758
+          }
+        ],
+        "sidecarTotalMs": 0,
+        "sidecarDetail": [],
+        "plannerEnterToSearchStartMs": 0.005,
+        "searchReturnToPlannerReturnMs": 0.129,
+        "planDecidedToExecDoneMs": 0.039,
+        "execDoneToTurnReturnMs": 0.02,
+        "fallbackReasons": []
+      },
+      "counters": {
+        "catMove": 4222,
+        "nodeDeadlineHits": 36,
+        "evalAfterDl": 36,
+        "abortEvalMs": 3.73719999999048,
+        "abortEvalCount": 36,
+        "applyPlanCatAction": 4
+      },
+      "evalCounters": {
+        "evaluations": 460,
+        "mouseBfs": 460,
+        "catBfs": 460,
+        "carryMouseBfs": 460
+      }
+    },
+    {
+      "id": "G5T4",
+      "rep": 3,
+      "armA_wallMs": 105.139,
+      "armB_wallMs": 104.688,
+      "armC_wallMs": 104.187,
+      "summary": {
+        "wallMs": 104.18369999999959,
+        "plannerBlockMs": 104.03740000000107,
+        "searchCallMs": 103.90450000000055,
+        "searchCoreMs": 103.77920000000086,
+        "searchPostPlanMs": 0.11719999999877473,
+        "sidecarMs": 0,
+        "deadlineAtMs": 9678.588,
+        "firstDeadlineObservationAtMs": 9678.6126,
+        "detectionOverrunMs": 0.024600000000646105,
+        "postDetectionReturnMs": 3.887,
+        "completedDepth": 2,
+        "attemptedDepth": 3,
+        "nodes": 778,
+        "deadlineCutoffs": 38,
+        "turnOvershootVsTotalWallMs": -45.818,
+        "plannerInvocations": 1,
+        "executorStepWallsMs": [
+          0.015,
+          0.007,
+          0.009,
+          0.006
+        ],
+        "hardCallWallsMs": [],
+        "hardPhaseTotalsMs": {
+          "mousePlans": 0,
+          "emergency": 0,
+          "trapStand": 0,
+          "candidateLoop": 0
+        },
+        "searchStats": {
+          "stateKeyCalls": 1755,
+          "stateKeyMs": 8.729799999940951,
+          "legalActionsCalls": 781,
+          "legalActionsMs": 19.41689999999835,
+          "transitionCalls": 2511,
+          "transitionMs": 12.230499999965105,
+          "evaluateCalls": 472,
+          "evaluateMs": 50.37400000000525,
+          "ttProbeCalls": 967,
+          "ttStoreCalls": 379,
+          "orderingSortCalls": 779,
+          "orderingSortMs": 0.2213999999803491,
+          "repeatedLeafEvals": 228,
+          "uniqueLeafKeys": 472
+        },
+        "plannerCalls": [
+          {
+            "ms": 104.031,
+            "searchMs": 103.905,
+            "completedDepth": 2,
+            "nodes": 778
+          }
+        ],
+        "sidecarTotalMs": 0,
+        "sidecarDetail": [],
+        "plannerEnterToSearchStartMs": 0.006,
+        "searchReturnToPlannerReturnMs": 0.127,
+        "planDecidedToExecDoneMs": 0.037,
+        "execDoneToTurnReturnMs": 0.02,
+        "fallbackReasons": []
+      },
+      "counters": {
+        "catMove": 4362,
+        "nodeDeadlineHits": 38,
+        "evalAfterDl": 38,
+        "abortEvalMs": 3.405000000000655,
+        "abortEvalCount": 38,
+        "applyPlanCatAction": 4
+      },
+      "evalCounters": {
+        "evaluations": 473,
+        "mouseBfs": 473,
+        "catBfs": 473,
+        "carryMouseBfs": 473
+      }
+    },
+    {
+      "id": "G5T4",
+      "rep": 4,
+      "armA_wallMs": 104.122,
+      "armB_wallMs": 103.594,
+      "armC_wallMs": 104.948,
+      "summary": {
+        "wallMs": 104.9444999999996,
+        "plannerBlockMs": 104.82200000000012,
+        "searchCallMs": 104.6942999999992,
+        "searchCoreMs": 104.54989999999998,
+        "searchPostPlanMs": 0.13559999999961292,
+        "sidecarMs": 0,
+        "deadlineAtMs": 9991.4591,
+        "firstDeadlineObservationAtMs": 9991.6805,
+        "detectionOverrunMs": 0.22140000000035798,
+        "postDetectionReturnMs": 4.479,
+        "completedDepth": 2,
+        "attemptedDepth": 3,
+        "nodes": 747,
+        "deadlineCutoffs": 39,
+        "turnOvershootVsTotalWallMs": -45.057,
+        "plannerInvocations": 1,
+        "executorStepWallsMs": [
+          0.012,
+          0.008,
+          0.009,
+          0.006
+        ],
+        "hardCallWallsMs": [],
+        "hardPhaseTotalsMs": {
+          "mousePlans": 0,
+          "emergency": 0,
+          "trapStand": 0,
+          "candidateLoop": 0
+        },
+        "searchStats": {
+          "stateKeyCalls": 1676,
+          "stateKeyMs": 8.386900000014066,
+          "legalActionsCalls": 750,
+          "legalActionsMs": 18.491600000013932,
+          "transitionCalls": 2411,
+          "transitionMs": 12.87259999998787,
+          "evaluateCalls": 449,
+          "evaluateMs": 51.46689999999762,
+          "ttProbeCalls": 924,
+          "ttStoreCalls": 356,
+          "orderingSortCalls": 748,
+          "orderingSortMs": 0.25940000001355656,
+          "repeatedLeafEvals": 215,
+          "uniqueLeafKeys": 449
+        },
+        "plannerCalls": [
+          {
+            "ms": 104.817,
+            "searchMs": 104.694,
+            "completedDepth": 2,
+            "nodes": 747
+          }
+        ],
+        "sidecarTotalMs": 0,
+        "sidecarDetail": [],
+        "plannerEnterToSearchStartMs": 0.005,
+        "searchReturnToPlannerReturnMs": 0.123,
+        "planDecidedToExecDoneMs": 0.036,
+        "execDoneToTurnReturnMs": 0.02,
+        "fallbackReasons": []
+      },
+      "counters": {
+        "catMove": 4145,
+        "nodeDeadlineHits": 38,
+        "evalAfterDl": 38,
+        "abortEvalMs": 3.9554000000025553,
+        "abortEvalCount": 38,
+        "evalDeadlineHits": 1,
+        "applyPlanCatAction": 4
+      },
+      "evalCounters": {
+        "evaluations": 450,
+        "mouseBfs": 450,
+        "catBfs": 450,
+        "carryMouseBfs": 450
+      }
+    }
+  ]
+}

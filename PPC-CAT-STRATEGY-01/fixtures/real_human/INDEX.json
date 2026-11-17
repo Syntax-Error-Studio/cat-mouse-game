@@ -1,0 +1,227 @@
+{
+  "generatedBy": "probe/export_real_human.mjs",
+  "provenance": "REAL_HUMAN_REPLAY",
+  "separation": "Only REAL positions live in this directory. SYNTHETIC positions live in fixtures/synthetic/.",
+  "sourceFixture": "src/game/ai/__tests__/fixtures/ppcId01-human-roots.json",
+  "sourceFixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+  "count": 24,
+  "allCanonicalMatch": true,
+  "roots": [
+    {
+      "id": "G6T1",
+      "file": "G6T1.json",
+      "humanSource": "log_gameA.txt",
+      "humanLine": 163,
+      "sourceSha256": "69b09ff4d70e01fde7378386fac7d60fca5c881ae743dfa8f315de4b9d8b1cba",
+      "canonicalSnapshotSha256": "7db19c735c9083f486a93a199706774a3ad08adf612087bc15dd330595aebae1",
+      "canonicalMatch": true
+    },
+    {
+      "id": "G6T2",
+      "file": "G6T2.json",
+      "humanSource": "log_gameA.txt",
+      "humanLine": 201,
+      "sourceSha256": "69b09ff4d70e01fde7378386fac7d60fca5c881ae743dfa8f315de4b9d8b1cba",
+      "canonicalSnapshotSha256": "30a54a57fbf5747d0e1f0f073420809653fb58f9ef2f89e608042ffbc4446656",
+      "canonicalMatch": true
+    },
+    {
+      "id": "G6T3",
+      "file": "G6T3.json",
+      "humanSource": "log_gameA.txt",
+      "humanLine": 239,
+      "sourceSha256": "69b09ff4d70e01fde7378386fac7d60fca5c881ae743dfa8f315de4b9d8b1cba",
+      "canonicalSnapshotSha256": "1f7d08df825314cb90276104cbc26261bc26065f66aba3bd17ed7c7b0adff6b0",
+      "canonicalMatch": true
+    },
+    {
+      "id": "G5T1",
+      "file": "G5T1.json",
+      "humanSource": "log_gameB.txt",
+      "humanLine": 169,
+      "sourceSha256": "9a3c98dff0902bfb21c26bb8c3d837465cb613029be07a4cdc1f6dfc302515fb",
+      "canonicalSnapshotSha256": "e5678745fafbdb0ad8d4f84ff3f94e63bca7195573d5f0458a2b8e247fb59c55",
+      "canonicalMatch": true
+    },
+    {
+      "id": "G5T2",
+      "file": "G5T2.json",
+      "humanSource": "log_gameB.txt",
+      "humanLine": 207,
+      "sourceSha256": "9a3c98dff0902bfb21c26bb8c3d837465cb613029be07a4cdc1f6dfc302515fb",
+      "canonicalSnapshotSha256": "453cc4d288c2b86572400d8f0ac0b1f8d7375ba512126b93377be55d6fc0f2f6",
+      "canonicalMatch": true
+    },
+    {
+      "id": "G5T3",
+      "file": "G5T3.json",
+      "humanSource": "log_gameB.txt",
+      "humanLine": 245,
+      "sourceSha256": "9a3c98dff0902bfb21c26bb8c3d837465cb613029be07a4cdc1f6dfc302515fb",
+      "canonicalSnapshotSha256": "8f38951c8d0106a0c81a28fe160e85d9f007ebe7e4cd743e4637087851d0d2b7",
+      "canonicalMatch": true
+    },
+    {
+      "id": "G5T4",
+      "file": "G5T4.json",
+      "humanSource": "log_gameB.txt",
+      "humanLine": 283,
+      "sourceSha256": "9a3c98dff0902bfb21c26bb8c3d837465cb613029be07a4cdc1f6dfc302515fb",
+      "canonicalSnapshotSha256": "8380edc34cdd6821a8ae3ed7b5ac3f8eaad6448aace20ffbaa07ed0b532d982d",
+      "canonicalMatch": true
+    },
+    {
+      "id": "G2T1",
+      "file": "G2T1.json",
+      "humanSource": "log_gameC.txt",
+      "humanLine": 208,
+      "sourceSha256": "75f97114d4712b532dd91a7e21222367ea66e48af3ba01390aae09533f219bfb",
+      "canonicalSnapshotSha256": "1d3ba08cfc23d37ff0c7ecc9bcb3d0063434d9b0f4e2543ca3244e1a659eee5e",
+      "canonicalMatch": true
+    },
+    {
+      "id": "G2T2",
+      "file": "G2T2.json",
+      "humanSource": "log_gameC.txt",
+      "humanLine": 246,
+      "sourceSha256": "75f97114d4712b532dd91a7e21222367ea66e48af3ba01390aae09533f219bfb",
+      "canonicalSnapshotSha256": "56c7a052ab37ca911e13b38f3294232ab4cb93631d44f8a12a89dd3ec6e4a1fe",
+      "canonicalMatch": true
+    },
+    {
+      "id": "G2T3",
+      "file": "G2T3.json",
+      "humanSource": "log_gameC.txt",
+      "humanLine": 284,
+      "sourceSha256": "75f97114d4712b532dd91a7e21222367ea66e48af3ba01390aae09533f219bfb",
+      "canonicalSnapshotSha256": "3ba6a4eeaacaee07bbfcfe2f3d23c5709f4cfbb194dadfcaf6cf78456e289a13",
+      "canonicalMatch": true
+    },
+    {
+      "id": "G2T4",
+      "file": "G2T4.json",
+      "humanSource": "log_gameC.txt",
+      "humanLine": 322,
+      "sourceSha256": "75f97114d4712b532dd91a7e21222367ea66e48af3ba01390aae09533f219bfb",
+      "canonicalSnapshotSha256": "dcc19d14519f8fd380d86cb05a279eced89f9c6b9128718676230c8669240693",
+      "canonicalMatch": true
+    },
+    {
+      "id": "G2T5",
+      "file": "G2T5.json",
+      "humanSource": "log_gameC.txt",
+      "humanLine": 360,
+      "sourceSha256": "75f97114d4712b532dd91a7e21222367ea66e48af3ba01390aae09533f219bfb",
+      "canonicalSnapshotSha256": "d3e94fdff264d176db6f4236bd16cafe7ca0b81f59b50050369313568dba214e",
+      "canonicalMatch": true
+    },
+    {
+      "id": "G2T6",
+      "file": "G2T6.json",
+      "humanSource": "log_gameC.txt",
+      "humanLine": 398,
+      "sourceSha256": "75f97114d4712b532dd91a7e21222367ea66e48af3ba01390aae09533f219bfb",
+      "canonicalSnapshotSha256": "20f33cea1179b6dc24a88fc5c1ec71f4ca1c3c1b565cb401ee17da85683a3601",
+      "canonicalMatch": true
+    },
+    {
+      "id": "G2T7",
+      "file": "G2T7.json",
+      "humanSource": "log_gameC.txt",
+      "humanLine": 436,
+      "sourceSha256": "75f97114d4712b532dd91a7e21222367ea66e48af3ba01390aae09533f219bfb",
+      "canonicalSnapshotSha256": "7d16844a86f9078d5af87d3d1f10a4b50e7bd81617441af4c5abf265c9dc38c2",
+      "canonicalMatch": true
+    },
+    {
+      "id": "G2T8",
+      "file": "G2T8.json",
+      "humanSource": "log_gameC.txt",
+      "humanLine": 474,
+      "sourceSha256": "75f97114d4712b532dd91a7e21222367ea66e48af3ba01390aae09533f219bfb",
+      "canonicalSnapshotSha256": "985b24a76bf5ad8f45975ac703337c17c28ace0811fae3d32dc45514ce3518dc",
+      "canonicalMatch": true
+    },
+    {
+      "id": "G1T1",
+      "file": "G1T1.json",
+      "humanSource": "log_gameD.txt",
+      "humanLine": 218,
+      "sourceSha256": "daff2c48c303b0d0c9886fb497033152ba912a280fb1a9297c689b805f368687",
+      "canonicalSnapshotSha256": "def8745ffa0e3c42a7307978441ef57b0b04fba1d84f4511206f9c6f75675632",
+      "canonicalMatch": true
+    },
+    {
+      "id": "G1T2",
+      "file": "G1T2.json",
+      "humanSource": "log_gameD.txt",
+      "humanLine": 256,
+      "sourceSha256": "daff2c48c303b0d0c9886fb497033152ba912a280fb1a9297c689b805f368687",
+      "canonicalSnapshotSha256": "c2eb8dc3ce1ddc3e653109d62139a0b92cf626d052d7856d51b7666943f8ff43",
+      "canonicalMatch": true
+    },
+    {
+      "id": "G1T3",
+      "file": "G1T3.json",
+      "humanSource": "log_gameD.txt",
+      "humanLine": 294,
+      "sourceSha256": "daff2c48c303b0d0c9886fb497033152ba912a280fb1a9297c689b805f368687",
+      "canonicalSnapshotSha256": "e15e6209f7d64337ac02675b9299b7599f06c9d33abfa41bdc84baea2f089439",
+      "canonicalMatch": true
+    },
+    {
+      "id": "G1T4",
+      "file": "G1T4.json",
+      "humanSource": "log_gameD.txt",
+      "humanLine": 332,
+      "sourceSha256": "daff2c48c303b0d0c9886fb497033152ba912a280fb1a9297c689b805f368687",
+      "canonicalSnapshotSha256": "1acd9e356a3ee300c0d2b46d30745e0c9c9553de7230a673495a3a55f4e30d81",
+      "canonicalMatch": true
+    },
+    {
+      "id": "G1T5",
+      "file": "G1T5.json",
+      "humanSource": "log_gameD.txt",
+      "humanLine": 370,
+      "sourceSha256": "daff2c48c303b0d0c9886fb497033152ba912a280fb1a9297c689b805f368687",
+      "canonicalSnapshotSha256": "7885fa5f183d972bf2d9d1e852c6c4431d1903e8358ee6d1a72df44a49175f05",
+      "canonicalMatch": true
+    },
+    {
+      "id": "G1T6",
+      "file": "G1T6.json",
+      "humanSource": "log_gameD.txt",
+      "humanLine": 408,
+      "sourceSha256": "daff2c48c303b0d0c9886fb497033152ba912a280fb1a9297c689b805f368687",
+      "canonicalSnapshotSha256": "25f66e8d8a2334c4e9b979252b4cef18b1f4403bf37bfe7a1d75b3c5f4a3bc56",
+      "canonicalMatch": true
+    },
+    {
+      "id": "G1T7",
+      "file": "G1T7.json",
+      "humanSource": "log_gameD.txt",
+      "humanLine": 446,
+      "sourceSha256": "daff2c48c303b0d0c9886fb497033152ba912a280fb1a9297c689b805f368687",
+      "canonicalSnapshotSha256": "42a1e276b346f40f7e8cf37d8bfc6e0af1d731dce24f279e0650a440c5f7c366",
+      "canonicalMatch": true
+    },
+    {
+      "id": "G1T8",
+      "file": "G1T8.json",
+      "humanSource": "log_gameD.txt",
+      "humanLine": 484,
+      "sourceSha256": "daff2c48c303b0d0c9886fb497033152ba912a280fb1a9297c689b805f368687",
+      "canonicalSnapshotSha256": "0f5e6dc0ed42a46d06fb875e51f84f972a0e18bc2aad555e6642fa751ecabde3",
+      "canonicalMatch": true
+    },
+    {
+      "id": "G1T9",
+      "file": "G1T9.json",
+      "humanSource": "log_gameD.txt",
+      "humanLine": 522,
+      "sourceSha256": "daff2c48c303b0d0c9886fb497033152ba912a280fb1a9297c689b805f368687",
+      "canonicalSnapshotSha256": "5639f7682d7c5f6f0aa78d2a7103374cd4d08b3326c21dcccadc188af54013cf",
+      "canonicalMatch": true
+    }
+  ]
+}

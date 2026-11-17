@@ -1,0 +1,250 @@
+{
+  "_provenance": {
+    "round": "PPC-P2-PREPARED-TRANSITION-01",
+    "rawFile": "_raw/special_rule_replay.json",
+    "rawSha256": "9aecba8260572d4bdb6b57cccf11a3101fdb917fb32ac44ff6b7d2e68f1a5b25",
+    "what": "20 special-rule paths replayed on the real engine.",
+    "note": "This file is the raw measurement plus this provenance block. No value was edited."
+  },
+  "round": "PPC-P2-PREPARED-TRANSITION-01",
+  "note": "Each check replays the path on the REAL engine (rules.*) and, where applicable, re-simulates every prepared action independently.",
+  "passed": 20,
+  "total": 20,
+  "checks": [
+    {
+      "name": "01 ordinary cat step",
+      "ok": true,
+      "expected": {
+        "to": [
+          5,
+          6
+        ],
+        "movesLeft": 3
+      },
+      "actual": {
+        "to": [
+          5,
+          6
+        ],
+        "movesLeft": 3
+      }
+    },
+    {
+      "name": "02 cat pushes a box",
+      "ok": true,
+      "expected": {
+        "boxAt": [
+          2,
+          3
+        ],
+        "catAt": [
+          2,
+          2
+        ]
+      },
+      "actual": {
+        "boxAt": "box",
+        "catAt": [
+          2,
+          2
+        ]
+      }
+    },
+    {
+      "name": "03 box push blocks a tunnel",
+      "ok": true,
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "04 catPlaceTrap costs no move",
+      "ok": true,
+      "expected": {
+        "movesLeft": 4,
+        "trap": "set",
+        "trapsLeft": 0
+      },
+      "actual": {
+        "movesLeft": 4,
+        "trap": "set",
+        "trapsLeft": 0
+      }
+    },
+    {
+      "name": "05 cat reclaims trap by stepping on it",
+      "ok": true,
+      "expected": {
+        "trap": null,
+        "trapsLeft": 1
+      },
+      "actual": {
+        "trap": null,
+        "trapsLeft": 1
+      }
+    },
+    {
+      "name": "06 mouse trap step ends the turn",
+      "ok": true,
+      "expected": {
+        "currentPlayer": "cat"
+      },
+      "actual": {
+        "currentPlayer": "cat",
+        "mouseMovesLeft": 0
+      }
+    },
+    {
+      "name": "07 mouse carrying butter",
+      "ok": true,
+      "expected": true,
+      "actual": [
+        "mouseStep:D",
+        "mouseStep:L",
+        "mouseSkill:S"
+      ]
+    },
+    {
+      "name": "08 mouse skill grants extra moves",
+      "ok": true,
+      "expected": {
+        "butter": false,
+        "skill": true,
+        "movesLeft": 5
+      },
+      "actual": {
+        "butter": false,
+        "skill": true,
+        "movesLeft": 5
+      }
+    },
+    {
+      "name": "09 tunnel exit choice",
+      "ok": true,
+      "expected": {
+        "actions": 2,
+        "kind": "deterministic"
+      },
+      "actual": {
+        "actions": 2,
+        "kinds": [
+          "deterministic",
+          "deterministic"
+        ]
+      }
+    },
+    {
+      "name": "10 butter pickup is a CHANCE node",
+      "ok": true,
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "name": "11 ghost announcement adds a pending ghost",
+      "ok": true,
+      "expected": {
+        "ghosts": 1,
+        "butters": 0
+      },
+      "actual": true
+    },
+    {
+      "name": "12 ghost materialisation at the CAT->MOUSE boundary",
+      "ok": true,
+      "expected": {
+        "chanceActions": ">0",
+        "entityButter": true
+      },
+      "actual": {
+        "chanceActions": 4,
+        "materialised": true
+      }
+    },
+    {
+      "name": "13 blocked ghost materialisation is deferred",
+      "ok": true,
+      "expected": {
+        "blockedMaterializations": ">=1"
+      },
+      "actual": {
+        "chanceActions": 4,
+        "deferred": true
+      }
+    },
+    {
+      "name": "14 auto-pickup on the materialised cell",
+      "ok": true,
+      "expected": {
+        "mouseHasButter": true
+      },
+      "actual": {
+        "chanceActions": 4,
+        "autoPicked": true
+      }
+    },
+    {
+      "name": "15 RULE-A stranded cat",
+      "ok": true,
+      "expected": {
+        "phase": "mouse_wins"
+      },
+      "actual": {
+        "phase": "mouse_wins"
+      }
+    },
+    {
+      "name": "16 RULE-A stranded mouse",
+      "ok": true,
+      "expected": {
+        "phase": "cat_wins"
+      },
+      "actual": {
+        "phase": "cat_wins"
+      }
+    },
+    {
+      "name": "17 cat capture ends the game",
+      "ok": true,
+      "expected": {
+        "phase": "cat_wins"
+      },
+      "actual": {
+        "phase": "cat_wins"
+      }
+    },
+    {
+      "name": "18 variable catBaseMoves 4/6/9",
+      "ok": true,
+      "expected": "all arms parity",
+      "actual": [
+        "4:ok",
+        "6:ok",
+        "9:ok"
+      ]
+    },
+    {
+      "name": "19 irregular Void/Wall map",
+      "ok": true,
+      "expected": {
+        "blocked": [
+          "U",
+          "R"
+        ]
+      },
+      "actual": [
+        "D",
+        "L",
+        "T"
+      ]
+    },
+    {
+      "name": "20 trap/butter terrain identity",
+      "ok": true,
+      "expected": "three distinct keys",
+      "actual": [
+        true,
+        true,
+        true
+      ]
+    }
+  ]
+}

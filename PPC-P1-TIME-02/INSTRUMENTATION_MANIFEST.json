@@ -1,0 +1,253 @@
+{
+  "armRoot": "F:\\小猫小鼠\\PPC-P1-TIME-02\\trace\\arm\\game",
+  "sink": {
+    "file": "ai/traceSink.ts",
+    "sha256": "f8f94d7eb1765a2b9814c6f6efbe458d71e21c9e6a96687432795fc5ecb2743f"
+  },
+  "patches": [
+    {
+      "file": "engine.ts",
+      "source_sha256": "dbb5377af22a6471e31c899f9debe896e9e74a629f4fb50a47753bd492810f3e",
+      "instrumented_sha256": "63c99f62e7a50dbe1eabebbef219840b2b6756ffb5b978ae724e3ccfe811784c",
+      "edit_count": 37,
+      "edits": [
+        {
+          "kind": "replace",
+          "anchor": "// ============================================================"
+        },
+        {
+          "kind": "after",
+          "anchor": "  const steps: CatAiStep[] = [];"
+        },
+        {
+          "kind": "before",
+          "anchor": "    const planned = planHardCatTurn(current, {"
+        },
+        {
+          "kind": "before",
+          "anchor": "    current = { ...current, lastHardSearch: planned.debug };"
+        },
+        {
+          "kind": "before",
+          "anchor": "  let stuckCount = 0; // Track consecutive no-move iterations to prevent infinite loops"
+        },
+        {
+          "kind": "after",
+          "anchor": "    const from = { ...current.catPosition };"
+        },
+        {
+          "kind": "replace",
+          "anchor": "      const applied = applyPlanCatAction(current, action);"
+        },
+        {
+          "kind": "before",
+          "anchor": "  // G0.4F-2B-1.9B §11: finalize the single current-turn execution truth from"
+        },
+        {
+          "kind": "before",
+          "anchor": "  return steps;"
+        },
+        {
+          "kind": "replace",
+          "anchor": "  const difficulty = state.config.difficulty || DifficultyConst.Easy;"
+        },
+        {
+          "kind": "before",
+          "anchor": "    const plan = planHardCatTurn(state, {"
+        },
+        {
+          "kind": "before",
+          "anchor": "    state = { ...state, lastHardSearch: plan.debug };"
+        },
+        {
+          "kind": "replace",
+          "anchor": "      return catAiHard(closed);"
+        },
+        {
+          "kind": "replace",
+          "anchor": "  return catAiHard(state);"
+        },
+        {
+          "kind": "body",
+          "decl": "function catAiHard("
+        },
+        {
+          "kind": "replace",
+          "anchor": "  const mousePlans = buildMousePlansForHard(state);"
+        },
+        {
+          "kind": "replace",
+          "anchor": "  const emergencyDecision = findEmergencyHoleBlockDecision(state, mousePlans);"
+        },
+        {
+          "kind": "before",
+          "anchor": "  const rawTrapStandDecision ="
+        },
+        {
+          "kind": "before",
+          "anchor": "  const trapStandDecision ="
+        },
+        {
+          "kind": "before",
+          "anchor": "  // PHASE 2: Evaluate each possible direction"
+        },
+        {
+          "kind": "before",
+          "anchor": "  candidates.sort((a, b) => b.score - a.score);"
+        },
+        {
+          "kind": "before",
+          "anchor": "  return catMove(state, chosenDir);"
+        },
+        {
+          "kind": "body",
+          "decl": "export function catMove("
+        },
+        {
+          "kind": "body",
+          "decl": "export function catPlaceTrap("
+        },
+        {
+          "kind": "body",
+          "decl": "function bfsCatPathToStand("
+        },
+        {
+          "kind": "body",
+          "decl": "function bfsPath("
+        },
+        {
+          "kind": "body",
+          "decl": "function bfsDistance("
+        },
+        {
+          "kind": "body",
+          "decl": "function countMouseEscapeRoutes("
+        },
+        {
+          "kind": "body",
+          "decl": "function estimateTrapBypassCost("
+        },
+        {
+          "kind": "body",
+          "decl": "function findEmergencyHoleBlockDecision("
+        },
+        {
+          "kind": "body",
+          "decl": "function chooseHardStrategicTarget("
+        },
+        {
+          "kind": "body",
+          "decl": "function chooseHardTrapStandCell("
+        },
+        {
+          "kind": "body",
+          "decl": "function shouldCommitTrapPlan("
+        },
+        {
+          "kind": "body",
+          "decl": "function computeCatBoxAdjacency("
+        },
+        {
+          "kind": "body",
+          "decl": "function applyPlanCatAction("
+        },
+        {
+          "kind": "body",
+          "decl": "function forceCatMoveTowardsMouse("
+        },
+        {
+          "kind": "body",
+          "decl": "function findNearestHolePathForHard("
+        }
+      ]
+    },
+    {
+      "file": "ai/hardTurnPlanner.ts",
+      "source_sha256": "27b1ce6dc62234d0c822b2b0b6341205ac189b5f76d7662a5d29d9e17ded75ff",
+      "instrumented_sha256": "0dd05e87d74f1be0758a896568c0e9625e4271de5dd2628d3b25a34e5d1790dd",
+      "edit_count": 9,
+      "edits": [
+        {
+          "kind": "before",
+          "anchor": "import type { GameEngineState } from '../engine';"
+        },
+        {
+          "kind": "after",
+          "anchor": "): HardTurnPlan {"
+        },
+        {
+          "kind": "before",
+          "anchor": "  const search = searchBestActionIterative(state, {"
+        },
+        {
+          "kind": "replace",
+          "anchor": "    maxThreatExtensions: 0,"
+        },
+        {
+          "kind": "before",
+          "anchor": "      const sidecar = runRefutationSidecar(state, search.catTurnPlan, search.value, {"
+        },
+        {
+          "kind": "replace",
+          "anchor": "      refutation = { ...sidecar.diagnostics, refutationWallMs: now() - refStart };"
+        },
+        {
+          "kind": "replace",
+          "anchor": "    const guardEnabled = HARD_PROGRESS_GUARD_CONFIG.enabled;"
+        },
+        {
+          "kind": "replace",
+          "anchor": "      progressGuardDebug = guardResult.debug;"
+        },
+        {
+          "kind": "before",
+          "anchor": "  return {"
+        }
+      ]
+    },
+    {
+      "file": "ai/expectiminimax.ts",
+      "source_sha256": "9b976ec9bdbfd2cc02f6bdbb1f28b8a47a7c7759d4119e35964e077b4593ce45",
+      "instrumented_sha256": "78a08b25b0b95c56ceae7c151c39d034028143b6740a97a2b5a74c59b83b2aeb",
+      "edit_count": 9,
+      "edits": [
+        {
+          "kind": "before",
+          "anchor": "export const DEADLINE_CHECK_INTERVAL = 1;"
+        },
+        {
+          "kind": "before",
+          "anchor": "function deadlineReached(ctx: SearchContext, nodeCount: { count: number }): boolean {"
+        },
+        {
+          "kind": "replace",
+          "anchor": "  const clock = ctx.now ?? defaultNow;"
+        },
+        {
+          "kind": "replace",
+          "anchor": "  if (clock() >= ctx.deadlineMs) {"
+        },
+        {
+          "kind": "replace",
+          "anchor": "  const ctx = createSearchContext("
+        },
+        {
+          "kind": "before",
+          "anchor": "  // G0.3A/G0.3E-R2: apply plan-quality selection ONCE, after the loop."
+        },
+        {
+          "kind": "before",
+          "anchor": "  return {"
+        },
+        {
+          "kind": "replace",
+          "anchor": "    ctx.diagnostics.deadlineCutoffs++;"
+        },
+        {
+          "kind": "replace",
+          "anchor": "  evalBatchDeadlineObserved(ctx);"
+        }
+      ]
+    }
+  ]
+}

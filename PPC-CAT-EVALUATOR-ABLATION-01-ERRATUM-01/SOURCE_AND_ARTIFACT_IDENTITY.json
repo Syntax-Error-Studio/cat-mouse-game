@@ -1,0 +1,445 @@
+{
+  "artifactId": "SOURCE_AND_ARTIFACT_IDENTITY",
+  "round": "PPC-CAT-EVALUATOR-ABLATION-01-ERRATUM-01",
+  "generatedAt": "2026-11-15T16:38:43.118Z",
+  "generatedBy": "PPC-CAT-EVALUATOR-ABLATION-01-ERRATUM-01/probe/erratum.test.ts",
+  "headFrozen": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+  "headLive": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+  "gitSrcStatusPorcelain": "M src/game/ai/__tests__/expectiminimax.test.ts\n M src/game/ai/__tests__/forcedLossTieBreakHv14Reachability.test.ts\n M src/game/ai/__tests__/hv14FiveGameForensics.test.ts\n M src/game/ai/__tests__/hv2PlanTieQuality.test.ts\n M src/game/ai/__tests__/m3liteHumanValidationLogging.test.ts\n M src/game/ai/__tests__/progressGuard.test.ts\n M src/game/ai/deadlineContext.ts\n M src/game/ai/expectiminimax.ts\n M src/game/ai/hardTurnPlanner.ts\n M src/game/ai/legalActions.ts\n M src/game/ai/planQuality.ts\n M src/game/ai/transposition.ts\n M src/game/config.ts\n M src/game/engine.ts\n M src/game/openingFairness.ts\n?? src/game/__tests__/catMoveBudgetInputDomain.test.ts\n?? src/game/__tests__/openingFairnessStackSafety.test.ts\n?? src/game/ai/__tests__/fixtures/ppcId01-baseline-d1.json\n?? src/game/ai/__tests__/fixtures/ppcId01-human-roots.json\n?? src/game/ai/__tests__/fixtures/ppcTime01-baseline-planner.json\n?? src/game/ai/__tests__/hardTurnAbsoluteDeadline.test.ts\n?? src/game/ai/__tests__/hardTurnAbsoluteDeadlineEngine.test.ts\n?? src/game/ai/__tests__/planActionBoundFixtures.ts\n?? src/game/ai/__tests__/planReversalAccounting.test.ts\n?? src/game/ai/__tests__/planTurnActionBound.test.ts\n?? src/game/ai/__tests__/preparedTransition.test.ts\n?? src/game/ai/__tests__/stateIdentityCollision.test.ts\n?? src/game/ai/planBound.ts\n?? src/game/ai/preparedActions.ts",
+  "gitSrcStatusLineCount": 29,
+  "gitSrcDiffStat": "src/game/ai/__tests__/expectiminimax.test.ts       |  15 +-\n .../forcedLossTieBreakHv14Reachability.test.ts     | 113 +++++-\n .../ai/__tests__/hv14FiveGameForensics.test.ts     |  25 +-\n src/game/ai/__tests__/hv2PlanTieQuality.test.ts    |  44 +--\n .../__tests__/m3liteHumanValidationLogging.test.ts |  11 +-\n src/game/ai/__tests__/progressGuard.test.ts        |  34 +-\n src/game/ai/deadlineContext.ts                     |  99 +++++-\n src/game/ai/expectiminimax.ts                      |  81 ++++-\n src/game/ai/hardTurnPlanner.ts                     |  55 ++-\n src/game/ai/legalActions.ts                        |  41 +--\n src/game/ai/planQuality.ts                         | 135 ++++++-\n src/game/ai/transposition.ts                       |  44 ++-\n src/game/config.ts                                 |  37 ++\n src/game/engine.ts                                 | 113 +++++-\n src/game/openingFairness.ts                        | 387 +++++++++++++++------\n 15 files changed, 1015 insertions(+), 219 deletions(-)",
+  "workingTreeDiffersFromHead": true,
+  "preExistingPatchDisclosure": "The working tree carries pre-existing uncommitted production patches that predate this erratum (same substrate as PPC-CAT-EVALUATOR-ABLATION-01). This erratum wrote no production source.",
+  "erratumStart": "2026-11-15T16:38:42.057Z",
+  "erratumEnd": "2026-11-15T16:38:43.512Z",
+  "productionSourceChanged": false,
+  "priorArtifactsOverwritten": false,
+  "fixture": {
+    "path": "src/game/ai/__tests__/fixtures/ppcId01-human-roots.json",
+    "sha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+    "frozenSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+    "matchesFrozen": true
+  },
+  "originalsBefore": [
+    {
+      "path": "PPC-CAT-EVALUATOR-ABLATION-01/REPORT.md",
+      "sha256": "579a0ccd5cdef5cbfe8208fad564d44ff21dde1d8d7f66ed2bb8d3aa8d231364",
+      "bytes": 20924,
+      "mtimeIso": "2026-11-15T13:49:17.201Z"
+    },
+    {
+      "path": "PPC-CAT-EVALUATOR-ABLATION-01/ABLATION_RESULTS.json",
+      "sha256": "3e764f47b8c6bb8473c53d3cdc12e89375a7460df66d41cec8bf888c172f4dfb",
+      "bytes": 275938,
+      "mtimeIso": "2026-11-15T13:02:55.762Z"
+    },
+    {
+      "path": "PPC-CAT-EVALUATOR-ABLATION-01/QUANTIFIER_CERTIFICATES.json",
+      "sha256": "2a0a807740bc1f6108958898ec0912d404b83e37224ff44110983ced7ceee4e9",
+      "bytes": 197423,
+      "mtimeIso": "2026-11-15T13:25:26.383Z"
+    },
+    {
+      "path": "PPC-CAT-EVALUATOR-ABLATION-01/PRODUCTION_100MS_RESULTS.json",
+      "sha256": "9d50560f107da52107cb68be94f4ac90214f8a50aabbc948f8f3114215278775",
+      "bytes": 73487,
+      "mtimeIso": "2026-11-15T13:30:10.951Z"
+    },
+    {
+      "path": "PPC-CAT-EVALUATOR-ABLATION-01/PERFORMANCE_RESULTS.json",
+      "sha256": "16e8f1d62d43f880b493aea0929c98c3d8d1e1e31aac393e2e63334204a2dd7e",
+      "bytes": 14006,
+      "mtimeIso": "2026-11-15T13:39:07.251Z"
+    },
+    {
+      "path": "PPC-CAT-EVALUATOR-ABLATION-01/ROOT_DECISION_TABLE.csv",
+      "sha256": "57c64b97573da317deadc49d20aec09263729759328092c45205d0dd072c4c2a",
+      "bytes": 32204,
+      "mtimeIso": "2026-11-15T13:02:55.764Z"
+    },
+    {
+      "path": "PPC-CAT-EVALUATOR-ABLATION-01/_raw/p7_decision.json",
+      "sha256": "a0f13ec2f8cd5b61b1d634e702178fbda679680bdb882a54baed901f8731b7b1",
+      "bytes": 24161,
+      "mtimeIso": "2026-11-15T13:40:54.100Z"
+    },
+    {
+      "path": "PPC-CAT-EVALUATOR-ABLATION-01/SHA256SUMS.txt",
+      "sha256": "9218ca6f6a70ff460280c06bc43d04dede74a0bd64432a0203462076bdd57c77",
+      "bytes": 12603,
+      "mtimeIso": "2026-11-15T13:52:08.489Z"
+    },
+    {
+      "path": "PPC-CAT-EVALUATOR-ABLATION-01/SOURCE_MANIFEST.json",
+      "sha256": "5d5a63774675add6ee401a64e6998cd5989751e4226e7260c33761a9285f7e83",
+      "bytes": 29118,
+      "mtimeIso": "2026-11-15T13:52:08.489Z"
+    },
+    {
+      "path": "PPC-CAT-EVALUATOR-ABLATION-01/SEAL_VERIFICATION.json",
+      "sha256": "5c39d22d51bbbf87c45f1c70c2b9709f24823bda702ae6a3ea38fac7dd81e6d7",
+      "bytes": 5202,
+      "mtimeIso": "2026-11-15T13:52:08.832Z"
+    },
+    {
+      "path": "PPC-CAT-STRATEGY-SEAL-01/probe/seal_lib.ts",
+      "sha256": "453915d3fd3a69bda5d113dd7e5732d20424a7f97cff739cf9b0aeee576a779b",
+      "bytes": 21012,
+      "mtimeIso": "2026-11-15T07:11:41.741Z"
+    },
+    {
+      "path": "src/game/ai/__tests__/fixtures/ppcId01-human-roots.json",
+      "sha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "bytes": 264328,
+      "mtimeIso": "2026-11-12T12:47:46.253Z"
+    }
+  ],
+  "originalsAfter": [
+    {
+      "path": "PPC-CAT-EVALUATOR-ABLATION-01/REPORT.md",
+      "sha256": "579a0ccd5cdef5cbfe8208fad564d44ff21dde1d8d7f66ed2bb8d3aa8d231364",
+      "bytes": 20924,
+      "mtimeIso": "2026-11-15T13:49:17.201Z"
+    },
+    {
+      "path": "PPC-CAT-EVALUATOR-ABLATION-01/ABLATION_RESULTS.json",
+      "sha256": "3e764f47b8c6bb8473c53d3cdc12e89375a7460df66d41cec8bf888c172f4dfb",
+      "bytes": 275938,
+      "mtimeIso": "2026-11-15T13:02:55.762Z"
+    },
+    {
+      "path": "PPC-CAT-EVALUATOR-ABLATION-01/QUANTIFIER_CERTIFICATES.json",
+      "sha256": "2a0a807740bc1f6108958898ec0912d404b83e37224ff44110983ced7ceee4e9",
+      "bytes": 197423,
+      "mtimeIso": "2026-11-15T13:25:26.383Z"
+    },
+    {
+      "path": "PPC-CAT-EVALUATOR-ABLATION-01/PRODUCTION_100MS_RESULTS.json",
+      "sha256": "9d50560f107da52107cb68be94f4ac90214f8a50aabbc948f8f3114215278775",
+      "bytes": 73487,
+      "mtimeIso": "2026-11-15T13:30:10.951Z"
+    },
+    {
+      "path": "PPC-CAT-EVALUATOR-ABLATION-01/PERFORMANCE_RESULTS.json",
+      "sha256": "16e8f1d62d43f880b493aea0929c98c3d8d1e1e31aac393e2e63334204a2dd7e",
+      "bytes": 14006,
+      "mtimeIso": "2026-11-15T13:39:07.251Z"
+    },
+    {
+      "path": "PPC-CAT-EVALUATOR-ABLATION-01/ROOT_DECISION_TABLE.csv",
+      "sha256": "57c64b97573da317deadc49d20aec09263729759328092c45205d0dd072c4c2a",
+      "bytes": 32204,
+      "mtimeIso": "2026-11-15T13:02:55.764Z"
+    },
+    {
+      "path": "PPC-CAT-EVALUATOR-ABLATION-01/_raw/p7_decision.json",
+      "sha256": "a0f13ec2f8cd5b61b1d634e702178fbda679680bdb882a54baed901f8731b7b1",
+      "bytes": 24161,
+      "mtimeIso": "2026-11-15T13:40:54.100Z"
+    },
+    {
+      "path": "PPC-CAT-EVALUATOR-ABLATION-01/SHA256SUMS.txt",
+      "sha256": "9218ca6f6a70ff460280c06bc43d04dede74a0bd64432a0203462076bdd57c77",
+      "bytes": 12603,
+      "mtimeIso": "2026-11-15T13:52:08.489Z"
+    },
+    {
+      "path": "PPC-CAT-EVALUATOR-ABLATION-01/SOURCE_MANIFEST.json",
+      "sha256": "5d5a63774675add6ee401a64e6998cd5989751e4226e7260c33761a9285f7e83",
+      "bytes": 29118,
+      "mtimeIso": "2026-11-15T13:52:08.489Z"
+    },
+    {
+      "path": "PPC-CAT-EVALUATOR-ABLATION-01/SEAL_VERIFICATION.json",
+      "sha256": "5c39d22d51bbbf87c45f1c70c2b9709f24823bda702ae6a3ea38fac7dd81e6d7",
+      "bytes": 5202,
+      "mtimeIso": "2026-11-15T13:52:08.832Z"
+    },
+    {
+      "path": "PPC-CAT-STRATEGY-SEAL-01/probe/seal_lib.ts",
+      "sha256": "453915d3fd3a69bda5d113dd7e5732d20424a7f97cff739cf9b0aeee576a779b",
+      "bytes": 21012,
+      "mtimeIso": "2026-11-15T07:11:41.741Z"
+    },
+    {
+      "path": "src/game/ai/__tests__/fixtures/ppcId01-human-roots.json",
+      "sha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "bytes": 264328,
+      "mtimeIso": "2026-11-12T12:47:46.253Z"
+    }
+  ],
+  "originalsUnchanged": true,
+  "originalsAgainstPriorSha256Sums": [
+    {
+      "path": "PPC-CAT-EVALUATOR-ABLATION-01/REPORT.md",
+      "recorded": "579a0ccd5cdef5cbfe8208fad564d44ff21dde1d8d7f66ed2bb8d3aa8d231364",
+      "now": "579a0ccd5cdef5cbfe8208fad564d44ff21dde1d8d7f66ed2bb8d3aa8d231364",
+      "matches": true
+    },
+    {
+      "path": "PPC-CAT-EVALUATOR-ABLATION-01/ABLATION_RESULTS.json",
+      "recorded": "3e764f47b8c6bb8473c53d3cdc12e89375a7460df66d41cec8bf888c172f4dfb",
+      "now": "3e764f47b8c6bb8473c53d3cdc12e89375a7460df66d41cec8bf888c172f4dfb",
+      "matches": true
+    },
+    {
+      "path": "PPC-CAT-EVALUATOR-ABLATION-01/QUANTIFIER_CERTIFICATES.json",
+      "recorded": "2a0a807740bc1f6108958898ec0912d404b83e37224ff44110983ced7ceee4e9",
+      "now": "2a0a807740bc1f6108958898ec0912d404b83e37224ff44110983ced7ceee4e9",
+      "matches": true
+    },
+    {
+      "path": "PPC-CAT-EVALUATOR-ABLATION-01/PRODUCTION_100MS_RESULTS.json",
+      "recorded": "9d50560f107da52107cb68be94f4ac90214f8a50aabbc948f8f3114215278775",
+      "now": "9d50560f107da52107cb68be94f4ac90214f8a50aabbc948f8f3114215278775",
+      "matches": true
+    },
+    {
+      "path": "PPC-CAT-EVALUATOR-ABLATION-01/PERFORMANCE_RESULTS.json",
+      "recorded": "16e8f1d62d43f880b493aea0929c98c3d8d1e1e31aac393e2e63334204a2dd7e",
+      "now": "16e8f1d62d43f880b493aea0929c98c3d8d1e1e31aac393e2e63334204a2dd7e",
+      "matches": true
+    },
+    {
+      "path": "PPC-CAT-EVALUATOR-ABLATION-01/ROOT_DECISION_TABLE.csv",
+      "recorded": "57c64b97573da317deadc49d20aec09263729759328092c45205d0dd072c4c2a",
+      "now": "57c64b97573da317deadc49d20aec09263729759328092c45205d0dd072c4c2a",
+      "matches": true
+    },
+    {
+      "path": "PPC-CAT-EVALUATOR-ABLATION-01/_raw/p7_decision.json",
+      "recorded": "a0f13ec2f8cd5b61b1d634e702178fbda679680bdb882a54baed901f8731b7b1",
+      "now": "a0f13ec2f8cd5b61b1d634e702178fbda679680bdb882a54baed901f8731b7b1",
+      "matches": true
+    },
+    {
+      "path": "PPC-CAT-EVALUATOR-ABLATION-01/SOURCE_MANIFEST.json",
+      "recorded": "5d5a63774675add6ee401a64e6998cd5989751e4226e7260c33761a9285f7e83",
+      "now": "5d5a63774675add6ee401a64e6998cd5989751e4226e7260c33761a9285f7e83",
+      "matches": true
+    }
+  ],
+  "allPriorSumsMatch": true,
+  "sourcesBefore": [
+    {
+      "path": "src/game/engine.ts",
+      "sha256": "099f9a7b6d97b838c664aa7186be58465e5b01b8052af4b4e4e19a5644d19f06",
+      "bytes": 190506,
+      "mtimeIso": "2026-11-13T13:13:51.762Z"
+    },
+    {
+      "path": "src/game/types.ts",
+      "sha256": "bd1b18c952964c880d9ebed0b2532ec3d021fd5b9d9d70a75fd600eca084a620",
+      "bytes": 3396,
+      "mtimeIso": "2026-08-15T06:31:55.544Z"
+    },
+    {
+      "path": "src/game/rules/mobility.ts",
+      "sha256": "db177cf7fd9be9d3e95eee995bb22763c40c122ac97c97b94a5a3b1ff5bc3f8e",
+      "bytes": 6702,
+      "mtimeIso": "2026-11-11T14:36:55.650Z"
+    },
+    {
+      "path": "src/game/ai/preparedActions.ts",
+      "sha256": "67b76ad3de53fee6d3d32f9bc8ab9a02b52234857b23b7fc9091bd92011ad764",
+      "bytes": 5405,
+      "mtimeIso": "2026-11-14T04:36:11.979Z"
+    },
+    {
+      "path": "src/game/ai/legalActions.ts",
+      "sha256": "27ae2f468d19043425326c2fc42923aeae894a5f84d2e0684ee374808b50eb22",
+      "bytes": 2368,
+      "mtimeIso": "2026-11-14T04:36:16.778Z"
+    },
+    {
+      "path": "src/game/ai/transposition.ts",
+      "sha256": "7b4aa8eb3fab994a4abc77fdf38800ab2a5f9da57d5eb33a1b37075e106c2d64",
+      "bytes": 6784,
+      "mtimeIso": "2026-11-12T13:11:39.977Z"
+    },
+    {
+      "path": "src/game/ai/hardTurnPlanner.ts",
+      "sha256": "27b1ce6dc62234d0c822b2b0b6341205ac189b5f76d7662a5d29d9e17ded75ff",
+      "bytes": 36060,
+      "mtimeIso": "2026-11-12T13:59:38.594Z"
+    },
+    {
+      "path": "src/game/ai/expectiminimax.ts",
+      "sha256": "50d27da5e9d0d47a1ad70efb542a3ec1510507fd14b825a52729ebb90f6d690c",
+      "bytes": 109353,
+      "mtimeIso": "2026-11-14T05:07:02.639Z"
+    },
+    {
+      "path": "src/game/ai/hardHistory.ts",
+      "sha256": "acf1371c8180236723eef85f4ad70c8923c923fac30d3342f2fad943385da031",
+      "bytes": 13736,
+      "mtimeIso": "2026-11-04T04:32:21.526Z"
+    },
+    {
+      "path": "src/game/ai/planQuality.ts",
+      "sha256": "46979485d568dfff12e2f998353cda95616502a7433ac84c3d31801726090952",
+      "bytes": 30693,
+      "mtimeIso": "2026-11-13T13:13:59.005Z"
+    },
+    {
+      "path": "src/game/ai/searchConfig.ts",
+      "sha256": "0c960794de784785b8f12ac39fabf141bc1e82afd4cf8dc8d5788de12cabcd5c",
+      "bytes": 5670,
+      "mtimeIso": "2026-11-04T16:27:39.028Z"
+    },
+    {
+      "path": "src/game/ai/evaluation.ts",
+      "sha256": "e5246fa9d9976468fad3130b66216b3c214b4f786e9408b9306718bcc1cf8dd3",
+      "bytes": 33959,
+      "mtimeIso": "2026-11-04T17:12:36.145Z"
+    },
+    {
+      "path": "src/game/ai/correctedHoleLeaf.ts",
+      "sha256": "f1403d3d945b425f98aa76deac9b6c44d81c317adf88a4b72f17d47b499d9a8a",
+      "bytes": 3189,
+      "mtimeIso": "2026-09-02T01:49:21.366Z"
+    },
+    {
+      "path": "src/game/ai/hybridLeaf.ts",
+      "sha256": "5b93f09ebe3443c6627ece9cbdd5c2296c9159688cdcef1d318de0505597e326",
+      "bytes": 12914,
+      "mtimeIso": "2026-11-04T16:28:02.557Z"
+    },
+    {
+      "path": "src/game/ai/deadlineContext.ts",
+      "sha256": "ced449445d70d1ba88cb20d88415b3c641d670aa886536fcacefa36b4aa50235",
+      "bytes": 14411,
+      "mtimeIso": "2026-11-12T13:59:17.791Z"
+    }
+  ],
+  "sourcesAfter": [
+    {
+      "path": "src/game/engine.ts",
+      "sha256": "099f9a7b6d97b838c664aa7186be58465e5b01b8052af4b4e4e19a5644d19f06",
+      "bytes": 190506,
+      "mtimeIso": "2026-11-13T13:13:51.762Z"
+    },
+    {
+      "path": "src/game/types.ts",
+      "sha256": "bd1b18c952964c880d9ebed0b2532ec3d021fd5b9d9d70a75fd600eca084a620",
+      "bytes": 3396,
+      "mtimeIso": "2026-08-15T06:31:55.544Z"
+    },
+    {
+      "path": "src/game/rules/mobility.ts",
+      "sha256": "db177cf7fd9be9d3e95eee995bb22763c40c122ac97c97b94a5a3b1ff5bc3f8e",
+      "bytes": 6702,
+      "mtimeIso": "2026-11-11T14:36:55.650Z"
+    },
+    {
+      "path": "src/game/ai/preparedActions.ts",
+      "sha256": "67b76ad3de53fee6d3d32f9bc8ab9a02b52234857b23b7fc9091bd92011ad764",
+      "bytes": 5405,
+      "mtimeIso": "2026-11-14T04:36:11.979Z"
+    },
+    {
+      "path": "src/game/ai/legalActions.ts",
+      "sha256": "27ae2f468d19043425326c2fc42923aeae894a5f84d2e0684ee374808b50eb22",
+      "bytes": 2368,
+      "mtimeIso": "2026-11-14T04:36:16.778Z"
+    },
+    {
+      "path": "src/game/ai/transposition.ts",
+      "sha256": "7b4aa8eb3fab994a4abc77fdf38800ab2a5f9da57d5eb33a1b37075e106c2d64",
+      "bytes": 6784,
+      "mtimeIso": "2026-11-12T13:11:39.977Z"
+    },
+    {
+      "path": "src/game/ai/hardTurnPlanner.ts",
+      "sha256": "27b1ce6dc62234d0c822b2b0b6341205ac189b5f76d7662a5d29d9e17ded75ff",
+      "bytes": 36060,
+      "mtimeIso": "2026-11-12T13:59:38.594Z"
+    },
+    {
+      "path": "src/game/ai/expectiminimax.ts",
+      "sha256": "50d27da5e9d0d47a1ad70efb542a3ec1510507fd14b825a52729ebb90f6d690c",
+      "bytes": 109353,
+      "mtimeIso": "2026-11-14T05:07:02.639Z"
+    },
+    {
+      "path": "src/game/ai/hardHistory.ts",
+      "sha256": "acf1371c8180236723eef85f4ad70c8923c923fac30d3342f2fad943385da031",
+      "bytes": 13736,
+      "mtimeIso": "2026-11-04T04:32:21.526Z"
+    },
+    {
+      "path": "src/game/ai/planQuality.ts",
+      "sha256": "46979485d568dfff12e2f998353cda95616502a7433ac84c3d31801726090952",
+      "bytes": 30693,
+      "mtimeIso": "2026-11-13T13:13:59.005Z"
+    },
+    {
+      "path": "src/game/ai/searchConfig.ts",
+      "sha256": "0c960794de784785b8f12ac39fabf141bc1e82afd4cf8dc8d5788de12cabcd5c",
+      "bytes": 5670,
+      "mtimeIso": "2026-11-04T16:27:39.028Z"
+    },
+    {
+      "path": "src/game/ai/evaluation.ts",
+      "sha256": "e5246fa9d9976468fad3130b66216b3c214b4f786e9408b9306718bcc1cf8dd3",
+      "bytes": 33959,
+      "mtimeIso": "2026-11-04T17:12:36.145Z"
+    },
+    {
+      "path": "src/game/ai/correctedHoleLeaf.ts",
+      "sha256": "f1403d3d945b425f98aa76deac9b6c44d81c317adf88a4b72f17d47b499d9a8a",
+      "bytes": 3189,
+      "mtimeIso": "2026-09-02T01:49:21.366Z"
+    },
+    {
+      "path": "src/game/ai/hybridLeaf.ts",
+      "sha256": "5b93f09ebe3443c6627ece9cbdd5c2296c9159688cdcef1d318de0505597e326",
+      "bytes": 12914,
+      "mtimeIso": "2026-11-04T16:28:02.557Z"
+    },
+    {
+      "path": "src/game/ai/deadlineContext.ts",
+      "sha256": "ced449445d70d1ba88cb20d88415b3c641d670aa886536fcacefa36b4aa50235",
+      "bytes": 14411,
+      "mtimeIso": "2026-11-12T13:59:17.791Z"
+    }
+  ],
+  "sourcesUnchanged": true,
+  "sourcesPredateErratumStart": true,
+  "archive": {
+    "path": "F:/ppc-checkpoints/PPC-CAT-EVALUATOR-ABLATION-01-candidate.tar.gz",
+    "sha256": "d174a6a84c35fcf095179ccb4b05cd40cf530c09a50aaf669299d7d1e05ce4a4",
+    "bytes": 355702,
+    "matchesSealRecord": true
+  },
+  "crossArtifactG1T3": {
+    "fixtureSnapshotSha256": "e15e6209f7d64337ac02675b9299b7599f06c9d33abfa41bdc84baea2f089439",
+    "ablationSnapshotSha256": "e15e6209f7d64337ac02675b9299b7599f06c9d33abfa41bdc84baea2f089439",
+    "p4E1SnapshotSha256": "e15e6209f7d64337ac02675b9299b7599f06c9d33abfa41bdc84baea2f089439",
+    "p4H1SnapshotSha256": "e15e6209f7d64337ac02675b9299b7599f06c9d33abfa41bdc84baea2f089439",
+    "p5Snapshots": [
+      "e15e6209f7d64337ac02675b9299b7599f06c9d33abfa41bdc84baea2f089439",
+      "e15e6209f7d64337ac02675b9299b7599f06c9d33abfa41bdc84baea2f089439",
+      "e15e6209f7d64337ac02675b9299b7599f06c9d33abfa41bdc84baea2f089439",
+      "e15e6209f7d64337ac02675b9299b7599f06c9d33abfa41bdc84baea2f089439",
+      "e15e6209f7d64337ac02675b9299b7599f06c9d33abfa41bdc84baea2f089439"
+    ],
+    "ablationStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__e__e__b__e__e__e__e__b__b__b__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__ec_e__e__e__e__e__m__m__t__e__e__e__e__e__em_e__e__t__#single#playing#cat#8,2#9,6#4#0#1,4|2,5##0#0#0#1,1#0###10:4:3:3:4:2:single:hard",
+    "p5StateKeys": [
+      "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__e__e__b__e__e__e__e__b__b__b__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__ec_e__e__e__e__e__m__m__t__e__e__e__e__e__em_e__e__t__#single#playing#cat#8,2#9,6#4#0#1,4|2,5##0#0#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__e__e__b__e__e__e__e__b__b__b__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__ec_e__e__e__e__e__m__m__t__e__e__e__e__e__em_e__e__t__#single#playing#cat#8,2#9,6#4#0#1,4|2,5##0#0#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__e__e__b__e__e__e__e__b__b__b__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__ec_e__e__e__e__e__m__m__t__e__e__e__e__e__em_e__e__t__#single#playing#cat#8,2#9,6#4#0#1,4|2,5##0#0#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__e__e__b__e__e__e__e__b__b__b__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__ec_e__e__e__e__e__m__m__t__e__e__e__e__e__em_e__e__t__#single#playing#cat#8,2#9,6#4#0#1,4|2,5##0#0#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__e__e__b__e__e__e__e__b__b__b__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__ec_e__e__e__e__e__m__m__t__e__e__e__e__e__em_e__e__t__#single#playing#cat#8,2#9,6#4#0#1,4|2,5##0#0#0#1,1#0###10:4:3:3:4:2:single:hard"
+    ],
+    "allEqual": true
+  },
+  "deliverables": [
+    "ERRATUM.md",
+    "ERRATUM_RESULTS.json",
+    "CORRECTED_ROOT_TABLE.csv",
+    "G1T3_E1_100MS_CERTIFICATE.json",
+    "SOURCE_AND_ARTIFACT_IDENTITY.json",
+    "RESOURCE_SAFETY_LOG.md"
+  ]
+}

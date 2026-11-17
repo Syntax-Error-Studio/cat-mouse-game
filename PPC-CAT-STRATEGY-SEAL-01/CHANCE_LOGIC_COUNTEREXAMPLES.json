@@ -1,0 +1,92 @@
+{
+  "artifactId": "CHANCE_LOGIC_COUNTEREXAMPLES",
+  "round": "PPC-CAT-STRATEGY-SEAL-01",
+  "phase": 3,
+  "generatedAt": "2026-11-15",
+  "probe": "PPC-CAT-STRATEGY-SEAL-01/probe/counterexamples.test.ts",
+  "kernel": "PPC-CAT-STRATEGY-SEAL-01/probe/seal_lib.ts (solve combinator, shared with real-rule searches)",
+  "runCommand": "HEAVY_WORKER_CONCURRENCY=1 npx vitest run --config PPC-CAT-STRATEGY-SEAL-01/probe/vitest.config.mts --maxWorkers=1 --no-file-parallelism PPC-CAT-STRATEGY-SEAL-01/probe/counterexamples.test.ts",
+  "runLog": "PPC-CAT-STRATEGY-SEAL-01/logs/counterexamples_run.log",
+  "summary": { "testFiles": 1, "testsPassed": 7, "testsFailed": 0, "durationMs": 1030 },
+  "contract": {
+    "mouseForcedWin": "∃σ_m ∀σ_c ∀chance → MouseWins within H",
+    "catSurvivalCertified": "∃σ_c ∀σ_m ∀chance → ¬MouseWins within H",
+    "catForcedWin": "∃σ_c ∀σ_m ∀chance → CatWins within H",
+    "invalidNegation": "¬(∃σ_m ∀σ_c ∀chance Win) = ∀σ_m ∃σ_c ∃chance ¬Win  ≠  ∃σ_c ∀σ_m ∀chance ¬Win",
+    "chanceQuantifier": "AND (∀ positive-probability outcome) in every mode; terminal judged BEFORE horizon cut"
+  },
+  "tests": [
+    {
+      "id": "A",
+      "name": "one CHANCE outcome wins, one does not ⇒ neither side certified",
+      "witnessesDefect": "F1",
+      "scenario": "C0 --a(chance 0.5/0.5)--> {MW terminal mouse win, MN --pass--> CN horizon survive}",
+      "expected": { "mouseForcedWin": false, "catSurvivalCertified": false, "class": "CHANCE_DEPENDENT_OUTCOME" },
+      "actual": { "mouseForcedWin": false, "catSurvivalCertified": false, "class": "CHANCE_DEPENDENT_OUTCOME" },
+      "oldDefectBehavior": "!mouseForcesWin() === true would have wrongly certified CAT_SURVIVAL",
+      "status": "PASS"
+    },
+    {
+      "id": "B",
+      "name": "every CHANCE outcome is a mouse win ⇒ mouse forced, cat not surviving",
+      "witnessesDefect": "F1 (positive control)",
+      "scenario": "C0 --a(chance)--> {MW1, MW2} both terminal mouse win",
+      "expected": { "mouseForcedWin": true, "catSurvivalCertified": false, "mouseCertificateVerified": true },
+      "actual": { "mouseForcedWin": true, "catSurvivalCertified": false, "mouseCertificateVerified": true },
+      "status": "PASS"
+    },
+    {
+      "id": "C",
+      "name": "every CHANCE outcome avoids mouse win (no other branch) ⇒ cat survival certified",
+      "witnessesDefect": "F1 (positive control)",
+      "scenario": "C0 --a(chance)--> {CW1, CW2} both terminal cat win",
+      "expected": { "mouseForcedWin": false, "catSurvivalCertified": true, "catCertificateVerified": true },
+      "actual": { "mouseForcedWin": false, "catSurvivalCertified": true, "catCertificateVerified": true },
+      "status": "PASS"
+    },
+    {
+      "id": "D",
+      "name": "cat has ONE action denying all mouse replies and all chance ⇒ survival, ∃ only over cat actions",
+      "witnessesDefect": "F1 (existential over actions, not chance)",
+      "scenario": "C0 {bad→M1 mouse win, good→M2}; M2 mouse replies x(chance{CX1,CX2}) and y→CY all survive",
+      "expected": { "catSurvivalCertified": true, "mouseForcedWin": false, "rootPolicy": "good", "catCertificateVerified": true },
+      "actual": { "catSurvivalCertified": true, "mouseForcedWin": false, "rootPolicy": "good", "catCertificateVerified": true },
+      "note": "cat may NOT choose the chance outcome; survival must hold for ALL outcomes of the mouse's reply",
+      "status": "PASS"
+    },
+    {
+      "id": "E",
+      "name": "every cat defense broken by an ADAPTIVE mouse strategy (not a fixed action string)",
+      "witnessesDefect": "F1 (adaptive ∃σ_m, policy is a map not a string)",
+      "scenario": "C0 {a→MA, b→MB}; MA needs p, MB needs q to win; no single fixed mouse action wins both",
+      "expected": { "mouseForcedWin": true, "catSurvivalCertified": false, "policyMA": "p", "policyMB": "q", "adaptive": true, "mouseCertificateVerified": true },
+      "actual": { "mouseForcedWin": true, "catSurvivalCertified": false, "policyMA": "p", "policyMB": "q", "adaptive": true, "mouseCertificateVerified": true },
+      "status": "PASS"
+    },
+    {
+      "id": "F",
+      "name": "node cap ⇒ UNRESOLVED, distinct from a genuine within-horizon non-win",
+      "witnessesDefect": "resource-exhaustion vs definite verdict",
+      "scenario": "C0 cat OR with 6 actions; first 5 lose (mouse win), 6th survives; cap=4 truncates on 5th live node",
+      "expected": { "cappedValue": null, "cappedTruncated": true, "cappedClass": "UNRESOLVED", "fullValue": true, "fullTruncated": false },
+      "actual": { "cappedValue": null, "cappedTruncated": true, "cappedClass": "UNRESOLVED", "fullValue": true, "fullTruncated": false },
+      "status": "PASS"
+    },
+    {
+      "id": "TERMINAL_BEFORE_HORIZON",
+      "name": "terminal MouseWins on the last mouse step is judged BEFORE the horizon cut",
+      "witnessesDefect": "horizon/terminal ordering",
+      "scenario": "C0 --a--> M1(mouse,idx1) --last--> CS(cat,idx2,terminal mouse via stranding); idx2>=2H but terminal",
+      "expected": { "mouseForcedWin": true, "catSurvivalCertified": false },
+      "actual": { "mouseForcedWin": true, "catSurvivalCertified": false },
+      "note": "horizon-first would wrongly return false; RULE-A cat-stranding MouseWins (mobility.ts:158-162) counts",
+      "status": "PASS"
+    }
+  ],
+  "defectCoverage": {
+    "F1_invalid_negation": ["A", "B", "C", "D", "E"],
+    "F2_terminal_polarity": ["TERMINAL_BEFORE_HORIZON", "B", "C"],
+    "F3_F4_prune_disabled": ["real-rule recertification (Phase 4/5), prune not used in seal_lib"],
+    "resource_exhaustion": ["F"]
+  }
+}

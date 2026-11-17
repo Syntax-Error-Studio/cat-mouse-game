@@ -1,0 +1,40 @@
+{
+  "driver": "phase1Parity",
+  "label": "PHASE1_FORMAL",
+  "isPhase1Formal": true,
+  "note": "One repetition of the pre-registered Phase 1 envelope (24 roots x 2 arms).",
+  "generatedAt": "2026-11-16T16:54:01.944Z",
+  "wallMs": 46513,
+  "node": "v22.22.2",
+  "pid": 6024,
+  "repetition": 4,
+  "fixture": {
+    "path": "src/game/ai/__tests__/fixtures/ppcId01-human-roots.json",
+    "sha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09"
+  },
+  "contract": {
+    "PHASE1_ROOTS": 24,
+    "PHASE1_REPETITIONS": 20,
+    "PHASE1_ARMS": 2,
+    "COMPLETED_SIMULATIONS_PER_CALL": 200,
+    "PHASE1_TOTAL_SEARCH_CALLS": 960,
+    "PHASE1_FRESH_NODE_PROCESSES": 20,
+    "PHASE1_MAX_HANDOFFS": 4,
+    "PHASE1_MAX_NODES": 500000,
+    "seedFormula": "uctSeed(rootId,'UCT-H',repetition) — identical for both arms",
+    "clock": "now() = 0, deadlineMs = 1 → deadlineAt = 1 → never fires",
+    "rollout": "hybrid (both arms)"
+  },
+  "rootsRun": 24,
+  "calls": 24,
+  "passed": 24,
+  "failed": 0,
+  "anomalies": 0,
+  "mathRandomDraws": {
+    "baseline": 0,
+    "prepared": 0
+  },
+  "jsonl": "F:\\小猫小鼠\\PPC-MCTS-01B\\data\\phase1-formal\\rep-04.jsonl",
+  "failures": [],
+  "verdict": "PASS"
+}

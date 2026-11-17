@@ -1,0 +1,1180 @@
+{
+  "artifactId": "SOURCE_MANIFEST",
+  "round": "PPC-CAT-STRATEGY-01",
+  "project": "Project Perfect Cat",
+  "date": "2026-11-14",
+  "branch": "ppc/p1-id-state-identity-fix",
+  "head": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+  "sha256Method": "sha256 over raw on-disk bytes (binary read); no line-ending normalisation",
+  "scope": "research only — zero production edits this round",
+  "srcUnchangedThisRound": {
+    "claim": "every file git reports as modified or untracked under src/ is byte-identical to a frozen pre-round manifest (P2 CANDIDATE_MANIFEST or P1 CHECKPOINT-01 post-state) — i.e. none of them was produced by this round",
+    "exhaustive": true,
+    "checkedAgainst": [
+      "PPC-P2-PREPARED-TRANSITION-01/CANDIDATE_MANIFEST.json",
+      "PPC-P2-PREPARED-TRANSITION-01/SOURCE_MANIFEST.json",
+      "PPC-P1-OPENING-SEAL-01/SOURCE_MANIFEST.json",
+      "PPC-P1-OPENING-STACK-01/SOURCE_MANIFEST.json",
+      "PPC-P1-CHECKPOINT-01/SOURCE_MANIFEST.json"
+    ],
+    "modifiedCount": 15,
+    "untrackedCount": 14,
+    "attributedCount": 29,
+    "unattributed": [],
+    "allAttributed": true,
+    "allIdenticalToP2": true,
+    "rows": [
+      {
+        "path": "src/game/ai/__tests__/expectiminimax.test.ts",
+        "gitState": "M",
+        "currentSha256": "521340c59689a6d405d6777b71d6a8a4228850b46403ba352b73008a4ef75688",
+        "attributedTo": "PPC-P1-OPENING-SEAL-01",
+        "note": "byte-identical to a frozen pre-round manifest ⇒ not produced by this round"
+      },
+      {
+        "path": "src/game/ai/__tests__/forcedLossTieBreakHv14Reachability.test.ts",
+        "gitState": "M",
+        "currentSha256": "d0ebb25e5f5927c27bf91f11d4ddcb642e7d515616499473c8c533d87ef8b03a",
+        "attributedTo": "PPC-P1-OPENING-SEAL-01",
+        "note": "byte-identical to a frozen pre-round manifest ⇒ not produced by this round"
+      },
+      {
+        "path": "src/game/ai/__tests__/hv14FiveGameForensics.test.ts",
+        "gitState": "M",
+        "currentSha256": "99bd3633891533d5f61cd9836c76cf05ff00782f4b6deb1d5d30bb99c40b3e74",
+        "attributedTo": "PPC-P1-OPENING-SEAL-01",
+        "note": "byte-identical to a frozen pre-round manifest ⇒ not produced by this round"
+      },
+      {
+        "path": "src/game/ai/__tests__/hv2PlanTieQuality.test.ts",
+        "gitState": "M",
+        "currentSha256": "4455d7314918d676f65b9c5fbc04349a9336d1be4496fbc80d18076fd8720eff",
+        "attributedTo": "PPC-P1-OPENING-SEAL-01",
+        "note": "byte-identical to a frozen pre-round manifest ⇒ not produced by this round"
+      },
+      {
+        "path": "src/game/ai/__tests__/m3liteHumanValidationLogging.test.ts",
+        "gitState": "M",
+        "currentSha256": "73bd3c13fe36e7445f0e22c6633ed32ad0a7fc3841b9b14d77f95df18866e767",
+        "attributedTo": "PPC-P1-OPENING-SEAL-01",
+        "note": "byte-identical to a frozen pre-round manifest ⇒ not produced by this round"
+      },
+      {
+        "path": "src/game/ai/__tests__/progressGuard.test.ts",
+        "gitState": "M",
+        "currentSha256": "0d80ee542ca8662088b14a73641ef37f0d0cd3c04d093da2d59a24181f9d0965",
+        "attributedTo": "PPC-P1-OPENING-SEAL-01",
+        "note": "byte-identical to a frozen pre-round manifest ⇒ not produced by this round"
+      },
+      {
+        "path": "src/game/ai/deadlineContext.ts",
+        "gitState": "M",
+        "currentSha256": "ced449445d70d1ba88cb20d88415b3c641d670aa886536fcacefa36b4aa50235",
+        "attributedTo": "PPC-P1-OPENING-SEAL-01",
+        "note": "byte-identical to a frozen pre-round manifest ⇒ not produced by this round"
+      },
+      {
+        "path": "src/game/ai/expectiminimax.ts",
+        "gitState": "M",
+        "currentSha256": "50d27da5e9d0d47a1ad70efb542a3ec1510507fd14b825a52729ebb90f6d690c",
+        "attributedTo": "PPC-P2-PREPARED-TRANSITION-01",
+        "note": "byte-identical to a frozen pre-round manifest ⇒ not produced by this round"
+      },
+      {
+        "path": "src/game/ai/hardTurnPlanner.ts",
+        "gitState": "M",
+        "currentSha256": "27b1ce6dc62234d0c822b2b0b6341205ac189b5f76d7662a5d29d9e17ded75ff",
+        "attributedTo": "PPC-P2-PREPARED-TRANSITION-01",
+        "note": "byte-identical to a frozen pre-round manifest ⇒ not produced by this round"
+      },
+      {
+        "path": "src/game/ai/legalActions.ts",
+        "gitState": "M",
+        "currentSha256": "27ae2f468d19043425326c2fc42923aeae894a5f84d2e0684ee374808b50eb22",
+        "attributedTo": "PPC-P2-PREPARED-TRANSITION-01",
+        "note": "byte-identical to a frozen pre-round manifest ⇒ not produced by this round"
+      },
+      {
+        "path": "src/game/ai/planQuality.ts",
+        "gitState": "M",
+        "currentSha256": "46979485d568dfff12e2f998353cda95616502a7433ac84c3d31801726090952",
+        "attributedTo": "PPC-P2-PREPARED-TRANSITION-01",
+        "note": "byte-identical to a frozen pre-round manifest ⇒ not produced by this round"
+      },
+      {
+        "path": "src/game/ai/transposition.ts",
+        "gitState": "M",
+        "currentSha256": "7b4aa8eb3fab994a4abc77fdf38800ab2a5f9da57d5eb33a1b37075e106c2d64",
+        "attributedTo": "PPC-P2-PREPARED-TRANSITION-01",
+        "note": "byte-identical to a frozen pre-round manifest ⇒ not produced by this round"
+      },
+      {
+        "path": "src/game/config.ts",
+        "gitState": "M",
+        "currentSha256": "60e38c491c81f0b6d962bd32b306373de462cffcc9508b76c5bed02f9f70caae",
+        "attributedTo": "PPC-P2-PREPARED-TRANSITION-01",
+        "note": "byte-identical to a frozen pre-round manifest ⇒ not produced by this round"
+      },
+      {
+        "path": "src/game/engine.ts",
+        "gitState": "M",
+        "currentSha256": "099f9a7b6d97b838c664aa7186be58465e5b01b8052af4b4e4e19a5644d19f06",
+        "attributedTo": "PPC-P2-PREPARED-TRANSITION-01",
+        "note": "byte-identical to a frozen pre-round manifest ⇒ not produced by this round"
+      },
+      {
+        "path": "src/game/openingFairness.ts",
+        "gitState": "M",
+        "currentSha256": "9d19279cafefe545ea6fd2d49cd2d412986c0002977c7b37cf3e72787efd7908",
+        "attributedTo": "PPC-P2-PREPARED-TRANSITION-01",
+        "note": "byte-identical to a frozen pre-round manifest ⇒ not produced by this round"
+      },
+      {
+        "path": "src/game/__tests__/catMoveBudgetInputDomain.test.ts",
+        "gitState": "??",
+        "currentSha256": "57d9b51cb9f97678d9c5872c3e9214d3d09cf34c22b1ef222f84921e3edb000a",
+        "attributedTo": "PPC-P1-OPENING-SEAL-01",
+        "note": "byte-identical to a frozen pre-round manifest ⇒ not produced by this round"
+      },
+      {
+        "path": "src/game/__tests__/openingFairnessStackSafety.test.ts",
+        "gitState": "??",
+        "currentSha256": "f9ef6537858605e8381a503bc04fe7b09c6462774274f166f70c02b46458fa3f",
+        "attributedTo": "PPC-P1-OPENING-SEAL-01",
+        "note": "byte-identical to a frozen pre-round manifest ⇒ not produced by this round"
+      },
+      {
+        "path": "src/game/ai/__tests__/fixtures/ppcId01-baseline-d1.json",
+        "gitState": "??",
+        "currentSha256": "80635906377dbe1e96aa6ef5bf80e48c2da22c213c19f51b205ca0d0438b8467",
+        "attributedTo": "PPC-P1-OPENING-SEAL-01",
+        "note": "byte-identical to a frozen pre-round manifest ⇒ not produced by this round"
+      },
+      {
+        "path": "src/game/ai/__tests__/fixtures/ppcId01-human-roots.json",
+        "gitState": "??",
+        "currentSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+        "attributedTo": "PPC-P1-OPENING-SEAL-01",
+        "note": "byte-identical to a frozen pre-round manifest ⇒ not produced by this round"
+      },
+      {
+        "path": "src/game/ai/__tests__/fixtures/ppcTime01-baseline-planner.json",
+        "gitState": "??",
+        "currentSha256": "2c1bab71e11ac59aab2eb2acc93fe221359d44d5e50a90b0651d59ca6c673885",
+        "attributedTo": "PPC-P1-OPENING-SEAL-01",
+        "note": "byte-identical to a frozen pre-round manifest ⇒ not produced by this round"
+      },
+      {
+        "path": "src/game/ai/__tests__/hardTurnAbsoluteDeadline.test.ts",
+        "gitState": "??",
+        "currentSha256": "4ada71d726f907adf5e589d8eac83bdae8d16de82b6ed6385318fec53cdfb877",
+        "attributedTo": "PPC-P1-OPENING-SEAL-01",
+        "note": "byte-identical to a frozen pre-round manifest ⇒ not produced by this round"
+      },
+      {
+        "path": "src/game/ai/__tests__/hardTurnAbsoluteDeadlineEngine.test.ts",
+        "gitState": "??",
+        "currentSha256": "6822a91e4ee058ea46994beb5425df03eb6a47469df370b050a89d51c4842b39",
+        "attributedTo": "PPC-P1-OPENING-SEAL-01",
+        "note": "byte-identical to a frozen pre-round manifest ⇒ not produced by this round"
+      },
+      {
+        "path": "src/game/ai/__tests__/planActionBoundFixtures.ts",
+        "gitState": "??",
+        "currentSha256": "9e6357cdde151d83812e0f4546ba496378187ee7e1775d6cd17a7e3284ee5e08",
+        "attributedTo": "PPC-P1-OPENING-SEAL-01",
+        "note": "byte-identical to a frozen pre-round manifest ⇒ not produced by this round"
+      },
+      {
+        "path": "src/game/ai/__tests__/planReversalAccounting.test.ts",
+        "gitState": "??",
+        "currentSha256": "6736d435f89e1018345d39532568f2d50565bc967051561f3dfe8aba6597aa6c",
+        "attributedTo": "PPC-P1-OPENING-SEAL-01",
+        "note": "byte-identical to a frozen pre-round manifest ⇒ not produced by this round"
+      },
+      {
+        "path": "src/game/ai/__tests__/planTurnActionBound.test.ts",
+        "gitState": "??",
+        "currentSha256": "691ff9002cf92b1facf22354d2d325a8ac23efa1cc2359b781e21d219171595a",
+        "attributedTo": "PPC-P1-OPENING-SEAL-01",
+        "note": "byte-identical to a frozen pre-round manifest ⇒ not produced by this round"
+      },
+      {
+        "path": "src/game/ai/__tests__/preparedTransition.test.ts",
+        "gitState": "??",
+        "currentSha256": "249ac63e2239f261fb3711ae90fd597af40334a3d0c32df31eb637638dc0255c",
+        "attributedTo": "PPC-P2-PREPARED-TRANSITION-01",
+        "note": "byte-identical to a frozen pre-round manifest ⇒ not produced by this round"
+      },
+      {
+        "path": "src/game/ai/__tests__/stateIdentityCollision.test.ts",
+        "gitState": "??",
+        "currentSha256": "4be1cf487e4af828db7982250abdfd58a576fb2367973edcb0adb8ef4af507e7",
+        "attributedTo": "PPC-P1-OPENING-SEAL-01",
+        "note": "byte-identical to a frozen pre-round manifest ⇒ not produced by this round"
+      },
+      {
+        "path": "src/game/ai/planBound.ts",
+        "gitState": "??",
+        "currentSha256": "4a212b75de6b5c47b6402c0745593169f6271a06d0f91fed99b7479f679b3dab",
+        "attributedTo": "PPC-P2-PREPARED-TRANSITION-01",
+        "note": "byte-identical to a frozen pre-round manifest ⇒ not produced by this round"
+      },
+      {
+        "path": "src/game/ai/preparedActions.ts",
+        "gitState": "??",
+        "currentSha256": "67b76ad3de53fee6d3d32f9bc8ab9a02b52234857b23b7fc9091bd92011ad764",
+        "attributedTo": "PPC-P2-PREPARED-TRANSITION-01",
+        "note": "byte-identical to a frozen pre-round manifest ⇒ not produced by this round"
+      }
+    ],
+    "p2OnlyRows": [
+      {
+        "path": "src/game/ai/preparedActions.ts",
+        "p2DeclaredSha256": "67b76ad3de53fee6d3d32f9bc8ab9a02b52234857b23b7fc9091bd92011ad764",
+        "currentSha256": "67b76ad3de53fee6d3d32f9bc8ab9a02b52234857b23b7fc9091bd92011ad764",
+        "identicalToP2": true,
+        "p2Change": "changed in P2"
+      },
+      {
+        "path": "src/game/ai/legalActions.ts",
+        "p2DeclaredSha256": "27ae2f468d19043425326c2fc42923aeae894a5f84d2e0684ee374808b50eb22",
+        "currentSha256": "27ae2f468d19043425326c2fc42923aeae894a5f84d2e0684ee374808b50eb22",
+        "identicalToP2": true,
+        "p2Change": "changed in P2"
+      },
+      {
+        "path": "src/game/ai/expectiminimax.ts",
+        "p2DeclaredSha256": "50d27da5e9d0d47a1ad70efb542a3ec1510507fd14b825a52729ebb90f6d690c",
+        "currentSha256": "50d27da5e9d0d47a1ad70efb542a3ec1510507fd14b825a52729ebb90f6d690c",
+        "identicalToP2": true,
+        "p2Change": "changed in P2"
+      },
+      {
+        "path": "src/game/ai/simulator.ts",
+        "p2DeclaredSha256": "6d24d4f36d9f7e076fa36c9460ec51c674f1006f9cae00f7f5fb64771516df32",
+        "currentSha256": "6d24d4f36d9f7e076fa36c9460ec51c674f1006f9cae00f7f5fb64771516df32",
+        "identicalToP2": true,
+        "p2Change": "unchanged in P2"
+      },
+      {
+        "path": "src/game/ai/searchTypes.ts",
+        "p2DeclaredSha256": "bf62aec54e3cbf7d5387c473ae66fa071158a509c4cdbe5c991be4e6f44d6355",
+        "currentSha256": "bf62aec54e3cbf7d5387c473ae66fa071158a509c4cdbe5c991be4e6f44d6355",
+        "identicalToP2": true,
+        "p2Change": "unchanged in P2"
+      },
+      {
+        "path": "src/game/ai/transposition.ts",
+        "p2DeclaredSha256": "7b4aa8eb3fab994a4abc77fdf38800ab2a5f9da57d5eb33a1b37075e106c2d64",
+        "currentSha256": "7b4aa8eb3fab994a4abc77fdf38800ab2a5f9da57d5eb33a1b37075e106c2d64",
+        "identicalToP2": true,
+        "p2Change": "unchanged in P2"
+      },
+      {
+        "path": "src/game/ai/planQuality.ts",
+        "p2DeclaredSha256": "46979485d568dfff12e2f998353cda95616502a7433ac84c3d31801726090952",
+        "currentSha256": "46979485d568dfff12e2f998353cda95616502a7433ac84c3d31801726090952",
+        "identicalToP2": true,
+        "p2Change": "unchanged in P2"
+      },
+      {
+        "path": "src/game/ai/hardTurnPlanner.ts",
+        "p2DeclaredSha256": "27b1ce6dc62234d0c822b2b0b6341205ac189b5f76d7662a5d29d9e17ded75ff",
+        "currentSha256": "27b1ce6dc62234d0c822b2b0b6341205ac189b5f76d7662a5d29d9e17ded75ff",
+        "identicalToP2": true,
+        "p2Change": "unchanged in P2"
+      },
+      {
+        "path": "src/game/ai/planBound.ts",
+        "p2DeclaredSha256": "4a212b75de6b5c47b6402c0745593169f6271a06d0f91fed99b7479f679b3dab",
+        "currentSha256": "4a212b75de6b5c47b6402c0745593169f6271a06d0f91fed99b7479f679b3dab",
+        "identicalToP2": true,
+        "p2Change": "unchanged in P2"
+      },
+      {
+        "path": "src/game/engine.ts",
+        "p2DeclaredSha256": "099f9a7b6d97b838c664aa7186be58465e5b01b8052af4b4e4e19a5644d19f06",
+        "currentSha256": "099f9a7b6d97b838c664aa7186be58465e5b01b8052af4b4e4e19a5644d19f06",
+        "identicalToP2": true,
+        "p2Change": "unchanged in P2"
+      },
+      {
+        "path": "src/game/config.ts",
+        "p2DeclaredSha256": "60e38c491c81f0b6d962bd32b306373de462cffcc9508b76c5bed02f9f70caae",
+        "currentSha256": "60e38c491c81f0b6d962bd32b306373de462cffcc9508b76c5bed02f9f70caae",
+        "identicalToP2": true,
+        "p2Change": "unchanged in P2"
+      },
+      {
+        "path": "src/game/openingFairness.ts",
+        "p2DeclaredSha256": "9d19279cafefe545ea6fd2d49cd2d412986c0002977c7b37cf3e72787efd7908",
+        "currentSha256": "9d19279cafefe545ea6fd2d49cd2d412986c0002977c7b37cf3e72787efd7908",
+        "identicalToP2": true,
+        "p2Change": "unchanged in P2"
+      },
+      {
+        "path": "src/game/ai/__tests__/preparedTransition.test.ts",
+        "p2DeclaredSha256": "249ac63e2239f261fb3711ae90fd597af40334a3d0c32df31eb637638dc0255c",
+        "currentSha256": "249ac63e2239f261fb3711ae90fd597af40334a3d0c32df31eb637638dc0255c",
+        "identicalToP2": true,
+        "p2Change": "added — 18 contract tests for the prepared-transition reuse"
+      }
+    ]
+  },
+  "srcDependenciesUsed": [
+    {
+      "path": "src/game/ai/simulator.ts",
+      "role": "production (read-only this round)",
+      "sha256": "6d24d4f36d9f7e076fa36c9460ec51c674f1006f9cae00f7f5fb64771516df32",
+      "bytes": 8365,
+      "lineEnding": "LF",
+      "identicalToP2Manifest": true
+    },
+    {
+      "path": "src/game/ai/searchTypes.ts",
+      "role": "production (read-only this round)",
+      "sha256": "bf62aec54e3cbf7d5387c473ae66fa071158a509c4cdbe5c991be4e6f44d6355",
+      "bytes": 7423,
+      "lineEnding": "LF",
+      "identicalToP2Manifest": true
+    },
+    {
+      "path": "src/game/ai/transposition.ts",
+      "role": "production (read-only this round)",
+      "sha256": "7b4aa8eb3fab994a4abc77fdf38800ab2a5f9da57d5eb33a1b37075e106c2d64",
+      "bytes": 6784,
+      "lineEnding": "LF",
+      "identicalToP2Manifest": true
+    },
+    {
+      "path": "src/game/ai/planQuality.ts",
+      "role": "production (read-only this round)",
+      "sha256": "46979485d568dfff12e2f998353cda95616502a7433ac84c3d31801726090952",
+      "bytes": 30693,
+      "lineEnding": "LF",
+      "identicalToP2Manifest": true
+    },
+    {
+      "path": "src/game/ai/hardTurnPlanner.ts",
+      "role": "production (read-only this round)",
+      "sha256": "27b1ce6dc62234d0c822b2b0b6341205ac189b5f76d7662a5d29d9e17ded75ff",
+      "bytes": 36060,
+      "lineEnding": "LF",
+      "identicalToP2Manifest": true
+    },
+    {
+      "path": "src/game/ai/planBound.ts",
+      "role": "production (read-only this round)",
+      "sha256": "4a212b75de6b5c47b6402c0745593169f6271a06d0f91fed99b7479f679b3dab",
+      "bytes": 8012,
+      "lineEnding": "LF",
+      "identicalToP2Manifest": true
+    },
+    {
+      "path": "src/game/engine.ts",
+      "role": "production (read-only this round)",
+      "sha256": "099f9a7b6d97b838c664aa7186be58465e5b01b8052af4b4e4e19a5644d19f06",
+      "bytes": 190506,
+      "lineEnding": "CRLF",
+      "identicalToP2Manifest": true
+    },
+    {
+      "path": "src/game/config.ts",
+      "role": "production (read-only this round)",
+      "sha256": "60e38c491c81f0b6d962bd32b306373de462cffcc9508b76c5bed02f9f70caae",
+      "bytes": 15048,
+      "lineEnding": "LF",
+      "identicalToP2Manifest": true
+    },
+    {
+      "path": "src/game/openingFairness.ts",
+      "role": "production (read-only this round)",
+      "sha256": "9d19279cafefe545ea6fd2d49cd2d412986c0002977c7b37cf3e72787efd7908",
+      "bytes": 35834,
+      "lineEnding": "LF",
+      "identicalToP2Manifest": true
+    },
+    {
+      "path": "src/game/ai/evaluation.ts",
+      "role": "production (read-only this round)",
+      "sha256": "e5246fa9d9976468fad3130b66216b3c214b4f786e9408b9306718bcc1cf8dd3",
+      "bytes": 33959,
+      "lineEnding": "LF",
+      "identicalToP2Manifest": null
+    },
+    {
+      "path": "src/game/ai/correctedHoleLeaf.ts",
+      "role": "production (read-only this round)",
+      "sha256": "f1403d3d945b425f98aa76deac9b6c44d81c317adf88a4b72f17d47b499d9a8a",
+      "bytes": 3189,
+      "lineEnding": "LF",
+      "identicalToP2Manifest": null
+    },
+    {
+      "path": "src/game/ai/hardHistory.ts",
+      "role": "production (read-only this round)",
+      "sha256": "acf1371c8180236723eef85f4ad70c8923c923fac30d3342f2fad943385da031",
+      "bytes": 13736,
+      "lineEnding": "LF",
+      "identicalToP2Manifest": null
+    },
+    {
+      "path": "src/game/ai/stateCompare.ts",
+      "role": "production (read-only this round)",
+      "sha256": "7c6339357b7eb0d2687aa4cb2842a7a4f0d51f5b0ab288851b13901e536ad017",
+      "bytes": 4602,
+      "lineEnding": "LF",
+      "identicalToP2Manifest": null
+    },
+    {
+      "path": "src/game/rules/mobility.ts",
+      "role": "production (read-only this round)",
+      "sha256": "db177cf7fd9be9d3e95eee995bb22763c40c122ac97c97b94a5a3b1ff5bc3f8e",
+      "bytes": 6702,
+      "lineEnding": "LF",
+      "identicalToP2Manifest": null
+    },
+    {
+      "path": "src/game/rules/tunnels.ts",
+      "role": "production (read-only this round)",
+      "sha256": "b7eda66b79cf0090161892cb26bc6e4334ee6ed429de9598bc46e2033c960109",
+      "bytes": 2162,
+      "lineEnding": "LF",
+      "identicalToP2Manifest": null
+    },
+    {
+      "path": "src/game/rules/tunnelRules.ts",
+      "role": "production (read-only this round)",
+      "sha256": "e9ad62686be1f9320d7208b7c2786ac88b092ad29ad002d0bb49d731e093515b",
+      "bytes": 6076,
+      "lineEnding": "LF",
+      "identicalToP2Manifest": null
+    }
+  ],
+  "referenceInputs": [
+    {
+      "path": "GAMEPLAY.md",
+      "role": "rule authority (documentation)",
+      "sha256": "e000778b114bea02ef09634085172ea435be143335721aa0cd04114afb2afd34",
+      "bytes": 21128,
+      "lineEnding": "LF"
+    },
+    {
+      "path": "src/game/ai/__tests__/fixtures/ppcId01-human-roots.json",
+      "role": "frozen 24 human roots",
+      "sha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "bytes": 264328,
+      "lineEnding": "LF"
+    },
+    {
+      "path": "src/game/ai/__tests__/fixtures/ppcId01-baseline-d1.json",
+      "role": "frozen D1 baseline",
+      "sha256": "80635906377dbe1e96aa6ef5bf80e48c2da22c213c19f51b205ca0d0438b8467",
+      "bytes": 42327,
+      "lineEnding": "LF"
+    },
+    {
+      "path": "ai-training/f2b19a/log_gameA.txt",
+      "role": "human game A",
+      "sha256": "69b09ff4d70e01fde7378386fac7d60fca5c881ae743dfa8f315de4b9d8b1cba",
+      "bytes": 23866,
+      "lineEnding": "CRLF"
+    },
+    {
+      "path": "ai-training/f2b19a/log_gameB.txt",
+      "role": "human game B",
+      "sha256": "9a3c98dff0902bfb21c26bb8c3d837465cb613029be07a4cdc1f6dfc302515fb",
+      "bytes": 30483,
+      "lineEnding": "CRLF"
+    },
+    {
+      "path": "ai-training/f2b19a/log_gameC.txt",
+      "role": "human game C",
+      "sha256": "75f97114d4712b532dd91a7e21222367ea66e48af3ba01390aae09533f219bfb",
+      "bytes": 60450,
+      "lineEnding": "CRLF"
+    },
+    {
+      "path": "ai-training/f2b19a/log_gameD.txt",
+      "role": "human game D",
+      "sha256": "daff2c48c303b0d0c9886fb497033152ba912a280fb1a9297c689b805f368687",
+      "bytes": 68232,
+      "lineEnding": "CRLF"
+    },
+    {
+      "path": "PPC-P2-PREPARED-TRANSITION-01/SOURCE_MANIFEST.json",
+      "role": "previous round manifest (cross-check source)",
+      "sha256": "3e52a131d2337b44d91a79dd02e922e7f70ade0859440b91f1e51ac195ba8360",
+      "bytes": 2922,
+      "lineEnding": "LF"
+    }
+  ],
+  "archives": [
+    {
+      "dir": "PPC-P1-CHECKPOINT-01",
+      "tarballs": [
+        {
+          "file": "F:/ppc-checkpoints/PPC-P1-CHECKPOINT-01-candidate.tar.gz",
+          "path": "F:/ppc-checkpoints/PPC-P1-CHECKPOINT-01-candidate.tar.gz",
+          "role": "archive",
+          "sha256": "5cd732828856f2b3cd903cc20c584bbb0fec7906d283ec08415bd2653a9425d5",
+          "bytes": 4051823,
+          "lineEnding": "CRLF",
+          "matchesDeclared": null
+        }
+      ],
+      "declaredInRepoFile": null,
+      "declaredInTaskBook": "5cd732828856f2b3cd903cc20c584bbb0fec7906d283ec08415bd2653a9425d5",
+      "computedTarballSha256": "5cd732828856f2b3cd903cc20c584bbb0fec7906d283ec08415bd2653a9425d5",
+      "matchesTaskBook": true
+    },
+    {
+      "dir": "PPC-P1-OPENING-STACK-01",
+      "tarballs": [
+        {
+          "file": "F:/ppc-checkpoints/PPC-P1-OPENING-STACK-01-candidate.tar.gz",
+          "path": "F:/ppc-checkpoints/PPC-P1-OPENING-STACK-01-candidate.tar.gz",
+          "role": "archive",
+          "sha256": "a6a7795c4f31533a8127ec9e8594a4974aad019b73f69a1421a5c04930c2d015",
+          "bytes": 85538,
+          "lineEnding": "CRLF",
+          "matchesDeclared": null
+        }
+      ],
+      "declaredInRepoFile": null,
+      "declaredInTaskBook": "a6a7795c4f31533a8127ec9e8594a4974aad019b73f69a1421a5c04930c2d015",
+      "computedTarballSha256": "a6a7795c4f31533a8127ec9e8594a4974aad019b73f69a1421a5c04930c2d015",
+      "matchesTaskBook": true
+    },
+    {
+      "dir": "PPC-P1-OPENING-SEAL-01",
+      "tarballs": [
+        {
+          "file": "F:/ppc-checkpoints/PPC-P1-OPENING-SEAL-01-candidate.tar.gz",
+          "path": "F:/ppc-checkpoints/PPC-P1-OPENING-SEAL-01-candidate.tar.gz",
+          "role": "archive",
+          "sha256": "27dbc3c2f4ad183f75808ab3394f0ff3675505ea6781591000b5a5594706dd2f",
+          "bytes": 34119,
+          "lineEnding": "LF",
+          "matchesDeclared": true
+        }
+      ],
+      "declaredInRepoFile": "27dbc3c2f4ad183f75808ab3394f0ff3675505ea6781591000b5a5594706dd2f",
+      "declaredInTaskBook": "27dbc3c2f4ad183f75808ab3394f0ff3675505ea6781591000b5a5594706dd2f",
+      "computedTarballSha256": "27dbc3c2f4ad183f75808ab3394f0ff3675505ea6781591000b5a5594706dd2f",
+      "matchesTaskBook": true
+    },
+    {
+      "dir": "PPC-P2-PREPARED-TRANSITION-01",
+      "tarballs": [
+        {
+          "file": "F:/ppc-checkpoints/PPC-P2-PREPARED-TRANSITION-01-candidate.tar.gz",
+          "path": "F:/ppc-checkpoints/PPC-P2-PREPARED-TRANSITION-01-candidate.tar.gz",
+          "role": "archive",
+          "sha256": "8da211e034dd514ed58f3871381a458183c737336c9a6ca99b59d261a3e70f58",
+          "bytes": 461609,
+          "lineEnding": "CRLF",
+          "matchesDeclared": true
+        }
+      ],
+      "declaredInRepoFile": "8da211e034dd514ed58f3871381a458183c737336c9a6ca99b59d261a3e70f58",
+      "declaredInTaskBook": "8da211e034dd514ed58f3871381a458183c737336c9a6ca99b59d261a3e70f58",
+      "computedTarballSha256": "8da211e034dd514ed58f3871381a458183c737336c9a6ca99b59d261a3e70f58",
+      "matchesTaskBook": true
+    }
+  ],
+  "thisRound": {
+    "probes": [
+      {
+        "path": "PPC-CAT-STRATEGY-01/probe/cat_defense_probe.test.ts",
+        "role": "research probe (not production)",
+        "sha256": "c0c99068cc396f1009bd772fa7644d0db348393362e4e2300b4c08a1568358d6",
+        "bytes": 16595,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/probe/chance_enumeration.test.ts",
+        "role": "research probe (not production)",
+        "sha256": "cf7fcddc8509dbdfa6d417a190ddd01dfb1e796d4bb2d08d62ad3b6c9cef6c8f",
+        "bytes": 12681,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/probe/export_real_human.mjs",
+        "role": "research probe (not production)",
+        "sha256": "d3aab03f5ca77ae0a4740a2d909c53e0746915a0b8382d9a742f8344155c791a",
+        "bytes": 3131,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/probe/lib.ts",
+        "role": "research probe (not production)",
+        "sha256": "f8cae0ac4fca93330d170fa3fe2e072729b402fc18442016ce069f80f8ee0264",
+        "bytes": 49826,
+        "lineEnding": "CRLF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/probe/make_correctness.mjs",
+        "role": "research probe (not production)",
+        "sha256": "048e7f99ee9e552241cd55a5c2498d0588f4b7b8e366d484db9fe78610f490bb",
+        "bytes": 15637,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/probe/make_manifest.mjs",
+        "role": "research probe (not production)",
+        "sha256": "5f96b280d356d75b9cbb1ccad6f4d37f9946c0a4d3b00fe38e70acdb31c84685",
+        "bytes": 12712,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/probe/opening_tempo.mts",
+        "role": "research probe (not production)",
+        "sha256": "f642830e80854c66c67b676098a669186cd5f5be9824a5903a025e9277fd042f",
+        "bytes": 4817,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/probe/planner_audit.test.ts",
+        "role": "research probe (not production)",
+        "sha256": "a7dccda2231277ae53f2c5c8ad89de95ff16ef4f4c1449579d3bfc7a6b6d75d6",
+        "bytes": 13312,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/probe/replay_witness.test.ts",
+        "role": "research probe (not production)",
+        "sha256": "cfb9b55087d2e29ae4d4f9a57c29f045eea12a216b55457af0f94a83803a39d2",
+        "bytes": 6222,
+        "lineEnding": "CRLF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/probe/root_reconstruction.test.ts",
+        "role": "research probe (not production)",
+        "sha256": "69c38f2cd5aebc219b5a897189d258bb1c6dbcc66826e60f588801ee088b8e0b",
+        "bytes": 6773,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/probe/synthetic_matrix.test.ts",
+        "role": "research probe (not production)",
+        "sha256": "1ffab3eaf0abf5445344f63ca1ed8dc6ffcd95ee9fe28404aa9a5d4979a5b2cc",
+        "bytes": 13539,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/probe/tactical_tree.test.ts",
+        "role": "research probe (not production)",
+        "sha256": "7618d61e4d6afe18f9616798acd94b9bbee61ffe2e48415058e4802dbbd202d7",
+        "bytes": 15498,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/probe/vitest.config.mts",
+        "role": "research probe (not production)",
+        "sha256": "48cc2376b6e7547e585a405eafeb2c41c8007845b476f336008707ab70f40180",
+        "bytes": 600,
+        "lineEnding": "LF"
+      }
+    ],
+    "realHumanFixtures": [
+      {
+        "path": "PPC-CAT-STRATEGY-01/fixtures/real_human/G1T1.json",
+        "role": "REAL_HUMAN_REPLAY fixture",
+        "sha256": "bfdc845b3df937f403ffa0a957441e19f4b5dfa458f8c921aaed60bb3cfdefb8",
+        "bytes": 9764,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/fixtures/real_human/G1T2.json",
+        "role": "REAL_HUMAN_REPLAY fixture",
+        "sha256": "5a24a9eec5f9159035bde4e9ce393ef941e8659a006141ba9e653a701a414e1b",
+        "bytes": 10694,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/fixtures/real_human/G1T3.json",
+        "role": "REAL_HUMAN_REPLAY fixture",
+        "sha256": "fcc2a184ab226605c320848f039d50cd048f80ff2f0865f104146dc3e620c4dd",
+        "bytes": 10694,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/fixtures/real_human/G1T4.json",
+        "role": "REAL_HUMAN_REPLAY fixture",
+        "sha256": "8c500df87e07aa5d7e7f8ade29cd53be9f84085b2bd9eb72b89ec1e48fc099b9",
+        "bytes": 10694,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/fixtures/real_human/G1T5.json",
+        "role": "REAL_HUMAN_REPLAY fixture",
+        "sha256": "ca92fbfd602829503e7707dfee48b28f0fc598add8281e1d6ae634c1d2174712",
+        "bytes": 10694,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/fixtures/real_human/G1T6.json",
+        "role": "REAL_HUMAN_REPLAY fixture",
+        "sha256": "49da3faf17248113953b74f3fde69e6c05dfb03000bd6baf4167982c0e3f2388",
+        "bytes": 10769,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/fixtures/real_human/G1T7.json",
+        "role": "REAL_HUMAN_REPLAY fixture",
+        "sha256": "86593be91b38d86032397ef1b382467375cafffe2a329b77d2a5f320cb0f173c",
+        "bytes": 10421,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/fixtures/real_human/G1T8.json",
+        "role": "REAL_HUMAN_REPLAY fixture",
+        "sha256": "00b4c4f873aa4d0076b51bc1475974679809334ec890b0c3a5e29a7790bbe349",
+        "bytes": 10418,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/fixtures/real_human/G1T9.json",
+        "role": "REAL_HUMAN_REPLAY fixture",
+        "sha256": "ae77474d7828940e53245d08bbdfdc3db66512d528b9f0f8d82096f7b505ae20",
+        "bytes": 10459,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/fixtures/real_human/G2T1.json",
+        "role": "REAL_HUMAN_REPLAY fixture",
+        "sha256": "78e4a6d0b5096934c3e9a23e7dad05ec2c7083a23eb9f4bf8f3db3a7a9ebc7fe",
+        "bytes": 9764,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/fixtures/real_human/G2T2.json",
+        "role": "REAL_HUMAN_REPLAY fixture",
+        "sha256": "28cae2d32c27ba60bd1cfd0faf3d9049999680e73b5eed057a6c302b3170eaee",
+        "bytes": 10694,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/fixtures/real_human/G2T3.json",
+        "role": "REAL_HUMAN_REPLAY fixture",
+        "sha256": "9c4ff85a70181d2060f408481ace4bb7fe37469e35edeab7f4288cf689594376",
+        "bytes": 10694,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/fixtures/real_human/G2T4.json",
+        "role": "REAL_HUMAN_REPLAY fixture",
+        "sha256": "94914ce99070c4b759ab05edf2cc428c4b67fd1636a1a9bc24403e9120ea1f75",
+        "bytes": 10735,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/fixtures/real_human/G2T5.json",
+        "role": "REAL_HUMAN_REPLAY fixture",
+        "sha256": "a9361f331b0caff861f247957b6d1d0655717049242146d87a6beb1ea2ba5c8d",
+        "bytes": 10460,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/fixtures/real_human/G2T6.json",
+        "role": "REAL_HUMAN_REPLAY fixture",
+        "sha256": "2cb85b8f5afb931b3ac79254cdd4e64282f37ae0acbd078d0abbe4147f82b52f",
+        "bytes": 10419,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/fixtures/real_human/G2T7.json",
+        "role": "REAL_HUMAN_REPLAY fixture",
+        "sha256": "acf784e44ff71c7d355881c6ec9c1e353cbf63758a48b438bc15dd87901484e6",
+        "bytes": 10418,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/fixtures/real_human/G2T8.json",
+        "role": "REAL_HUMAN_REPLAY fixture",
+        "sha256": "e3173b497ec3a0eda5b2a87285f87c3f84a0194773cff5a91ef0937334593a96",
+        "bytes": 10459,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/fixtures/real_human/G5T1.json",
+        "role": "REAL_HUMAN_REPLAY fixture",
+        "sha256": "07d9be4d5040a6b59eff85e8514dee267bf3ac19f505d2559f6112be9a3f58ab",
+        "bytes": 9764,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/fixtures/real_human/G5T2.json",
+        "role": "REAL_HUMAN_REPLAY fixture",
+        "sha256": "0e94683aa5ee3114b3f73f31b9931f31cb67a206cb43c8404f5270f0c1403f8f",
+        "bytes": 10735,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/fixtures/real_human/G5T3.json",
+        "role": "REAL_HUMAN_REPLAY fixture",
+        "sha256": "b5f35aefd74832a8b18ae200e5d5107c6cf0882b9cccfdd27167c40b04e80209",
+        "bytes": 10418,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/fixtures/real_human/G5T4.json",
+        "role": "REAL_HUMAN_REPLAY fixture",
+        "sha256": "1c78d7bd45628d39485c9cc41aadeba0b5a9f149fa2e96ddd9a28e8c0b300959",
+        "bytes": 10417,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/fixtures/real_human/G6T1.json",
+        "role": "REAL_HUMAN_REPLAY fixture",
+        "sha256": "08c3c7a703f061e820af7f63f5eddc2bd3dce0a0410275aa191cd279c4d2e38d",
+        "bytes": 9764,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/fixtures/real_human/G6T2.json",
+        "role": "REAL_HUMAN_REPLAY fixture",
+        "sha256": "a9c14f94504d6a692c5d707b5df6623b97ccd25c4010488453557dc6218359e8",
+        "bytes": 10735,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/fixtures/real_human/G6T3.json",
+        "role": "REAL_HUMAN_REPLAY fixture",
+        "sha256": "7ae5a7d870a5775af39f26c5b545d47e3d84d62b68999bcb3dff9817cb861cb4",
+        "bytes": 10736,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/fixtures/real_human/INDEX.json",
+        "role": "REAL_HUMAN_REPLAY fixture",
+        "sha256": "6c6162fcc7d332aa123986cfeeb8ebd1320a19d770624386bd2553b01c139b6a",
+        "bytes": 8639,
+        "lineEnding": "LF"
+      }
+    ],
+    "syntheticFixtures": [
+      {
+        "path": "PPC-CAT-STRATEGY-01/fixtures/synthetic/S01_BUTTER_NEAR_HOLE.json",
+        "role": "SYNTHETIC fixture",
+        "sha256": "42bbfe930035aa3661581fcfaf4b3d3f2dcccfee117d3f755cb5b19b21d445ed",
+        "bytes": 10786,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/fixtures/synthetic/S02_BUTTER_NEAR_TUNNEL.json",
+        "role": "SYNTHETIC fixture",
+        "sha256": "8fefeb36e23dbf93db2c7328ee41665c2d5f006f00c3ef86c84d56b7789efe48",
+        "bytes": 10812,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/fixtures/synthetic/S03_MOUSE_CARRYING_ONLY.json",
+        "role": "SYNTHETIC fixture",
+        "sha256": "5ed62e00c455b8e882ec2e8593261eb71062de8942c8b8f7714b33f24d2dce39",
+        "bytes": 10730,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/fixtures/synthetic/S04_SKILL_REPICK.json",
+        "role": "SYNTHETIC fixture",
+        "sha256": "1fa6125723f1b7e15934d448fad187ddd0b7572076315b24563c03773ce0c176",
+        "bytes": 10888,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/fixtures/synthetic/S05_TUNNEL_OPEN.json",
+        "role": "SYNTHETIC fixture",
+        "sha256": "423fecefb00196e03d5af71d01bb40e4cc0d4e526770572bdc52aa858f3c520b",
+        "bytes": 10766,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/fixtures/synthetic/S06_TUNNEL_BLOCKED.json",
+        "role": "SYNTHETIC fixture",
+        "sha256": "7513a7c7c66e7c5fb2bd434e15758222abea9a1d843fc805dc4bd4c3ffa57bfb",
+        "bytes": 10980,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/fixtures/synthetic/S07_CAT_PRE_OCCUPY_GATE.json",
+        "role": "SYNTHETIC fixture",
+        "sha256": "b1041ec74ffa53e475dc3df113675d2c31d9e91b1134260339333f39d842ed30",
+        "bytes": 10721,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/fixtures/synthetic/S08_CAT_PUSH_BOX_BLOCKS_TUNNEL.json",
+        "role": "SYNTHETIC fixture",
+        "sha256": "fa609a9177b59de83aea8057c80cfceb950f05e992dfecfef11e859e874b7f21",
+        "bytes": 10705,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/fixtures/synthetic/S09_CAT_FREE_TRAP.json",
+        "role": "SYNTHETIC fixture",
+        "sha256": "863a07b03c618813d99e6f8680e6f96b845bde42a1bcde71d904bc92dd6bea38",
+        "bytes": 10717,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/fixtures/synthetic/S10_CAT_RECLAIM_TRAP.json",
+        "role": "SYNTHETIC fixture",
+        "sha256": "83a820fde2095c012fb5a9a11b52bcd32b336b9e8068cb1e782a161e9ff504df",
+        "bytes": 10752,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/fixtures/synthetic/S11_GHOST_MATERIALIZE_ONE_CELL.json",
+        "role": "SYNTHETIC fixture",
+        "sha256": "d64ad7ce261c515faa0f5818406591231f523dff1f93edbb588550be5c10eb9a",
+        "bytes": 10839,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/fixtures/synthetic/S12_GHOST_CELL_OCCUPIED.json",
+        "role": "SYNTHETIC fixture",
+        "sha256": "86470d299ebce10729cb5bc0f9346f6fed9c856493726bb2953d656ef042f1e1",
+        "bytes": 10834,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/fixtures/synthetic/S13_MULTI_ESCAPE_ROUTES.json",
+        "role": "SYNTHETIC fixture",
+        "sha256": "0aae83e7f08d55f39cb308a6411f5a6fddb959b436c02ec71c5da4d4f6d16bee",
+        "bytes": 10712,
+        "lineEnding": "LF"
+      }
+    ],
+    "rawEvidence": [
+      {
+        "path": "PPC-CAT-STRATEGY-01/_raw/chance-branch-audit.json",
+        "role": "raw evidence",
+        "sha256": "44f59ebe8fbcf98bccedb433069ca0c4571cb29dd34454f8d56f60322c2f6fb8",
+        "bytes": 7803,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/_raw/chance-butter-pickup.json",
+        "role": "raw evidence",
+        "sha256": "e0f4ff5dffefe54fe23981066931e08d9bcba37244c7565c1cd589f5da0ffd78",
+        "bytes": 1164,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/_raw/chance-ghost-boundary.json",
+        "role": "raw evidence",
+        "sha256": "b44c19ea55979a133dd5c37562868bd4a74854dbc04976245775c677c1c47d58",
+        "bytes": 654,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/_raw/human-root-reconstruction.json",
+        "role": "raw evidence",
+        "sha256": "497bbdcbb8af3c84934f8e04dd14ed366e97d3615cc2e9019e91c3f524fa7442",
+        "bytes": 49088,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/_raw/opening-tempo.json",
+        "role": "raw evidence",
+        "sha256": "ffc012c5da5914975dccd5afe737bdbd9d793e3a54d49076422620c795466c46",
+        "bytes": 3637,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/_raw/synthetic-matrix.json",
+        "role": "raw evidence",
+        "sha256": "546508c235745945dedb969f6d448a4489143a87d481e543d9846d643928303a",
+        "bytes": 42428,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/_raw/witness-cat-defense.json",
+        "role": "raw evidence",
+        "sha256": "1af13685ef69f85d298147a03ade8d626f7a973cf4eadb14970f0e8e6a80f0a0",
+        "bytes": 623,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/_raw/witness-mouse-escape.json",
+        "role": "raw evidence",
+        "sha256": "f26a60fabcc26982ddbe8d129d73681650a9f813bebb7c329fa6494edfc07710",
+        "bytes": 10095,
+        "lineEnding": "LF"
+      }
+    ],
+    "deliverables": [
+      {
+        "path": "PPC-CAT-STRATEGY-01/CAT_DEFENSE_WITNESSES.json",
+        "role": "deliverable",
+        "sha256": "fcceb81b9eb58583a5cfa56c6551f84ede057c72f117efee8c146252302a7b56",
+        "bytes": 18681,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/CHANCE_BRANCH_AUDIT.json",
+        "role": "deliverable",
+        "sha256": "44f59ebe8fbcf98bccedb433069ca0c4571cb29dd34454f8d56f60322c2f6fb8",
+        "bytes": 7803,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/CORRECTNESS_RESULTS.json",
+        "role": "deliverable",
+        "sha256": "948dbef05c5cf940926df6a71006e7199b876c0cee7257fadbfd0fe350113f0f",
+        "bytes": 15876,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/G6T2_GHOST_BUTTER_ANALYSIS.md",
+        "role": "deliverable",
+        "sha256": "99b586cee787c6264c22f825af811b6914a86faae20dfba3e046279c553f4628",
+        "bytes": 7165,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/HUMAN_ROOT_RECONSTRUCTION.json",
+        "role": "deliverable",
+        "sha256": "497bbdcbb8af3c84934f8e04dd14ed366e97d3615cc2e9019e91c3f524fa7442",
+        "bytes": 49088,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/MOUSE_RESPONSE_ENUMERATION.json",
+        "role": "deliverable",
+        "sha256": "ffb0ee67d14dc73ceb1da86afd9f25e76b5713af5456a96ca97ee9db9f99e834",
+        "bytes": 19278,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/PLANNER_D1_DECISION_AUDIT.json",
+        "role": "deliverable",
+        "sha256": "584ee7414d5971af3ac1804b399ee6b5d9aaeef3f5edb539624fc3dabd1f3498",
+        "bytes": 10333,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/PPC-CAT-STRATEGY-01_CLAIM_SCOPE.json",
+        "role": "deliverable",
+        "sha256": "184c5cf8d0403efda504f77a6f95cd9c5c6024b1d3e02ef55aa930da37720095",
+        "bytes": 2487,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/PPC-CAT-STRATEGY-01_REPORT.md",
+        "role": "deliverable",
+        "sha256": "c82ef4ba5672b230f57d5eeac9af0eff97bf5cf45acc6e1023911f898aa929bd",
+        "bytes": 26500,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/REPORT.md",
+        "role": "deliverable",
+        "sha256": "1802c9a986fccfb85cfb5c7d88ba4305912568112e393314827dee894a47d2f5",
+        "bytes": 24273,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/RESOURCE_SAFETY_LOG.md",
+        "role": "deliverable",
+        "sha256": "53dbeb1f7dba4ba8800696d4a45a6239b31234e04cab765b7f2ba61d37e28973",
+        "bytes": 5444,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/ROOT_CLASSIFICATION.json",
+        "role": "deliverable",
+        "sha256": "c2d38f3528fbed7cc139297e9c88d62744b3ad47fd9241c4111e2ae0b47dea94",
+        "bytes": 7658,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/RULE_SEMANTICS_AUDIT.md",
+        "role": "deliverable",
+        "sha256": "a1f61363d5d0a6ff6bf6f9bf7e15b113614bdd37e6342e15f3ae909237926d52",
+        "bytes": 11667,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/SOURCE_MANIFEST.json",
+        "role": "deliverable",
+        "sha256": "10f5ab020dbdea2e2025d51addfcfb0071bd1d1102ea7446ee75d3750b471caa",
+        "bytes": 46758,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/TACTICAL_ARCHITECTURE_OPTIONS.md",
+        "role": "deliverable",
+        "sha256": "d39564c5569d3ed57c4f30ad6c5203292ca87e7b6bf4dfd26b8b4c4865d1b6b1",
+        "bytes": 8491,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/TACTICAL_ROOT_SCREENING.json",
+        "role": "deliverable",
+        "sha256": "802b00b6fc8dfb58199efff64bc7d8266feeb171c3b01e261529b5c5f85610ff",
+        "bytes": 68651,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/cs01_lib.mts",
+        "role": "deliverable",
+        "sha256": "5178a893cdcc55d4fc8d5a052469cd51363df5645cbe229f55c5bd1a2f8dfd42",
+        "bytes": 11855,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/cs01_real.test.mts",
+        "role": "deliverable",
+        "sha256": "d53f3af31289575550ff14650d75a1f5d2f4343a1654047df67dfe3febea5e72",
+        "bytes": 7822,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/cs02_ghost.test.mts",
+        "role": "deliverable",
+        "sha256": "4353851e0beafb75ad1834f7a5b1d3d784793bac4ed6492cef743569cf79c948",
+        "bytes": 12725,
+        "lineEnding": "CRLF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/cs03_push.test.mts",
+        "role": "deliverable",
+        "sha256": "a94a6ca71704a3e6d4d75f1d17c5be9e3f64b9c1a117eae7aa9f6445ff55b662",
+        "bytes": 12347,
+        "lineEnding": "CRLF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/cs04_trap.test.mts",
+        "role": "deliverable",
+        "sha256": "fa0e5e955de067917975eeaf045cf400d03cdfdb5d279f79ad756c1bb92c7ad4",
+        "bytes": 11013,
+        "lineEnding": "CRLF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/cs05_config.test.mts",
+        "role": "deliverable",
+        "sha256": "c37f7b838199c5c51aa101ea560a7e3c38f3dea9b44571fff96d0d58be1cdab6",
+        "bytes": 7673,
+        "lineEnding": "LF"
+      },
+      {
+        "path": "PPC-CAT-STRATEGY-01/vitest.config.mts",
+        "role": "deliverable",
+        "sha256": "5dfee152580e0f2c705ad7c6c12f5ebf4c7fbd23070788cf38b36f5417d3528b",
+        "bytes": 806,
+        "lineEnding": "LF"
+      }
+    ]
+  },
+  "counts": {
+    "probes": 13,
+    "realHumanFixtures": 25,
+    "syntheticFixtures": 13,
+    "rawEvidence": 8,
+    "deliverables": 23
+  }
+}

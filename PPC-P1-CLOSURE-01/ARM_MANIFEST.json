@@ -1,0 +1,112 @@
+{
+  "round": "PPC-P1-CLOSURE-01",
+  "generatedAt": "2026-11-13",
+  "purpose": "Frozen HEAD control arm used ONLY to answer 'did the four uncommitted rounds change this behaviour?'. It is a byte-faithful copy of src/ with the six production files restored to their HEAD blob. It does not participate in tsc (tsconfig.app.json includes only \"src\") or in the vite build.",
+  "construction": {
+    "method": "cp -r src PPC-P1-CLOSURE-01/arm-head/src, then `git show HEAD:<file> > PPC-P1-CLOSURE-01/arm-head/<file>` for each of the 10 tracked modified files",
+    "worktreeTouched": false,
+    "gitOperationsUsed": ["show", "cat-file", "diff", "status", "rev-parse", "log"],
+    "destructiveGitOperations": "NONE (no reset / clean / stash / checkout / rebase)"
+  },
+  "verification": {
+    "productionFilesEqualHeadBlob": true,
+    "checkedWith": "sha256sum on the arm file vs `git show HEAD:<file> | sha256sum`",
+    "onlyTheseFilesDifferFromCurrentSrc": 10,
+    "diffResult": "diff -rq src PPC-P1-CLOSURE-01/arm-head/src reports exactly the 10 tracked modified files and nothing else"
+  },
+  "files": [
+    {
+      "path": "src/game/ai/transposition.ts",
+      "armSha256": "2eea65ff6e6402313efe58fab65eaf81dd352a40b7254596e4a96a32e9fdf60c",
+      "currentSha256": "7b4aa8eb3fab994a4abc77fdf38800ab2a5f9da57d5eb33a1b37075e106c2d64",
+      "bytes": 4961,
+      "restoredRound": "P1-ID-01"
+    },
+    {
+      "path": "src/game/ai/deadlineContext.ts",
+      "armSha256": "dfab888bd40787a35145e82a546cf4c3228adf2c47f6aa8233edaf8205cf6e3c",
+      "currentSha256": "ced449445d70d1ba88cb20d88415b3c641d670aa886536fcacefa36b4aa50235",
+      "bytes": 10004,
+      "restoredRound": "P1-TIME-01"
+    },
+    {
+      "path": "src/game/ai/hardTurnPlanner.ts",
+      "armSha256": "71c845b6e28afae9a795c7e01e932a8866180ef8a61432c42c382d6e7609cad5",
+      "currentSha256": "27b1ce6dc62234d0c822b2b0b6341205ac189b5f76d7662a5d29d9e17ded75ff",
+      "bytes": 33784,
+      "restoredRound": "P1-TIME-01"
+    },
+    {
+      "path": "src/game/engine.ts",
+      "armSha256": "ed72d0c92e0ef140cba1b8cd8def3b4e30b3df741fb233efd14f756456bae0f5",
+      "currentSha256": "dbb5377af22a6471e31c899f9debe896e9e74a629f4fb50a47753bd492810f3e",
+      "bytes": 180471,
+      "restoredRound": "P1-TIME-01"
+    },
+    {
+      "path": "src/game/ai/expectiminimax.ts",
+      "armSha256": "9b976ec9bdbfd2cc02f6bdbb1f28b8a47a7c7759d4119e35964e077b4593ce45",
+      "currentSha256": "42b6e71f0cf784c7072a4e11abb3408b7c922d9e8a746a787ddf0046b3917d1c",
+      "bytes": 107084,
+      "restoredRound": "P1-PLAN-01"
+    },
+    {
+      "path": "src/game/ai/planQuality.ts",
+      "armSha256": "16a9894d6df50b7e75a55ffec3864b0d535a0d2b247c514fae55b916fb3e3dad",
+      "currentSha256": "f97dd2045733e1aa70abe6750299c00aff70f8152d6157d88acdec813c7b4cd2",
+      "bytes": 24958,
+      "restoredRound": "P1-PLAN-01 + P1-QUALITY-01"
+    },
+    {
+      "path": "src/game/ai/__tests__/hv14FiveGameForensics.test.ts",
+      "restoredRound": "P1-QUALITY-01"
+    },
+    {
+      "path": "src/game/ai/__tests__/hv2PlanTieQuality.test.ts",
+      "restoredRound": "P1-QUALITY-01"
+    },
+    {
+      "path": "src/game/ai/__tests__/m3liteHumanValidationLogging.test.ts",
+      "restoredRound": "P1-QUALITY-01"
+    },
+    {
+      "path": "src/game/ai/__tests__/progressGuard.test.ts",
+      "restoredRound": "P1-QUALITY-01"
+    }
+  ],
+  "notRestoredAndWhy": [
+    {
+      "path": "src/game/ai/planBound.ts",
+      "why": "new file; HEAD has no such path, and no HEAD-era file imports it, so leaving the copy in place cannot change the arm's behaviour"
+    },
+    {
+      "path": "src/game/ai/__tests__/*.test.ts (the five new ones)",
+      "why": "not executed by the arm; the arm only runs the pre-existing expectiminimax.test.ts"
+    },
+    {
+      "path": "fixtures/*.json",
+      "why": "not read by expectiminimax.test.ts; left byte-identical anyway"
+    }
+  ],
+  "runs": [
+    {
+      "log": "logs/t1eb_arm_head.log",
+      "test": "expectiminimax.test.ts -t 'T1E-B A/B/K'",
+      "testTimeout": 30000,
+      "workers": 1,
+      "result": "FAIL (30s timeout)",
+      "durationS": 42.37,
+      "exit": 1
+    },
+    {
+      "log": "logs/t1eb_arm_head_long.log",
+      "test": "expectiminimax.test.ts -t 'T1E-B A/B/K'",
+      "testTimeout": 240000,
+      "workers": 1,
+      "result": "PASS (1 passed / 88 skipped)",
+      "testsDurationS": 39.73,
+      "exit": 0
+    }
+  ],
+  "caveat": "The arm exists for measurement only. It must never be imported by src/ and must not be treated as a second source of truth; delete or archive it once the audit is adjudicated."
+}

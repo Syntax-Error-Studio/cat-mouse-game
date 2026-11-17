@@ -315,8 +315,21 @@ test('HV14-4 GAME2 T3-T7 start/end cells form a cross-turn cycle', () => {
 
 // ===========================================================================
 // HV14-5. GAME2 T7 — four exact-equal root actions, closed-loop extraction
+//
+// PPC-P1-QUALITY-01: the expected plan moved from LURD to ULDR. This is the
+// DELIBERATE result of the accounting fix, not an assertion relaxed to go green.
+// Evidence (PPC-P1-QUALITY-01/OLD_VS_NEW_DP.json, a reference DP running both
+// scorers on this very graph):
+//   · under the OLD formula the Up branch returned UUDD (1 real reversal) and was
+//     charged 1, because a deeper node dropped the `action → childPlan[0]` edge;
+//     so the root tie was {L,D,R}=0 vs {U}=1 and the second recorded action won;
+//   · under the FIXED formula the Up branch returns ULDR (0 real reversals), the
+//     root becomes a genuine 4-way tie, and the documented stable rule —
+//     first recorded action wins — yields ULDR.
+// Primary value, mate, reversal count (0), revisit count (1), net displacement
+// (0) and the end cell are all unchanged; only the tie resolution is.
 // ===========================================================================
-test('HV14-5 T7 exact tie: production extractor returns the LURD closed loop', () => {
+test('HV14-5 T7 exact tie: production extractor returns the stable-order zero-reversal loop', () => {
   const blocks = parseTurnBlocks(logText('GAME2'));
   const t7 = restoreTurn(blocks.find((b) => b.turn === 7)!);
   expect(stateKey(t7.state)).toBe(t7.loggedKey);
@@ -356,7 +369,10 @@ test('HV14-5 T7 exact tie: production extractor returns the LURD closed loop', (
   expect(new Set(rootValues.map((v) => v.value)).size, 'all four root values are identical').toBe(1);
   expect(rootEntries.length, 'root has one exact-tie graph entry').toBe(1);
   expect(rootEntries[0][1].equalActions.map(dirKey).sort(), 'all four actions are recorded as equal-primary').toEqual(['ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowUp']);
-  expect(planText(extracted), 'production extractor picks the logged closed loop').toBe('LURD');
+  // PPC-P1-QUALITY-01: ULDR, because after the accounting fix all four root
+  // branches cost zero reversals and the first recorded action wins the tie.
+  // The plan is still a single-revisit closed loop of the same exact value.
+  expect(planText(extracted), 'production extractor picks the stable-order zero-reversal loop').toBe('ULDR');
   expect(revisitsOf(t7.state, extracted), 'the chosen plan revisits its start cell').toBe(1);
   expect(netDisplacement(t7.state, extracted), 'the chosen plan has zero net displacement').toBe(0);
   expect(countReversals(extracted), 'the chosen plan has zero adjacent reversals').toBe(0);
@@ -401,7 +417,10 @@ test('HV14-6 T7 equal-primary plan space contains a non-loop with the same score
   expect(rows.length).toBeGreaterThan(1);
   expect(rows.every((r) => r.value === rows[0].value), 'every first action carries the same exact root value').toBe(true);
   const prodRow = rows.find((r) => r.text === planText(production))!;
-  expect(prodRow.text).toBe('LURD');
+  // PPC-P1-QUALITY-01: ULDR replaces LURD purely by tie resolution — every
+  // property asserted below (reversals, revisits, net, end cell) is identical,
+  // and ULDR is the first-recorded root branch, which is the documented rule.
+  expect(prodRow.text).toBe('ULDR');
   expect(prodRow.revisits).toBe(1);
   expect(prodRow.net).toBe(0);
 

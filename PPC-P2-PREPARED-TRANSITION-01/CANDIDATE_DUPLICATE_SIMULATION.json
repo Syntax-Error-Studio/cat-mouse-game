@@ -1,0 +1,4852 @@
+{
+  "_provenance": {
+    "round": "PPC-P2-PREPARED-TRANSITION-01",
+    "rawFile": "_raw/duplicate_witness_post.json",
+    "rawSha256": "74b9c25da74510a88a6d98bea7ccd7814775992798db24ccb6eca211c956a367",
+    "what": "Same probe after the fix (same file, PHASE=post).",
+    "note": "This file is the raw measurement plus this provenance block. No value was edited."
+  },
+  "round": "PPC-P2-PREPARED-TRANSITION-01",
+  "phase": "post",
+  "capturedAt": "2026-11-14T04:37:36.053Z",
+  "source": {
+    "rootFixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+    "d1Protocol": {
+      "depthTurns": 1,
+      "maxNodes": 10000,
+      "tt": true,
+      "alphaBeta": true,
+      "moveOrdering": true,
+      "maxThreatExtensions": 0,
+      "leaf": "explicit evaluateCorrectedHoleForCat",
+      "capturePlan": true,
+      "deadline": null
+    }
+  },
+  "semantics": "Each group = (rule function, action identity, input stateKey). \"count\" is the number of times the REAL engine transition for that exact (state, action) pair was executed during one fixed-D1 search. count>=2 means the same transition was recomputed; \"identical\" compares every produced stateKey (and CHANCE weights) across the repeats.",
+  "expectedPreFixShape": "interior legal action: 2 (legality pass + prepared pass); interior illegal candidate: 1; root legal action: 3 (empty-check + legality + prepared).",
+  "totals": {
+    "ruleCalls": 7511,
+    "actionTransitionCalls": 5062,
+    "duplicateGroups": 672,
+    "duplicateCalls": 1258,
+    "nonIdentical": 0,
+    "ms": 361.40199999999993
+  },
+  "roots": [
+    {
+      "id": "G6T1",
+      "rootKeyShort": "t__e__e__e…ingle:hard",
+      "ms": 81.124,
+      "value": -1691.7631578947369,
+      "mate": null,
+      "action": "T",
+      "plan": [
+        "T",
+        "D",
+        "R",
+        "R",
+        "D"
+      ],
+      "completed": true,
+      "nodes": 159,
+      "chanceNodes": 0,
+      "profilerLegalActionsCalls": 160,
+      "profilerTransitionCalls": 556,
+      "ruleCalls": 1033,
+      "actionTransitionCalls": 684,
+      "duplicateGroups": 68,
+      "duplicateCalls": 123,
+      "nonIdenticalDuplicateGroups": 0,
+      "histogram": {
+        "1": 842,
+        "2": 38,
+        "3": 20,
+        "4": 3,
+        "5": 1,
+        "6": 5,
+        "8": 1
+      },
+      "chanceGroups": 0,
+      "chanceDuplicateGroups": 0,
+      "chanceNonIdentical": 0,
+      "rootActionCounts": {
+        "catMove:U": 1,
+        "catMove:D": 1,
+        "catMove:L": 1,
+        "catMove:R": 1,
+        "catPlaceTrap:trap": 3
+      },
+      "rootCandidateCount": 5,
+      "searchOnly": {
+        "ruleCalls": 1021,
+        "duplicateGroups": 62,
+        "duplicateCalls": 111,
+        "nonIdenticalDuplicateGroups": 0,
+        "histogram": {
+          "1": 848,
+          "2": 38,
+          "3": 14,
+          "4": 3,
+          "5": 1,
+          "6": 5,
+          "8": 1
+        },
+        "rootActionCounts": {
+          "catMove:U": 1,
+          "catMove:D": 1,
+          "catMove:L": 1,
+          "catMove:R": 1,
+          "catPlaceTrap:trap": 1
+        },
+        "nodes": 159
+      },
+      "samples": [
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 8,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 6,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__ec_e…ingle:hard",
+          "count": 6,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 6,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 6,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 6,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        }
+      ],
+      "allIdenticalDuplicates": true
+    },
+    {
+      "id": "G6T2",
+      "rootKeyShort": "t__e__e__e…ingle:hard",
+      "ms": 7.123,
+      "value": -447.2368421052632,
+      "mate": null,
+      "action": "U",
+      "plan": [
+        "U",
+        "U",
+        "R",
+        "R"
+      ],
+      "completed": true,
+      "nodes": 20,
+      "chanceNodes": 37,
+      "profilerLegalActionsCalls": 21,
+      "profilerTransitionCalls": 69,
+      "ruleCalls": 131,
+      "actionTransitionCalls": 92,
+      "duplicateGroups": 14,
+      "duplicateCalls": 25,
+      "nonIdenticalDuplicateGroups": 0,
+      "histogram": {
+        "1": 92,
+        "2": 3,
+        "3": 11
+      },
+      "chanceGroups": 22,
+      "chanceDuplicateGroups": 10,
+      "chanceNonIdentical": 0,
+      "rootActionCounts": {
+        "catMove:U": 3,
+        "catMove:D": 1,
+        "catMove:L": 1,
+        "catMove:R": 1
+      },
+      "rootCandidateCount": 4,
+      "searchOnly": {
+        "ruleCalls": 121,
+        "duplicateGroups": 9,
+        "duplicateCalls": 15,
+        "nonIdenticalDuplicateGroups": 0,
+        "histogram": {
+          "1": 97,
+          "2": 3,
+          "3": 6
+        },
+        "rootActionCounts": {
+          "catMove:U": 1,
+          "catMove:D": 1,
+          "catMove:L": 1,
+          "catMove:R": 1
+        },
+        "nodes": 20
+      },
+      "samples": [
+        {
+          "fn": "catMove",
+          "action": "U",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "U",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "R",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "R",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "resolveGhostBoundaryChance",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "outcomes",
+            "outcomes",
+            "outcomes"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ],
+          "weights": [
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ]
+          ]
+        },
+        {
+          "fn": "resolveGhostBoundaryChance",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "outcomes",
+            "outcomes",
+            "outcomes"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ],
+          "weights": [
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ]
+          ]
+        }
+      ],
+      "allIdenticalDuplicates": true
+    },
+    {
+      "id": "G6T3",
+      "rootKeyShort": "t__e__e__e…ingle:hard",
+      "ms": 5.688,
+      "value": -970.3947368421052,
+      "mate": null,
+      "action": "R",
+      "plan": [
+        "R",
+        "D",
+        "D",
+        "D"
+      ],
+      "completed": true,
+      "nodes": 19,
+      "chanceNodes": 34,
+      "profilerLegalActionsCalls": 20,
+      "profilerTransitionCalls": 66,
+      "ruleCalls": 124,
+      "actionTransitionCalls": 88,
+      "duplicateGroups": 12,
+      "duplicateCalls": 22,
+      "nonIdenticalDuplicateGroups": 0,
+      "histogram": {
+        "1": 90,
+        "2": 2,
+        "3": 10
+      },
+      "chanceGroups": 22,
+      "chanceDuplicateGroups": 8,
+      "chanceNonIdentical": 0,
+      "rootActionCounts": {
+        "catMove:U": 1,
+        "catMove:D": 1,
+        "catMove:L": 1,
+        "catMove:R": 3
+      },
+      "rootCandidateCount": 4,
+      "searchOnly": {
+        "ruleCalls": 114,
+        "duplicateGroups": 7,
+        "duplicateCalls": 12,
+        "nonIdenticalDuplicateGroups": 0,
+        "histogram": {
+          "1": 95,
+          "2": 2,
+          "3": 5
+        },
+        "rootActionCounts": {
+          "catMove:U": 1,
+          "catMove:D": 1,
+          "catMove:L": 1,
+          "catMove:R": 1
+        },
+        "nodes": 19
+      },
+      "samples": [
+        {
+          "fn": "catMove",
+          "action": "R",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "D",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "D",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "D",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "resolveGhostBoundaryChance",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "outcomes",
+            "outcomes",
+            "outcomes"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ],
+          "weights": [
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ]
+          ]
+        },
+        {
+          "fn": "resolveGhostBoundaryChance",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "outcomes",
+            "outcomes",
+            "outcomes"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ],
+          "weights": [
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ]
+          ]
+        }
+      ],
+      "allIdenticalDuplicates": true
+    },
+    {
+      "id": "G5T1",
+      "rootKeyShort": "t__e__e__e…ingle:hard",
+      "ms": 28.132,
+      "value": -1894.921052631579,
+      "mate": null,
+      "action": "T",
+      "plan": [
+        "T",
+        "R",
+        "R",
+        "D",
+        "D"
+      ],
+      "completed": true,
+      "nodes": 108,
+      "chanceNodes": 0,
+      "profilerLegalActionsCalls": 109,
+      "profilerTransitionCalls": 350,
+      "ruleCalls": 674,
+      "actionTransitionCalls": 468,
+      "duplicateGroups": 45,
+      "duplicateCalls": 94,
+      "nonIdenticalDuplicateGroups": 0,
+      "histogram": {
+        "1": 535,
+        "2": 20,
+        "3": 14,
+        "4": 6,
+        "6": 3,
+        "7": 1,
+        "8": 1
+      },
+      "chanceGroups": 0,
+      "chanceDuplicateGroups": 0,
+      "chanceNonIdentical": 0,
+      "rootActionCounts": {
+        "catMove:U": 1,
+        "catMove:D": 1,
+        "catMove:L": 1,
+        "catMove:R": 1,
+        "catPlaceTrap:trap": 3
+      },
+      "rootCandidateCount": 5,
+      "searchOnly": {
+        "ruleCalls": 662,
+        "duplicateGroups": 39,
+        "duplicateCalls": 82,
+        "nonIdenticalDuplicateGroups": 0,
+        "histogram": {
+          "1": 541,
+          "2": 20,
+          "3": 8,
+          "4": 6,
+          "6": 3,
+          "7": 1,
+          "8": 1
+        },
+        "rootActionCounts": {
+          "catMove:U": 1,
+          "catMove:D": 1,
+          "catMove:L": 1,
+          "catMove:R": 1,
+          "catPlaceTrap:trap": 1
+        },
+        "nodes": 108
+      },
+      "samples": [
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 8,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 7,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 6,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 6,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__ec_e…ingle:hard",
+          "count": 6,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ]
+        }
+      ],
+      "allIdenticalDuplicates": true
+    },
+    {
+      "id": "G5T2",
+      "rootKeyShort": "t__e__e__e…ingle:hard",
+      "ms": 11.095,
+      "value": -1136.8796992481202,
+      "mate": null,
+      "action": "D",
+      "plan": [
+        "D",
+        "D",
+        "L",
+        "L"
+      ],
+      "completed": true,
+      "nodes": 37,
+      "chanceNodes": 79,
+      "profilerLegalActionsCalls": 38,
+      "profilerTransitionCalls": 129,
+      "ruleCalls": 264,
+      "actionTransitionCalls": 176,
+      "duplicateGroups": 40,
+      "duplicateCalls": 63,
+      "nonIdenticalDuplicateGroups": 0,
+      "histogram": {
+        "1": 161,
+        "2": 26,
+        "3": 7,
+        "4": 6,
+        "6": 1
+      },
+      "chanceGroups": 49,
+      "chanceDuplicateGroups": 21,
+      "chanceNonIdentical": 0,
+      "rootActionCounts": {
+        "catMove:U": 1,
+        "catMove:D": 3,
+        "catMove:L": 2,
+        "catMove:R": 1
+      },
+      "rootCandidateCount": 4,
+      "searchOnly": {
+        "ruleCalls": 231,
+        "duplicateGroups": 18,
+        "duplicateCalls": 30,
+        "nonIdenticalDuplicateGroups": 0,
+        "histogram": {
+          "1": 183,
+          "2": 10,
+          "3": 4,
+          "4": 4
+        },
+        "rootActionCounts": {
+          "catMove:U": 1,
+          "catMove:D": 1,
+          "catMove:L": 1,
+          "catMove:R": 1
+        },
+        "nodes": 37
+      },
+      "samples": [
+        {
+          "fn": "resolveGhostBoundaryChance",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 6,
+          "identical": true,
+          "outKinds": [
+            "outcomes",
+            "outcomes",
+            "outcomes",
+            "outcomes",
+            "outcomes",
+            "outcomes"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "weights": [
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ]
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "L",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "resolveGhostBoundaryChance",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "outcomes",
+            "outcomes",
+            "outcomes",
+            "outcomes"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "weights": [
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ]
+          ]
+        },
+        {
+          "fn": "resolveGhostBoundaryChance",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "outcomes",
+            "outcomes",
+            "outcomes",
+            "outcomes"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "weights": [
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ]
+          ]
+        },
+        {
+          "fn": "resolveGhostBoundaryChance",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "outcomes",
+            "outcomes",
+            "outcomes",
+            "outcomes"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "weights": [
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ]
+          ]
+        },
+        {
+          "fn": "resolveGhostBoundaryChance",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "outcomes",
+            "outcomes",
+            "outcomes",
+            "outcomes"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "weights": [
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ]
+          ]
+        }
+      ],
+      "allIdenticalDuplicates": true
+    },
+    {
+      "id": "G5T3",
+      "rootKeyShort": "t__e__e__e…ingle:hard",
+      "ms": 7.39,
+      "value": -772.2368421052631,
+      "mate": null,
+      "action": "L",
+      "plan": [
+        "L",
+        "D",
+        "D",
+        "D"
+      ],
+      "completed": true,
+      "nodes": 28,
+      "chanceNodes": 0,
+      "profilerLegalActionsCalls": 29,
+      "profilerTransitionCalls": 96,
+      "ruleCalls": 180,
+      "actionTransitionCalls": 124,
+      "duplicateGroups": 17,
+      "duplicateCalls": 31,
+      "nonIdenticalDuplicateGroups": 0,
+      "histogram": {
+        "1": 132,
+        "2": 5,
+        "3": 10,
+        "4": 2
+      },
+      "chanceGroups": 0,
+      "chanceDuplicateGroups": 0,
+      "chanceNonIdentical": 0,
+      "rootActionCounts": {
+        "catMove:U": 1,
+        "catMove:D": 1,
+        "catMove:L": 3,
+        "catMove:R": 1
+      },
+      "rootCandidateCount": 4,
+      "searchOnly": {
+        "ruleCalls": 170,
+        "duplicateGroups": 12,
+        "duplicateCalls": 21,
+        "nonIdenticalDuplicateGroups": 0,
+        "histogram": {
+          "1": 137,
+          "2": 5,
+          "3": 5,
+          "4": 2
+        },
+        "rootActionCounts": {
+          "catMove:U": 1,
+          "catMove:D": 1,
+          "catMove:L": 1,
+          "catMove:R": 1
+        },
+        "nodes": 28
+      },
+      "samples": [
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "L",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "D",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "D",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "D",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        }
+      ],
+      "allIdenticalDuplicates": true
+    },
+    {
+      "id": "G5T4",
+      "rootKeyShort": "t__e__e__e…ingle:hard",
+      "ms": 6.279,
+      "value": -1740.7894736842106,
+      "mate": null,
+      "action": "R",
+      "plan": [
+        "R",
+        "D",
+        "R",
+        "R"
+      ],
+      "completed": true,
+      "nodes": 20,
+      "chanceNodes": 0,
+      "profilerLegalActionsCalls": 21,
+      "profilerTransitionCalls": 64,
+      "ruleCalls": 128,
+      "actionTransitionCalls": 92,
+      "duplicateGroups": 11,
+      "duplicateCalls": 19,
+      "nonIdenticalDuplicateGroups": 0,
+      "histogram": {
+        "1": 98,
+        "2": 3,
+        "3": 8
+      },
+      "chanceGroups": 0,
+      "chanceDuplicateGroups": 0,
+      "chanceNonIdentical": 0,
+      "rootActionCounts": {
+        "catMove:U": 1,
+        "catMove:D": 1,
+        "catMove:L": 1,
+        "catMove:R": 3
+      },
+      "rootCandidateCount": 4,
+      "searchOnly": {
+        "ruleCalls": 118,
+        "duplicateGroups": 6,
+        "duplicateCalls": 9,
+        "nonIdenticalDuplicateGroups": 0,
+        "histogram": {
+          "1": 103,
+          "2": 3,
+          "3": 3
+        },
+        "rootActionCounts": {
+          "catMove:U": 1,
+          "catMove:D": 1,
+          "catMove:L": 1,
+          "catMove:R": 1
+        },
+        "nodes": 20
+      },
+      "samples": [
+        {
+          "fn": "catMove",
+          "action": "R",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "D",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "R",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "R",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        }
+      ],
+      "allIdenticalDuplicates": true
+    },
+    {
+      "id": "G2T1",
+      "rootKeyShort": "t__e__e__e…ingle:hard",
+      "ms": 51.366,
+      "value": -641.4473684210526,
+      "mate": null,
+      "action": "T",
+      "plan": [
+        "T",
+        "R",
+        "R",
+        "R",
+        "R"
+      ],
+      "completed": true,
+      "nodes": 154,
+      "chanceNodes": 0,
+      "profilerLegalActionsCalls": 155,
+      "profilerTransitionCalls": 559,
+      "ruleCalls": 1029,
+      "actionTransitionCalls": 662,
+      "duplicateGroups": 68,
+      "duplicateCalls": 143,
+      "nonIdenticalDuplicateGroups": 0,
+      "histogram": {
+        "1": 818,
+        "2": 35,
+        "3": 12,
+        "4": 14,
+        "6": 2,
+        "7": 3,
+        "8": 2
+      },
+      "chanceGroups": 0,
+      "chanceDuplicateGroups": 0,
+      "chanceNonIdentical": 0,
+      "rootActionCounts": {
+        "catMove:U": 1,
+        "catMove:D": 1,
+        "catMove:L": 1,
+        "catMove:R": 1,
+        "catPlaceTrap:trap": 3
+      },
+      "rootCandidateCount": 5,
+      "searchOnly": {
+        "ruleCalls": 1017,
+        "duplicateGroups": 62,
+        "duplicateCalls": 131,
+        "nonIdenticalDuplicateGroups": 0,
+        "histogram": {
+          "1": 824,
+          "2": 35,
+          "3": 6,
+          "4": 14,
+          "6": 2,
+          "7": 3,
+          "8": 2
+        },
+        "rootActionCounts": {
+          "catMove:U": 1,
+          "catMove:D": 1,
+          "catMove:L": 1,
+          "catMove:R": 1,
+          "catPlaceTrap:trap": 1
+        },
+        "nodes": 154
+      },
+      "samples": [
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 8,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 8,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 7,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 7,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 7,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 6,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        }
+      ],
+      "allIdenticalDuplicates": true
+    },
+    {
+      "id": "G2T2",
+      "rootKeyShort": "t__e__e__e…ingle:hard",
+      "ms": 7.48,
+      "value": 67.23684210526312,
+      "mate": null,
+      "action": "D",
+      "plan": [
+        "D",
+        "D",
+        "D",
+        "R"
+      ],
+      "completed": true,
+      "nodes": 22,
+      "chanceNodes": 0,
+      "profilerLegalActionsCalls": 23,
+      "profilerTransitionCalls": 76,
+      "ruleCalls": 138,
+      "actionTransitionCalls": 100,
+      "duplicateGroups": 13,
+      "duplicateCalls": 26,
+      "nonIdenticalDuplicateGroups": 0,
+      "histogram": {
+        "1": 99,
+        "2": 2,
+        "3": 9,
+        "4": 2
+      },
+      "chanceGroups": 0,
+      "chanceDuplicateGroups": 0,
+      "chanceNonIdentical": 0,
+      "rootActionCounts": {
+        "catMove:U": 1,
+        "catMove:D": 3,
+        "catMove:L": 1,
+        "catMove:R": 1
+      },
+      "rootCandidateCount": 4,
+      "searchOnly": {
+        "ruleCalls": 128,
+        "duplicateGroups": 8,
+        "duplicateCalls": 16,
+        "nonIdenticalDuplicateGroups": 0,
+        "histogram": {
+          "1": 104,
+          "2": 2,
+          "3": 4,
+          "4": 2
+        },
+        "rootActionCounts": {
+          "catMove:U": 1,
+          "catMove:D": 1,
+          "catMove:L": 1,
+          "catMove:R": 1
+        },
+        "nodes": 22
+      },
+      "samples": [
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "D",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "D",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "D",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "R",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        }
+      ],
+      "allIdenticalDuplicates": true
+    },
+    {
+      "id": "G2T3",
+      "rootKeyShort": "t__e__e__e…ingle:hard",
+      "ms": 11.553,
+      "value": -216.05263157894734,
+      "mate": null,
+      "action": "L",
+      "plan": [
+        "L",
+        "D",
+        "L",
+        "D"
+      ],
+      "completed": true,
+      "nodes": 32,
+      "chanceNodes": 0,
+      "profilerLegalActionsCalls": 33,
+      "profilerTransitionCalls": 104,
+      "ruleCalls": 200,
+      "actionTransitionCalls": 140,
+      "duplicateGroups": 18,
+      "duplicateCalls": 33,
+      "nonIdenticalDuplicateGroups": 0,
+      "histogram": {
+        "1": 149,
+        "2": 6,
+        "3": 9,
+        "4": 3
+      },
+      "chanceGroups": 0,
+      "chanceDuplicateGroups": 0,
+      "chanceNonIdentical": 0,
+      "rootActionCounts": {
+        "catMove:U": 1,
+        "catMove:D": 1,
+        "catMove:L": 3,
+        "catMove:R": 1
+      },
+      "rootCandidateCount": 4,
+      "searchOnly": {
+        "ruleCalls": 190,
+        "duplicateGroups": 13,
+        "duplicateCalls": 23,
+        "nonIdenticalDuplicateGroups": 0,
+        "histogram": {
+          "1": 154,
+          "2": 6,
+          "3": 4,
+          "4": 3
+        },
+        "rootActionCounts": {
+          "catMove:U": 1,
+          "catMove:D": 1,
+          "catMove:L": 1,
+          "catMove:R": 1
+        },
+        "nodes": 32
+      },
+      "samples": [
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "L",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "D",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "L",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        }
+      ],
+      "allIdenticalDuplicates": true
+    },
+    {
+      "id": "G2T4",
+      "rootKeyShort": "t__e__e__e…ingle:hard",
+      "ms": 7.792,
+      "value": -1.8421052631579187,
+      "mate": null,
+      "action": "D",
+      "plan": [
+        "D",
+        "L",
+        "L",
+        "L"
+      ],
+      "completed": true,
+      "nodes": 27,
+      "chanceNodes": 54,
+      "profilerLegalActionsCalls": 28,
+      "profilerTransitionCalls": 90,
+      "ruleCalls": 179,
+      "actionTransitionCalls": 123,
+      "duplicateGroups": 19,
+      "duplicateCalls": 32,
+      "nonIdenticalDuplicateGroups": 0,
+      "histogram": {
+        "1": 128,
+        "2": 9,
+        "3": 7,
+        "4": 3
+      },
+      "chanceGroups": 35,
+      "chanceDuplicateGroups": 13,
+      "chanceNonIdentical": 0,
+      "rootActionCounts": {
+        "catMove:U": 1,
+        "catMove:D": 3,
+        "catMove:L": 2,
+        "catMove:R": 1
+      },
+      "rootCandidateCount": 4,
+      "searchOnly": {
+        "ruleCalls": 166,
+        "duplicateGroups": 12,
+        "duplicateCalls": 19,
+        "nonIdenticalDuplicateGroups": 0,
+        "histogram": {
+          "1": 135,
+          "2": 7,
+          "3": 3,
+          "4": 2
+        },
+        "rootActionCounts": {
+          "catMove:U": 1,
+          "catMove:D": 1,
+          "catMove:L": 1,
+          "catMove:R": 1
+        },
+        "nodes": 27
+      },
+      "samples": [
+        {
+          "fn": "catMove",
+          "action": "L",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "resolveGhostBoundaryChance",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "outcomes",
+            "outcomes",
+            "outcomes",
+            "outcomes"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "weights": [
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ]
+          ]
+        },
+        {
+          "fn": "resolveGhostBoundaryChance",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "outcomes",
+            "outcomes",
+            "outcomes",
+            "outcomes"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "weights": [
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ]
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "D",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "L",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "L",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        }
+      ],
+      "allIdenticalDuplicates": true
+    },
+    {
+      "id": "G2T5",
+      "rootKeyShort": "t__e__e__e…ingle:hard",
+      "ms": 12.066,
+      "value": 332.2267206477733,
+      "mate": null,
+      "action": "D",
+      "plan": [
+        "D",
+        "D",
+        "D",
+        "L"
+      ],
+      "completed": true,
+      "nodes": 42,
+      "chanceNodes": 96,
+      "profilerLegalActionsCalls": 43,
+      "profilerTransitionCalls": 155,
+      "ruleCalls": 278,
+      "actionTransitionCalls": 180,
+      "duplicateGroups": 27,
+      "duplicateCalls": 47,
+      "nonIdenticalDuplicateGroups": 0,
+      "histogram": {
+        "1": 204,
+        "2": 12,
+        "3": 10,
+        "4": 5
+      },
+      "chanceGroups": 59,
+      "chanceDuplicateGroups": 23,
+      "chanceNonIdentical": 0,
+      "rootActionCounts": {
+        "catMove:U": 1,
+        "catMove:D": 3,
+        "catMove:L": 1,
+        "catMove:R": 1
+      },
+      "rootCandidateCount": 4,
+      "searchOnly": {
+        "ruleCalls": 268,
+        "duplicateGroups": 22,
+        "duplicateCalls": 37,
+        "nonIdenticalDuplicateGroups": 0,
+        "histogram": {
+          "1": 209,
+          "2": 12,
+          "3": 5,
+          "4": 5
+        },
+        "rootActionCounts": {
+          "catMove:U": 1,
+          "catMove:D": 1,
+          "catMove:L": 1,
+          "catMove:R": 1
+        },
+        "nodes": 42
+      },
+      "samples": [
+        {
+          "fn": "resolveGhostBoundaryChance",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "outcomes",
+            "outcomes",
+            "outcomes",
+            "outcomes"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "weights": [
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ]
+          ]
+        },
+        {
+          "fn": "resolveGhostBoundaryChance",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "outcomes",
+            "outcomes",
+            "outcomes",
+            "outcomes"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "weights": [
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ]
+          ]
+        },
+        {
+          "fn": "resolveGhostBoundaryChance",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "outcomes",
+            "outcomes",
+            "outcomes",
+            "outcomes"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "weights": [
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ]
+          ]
+        },
+        {
+          "fn": "resolveGhostBoundaryChance",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "outcomes",
+            "outcomes",
+            "outcomes",
+            "outcomes"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "weights": [
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ]
+          ]
+        },
+        {
+          "fn": "resolveGhostBoundaryChance",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "outcomes",
+            "outcomes",
+            "outcomes",
+            "outcomes"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "weights": [
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ]
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "D",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        }
+      ],
+      "allIdenticalDuplicates": true
+    },
+    {
+      "id": "G2T6",
+      "rootKeyShort": "t__e__e__e…ingle:hard",
+      "ms": 5.954,
+      "value": -1302.421052631579,
+      "mate": null,
+      "action": "D",
+      "plan": [
+        "R",
+        "U",
+        "R",
+        "D"
+      ],
+      "completed": true,
+      "nodes": 22,
+      "chanceNodes": 0,
+      "profilerLegalActionsCalls": 23,
+      "profilerTransitionCalls": 75,
+      "ruleCalls": 174,
+      "actionTransitionCalls": 123,
+      "duplicateGroups": 36,
+      "duplicateCalls": 59,
+      "nonIdenticalDuplicateGroups": 0,
+      "histogram": {
+        "1": 79,
+        "2": 26,
+        "3": 7,
+        "5": 2,
+        "12": 1
+      },
+      "chanceGroups": 0,
+      "chanceDuplicateGroups": 0,
+      "chanceNonIdentical": 0,
+      "rootActionCounts": {
+        "catMove:U": 1,
+        "catMove:D": 3,
+        "catMove:L": 2,
+        "catMove:R": 2
+      },
+      "rootCandidateCount": 4,
+      "searchOnly": {
+        "ruleCalls": 134,
+        "duplicateGroups": 13,
+        "duplicateCalls": 19,
+        "nonIdenticalDuplicateGroups": 0,
+        "histogram": {
+          "1": 102,
+          "2": 8,
+          "3": 4,
+          "4": 1
+        },
+        "rootActionCounts": {
+          "catMove:U": 1,
+          "catMove:D": 1,
+          "catMove:L": 1,
+          "catMove:R": 1
+        },
+        "nodes": 22
+      },
+      "samples": [
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 12,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "R",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 5,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "R",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 5,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "D",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "D",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "U",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        }
+      ],
+      "allIdenticalDuplicates": true
+    },
+    {
+      "id": "G2T7",
+      "rootKeyShort": "t__e__e__e…ingle:hard",
+      "ms": 5.815,
+      "value": -1604.5263157894738,
+      "mate": null,
+      "action": "U",
+      "plan": [
+        "U",
+        "R",
+        "U",
+        "U"
+      ],
+      "completed": true,
+      "nodes": 26,
+      "chanceNodes": 0,
+      "profilerLegalActionsCalls": 27,
+      "profilerTransitionCalls": 94,
+      "ruleCalls": 169,
+      "actionTransitionCalls": 119,
+      "duplicateGroups": 19,
+      "duplicateCalls": 37,
+      "nonIdenticalDuplicateGroups": 0,
+      "histogram": {
+        "1": 113,
+        "2": 6,
+        "3": 8,
+        "4": 5
+      },
+      "chanceGroups": 0,
+      "chanceDuplicateGroups": 0,
+      "chanceNonIdentical": 0,
+      "rootActionCounts": {
+        "catMove:U": 3,
+        "catMove:D": 1,
+        "catMove:L": 1,
+        "catMove:R": 2
+      },
+      "rootCandidateCount": 4,
+      "searchOnly": {
+        "ruleCalls": 156,
+        "duplicateGroups": 12,
+        "duplicateCalls": 24,
+        "nonIdenticalDuplicateGroups": 0,
+        "histogram": {
+          "1": 120,
+          "2": 4,
+          "3": 4,
+          "4": 4
+        },
+        "rootActionCounts": {
+          "catMove:U": 1,
+          "catMove:D": 1,
+          "catMove:L": 1,
+          "catMove:R": 1
+        },
+        "nodes": 26
+      },
+      "samples": [
+        {
+          "fn": "catMove",
+          "action": "U",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "U",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        }
+      ],
+      "allIdenticalDuplicates": true
+    },
+    {
+      "id": "G2T8",
+      "rootKeyShort": "t__e__e__e…ingle:hard",
+      "ms": 17.781,
+      "value": -1283.9035087719299,
+      "mate": null,
+      "action": "D",
+      "plan": [
+        "D",
+        "D",
+        "D",
+        "R"
+      ],
+      "completed": true,
+      "nodes": 65,
+      "chanceNodes": 149,
+      "profilerLegalActionsCalls": 66,
+      "profilerTransitionCalls": 228,
+      "ruleCalls": 433,
+      "actionTransitionCalls": 282,
+      "duplicateGroups": 33,
+      "duplicateCalls": 63,
+      "nonIdenticalDuplicateGroups": 0,
+      "histogram": {
+        "1": 337,
+        "2": 17,
+        "3": 8,
+        "4": 6,
+        "6": 1,
+        "8": 1
+      },
+      "chanceGroups": 96,
+      "chanceDuplicateGroups": 29,
+      "chanceNonIdentical": 0,
+      "rootActionCounts": {
+        "catMove:U": 1,
+        "catMove:D": 3,
+        "catMove:L": 1,
+        "catMove:R": 1
+      },
+      "rootCandidateCount": 4,
+      "searchOnly": {
+        "ruleCalls": 423,
+        "duplicateGroups": 29,
+        "duplicateCalls": 53,
+        "nonIdenticalDuplicateGroups": 0,
+        "histogram": {
+          "1": 341,
+          "2": 18,
+          "3": 4,
+          "4": 5,
+          "6": 1,
+          "8": 1
+        },
+        "rootActionCounts": {
+          "catMove:U": 1,
+          "catMove:D": 1,
+          "catMove:L": 1,
+          "catMove:R": 1
+        },
+        "nodes": 65
+      },
+      "samples": [
+        {
+          "fn": "resolveGhostBoundaryChance",
+          "action": "-",
+          "inKey": "t__e__b__e…ingle:hard",
+          "count": 8,
+          "identical": true,
+          "outKinds": [
+            "outcomes",
+            "outcomes",
+            "outcomes",
+            "outcomes",
+            "outcomes",
+            "outcomes",
+            "outcomes",
+            "outcomes"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "weights": [
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ]
+          ]
+        },
+        {
+          "fn": "resolveGhostBoundaryChance",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 6,
+          "identical": true,
+          "outKinds": [
+            "outcomes",
+            "outcomes",
+            "outcomes",
+            "outcomes",
+            "outcomes",
+            "outcomes"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "weights": [
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ]
+          ]
+        },
+        {
+          "fn": "resolveGhostBoundaryChance",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "outcomes",
+            "outcomes",
+            "outcomes",
+            "outcomes"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "weights": [
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ]
+          ]
+        },
+        {
+          "fn": "resolveGhostBoundaryChance",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "outcomes",
+            "outcomes",
+            "outcomes",
+            "outcomes"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "weights": [
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ]
+          ]
+        },
+        {
+          "fn": "resolveGhostBoundaryChance",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "outcomes",
+            "outcomes",
+            "outcomes",
+            "outcomes"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "weights": [
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ]
+          ]
+        },
+        {
+          "fn": "resolveGhostBoundaryChance",
+          "action": "-",
+          "inKey": "t__e__b__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "outcomes",
+            "outcomes",
+            "outcomes",
+            "outcomes"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "weights": [
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ]
+          ]
+        }
+      ],
+      "allIdenticalDuplicates": true
+    },
+    {
+      "id": "G1T1",
+      "rootKeyShort": "t__e__e__e…ingle:hard",
+      "ms": 36.932,
+      "value": -490.0526315789473,
+      "mate": null,
+      "action": "T",
+      "plan": [
+        "T",
+        "D",
+        "D",
+        "D",
+        "D"
+      ],
+      "completed": true,
+      "nodes": 141,
+      "chanceNodes": 0,
+      "profilerLegalActionsCalls": 142,
+      "profilerTransitionCalls": 498,
+      "ruleCalls": 918,
+      "actionTransitionCalls": 608,
+      "duplicateGroups": 70,
+      "duplicateCalls": 132,
+      "nonIdenticalDuplicateGroups": 0,
+      "histogram": {
+        "1": 716,
+        "2": 41,
+        "3": 16,
+        "4": 6,
+        "6": 4,
+        "8": 3
+      },
+      "chanceGroups": 0,
+      "chanceDuplicateGroups": 0,
+      "chanceNonIdentical": 0,
+      "rootActionCounts": {
+        "catMove:U": 1,
+        "catMove:D": 1,
+        "catMove:L": 1,
+        "catMove:R": 1,
+        "catPlaceTrap:trap": 3
+      },
+      "rootCandidateCount": 5,
+      "searchOnly": {
+        "ruleCalls": 906,
+        "duplicateGroups": 64,
+        "duplicateCalls": 120,
+        "nonIdenticalDuplicateGroups": 0,
+        "histogram": {
+          "1": 722,
+          "2": 41,
+          "3": 10,
+          "4": 6,
+          "6": 4,
+          "8": 3
+        },
+        "rootActionCounts": {
+          "catMove:U": 1,
+          "catMove:D": 1,
+          "catMove:L": 1,
+          "catMove:R": 1,
+          "catPlaceTrap:trap": 1
+        },
+        "nodes": 141
+      },
+      "samples": [
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 8,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 8,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 8,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 6,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 6,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 6,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        }
+      ],
+      "allIdenticalDuplicates": true
+    },
+    {
+      "id": "G1T2",
+      "rootKeyShort": "t__e__e__e…ingle:hard",
+      "ms": 8.575,
+      "value": 459.68421052631584,
+      "mate": null,
+      "action": "D",
+      "plan": [
+        "D",
+        "R",
+        "R",
+        "D"
+      ],
+      "completed": true,
+      "nodes": 31,
+      "chanceNodes": 0,
+      "profilerLegalActionsCalls": 32,
+      "profilerTransitionCalls": 115,
+      "ruleCalls": 208,
+      "actionTransitionCalls": 139,
+      "duplicateGroups": 22,
+      "duplicateCalls": 41,
+      "nonIdenticalDuplicateGroups": 0,
+      "histogram": {
+        "1": 145,
+        "2": 9,
+        "3": 7,
+        "4": 6
+      },
+      "chanceGroups": 0,
+      "chanceDuplicateGroups": 0,
+      "chanceNonIdentical": 0,
+      "rootActionCounts": {
+        "catMove:U": 1,
+        "catMove:D": 3,
+        "catMove:L": 1,
+        "catMove:R": 2
+      },
+      "rootCandidateCount": 4,
+      "searchOnly": {
+        "ruleCalls": 195,
+        "duplicateGroups": 15,
+        "duplicateCalls": 28,
+        "nonIdenticalDuplicateGroups": 0,
+        "histogram": {
+          "1": 152,
+          "2": 7,
+          "3": 3,
+          "4": 5
+        },
+        "rootActionCounts": {
+          "catMove:U": 1,
+          "catMove:D": 1,
+          "catMove:L": 1,
+          "catMove:R": 1
+        },
+        "nodes": 31
+      },
+      "samples": [
+        {
+          "fn": "catMove",
+          "action": "R",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ]
+        }
+      ],
+      "allIdenticalDuplicates": true
+    },
+    {
+      "id": "G1T3",
+      "rootKeyShort": "t__e__e__e…ingle:hard",
+      "ms": 4.736,
+      "value": 63.89473684210526,
+      "mate": null,
+      "action": "R",
+      "plan": [
+        "R",
+        "R",
+        "R",
+        "R"
+      ],
+      "completed": true,
+      "nodes": 23,
+      "chanceNodes": 0,
+      "profilerLegalActionsCalls": 24,
+      "profilerTransitionCalls": 85,
+      "ruleCalls": 146,
+      "actionTransitionCalls": 104,
+      "duplicateGroups": 17,
+      "duplicateCalls": 31,
+      "nonIdenticalDuplicateGroups": 0,
+      "histogram": {
+        "1": 98,
+        "2": 6,
+        "3": 8,
+        "4": 3
+      },
+      "chanceGroups": 0,
+      "chanceDuplicateGroups": 0,
+      "chanceNonIdentical": 0,
+      "rootActionCounts": {
+        "catMove:U": 1,
+        "catMove:D": 1,
+        "catMove:L": 1,
+        "catMove:R": 3
+      },
+      "rootCandidateCount": 4,
+      "searchOnly": {
+        "ruleCalls": 136,
+        "duplicateGroups": 12,
+        "duplicateCalls": 21,
+        "nonIdenticalDuplicateGroups": 0,
+        "histogram": {
+          "1": 103,
+          "2": 6,
+          "3": 3,
+          "4": 3
+        },
+        "rootActionCounts": {
+          "catMove:U": 1,
+          "catMove:D": 1,
+          "catMove:L": 1,
+          "catMove:R": 1
+        },
+        "nodes": 23
+      },
+      "samples": [
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "R",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "R",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "R",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        }
+      ],
+      "allIdenticalDuplicates": true
+    },
+    {
+      "id": "G1T4",
+      "rootKeyShort": "t__e__e__e…ingle:hard",
+      "ms": 4.414,
+      "value": -1407.6842105263158,
+      "mate": null,
+      "action": "U",
+      "plan": [
+        "U",
+        "L",
+        "D",
+        "R"
+      ],
+      "completed": true,
+      "nodes": 18,
+      "chanceNodes": 0,
+      "profilerLegalActionsCalls": 19,
+      "profilerTransitionCalls": 59,
+      "ruleCalls": 173,
+      "actionTransitionCalls": 135,
+      "duplicateGroups": 38,
+      "duplicateCalls": 87,
+      "nonIdenticalDuplicateGroups": 0,
+      "histogram": {
+        "1": 48,
+        "2": 17,
+        "3": 11,
+        "4": 4,
+        "5": 4,
+        "6": 1,
+        "16": 1
+      },
+      "chanceGroups": 0,
+      "chanceDuplicateGroups": 0,
+      "chanceNonIdentical": 0,
+      "rootActionCounts": {
+        "catMove:U": 3,
+        "catMove:D": 2,
+        "catMove:L": 2,
+        "catMove:R": 2
+      },
+      "rootCandidateCount": 4,
+      "searchOnly": {
+        "ruleCalls": 102,
+        "duplicateGroups": 8,
+        "duplicateCalls": 16,
+        "nonIdenticalDuplicateGroups": 0,
+        "histogram": {
+          "1": 78,
+          "2": 3,
+          "3": 2,
+          "4": 3
+        },
+        "rootActionCounts": {
+          "catMove:U": 1,
+          "catMove:D": 1,
+          "catMove:L": 1,
+          "catMove:R": 1
+        },
+        "nodes": 18
+      },
+      "samples": [
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 16,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "U",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 6,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "D",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 5,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "L",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 5,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "R",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 5,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "R",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 5,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        }
+      ],
+      "allIdenticalDuplicates": true
+    },
+    {
+      "id": "G1T5",
+      "rootKeyShort": "t__e__e__e…ingle:hard",
+      "ms": 6.608,
+      "value": -534.6578947368421,
+      "mate": null,
+      "action": "U",
+      "plan": [
+        "U",
+        "L",
+        "U",
+        "L"
+      ],
+      "completed": true,
+      "nodes": 21,
+      "chanceNodes": 0,
+      "profilerLegalActionsCalls": 22,
+      "profilerTransitionCalls": 72,
+      "ruleCalls": 143,
+      "actionTransitionCalls": 96,
+      "duplicateGroups": 13,
+      "duplicateCalls": 23,
+      "nonIdenticalDuplicateGroups": 0,
+      "histogram": {
+        "1": 107,
+        "2": 5,
+        "3": 6,
+        "4": 2
+      },
+      "chanceGroups": 0,
+      "chanceDuplicateGroups": 0,
+      "chanceNonIdentical": 0,
+      "rootActionCounts": {
+        "catMove:U": 3,
+        "catMove:D": 1,
+        "catMove:L": 1,
+        "catMove:R": 1
+      },
+      "rootCandidateCount": 4,
+      "searchOnly": {
+        "ruleCalls": 133,
+        "duplicateGroups": 9,
+        "duplicateCalls": 13,
+        "nonIdenticalDuplicateGroups": 0,
+        "histogram": {
+          "1": 111,
+          "2": 6,
+          "3": 2,
+          "4": 1
+        },
+        "rootActionCounts": {
+          "catMove:U": 1,
+          "catMove:D": 1,
+          "catMove:L": 1,
+          "catMove:R": 1
+        },
+        "nodes": 21
+      },
+      "samples": [
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "U",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "L",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "U",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "L",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        }
+      ],
+      "allIdenticalDuplicates": true
+    },
+    {
+      "id": "G1T6",
+      "rootKeyShort": "t__e__e__e…ingle:hard",
+      "ms": 11.17,
+      "value": -135.6578947368421,
+      "mate": null,
+      "action": "U",
+      "plan": [
+        "U",
+        "R",
+        "R",
+        "D"
+      ],
+      "completed": true,
+      "nodes": 38,
+      "chanceNodes": 89,
+      "profilerLegalActionsCalls": 39,
+      "profilerTransitionCalls": 143,
+      "ruleCalls": 258,
+      "actionTransitionCalls": 167,
+      "duplicateGroups": 25,
+      "duplicateCalls": 46,
+      "nonIdenticalDuplicateGroups": 0,
+      "histogram": {
+        "1": 187,
+        "2": 11,
+        "3": 7,
+        "4": 7
+      },
+      "chanceGroups": 56,
+      "chanceDuplicateGroups": 19,
+      "chanceNonIdentical": 0,
+      "rootActionCounts": {
+        "catMove:U": 3,
+        "catMove:D": 1,
+        "catMove:L": 1,
+        "catMove:R": 2
+      },
+      "rootCandidateCount": 4,
+      "searchOnly": {
+        "ruleCalls": 245,
+        "duplicateGroups": 18,
+        "duplicateCalls": 33,
+        "nonIdenticalDuplicateGroups": 0,
+        "histogram": {
+          "1": 194,
+          "2": 9,
+          "3": 3,
+          "4": 6
+        },
+        "rootActionCounts": {
+          "catMove:U": 1,
+          "catMove:D": 1,
+          "catMove:L": 1,
+          "catMove:R": 1
+        },
+        "nodes": 38
+      },
+      "samples": [
+        {
+          "fn": "catMove",
+          "action": "R",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "resolveGhostBoundaryChance",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "outcomes",
+            "outcomes",
+            "outcomes",
+            "outcomes"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "weights": [
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ]
+          ]
+        },
+        {
+          "fn": "resolveGhostBoundaryChance",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "outcomes",
+            "outcomes",
+            "outcomes",
+            "outcomes"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "weights": [
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ]
+          ]
+        },
+        {
+          "fn": "resolveGhostBoundaryChance",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "outcomes",
+            "outcomes",
+            "outcomes",
+            "outcomes"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "weights": [
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ]
+          ]
+        },
+        {
+          "fn": "resolveGhostBoundaryChance",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "outcomes",
+            "outcomes",
+            "outcomes",
+            "outcomes"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "weights": [
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ]
+          ]
+        },
+        {
+          "fn": "resolveGhostBoundaryChance",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "outcomes",
+            "outcomes",
+            "outcomes",
+            "outcomes"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "weights": [
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ]
+          ]
+        }
+      ],
+      "allIdenticalDuplicates": true
+    },
+    {
+      "id": "G1T7",
+      "rootKeyShort": "t__e__e__e…ingle:hard",
+      "ms": 8.63,
+      "value": 69.96338672768866,
+      "mate": null,
+      "action": "R",
+      "plan": [
+        "R",
+        "R",
+        "R",
+        "L"
+      ],
+      "completed": true,
+      "nodes": 30,
+      "chanceNodes": 0,
+      "profilerLegalActionsCalls": 31,
+      "profilerTransitionCalls": 110,
+      "ruleCalls": 200,
+      "actionTransitionCalls": 132,
+      "duplicateGroups": 17,
+      "duplicateCalls": 30,
+      "nonIdenticalDuplicateGroups": 0,
+      "histogram": {
+        "1": 153,
+        "2": 6,
+        "3": 9,
+        "4": 2
+      },
+      "chanceGroups": 0,
+      "chanceDuplicateGroups": 0,
+      "chanceNonIdentical": 0,
+      "rootActionCounts": {
+        "catMove:U": 1,
+        "catMove:D": 1,
+        "catMove:L": 1,
+        "catMove:R": 3
+      },
+      "rootCandidateCount": 4,
+      "searchOnly": {
+        "ruleCalls": 190,
+        "duplicateGroups": 12,
+        "duplicateCalls": 20,
+        "nonIdenticalDuplicateGroups": 0,
+        "histogram": {
+          "1": 158,
+          "2": 6,
+          "3": 4,
+          "4": 2
+        },
+        "rootActionCounts": {
+          "catMove:U": 1,
+          "catMove:D": 1,
+          "catMove:L": 1,
+          "catMove:R": 1
+        },
+        "nodes": 30
+      },
+      "samples": [
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "R",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "R",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "R",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "L",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        }
+      ],
+      "allIdenticalDuplicates": true
+    },
+    {
+      "id": "G1T8",
+      "rootKeyShort": "t__e__e__e…ingle:hard",
+      "ms": 6.943,
+      "value": -1775.578947368421,
+      "mate": null,
+      "action": "L",
+      "plan": [
+        "L",
+        "L",
+        "U",
+        "R"
+      ],
+      "completed": true,
+      "nodes": 24,
+      "chanceNodes": 0,
+      "profilerLegalActionsCalls": 25,
+      "profilerTransitionCalls": 84,
+      "ruleCalls": 158,
+      "actionTransitionCalls": 108,
+      "duplicateGroups": 14,
+      "duplicateCalls": 23,
+      "nonIdenticalDuplicateGroups": 0,
+      "histogram": {
+        "1": 121,
+        "2": 5,
+        "3": 9
+      },
+      "chanceGroups": 0,
+      "chanceDuplicateGroups": 0,
+      "chanceNonIdentical": 0,
+      "rootActionCounts": {
+        "catMove:U": 1,
+        "catMove:D": 1,
+        "catMove:L": 3,
+        "catMove:R": 1
+      },
+      "rootCandidateCount": 4,
+      "searchOnly": {
+        "ruleCalls": 148,
+        "duplicateGroups": 9,
+        "duplicateCalls": 13,
+        "nonIdenticalDuplicateGroups": 0,
+        "histogram": {
+          "1": 126,
+          "2": 5,
+          "3": 4
+        },
+        "rootActionCounts": {
+          "catMove:U": 1,
+          "catMove:D": 1,
+          "catMove:L": 1,
+          "catMove:R": 1
+        },
+        "nodes": 24
+      },
+      "samples": [
+        {
+          "fn": "catMove",
+          "action": "L",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "L",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "U",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "R",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "endTurn",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        }
+      ],
+      "allIdenticalDuplicates": true
+    },
+    {
+      "id": "G1T9",
+      "rootKeyShort": "t__e__e__e…ingle:hard",
+      "ms": 6.756,
+      "value": -1526.0526315789475,
+      "mate": null,
+      "action": "L",
+      "plan": [
+        "L",
+        "L",
+        "D",
+        "L"
+      ],
+      "completed": true,
+      "nodes": 27,
+      "chanceNodes": 51,
+      "profilerLegalActionsCalls": 28,
+      "profilerTransitionCalls": 95,
+      "ruleCalls": 173,
+      "actionTransitionCalls": 120,
+      "duplicateGroups": 16,
+      "duplicateCalls": 28,
+      "nonIdenticalDuplicateGroups": 0,
+      "histogram": {
+        "1": 129,
+        "2": 5,
+        "3": 10,
+        "4": 1
+      },
+      "chanceGroups": 33,
+      "chanceDuplicateGroups": 12,
+      "chanceNonIdentical": 0,
+      "rootActionCounts": {
+        "catMove:U": 1,
+        "catMove:D": 1,
+        "catMove:L": 3,
+        "catMove:R": 1
+      },
+      "rootCandidateCount": 4,
+      "searchOnly": {
+        "ruleCalls": 163,
+        "duplicateGroups": 11,
+        "duplicateCalls": 18,
+        "nonIdenticalDuplicateGroups": 0,
+        "histogram": {
+          "1": 134,
+          "2": 5,
+          "3": 5,
+          "4": 1
+        },
+        "rootActionCounts": {
+          "catMove:U": 1,
+          "catMove:D": 1,
+          "catMove:L": 1,
+          "catMove:R": 1
+        },
+        "nodes": 27
+      },
+      "samples": [
+        {
+          "fn": "resolveGhostBoundaryChance",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 4,
+          "identical": true,
+          "outKinds": [
+            "outcomes",
+            "outcomes",
+            "outcomes",
+            "outcomes"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "weights": [
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ]
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "L",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "L",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "D",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "catMove",
+          "action": "L",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "state",
+            "state",
+            "state"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "fn": "resolveGhostBoundaryChance",
+          "action": "-",
+          "inKey": "t__e__e__e…ingle:hard",
+          "count": 3,
+          "identical": true,
+          "outKinds": [
+            "outcomes",
+            "outcomes",
+            "outcomes"
+          ],
+          "outSizes": [
+            1,
+            1,
+            1
+          ],
+          "weights": [
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ]
+          ]
+        }
+      ],
+      "allIdenticalDuplicates": true
+    }
+  ],
+  "syntheticChanceRoot": {
+    "base": "G6T2",
+    "note": "butter injected at (0,6) adjacent to mouse (1,6)",
+    "rootKeyShort": "t__e__e__e…ingle:hard",
+    "ms": 5.313,
+    "value": -682.7368421052631,
+    "mate": null,
+    "action": "R",
+    "completed": true,
+    "nodes": 0,
+    "chanceNodes": 1,
+    "chanceGroups": [
+      {
+        "fn": "buildButterChance",
+        "inKey": "t__e__e__e…ingle:hard",
+        "count": 1,
+        "identical": true,
+        "outSizes": [
+          28
+        ],
+        "weights": [
+          [
+            0.03571428571428571,
+            0.03571428571428571,
+            0.03571428571428571,
+            0.03571428571428571,
+            0.03571428571428571,
+            0.03571428571428571,
+            0.03571428571428571,
+            0.03571428571428571,
+            0.03571428571428571,
+            0.03571428571428571,
+            0.03571428571428571,
+            0.03571428571428571,
+            0.03571428571428571,
+            0.03571428571428571,
+            0.03571428571428571,
+            0.03571428571428571,
+            0.03571428571428571,
+            0.03571428571428571,
+            0.03571428571428571,
+            0.03571428571428571,
+            0.03571428571428571,
+            0.03571428571428571,
+            0.03571428571428571,
+            0.03571428571428571,
+            0.03571428571428571,
+            0.03571428571428571,
+            0.03571428571428571,
+            0.03571428571428571
+          ]
+        ]
+      }
+    ],
+    "ruleCalls": 5,
+    "duplicateGroups": 0,
+    "nonIdenticalDuplicateGroups": 0
+  }
+}

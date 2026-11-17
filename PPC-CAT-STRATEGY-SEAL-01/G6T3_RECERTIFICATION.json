@@ -1,0 +1,353 @@
+{
+  "artifactId": "G6T3_RECERTIFICATION",
+  "round": "PPC-CAT-STRATEGY-SEAL-01",
+  "phase": 4,
+  "generatedAt": "2026-11-15T07:20:17.697Z",
+  "generatedBy": "PPC-CAT-STRATEGY-SEAL-01/probe/recertify.test.ts",
+  "root": "G6T3",
+  "provenance": "REAL_HUMAN_REPLAY",
+  "canonicalSnapshotSha256": "1f7d08df825314cb90276104cbc26261bc26065f66aba3bd17ed7c7b0adff6b0",
+  "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+  "horizon": {
+    "H0": 1,
+    "H1": 2
+  },
+  "cap": 600000,
+  "previousRound": {
+    "classification": "MOUSE_FORCED_WIN_WITHIN_H0",
+    "h1Nodes": 32918
+  },
+  "rootClassification": {
+    "class": "MOUSE_FORCED_WIN_WITHIN_H0",
+    "h0MouseForcedWin": true,
+    "h1MouseForcedWin": true,
+    "h1CatSurvive": false,
+    "h1CatForcedWin": false,
+    "stats": {
+      "h0": {
+        "nodes": 1568,
+        "transitions": 4900,
+        "chanceNodes": 154,
+        "chanceOutcomes": 3906,
+        "memoHits": 1306,
+        "cutoffs": 66,
+        "truncated": false,
+        "maxIdx": 1,
+        "elapsedMs": 48
+      },
+      "h1": {
+        "nodes": 263038,
+        "transitions": 802806,
+        "chanceNodes": 6870,
+        "chanceOutcomes": 178110,
+        "memoHits": 217383,
+        "cutoffs": 24608,
+        "truncated": false,
+        "maxIdx": 3,
+        "elapsedMs": 8306
+      },
+      "survive": {
+        "nodes": 215922,
+        "transitions": 645037,
+        "chanceNodes": 4408,
+        "chanceOutcomes": 116742,
+        "memoHits": 164423,
+        "cutoffs": 4313,
+        "truncated": false,
+        "maxIdx": 3,
+        "elapsedMs": 6609
+      },
+      "catForce": {
+        "nodes": 5980,
+        "transitions": 8902,
+        "chanceNodes": 0,
+        "chanceOutcomes": 0,
+        "memoHits": 1602,
+        "cutoffs": 4913,
+        "truncated": false,
+        "maxIdx": 3,
+        "elapsedMs": 166
+      }
+    }
+  },
+  "h0MouseCertificate": {
+    "verdict": "PROVEN",
+    "ok": true,
+    "leaves": 457,
+    "branches": 45,
+    "chanceNodes": 0,
+    "maxDepth": 7,
+    "policyMisses": 0,
+    "reason": null,
+    "counterexample": null,
+    "elapsedMs": 10,
+    "policySize": 66,
+    "policy": [
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__ec_e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__em_m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#4,6#8,7#0#1#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "R"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__ec_e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__em_m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#4,6#7,7#0#2#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "D"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__ec_e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__em_e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#4,6#7,6#0#3#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "R"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__ec_b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__em_m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,7#8,7#0#1#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "R"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__ec_b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__em_m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,7#7,7#0#2#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "D"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__ec_b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__em_e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,7#7,6#0#3#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "R"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__em_m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#8,7#0#1#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "R"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__em_m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#7,7#0#2#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "D"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__em_e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#7,6#0#3#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "R"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__e__b__ec_e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__em_m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,7#0#1#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "R"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__e__b__ec_e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__em_m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#7,7#0#2#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "D"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__e__b__ec_e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__em_e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#7,6#0#3#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "R"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__e__e__b__e__e__e__e__e__b__p__e__ec_b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__em_m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,7#8,7#0#1#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "R"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__e__e__b__e__e__e__e__e__b__p__e__ec_b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__em_m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,7#7,7#0#2#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "D"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__e__e__b__e__e__e__e__e__b__p__e__ec_b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__em_e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,7#7,6#0#3#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "R"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__e__e__e__e__e__e__e__e__b__p__e__ec_b__e__e__p__e__e__e__e__e__b__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__em_m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,7#8,7#0#1#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "R"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__e__e__e__e__e__e__e__e__b__p__e__ec_b__e__e__p__e__e__e__e__e__b__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__em_m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,7#7,7#0#2#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "D"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__e__e__e__e__e__e__e__e__b__p__e__ec_b__e__e__p__e__e__e__e__e__b__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__em_e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,7#7,6#0#3#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "R"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__e__e__ec_b__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__em_m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,7#0#1#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "R"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__e__e__ec_b__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__em_m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#7,7#0#2#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "D"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__e__e__ec_b__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__em_e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#7,6#0#3#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "R"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__e__e__ec_e__e__e__e__e__b__p__e__b__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__em_m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,7#0#1#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "R"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__e__e__ec_e__e__e__e__e__b__p__e__b__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__em_m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#7,7#0#2#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "D"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__e__e__ec_e__e__e__e__e__b__p__e__b__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__em_e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#7,6#0#3#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "R"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__ec_b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__em_m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,6#8,7#0#1#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "R"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__ec_b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__em_m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,6#7,7#0#2#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "D"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__ec_b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__em_e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,6#7,6#0#3#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "R"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__ec_e__b__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__em_m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,6#8,7#0#1#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "R"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__ec_e__b__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__em_m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,6#7,7#0#2#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "D"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__ec_e__b__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__em_e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,6#7,6#0#3#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "R"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__ec_e__e__e__e__e__e__e__b__p__e__b__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__em_m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,6#8,7#0#1#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "R"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__ec_e__e__e__e__e__e__e__b__p__e__b__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__em_m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,6#7,7#0#2#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "D"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__ec_e__e__e__e__e__e__e__b__p__e__b__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__em_e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,6#7,6#0#3#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "R"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__ec_e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__em_m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,2#8,7#0#1#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "R"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__ec_e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__em_m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,2#7,7#0#2#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "D"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__ec_e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__em_e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,2#7,6#0#3#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "R"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__ec_e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__em_m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#1,9#8,7#0#1#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "R"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__ec_e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__em_m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#1,9#7,7#0#2#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "D"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__ec_e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__em_e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#1,9#7,6#0#3#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "R"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__ec_e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__em_m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#1,7#8,7#0#1#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "R"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__ec_e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__em_m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#1,7#7,7#0#2#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "D"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__ec_e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__em_e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#1,7#7,6#0#3#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "R"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__ec_e__e__e__e__e__e__b__b__e__e__b__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__em_m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#1,7#8,7#0#1#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "R"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__ec_e__e__e__e__e__e__b__b__e__e__b__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__em_m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#1,7#7,7#0#2#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "D"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__ec_e__e__e__e__e__e__b__b__e__e__b__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__em_e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#1,7#7,6#0#3#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "R"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__ec_e__e__e__e__e__e__b__b__e__e__e__e__e__e__e__e__b__p__e__b__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__em_m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#1,7#8,7#0#1#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "R"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__ec_e__e__e__e__e__e__b__b__e__e__e__e__e__e__e__e__b__p__e__b__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__em_m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#1,7#7,7#0#2#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "D"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__ec_e__e__e__e__e__e__b__b__e__e__e__e__e__e__e__e__b__p__e__b__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__em_e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#1,7#7,6#0#3#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "R"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__em_m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#1,5#8,7#0#1#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "R"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__em_m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#1,5#7,7#0#2#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "D"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__em_e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#1,5#7,6#0#3#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "R"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__ec_e__e__e__e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__em_m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#1,3#8,7#0#1#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "R"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__ec_e__e__e__e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__em_m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#1,3#7,7#0#2#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "D"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__e__t__e__e__b__ec_e__e__e__e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__em_e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#1,3#7,6#0#3#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "R"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__ec_t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__em_m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#0,8#8,7#0#1#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "R"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__ec_t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__em_m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#0,8#7,7#0#2#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "D"
+      ],
+      [
+        "1|t__e__e__e__e__e__e__e__ec_t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__em_e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#0,8#7,6#0#3#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "R"
+      ],
+      [
+        "1|t__e__e__e__e__e__ec_e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__em_m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#0,6#8,7#0#1#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "R"
+      ],
+      [
+        "1|t__e__e__e__e__e__ec_e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__em_m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#0,6#7,7#0#2#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "D"
+      ],
+      [
+        "1|t__e__e__e__e__e__ec_e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__em_e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#0,6#7,6#0#3#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "R"
+      ],
+      [
+        "1|t__e__e__e__ec_e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__em_m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#0,4#8,7#0#1#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "R"
+      ],
+      [
+        "1|t__e__e__e__ec_e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__em_m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#0,4#7,7#0#2#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "D"
+      ],
+      [
+        "1|t__e__e__e__ec_e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__em_e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#0,4#7,6#0#3#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "R"
+      ],
+      [
+        "1|t__e__ec_e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__em_m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#0,2#8,7#0#1#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "R"
+      ],
+      [
+        "1|t__e__ec_e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__em_m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#0,2#7,7#0#2#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "D"
+      ],
+      [
+        "1|t__e__ec_e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__em_e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#0,2#7,6#0#3#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "R"
+      ]
+    ]
+  },
+  "elapsedMs": 15140
+}

@@ -1,0 +1,91 @@
+{
+  "round": "PPC-D2-PCV-COUNTERLINE-01",
+  "phase": "D2_SINGLE_ROOT_PILOT",
+  "generatedAt": "2026-11-16T09:15:00.000Z",
+  "verdictVocabulary": ["PASS", "FAIL", "BLOCKED", "NOT_PERFORMED"],
+  "overallVerdict": "BLOCKED_BEFORE_G2",
+  "gates": {
+    "G0_IDENTITY": "PASS",
+    "G0_RESOURCE_ADMISSION": "FAIL",
+    "G0_DUPLICATE_BENCHMARK": "PASS",
+    "G0_RESIDUAL_HEAVY_WORKER": "FAIL",
+    "G1_SOURCE_CONTRACT_AUDIT": "PASS",
+    "G1_BRANCH_IDENTITY_PROVABLE": "BLOCKED",
+    "G2_D2_FIXED_DEPTH_PILOT": "NOT_PERFORMED",
+    "G3_CANDIDATE_FREEZE": "NOT_PERFORMED",
+    "G4_PCV_H0": "NOT_PERFORMED",
+    "G4_PCV_H1": "NOT_PERFORMED",
+    "G5_FRESH_PROCESS_REPETITIONS": "NOT_PERFORMED"
+  },
+  "blockers": [
+    {
+      "id": "RESOURCE_ADMISSION",
+      "detail": "At admission: FREE_PHYS_MB=755 (gate 4096), FREE_COMMIT_MB=4957 (gate 8192); 5 preflight samples, none passing. Postflight: FREE_PHYS_MB=1815 (still FAIL), FREE_COMMIT_MB=8298 (transiently passed). FREE_PHYS peaked at 2094 across the whole window, so physical memory is the binding constraint.",
+      "authority": "brief section 3",
+      "actionTaken": "read-only audit then stop; no pagefile / V8 heap / concurrency workaround"
+    },
+    {
+      "id": "CONCURRENT_HEAVY_WORKER",
+      "detail": "vitest run for PPC-MCTS-01B alive in the same workspace (pids 41868 / 27920 / 7560)",
+      "authority": "brief section 3 (no killing unrelated processes) + section 8 (no concurrent heavy jobs)",
+      "actionTaken": "recorded only; nothing terminated"
+    },
+    {
+      "id": "BRANCH_IDENTITY_UNVERIFIED",
+      "detail": "planBranches is keyed by stateKey only; per-root-action extraction is sound in principle under this strict config but the two empirical preconditions (repetitions===0, zero conflicting writes) were NOT measured this round",
+      "authority": "brief section 4.3 stop clause",
+      "actionTaken": "reported as BLOCKED, awaiting ChatGPT arbitration"
+    }
+  ],
+  "configThatWouldHaveBeenUsed": {
+    "pilots": ["G1T9/E1"],
+    "searchMode": "FIXED_DEPTH_D2",
+    "depthTurns": 2,
+    "useTT": false,
+    "useAlphaBeta": false,
+    "useMoveOrdering": false,
+    "maxThreatExtensions": 0,
+    "interceptionQuiescence": "DISABLED",
+    "wallClockDeadline": "NONE",
+    "leafEvaluator": "evaluateForCat",
+    "maxNodes": 8000000,
+    "capPolicy": "STOP_AND_MARK_UNRESOLVED"
+  },
+  "machineState": {
+    "ROUND": "PPC-D2-PCV-COUNTERLINE-01",
+    "PHASE": "D2_SINGLE_ROOT_PILOT",
+    "D2_SEARCH_COMPLETED": null,
+    "D2_NODES": null,
+    "ROOT_ACTIONS_TOTAL": null,
+    "ROOT_ACTIONS_EXACT": null,
+    "COMPLETE_CAT_PLANS": null,
+    "PLAN_IDENTITY_FAILURES": null,
+    "CANDIDATES_FROZEN": 0,
+    "UNIQUE_FRONTIERS": 0,
+    "H0_REFUTED": null,
+    "H0_UNRESOLVED": null,
+    "H1_SURVIVAL_PROVEN": null,
+    "H1_UNRESOLVED": null,
+    "PROVEN_TACTICAL_RESCUE": null,
+    "CHANCE_COMPLETE": null,
+    "VERIFY_FAILURES": null,
+    "FALSE_PROVEN": null,
+    "PRODUCTION_SOURCE_CHANGED": "NO",
+    "GAME_RULES_CHANGED": "NO",
+    "SEARCH_MATH_CHANGED": "NO",
+    "H1_CHANGED": "NO",
+    "100MS_150MS_CHANGED": "NO",
+    "HEAVY_WORKER_CONCURRENCY": 1,
+    "SERIAL_FRESH_REPETITIONS": "TRUE",
+    "SELF_PLAY": "NOT_PERFORMED",
+    "FULL_REGRESSION": "NOT_PERFORMED",
+    "COMMIT": "NO",
+    "PUSH": "NO",
+    "MERGE": "NO",
+    "FULL_8_STRATA_BATCH": "NOT_AUTHORIZED",
+    "PRODUCTION_WIRING": "NO",
+    "STOP_FOR_CHATGPT_REVIEW": "TRUE"
+  },
+  "nullSemantics": "null means NOT_PERFORMED (no search was run), never 'zero' and never 'unknown result'",
+  "selfHashIncluded": false
+}

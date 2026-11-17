@@ -1,0 +1,129 @@
+{
+  "artifactId": "BOUNDARY_RESULTS",
+  "round": "PPC-P1-CHECKPOINT-01",
+  "project": "Project Perfect Cat",
+  "date": "2026-11-13",
+  "scope": "Cat-turn plan-action bound: numeric representability at the top of the safe-integer range.",
+  "question": "Does a cat move budget that is a safe integer always yield a plan capacity that is also a safe integer?",
+  "answer": "No. B(M) = M + 1 + floor(M/2) is 1.5*M, so the derived bound leaves the safe range long before M does. Production code had no guard for this; the guard now exists at three layers and the arithmetic limit is derived, not chosen.",
+
+  "arithmeticPremise": {
+    "formula": "B(M) = M + 1 + floor(M/2)",
+    "independentOfProductionCode": true,
+    "values": [
+      { "M": 6004799503160660, "M_isSafeInteger": true, "B_exact": "9007199254740991", "B_isSafeInteger": true, "note": "largest M with a representable bound; B equals Number.MAX_SAFE_INTEGER" },
+      { "M": 6004799503160661, "M_isSafeInteger": true, "B_exact": "9007199254740992", "B_isSafeInteger": false, "note": "B is exactly 2^53" },
+      { "M": 6004799503160663, "M_isSafeInteger": true, "B_exact": "9007199254740995", "B_float": 9007199254740996, "B_isSafeInteger": false, "note": "the float sum is not even the exact bound: ties-to-even rounds it UP by 1, i.e. the cap would be looser than the proof allows" }
+    ],
+    "exactnessRule": "Verified with BigInt in PPC-P1-CHECKPOINT-01/probe/boundary_witness.test.ts (group A) and again in src/game/__tests__/catMoveBudgetInputDomain.test.ts (CF-9)."
+  },
+
+  "preFixState": {
+    "guardPresent": false,
+    "whatExisted": "hasCertifiableCatMoveBudget(state) === Number.isSafeInteger(catMovesLeft) && catMovesLeft >= 0 (PPC-P1-CLOSURE-FIX-01). It validated the INPUT and never the DERIVED capacity.",
+    "witnessLog": "PPC-P1-CHECKPOINT-01/logs/02_boundary_pre_fix.log",
+    "witnessRunCommand": "HEAVY_WORKER_CONCURRENCY=1 npx vitest run --config PPC-P1-CHECKPOINT-01/probe/vitest.config.mts --maxWorkers=1 --no-file-parallelism --reporter=verbose",
+    "witnessResult": "11 tests, 7 passed, 4 FAILED — the four failures are exactly the missing contract",
+    "minimalFailingWitness": [
+      {
+        "test": "B · rejects the first M whose bound is 2^53",
+        "input": "state with catMovesLeft = 6004799503160661",
+        "observed": "hasCertifiableCatMoveBudget -> true",
+        "expected": "false",
+        "consequence": "an unrepresentable capacity (2^53) was accepted as certifiable and handed to every plan extractor"
+      },
+      {
+        "test": "B · every extractor fails closed on the unsafe edge",
+        "input": "catMovesLeft in {6004799503160661, 6004799503160662, 6004799503160663, 2^53-1}",
+        "observed": "the certification gate returns true, so no extractor refuses",
+        "expected": "buildCatTurnPlan / buildPlanForFirstAction / extractBestCatTurnPlan return empty, buildCandidate returns null, completeness returns TRUNCATED",
+        "consequence": "a plan could be certified against a bound with no exact value"
+      },
+      {
+        "test": "C · rejects the unsafe edge with the same actionable cat-budget issue",
+        "input": "GameConfig.catBaseMoves = 6004799503160661",
+        "observed": "validateGameConfig(...).ok === true",
+        "expected": "one 'invalid' issue naming 基础步数",
+        "consequence": "the config gate accepted a value whose plan capacity is not representable"
+      },
+      {
+        "test": "C · createGameState yields no state, createInitialState throws the budget RangeError",
+        "input": "GameConfig.catBaseMoves = 6004799503160661",
+        "observed": "createGameState throws RangeError: Maximum call stack size exceeded (from openingFairness.solve, not from any budget check)",
+        "expected": "state: null + status unverified; createInitialState throws a RangeError whose message names catBaseMoves",
+        "consequence": "the failure surfaced as an uncontrolled stack overflow, not as a diagnosis"
+      }
+    ]
+  },
+
+  "fix": {
+    "strategy": "Fail closed at the same three layers PPC-P1-CLOSURE-FIX-01 established, with the limit DERIVED from numeric representability.",
+    "derivation": "Solve M + 1 + floor(M/2) <= Number.MAX_SAFE_INTEGER on the even branch: M <= (MAX_SAFE_INTEGER - 1) / 3 * 2 = 6004799503160660. Implemented as that expression, not as a literal.",
+    "constant": { "name": "MAX_CERTIFIABLE_CAT_MOVE_BUDGET", "value": 6004799503160660, "expressionInSource": "((Number.MAX_SAFE_INTEGER - 1) / 3) * 2" },
+    "rejectedAlternatives": [
+      "A gameplay cap (10, 100, 1000 …) — forbidden by the round brief and by the project's rule that a number either comes from the rules or from a proof.",
+      "Math.min(bound, Number.MAX_SAFE_INTEGER) — would silently truncate a legal plan instead of refusing an unrepresentable state.",
+      "Infinity as the substitute bound — removes the only thing that makes the DP memo sound (planBound.ts header, TERMINATION paragraph).",
+      "Accepting the state and letting the extractors run — an unrepresentable capacity is not a large cap, it is a cap with no exact value."
+    ],
+    "layers": [
+      { "layer": "config", "file": "src/game/config.ts", "change": "validateGameConfig emits one 'invalid' issue when catBaseMoves > MAX_CERTIFIABLE_CAT_MOVE_BUDGET", "effect": "createGameState returns state: null / unverified / INVALID_CONFIG" },
+      { "layer": "raw constructor", "file": "src/game/engine.ts", "change": "createInitialState throws an explicit RangeError naming catBaseMoves", "effect": "no backdoor; no silent clamp or floor" },
+      { "layer": "plan predicate", "file": "src/game/ai/planBound.ts", "change": "catMoveBudgetRejectionReason + hasCertifiableCatMoveBudget now also require the DERIVED bound to be representable", "effect": "all four extractors + the completeness checker fail closed through the single existing gate" },
+      { "layer": "diagnosis", "file": "src/game/ai/planQuality.ts", "change": "the TRUNCATED verdict quotes the real reason instead of the fixed 'not a non-negative safe integer' string", "effect": "the two failure families are no longer conflated in the log" }
+    ],
+    "filesChanged": [
+      { "path": "src/game/ai/planBound.ts", "preSha256": "f1427ae19dd6f87db30190209de02f39541f197691c60349fb99d04e242a49cb", "postSha256": "4a212b75de6b5c47b6402c0745593169f6271a06d0f91fed99b7479f679b3dab", "preBytes": 5615, "postBytes": 8012 },
+      { "path": "src/game/config.ts", "preSha256": "978c6c9f35553cad09f81bb96feda494e0f429799b61a9bf6dd4fb0fd104e900", "postSha256": "60e38c491c81f0b6d962bd32b306373de462cffcc9508b76c5bed02f9f70caae", "preBytes": 13975, "postBytes": 15048 },
+      { "path": "src/game/engine.ts", "preSha256": "5a51e837b2c56516779c3f886c2acd9482fec2cbe15a8afb1984878df1b5154e", "postSha256": "099f9a7b6d97b838c664aa7186be58465e5b01b8052af4b4e4e19a5644d19f06", "preBytes": 189446, "postBytes": 190506, "eol": "CRLF", "note": "CRLF preserved through the edit; verified byte-level after editing" },
+      { "path": "src/game/ai/planQuality.ts", "preSha256": "d8ecdd26afc9e790d4f471c1e5d198af5da0afe8de56009e1a7c45e4586ce51e", "postSha256": "46979485d568dfff12e2f998353cda95616502a7433ac84c3d31801726090952", "preBytes": 30602, "postBytes": 30693 },
+      { "path": "src/game/__tests__/catMoveBudgetInputDomain.test.ts", "preSha256": "854a601ccc2955ddb11cc36426647ab8c5fd77db995fc462cbd820409f206767", "postSha256": "57d9b51cb9f97678d9c5872c3e9214d3d09cf34c22b1ef222f84921e3edb000a", "preBytes": 12690, "postBytes": 16231, "note": "added the CF-9 block (5 tests); no existing assertion touched" }
+    ],
+    "notChanged": ["src/game/ai/expectiminimax.ts", "src/game/ai/transposition.ts", "src/game/ai/deadlineContext.ts", "src/game/ai/hardTurnPlanner.ts", "src/game/ai/searchConfig.ts", "all fixtures"]
+  },
+
+  "postFixVerification": {
+    "probeLog": "PPC-P1-CHECKPOINT-01/logs/04_boundary_post_fix.log",
+    "probeResult": "11 tests, 11 passed, exit 0",
+    "permanentSuite": "src/game/__tests__/catMoveBudgetInputDomain.test.ts — 18 tests pass (13 pre-existing + 5 CF-9)",
+    "log": "PPC-P1-CHECKPOINT-01/logs/05_input_domain.log",
+    "closedProperties": [
+      "M = 6004799503160660 is certifiable and maxCatTurnPlanActions returns exactly 9007199254740991",
+      "M = 6004799503160661 and every larger safe integer are NOT certifiable: catTurnMoveBudget 0, maxCatTurnPlanActions 1",
+      "all four extractors return empty/null and planFullTurnCompleteness returns TRUNCATED with reason containing 'invalid cat move budget'",
+      "validateGameConfig rejects, createGameState yields state: null, createInitialState throws RangeError naming catBaseMoves",
+      "the representable edge still builds a real match and seeds catMovesLeft verbatim — the gate is not a blanket refusal",
+      "the safe edge is truncated for the ORDINARY reason (moves remain, legal actions exist), not by the budget gate"
+    ]
+  },
+
+  "normalBudgetsUnchanged": {
+    "table": { "0": 1, "1": 2, "2": 4, "3": 5, "4": 7, "5": 8, "6": 10, "7": 11, "9": 14, "12": 19 },
+    "productionDefault": { "catBaseMoves": 4, "bound": 7, "note": "still below the legacy constant 8" },
+    "million": { "M": 1000000, "bound": 1500001 },
+    "evidence": "PPC-P1-CHECKPOINT-01/logs/04_boundary_post_fix.log group D; CF-5/CF-6 and CF-9 in the permanent suite"
+  },
+
+  "sideFinding": {
+    "id": "OPENING-FAIRNESS-DEPTH",
+    "status": "OBSERVED_NOT_FIXED",
+    "summary": "openingFairness.solve recursion depth grows with catBaseMoves (the turn does not hand off while the budget lasts), so a LEGAL budget can already overflow the stack: catBaseMoves = 100000 passes validateGameConfig and then throws 'Maximum call stack size exceeded' inside createGameState.",
+    "measured": [
+      { "catBaseMoves": 4, "validate": true, "createGameState": "ok" },
+      { "catBaseMoves": 1000, "validate": true, "createGameState": "ok" },
+      { "catBaseMoves": 100000, "validate": true, "createGameState": "RangeError: Maximum call stack size exceeded" }
+    ],
+    "whyNotFixed": [
+      "100000 is a fully representable budget, so no numeric-representability argument can exclude it; bounding it would be exactly the arbitrary gameplay cap the brief forbids.",
+      "Fixing it means changing the opening-fairness solver's recursion (an algorithmic change outside this round's authorisation).",
+      "It is pre-existing and independent of the boundary fix: it reproduces on the pre-fix candidate and is not caused by any round of this line."
+    ],
+    "evidence": "PPC-P1-CHECKPOINT-01/logs/03_recursion_origin.log (one-shot diagnostic, source preserved at _raw/oneShotOrigins.test.ts.txt)"
+  },
+
+  "gates": {
+    "CP-1": "PASS — the edge values and the exact arithmetic are pinned in two independent places (probe group A, CF-9).",
+    "CP-2": "PASS — unrepresentable derived bounds are refused at config, constructor and plan-predicate layers; no truncation, no Infinity, no clamp.",
+    "CP-3": "PASS — every ordinary budget keeps its documented bound; default-map D1 parity is unchanged (see REGRESSION_RESULTS.json)."
+  }
+}

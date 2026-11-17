@@ -1,0 +1,125 @@
+{
+  "round": "PPC-D2-PCV-COUNTERLINE-01",
+  "phase": "G3_CANDIDATE_FREEZE",
+  "frozenAt": "2026-11-16T11:33:13.500Z",
+  "rootId": "G1T9",
+  "arm": "E1",
+  "depthTurns": 2,
+  "PROOFS_RUN_BEFORE_FREEZE": false,
+  "CANDIDATE_COUNT_REDUCED": false,
+  "TOP_K_FILTER": "NONE",
+  "candidateCount": 4,
+  "legalRootActionCount": 4,
+  "identityFailureCount": 0,
+  "rejectionByClass": {},
+  "contentSha256": "b6a1633b2de7ce33a7b01e75b16a5b197a9dde76b39f58a39be3db45648c0618",
+  "basis": {
+    "rootId": "G1T9",
+    "arm": "E1",
+    "depthTurns": 2,
+    "candidateCount": 4,
+    "plans": [
+      {
+        "legalIndex": 0,
+        "rootAction": "U",
+        "planString": "UDDR",
+        "planHash": "be0267685b1f1b9120b9ddc806fb000dc9f029899300f94681864edc105c7965",
+        "postPrefixStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "postPrefixStateKeys": [
+          "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+        ],
+        "chanceBranchCount": 1,
+        "chanceProbabilitySum": 1
+      },
+      {
+        "legalIndex": 1,
+        "rootAction": "D",
+        "planString": "DUDR",
+        "planHash": "d87ba666f84858009688b1bdd103477d6ecb65ac025b6d37058f4157e1886713",
+        "postPrefixStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "postPrefixStateKeys": [
+          "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+        ],
+        "chanceBranchCount": 1,
+        "chanceProbabilitySum": 1
+      },
+      {
+        "legalIndex": 2,
+        "rootAction": "L",
+        "planString": "LDRR",
+        "planHash": "6990560455fb58d2c42bf6dfd4ae10578e9a448d672a367948e3a22855ca8ad2",
+        "postPrefixStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "postPrefixStateKeys": [
+          "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+        ],
+        "chanceBranchCount": 1,
+        "chanceProbabilitySum": 1
+      },
+      {
+        "legalIndex": 3,
+        "rootAction": "R",
+        "planString": "RUDD",
+        "planHash": "7a96fa3b05c547788b76d561f57cd82024d18fde6d7c146d0b620249ee366934",
+        "postPrefixStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "postPrefixStateKeys": [
+          "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+        ],
+        "chanceBranchCount": 1,
+        "chanceProbabilitySum": 1
+      }
+    ]
+  },
+  "proofContract": {
+    "h0": {
+      "mode": "mouseForce",
+      "H": 1,
+      "startIdx": 1,
+      "cap": 600000
+    },
+    "h1": {
+      "mode": "catSurvive",
+      "H": 1,
+      "startIdx": 1,
+      "cap": 5000
+    },
+    "chanceHandling": "AND over every positive-probability frontier branch",
+    "verifier": "independent (verifyMouseCertificate / verifyCatCertificate)"
+  },
+  "determinismProjectionSha256": "ec0d49379897fdc62a6dffead6392bf2f7271699c5b2b42d7900840adca563d1",
+  "searchDiagnostics": {
+    "nodes": 2727890,
+    "chanceNodes": 83263,
+    "maxDepthReached": 12,
+    "repetitions": 0,
+    "terminalNodes": 9582,
+    "leafNodes": 8213463,
+    "budgetCutoffs": 0,
+    "deadlineCutoffs": 0,
+    "noLegalActionNodes": 0,
+    "ttProbes": 0,
+    "ttHits": 0,
+    "ttDepthMismatches": 0,
+    "ttExactHits": 0,
+    "ttStores": 0,
+    "alphaBetaCutoffs": 0,
+    "alphaBetaMaxCutoffs": 0,
+    "alphaBetaMinCutoffs": 0,
+    "fullWindowChanceSearches": 83263,
+    "orderedNodes": 0,
+    "ttFirstMoveCount": 0,
+    "tacticalFirstMoveCount": 0,
+    "orderingChangedFirstMove": 0,
+    "firstMoveCutoffCount": 0,
+    "extensionsTriggered": 0,
+    "extendedNodes": 0,
+    "criticalLeaves": 0,
+    "extensionAbortCount": 0,
+    "extensionDepthReached": 0,
+    "interceptionTriggerChecks": 0,
+    "interceptionGeometryCalls": 0,
+    "interceptionTriggeredLeaves": 0,
+    "interceptionExtendedLeaves": 0,
+    "interceptionExtraNodes": 0,
+    "interceptionMaxExtraDepth": 0
+  }
+}

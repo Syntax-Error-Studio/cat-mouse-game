@@ -5,6 +5,9 @@
 
 import type { GameMode, Difficulty, CellType } from './types';
 import { CellType as Cell, makeTunnelCorners } from './types';
+// `ai/planBound` has no runtime imports (its only import is a type), so this
+// edge does not create a module cycle: config is still loadable on its own.
+import { MAX_CERTIFIABLE_CAT_MOVE_BUDGET } from './ai/planBound';
 
 /** Board sizes the formal opening path supports (RULE-B certifier range). */
 export const BOARD_SIZE_MIN = 5;
@@ -153,6 +156,40 @@ export function validateGameConfig(config: GameConfig): GameConfigValidation {
       message: `棋盘大小必须是 ${BOARD_SIZE_MIN}～${BOARD_SIZE_MAX} 之间的整数（当前 ${String(S)}）。`,
     });
     return { ok: false, issues };
+  }
+
+  // PPC-P1-CLOSURE-FIX-01 — cat move budget input domain.
+  //
+  // A cat turn is a discrete sequence of unit-cost moves, so `catBaseMoves` is a
+  // count, not a quantity: it seeds `catMovesLeft`, which `catMove` only ever
+  // decrements by 1 and compares against 0. A fractional / non-finite / negative
+  // value therefore cannot represent a legal turn (2.5 lets a third step through
+  // and then hands off with a negative budget; NaN never compares <= 0, so the
+  // turn never ends), and 0 would start a turn the cat can never act in.
+  //
+  // It is validated here, in the ONE structural gate `createGameState` already
+  // runs before any state exists, so a formal match fails closed
+  // (`state: null`, `status.kind === 'unverified'`) instead of playing a state
+  // whose budget no extractor can certify.
+  //
+  // PPC-P1-CHECKPOINT-01 — representability upper end. A safe integer is still
+  // not automatically usable: the plan bound `M + 1 + floor(M/2)` must also be an
+  // exact integer, which stops at `MAX_CERTIFIABLE_CAT_MOVE_BUDGET`. That number
+  // is derived from `Number.MAX_SAFE_INTEGER` (see `ai/planBound.ts`), never a
+  // gameplay constant, and the gate lives here for the same reason as the rest of
+  // the domain: a config that cannot be represented must not become a match.
+  const catBaseMoves = config.catBaseMoves as number;
+  if (!Number.isSafeInteger(catBaseMoves) || catBaseMoves < 1) {
+    issues.push({
+      kind: 'invalid',
+      message: `猫每回合的基础步数必须是不小于 1 的整数（当前 ${String(catBaseMoves)}）。`,
+    });
+  } else if (catBaseMoves > MAX_CERTIFIABLE_CAT_MOVE_BUDGET) {
+    issues.push({
+      kind: 'invalid',
+      message: `猫每回合的基础步数过大：计划上界 catBaseMoves + 1 + floor(catBaseMoves/2) 必须是可精确表示的整数，`
+        + `因此上限为 ${MAX_CERTIFIABLE_CAT_MOVE_BUDGET}（当前 ${String(catBaseMoves)}）。`,
+    });
   }
 
   const inBounds = (p: { r: number; c: number } | undefined): boolean =>

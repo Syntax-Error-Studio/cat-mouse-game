@@ -1,0 +1,613 @@
+{
+  "protocol": "DIAGNOSTIC — closed-main-window probe on frozen roots. Production catAiMove branch, production catAiHard, real rule set. 2 roots × 4 steps × bounded reps, single process, serial.",
+  "caveat": "The TRIGGER is synthetic (a pre-closed window). It answers \"what does a fallback step cost\", not \"how often the fallback fires\".",
+  "reps": 3,
+  "rows": [
+    {
+      "id": "G1T1",
+      "rep": 0,
+      "steps": 4,
+      "totalFallbackMs": 38.682,
+      "perStep": [
+        {
+          "step": 0,
+          "wallMs": 13.449,
+          "movesSpent": 1,
+          "hardMs": 13.201,
+          "mousePlansMs": 1.346,
+          "emergencyMs": 0.096,
+          "trapStandMs": 7.11,
+          "candidateLoopMs": 0.994,
+          "counters": {
+            "bfsPath": 11,
+            "findNearestHolePathForHard": 2,
+            "findEmergencyHoleBlockDecision": 1,
+            "chooseHardStrategicTarget": 1,
+            "bfsDistance": 22,
+            "computeCatBoxAdjacency": 1,
+            "chooseHardTrapStandCell": 1,
+            "bfsCatPathToStand": 73,
+            "estimateTrapBypassCost": 26,
+            "shouldCommitTrapPlan": 1,
+            "countMouseEscapeRoutes": 8,
+            "catMove": 1
+          }
+        },
+        {
+          "step": 1,
+          "wallMs": 9.198,
+          "movesSpent": 1,
+          "hardMs": 9.177,
+          "mousePlansMs": 0.84,
+          "emergencyMs": 0.003,
+          "trapStandMs": 6.189,
+          "candidateLoopMs": 0.943,
+          "counters": {
+            "bfsPath": 11,
+            "findNearestHolePathForHard": 2,
+            "findEmergencyHoleBlockDecision": 1,
+            "chooseHardStrategicTarget": 1,
+            "bfsDistance": 20,
+            "computeCatBoxAdjacency": 1,
+            "chooseHardTrapStandCell": 1,
+            "bfsCatPathToStand": 73,
+            "estimateTrapBypassCost": 26,
+            "shouldCommitTrapPlan": 1,
+            "countMouseEscapeRoutes": 8,
+            "catMove": 1
+          }
+        },
+        {
+          "step": 2,
+          "wallMs": 8.76,
+          "movesSpent": 1,
+          "hardMs": 8.745,
+          "mousePlansMs": 0.878,
+          "emergencyMs": 0.007,
+          "trapStandMs": 6.676,
+          "candidateLoopMs": 0.506,
+          "counters": {
+            "bfsPath": 11,
+            "findNearestHolePathForHard": 2,
+            "findEmergencyHoleBlockDecision": 1,
+            "chooseHardStrategicTarget": 1,
+            "bfsDistance": 20,
+            "computeCatBoxAdjacency": 1,
+            "chooseHardTrapStandCell": 1,
+            "bfsCatPathToStand": 73,
+            "estimateTrapBypassCost": 26,
+            "shouldCommitTrapPlan": 1,
+            "countMouseEscapeRoutes": 8,
+            "catMove": 1
+          }
+        },
+        {
+          "step": 3,
+          "wallMs": 7.275,
+          "movesSpent": 1,
+          "hardMs": 7.256,
+          "mousePlansMs": 0.727,
+          "emergencyMs": 0.052,
+          "trapStandMs": 5.679,
+          "candidateLoopMs": 0.302,
+          "counters": {
+            "bfsPath": 11,
+            "findNearestHolePathForHard": 2,
+            "findEmergencyHoleBlockDecision": 1,
+            "chooseHardStrategicTarget": 1,
+            "bfsDistance": 22,
+            "computeCatBoxAdjacency": 1,
+            "chooseHardTrapStandCell": 1,
+            "bfsCatPathToStand": 73,
+            "estimateTrapBypassCost": 26,
+            "shouldCommitTrapPlan": 1,
+            "countMouseEscapeRoutes": 8,
+            "catMove": 1
+          }
+        }
+      ],
+      "windowClosedLogs": 4,
+      "movesLeftAtEnd": 0,
+      "finalPhase": "playing"
+    },
+    {
+      "id": "G1T1",
+      "rep": 1,
+      "steps": 4,
+      "totalFallbackMs": 25.241,
+      "perStep": [
+        {
+          "step": 0,
+          "wallMs": 9.201,
+          "movesSpent": 1,
+          "hardMs": 9.184,
+          "mousePlansMs": 0.908,
+          "emergencyMs": 0.005,
+          "trapStandMs": 6.172,
+          "candidateLoopMs": 1.684,
+          "counters": {
+            "bfsPath": 11,
+            "findNearestHolePathForHard": 2,
+            "findEmergencyHoleBlockDecision": 1,
+            "chooseHardStrategicTarget": 1,
+            "bfsDistance": 22,
+            "computeCatBoxAdjacency": 1,
+            "chooseHardTrapStandCell": 1,
+            "bfsCatPathToStand": 73,
+            "estimateTrapBypassCost": 26,
+            "shouldCommitTrapPlan": 1,
+            "countMouseEscapeRoutes": 8,
+            "catMove": 1
+          }
+        },
+        {
+          "step": 1,
+          "wallMs": 6.103,
+          "movesSpent": 1,
+          "hardMs": 6.091,
+          "mousePlansMs": 0.73,
+          "emergencyMs": 0.002,
+          "trapStandMs": 4.868,
+          "candidateLoopMs": 0.213,
+          "counters": {
+            "bfsPath": 11,
+            "findNearestHolePathForHard": 2,
+            "findEmergencyHoleBlockDecision": 1,
+            "chooseHardStrategicTarget": 1,
+            "bfsDistance": 20,
+            "computeCatBoxAdjacency": 1,
+            "chooseHardTrapStandCell": 1,
+            "bfsCatPathToStand": 73,
+            "estimateTrapBypassCost": 26,
+            "shouldCommitTrapPlan": 1,
+            "countMouseEscapeRoutes": 8,
+            "catMove": 1
+          }
+        },
+        {
+          "step": 2,
+          "wallMs": 6.302,
+          "movesSpent": 1,
+          "hardMs": 6.29,
+          "mousePlansMs": 0.71,
+          "emergencyMs": 0.002,
+          "trapStandMs": 4.934,
+          "candidateLoopMs": 0.287,
+          "counters": {
+            "bfsPath": 11,
+            "findNearestHolePathForHard": 2,
+            "findEmergencyHoleBlockDecision": 1,
+            "chooseHardStrategicTarget": 1,
+            "bfsDistance": 20,
+            "computeCatBoxAdjacency": 1,
+            "chooseHardTrapStandCell": 1,
+            "bfsCatPathToStand": 73,
+            "estimateTrapBypassCost": 26,
+            "shouldCommitTrapPlan": 1,
+            "countMouseEscapeRoutes": 8,
+            "catMove": 1
+          }
+        },
+        {
+          "step": 3,
+          "wallMs": 3.635,
+          "movesSpent": 1,
+          "hardMs": 3.624,
+          "mousePlansMs": 0.254,
+          "emergencyMs": 0.001,
+          "trapStandMs": 2.92,
+          "candidateLoopMs": 0.267,
+          "counters": {
+            "bfsPath": 11,
+            "findNearestHolePathForHard": 2,
+            "findEmergencyHoleBlockDecision": 1,
+            "chooseHardStrategicTarget": 1,
+            "bfsDistance": 22,
+            "computeCatBoxAdjacency": 1,
+            "chooseHardTrapStandCell": 1,
+            "bfsCatPathToStand": 73,
+            "estimateTrapBypassCost": 26,
+            "shouldCommitTrapPlan": 1,
+            "countMouseEscapeRoutes": 8,
+            "catMove": 1
+          }
+        }
+      ],
+      "windowClosedLogs": 4,
+      "movesLeftAtEnd": 0,
+      "finalPhase": "playing"
+    },
+    {
+      "id": "G1T1",
+      "rep": 2,
+      "steps": 4,
+      "totalFallbackMs": 9.631,
+      "perStep": [
+        {
+          "step": 0,
+          "wallMs": 2.655,
+          "movesSpent": 1,
+          "hardMs": 2.644,
+          "mousePlansMs": 0.438,
+          "emergencyMs": 0.001,
+          "trapStandMs": 1.638,
+          "candidateLoopMs": 0.247,
+          "counters": {
+            "bfsPath": 11,
+            "findNearestHolePathForHard": 2,
+            "findEmergencyHoleBlockDecision": 1,
+            "chooseHardStrategicTarget": 1,
+            "bfsDistance": 22,
+            "computeCatBoxAdjacency": 1,
+            "chooseHardTrapStandCell": 1,
+            "bfsCatPathToStand": 73,
+            "estimateTrapBypassCost": 26,
+            "shouldCommitTrapPlan": 1,
+            "countMouseEscapeRoutes": 8,
+            "catMove": 1
+          }
+        },
+        {
+          "step": 1,
+          "wallMs": 2.258,
+          "movesSpent": 1,
+          "hardMs": 2.246,
+          "mousePlansMs": 0.255,
+          "emergencyMs": 0.001,
+          "trapStandMs": 1.608,
+          "candidateLoopMs": 0.183,
+          "counters": {
+            "bfsPath": 11,
+            "findNearestHolePathForHard": 2,
+            "findEmergencyHoleBlockDecision": 1,
+            "chooseHardStrategicTarget": 1,
+            "bfsDistance": 20,
+            "computeCatBoxAdjacency": 1,
+            "chooseHardTrapStandCell": 1,
+            "bfsCatPathToStand": 73,
+            "estimateTrapBypassCost": 26,
+            "shouldCommitTrapPlan": 1,
+            "countMouseEscapeRoutes": 8,
+            "catMove": 1
+          }
+        },
+        {
+          "step": 2,
+          "wallMs": 2.493,
+          "movesSpent": 1,
+          "hardMs": 2.484,
+          "mousePlansMs": 0.254,
+          "emergencyMs": 0.001,
+          "trapStandMs": 1.899,
+          "candidateLoopMs": 0.167,
+          "counters": {
+            "bfsPath": 11,
+            "findNearestHolePathForHard": 2,
+            "findEmergencyHoleBlockDecision": 1,
+            "chooseHardStrategicTarget": 1,
+            "bfsDistance": 20,
+            "computeCatBoxAdjacency": 1,
+            "chooseHardTrapStandCell": 1,
+            "bfsCatPathToStand": 73,
+            "estimateTrapBypassCost": 26,
+            "shouldCommitTrapPlan": 1,
+            "countMouseEscapeRoutes": 8,
+            "catMove": 1
+          }
+        },
+        {
+          "step": 3,
+          "wallMs": 2.225,
+          "movesSpent": 1,
+          "hardMs": 2.216,
+          "mousePlansMs": 0.311,
+          "emergencyMs": 0.001,
+          "trapStandMs": 1.569,
+          "candidateLoopMs": 0.176,
+          "counters": {
+            "bfsPath": 11,
+            "findNearestHolePathForHard": 2,
+            "findEmergencyHoleBlockDecision": 1,
+            "chooseHardStrategicTarget": 1,
+            "bfsDistance": 22,
+            "computeCatBoxAdjacency": 1,
+            "chooseHardTrapStandCell": 1,
+            "bfsCatPathToStand": 73,
+            "estimateTrapBypassCost": 26,
+            "shouldCommitTrapPlan": 1,
+            "countMouseEscapeRoutes": 8,
+            "catMove": 1
+          }
+        }
+      ],
+      "windowClosedLogs": 4,
+      "movesLeftAtEnd": 0,
+      "finalPhase": "playing"
+    },
+    {
+      "id": "G1T5",
+      "rep": 0,
+      "steps": 4,
+      "totalFallbackMs": 2.694,
+      "perStep": [
+        {
+          "step": 0,
+          "wallMs": 0.861,
+          "movesSpent": 1,
+          "hardMs": 0.798,
+          "mousePlansMs": 0.211,
+          "emergencyMs": 0.001,
+          "trapStandMs": 0.001,
+          "candidateLoopMs": 0.336,
+          "counters": {
+            "bfsPath": 11,
+            "findNearestHolePathForHard": 2,
+            "findEmergencyHoleBlockDecision": 1,
+            "chooseHardStrategicTarget": 1,
+            "bfsDistance": 10,
+            "computeCatBoxAdjacency": 1,
+            "shouldCommitTrapPlan": 1,
+            "countMouseEscapeRoutes": 4,
+            "catMove": 1
+          }
+        },
+        {
+          "step": 1,
+          "wallMs": 0.659,
+          "movesSpent": 1,
+          "hardMs": 0.65,
+          "mousePlansMs": 0.22,
+          "emergencyMs": 0.001,
+          "trapStandMs": 0,
+          "candidateLoopMs": 0.259,
+          "counters": {
+            "bfsPath": 11,
+            "findNearestHolePathForHard": 2,
+            "findEmergencyHoleBlockDecision": 1,
+            "chooseHardStrategicTarget": 1,
+            "bfsDistance": 11,
+            "computeCatBoxAdjacency": 1,
+            "shouldCommitTrapPlan": 1,
+            "countMouseEscapeRoutes": 6,
+            "catMove": 1
+          }
+        },
+        {
+          "step": 2,
+          "wallMs": 0.625,
+          "movesSpent": 1,
+          "hardMs": 0.615,
+          "mousePlansMs": 0.211,
+          "emergencyMs": 0.001,
+          "trapStandMs": 0,
+          "candidateLoopMs": 0.276,
+          "counters": {
+            "bfsPath": 11,
+            "findNearestHolePathForHard": 2,
+            "findEmergencyHoleBlockDecision": 1,
+            "chooseHardStrategicTarget": 1,
+            "bfsDistance": 16,
+            "computeCatBoxAdjacency": 1,
+            "shouldCommitTrapPlan": 1,
+            "countMouseEscapeRoutes": 8,
+            "catMove": 1
+          }
+        },
+        {
+          "step": 3,
+          "wallMs": 0.549,
+          "movesSpent": 1,
+          "hardMs": 0.542,
+          "mousePlansMs": 0.208,
+          "emergencyMs": 0.001,
+          "trapStandMs": 0,
+          "candidateLoopMs": 0.239,
+          "counters": {
+            "bfsPath": 11,
+            "findNearestHolePathForHard": 2,
+            "findEmergencyHoleBlockDecision": 1,
+            "chooseHardStrategicTarget": 1,
+            "bfsDistance": 16,
+            "computeCatBoxAdjacency": 1,
+            "shouldCommitTrapPlan": 1,
+            "countMouseEscapeRoutes": 8,
+            "catMove": 1
+          }
+        }
+      ],
+      "windowClosedLogs": 4,
+      "movesLeftAtEnd": 0,
+      "finalPhase": "playing"
+    },
+    {
+      "id": "G1T5",
+      "rep": 1,
+      "steps": 4,
+      "totalFallbackMs": 2.997,
+      "perStep": [
+        {
+          "step": 0,
+          "wallMs": 0.794,
+          "movesSpent": 1,
+          "hardMs": 0.739,
+          "mousePlansMs": 0.208,
+          "emergencyMs": 0.001,
+          "trapStandMs": 0,
+          "candidateLoopMs": 0.342,
+          "counters": {
+            "bfsPath": 11,
+            "findNearestHolePathForHard": 2,
+            "findEmergencyHoleBlockDecision": 1,
+            "chooseHardStrategicTarget": 1,
+            "bfsDistance": 10,
+            "computeCatBoxAdjacency": 1,
+            "shouldCommitTrapPlan": 1,
+            "countMouseEscapeRoutes": 4,
+            "catMove": 1
+          }
+        },
+        {
+          "step": 1,
+          "wallMs": 1.008,
+          "movesSpent": 1,
+          "hardMs": 0.994,
+          "mousePlansMs": 0.218,
+          "emergencyMs": 0.001,
+          "trapStandMs": 0.001,
+          "candidateLoopMs": 0.248,
+          "counters": {
+            "bfsPath": 11,
+            "findNearestHolePathForHard": 2,
+            "findEmergencyHoleBlockDecision": 1,
+            "chooseHardStrategicTarget": 1,
+            "bfsDistance": 11,
+            "computeCatBoxAdjacency": 1,
+            "shouldCommitTrapPlan": 1,
+            "countMouseEscapeRoutes": 6,
+            "catMove": 1
+          }
+        },
+        {
+          "step": 2,
+          "wallMs": 0.626,
+          "movesSpent": 1,
+          "hardMs": 0.619,
+          "mousePlansMs": 0.225,
+          "emergencyMs": 0.001,
+          "trapStandMs": 0,
+          "candidateLoopMs": 0.273,
+          "counters": {
+            "bfsPath": 11,
+            "findNearestHolePathForHard": 2,
+            "findEmergencyHoleBlockDecision": 1,
+            "chooseHardStrategicTarget": 1,
+            "bfsDistance": 16,
+            "computeCatBoxAdjacency": 1,
+            "shouldCommitTrapPlan": 1,
+            "countMouseEscapeRoutes": 8,
+            "catMove": 1
+          }
+        },
+        {
+          "step": 3,
+          "wallMs": 0.569,
+          "movesSpent": 1,
+          "hardMs": 0.565,
+          "mousePlansMs": 0.218,
+          "emergencyMs": 0.001,
+          "trapStandMs": 0,
+          "candidateLoopMs": 0.252,
+          "counters": {
+            "bfsPath": 11,
+            "findNearestHolePathForHard": 2,
+            "findEmergencyHoleBlockDecision": 1,
+            "chooseHardStrategicTarget": 1,
+            "bfsDistance": 16,
+            "computeCatBoxAdjacency": 1,
+            "shouldCommitTrapPlan": 1,
+            "countMouseEscapeRoutes": 8,
+            "catMove": 1
+          }
+        }
+      ],
+      "windowClosedLogs": 4,
+      "movesLeftAtEnd": 0,
+      "finalPhase": "playing"
+    },
+    {
+      "id": "G1T5",
+      "rep": 2,
+      "steps": 4,
+      "totalFallbackMs": 2.618,
+      "perStep": [
+        {
+          "step": 0,
+          "wallMs": 0.79,
+          "movesSpent": 1,
+          "hardMs": 0.784,
+          "mousePlansMs": 0.24,
+          "emergencyMs": 0.001,
+          "trapStandMs": 0.001,
+          "candidateLoopMs": 0.344,
+          "counters": {
+            "bfsPath": 11,
+            "findNearestHolePathForHard": 2,
+            "findEmergencyHoleBlockDecision": 1,
+            "chooseHardStrategicTarget": 1,
+            "bfsDistance": 10,
+            "computeCatBoxAdjacency": 1,
+            "shouldCommitTrapPlan": 1,
+            "countMouseEscapeRoutes": 4,
+            "catMove": 1
+          }
+        },
+        {
+          "step": 1,
+          "wallMs": 0.621,
+          "movesSpent": 1,
+          "hardMs": 0.617,
+          "mousePlansMs": 0.218,
+          "emergencyMs": 0.001,
+          "trapStandMs": 0,
+          "candidateLoopMs": 0.244,
+          "counters": {
+            "bfsPath": 11,
+            "findNearestHolePathForHard": 2,
+            "findEmergencyHoleBlockDecision": 1,
+            "chooseHardStrategicTarget": 1,
+            "bfsDistance": 11,
+            "computeCatBoxAdjacency": 1,
+            "shouldCommitTrapPlan": 1,
+            "countMouseEscapeRoutes": 6,
+            "catMove": 1
+          }
+        },
+        {
+          "step": 2,
+          "wallMs": 0.668,
+          "movesSpent": 1,
+          "hardMs": 0.665,
+          "mousePlansMs": 0.215,
+          "emergencyMs": 0.001,
+          "trapStandMs": 0,
+          "candidateLoopMs": 0.326,
+          "counters": {
+            "bfsPath": 11,
+            "findNearestHolePathForHard": 2,
+            "findEmergencyHoleBlockDecision": 1,
+            "chooseHardStrategicTarget": 1,
+            "bfsDistance": 16,
+            "computeCatBoxAdjacency": 1,
+            "shouldCommitTrapPlan": 1,
+            "countMouseEscapeRoutes": 8,
+            "catMove": 1
+          }
+        },
+        {
+          "step": 3,
+          "wallMs": 0.539,
+          "movesSpent": 1,
+          "hardMs": 0.534,
+          "mousePlansMs": 0.225,
+          "emergencyMs": 0.001,
+          "trapStandMs": 0.001,
+          "candidateLoopMs": 0.209,
+          "counters": {
+            "bfsPath": 11,
+            "findNearestHolePathForHard": 2,
+            "findEmergencyHoleBlockDecision": 1,
+            "chooseHardStrategicTarget": 1,
+            "bfsDistance": 16,
+            "computeCatBoxAdjacency": 1,
+            "shouldCommitTrapPlan": 1,
+            "countMouseEscapeRoutes": 8,
+            "catMove": 1
+          }
+        }
+      ],
+      "windowClosedLogs": 4,
+      "movesLeftAtEnd": 0,
+      "finalPhase": "playing"
+    }
+  ]
+}

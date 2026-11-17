@@ -1,0 +1,287 @@
+{
+  "generatedAt": "2026-11-14T16:57:51.124Z",
+  "generatedBy": "PPC-CAT-STRATEGY-01/probe/tactical_tree.test.ts",
+  "scheme": {
+    "MOUSE_FORCED_WIN_WITHIN_H0": "∃鼠策略 ∀猫 ∀CHANCE，在 H0 内 MouseWins (§7.2)",
+    "MOUSE_FORCED_WIN_WITHIN_H1": "∃鼠策略 ∀猫 ∀CHANCE，在 H1 内 MouseWins (§7.2)",
+    "CAT_FORCED_WIN_WITHIN_H1": "∃猫策略 ∀鼠 ∀CHANCE，在 H1 内 CatWins (§7.4)",
+    "CAT_SURVIVAL_CERTIFIED_WITHIN_H1": "¬∃鼠策略能在 H1 内强制 MouseWins ⇒ ∃猫策略挡住全部鼠线 (§7.3)",
+    "UNRESOLVED": "节点预算耗尽 / CHANCE 无法完整枚举 / 根恢复不完整 (§7.5)"
+  },
+  "correctnessContract": [
+    "存在一条鼠胜路线 ≠ 鼠可以强制获胜",
+    "没有找到鼠胜路线 ≠ 猫已经证明安全（此处 false 是由反驳树给出的 ∀ 证明，不是缺席）",
+    "CAT_SURVIVAL_CERTIFIED_WITHIN_H1 只覆盖 H1 窗口，不代表永久不败"
+  ],
+  "counts": {
+    "CAT_SURVIVAL_CERTIFIED_WITHIN_H1": 18,
+    "MOUSE_FORCED_WIN_WITHIN_H0": 3,
+    "MOUSE_FORCED_WIN_WITHIN_H1": 3
+  },
+  "roots": [
+    {
+      "id": "G6T1",
+      "classification": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "evidence": {
+        "h0MouseForcedWin": false,
+        "h1MouseForcedWin": false,
+        "h1CatForcedWin": false,
+        "h1Nodes": 136,
+        "h1ElapsedMs": 11
+      }
+    },
+    {
+      "id": "G6T2",
+      "classification": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "evidence": {
+        "h0MouseForcedWin": false,
+        "h1MouseForcedWin": false,
+        "h1CatForcedWin": false,
+        "h1Nodes": 105544,
+        "h1ElapsedMs": 6263
+      }
+    },
+    {
+      "id": "G6T3",
+      "classification": "MOUSE_FORCED_WIN_WITHIN_H0",
+      "evidence": {
+        "h0MouseForcedWin": true,
+        "h1MouseForcedWin": true,
+        "h1CatForcedWin": false,
+        "h1Nodes": 32918,
+        "h1ElapsedMs": 3242
+      }
+    },
+    {
+      "id": "G5T1",
+      "classification": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "evidence": {
+        "h0MouseForcedWin": false,
+        "h1MouseForcedWin": false,
+        "h1CatForcedWin": false,
+        "h1Nodes": 329,
+        "h1ElapsedMs": 25
+      }
+    },
+    {
+      "id": "G5T2",
+      "classification": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "evidence": {
+        "h0MouseForcedWin": false,
+        "h1MouseForcedWin": false,
+        "h1CatForcedWin": false,
+        "h1Nodes": 214,
+        "h1ElapsedMs": 39
+      }
+    },
+    {
+      "id": "G5T3",
+      "classification": "MOUSE_FORCED_WIN_WITHIN_H1",
+      "evidence": {
+        "h0MouseForcedWin": false,
+        "h1MouseForcedWin": true,
+        "h1CatForcedWin": false,
+        "h1Nodes": 15776,
+        "h1ElapsedMs": 1032
+      }
+    },
+    {
+      "id": "G5T4",
+      "classification": "MOUSE_FORCED_WIN_WITHIN_H0",
+      "evidence": {
+        "h0MouseForcedWin": true,
+        "h1MouseForcedWin": true,
+        "h1CatForcedWin": false,
+        "h1Nodes": 46,
+        "h1ElapsedMs": 2
+      }
+    },
+    {
+      "id": "G2T1",
+      "classification": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "evidence": {
+        "h0MouseForcedWin": false,
+        "h1MouseForcedWin": false,
+        "h1CatForcedWin": false,
+        "h1Nodes": 185,
+        "h1ElapsedMs": 17
+      }
+    },
+    {
+      "id": "G2T2",
+      "classification": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "evidence": {
+        "h0MouseForcedWin": false,
+        "h1MouseForcedWin": false,
+        "h1CatForcedWin": false,
+        "h1Nodes": 125,
+        "h1ElapsedMs": 7
+      }
+    },
+    {
+      "id": "G2T3",
+      "classification": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "evidence": {
+        "h0MouseForcedWin": false,
+        "h1MouseForcedWin": false,
+        "h1CatForcedWin": false,
+        "h1Nodes": 189,
+        "h1ElapsedMs": 11
+      }
+    },
+    {
+      "id": "G2T4",
+      "classification": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "evidence": {
+        "h0MouseForcedWin": false,
+        "h1MouseForcedWin": false,
+        "h1CatForcedWin": false,
+        "h1Nodes": 323,
+        "h1ElapsedMs": 29
+      }
+    },
+    {
+      "id": "G2T5",
+      "classification": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "evidence": {
+        "h0MouseForcedWin": false,
+        "h1MouseForcedWin": false,
+        "h1CatForcedWin": false,
+        "h1Nodes": 289,
+        "h1ElapsedMs": 26
+      }
+    },
+    {
+      "id": "G2T6",
+      "classification": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "evidence": {
+        "h0MouseForcedWin": false,
+        "h1MouseForcedWin": false,
+        "h1CatForcedWin": false,
+        "h1Nodes": 140,
+        "h1ElapsedMs": 11
+      }
+    },
+    {
+      "id": "G2T7",
+      "classification": "MOUSE_FORCED_WIN_WITHIN_H1",
+      "evidence": {
+        "h0MouseForcedWin": false,
+        "h1MouseForcedWin": true,
+        "h1CatForcedWin": false,
+        "h1Nodes": 198646,
+        "h1ElapsedMs": 18426
+      }
+    },
+    {
+      "id": "G2T8",
+      "classification": "MOUSE_FORCED_WIN_WITHIN_H0",
+      "evidence": {
+        "h0MouseForcedWin": true,
+        "h1MouseForcedWin": true,
+        "h1CatForcedWin": false,
+        "h1Nodes": 23061,
+        "h1ElapsedMs": 2132
+      }
+    },
+    {
+      "id": "G1T1",
+      "classification": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "evidence": {
+        "h0MouseForcedWin": false,
+        "h1MouseForcedWin": false,
+        "h1CatForcedWin": false,
+        "h1Nodes": 150,
+        "h1ElapsedMs": 18
+      }
+    },
+    {
+      "id": "G1T2",
+      "classification": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "evidence": {
+        "h0MouseForcedWin": false,
+        "h1MouseForcedWin": false,
+        "h1CatForcedWin": false,
+        "h1Nodes": 152,
+        "h1ElapsedMs": 15
+      }
+    },
+    {
+      "id": "G1T3",
+      "classification": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "evidence": {
+        "h0MouseForcedWin": false,
+        "h1MouseForcedWin": false,
+        "h1CatForcedWin": false,
+        "h1Nodes": 183,
+        "h1ElapsedMs": 18
+      }
+    },
+    {
+      "id": "G1T4",
+      "classification": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "evidence": {
+        "h0MouseForcedWin": false,
+        "h1MouseForcedWin": false,
+        "h1CatForcedWin": false,
+        "h1Nodes": 138,
+        "h1ElapsedMs": 10
+      }
+    },
+    {
+      "id": "G1T5",
+      "classification": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "evidence": {
+        "h0MouseForcedWin": false,
+        "h1MouseForcedWin": false,
+        "h1CatForcedWin": false,
+        "h1Nodes": 348,
+        "h1ElapsedMs": 35
+      }
+    },
+    {
+      "id": "G1T6",
+      "classification": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "evidence": {
+        "h0MouseForcedWin": false,
+        "h1MouseForcedWin": false,
+        "h1CatForcedWin": false,
+        "h1Nodes": 277,
+        "h1ElapsedMs": 33
+      }
+    },
+    {
+      "id": "G1T7",
+      "classification": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "evidence": {
+        "h0MouseForcedWin": false,
+        "h1MouseForcedWin": false,
+        "h1CatForcedWin": false,
+        "h1Nodes": 246,
+        "h1ElapsedMs": 21
+      }
+    },
+    {
+      "id": "G1T8",
+      "classification": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "evidence": {
+        "h0MouseForcedWin": false,
+        "h1MouseForcedWin": false,
+        "h1CatForcedWin": false,
+        "h1Nodes": 369,
+        "h1ElapsedMs": 39
+      }
+    },
+    {
+      "id": "G1T9",
+      "classification": "MOUSE_FORCED_WIN_WITHIN_H1",
+      "evidence": {
+        "h0MouseForcedWin": false,
+        "h1MouseForcedWin": true,
+        "h1CatForcedWin": false,
+        "h1Nodes": 66749,
+        "h1ElapsedMs": 6662
+      }
+    }
+  ]
+}

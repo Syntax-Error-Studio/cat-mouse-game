@@ -1,0 +1,128 @@
+{
+  "round": "PPC-P1-QUALITY-01",
+  "branch": "ppc/p1-id-state-identity-fix",
+  "head": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+  "changedThisRound": {
+    "production": [
+      "src/game/ai/planQuality.ts"
+    ],
+    "tests": [
+      "src/game/ai/__tests__/planReversalAccounting.test.ts (new)",
+      "src/game/ai/__tests__/hv2PlanTieQuality.test.ts",
+      "src/game/ai/__tests__/hv14FiveGameForensics.test.ts",
+      "src/game/ai/__tests__/progressGuard.test.ts",
+      "src/game/ai/__tests__/m3liteHumanValidationLogging.test.ts"
+    ],
+    "untouchedProduction": [
+      "src/game/ai/planBound.ts",
+      "src/game/ai/expectiminimax.ts",
+      "src/game/ai/transposition.ts",
+      "src/game/ai/deadlineContext.ts",
+      "src/game/ai/hardTurnPlanner.ts",
+      "src/game/engine.ts"
+    ]
+  },
+  "protected": {
+    "transposition_ts": "7b4aa8eb3fab994a4abc77fdf38800ab2a5f9da57d5eb33a1b37075e106c2d64",
+    "transposition_expected": "7b4aa8eb3fab994a4abc77fdf38800ab2a5f9da57d5eb33a1b37075e106c2d64",
+    "transposition_ok": true,
+    "planBound_ts": "99c269f90e3d7a10abaf389d95ad25d14f586a05dc1899d439834064ae3bfcfd",
+    "planBound_expected": "99c269f90e3d7a10abaf389d95ad25d14f586a05dc1899d439834064ae3bfcfd",
+    "planBound_ok": true,
+    "expectiminimax_ts": "42b6e71f0cf784c7072a4e11abb3408b7c922d9e8a746a787ddf0046b3917d1c",
+    "expectiminimax_expected": "42b6e71f0cf784c7072a4e11abb3408b7c922d9e8a746a787ddf0046b3917d1c",
+    "expectiminimax_ok": true
+  },
+  "files": [
+    {
+      "path": "src/game/ai/planQuality.ts",
+      "role": "CHANGED — countPlanReversals + extractDp accounting (this round)",
+      "sha256": "f97dd2045733e1aa70abe6750299c00aff70f8152d6157d88acdec813c7b4cd2",
+      "bytes": 28873
+    },
+    {
+      "path": "src/game/ai/planBound.ts",
+      "role": "P1-PLAN-01 preserved (must be 99c269f9…)",
+      "sha256": "99c269f90e3d7a10abaf389d95ad25d14f586a05dc1899d439834064ae3bfcfd",
+      "bytes": 4193
+    },
+    {
+      "path": "src/game/ai/expectiminimax.ts",
+      "role": "P1-PLAN-01 preserved (must be 42b6e71f…)",
+      "sha256": "42b6e71f0cf784c7072a4e11abb3408b7c922d9e8a746a787ddf0046b3917d1c",
+      "bytes": 107383
+    },
+    {
+      "path": "src/game/ai/transposition.ts",
+      "role": "P1-ID-01 preserved (must be 7b4aa8eb…)",
+      "sha256": "7b4aa8eb3fab994a4abc77fdf38800ab2a5f9da57d5eb33a1b37075e106c2d64",
+      "bytes": 6784
+    },
+    {
+      "path": "src/game/ai/deadlineContext.ts",
+      "role": "P1-TIME-01 preserved",
+      "sha256": "ced449445d70d1ba88cb20d88415b3c641d670aa886536fcacefa36b4aa50235",
+      "bytes": 14411
+    },
+    {
+      "path": "src/game/ai/hardTurnPlanner.ts",
+      "role": "P1-TIME-01 preserved",
+      "sha256": "27b1ce6dc62234d0c822b2b0b6341205ac189b5f76d7662a5d29d9e17ded75ff",
+      "bytes": 36060
+    },
+    {
+      "path": "src/game/engine.ts",
+      "role": "P1-TIME-01 preserved",
+      "sha256": "dbb5377af22a6471e31c899f9debe896e9e74a629f4fb50a47753bd492810f3e",
+      "bytes": 188461
+    },
+    {
+      "path": "src/game/ai/__tests__/planReversalAccounting.test.ts",
+      "role": "NEW — QA-1..QA-8 gates",
+      "sha256": "6736d435f89e1018345d39532568f2d50565bc967051561f3dfe8aba6597aa6c",
+      "bytes": 15254
+    },
+    {
+      "path": "src/game/ai/__tests__/hv2PlanTieQuality.test.ts",
+      "role": "CHANGED — HV2-C1 un-skipped, doc comments updated",
+      "sha256": "4455d7314918d676f65b9c5fbc04349a9336d1be4496fbc80d18076fd8720eff",
+      "bytes": 6117
+    },
+    {
+      "path": "src/game/ai/__tests__/hv14FiveGameForensics.test.ts",
+      "role": "CHANGED — HV14-5/6 expected plan re-judged",
+      "sha256": "99bd3633891533d5f61cd9836c76cf05ff00782f4b6deb1d5d30bb99c40b3e74",
+      "bytes": 45430
+    },
+    {
+      "path": "src/game/ai/__tests__/progressGuard.test.ts",
+      "role": "CHANGED — P4/P8/P26 re-judged",
+      "sha256": "0d80ee542ca8662088b14a73641ef37f0d0cd3c04d093da2d59a24181f9d0965",
+      "bytes": 34482
+    },
+    {
+      "path": "src/game/ai/__tests__/m3liteHumanValidationLogging.test.ts",
+      "role": "CHANGED — D7 re-judged",
+      "sha256": "73bd3c13fe36e7445f0e22c6633ed32ad0a7fc3841b9b14d77f95df18866e767",
+      "bytes": 11886
+    },
+    {
+      "path": "src/game/ai/__tests__/planActionBoundFixtures.ts",
+      "role": "P1-PLAN-01 fixtures (reused, unchanged)",
+      "sha256": "1da29be5572955c9158d25c92aa08fdbebed91cabeb4d6517614bf692c643985",
+      "bytes": 11302
+    },
+    {
+      "path": "src/game/ai/__tests__/fixtures/ppcId01-human-roots.json",
+      "role": "frozen roots",
+      "sha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "bytes": 264328
+    },
+    {
+      "path": "src/game/ai/__tests__/fixtures/ppcId01-baseline-d1.json",
+      "role": "frozen D1 baseline",
+      "sha256": "80635906377dbe1e96aa6ef5bf80e48c2da22c213c19f51b205ca0d0438b8467",
+      "bytes": 42327
+    }
+  ]
+}

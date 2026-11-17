@@ -1,0 +1,365 @@
+{
+  "artifactId": "SOURCE_MANIFEST",
+  "round": "PPC-P1-OPENING-SEAL-01",
+  "project": "Project Perfect Cat",
+  "date": "2026-11-14",
+  "branch": "ppc/p1-id-state-identity-fix",
+  "head": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+  "sha256Method": "sha256 over raw on-disk bytes (binary read). gitBlob is git hash-object of the same bytes.",
+  "lineEndingCaveat": "Only src/game/engine.ts is CRLF on disk; every other file in scope is LF. A sha256 comparison is only meaningful together with the line-ending declaration.",
+  "changedThisRound": {
+    "count": 1,
+    "productionSource": 0,
+    "testSource": 1,
+    "entries": [
+      {
+        "path": "src/game/__tests__/openingFairnessStackSafety.test.ts",
+        "kind": "test source only",
+        "preSha256": "fade32eef38a454a73d3acf70c3d9aaa94adfb035f439bcb312181d442820a03",
+        "postSha256": "f9ef6537858605e8381a503bc04fe7b09c6462774274f166f70c02b46458fa3f",
+        "preBytes": 16774,
+        "postBytes": 20127,
+        "semanticChange": "The four OS-2 tests that build a DEFAULT_CONFIG opening now go through a seeded LCG (installed for one call, removed in finally) instead of ambient Math.random, plus one new test proving the seed fixes the board. No assertion relaxed, no budget lowered, no depth reduced; the fixture now also runs 27 tests instead of 26."
+      }
+    ]
+  },
+  "files": [
+    {
+      "path": "src/game/__tests__/catMoveBudgetInputDomain.test.ts",
+      "role": "test",
+      "tracked": false,
+      "preRoundSha256": "57d9b51cb9f97678d9c5872c3e9214d3d09cf34c22b1ef222f84921e3edb000a",
+      "postSha256": "57d9b51cb9f97678d9c5872c3e9214d3d09cf34c22b1ef222f84921e3edb000a",
+      "bytes": 16231,
+      "lineEnding": "LF",
+      "gitBlob": "2816a2c098427c15200d01a1f1d024548dac823f",
+      "changedThisRound": false
+    },
+    {
+      "path": "src/game/__tests__/openingFairnessStackSafety.test.ts",
+      "role": "test",
+      "tracked": false,
+      "preRoundSha256": "fade32eef38a454a73d3acf70c3d9aaa94adfb035f439bcb312181d442820a03",
+      "postSha256": "f9ef6537858605e8381a503bc04fe7b09c6462774274f166f70c02b46458fa3f",
+      "bytes": 20127,
+      "lineEnding": "LF",
+      "gitBlob": "2b6770f92914d2a3cb764d3234d1961f4e214c7b",
+      "changedThisRound": true
+    },
+    {
+      "path": "src/game/ai/__tests__/expectiminimax.test.ts",
+      "role": "test",
+      "tracked": true,
+      "preRoundSha256": "521340c59689a6d405d6777b71d6a8a4228850b46403ba352b73008a4ef75688",
+      "postSha256": "521340c59689a6d405d6777b71d6a8a4228850b46403ba352b73008a4ef75688",
+      "bytes": 161383,
+      "lineEnding": "CRLF",
+      "gitBlob": "6e3acfa161b19bab301eccbc0fb23d9973834a6a",
+      "changedThisRound": false
+    },
+    {
+      "path": "src/game/ai/__tests__/fixtures/ppcId01-baseline-d1.json",
+      "role": "fixture",
+      "tracked": false,
+      "preRoundSha256": "80635906377dbe1e96aa6ef5bf80e48c2da22c213c19f51b205ca0d0438b8467",
+      "postSha256": "80635906377dbe1e96aa6ef5bf80e48c2da22c213c19f51b205ca0d0438b8467",
+      "bytes": 42327,
+      "lineEnding": "LF",
+      "gitBlob": "77067ed7bac7549ee9ec6d35c850bf92eed7c4a6",
+      "changedThisRound": false
+    },
+    {
+      "path": "src/game/ai/__tests__/fixtures/ppcId01-human-roots.json",
+      "role": "fixture",
+      "tracked": false,
+      "preRoundSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "postSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "bytes": 264328,
+      "lineEnding": "LF",
+      "gitBlob": "15171e4b283475683abef87d80e33b895bb477d9",
+      "changedThisRound": false
+    },
+    {
+      "path": "src/game/ai/__tests__/fixtures/ppcTime01-baseline-planner.json",
+      "role": "fixture",
+      "tracked": false,
+      "preRoundSha256": "2c1bab71e11ac59aab2eb2acc93fe221359d44d5e50a90b0651d59ca6c673885",
+      "postSha256": "2c1bab71e11ac59aab2eb2acc93fe221359d44d5e50a90b0651d59ca6c673885",
+      "bytes": 25658,
+      "lineEnding": "LF",
+      "gitBlob": "f6df9c4c737217b42c072eefaaafee3064702c26",
+      "changedThisRound": false
+    },
+    {
+      "path": "src/game/ai/__tests__/forcedLossTieBreakHv14Reachability.test.ts",
+      "role": "test",
+      "tracked": true,
+      "preRoundSha256": "d0ebb25e5f5927c27bf91f11d4ddcb642e7d515616499473c8c533d87ef8b03a",
+      "postSha256": "d0ebb25e5f5927c27bf91f11d4ddcb642e7d515616499473c8c533d87ef8b03a",
+      "bytes": 36228,
+      "lineEnding": "LF",
+      "gitBlob": "8fa06af377c6b17a0c20d4736ef1219ed1850154",
+      "changedThisRound": false
+    },
+    {
+      "path": "src/game/ai/__tests__/hardTurnAbsoluteDeadline.test.ts",
+      "role": "test",
+      "tracked": false,
+      "preRoundSha256": "4ada71d726f907adf5e589d8eac83bdae8d16de82b6ed6385318fec53cdfb877",
+      "postSha256": "4ada71d726f907adf5e589d8eac83bdae8d16de82b6ed6385318fec53cdfb877",
+      "bytes": 18024,
+      "lineEnding": "LF",
+      "gitBlob": "0e72711d4a4cb249415275e859b7988c495b7bac",
+      "changedThisRound": false
+    },
+    {
+      "path": "src/game/ai/__tests__/hardTurnAbsoluteDeadlineEngine.test.ts",
+      "role": "test",
+      "tracked": false,
+      "preRoundSha256": "6822a91e4ee058ea46994beb5425df03eb6a47469df370b050a89d51c4842b39",
+      "postSha256": "6822a91e4ee058ea46994beb5425df03eb6a47469df370b050a89d51c4842b39",
+      "bytes": 18160,
+      "lineEnding": "CRLF",
+      "gitBlob": "9ed9aa5cab8b042e62ee4c091ee1f887f5c91c81",
+      "changedThisRound": false
+    },
+    {
+      "path": "src/game/ai/__tests__/hv14FiveGameForensics.test.ts",
+      "role": "test",
+      "tracked": true,
+      "preRoundSha256": "99bd3633891533d5f61cd9836c76cf05ff00782f4b6deb1d5d30bb99c40b3e74",
+      "postSha256": "99bd3633891533d5f61cd9836c76cf05ff00782f4b6deb1d5d30bb99c40b3e74",
+      "bytes": 45430,
+      "lineEnding": "LF",
+      "gitBlob": "92302f029daf885f646924a1fc77e9bfbcea4ac3",
+      "changedThisRound": false
+    },
+    {
+      "path": "src/game/ai/__tests__/hv2PlanTieQuality.test.ts",
+      "role": "test",
+      "tracked": true,
+      "preRoundSha256": "4455d7314918d676f65b9c5fbc04349a9336d1be4496fbc80d18076fd8720eff",
+      "postSha256": "4455d7314918d676f65b9c5fbc04349a9336d1be4496fbc80d18076fd8720eff",
+      "bytes": 6117,
+      "lineEnding": "LF",
+      "gitBlob": "461c33bc8680f1f3231cee9059ad721d6f4a6b07",
+      "changedThisRound": false
+    },
+    {
+      "path": "src/game/ai/__tests__/m3liteHumanValidationLogging.test.ts",
+      "role": "test",
+      "tracked": true,
+      "preRoundSha256": "73bd3c13fe36e7445f0e22c6633ed32ad0a7fc3841b9b14d77f95df18866e767",
+      "postSha256": "73bd3c13fe36e7445f0e22c6633ed32ad0a7fc3841b9b14d77f95df18866e767",
+      "bytes": 11886,
+      "lineEnding": "LF",
+      "gitBlob": "d5141418103aa61227331571a6493ec3f50cc358",
+      "changedThisRound": false
+    },
+    {
+      "path": "src/game/ai/__tests__/planActionBoundFixtures.ts",
+      "role": "test",
+      "tracked": false,
+      "preRoundSha256": "9e6357cdde151d83812e0f4546ba496378187ee7e1775d6cd17a7e3284ee5e08",
+      "postSha256": "9e6357cdde151d83812e0f4546ba496378187ee7e1775d6cd17a7e3284ee5e08",
+      "bytes": 11825,
+      "lineEnding": "LF",
+      "gitBlob": "878122db2447456c326b97c759db53feb7605421",
+      "changedThisRound": false
+    },
+    {
+      "path": "src/game/ai/__tests__/planReversalAccounting.test.ts",
+      "role": "test",
+      "tracked": false,
+      "preRoundSha256": "6736d435f89e1018345d39532568f2d50565bc967051561f3dfe8aba6597aa6c",
+      "postSha256": "6736d435f89e1018345d39532568f2d50565bc967051561f3dfe8aba6597aa6c",
+      "bytes": 15254,
+      "lineEnding": "LF",
+      "gitBlob": "ebce2720a6278cbac45e0b103eaa6a5ec425044c",
+      "changedThisRound": false
+    },
+    {
+      "path": "src/game/ai/__tests__/planTurnActionBound.test.ts",
+      "role": "test",
+      "tracked": false,
+      "preRoundSha256": "691ff9002cf92b1facf22354d2d325a8ac23efa1cc2359b781e21d219171595a",
+      "postSha256": "691ff9002cf92b1facf22354d2d325a8ac23efa1cc2359b781e21d219171595a",
+      "bytes": 21958,
+      "lineEnding": "LF",
+      "gitBlob": "814815bdc034e7747bc17c7d37f2183ea91a33fc",
+      "changedThisRound": false
+    },
+    {
+      "path": "src/game/ai/__tests__/progressGuard.test.ts",
+      "role": "test",
+      "tracked": true,
+      "preRoundSha256": "0d80ee542ca8662088b14a73641ef37f0d0cd3c04d093da2d59a24181f9d0965",
+      "postSha256": "0d80ee542ca8662088b14a73641ef37f0d0cd3c04d093da2d59a24181f9d0965",
+      "bytes": 34482,
+      "lineEnding": "LF",
+      "gitBlob": "6bcafb4adf8941ac2504e6a726b56f39537c4721",
+      "changedThisRound": false
+    },
+    {
+      "path": "src/game/ai/__tests__/stateIdentityCollision.test.ts",
+      "role": "test",
+      "tracked": false,
+      "preRoundSha256": "4be1cf487e4af828db7982250abdfd58a576fb2367973edcb0adb8ef4af507e7",
+      "postSha256": "4be1cf487e4af828db7982250abdfd58a576fb2367973edcb0adb8ef4af507e7",
+      "bytes": 26215,
+      "lineEnding": "LF",
+      "gitBlob": "d42c35e30c6ef069077f21d81e16dc57f4568053",
+      "changedThisRound": false
+    },
+    {
+      "path": "src/game/ai/deadlineContext.ts",
+      "role": "production",
+      "tracked": true,
+      "preRoundSha256": "ced449445d70d1ba88cb20d88415b3c641d670aa886536fcacefa36b4aa50235",
+      "postSha256": "ced449445d70d1ba88cb20d88415b3c641d670aa886536fcacefa36b4aa50235",
+      "bytes": 14411,
+      "lineEnding": "LF",
+      "gitBlob": "8701d90ead963e19c01d4c3f5ffbf8151e6a05ac",
+      "changedThisRound": false
+    },
+    {
+      "path": "src/game/ai/expectiminimax.ts",
+      "role": "production",
+      "tracked": true,
+      "preRoundSha256": "8ac2698587b426df39efc2bb3b451db89d21477e6c60a30ad90e387dfaad052c",
+      "postSha256": "8ac2698587b426df39efc2bb3b451db89d21477e6c60a30ad90e387dfaad052c",
+      "bytes": 107714,
+      "lineEnding": "LF",
+      "gitBlob": "747803a83b87c88b75f75bde730b1000aef78e81",
+      "changedThisRound": false
+    },
+    {
+      "path": "src/game/ai/hardTurnPlanner.ts",
+      "role": "production",
+      "tracked": true,
+      "preRoundSha256": "27b1ce6dc62234d0c822b2b0b6341205ac189b5f76d7662a5d29d9e17ded75ff",
+      "postSha256": "27b1ce6dc62234d0c822b2b0b6341205ac189b5f76d7662a5d29d9e17ded75ff",
+      "bytes": 36060,
+      "lineEnding": "LF",
+      "gitBlob": "627cb93c952d44485949577c8d50b2566ec076e2",
+      "changedThisRound": false
+    },
+    {
+      "path": "src/game/ai/planBound.ts",
+      "role": "production",
+      "tracked": false,
+      "preRoundSha256": "4a212b75de6b5c47b6402c0745593169f6271a06d0f91fed99b7479f679b3dab",
+      "postSha256": "4a212b75de6b5c47b6402c0745593169f6271a06d0f91fed99b7479f679b3dab",
+      "bytes": 8012,
+      "lineEnding": "LF",
+      "gitBlob": "03cca8b92430b3897d45b1c411f7895b4a0bc3b1",
+      "changedThisRound": false
+    },
+    {
+      "path": "src/game/ai/planQuality.ts",
+      "role": "production",
+      "tracked": true,
+      "preRoundSha256": "46979485d568dfff12e2f998353cda95616502a7433ac84c3d31801726090952",
+      "postSha256": "46979485d568dfff12e2f998353cda95616502a7433ac84c3d31801726090952",
+      "bytes": 30693,
+      "lineEnding": "LF",
+      "gitBlob": "bdd2c6928a70946de720b58bbd69874e5c805b28",
+      "changedThisRound": false
+    },
+    {
+      "path": "src/game/ai/transposition.ts",
+      "role": "production",
+      "tracked": true,
+      "preRoundSha256": "7b4aa8eb3fab994a4abc77fdf38800ab2a5f9da57d5eb33a1b37075e106c2d64",
+      "postSha256": "7b4aa8eb3fab994a4abc77fdf38800ab2a5f9da57d5eb33a1b37075e106c2d64",
+      "bytes": 6784,
+      "lineEnding": "LF",
+      "gitBlob": "2b331f45157d20145c2461e21f267a140e642336",
+      "changedThisRound": false
+    },
+    {
+      "path": "src/game/config.ts",
+      "role": "production",
+      "tracked": true,
+      "preRoundSha256": "60e38c491c81f0b6d962bd32b306373de462cffcc9508b76c5bed02f9f70caae",
+      "postSha256": "60e38c491c81f0b6d962bd32b306373de462cffcc9508b76c5bed02f9f70caae",
+      "bytes": 15048,
+      "lineEnding": "LF",
+      "gitBlob": "db53f855696fe19bf2cf929aeeab7381a8f4eec4",
+      "changedThisRound": false
+    },
+    {
+      "path": "src/game/engine.ts",
+      "role": "production",
+      "tracked": true,
+      "preRoundSha256": "099f9a7b6d97b838c664aa7186be58465e5b01b8052af4b4e4e19a5644d19f06",
+      "postSha256": "099f9a7b6d97b838c664aa7186be58465e5b01b8052af4b4e4e19a5644d19f06",
+      "bytes": 190506,
+      "lineEnding": "CRLF",
+      "gitBlob": "b7587b70edf883f3df4fb83b3107c24a7ada2fd6",
+      "changedThisRound": false
+    },
+    {
+      "path": "src/game/openingFairness.ts",
+      "role": "production",
+      "tracked": true,
+      "preRoundSha256": "9d19279cafefe545ea6fd2d49cd2d412986c0002977c7b37cf3e72787efd7908",
+      "postSha256": "9d19279cafefe545ea6fd2d49cd2d412986c0002977c7b37cf3e72787efd7908",
+      "bytes": 35834,
+      "lineEnding": "LF",
+      "gitBlob": "d7f3a2a42bf088558ffa4d72d578c93ab1a44146",
+      "changedThisRound": false
+    }
+  ],
+  "crossCheck": {
+    "previousManifest": "PPC-P1-OPENING-STACK-01/SOURCE_MANIFEST.json",
+    "measured": 26,
+    "match": 25,
+    "changedThisRound": 1,
+    "neverListedBefore": 0,
+    "unexplainedDivergence": 0
+  },
+  "archives": {
+    "checkpoint01": {
+      "path": "F:/ppc-checkpoints/PPC-P1-CHECKPOINT-01-candidate.tar.gz",
+      "sha256": "5cd732828856f2b3cd903cc20c584bbb0fec7906d283ec08415bd2653a9425d5",
+      "bytes": 4051823,
+      "readOnly": true
+    },
+    "openingStack01": {
+      "path": "F:/ppc-checkpoints/PPC-P1-OPENING-STACK-01-candidate.tar.gz",
+      "sha256": "a6a7795c4f31533a8127ec9e8594a4974aad019b73f69a1421a5c04930c2d015",
+      "bytes": 85538,
+      "readOnly": true
+    },
+    "seal01": {
+      "path": "F:/ppc-checkpoints/PPC-P1-OPENING-SEAL-01-candidate.tar.gz",
+      "sha256": null,
+      "bytes": null,
+      "readOnly": false,
+      "sha256RecordedIn": "PPC-P1-OPENING-SEAL-01/ARCHIVE_SHA256.txt (written after packaging)",
+      "existsAtManifestBuildTime": true
+    }
+  },
+  "invariants": {
+    "PRODUCTION_SOURCE_CHANGED": "NO",
+    "GAME_RULES_CHANGED": "NO",
+    "SEARCH_MATH_CHANGED": "NO",
+    "H1_CHANGED": "NO",
+    "SIDECAR_CHANGED": "NO",
+    "BUDGET_100MS_CHANGED": "NO",
+    "BUDGET_150MS_CHANGED": "NO",
+    "MOUSE_AI_CHANGED": "NO",
+    "FULL_REGRESSION_RERUN": "NO (not required: no production source or verification contract changed)"
+  },
+  "guardState": {
+    "commit": "NO",
+    "push": "NO",
+    "merge": "NO",
+    "reset": "NO",
+    "clean": "NO",
+    "stash": "NO",
+    "checkoutOverwrite": "NO",
+    "priorArchivesOverwritten": "NO"
+  }
+}

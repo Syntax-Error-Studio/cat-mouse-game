@@ -200,7 +200,12 @@ describe('G0.4F-2B-1.6 M3-lite Progress Guard', () => {
       leafEvaluator: H1Leaf, refutation: { enabled: false },
     });
     expect(p.search.completedDepth).toBe(2);
-    expect(p.search.catTurnPlan.map(label).join('')).toBe('ULDR');
+    // PPC-P1-QUALITY-01: 'DRUL' replaces 'ULDR'. The old accounting charged the
+    // Down branch 1 (its child returned DDUU, a 1-reversal line) although that
+    // branch's true optimum is DRUL at 0 reversals; with the corrected counts
+    // all four root branches tie at 0 and the first recorded action wins.
+    // previousCompletedPlan (the depth-1 extraction) is unchanged at DDLD.
+    expect(p.search.catTurnPlan.map(label).join('')).toBe('DRUL');
     expect(p.search.previousCompletedPlan.map(label).join('')).toBe('DDLD');
     expect(p.search.previousCompletedDepth).toBe(1);
   });
@@ -252,10 +257,26 @@ describe('G0.4F-2B-1.6 M3-lite Progress Guard', () => {
   });
 
   it('P8: T15 final plan DDLD (guard applied via passMemory)', () => {
-    HARD_PROGRESS_GUARD_CONFIG.enabled = true;
     setHardLeafMode('baseline_hole_corrected');
     const t15 = game5TurnRoot(15);
-    const prevSig = replayCatPlanLabel(game5TurnRoot(14), 'ULDR').signature;
+
+    // PPC-P1-QUALITY-01: the guard matches loop SIGNATURES, and a signature
+    // carries the plan label. The planner's T15 no-progress loop is 'DRUL' now,
+    // so the previous-turn memory must be built from the loop the planner
+    // actually produces. Hard-coding the pre-fix label would (a) encode an old
+    // plan as an authority and (b) leave the rescue path untested — the trigger
+    // would never fire (`SIGNATURE_DIFFERS`).
+    HARD_PROGRESS_GUARD_CONFIG.enabled = false;
+    const unguarded = planHardCatTurn(t15, {
+      rules, timeBudgetMs: 600000, maxDepthTurns: 2, maxNodes: 2_000_000,
+      leafEvaluator: H1Leaf, refutation: { enabled: false },
+    });
+    const currentLabel = unguarded.plan.map(label).join('');
+    expect(currentLabel, 'the no-progress loop the planner produces at T15').toBe('DRUL');
+
+    HARD_PROGRESS_GUARD_CONFIG.enabled = true;
+    const prevSig = replayCatPlanLabel(game5TurnRoot(14), currentLabel).signature;
+    expect(prevSig, 'the same loop on the previous turn has a signature').not.toBeNull();
     const mem = makeMemory({ noProgressLoop: true, sig: prevSig, mouseObserved: true });
     const p = planHardCatTurn(t15, {
       rules, timeBudgetMs: 600000, maxDepthTurns: 2, maxNodes: 2_000_000,
@@ -264,7 +285,7 @@ describe('G0.4F-2B-1.6 M3-lite Progress Guard', () => {
     });
     expect(p.plan.map(label).join('')).toBe('DDLD');
     expect(p.debug.progressGuard?.rescueApplied).toBe(true);
-    expect(p.debug.progressGuard?.originalPlan).toBe('ULDR');
+    expect(p.debug.progressGuard?.originalPlan).toBe(currentLabel);
   });
 
   it('P9/P10: Game5 T4/T5 no trigger (one-off, box progress)', () => {
@@ -587,7 +608,10 @@ describe('G0.4F-2B-1.6 M3-lite Progress Guard', () => {
     setHardLeafMode('baseline_hole_corrected');
     const root = game5TurnRoot(15);
     const p = planHardCatTurn(root, { rules, timeBudgetMs: 600000, maxDepthTurns: 2, maxNodes: 2_000_000, leafEvaluator: H1Leaf, refutation: { enabled: false } });
-    expect(p.plan.map(label).join('')).toBe('ULDR'); // same as pre-guard (guard OFF)
+    // PPC-P1-QUALITY-01: 'DRUL' is the corrected-accounting plan; the invariant
+    // this gate exists for — guard OFF produces exactly the unguarded planner
+    // output — is unchanged.
+    expect(p.plan.map(label).join('')).toBe('DRUL'); // same as pre-guard (guard OFF)
     expect(p.debug.progressGuard?.enabled).toBe(false);
   });
 

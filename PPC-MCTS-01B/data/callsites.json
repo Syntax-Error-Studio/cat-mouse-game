@@ -1,0 +1,396 @@
+{
+  "provenance": {
+    "generatedBy": "PPC-MCTS-01B/probe/callsite.test.ts",
+    "head": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+    "uctSource": "PPC-MCTS-01/proto/uct.ts (read-only, unmodified)",
+    "termination": "node cap 300 with now() === 0 (no wall clock, no timing)",
+    "roots": [
+      "G6T1",
+      "G5T4",
+      "G2T6",
+      "G1T1"
+    ],
+    "modes": [
+      "hybrid",
+      "random"
+    ]
+  },
+  "categoryTotals": {
+    "TREE_LEGALITY": 4657,
+    "TREE_TRANSITION": 2392,
+    "ROLLOUT_LEGALITY": 86127,
+    "ROLLOUT_GUIDANCE": 32435,
+    "ROLLOUT_EXEC": 22664,
+    "EXT_LEGALITY": 0,
+    "EXT_GUIDANCE": 0,
+    "EXT_EXEC": 0,
+    "UNKNOWN": 0
+  },
+  "categoryFn": {
+    "TREE_LEGALITY": {
+      "catMove": 2624,
+      "catPlaceTrap": 260,
+      "mouseStep": 1608,
+      "mouseSkill": 165
+    },
+    "TREE_TRANSITION": {
+      "catMove": 1625,
+      "catPlaceTrap": 97,
+      "mouseStep": 599,
+      "mouseSkill": 71
+    },
+    "ROLLOUT_LEGALITY": {
+      "catMove": 37428,
+      "catPlaceTrap": 1881,
+      "mouseStep": 46128,
+      "mouseSkill": 690
+    },
+    "ROLLOUT_GUIDANCE": {
+      "catMove": 15270,
+      "catPlaceTrap": 593,
+      "mouseStep": 11582,
+      "chooseTunnelExit": 4726,
+      "mouseSkill": 264
+    },
+    "ROLLOUT_EXEC": {
+      "catPlaceTrap": 684,
+      "catMove": 8673,
+      "mouseStep": 11395,
+      "chooseTunnelExit": 1775,
+      "mouseSkill": 137
+    },
+    "EXT_LEGALITY": {},
+    "EXT_GUIDANCE": {},
+    "EXT_EXEC": {},
+    "UNKNOWN": {}
+  },
+  "totalRuleCalls": 148275,
+  "unknownTotal": 0,
+  "removableByReuse": 57491,
+  "preparedRuleCalls": 90784,
+  "savingFraction": 0.3877322542572922,
+  "pairCategorySets": {
+    "TREE_LEGALITY+TREE_TRANSITION": 32,
+    "ROLLOUT_LEGALITY+TREE_LEGALITY": 663,
+    "ROLLOUT_GUIDANCE+ROLLOUT_LEGALITY+TREE_LEGALITY+TREE_TRANSITION": 479,
+    "ROLLOUT_EXEC+ROLLOUT_GUIDANCE+ROLLOUT_LEGALITY+TREE_LEGALITY+TREE_TRANSITION": 201,
+    "ROLLOUT_GUIDANCE+ROLLOUT_LEGALITY+TREE_LEGALITY": 174,
+    "ROLLOUT_EXEC+ROLLOUT_GUIDANCE+ROLLOUT_LEGALITY+TREE_LEGALITY": 81,
+    "ROLLOUT_LEGALITY": 22461,
+    "ROLLOUT_EXEC+ROLLOUT_GUIDANCE+ROLLOUT_LEGALITY": 1657,
+    "ROLLOUT_GUIDANCE+ROLLOUT_LEGALITY": 3774,
+    "ROLLOUT_EXEC+ROLLOUT_GUIDANCE": 203,
+    "ROLLOUT_GUIDANCE": 607,
+    "TREE_LEGALITY": 4,
+    "ROLLOUT_LEGALITY+TREE_LEGALITY+TREE_TRANSITION": 276,
+    "ROLLOUT_EXEC+ROLLOUT_LEGALITY+TREE_LEGALITY+TREE_TRANSITION": 369,
+    "ROLLOUT_EXEC+ROLLOUT_LEGALITY+TREE_LEGALITY": 130,
+    "ROLLOUT_EXEC+ROLLOUT_LEGALITY": 9106,
+    "ROLLOUT_EXEC": 356
+  },
+  "multiCategoryPairs": [
+    {
+      "pair": "t__e__e__e__e__e__e__e__e__tm_e__ec_b__e__e__e__e__e__e__e__e__e__e__b__e__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__",
+      "cats": [
+        "TREE_LEGALITY",
+        "TREE_TRANSITION"
+      ]
+    },
+    {
+      "pair": "t__e__e__e__e__e__e__e__e__tm_e__ec_b__e__e__e__e__e__e__e__e__e__e__b__e__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__",
+      "cats": [
+        "TREE_LEGALITY",
+        "TREE_TRANSITION"
+      ]
+    },
+    {
+      "pair": "t__e__e__e__e__e__e__e__e__tm_e__ec_b__e__e__e__e__e__e__e__e__e__e__b__e__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__",
+      "cats": [
+        "TREE_LEGALITY",
+        "TREE_TRANSITION"
+      ]
+    },
+    {
+      "pair": "t__e__e__e__e__e__e__e__e__tm_e__ec_b__e__e__e__e__e__e__e__e__e__e__b__e__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__",
+      "cats": [
+        "TREE_LEGALITY",
+        "TREE_TRANSITION"
+      ]
+    },
+    {
+      "pair": "t__e__e__e__e__e__e__e__e__tm_e__ec_b__e__e__e__e__e__e__e__e__e__e__b__e__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__",
+      "cats": [
+        "TREE_LEGALITY",
+        "TREE_TRANSITION"
+      ]
+    },
+    {
+      "pair": "t__ec_e__e__e__e__e__e__e__tm_e__e__b__e__e__e__e__e__e__e__e__e__e__b__e__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__",
+      "cats": [
+        "ROLLOUT_LEGALITY",
+        "TREE_LEGALITY"
+      ]
+    },
+    {
+      "pair": "t__ec_e__e__e__e__e__e__e__tm_e__e__b__e__e__e__e__e__e__e__e__e__e__b__e__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__",
+      "cats": [
+        "ROLLOUT_LEGALITY",
+        "ROLLOUT_GUIDANCE",
+        "TREE_LEGALITY",
+        "TREE_TRANSITION"
+      ]
+    },
+    {
+      "pair": "t__ec_e__e__e__e__e__e__e__tm_e__e__b__e__e__e__e__e__e__e__e__e__e__b__e__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__",
+      "cats": [
+        "ROLLOUT_LEGALITY",
+        "TREE_LEGALITY"
+      ]
+    },
+    {
+      "pair": "t__ec_e__e__e__e__e__e__e__tm_e__e__b__e__e__e__e__e__e__e__e__e__e__b__e__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__",
+      "cats": [
+        "ROLLOUT_LEGALITY",
+        "ROLLOUT_GUIDANCE",
+        "TREE_LEGALITY",
+        "TREE_TRANSITION"
+      ]
+    },
+    {
+      "pair": "t__ec_e__e__e__e__e__e__e__tm_e__e__b__e__e__e__e__e__e__e__e__e__e__b__e__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__",
+      "cats": [
+        "ROLLOUT_LEGALITY",
+        "ROLLOUT_GUIDANCE",
+        "ROLLOUT_EXEC",
+        "TREE_LEGALITY",
+        "TREE_TRANSITION"
+      ]
+    }
+  ],
+  "perRun": [
+    {
+      "root": "G6T1",
+      "mode": "hybrid",
+      "simulations": 299,
+      "nodesCreated": 300,
+      "chanceNodes": 0,
+      "rolloutSteps": 2843,
+      "chanceSamples": 0,
+      "nodeCapHit": true,
+      "treeDecisionNodes": 300,
+      "treeEdgesMaterialized": 299,
+      "ruleCalls": 22914,
+      "byCategory": {
+        "TREE_LEGALITY": 572,
+        "TREE_TRANSITION": 299,
+        "ROLLOUT_LEGALITY": 9711,
+        "ROLLOUT_GUIDANCE": 9489,
+        "ROLLOUT_EXEC": 2843,
+        "EXT_LEGALITY": 0,
+        "EXT_GUIDANCE": 0,
+        "EXT_EXEC": 0,
+        "UNKNOWN": 0
+      },
+      "removableByReuse": 12631,
+      "preparedRuleCalls": 10283,
+      "distinctStateActionPairs": 3275,
+      "unknownStacks": []
+    },
+    {
+      "root": "G5T4",
+      "mode": "hybrid",
+      "simulations": 420,
+      "nodesCreated": 300,
+      "chanceNodes": 0,
+      "rolloutSteps": 879,
+      "chanceSamples": 0,
+      "nodeCapHit": true,
+      "treeDecisionNodes": 300,
+      "treeEdgesMaterialized": 299,
+      "ruleCalls": 7995,
+      "byCategory": {
+        "TREE_LEGALITY": 632,
+        "TREE_TRANSITION": 299,
+        "ROLLOUT_LEGALITY": 3396,
+        "ROLLOUT_GUIDANCE": 2789,
+        "ROLLOUT_EXEC": 879,
+        "EXT_LEGALITY": 0,
+        "EXT_GUIDANCE": 0,
+        "EXT_EXEC": 0,
+        "UNKNOWN": 0
+      },
+      "removableByReuse": 3967,
+      "preparedRuleCalls": 4028,
+      "distinctStateActionPairs": 983,
+      "unknownStacks": []
+    },
+    {
+      "root": "G2T6",
+      "mode": "hybrid",
+      "simulations": 299,
+      "nodesCreated": 300,
+      "chanceNodes": 0,
+      "rolloutSteps": 2060,
+      "chanceSamples": 0,
+      "nodeCapHit": true,
+      "treeDecisionNodes": 300,
+      "treeEdgesMaterialized": 299,
+      "ruleCalls": 15724,
+      "byCategory": {
+        "TREE_LEGALITY": 600,
+        "TREE_TRANSITION": 299,
+        "ROLLOUT_LEGALITY": 6424,
+        "ROLLOUT_GUIDANCE": 6341,
+        "ROLLOUT_EXEC": 2060,
+        "EXT_LEGALITY": 0,
+        "EXT_GUIDANCE": 0,
+        "EXT_EXEC": 0,
+        "UNKNOWN": 0
+      },
+      "removableByReuse": 8700,
+      "preparedRuleCalls": 7024,
+      "distinctStateActionPairs": 840,
+      "unknownStacks": []
+    },
+    {
+      "root": "G1T1",
+      "mode": "hybrid",
+      "simulations": 299,
+      "nodesCreated": 300,
+      "chanceNodes": 0,
+      "rolloutSteps": 3843,
+      "chanceSamples": 0,
+      "nodeCapHit": true,
+      "treeDecisionNodes": 300,
+      "treeEdgesMaterialized": 299,
+      "ruleCalls": 33610,
+      "byCategory": {
+        "TREE_LEGALITY": 558,
+        "TREE_TRANSITION": 299,
+        "ROLLOUT_LEGALITY": 15094,
+        "ROLLOUT_GUIDANCE": 13816,
+        "ROLLOUT_EXEC": 3843,
+        "EXT_LEGALITY": 0,
+        "EXT_GUIDANCE": 0,
+        "EXT_EXEC": 0,
+        "UNKNOWN": 0
+      },
+      "removableByReuse": 17958,
+      "preparedRuleCalls": 15652,
+      "distinctStateActionPairs": 3721,
+      "unknownStacks": []
+    },
+    {
+      "root": "G6T1",
+      "mode": "random",
+      "simulations": 299,
+      "nodesCreated": 300,
+      "chanceNodes": 0,
+      "rolloutSteps": 3808,
+      "chanceSamples": 65,
+      "nodeCapHit": true,
+      "treeDecisionNodes": 300,
+      "treeEdgesMaterialized": 299,
+      "ruleCalls": 19675,
+      "byCategory": {
+        "TREE_LEGALITY": 556,
+        "TREE_TRANSITION": 299,
+        "ROLLOUT_LEGALITY": 15012,
+        "ROLLOUT_GUIDANCE": 0,
+        "ROLLOUT_EXEC": 3808,
+        "EXT_LEGALITY": 0,
+        "EXT_GUIDANCE": 0,
+        "EXT_EXEC": 0,
+        "UNKNOWN": 0
+      },
+      "removableByReuse": 4107,
+      "preparedRuleCalls": 15568,
+      "distinctStateActionPairs": 10564,
+      "unknownStacks": []
+    },
+    {
+      "root": "G5T4",
+      "mode": "random",
+      "simulations": 380,
+      "nodesCreated": 300,
+      "chanceNodes": 0,
+      "rolloutSteps": 2329,
+      "chanceSamples": 3,
+      "nodeCapHit": true,
+      "treeDecisionNodes": 300,
+      "treeEdgesMaterialized": 299,
+      "ruleCalls": 12486,
+      "byCategory": {
+        "TREE_LEGALITY": 585,
+        "TREE_TRANSITION": 299,
+        "ROLLOUT_LEGALITY": 9273,
+        "ROLLOUT_GUIDANCE": 0,
+        "ROLLOUT_EXEC": 2329,
+        "EXT_LEGALITY": 0,
+        "EXT_GUIDANCE": 0,
+        "EXT_EXEC": 0,
+        "UNKNOWN": 0
+      },
+      "removableByReuse": 2628,
+      "preparedRuleCalls": 9858,
+      "distinctStateActionPairs": 5249,
+      "unknownStacks": []
+    },
+    {
+      "root": "G2T6",
+      "mode": "random",
+      "simulations": 299,
+      "nodesCreated": 300,
+      "chanceNodes": 0,
+      "rolloutSteps": 3092,
+      "chanceSamples": 8,
+      "nodeCapHit": true,
+      "treeDecisionNodes": 300,
+      "treeEdgesMaterialized": 299,
+      "ruleCalls": 15359,
+      "byCategory": {
+        "TREE_LEGALITY": 600,
+        "TREE_TRANSITION": 299,
+        "ROLLOUT_LEGALITY": 11368,
+        "ROLLOUT_GUIDANCE": 0,
+        "ROLLOUT_EXEC": 3092,
+        "EXT_LEGALITY": 0,
+        "EXT_GUIDANCE": 0,
+        "EXT_EXEC": 0,
+        "UNKNOWN": 0
+      },
+      "removableByReuse": 3391,
+      "preparedRuleCalls": 11968,
+      "distinctStateActionPairs": 5184,
+      "unknownStacks": []
+    },
+    {
+      "root": "G1T1",
+      "mode": "random",
+      "simulations": 299,
+      "nodesCreated": 300,
+      "chanceNodes": 0,
+      "rolloutSteps": 3810,
+      "chanceSamples": 0,
+      "nodeCapHit": true,
+      "treeDecisionNodes": 300,
+      "treeEdgesMaterialized": 299,
+      "ruleCalls": 20512,
+      "byCategory": {
+        "TREE_LEGALITY": 554,
+        "TREE_TRANSITION": 299,
+        "ROLLOUT_LEGALITY": 15849,
+        "ROLLOUT_GUIDANCE": 0,
+        "ROLLOUT_EXEC": 3810,
+        "EXT_LEGALITY": 0,
+        "EXT_GUIDANCE": 0,
+        "EXT_EXEC": 0,
+        "UNKNOWN": 0
+      },
+      "removableByReuse": 4109,
+      "preparedRuleCalls": 16403,
+      "distinctStateActionPairs": 10757,
+      "unknownStacks": []
+    }
+  ]
+}

@@ -1,0 +1,216 @@
+{
+  "round": "PPC-D2-PCV-COUNTERLINE-01",
+  "phase": "G4_PCV_PROOF",
+  "rep": 1,
+  "processStartedAt": "2026-11-16T11:33:46.592Z",
+  "freezeContentSha256": "b6a1633b2de7ce33a7b01e75b16a5b197a9dde76b39f58a39be3db45648c0618",
+  "candidateCount": 4,
+  "proofContract": {
+    "h0": {
+      "mode": "mouseForce",
+      "H": 1,
+      "startIdx": 1,
+      "cap": 600000
+    },
+    "h1": {
+      "mode": "catSurvive",
+      "H": 1,
+      "startIdx": 1,
+      "cap": 5000
+    },
+    "chanceHandling": "AND over every positive-probability frontier branch",
+    "verifier": "independent (verifyMouseCertificate / verifyCatCertificate)"
+  },
+  "uniqueFrontierCount": 1,
+  "h0Refuted": 4,
+  "h0Unresolved": 0,
+  "h1SurvivalProven": 0,
+  "h1Unresolved": 0,
+  "PROVEN_TACTICAL_RESCUE": 0,
+  "records": [
+    {
+      "legalIndex": 0,
+      "rootAction": "U",
+      "planString": "UDDR",
+      "planHash": "be0267685b1f1b9120b9ddc806fb000dc9f029899300f94681864edc105c7965",
+      "frozenPostStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "replayPostStateKey": [
+        "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+      ],
+      "stateIdentityMatch": true,
+      "frontierCanonicalSha256": "057fcfcc50a329bb82de5e95cb042cbd8a6b147283d36a7a0e84de40985ff563",
+      "frontierIdx": [
+        1
+      ],
+      "h0": {
+        "mode": "mouseForce",
+        "branches": [
+          {
+            "branchIdx": 0,
+            "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+            "weight": 1,
+            "mode": "mouseForce",
+            "value": true,
+            "proofStatus": "PROVEN",
+            "truncated": false,
+            "nodes": 774,
+            "solveMs": 78.705,
+            "verifyVerdict": "PROVEN",
+            "policyMisses": 0,
+            "withinPhase1": false,
+            "cap": 600000,
+            "H": 1,
+            "startIdx": 1
+          }
+        ],
+        "allProven": true,
+        "anyTruncated": false,
+        "anyPolicyMiss": false,
+        "branchCount": 1,
+        "chanceProbSum": 1
+      },
+      "h1": null,
+      "H0_VALID_REFUTATION": true,
+      "H1_VALID_SURVIVAL": false,
+      "ALL_CHANCE_BRANCHES_VERIFIED": true
+    },
+    {
+      "legalIndex": 1,
+      "rootAction": "D",
+      "planString": "DUDR",
+      "planHash": "d87ba666f84858009688b1bdd103477d6ecb65ac025b6d37058f4157e1886713",
+      "frozenPostStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "replayPostStateKey": [
+        "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+      ],
+      "stateIdentityMatch": true,
+      "frontierCanonicalSha256": "057fcfcc50a329bb82de5e95cb042cbd8a6b147283d36a7a0e84de40985ff563",
+      "frontierIdx": [
+        1
+      ],
+      "h0": {
+        "mode": "mouseForce",
+        "branches": [
+          {
+            "branchIdx": 0,
+            "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+            "weight": 1,
+            "mode": "mouseForce",
+            "value": true,
+            "proofStatus": "PROVEN",
+            "truncated": false,
+            "nodes": 774,
+            "solveMs": 63.267,
+            "verifyVerdict": "PROVEN",
+            "policyMisses": 0,
+            "withinPhase1": false,
+            "cap": 600000,
+            "H": 1,
+            "startIdx": 1
+          }
+        ],
+        "allProven": true,
+        "anyTruncated": false,
+        "anyPolicyMiss": false,
+        "branchCount": 1,
+        "chanceProbSum": 1
+      },
+      "h1": null,
+      "H0_VALID_REFUTATION": true,
+      "H1_VALID_SURVIVAL": false,
+      "ALL_CHANCE_BRANCHES_VERIFIED": true
+    },
+    {
+      "legalIndex": 2,
+      "rootAction": "L",
+      "planString": "LDRR",
+      "planHash": "6990560455fb58d2c42bf6dfd4ae10578e9a448d672a367948e3a22855ca8ad2",
+      "frozenPostStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "replayPostStateKey": [
+        "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+      ],
+      "stateIdentityMatch": true,
+      "frontierCanonicalSha256": "057fcfcc50a329bb82de5e95cb042cbd8a6b147283d36a7a0e84de40985ff563",
+      "frontierIdx": [
+        1
+      ],
+      "h0": {
+        "mode": "mouseForce",
+        "branches": [
+          {
+            "branchIdx": 0,
+            "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+            "weight": 1,
+            "mode": "mouseForce",
+            "value": true,
+            "proofStatus": "PROVEN",
+            "truncated": false,
+            "nodes": 774,
+            "solveMs": 51.134,
+            "verifyVerdict": "PROVEN",
+            "policyMisses": 0,
+            "withinPhase1": false,
+            "cap": 600000,
+            "H": 1,
+            "startIdx": 1
+          }
+        ],
+        "allProven": true,
+        "anyTruncated": false,
+        "anyPolicyMiss": false,
+        "branchCount": 1,
+        "chanceProbSum": 1
+      },
+      "h1": null,
+      "H0_VALID_REFUTATION": true,
+      "H1_VALID_SURVIVAL": false,
+      "ALL_CHANCE_BRANCHES_VERIFIED": true
+    },
+    {
+      "legalIndex": 3,
+      "rootAction": "R",
+      "planString": "RUDD",
+      "planHash": "7a96fa3b05c547788b76d561f57cd82024d18fde6d7c146d0b620249ee366934",
+      "frozenPostStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "replayPostStateKey": [
+        "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+      ],
+      "stateIdentityMatch": true,
+      "frontierCanonicalSha256": "057fcfcc50a329bb82de5e95cb042cbd8a6b147283d36a7a0e84de40985ff563",
+      "frontierIdx": [
+        1
+      ],
+      "h0": {
+        "mode": "mouseForce",
+        "branches": [
+          {
+            "branchIdx": 0,
+            "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+            "weight": 1,
+            "mode": "mouseForce",
+            "value": true,
+            "proofStatus": "PROVEN",
+            "truncated": false,
+            "nodes": 774,
+            "solveMs": 47.598,
+            "verifyVerdict": "PROVEN",
+            "policyMisses": 0,
+            "withinPhase1": false,
+            "cap": 600000,
+            "H": 1,
+            "startIdx": 1
+          }
+        ],
+        "allProven": true,
+        "anyTruncated": false,
+        "anyPolicyMiss": false,
+        "branchCount": 1,
+        "chanceProbSum": 1
+      },
+      "h1": null,
+      "H0_VALID_REFUTATION": true,
+      "H1_VALID_SURVIVAL": false,
+      "ALL_CHANCE_BRANCHES_VERIFIED": true
+    }
+  ]
+}

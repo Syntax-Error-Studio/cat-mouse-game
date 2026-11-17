@@ -1,0 +1,406 @@
+{
+  "label": "PHASE1_FORMAL",
+  "generatedAt": "2026-11-16T17:06:31.116Z",
+  "wallMs": 938477,
+  "contract": {
+    "TOTAL_JOBS": 20,
+    "TOTAL_ROOTS": 24,
+    "TOTAL_ARMS": 2,
+    "COMPLETED_SIMULATIONS_PER_CALL": 200,
+    "CALLS_PER_PROCESS": 48,
+    "TOTAL_SEARCH_CALLS": 960,
+    "EXPECTED_TOTAL_SIMULATIONS": 192000,
+    "HEAVY_WORKER_CONCURRENCY": 1,
+    "SERIAL_FRESH_REPETITIONS": true
+  },
+  "freshNodeProcessesExecuted": 20,
+  "jobRecords": [
+    {
+      "rep": 1,
+      "executed": true,
+      "status": 0,
+      "wallMs": 48083,
+      "records": 24,
+      "armCalls": 48,
+      "simulations": 9600,
+      "ok": true,
+      "problems": [],
+      "sha256": {
+        "jsonl": "36ab66eee6e83c2dc3eb122bc1aa23bf0678473f464343571fbbd7e65467aa9d",
+        "summary": "648d7e3772313602e3444daee62dc0c2bcad4ec9653eb6a4b31eec98a05b55e4",
+        "bytes": {
+          "jsonl": 814519,
+          "summary": 1209
+        }
+      }
+    },
+    {
+      "rep": 2,
+      "executed": true,
+      "status": 0,
+      "wallMs": 47069,
+      "records": 24,
+      "armCalls": 48,
+      "simulations": 9600,
+      "ok": true,
+      "problems": [],
+      "sha256": {
+        "jsonl": "d97b15a40b5b9b922f525d751c78787a9772e8980f8e439ddee50ebd9a48fbd3",
+        "summary": "8ebf178fe8d0bf6154d93fe68a260e46f4b6e07376ccb5112f8bf7f5204aa547",
+        "bytes": {
+          "jsonl": 814562,
+          "summary": 1209
+        }
+      }
+    },
+    {
+      "rep": 3,
+      "executed": true,
+      "status": 0,
+      "wallMs": 47510,
+      "records": 24,
+      "armCalls": 48,
+      "simulations": 9600,
+      "ok": true,
+      "problems": [],
+      "sha256": {
+        "jsonl": "5fe9f2eaa2625bc3fa9e192617ac53845a224dbb3b5decb3ecd78ec18b7d3ade",
+        "summary": "0850c199e27911bebf7309f2697718a2869f4b6d589f846c906b1df531e87130",
+        "bytes": {
+          "jsonl": 814554,
+          "summary": 1207
+        }
+      }
+    },
+    {
+      "rep": 4,
+      "executed": true,
+      "status": 0,
+      "wallMs": 46646,
+      "records": 24,
+      "armCalls": 48,
+      "simulations": 9600,
+      "ok": true,
+      "problems": [],
+      "sha256": {
+        "jsonl": "36ca6aefbdd61662db82d3dcb1515e94175dcac074285fee99f77621dd1c7443",
+        "summary": "05878ed5e61a4733c19249f20967a612c9d6c612f23b6384049c068dfab546d3",
+        "bytes": {
+          "jsonl": 814518,
+          "summary": 1208
+        }
+      }
+    },
+    {
+      "rep": 5,
+      "executed": true,
+      "status": 0,
+      "wallMs": 47171,
+      "records": 24,
+      "armCalls": 48,
+      "simulations": 9600,
+      "ok": true,
+      "problems": [],
+      "sha256": {
+        "jsonl": "d74375b3c3641fd84406a524acdbfe77afd86a549ae380f9e77fb1f43592667c",
+        "summary": "685f539e1986b94de701734ccd0c06f9d64c30a454f639cd7634e7a6410f3bdb",
+        "bytes": {
+          "jsonl": 814507,
+          "summary": 1209
+        }
+      }
+    },
+    {
+      "rep": 6,
+      "executed": true,
+      "status": 0,
+      "wallMs": 46576,
+      "records": 24,
+      "armCalls": 48,
+      "simulations": 9600,
+      "ok": true,
+      "problems": [],
+      "sha256": {
+        "jsonl": "684bbd35609d4f71dc44e131289aa23d66fd96fe42a1cc53de9899f29fb2d10b",
+        "summary": "286d19a2ffd8f7570d81ba6fb1fdf75885c2798308f5ca6ce7fd680fdeb02d41",
+        "bytes": {
+          "jsonl": 814537,
+          "summary": 1209
+        }
+      }
+    },
+    {
+      "rep": 7,
+      "executed": true,
+      "status": 0,
+      "wallMs": 46804,
+      "records": 24,
+      "armCalls": 48,
+      "simulations": 9600,
+      "ok": true,
+      "problems": [],
+      "sha256": {
+        "jsonl": "ffd7dbaff48f92cb18af7a4a9eb9f6b50bd543f5d8df91af92a58155a60ce62b",
+        "summary": "faf09ebc4086656df725451e9d94a234534b519e9a8b42fd497c470c3cfe140a",
+        "bytes": {
+          "jsonl": 814555,
+          "summary": 1209
+        }
+      }
+    },
+    {
+      "rep": 8,
+      "executed": true,
+      "status": 0,
+      "wallMs": 46752,
+      "records": 24,
+      "armCalls": 48,
+      "simulations": 9600,
+      "ok": true,
+      "problems": [],
+      "sha256": {
+        "jsonl": "f2527ed66d84f4f988accc7f003091704ffa99a6fe9d65d8651caac4c9a00881",
+        "summary": "dcd1cc60093142dd52788c786c6e17a0a702351d46cf1d745ea8dbf874e461cf",
+        "bytes": {
+          "jsonl": 814496,
+          "summary": 1209
+        }
+      }
+    },
+    {
+      "rep": 9,
+      "executed": true,
+      "status": 0,
+      "wallMs": 46559,
+      "records": 24,
+      "armCalls": 48,
+      "simulations": 9600,
+      "ok": true,
+      "problems": [],
+      "sha256": {
+        "jsonl": "04671e239df09998c7cabd647167e12cb1eba6f75d84c44befd96027f283c40d",
+        "summary": "304d9810cbbb87b3482013dd327808edcde48dba8dc86e5ee0826cdbabb62da9",
+        "bytes": {
+          "jsonl": 814524,
+          "summary": 1209
+        }
+      }
+    },
+    {
+      "rep": 10,
+      "executed": true,
+      "status": 0,
+      "wallMs": 47639,
+      "records": 24,
+      "armCalls": 48,
+      "simulations": 9600,
+      "ok": true,
+      "problems": [],
+      "sha256": {
+        "jsonl": "d6b11b8e31344c462287599d762c5eeac07c4a275f878ca2c43e8f21509d1119",
+        "summary": "563cf8cce2c36caffe344bf1ae3ec770b4e88ca7372b4f14c11e2d12f13fead6",
+        "bytes": {
+          "jsonl": 814613,
+          "summary": 1210
+        }
+      }
+    },
+    {
+      "rep": 11,
+      "executed": true,
+      "status": 0,
+      "wallMs": 47041,
+      "records": 24,
+      "armCalls": 48,
+      "simulations": 9600,
+      "ok": true,
+      "problems": [],
+      "sha256": {
+        "jsonl": "d23b41526cd841ebb84553339bcdd964d9c96896ebc49730295f6bdb94edf03b",
+        "summary": "e09cf642a20d6d0d8bde91f7152ed03c153b6a039a129a245186a919c1ee1173",
+        "bytes": {
+          "jsonl": 814581,
+          "summary": 1210
+        }
+      }
+    },
+    {
+      "rep": 12,
+      "executed": true,
+      "status": 0,
+      "wallMs": 46158,
+      "records": 24,
+      "armCalls": 48,
+      "simulations": 9600,
+      "ok": true,
+      "problems": [],
+      "sha256": {
+        "jsonl": "8200a05b2bac370622a51e50af9a74f4d043660ce571c5d17f88839b8963e2eb",
+        "summary": "688a062a2b1109292f697d8ce733f1c3ea1e1e47d3fa96982618b7c0c5e27735",
+        "bytes": {
+          "jsonl": 814609,
+          "summary": 1209
+        }
+      }
+    },
+    {
+      "rep": 13,
+      "executed": true,
+      "status": 0,
+      "wallMs": 46953,
+      "records": 24,
+      "armCalls": 48,
+      "simulations": 9600,
+      "ok": true,
+      "problems": [],
+      "sha256": {
+        "jsonl": "0e2c607a49b4f4e09a39ca52464b5e8366480d5ef4197d26187b091c681243db",
+        "summary": "dc8ad8202981178cd3a419fb13065ef4ae31bd01422921e035b75fd2494782e3",
+        "bytes": {
+          "jsonl": 814569,
+          "summary": 1210
+        }
+      }
+    },
+    {
+      "rep": 14,
+      "executed": true,
+      "status": 0,
+      "wallMs": 46460,
+      "records": 24,
+      "armCalls": 48,
+      "simulations": 9600,
+      "ok": true,
+      "problems": [],
+      "sha256": {
+        "jsonl": "fe81e10687dd5f24318855332bc0afb980ed2a286b35709d2d9bc40d332e7142",
+        "summary": "d7f7313275c6bf4b2846b38d6654b87dc2c81d37e59fe53d2b6a853c3b57247d",
+        "bytes": {
+          "jsonl": 814567,
+          "summary": 1210
+        }
+      }
+    },
+    {
+      "rep": 15,
+      "executed": true,
+      "status": 0,
+      "wallMs": 45993,
+      "records": 24,
+      "armCalls": 48,
+      "simulations": 9600,
+      "ok": true,
+      "problems": [],
+      "sha256": {
+        "jsonl": "57f8e04cb11d769ec5514fd9b54fc860da8b91c8276e01b96fb487b6afab1f9c",
+        "summary": "d9266a63b267071a47154d06b13319d9c909dc6b9db77a1d5c435760c90c4ff4",
+        "bytes": {
+          "jsonl": 814573,
+          "summary": 1210
+        }
+      }
+    },
+    {
+      "rep": 16,
+      "executed": true,
+      "status": 0,
+      "wallMs": 46826,
+      "records": 24,
+      "armCalls": 48,
+      "simulations": 9600,
+      "ok": true,
+      "problems": [],
+      "sha256": {
+        "jsonl": "275e39e0d801783ec1e50f71fb0956a67fea7e9997b2e9f54c01ca10b3f72cb7",
+        "summary": "fddda126de608884e358b547f4b95831eb5a76f3808bdfcc4bd8d180fdf9e76f",
+        "bytes": {
+          "jsonl": 814602,
+          "summary": 1210
+        }
+      }
+    },
+    {
+      "rep": 17,
+      "executed": true,
+      "status": 0,
+      "wallMs": 46808,
+      "records": 24,
+      "armCalls": 48,
+      "simulations": 9600,
+      "ok": true,
+      "problems": [],
+      "sha256": {
+        "jsonl": "7f7825007d89420981b612c28d4183f7d8eb94dc1fe051bfe0aa2f77603942b4",
+        "summary": "5bc0e976c7400701de8b6aed497d656bb16c843fcb62dde6efdae958d4e1477e",
+        "bytes": {
+          "jsonl": 814558,
+          "summary": 1209
+        }
+      }
+    },
+    {
+      "rep": 18,
+      "executed": true,
+      "status": 0,
+      "wallMs": 47238,
+      "records": 24,
+      "armCalls": 48,
+      "simulations": 9600,
+      "ok": true,
+      "problems": [],
+      "sha256": {
+        "jsonl": "9b89d5939ffb55b67ee01178e26f0c23ee9096070c8606c9ea7a5876aade4b27",
+        "summary": "628797489d0d0be0bff45fed4e251ff9edd34c1817d41a453d00d1c721c89e2a",
+        "bytes": {
+          "jsonl": 814574,
+          "summary": 1210
+        }
+      }
+    },
+    {
+      "rep": 19,
+      "executed": true,
+      "status": 0,
+      "wallMs": 47231,
+      "records": 24,
+      "armCalls": 48,
+      "simulations": 9600,
+      "ok": true,
+      "problems": [],
+      "sha256": {
+        "jsonl": "caa77c9493a09ca6e5ae3dfc4047a614296bd734d14f565d2066a77c0fee413a",
+        "summary": "9a23993ca93d3180135c2c99830f6e06cf40b803cf50e1eca9baddd655acbb35",
+        "bytes": {
+          "jsonl": 814570,
+          "summary": 1210
+        }
+      }
+    },
+    {
+      "rep": 20,
+      "executed": true,
+      "status": 0,
+      "wallMs": 46767,
+      "records": 24,
+      "armCalls": 48,
+      "simulations": 9600,
+      "ok": true,
+      "problems": [],
+      "sha256": {
+        "jsonl": "4828fccaac33fb9bc9d524a0b786a270487af17e019b319cab4d5e7b531a8b08",
+        "summary": "83684350222728d700f511a8d08dcc609267e8eae6c549a7588930c84b4bdd8b",
+        "bytes": {
+          "jsonl": 814607,
+          "summary": 1210
+        }
+      }
+    }
+  ],
+  "totals": {
+    "records": 480,
+    "armCalls": 960,
+    "simulations": 192000
+  },
+  "allRepetitionsValid": true,
+  "verdict": "PASS"
+}

@@ -1,0 +1,83 @@
+{
+  "round": "PPC-P1-QUALITY-01",
+  "kind": "reference-DP differential (diagnostic, not production code)",
+  "root": "ai-training/human-logs/PPC-HV14/GAME2_H1.txt Turn #7",
+  "protocol": "depth 2, 500k nodes, evaluateCorrectedHoleForCat, TT+AB+ordering",
+  "primaryValue": -914.5263157894738,
+  "primaryMate": null,
+  "productionPlan": "ULDR",
+  "differential": {
+    "rootActions": [
+      "U",
+      "L",
+      "D",
+      "R"
+    ],
+    "rootEqualCount": 4,
+    "graphSize": 9,
+    "old": {
+      "plan": "LURD",
+      "length": 4,
+      "trueReversals": 0
+    },
+    "new": {
+      "plan": "ULDR",
+      "length": 4,
+      "trueReversals": 0
+    },
+    "perBranch": [
+      {
+        "first": "U",
+        "old": {
+          "plan": "UUDD",
+          "trueReversals": 1,
+          "score": 1
+        },
+        "new": {
+          "plan": "ULDR",
+          "trueReversals": 0,
+          "score": 0
+        }
+      },
+      {
+        "first": "L",
+        "old": {
+          "plan": "LURD",
+          "trueReversals": 0,
+          "score": 0
+        },
+        "new": {
+          "plan": "LURD",
+          "trueReversals": 0,
+          "score": 0
+        }
+      },
+      {
+        "first": "D",
+        "old": {
+          "plan": "DLUR",
+          "trueReversals": 0,
+          "score": 0
+        },
+        "new": {
+          "plan": "DLUR",
+          "trueReversals": 0,
+          "score": 0
+        }
+      },
+      {
+        "first": "R",
+        "old": {
+          "plan": "RDLU",
+          "trueReversals": 0,
+          "score": 0
+        },
+        "new": {
+          "plan": "RDLU",
+          "trueReversals": 0,
+          "score": 0
+        }
+      }
+    ]
+  }
+}

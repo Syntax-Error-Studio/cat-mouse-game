@@ -1,0 +1,344 @@
+{
+  "note": "All figures are MEDIANS of 5 traced turns of the SAME frozen root, plus [min,max]. One process, serial. Diagnostic only — not a timing authority.",
+  "roots": {
+    "G1T1": {
+      "reps": 5,
+      "turn": {
+        "wallMs": 150.459,
+        "wallRange": [
+          150.358,
+          150.735
+        ],
+        "plannerCallMs": 150.262,
+        "outsidePlannerMs": 0.197,
+        "mainSearchMs": 101.733,
+        "refutationSidecarMs": 48.265,
+        "planExecutionMs": 0.051,
+        "historyFinalizeMs": 0.021
+      },
+      "deadline": {
+        "mainDeadlineAtMs": 2467.8858,
+        "firstObservationOverrunMs": 0.046,
+        "postDetectionReturnMs": 1.661,
+        "turnOvershootVsTotalWallMs": 0.452,
+        "abortEvalShareOfUnwindPct": 82.8
+      },
+      "search": {
+        "completedDepth": 1,
+        "attemptedDepth": 2,
+        "nodes": 1063,
+        "coreMs": 101.627,
+        "postPlanExtractionMs": 0.095,
+        "ledger": {
+          "evaluateMs": 38.942,
+          "stateKeyMs": 8.61,
+          "legalActionsMs": 24.674,
+          "transitionMs": 13.386,
+          "orderingSortMs": 0.35
+        },
+        "ledgerSumMs": 85.962,
+        "unattributedSearchResidualMs": 15.771,
+        "residualSharePct": 15.5,
+        "profiler": {
+          "evaluateCalls": 254,
+          "repeatedLeafEvals": 210,
+          "uniqueLeafKeys": 254,
+          "stateKeyCalls": 1171,
+          "legalActionsCalls": 638,
+          "transitionCalls": 2125,
+          "ttProbeCalls": 709,
+          "ttStoreCalls": 168
+        },
+        "perUniqueLeafEvalMs": 0.1533
+      },
+      "counters": {
+        "nodeDeadlineHits": [
+          7,
+          15,
+          16,
+          19
+        ],
+        "evalAfterDl": [
+          7,
+          15,
+          16,
+          19
+        ],
+        "abortEvalCount": [
+          7,
+          15,
+          16,
+          19
+        ],
+        "abortEvalMsMedian": 1.376
+      },
+      "sidecar": [
+        {
+          "ms": 46.30209999999988,
+          "overrideUsed": false,
+          "abort": "deadline",
+          "triggered": true
+        }
+      ],
+      "plannerCalls": [
+        {
+          "ms": 150.381,
+          "searchMs": 103.662,
+          "completedDepth": 1,
+          "nodes": 636
+        }
+      ]
+    },
+    "G1T5": {
+      "reps": 5,
+      "turn": {
+        "wallMs": 150.384,
+        "wallRange": [
+          150.316,
+          150.421
+        ],
+        "plannerCallMs": 150.229,
+        "outsidePlannerMs": 0.155,
+        "mainSearchMs": 112.543,
+        "refutationSidecarMs": 37.518,
+        "planExecutionMs": 0.049,
+        "historyFinalizeMs": 0.025
+      },
+      "deadline": {
+        "mainDeadlineAtMs": 4733.1051,
+        "firstObservationOverrunMs": 0.023,
+        "postDetectionReturnMs": 12.518,
+        "turnOvershootVsTotalWallMs": 0.382,
+        "abortEvalShareOfUnwindPct": 69.3
+      },
+      "search": {
+        "completedDepth": 1,
+        "attemptedDepth": 2,
+        "nodes": 567,
+        "coreMs": 112.444,
+        "postPlanExtractionMs": 0.092,
+        "ledger": {
+          "evaluateMs": 74.935,
+          "stateKeyMs": 11.533,
+          "legalActionsMs": 10.472,
+          "transitionMs": 8.181,
+          "orderingSortMs": 0.153
+        },
+        "ledgerSumMs": 105.274,
+        "unattributedSearchResidualMs": 7.269,
+        "residualSharePct": 6.5,
+        "profiler": {
+          "evaluateCalls": 628,
+          "repeatedLeafEvals": 373,
+          "uniqueLeafKeys": 628,
+          "stateKeyCalls": 1879,
+          "legalActionsCalls": 439,
+          "transitionCalls": 1376,
+          "ttProbeCalls": 880,
+          "ttStoreCalls": 428
+        },
+        "perUniqueLeafEvalMs": 0.1193
+      },
+      "counters": {
+        "nodeDeadlineHits": [
+          78,
+          85,
+          86,
+          98
+        ],
+        "evalAfterDl": [
+          108,
+          115,
+          116,
+          128
+        ],
+        "abortEvalCount": [
+          78,
+          85,
+          86,
+          98
+        ],
+        "abortEvalMsMedian": 8.674
+      },
+      "sidecar": [
+        {
+          "ms": 33.828199999999924,
+          "overrideUsed": false,
+          "abort": "deadline",
+          "triggered": true
+        }
+      ],
+      "plannerCalls": [
+        {
+          "ms": 150.249,
+          "searchMs": 116.225,
+          "completedDepth": 1,
+          "nodes": 437
+        }
+      ]
+    },
+    "G1T4": {
+      "reps": 5,
+      "turn": {
+        "wallMs": 120.967,
+        "wallRange": [
+          119.224,
+          121.847
+        ],
+        "plannerCallMs": 120.832,
+        "outsidePlannerMs": 0.135,
+        "mainSearchMs": 101.974,
+        "refutationSidecarMs": 18.577,
+        "planExecutionMs": 0.04,
+        "historyFinalizeMs": 0.02
+      },
+      "deadline": {
+        "mainDeadlineAtMs": 6949.8704,
+        "firstObservationOverrunMs": 0.174,
+        "postDetectionReturnMs": 1.816,
+        "turnOvershootVsTotalWallMs": -29.036,
+        "abortEvalShareOfUnwindPct": 82.0
+      },
+      "search": {
+        "completedDepth": 2,
+        "attemptedDepth": 3,
+        "nodes": 944,
+        "coreMs": 101.839,
+        "postPlanExtractionMs": 0.126,
+        "ledger": {
+          "evaluateMs": 37.868,
+          "stateKeyMs": 10.598,
+          "legalActionsMs": 20.098,
+          "transitionMs": 15.085,
+          "orderingSortMs": 0.262
+        },
+        "ledgerSumMs": 83.911,
+        "unattributedSearchResidualMs": 18.063,
+        "residualSharePct": 17.7,
+        "profiler": {
+          "evaluateCalls": 339,
+          "repeatedLeafEvals": 397,
+          "uniqueLeafKeys": 339,
+          "stateKeyCalls": 1941,
+          "legalActionsCalls": 928,
+          "transitionCalls": 2967,
+          "ttProbeCalls": 1208,
+          "ttStoreCalls": 268
+        },
+        "perUniqueLeafEvalMs": 0.1117
+      },
+      "counters": {
+        "nodeDeadlineHits": [
+          10,
+          12,
+          15
+        ],
+        "evalAfterDl": [
+          10,
+          12,
+          15
+        ],
+        "abortEvalCount": [
+          10,
+          12,
+          15
+        ],
+        "abortEvalMsMedian": 1.489
+      },
+      "sidecar": [
+        {
+          "ms": 17.81790000000001,
+          "overrideUsed": false,
+          "abort": "baseline_not_refuted",
+          "triggered": true
+        }
+      ],
+      "plannerCalls": [
+        {
+          "ms": 119.085,
+          "searchMs": 101.108,
+          "completedDepth": 2,
+          "nodes": 925
+        }
+      ]
+    },
+    "G5T4": {
+      "reps": 5,
+      "turn": {
+        "wallMs": 104.561,
+        "wallRange": [
+          104.184,
+          105.215
+        ],
+        "plannerCallMs": 104.422,
+        "outsidePlannerMs": 0.139,
+        "mainSearchMs": 104.288,
+        "refutationSidecarMs": 0,
+        "planExecutionMs": 0.037,
+        "historyFinalizeMs": 0.02
+      },
+      "deadline": {
+        "mainDeadlineAtMs": 8735.2744,
+        "firstObservationOverrunMs": 0.062,
+        "postDetectionReturnMs": 4.232,
+        "turnOvershootVsTotalWallMs": -45.441,
+        "abortEvalShareOfUnwindPct": 88.3
+      },
+      "search": {
+        "completedDepth": 2,
+        "attemptedDepth": 3,
+        "nodes": 752,
+        "coreMs": 104.165,
+        "postPlanExtractionMs": 0.119,
+        "ledger": {
+          "evaluateMs": 49.559,
+          "stateKeyMs": 8.95,
+          "legalActionsMs": 18.764,
+          "transitionMs": 12.402,
+          "orderingSortMs": 0.268
+        },
+        "ledgerSumMs": 89.943,
+        "unattributedSearchResidualMs": 14.345,
+        "residualSharePct": 13.8,
+        "profiler": {
+          "evaluateCalls": 435,
+          "repeatedLeafEvals": 209,
+          "uniqueLeafKeys": 435,
+          "stateKeyCalls": 1627,
+          "legalActionsCalls": 729,
+          "transitionCalls": 2341,
+          "ttProbeCalls": 895,
+          "ttStoreCalls": 343
+        },
+        "perUniqueLeafEvalMs": 0.1139
+      },
+      "counters": {
+        "nodeDeadlineHits": [
+          36,
+          37,
+          38
+        ],
+        "evalAfterDl": [
+          36,
+          37,
+          38
+        ],
+        "abortEvalCount": [
+          36,
+          37,
+          38
+        ],
+        "abortEvalMsMedian": 3.737
+      },
+      "sidecar": [],
+      "plannerCalls": [
+        {
+          "ms": 104.378,
+          "searchMs": 104.257,
+          "completedDepth": 2,
+          "nodes": 726
+        }
+      ]
+    }
+  }
+}

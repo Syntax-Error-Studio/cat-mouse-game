@@ -1,0 +1,249 @@
+{
+  "sourceGitSha": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+  "capturedOn": "post-fix (PPC-P1-TIME-01 turn deadline identity)",
+  "evidenceClass": "EXPERIMENT_MEASURED_CONTROL_FLOW_WITH_STUB",
+  "realSearchesExecuted": 0,
+  "scope": "Identical construction to ppcTime01-baseline-fallback-reentry.json. Only the planner is replaced; routing, execution and adjudication are the production code path.",
+  "rows": [
+    {
+      "scenario": "complete",
+      "plannerInvocations": 1,
+      "calls": [
+        {
+          "call": 1,
+          "catMovesLeft": 4,
+          "nominalMainBudgetMs": 100,
+          "totalTurnBudgetMs": 150,
+          "receivedAbsoluteDeadline": true,
+          "inheritedStartedAtMs": 1001,
+          "inheritedMainDeadlineMs": 1101,
+          "inheritedTotalDeadlineMs": 1151
+        }
+      ],
+      "executedSteps": 4,
+      "executedPlanLabels": [
+        "移动",
+        "移动",
+        "移动",
+        "移动"
+      ],
+      "remainingCatMoves": 0,
+      "finalPhase": "playing",
+      "finalCurrentPlayer": "cat",
+      "fallbackLogs": [],
+      "distinctInheritedMainDeadlines": 1,
+      "distinctInheritedTotalDeadlines": 1,
+      "distinctInheritedStarts": 1,
+      "allCallsInherited": true
+    },
+    {
+      "scenario": "truncated",
+      "plannerInvocations": 4,
+      "calls": [
+        {
+          "call": 1,
+          "catMovesLeft": 4,
+          "nominalMainBudgetMs": 100,
+          "totalTurnBudgetMs": 150,
+          "receivedAbsoluteDeadline": true,
+          "inheritedStartedAtMs": 1001,
+          "inheritedMainDeadlineMs": 1101,
+          "inheritedTotalDeadlineMs": 1151
+        },
+        {
+          "call": 2,
+          "catMovesLeft": 3,
+          "nominalMainBudgetMs": 100,
+          "totalTurnBudgetMs": 150,
+          "receivedAbsoluteDeadline": true,
+          "inheritedStartedAtMs": 1001,
+          "inheritedMainDeadlineMs": 1101,
+          "inheritedTotalDeadlineMs": 1151
+        },
+        {
+          "call": 3,
+          "catMovesLeft": 2,
+          "nominalMainBudgetMs": 100,
+          "totalTurnBudgetMs": 150,
+          "receivedAbsoluteDeadline": true,
+          "inheritedStartedAtMs": 1001,
+          "inheritedMainDeadlineMs": 1101,
+          "inheritedTotalDeadlineMs": 1151
+        },
+        {
+          "call": 4,
+          "catMovesLeft": 1,
+          "nominalMainBudgetMs": 100,
+          "totalTurnBudgetMs": 150,
+          "receivedAbsoluteDeadline": true,
+          "inheritedStartedAtMs": 1001,
+          "inheritedMainDeadlineMs": 1101,
+          "inheritedTotalDeadlineMs": 1151
+        }
+      ],
+      "executedSteps": 4,
+      "executedPlanLabels": [
+        "移动",
+        "移动",
+        "移动",
+        "移动"
+      ],
+      "remainingCatMoves": 0,
+      "finalPhase": "playing",
+      "finalCurrentPlayer": "cat",
+      "fallbackLogs": [
+        "SEARCH_FALLBACK reason=plan_exhausted plan_len=1 remaining_moves=3"
+      ],
+      "distinctInheritedMainDeadlines": 1,
+      "distinctInheritedTotalDeadlines": 1,
+      "distinctInheritedStarts": 1,
+      "allCallsInherited": true
+    },
+    {
+      "scenario": "empty",
+      "plannerInvocations": 5,
+      "calls": [
+        {
+          "call": 1,
+          "catMovesLeft": 4,
+          "nominalMainBudgetMs": 100,
+          "totalTurnBudgetMs": 150,
+          "receivedAbsoluteDeadline": true,
+          "inheritedStartedAtMs": 1001,
+          "inheritedMainDeadlineMs": 1101,
+          "inheritedTotalDeadlineMs": 1151
+        },
+        {
+          "call": 2,
+          "catMovesLeft": 4,
+          "nominalMainBudgetMs": 100,
+          "totalTurnBudgetMs": 150,
+          "receivedAbsoluteDeadline": true,
+          "inheritedStartedAtMs": 1001,
+          "inheritedMainDeadlineMs": 1101,
+          "inheritedTotalDeadlineMs": 1151
+        },
+        {
+          "call": 3,
+          "catMovesLeft": 3,
+          "nominalMainBudgetMs": 100,
+          "totalTurnBudgetMs": 150,
+          "receivedAbsoluteDeadline": true,
+          "inheritedStartedAtMs": 1001,
+          "inheritedMainDeadlineMs": 1101,
+          "inheritedTotalDeadlineMs": 1151
+        },
+        {
+          "call": 4,
+          "catMovesLeft": 2,
+          "nominalMainBudgetMs": 100,
+          "totalTurnBudgetMs": 150,
+          "receivedAbsoluteDeadline": true,
+          "inheritedStartedAtMs": 1001,
+          "inheritedMainDeadlineMs": 1101,
+          "inheritedTotalDeadlineMs": 1151
+        },
+        {
+          "call": 5,
+          "catMovesLeft": 1,
+          "nominalMainBudgetMs": 100,
+          "totalTurnBudgetMs": 150,
+          "receivedAbsoluteDeadline": true,
+          "inheritedStartedAtMs": 1001,
+          "inheritedMainDeadlineMs": 1101,
+          "inheritedTotalDeadlineMs": 1151
+        }
+      ],
+      "executedSteps": 4,
+      "executedPlanLabels": [
+        "移动",
+        "移动",
+        "移动",
+        "移动"
+      ],
+      "remainingCatMoves": 0,
+      "finalPhase": "playing",
+      "finalCurrentPlayer": "cat",
+      "fallbackLogs": [
+        "SEARCH_FALLBACK reason=no_hard_plan completedDepth=0 attemptedDepth=1"
+      ],
+      "distinctInheritedMainDeadlines": 1,
+      "distinctInheritedTotalDeadlines": 1,
+      "distinctInheritedStarts": 1,
+      "allCallsInherited": true
+    },
+    {
+      "scenario": "invalid",
+      "plannerInvocations": 5,
+      "calls": [
+        {
+          "call": 1,
+          "catMovesLeft": 4,
+          "nominalMainBudgetMs": 100,
+          "totalTurnBudgetMs": 150,
+          "receivedAbsoluteDeadline": true,
+          "inheritedStartedAtMs": 1001,
+          "inheritedMainDeadlineMs": 1101,
+          "inheritedTotalDeadlineMs": 1151
+        },
+        {
+          "call": 2,
+          "catMovesLeft": 4,
+          "nominalMainBudgetMs": 100,
+          "totalTurnBudgetMs": 150,
+          "receivedAbsoluteDeadline": true,
+          "inheritedStartedAtMs": 1001,
+          "inheritedMainDeadlineMs": 1101,
+          "inheritedTotalDeadlineMs": 1151
+        },
+        {
+          "call": 3,
+          "catMovesLeft": 3,
+          "nominalMainBudgetMs": 100,
+          "totalTurnBudgetMs": 150,
+          "receivedAbsoluteDeadline": true,
+          "inheritedStartedAtMs": 1001,
+          "inheritedMainDeadlineMs": 1101,
+          "inheritedTotalDeadlineMs": 1151
+        },
+        {
+          "call": 4,
+          "catMovesLeft": 2,
+          "nominalMainBudgetMs": 100,
+          "totalTurnBudgetMs": 150,
+          "receivedAbsoluteDeadline": true,
+          "inheritedStartedAtMs": 1001,
+          "inheritedMainDeadlineMs": 1101,
+          "inheritedTotalDeadlineMs": 1151
+        },
+        {
+          "call": 5,
+          "catMovesLeft": 1,
+          "nominalMainBudgetMs": 100,
+          "totalTurnBudgetMs": 150,
+          "receivedAbsoluteDeadline": true,
+          "inheritedStartedAtMs": 1001,
+          "inheritedMainDeadlineMs": 1101,
+          "inheritedTotalDeadlineMs": 1151
+        }
+      ],
+      "executedSteps": 4,
+      "executedPlanLabels": [
+        "移动",
+        "移动",
+        "移动",
+        "移动"
+      ],
+      "remainingCatMoves": 0,
+      "finalPhase": "playing",
+      "finalCurrentPlayer": "cat",
+      "fallbackLogs": [
+        "SEARCH_FALLBACK reason=plan_action_invalid action=catStep"
+      ],
+      "distinctInheritedMainDeadlines": 1,
+      "distinctInheritedTotalDeadlines": 1,
+      "distinctInheritedStarts": 1,
+      "allCallsInherited": true
+    }
+  ]
+}

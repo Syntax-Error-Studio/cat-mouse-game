@@ -1,0 +1,2415 @@
+{
+ "round": "PPC-T2-PCV-RESCUE-01",
+ "phase": "CANDIDATE_GENERATION_FROZEN",
+ "generatedAt": "2026-11-16T06:59:08.653Z",
+ "generatedBy": "PPC-T2-PCV-RESCUE-01/probe/rescue_lib.ts",
+ "head": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+ "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+ "method": {
+  "source": "OFFLINE_REGENERATED_D1",
+  "search": "createSearchContext(rules, 8000000, TT=false, AB=false, ordering=false, 0, false) + arm leaf + capturePlan; searchBestAction(root, 1, ctx)",
+  "continuation": "same exact-D1 planBranches walk from the post-root-action state; fresh exact-D1 fallback only when a branch key is missing",
+  "sortFrozenBeforeProofs": [
+   "exclude the original finalPlan",
+   "complete legal mouse-frontier plans only",
+   "different first step first",
+   "higher exact root branch value first",
+   "tie -> raw legal action order",
+   "keep at most 2 per stratum"
+  ],
+  "perStratumMax": 2,
+  "proofsRun": false
+ },
+ "exactD1": {
+  "G6T3/E1": {
+   "planString": "RDDD",
+   "nodes": 44,
+   "elapsedMs": 14.61,
+   "completed": true,
+   "allBoundsExact": true,
+   "rootActionValues": [
+    {
+     "action": "U",
+     "value": -1001.7105263157895,
+     "mate": null,
+     "bound": "exact",
+     "legalIndex": 0
+    },
+    {
+     "action": "L",
+     "value": -1001.7105263157895,
+     "mate": null,
+     "bound": "exact",
+     "legalIndex": 1
+    },
+    {
+     "action": "R",
+     "value": -670.3947368421052,
+     "mate": null,
+     "bound": "exact",
+     "legalIndex": 2
+    }
+   ]
+  },
+  "G6T3/H1": {
+   "planString": "RDDD",
+   "nodes": 44,
+   "elapsedMs": 9.721,
+   "completed": true,
+   "allBoundsExact": true,
+   "rootActionValues": [
+    {
+     "action": "U",
+     "value": -1501.7105263157896,
+     "mate": null,
+     "bound": "exact",
+     "legalIndex": 0
+    },
+    {
+     "action": "L",
+     "value": -1501.7105263157896,
+     "mate": null,
+     "bound": "exact",
+     "legalIndex": 1
+    },
+    {
+     "action": "R",
+     "value": -970.3947368421052,
+     "mate": null,
+     "bound": "exact",
+     "legalIndex": 2
+    }
+   ]
+  },
+  "G5T4/E1": {
+   "planString": "RDLU",
+   "nodes": 40,
+   "elapsedMs": 8.702,
+   "completed": true,
+   "allBoundsExact": true,
+   "rootActionValues": [
+    {
+     "action": "U",
+     "value": -1350.5263157894738,
+     "mate": null,
+     "bound": "exact",
+     "legalIndex": 0
+    },
+    {
+     "action": "L",
+     "value": -1350.5263157894738,
+     "mate": null,
+     "bound": "exact",
+     "legalIndex": 1
+    },
+    {
+     "action": "R",
+     "value": -1349.4736842105262,
+     "mate": null,
+     "bound": "exact",
+     "legalIndex": 2
+    }
+   ]
+  },
+  "G5T4/H1": {
+   "planString": "RDRR",
+   "nodes": 40,
+   "elapsedMs": 7.058,
+   "completed": true,
+   "allBoundsExact": true,
+   "rootActionValues": [
+    {
+     "action": "U",
+     "value": -1973.421052631579,
+     "mate": null,
+     "bound": "exact",
+     "legalIndex": 0
+    },
+    {
+     "action": "L",
+     "value": -1973.421052631579,
+     "mate": null,
+     "bound": "exact",
+     "legalIndex": 1
+    },
+    {
+     "action": "R",
+     "value": -1740.7894736842106,
+     "mate": null,
+     "bound": "exact",
+     "legalIndex": 2
+    }
+   ]
+  },
+  "G2T8/E1": {
+   "planString": "DDDR",
+   "nodes": 87,
+   "elapsedMs": 24.609,
+   "completed": true,
+   "allBoundsExact": true,
+   "rootActionValues": [
+    {
+     "action": "U",
+     "value": -711.2719298245615,
+     "mate": null,
+     "bound": "exact",
+     "legalIndex": 0
+    },
+    {
+     "action": "D",
+     "value": -583.9035087719299,
+     "mate": null,
+     "bound": "exact",
+     "legalIndex": 1
+    },
+    {
+     "action": "L",
+     "value": -711.2719298245615,
+     "mate": null,
+     "bound": "exact",
+     "legalIndex": 2
+    },
+    {
+     "action": "R",
+     "value": -614.8245614035088,
+     "mate": null,
+     "bound": "exact",
+     "legalIndex": 3
+    }
+   ]
+  },
+  "G2T8/H1": {
+   "planString": "DDDR",
+   "nodes": 87,
+   "elapsedMs": 16.028,
+   "completed": true,
+   "allBoundsExact": true,
+   "rootActionValues": [
+    {
+     "action": "U",
+     "value": -1551.6666666666667,
+     "mate": null,
+     "bound": "exact",
+     "legalIndex": 0
+    },
+    {
+     "action": "D",
+     "value": -1283.9035087719299,
+     "mate": null,
+     "bound": "exact",
+     "legalIndex": 1
+    },
+    {
+     "action": "L",
+     "value": -1611.2719298245615,
+     "mate": null,
+     "bound": "exact",
+     "legalIndex": 2
+    },
+    {
+     "action": "R",
+     "value": -1314.8245614035088,
+     "mate": null,
+     "bound": "exact",
+     "legalIndex": 3
+    }
+   ]
+  },
+  "G1T9/E1": {
+   "planString": "LLLD",
+   "nodes": 65,
+   "elapsedMs": 8.2,
+   "completed": true,
+   "allBoundsExact": true,
+   "rootActionValues": [
+    {
+     "action": "U",
+     "value": -1278.421052631579,
+     "mate": null,
+     "bound": "exact",
+     "legalIndex": 0
+    },
+    {
+     "action": "D",
+     "value": -1052.2105263157896,
+     "mate": null,
+     "bound": "exact",
+     "legalIndex": 1
+    },
+    {
+     "action": "L",
+     "value": -1004.3421052631579,
+     "mate": null,
+     "bound": "exact",
+     "legalIndex": 2
+    },
+    {
+     "action": "R",
+     "value": -1300.1315789473683,
+     "mate": null,
+     "bound": "exact",
+     "legalIndex": 3
+    }
+   ]
+  },
+  "G1T9/H1": {
+   "planString": "LLDL",
+   "nodes": 65,
+   "elapsedMs": 7.011,
+   "completed": true,
+   "allBoundsExact": true,
+   "rootActionValues": [
+    {
+     "action": "U",
+     "value": -1684.342105263158,
+     "mate": null,
+     "bound": "exact",
+     "legalIndex": 0
+    },
+    {
+     "action": "D",
+     "value": -1588.5526315789475,
+     "mate": null,
+     "bound": "exact",
+     "legalIndex": 1
+    },
+    {
+     "action": "L",
+     "value": -1526.0526315789475,
+     "mate": null,
+     "bound": "exact",
+     "legalIndex": 2
+    },
+    {
+     "action": "R",
+     "value": -1684.342105263158,
+     "mate": null,
+     "bound": "exact",
+     "legalIndex": 3
+    }
+   ]
+  }
+ },
+ "strata": [
+  {
+   "rootId": "G6T3",
+   "arm": "E1",
+   "originalPlan": "RDDD",
+   "originalPlanHash": "a225d7d038c53bb97b514edaed5067c809b0f61cdc99d8f2b39db643e1d97226",
+   "originalRootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__em_e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#1,5#7,6#4#0#5,1#8,4:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+   "originalPostStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__ec_e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__em_e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#4,6#7,6#0#3#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "snapshotSha256": "1f7d08df825314cb90276104cbc26261bc26065f66aba3bd17ed7c7b0adff6b0",
+   "attempted": [
+    {
+     "rootAction": "U",
+     "rootActionLegalIndex": 0,
+     "rootValue": -1001.7105263157895,
+     "rootValueBound": "exact",
+     "rootValueMate": null,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "boundary_chance",
+     "planString": "UDRD",
+     "planChars": [
+      "U",
+      "D",
+      "R",
+      "D"
+     ],
+     "firstStepDifferent": true,
+     "replayOk": true,
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "replayReason": null,
+     "bindingOk": true,
+     "postStateKeys": [
+      "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__ec_b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__em_e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,6#7,6#0#3#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundaryKind": "DEGENERATE_CHANCE_ONE_OUTCOME",
+     "branches": 1,
+     "eligible": true,
+     "rejectReason": null
+    },
+    {
+     "rootAction": "L",
+     "rootActionLegalIndex": 1,
+     "rootValue": -1001.7105263157895,
+     "rootValueBound": "exact",
+     "rootValueMate": null,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "boundary_chance",
+     "planString": "LRRD",
+     "planChars": [
+      "L",
+      "R",
+      "R",
+      "D"
+     ],
+     "firstStepDifferent": true,
+     "replayOk": true,
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "replayReason": null,
+     "bindingOk": true,
+     "postStateKeys": [
+      "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__ec_b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__em_e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,6#7,6#0#3#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundaryKind": "DEGENERATE_CHANCE_ONE_OUTCOME",
+     "branches": 1,
+     "eligible": true,
+     "rejectReason": null
+    },
+    {
+     "rootAction": "R",
+     "rootActionLegalIndex": 2,
+     "rootValue": -670.3947368421052,
+     "rootValueBound": "exact",
+     "rootValueMate": null,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "boundary_chance",
+     "planString": "RDDD",
+     "planChars": [
+      "R",
+      "D",
+      "D",
+      "D"
+     ],
+     "firstStepDifferent": false,
+     "replayOk": true,
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "replayReason": null,
+     "bindingOk": true,
+     "postStateKeys": [
+      "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__ec_e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__em_e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#4,6#7,6#0#3#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundaryKind": "DEGENERATE_CHANCE_ONE_OUTCOME",
+     "branches": 1,
+     "eligible": false,
+     "rejectReason": "SAME_AS_ORIGINAL_PLAN"
+    }
+   ],
+   "candidates": [
+    {
+     "candidateId": "G6T3/E1/C1",
+     "rootId": "G6T3",
+     "arm": "E1",
+     "originalPlan": "RDDD",
+     "planString": "UDRD",
+     "planChars": [
+      "U",
+      "D",
+      "R",
+      "D"
+     ],
+     "rootAction": "U",
+     "rootActionLegalIndex": 0,
+     "rootValue": -1001.7105263157895,
+     "rootValueBound": "exact",
+     "firstStepDifferent": true,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "boundary_chance",
+     "postStateKeys": [
+      "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__ec_b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__em_e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,6#7,6#0#3#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundary": {
+      "chance": true,
+      "kind": "DEGENERATE_CHANCE_ONE_OUTCOME",
+      "branches": 1
+     },
+     "snapshotSha256": "1f7d08df825314cb90276104cbc26261bc26065f66aba3bd17ed7c7b0adff6b0",
+     "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__em_e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#1,5#7,6#4#0#5,1#8,4:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+     "planHash": "94a52f54e7a35e5dbfcc8555ee5e044ecd9a63afdd1a1e8c6e3a4266c1a0f96d",
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "bindingOk": true,
+     "frontierSummary": {
+      "phase": "playing",
+      "currentPlayer": "mouse",
+      "cat": "2,6",
+      "mouse": "7,6",
+      "catMovesLeft": 0,
+      "mouseMovesLeft": 3,
+      "mouseHasButter": true,
+      "mouseSkillActive": false,
+      "butterPositions": [
+       "5,1",
+       "8,4"
+      ],
+      "pendingButterSpawns": [],
+      "pendingButterPlacementDebt": 0,
+      "trapPosition": "1,1",
+      "catTrapsRemaining": 0,
+      "blockedTunnels": []
+     },
+     "replaySteps": [
+      {
+       "label": "U",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "D",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "R",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "D",
+       "transitionKind": "chance",
+       "branches": 1
+      }
+     ],
+     "candidateHash": "b52bf81e7d0992ac1e773142efdb28bd9d9f696eeced106e6dc0b419d512ad63"
+    },
+    {
+     "candidateId": "G6T3/E1/C2",
+     "rootId": "G6T3",
+     "arm": "E1",
+     "originalPlan": "RDDD",
+     "planString": "LRRD",
+     "planChars": [
+      "L",
+      "R",
+      "R",
+      "D"
+     ],
+     "rootAction": "L",
+     "rootActionLegalIndex": 1,
+     "rootValue": -1001.7105263157895,
+     "rootValueBound": "exact",
+     "firstStepDifferent": true,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "boundary_chance",
+     "postStateKeys": [
+      "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__ec_b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__em_e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,6#7,6#0#3#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundary": {
+      "chance": true,
+      "kind": "DEGENERATE_CHANCE_ONE_OUTCOME",
+      "branches": 1
+     },
+     "snapshotSha256": "1f7d08df825314cb90276104cbc26261bc26065f66aba3bd17ed7c7b0adff6b0",
+     "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__em_e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#1,5#7,6#4#0#5,1#8,4:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+     "planHash": "af90139b5af4d7b28ec8fff7c2a23d64cde2f9bc6d2e60698dc596960f8ea0fe",
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "bindingOk": true,
+     "frontierSummary": {
+      "phase": "playing",
+      "currentPlayer": "mouse",
+      "cat": "2,6",
+      "mouse": "7,6",
+      "catMovesLeft": 0,
+      "mouseMovesLeft": 3,
+      "mouseHasButter": true,
+      "mouseSkillActive": false,
+      "butterPositions": [
+       "5,1",
+       "8,4"
+      ],
+      "pendingButterSpawns": [],
+      "pendingButterPlacementDebt": 0,
+      "trapPosition": "1,1",
+      "catTrapsRemaining": 0,
+      "blockedTunnels": []
+     },
+     "replaySteps": [
+      {
+       "label": "L",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "R",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "R",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "D",
+       "transitionKind": "chance",
+       "branches": 1
+      }
+     ],
+     "candidateHash": "c62ad83a5a2d6fe575760236054003a619e670c6a82719d2473ca8705f6c2558"
+    }
+   ],
+   "candidateCount": 2,
+   "insufficientReason": null
+  },
+  {
+   "rootId": "G6T3",
+   "arm": "H1",
+   "originalPlan": "RDDD",
+   "originalPlanHash": "a225d7d038c53bb97b514edaed5067c809b0f61cdc99d8f2b39db643e1d97226",
+   "originalRootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__em_e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#1,5#7,6#4#0#5,1#8,4:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+   "originalPostStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__ec_e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__em_e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#4,6#7,6#0#3#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "snapshotSha256": "1f7d08df825314cb90276104cbc26261bc26065f66aba3bd17ed7c7b0adff6b0",
+   "attempted": [
+    {
+     "rootAction": "U",
+     "rootActionLegalIndex": 0,
+     "rootValue": -1501.7105263157896,
+     "rootValueBound": "exact",
+     "rootValueMate": null,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "boundary_chance",
+     "planString": "UDRD",
+     "planChars": [
+      "U",
+      "D",
+      "R",
+      "D"
+     ],
+     "firstStepDifferent": true,
+     "replayOk": true,
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "replayReason": null,
+     "bindingOk": true,
+     "postStateKeys": [
+      "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__ec_b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__em_e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,6#7,6#0#3#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundaryKind": "DEGENERATE_CHANCE_ONE_OUTCOME",
+     "branches": 1,
+     "eligible": true,
+     "rejectReason": null
+    },
+    {
+     "rootAction": "L",
+     "rootActionLegalIndex": 1,
+     "rootValue": -1501.7105263157896,
+     "rootValueBound": "exact",
+     "rootValueMate": null,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "boundary_chance",
+     "planString": "LRRD",
+     "planChars": [
+      "L",
+      "R",
+      "R",
+      "D"
+     ],
+     "firstStepDifferent": true,
+     "replayOk": true,
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "replayReason": null,
+     "bindingOk": true,
+     "postStateKeys": [
+      "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__ec_b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__em_e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,6#7,6#0#3#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundaryKind": "DEGENERATE_CHANCE_ONE_OUTCOME",
+     "branches": 1,
+     "eligible": true,
+     "rejectReason": null
+    },
+    {
+     "rootAction": "R",
+     "rootActionLegalIndex": 2,
+     "rootValue": -970.3947368421052,
+     "rootValueBound": "exact",
+     "rootValueMate": null,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "boundary_chance",
+     "planString": "RDDD",
+     "planChars": [
+      "R",
+      "D",
+      "D",
+      "D"
+     ],
+     "firstStepDifferent": false,
+     "replayOk": true,
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "replayReason": null,
+     "bindingOk": true,
+     "postStateKeys": [
+      "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__ec_e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__em_e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#4,6#7,6#0#3#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundaryKind": "DEGENERATE_CHANCE_ONE_OUTCOME",
+     "branches": 1,
+     "eligible": false,
+     "rejectReason": "SAME_AS_ORIGINAL_PLAN"
+    }
+   ],
+   "candidates": [
+    {
+     "candidateId": "G6T3/H1/C1",
+     "rootId": "G6T3",
+     "arm": "H1",
+     "originalPlan": "RDDD",
+     "planString": "UDRD",
+     "planChars": [
+      "U",
+      "D",
+      "R",
+      "D"
+     ],
+     "rootAction": "U",
+     "rootActionLegalIndex": 0,
+     "rootValue": -1501.7105263157896,
+     "rootValueBound": "exact",
+     "firstStepDifferent": true,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "boundary_chance",
+     "postStateKeys": [
+      "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__ec_b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__em_e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,6#7,6#0#3#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundary": {
+      "chance": true,
+      "kind": "DEGENERATE_CHANCE_ONE_OUTCOME",
+      "branches": 1
+     },
+     "snapshotSha256": "1f7d08df825314cb90276104cbc26261bc26065f66aba3bd17ed7c7b0adff6b0",
+     "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__em_e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#1,5#7,6#4#0#5,1#8,4:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+     "planHash": "94a52f54e7a35e5dbfcc8555ee5e044ecd9a63afdd1a1e8c6e3a4266c1a0f96d",
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "bindingOk": true,
+     "frontierSummary": {
+      "phase": "playing",
+      "currentPlayer": "mouse",
+      "cat": "2,6",
+      "mouse": "7,6",
+      "catMovesLeft": 0,
+      "mouseMovesLeft": 3,
+      "mouseHasButter": true,
+      "mouseSkillActive": false,
+      "butterPositions": [
+       "5,1",
+       "8,4"
+      ],
+      "pendingButterSpawns": [],
+      "pendingButterPlacementDebt": 0,
+      "trapPosition": "1,1",
+      "catTrapsRemaining": 0,
+      "blockedTunnels": []
+     },
+     "replaySteps": [
+      {
+       "label": "U",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "D",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "R",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "D",
+       "transitionKind": "chance",
+       "branches": 1
+      }
+     ],
+     "candidateHash": "aa17e87f6744242fcacc1e695c26c46a5899fca6af431dbd25ce5a3eaf564360"
+    },
+    {
+     "candidateId": "G6T3/H1/C2",
+     "rootId": "G6T3",
+     "arm": "H1",
+     "originalPlan": "RDDD",
+     "planString": "LRRD",
+     "planChars": [
+      "L",
+      "R",
+      "R",
+      "D"
+     ],
+     "rootAction": "L",
+     "rootActionLegalIndex": 1,
+     "rootValue": -1501.7105263157896,
+     "rootValueBound": "exact",
+     "firstStepDifferent": true,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "boundary_chance",
+     "postStateKeys": [
+      "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__ec_b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__em_e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,6#7,6#0#3#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundary": {
+      "chance": true,
+      "kind": "DEGENERATE_CHANCE_ONE_OUTCOME",
+      "branches": 1
+     },
+     "snapshotSha256": "1f7d08df825314cb90276104cbc26261bc26065f66aba3bd17ed7c7b0adff6b0",
+     "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__em_e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#1,5#7,6#4#0#5,1#8,4:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+     "planHash": "af90139b5af4d7b28ec8fff7c2a23d64cde2f9bc6d2e60698dc596960f8ea0fe",
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "bindingOk": true,
+     "frontierSummary": {
+      "phase": "playing",
+      "currentPlayer": "mouse",
+      "cat": "2,6",
+      "mouse": "7,6",
+      "catMovesLeft": 0,
+      "mouseMovesLeft": 3,
+      "mouseHasButter": true,
+      "mouseSkillActive": false,
+      "butterPositions": [
+       "5,1",
+       "8,4"
+      ],
+      "pendingButterSpawns": [],
+      "pendingButterPlacementDebt": 0,
+      "trapPosition": "1,1",
+      "catTrapsRemaining": 0,
+      "blockedTunnels": []
+     },
+     "replaySteps": [
+      {
+       "label": "L",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "R",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "R",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "D",
+       "transitionKind": "chance",
+       "branches": 1
+      }
+     ],
+     "candidateHash": "3c4d1a56b796f46442bab398f3ff3b774bf21bcc67b39fda6d60d67a8d9d9b51"
+    }
+   ],
+   "candidateCount": 2,
+   "insufficientReason": null
+  },
+  {
+   "rootId": "G5T4",
+   "arm": "E1",
+   "originalPlan": "RDLU",
+   "originalPlanHash": "ac2ccc319c24f2d1e49aac061be2f082f03efaf7628a2dbc8bba8285bd08bed6",
+   "originalRootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__b__e__e__e__e__e__e__b__e__e__e__e__b__e__e__e__e__e__e__p__e__e__p__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__p__b__e__b__e__m__m__e__e__ec_e__b__b__e__b__m__m__t__e__b__e__e__e__e__e__em_t__#single#playing#cat#8,2#9,8#4#0#1,6|6,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+   "originalPostStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__b__e__e__e__e__e__e__b__e__e__e__e__b__e__e__e__e__e__e__p__e__e__p__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__p__b__e__b__e__m__m__e__e__ec_e__b__b__e__b__m__m__t__b__e__e__e__e__e__e__em_t__#single#playing#mouse#8,2#9,8#0#3#1,6|6,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "snapshotSha256": "8380edc34cdd6821a8ae3ed7b5ac3f8eaad6448aace20ffbaa07ed0b532d982d",
+   "attempted": [
+    {
+     "rootAction": "U",
+     "rootActionLegalIndex": 0,
+     "rootValue": -1350.5263157894738,
+     "rootValueBound": "exact",
+     "rootValueMate": null,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "mouse_to_move",
+     "planString": "UULR",
+     "planChars": [
+      "U",
+      "U",
+      "L",
+      "R"
+     ],
+     "firstStepDifferent": true,
+     "replayOk": true,
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "replayReason": null,
+     "bindingOk": true,
+     "postStateKeys": [
+      "t__e__e__e__e__e__e__e__e__t__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__b__e__e__e__e__e__e__b__e__e__e__e__b__e__e__e__e__e__e__p__e__e__p__e__e__e__e__e__e__e__e__e__b__e__e__b__e__ec_e__e__e__e__e__e__e__e__e__e__p__b__e__b__e__m__m__e__e__e__e__b__b__e__b__m__m__t__e__b__e__e__e__e__e__em_t__#single#playing#mouse#6,2#9,8#0#3#1,6|6,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundaryKind": "DETERMINISTIC",
+     "branches": 1,
+     "eligible": true,
+     "rejectReason": null
+    },
+    {
+     "rootAction": "L",
+     "rootActionLegalIndex": 1,
+     "rootValue": -1350.5263157894738,
+     "rootValueBound": "exact",
+     "rootValueMate": null,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "mouse_to_move",
+     "planString": "LUUR",
+     "planChars": [
+      "L",
+      "U",
+      "U",
+      "R"
+     ],
+     "firstStepDifferent": true,
+     "replayOk": true,
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "replayReason": null,
+     "bindingOk": true,
+     "postStateKeys": [
+      "t__e__e__e__e__e__e__e__e__t__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__b__e__e__e__e__e__e__b__e__e__e__e__b__e__e__e__e__e__e__p__e__e__p__e__e__e__b__e__e__e__e__e__b__e__e__e__e__ec_e__e__e__e__e__e__e__e__e__e__p__b__e__b__e__m__m__e__e__e__e__b__b__e__b__m__m__t__e__b__e__e__e__e__e__em_t__#single#playing#mouse#6,2#9,8#0#3#1,6|6,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundaryKind": "DETERMINISTIC",
+     "branches": 1,
+     "eligible": true,
+     "rejectReason": null
+    },
+    {
+     "rootAction": "R",
+     "rootActionLegalIndex": 2,
+     "rootValue": -1349.4736842105262,
+     "rootValueBound": "exact",
+     "rootValueMate": null,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "mouse_to_move",
+     "planString": "RDLU",
+     "planChars": [
+      "R",
+      "D",
+      "L",
+      "U"
+     ],
+     "firstStepDifferent": false,
+     "replayOk": true,
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "replayReason": null,
+     "bindingOk": true,
+     "postStateKeys": [
+      "t__e__e__e__e__e__e__e__e__t__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__b__e__e__e__e__e__e__b__e__e__e__e__b__e__e__e__e__e__e__p__e__e__p__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__p__b__e__b__e__m__m__e__e__ec_e__b__b__e__b__m__m__t__b__e__e__e__e__e__e__em_t__#single#playing#mouse#8,2#9,8#0#3#1,6|6,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundaryKind": "DETERMINISTIC",
+     "branches": 1,
+     "eligible": false,
+     "rejectReason": "SAME_AS_ORIGINAL_PLAN"
+    }
+   ],
+   "candidates": [
+    {
+     "candidateId": "G5T4/E1/C1",
+     "rootId": "G5T4",
+     "arm": "E1",
+     "originalPlan": "RDLU",
+     "planString": "UULR",
+     "planChars": [
+      "U",
+      "U",
+      "L",
+      "R"
+     ],
+     "rootAction": "U",
+     "rootActionLegalIndex": 0,
+     "rootValue": -1350.5263157894738,
+     "rootValueBound": "exact",
+     "firstStepDifferent": true,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "mouse_to_move",
+     "postStateKeys": [
+      "t__e__e__e__e__e__e__e__e__t__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__b__e__e__e__e__e__e__b__e__e__e__e__b__e__e__e__e__e__e__p__e__e__p__e__e__e__e__e__e__e__e__e__b__e__e__b__e__ec_e__e__e__e__e__e__e__e__e__e__p__b__e__b__e__m__m__e__e__e__e__b__b__e__b__m__m__t__e__b__e__e__e__e__e__em_t__#single#playing#mouse#6,2#9,8#0#3#1,6|6,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundary": {
+      "chance": false,
+      "kind": "DETERMINISTIC",
+      "branches": 1
+     },
+     "snapshotSha256": "8380edc34cdd6821a8ae3ed7b5ac3f8eaad6448aace20ffbaa07ed0b532d982d",
+     "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__b__e__e__e__e__e__e__b__e__e__e__e__b__e__e__e__e__e__e__p__e__e__p__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__p__b__e__b__e__m__m__e__e__ec_e__b__b__e__b__m__m__t__e__b__e__e__e__e__e__em_t__#single#playing#cat#8,2#9,8#4#0#1,6|6,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+     "planHash": "a9946f44003217cb0657f2fabc98d88d8ab251146e017e20eabd01e55e608ace",
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "bindingOk": true,
+     "frontierSummary": {
+      "phase": "playing",
+      "currentPlayer": "mouse",
+      "cat": "6,2",
+      "mouse": "9,8",
+      "catMovesLeft": 0,
+      "mouseMovesLeft": 3,
+      "mouseHasButter": true,
+      "mouseSkillActive": false,
+      "butterPositions": [
+       "1,6",
+       "6,6"
+      ],
+      "pendingButterSpawns": [],
+      "pendingButterPlacementDebt": 0,
+      "trapPosition": "1,1",
+      "catTrapsRemaining": 0,
+      "blockedTunnels": []
+     },
+     "replaySteps": [
+      {
+       "label": "U",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "U",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "L",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "R",
+       "transitionKind": "deterministic",
+       "branches": 1
+      }
+     ],
+     "candidateHash": "0f3bf66a437a2b78dda4058e35054ece66458703f2d2c722def5a53521e7c7cc"
+    },
+    {
+     "candidateId": "G5T4/E1/C2",
+     "rootId": "G5T4",
+     "arm": "E1",
+     "originalPlan": "RDLU",
+     "planString": "LUUR",
+     "planChars": [
+      "L",
+      "U",
+      "U",
+      "R"
+     ],
+     "rootAction": "L",
+     "rootActionLegalIndex": 1,
+     "rootValue": -1350.5263157894738,
+     "rootValueBound": "exact",
+     "firstStepDifferent": true,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "mouse_to_move",
+     "postStateKeys": [
+      "t__e__e__e__e__e__e__e__e__t__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__b__e__e__e__e__e__e__b__e__e__e__e__b__e__e__e__e__e__e__p__e__e__p__e__e__e__b__e__e__e__e__e__b__e__e__e__e__ec_e__e__e__e__e__e__e__e__e__e__p__b__e__b__e__m__m__e__e__e__e__b__b__e__b__m__m__t__e__b__e__e__e__e__e__em_t__#single#playing#mouse#6,2#9,8#0#3#1,6|6,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundary": {
+      "chance": false,
+      "kind": "DETERMINISTIC",
+      "branches": 1
+     },
+     "snapshotSha256": "8380edc34cdd6821a8ae3ed7b5ac3f8eaad6448aace20ffbaa07ed0b532d982d",
+     "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__b__e__e__e__e__e__e__b__e__e__e__e__b__e__e__e__e__e__e__p__e__e__p__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__p__b__e__b__e__m__m__e__e__ec_e__b__b__e__b__m__m__t__e__b__e__e__e__e__e__em_t__#single#playing#cat#8,2#9,8#4#0#1,6|6,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+     "planHash": "c9c854762a575127838bc120163b2da218d0a3dd908feaf5b2bc1c51f443bc32",
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "bindingOk": true,
+     "frontierSummary": {
+      "phase": "playing",
+      "currentPlayer": "mouse",
+      "cat": "6,2",
+      "mouse": "9,8",
+      "catMovesLeft": 0,
+      "mouseMovesLeft": 3,
+      "mouseHasButter": true,
+      "mouseSkillActive": false,
+      "butterPositions": [
+       "1,6",
+       "6,6"
+      ],
+      "pendingButterSpawns": [],
+      "pendingButterPlacementDebt": 0,
+      "trapPosition": "1,1",
+      "catTrapsRemaining": 0,
+      "blockedTunnels": []
+     },
+     "replaySteps": [
+      {
+       "label": "L",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "U",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "U",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "R",
+       "transitionKind": "deterministic",
+       "branches": 1
+      }
+     ],
+     "candidateHash": "b08268683b1a1df08f4c029992e956023f9f47a051e1a2774f360dee5ecc6108"
+    }
+   ],
+   "candidateCount": 2,
+   "insufficientReason": null
+  },
+  {
+   "rootId": "G5T4",
+   "arm": "H1",
+   "originalPlan": "RDRR",
+   "originalPlanHash": "a8377b3e35bb7701a8f77f4f4c589fe469bcaf8ccfb3a42b11f62bf8c07862c1",
+   "originalRootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__b__e__e__e__e__e__e__b__e__e__e__e__b__e__e__e__e__e__e__p__e__e__p__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__p__b__e__b__e__m__m__e__e__ec_e__b__b__e__b__m__m__t__e__b__e__e__e__e__e__em_t__#single#playing#cat#8,2#9,8#4#0#1,6|6,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+   "originalPostStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__b__e__e__e__e__e__e__b__e__e__e__e__b__e__e__e__e__e__e__p__e__e__p__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__p__b__e__b__e__m__m__e__e__e__e__b__b__e__b__m__m__t__e__b__e__e__ec_e__e__em_t__#single#playing#mouse#9,5#9,8#0#3#1,6|6,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "snapshotSha256": "8380edc34cdd6821a8ae3ed7b5ac3f8eaad6448aace20ffbaa07ed0b532d982d",
+   "attempted": [
+    {
+     "rootAction": "U",
+     "rootActionLegalIndex": 0,
+     "rootValue": -1973.421052631579,
+     "rootValueBound": "exact",
+     "rootValueMate": null,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "mouse_to_move",
+     "planString": "UDRD",
+     "planChars": [
+      "U",
+      "D",
+      "R",
+      "D"
+     ],
+     "firstStepDifferent": true,
+     "replayOk": true,
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "replayReason": null,
+     "bindingOk": true,
+     "postStateKeys": [
+      "t__e__e__e__e__e__e__e__e__t__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__b__e__e__e__e__e__e__b__e__e__e__e__b__e__e__e__e__e__e__p__e__e__p__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__p__b__e__b__e__m__m__e__e__e__e__b__b__e__b__m__m__t__e__b__ec_e__e__e__e__em_t__#single#playing#mouse#9,3#9,8#0#3#1,6|6,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundaryKind": "DETERMINISTIC",
+     "branches": 1,
+     "eligible": true,
+     "rejectReason": null
+    },
+    {
+     "rootAction": "L",
+     "rootActionLegalIndex": 1,
+     "rootValue": -1973.421052631579,
+     "rootValueBound": "exact",
+     "rootValueMate": null,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "mouse_to_move",
+     "planString": "LRRD",
+     "planChars": [
+      "L",
+      "R",
+      "R",
+      "D"
+     ],
+     "firstStepDifferent": true,
+     "replayOk": true,
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "replayReason": null,
+     "bindingOk": true,
+     "postStateKeys": [
+      "t__e__e__e__e__e__e__e__e__t__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__b__e__e__e__e__e__e__b__e__e__e__e__b__e__e__e__e__e__e__p__e__e__p__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__p__b__e__b__e__m__m__e__e__e__e__b__b__e__b__m__m__t__e__b__ec_e__e__e__e__em_t__#single#playing#mouse#9,3#9,8#0#3#1,6|6,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundaryKind": "DETERMINISTIC",
+     "branches": 1,
+     "eligible": true,
+     "rejectReason": null
+    },
+    {
+     "rootAction": "R",
+     "rootActionLegalIndex": 2,
+     "rootValue": -1740.7894736842106,
+     "rootValueBound": "exact",
+     "rootValueMate": null,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "mouse_to_move",
+     "planString": "RDRR",
+     "planChars": [
+      "R",
+      "D",
+      "R",
+      "R"
+     ],
+     "firstStepDifferent": false,
+     "replayOk": true,
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "replayReason": null,
+     "bindingOk": true,
+     "postStateKeys": [
+      "t__e__e__e__e__e__e__e__e__t__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__b__e__e__e__e__e__e__b__e__e__e__e__b__e__e__e__e__e__e__p__e__e__p__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__p__b__e__b__e__m__m__e__e__e__e__b__b__e__b__m__m__t__e__b__e__e__ec_e__e__em_t__#single#playing#mouse#9,5#9,8#0#3#1,6|6,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundaryKind": "DETERMINISTIC",
+     "branches": 1,
+     "eligible": false,
+     "rejectReason": "SAME_AS_ORIGINAL_PLAN"
+    }
+   ],
+   "candidates": [
+    {
+     "candidateId": "G5T4/H1/C1",
+     "rootId": "G5T4",
+     "arm": "H1",
+     "originalPlan": "RDRR",
+     "planString": "UDRD",
+     "planChars": [
+      "U",
+      "D",
+      "R",
+      "D"
+     ],
+     "rootAction": "U",
+     "rootActionLegalIndex": 0,
+     "rootValue": -1973.421052631579,
+     "rootValueBound": "exact",
+     "firstStepDifferent": true,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "mouse_to_move",
+     "postStateKeys": [
+      "t__e__e__e__e__e__e__e__e__t__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__b__e__e__e__e__e__e__b__e__e__e__e__b__e__e__e__e__e__e__p__e__e__p__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__p__b__e__b__e__m__m__e__e__e__e__b__b__e__b__m__m__t__e__b__ec_e__e__e__e__em_t__#single#playing#mouse#9,3#9,8#0#3#1,6|6,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundary": {
+      "chance": false,
+      "kind": "DETERMINISTIC",
+      "branches": 1
+     },
+     "snapshotSha256": "8380edc34cdd6821a8ae3ed7b5ac3f8eaad6448aace20ffbaa07ed0b532d982d",
+     "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__b__e__e__e__e__e__e__b__e__e__e__e__b__e__e__e__e__e__e__p__e__e__p__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__p__b__e__b__e__m__m__e__e__ec_e__b__b__e__b__m__m__t__e__b__e__e__e__e__e__em_t__#single#playing#cat#8,2#9,8#4#0#1,6|6,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+     "planHash": "94a52f54e7a35e5dbfcc8555ee5e044ecd9a63afdd1a1e8c6e3a4266c1a0f96d",
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "bindingOk": true,
+     "frontierSummary": {
+      "phase": "playing",
+      "currentPlayer": "mouse",
+      "cat": "9,3",
+      "mouse": "9,8",
+      "catMovesLeft": 0,
+      "mouseMovesLeft": 3,
+      "mouseHasButter": true,
+      "mouseSkillActive": false,
+      "butterPositions": [
+       "1,6",
+       "6,6"
+      ],
+      "pendingButterSpawns": [],
+      "pendingButterPlacementDebt": 0,
+      "trapPosition": "1,1",
+      "catTrapsRemaining": 0,
+      "blockedTunnels": []
+     },
+     "replaySteps": [
+      {
+       "label": "U",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "D",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "R",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "D",
+       "transitionKind": "deterministic",
+       "branches": 1
+      }
+     ],
+     "candidateHash": "939c109183161637a74e876c34cc7a6442b66a46c53b4990200f9a10160ac3aa"
+    },
+    {
+     "candidateId": "G5T4/H1/C2",
+     "rootId": "G5T4",
+     "arm": "H1",
+     "originalPlan": "RDRR",
+     "planString": "LRRD",
+     "planChars": [
+      "L",
+      "R",
+      "R",
+      "D"
+     ],
+     "rootAction": "L",
+     "rootActionLegalIndex": 1,
+     "rootValue": -1973.421052631579,
+     "rootValueBound": "exact",
+     "firstStepDifferent": true,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "mouse_to_move",
+     "postStateKeys": [
+      "t__e__e__e__e__e__e__e__e__t__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__b__e__e__e__e__e__e__b__e__e__e__e__b__e__e__e__e__e__e__p__e__e__p__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__p__b__e__b__e__m__m__e__e__e__e__b__b__e__b__m__m__t__e__b__ec_e__e__e__e__em_t__#single#playing#mouse#9,3#9,8#0#3#1,6|6,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundary": {
+      "chance": false,
+      "kind": "DETERMINISTIC",
+      "branches": 1
+     },
+     "snapshotSha256": "8380edc34cdd6821a8ae3ed7b5ac3f8eaad6448aace20ffbaa07ed0b532d982d",
+     "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__b__e__e__e__e__e__e__b__e__e__e__e__b__e__e__e__e__e__e__p__e__e__p__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__p__b__e__b__e__m__m__e__e__ec_e__b__b__e__b__m__m__t__e__b__e__e__e__e__e__em_t__#single#playing#cat#8,2#9,8#4#0#1,6|6,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+     "planHash": "af90139b5af4d7b28ec8fff7c2a23d64cde2f9bc6d2e60698dc596960f8ea0fe",
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "bindingOk": true,
+     "frontierSummary": {
+      "phase": "playing",
+      "currentPlayer": "mouse",
+      "cat": "9,3",
+      "mouse": "9,8",
+      "catMovesLeft": 0,
+      "mouseMovesLeft": 3,
+      "mouseHasButter": true,
+      "mouseSkillActive": false,
+      "butterPositions": [
+       "1,6",
+       "6,6"
+      ],
+      "pendingButterSpawns": [],
+      "pendingButterPlacementDebt": 0,
+      "trapPosition": "1,1",
+      "catTrapsRemaining": 0,
+      "blockedTunnels": []
+     },
+     "replaySteps": [
+      {
+       "label": "L",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "R",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "R",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "D",
+       "transitionKind": "deterministic",
+       "branches": 1
+      }
+     ],
+     "candidateHash": "14db5e48e6f6db66f1312809063ebda35c075304be4c03422b8f90d0e4c96058"
+    }
+   ],
+   "candidateCount": 2,
+   "insufficientReason": null
+  },
+  {
+   "rootId": "G2T8",
+   "arm": "E1",
+   "originalPlan": "DDDR",
+   "originalPlanHash": "eaa1e443983c5516c5d236edf7de4d0583abd3668475fdd932cd54d97bfb4081",
+   "originalRootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__b__e__e__e__ec_e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__em_e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#cat#2,2#4,9#4#0#2,5#8,6:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+   "originalPostStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__em_e__e__e__ec_e__e__e__b__e__e__e__e__e__e__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#mouse#5,3#4,9#0#3#2,5|8,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "snapshotSha256": "985b24a76bf5ad8f45975ac703337c17c28ace0811fae3d32dc45514ce3518dc",
+   "attempted": [
+    {
+     "rootAction": "U",
+     "rootActionLegalIndex": 0,
+     "rootValue": -711.2719298245615,
+     "rootValueBound": "exact",
+     "rootValueMate": null,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "boundary_chance",
+     "planString": "UDDD",
+     "planChars": [
+      "U",
+      "D",
+      "D",
+      "D"
+     ],
+     "firstStepDifferent": true,
+     "replayOk": true,
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "replayReason": null,
+     "bindingOk": true,
+     "postStateKeys": [
+      "t__e__b__e__e__e__e__e__e__t__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__ec_e__p__e__e__e__e__em_e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#mouse#4,2#4,9#0#3#2,5|8,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundaryKind": "DEGENERATE_CHANCE_ONE_OUTCOME",
+     "branches": 1,
+     "eligible": true,
+     "rejectReason": null
+    },
+    {
+     "rootAction": "D",
+     "rootActionLegalIndex": 1,
+     "rootValue": -583.9035087719299,
+     "rootValueBound": "exact",
+     "rootValueMate": null,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "boundary_chance",
+     "planString": "DDDR",
+     "planChars": [
+      "D",
+      "D",
+      "D",
+      "R"
+     ],
+     "firstStepDifferent": false,
+     "replayOk": true,
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "replayReason": null,
+     "bindingOk": true,
+     "postStateKeys": [
+      "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__em_e__e__e__ec_e__e__e__b__e__e__e__e__e__e__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#mouse#5,3#4,9#0#3#2,5|8,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundaryKind": "DEGENERATE_CHANCE_ONE_OUTCOME",
+     "branches": 1,
+     "eligible": false,
+     "rejectReason": "SAME_AS_ORIGINAL_PLAN"
+    },
+    {
+     "rootAction": "L",
+     "rootActionLegalIndex": 2,
+     "rootValue": -711.2719298245615,
+     "rootValueBound": "exact",
+     "rootValueMate": null,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "boundary_chance",
+     "planString": "LDDR",
+     "planChars": [
+      "L",
+      "D",
+      "D",
+      "R"
+     ],
+     "firstStepDifferent": true,
+     "replayOk": true,
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "replayReason": null,
+     "bindingOk": true,
+     "postStateKeys": [
+      "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__e__e__e__e__b__b__e__b__b__e__e__e__e__ec_e__p__e__e__e__e__em_e__b__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#mouse#4,2#4,9#0#3#2,5|8,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundaryKind": "DEGENERATE_CHANCE_ONE_OUTCOME",
+     "branches": 1,
+     "eligible": true,
+     "rejectReason": null
+    },
+    {
+     "rootAction": "R",
+     "rootActionLegalIndex": 3,
+     "rootValue": -614.8245614035088,
+     "rootValueBound": "exact",
+     "rootValueMate": null,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "boundary_chance",
+     "planString": "RDDD",
+     "planChars": [
+      "R",
+      "D",
+      "D",
+      "D"
+     ],
+     "firstStepDifferent": true,
+     "replayOk": true,
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "replayReason": null,
+     "bindingOk": true,
+     "postStateKeys": [
+      "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__e__e__b__e__e__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__em_e__e__e__ec_e__e__e__b__e__e__e__e__e__b__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#mouse#5,3#4,9#0#3#2,5|8,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundaryKind": "DEGENERATE_CHANCE_ONE_OUTCOME",
+     "branches": 1,
+     "eligible": true,
+     "rejectReason": null
+    }
+   ],
+   "candidates": [
+    {
+     "candidateId": "G2T8/E1/C1",
+     "rootId": "G2T8",
+     "arm": "E1",
+     "originalPlan": "DDDR",
+     "planString": "RDDD",
+     "planChars": [
+      "R",
+      "D",
+      "D",
+      "D"
+     ],
+     "rootAction": "R",
+     "rootActionLegalIndex": 3,
+     "rootValue": -614.8245614035088,
+     "rootValueBound": "exact",
+     "firstStepDifferent": true,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "boundary_chance",
+     "postStateKeys": [
+      "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__e__e__b__e__e__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__em_e__e__e__ec_e__e__e__b__e__e__e__e__e__b__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#mouse#5,3#4,9#0#3#2,5|8,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundary": {
+      "chance": true,
+      "kind": "DEGENERATE_CHANCE_ONE_OUTCOME",
+      "branches": 1
+     },
+     "snapshotSha256": "985b24a76bf5ad8f45975ac703337c17c28ace0811fae3d32dc45514ce3518dc",
+     "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__b__e__e__e__ec_e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__em_e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#cat#2,2#4,9#4#0#2,5#8,6:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+     "planHash": "a225d7d038c53bb97b514edaed5067c809b0f61cdc99d8f2b39db643e1d97226",
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "bindingOk": true,
+     "frontierSummary": {
+      "phase": "playing",
+      "currentPlayer": "mouse",
+      "cat": "5,3",
+      "mouse": "4,9",
+      "catMovesLeft": 0,
+      "mouseMovesLeft": 3,
+      "mouseHasButter": true,
+      "mouseSkillActive": false,
+      "butterPositions": [
+       "2,5",
+       "8,6"
+      ],
+      "pendingButterSpawns": [],
+      "pendingButterPlacementDebt": 0,
+      "trapPosition": "1,1",
+      "catTrapsRemaining": 0,
+      "blockedTunnels": []
+     },
+     "replaySteps": [
+      {
+       "label": "R",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "D",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "D",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "D",
+       "transitionKind": "chance",
+       "branches": 1
+      }
+     ],
+     "candidateHash": "2b6637ffc0f0b51ca181af2428f6efcf1dd0b46396671dde64977331ca37a9df"
+    },
+    {
+     "candidateId": "G2T8/E1/C2",
+     "rootId": "G2T8",
+     "arm": "E1",
+     "originalPlan": "DDDR",
+     "planString": "UDDD",
+     "planChars": [
+      "U",
+      "D",
+      "D",
+      "D"
+     ],
+     "rootAction": "U",
+     "rootActionLegalIndex": 0,
+     "rootValue": -711.2719298245615,
+     "rootValueBound": "exact",
+     "firstStepDifferent": true,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "boundary_chance",
+     "postStateKeys": [
+      "t__e__b__e__e__e__e__e__e__t__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__ec_e__p__e__e__e__e__em_e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#mouse#4,2#4,9#0#3#2,5|8,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundary": {
+      "chance": true,
+      "kind": "DEGENERATE_CHANCE_ONE_OUTCOME",
+      "branches": 1
+     },
+     "snapshotSha256": "985b24a76bf5ad8f45975ac703337c17c28ace0811fae3d32dc45514ce3518dc",
+     "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__b__e__e__e__ec_e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__em_e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#cat#2,2#4,9#4#0#2,5#8,6:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+     "planHash": "f29904b0632359c8d2fbcd3dd90f919107370ed78d4dfe2a93aac1166c0ceccd",
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "bindingOk": true,
+     "frontierSummary": {
+      "phase": "playing",
+      "currentPlayer": "mouse",
+      "cat": "4,2",
+      "mouse": "4,9",
+      "catMovesLeft": 0,
+      "mouseMovesLeft": 3,
+      "mouseHasButter": true,
+      "mouseSkillActive": false,
+      "butterPositions": [
+       "2,5",
+       "8,6"
+      ],
+      "pendingButterSpawns": [],
+      "pendingButterPlacementDebt": 0,
+      "trapPosition": "1,1",
+      "catTrapsRemaining": 0,
+      "blockedTunnels": []
+     },
+     "replaySteps": [
+      {
+       "label": "U",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "D",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "D",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "D",
+       "transitionKind": "chance",
+       "branches": 1
+      }
+     ],
+     "candidateHash": "e5e361c64ec86258a2b425eef7fc34d57f67625a598ad9902afb38008bbdaba7"
+    }
+   ],
+   "candidateCount": 2,
+   "insufficientReason": null
+  },
+  {
+   "rootId": "G2T8",
+   "arm": "H1",
+   "originalPlan": "DDDR",
+   "originalPlanHash": "eaa1e443983c5516c5d236edf7de4d0583abd3668475fdd932cd54d97bfb4081",
+   "originalRootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__b__e__e__e__ec_e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__em_e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#cat#2,2#4,9#4#0#2,5#8,6:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+   "originalPostStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__em_e__e__e__ec_e__e__e__b__e__e__e__e__e__e__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#mouse#5,3#4,9#0#3#2,5|8,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "snapshotSha256": "985b24a76bf5ad8f45975ac703337c17c28ace0811fae3d32dc45514ce3518dc",
+   "attempted": [
+    {
+     "rootAction": "U",
+     "rootActionLegalIndex": 0,
+     "rootValue": -1551.6666666666667,
+     "rootValueBound": "exact",
+     "rootValueMate": null,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "boundary_chance",
+     "planString": "URRR",
+     "planChars": [
+      "U",
+      "R",
+      "R",
+      "R"
+     ],
+     "firstStepDifferent": true,
+     "replayOk": true,
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "replayReason": null,
+     "bindingOk": true,
+     "postStateKeys": [
+      "t__e__b__e__e__e__e__e__e__t__e__e__e__e__e__ec_e__e__b__e__e__e__e__e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__em_e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#mouse#1,5#4,9#0#3#2,5|8,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundaryKind": "DEGENERATE_CHANCE_ONE_OUTCOME",
+     "branches": 1,
+     "eligible": true,
+     "rejectReason": null
+    },
+    {
+     "rootAction": "D",
+     "rootActionLegalIndex": 1,
+     "rootValue": -1283.9035087719299,
+     "rootValueBound": "exact",
+     "rootValueMate": null,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "boundary_chance",
+     "planString": "DDDR",
+     "planChars": [
+      "D",
+      "D",
+      "D",
+      "R"
+     ],
+     "firstStepDifferent": false,
+     "replayOk": true,
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "replayReason": null,
+     "bindingOk": true,
+     "postStateKeys": [
+      "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__em_e__e__e__ec_e__e__e__b__e__e__e__e__e__e__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#mouse#5,3#4,9#0#3#2,5|8,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundaryKind": "DEGENERATE_CHANCE_ONE_OUTCOME",
+     "branches": 1,
+     "eligible": false,
+     "rejectReason": "SAME_AS_ORIGINAL_PLAN"
+    },
+    {
+     "rootAction": "L",
+     "rootActionLegalIndex": 2,
+     "rootValue": -1611.2719298245615,
+     "rootValueBound": "exact",
+     "rootValueMate": null,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "boundary_chance",
+     "planString": "LDDR",
+     "planChars": [
+      "L",
+      "D",
+      "D",
+      "R"
+     ],
+     "firstStepDifferent": true,
+     "replayOk": true,
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "replayReason": null,
+     "bindingOk": true,
+     "postStateKeys": [
+      "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__e__e__e__e__b__b__e__b__b__e__e__e__e__ec_e__p__e__e__e__e__em_e__b__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#mouse#4,2#4,9#0#3#2,5|8,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundaryKind": "DEGENERATE_CHANCE_ONE_OUTCOME",
+     "branches": 1,
+     "eligible": true,
+     "rejectReason": null
+    },
+    {
+     "rootAction": "R",
+     "rootActionLegalIndex": 3,
+     "rootValue": -1314.8245614035088,
+     "rootValueBound": "exact",
+     "rootValueMate": null,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "boundary_chance",
+     "planString": "RDDD",
+     "planChars": [
+      "R",
+      "D",
+      "D",
+      "D"
+     ],
+     "firstStepDifferent": true,
+     "replayOk": true,
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "replayReason": null,
+     "bindingOk": true,
+     "postStateKeys": [
+      "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__e__e__b__e__e__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__em_e__e__e__ec_e__e__e__b__e__e__e__e__e__b__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#mouse#5,3#4,9#0#3#2,5|8,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundaryKind": "DEGENERATE_CHANCE_ONE_OUTCOME",
+     "branches": 1,
+     "eligible": true,
+     "rejectReason": null
+    }
+   ],
+   "candidates": [
+    {
+     "candidateId": "G2T8/H1/C1",
+     "rootId": "G2T8",
+     "arm": "H1",
+     "originalPlan": "DDDR",
+     "planString": "RDDD",
+     "planChars": [
+      "R",
+      "D",
+      "D",
+      "D"
+     ],
+     "rootAction": "R",
+     "rootActionLegalIndex": 3,
+     "rootValue": -1314.8245614035088,
+     "rootValueBound": "exact",
+     "firstStepDifferent": true,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "boundary_chance",
+     "postStateKeys": [
+      "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__e__e__b__e__e__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__em_e__e__e__ec_e__e__e__b__e__e__e__e__e__b__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#mouse#5,3#4,9#0#3#2,5|8,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundary": {
+      "chance": true,
+      "kind": "DEGENERATE_CHANCE_ONE_OUTCOME",
+      "branches": 1
+     },
+     "snapshotSha256": "985b24a76bf5ad8f45975ac703337c17c28ace0811fae3d32dc45514ce3518dc",
+     "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__b__e__e__e__ec_e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__em_e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#cat#2,2#4,9#4#0#2,5#8,6:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+     "planHash": "a225d7d038c53bb97b514edaed5067c809b0f61cdc99d8f2b39db643e1d97226",
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "bindingOk": true,
+     "frontierSummary": {
+      "phase": "playing",
+      "currentPlayer": "mouse",
+      "cat": "5,3",
+      "mouse": "4,9",
+      "catMovesLeft": 0,
+      "mouseMovesLeft": 3,
+      "mouseHasButter": true,
+      "mouseSkillActive": false,
+      "butterPositions": [
+       "2,5",
+       "8,6"
+      ],
+      "pendingButterSpawns": [],
+      "pendingButterPlacementDebt": 0,
+      "trapPosition": "1,1",
+      "catTrapsRemaining": 0,
+      "blockedTunnels": []
+     },
+     "replaySteps": [
+      {
+       "label": "R",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "D",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "D",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "D",
+       "transitionKind": "chance",
+       "branches": 1
+      }
+     ],
+     "candidateHash": "f1fea1fce00e4ff9e2c22fea608915d6d4651cccca8619eb5efe577729f69dc0"
+    },
+    {
+     "candidateId": "G2T8/H1/C2",
+     "rootId": "G2T8",
+     "arm": "H1",
+     "originalPlan": "DDDR",
+     "planString": "URRR",
+     "planChars": [
+      "U",
+      "R",
+      "R",
+      "R"
+     ],
+     "rootAction": "U",
+     "rootActionLegalIndex": 0,
+     "rootValue": -1551.6666666666667,
+     "rootValueBound": "exact",
+     "firstStepDifferent": true,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "boundary_chance",
+     "postStateKeys": [
+      "t__e__b__e__e__e__e__e__e__t__e__e__e__e__e__ec_e__e__b__e__e__e__e__e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__em_e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#mouse#1,5#4,9#0#3#2,5|8,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundary": {
+      "chance": true,
+      "kind": "DEGENERATE_CHANCE_ONE_OUTCOME",
+      "branches": 1
+     },
+     "snapshotSha256": "985b24a76bf5ad8f45975ac703337c17c28ace0811fae3d32dc45514ce3518dc",
+     "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__b__e__e__e__ec_e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__em_e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#cat#2,2#4,9#4#0#2,5#8,6:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+     "planHash": "cb6cba0f958dacc0808bb36a6f288515487153321a0b6d22e2ca78c9c3a96d34",
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "bindingOk": true,
+     "frontierSummary": {
+      "phase": "playing",
+      "currentPlayer": "mouse",
+      "cat": "1,5",
+      "mouse": "4,9",
+      "catMovesLeft": 0,
+      "mouseMovesLeft": 3,
+      "mouseHasButter": true,
+      "mouseSkillActive": false,
+      "butterPositions": [
+       "2,5",
+       "8,6"
+      ],
+      "pendingButterSpawns": [],
+      "pendingButterPlacementDebt": 0,
+      "trapPosition": "1,1",
+      "catTrapsRemaining": 0,
+      "blockedTunnels": []
+     },
+     "replaySteps": [
+      {
+       "label": "U",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "R",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "R",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "R",
+       "transitionKind": "chance",
+       "branches": 1
+      }
+     ],
+     "candidateHash": "5d31983038fe7b90595f710c1f1729e7996813bf65eff7baeed26e312976a92b"
+    }
+   ],
+   "candidateCount": 2,
+   "insufficientReason": null
+  },
+  {
+   "rootId": "G1T9",
+   "arm": "E1",
+   "originalPlan": "LLLD",
+   "originalPlanHash": "feddd1c206ec1f68e3fbacaaeb39432b0da514aecb8a51a90d8ef4ae602fe9b1",
+   "originalRootStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__ec_e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#1,7#8,3#4#0#5,5#8,5:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+   "originalPostStateKeys": [
+    "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__ec_b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,4#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "snapshotSha256": "5639f7682d7c5f6f0aa78d2a7103374cd4d08b3326c21dcccadc188af54013cf",
+   "attempted": [
+    {
+     "rootAction": "U",
+     "rootActionLegalIndex": 0,
+     "rootValue": -1278.421052631579,
+     "rootValueBound": "exact",
+     "rootValueMate": null,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "boundary_chance",
+     "planString": "ULLL",
+     "planChars": [
+      "U",
+      "L",
+      "L",
+      "L"
+     ],
+     "firstStepDifferent": true,
+     "replayOk": true,
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "replayReason": null,
+     "bindingOk": true,
+     "postStateKeys": [
+      "t__e__e__b__ec_e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#0,4#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundaryKind": "DEGENERATE_CHANCE_ONE_OUTCOME",
+     "branches": 1,
+     "eligible": true,
+     "rejectReason": null
+    },
+    {
+     "rootAction": "D",
+     "rootActionLegalIndex": 1,
+     "rootValue": -1052.2105263157896,
+     "rootValueBound": "exact",
+     "rootValueMate": null,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "boundary_chance",
+     "planString": "DDRL",
+     "planChars": [
+      "D",
+      "D",
+      "R",
+      "L"
+     ],
+     "firstStepDifferent": true,
+     "replayOk": true,
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "replayReason": null,
+     "bindingOk": true,
+     "postStateKeys": [
+      "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__ec_e__b__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,7#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundaryKind": "DEGENERATE_CHANCE_ONE_OUTCOME",
+     "branches": 1,
+     "eligible": true,
+     "rejectReason": null
+    },
+    {
+     "rootAction": "L",
+     "rootActionLegalIndex": 2,
+     "rootValue": -1004.3421052631579,
+     "rootValueBound": "exact",
+     "rootValueMate": null,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "boundary_chance",
+     "planString": "LLLD",
+     "planChars": [
+      "L",
+      "L",
+      "L",
+      "D"
+     ],
+     "firstStepDifferent": false,
+     "replayOk": true,
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "replayReason": null,
+     "bindingOk": true,
+     "postStateKeys": [
+      "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__ec_b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,4#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundaryKind": "DEGENERATE_CHANCE_ONE_OUTCOME",
+     "branches": 1,
+     "eligible": false,
+     "rejectReason": "SAME_AS_ORIGINAL_PLAN"
+    },
+    {
+     "rootAction": "R",
+     "rootActionLegalIndex": 3,
+     "rootValue": -1300.1315789473683,
+     "rootValueBound": "exact",
+     "rootValueMate": null,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "boundary_chance",
+     "planString": "RLLL",
+     "planChars": [
+      "R",
+      "L",
+      "L",
+      "L"
+     ],
+     "firstStepDifferent": true,
+     "replayOk": true,
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "replayReason": null,
+     "bindingOk": true,
+     "postStateKeys": [
+      "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#1,5#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundaryKind": "DEGENERATE_CHANCE_ONE_OUTCOME",
+     "branches": 1,
+     "eligible": true,
+     "rejectReason": null
+    }
+   ],
+   "candidates": [
+    {
+     "candidateId": "G1T9/E1/C1",
+     "rootId": "G1T9",
+     "arm": "E1",
+     "originalPlan": "LLLD",
+     "planString": "DDRL",
+     "planChars": [
+      "D",
+      "D",
+      "R",
+      "L"
+     ],
+     "rootAction": "D",
+     "rootActionLegalIndex": 1,
+     "rootValue": -1052.2105263157896,
+     "rootValueBound": "exact",
+     "firstStepDifferent": true,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "boundary_chance",
+     "postStateKeys": [
+      "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__ec_e__b__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,7#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundary": {
+      "chance": true,
+      "kind": "DEGENERATE_CHANCE_ONE_OUTCOME",
+      "branches": 1
+     },
+     "snapshotSha256": "5639f7682d7c5f6f0aa78d2a7103374cd4d08b3326c21dcccadc188af54013cf",
+     "rootStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__ec_e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#1,7#8,3#4#0#5,5#8,5:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+     "planHash": "7f97ff7224f4455d0098343091f3f0062b634665e117c1818694f35a0373ebf2",
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "bindingOk": true,
+     "frontierSummary": {
+      "phase": "playing",
+      "currentPlayer": "mouse",
+      "cat": "3,7",
+      "mouse": "8,3",
+      "catMovesLeft": 0,
+      "mouseMovesLeft": 3,
+      "mouseHasButter": true,
+      "mouseSkillActive": false,
+      "butterPositions": [
+       "5,5",
+       "8,5"
+      ],
+      "pendingButterSpawns": [],
+      "pendingButterPlacementDebt": 0,
+      "trapPosition": "1,1",
+      "catTrapsRemaining": 0,
+      "blockedTunnels": []
+     },
+     "replaySteps": [
+      {
+       "label": "D",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "D",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "R",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "L",
+       "transitionKind": "chance",
+       "branches": 1
+      }
+     ],
+     "candidateHash": "1594c43a482948a11e13642f21f80b12f7c83bcac3358a08956f23635c8d70ed"
+    },
+    {
+     "candidateId": "G1T9/E1/C2",
+     "rootId": "G1T9",
+     "arm": "E1",
+     "originalPlan": "LLLD",
+     "planString": "ULLL",
+     "planChars": [
+      "U",
+      "L",
+      "L",
+      "L"
+     ],
+     "rootAction": "U",
+     "rootActionLegalIndex": 0,
+     "rootValue": -1278.421052631579,
+     "rootValueBound": "exact",
+     "firstStepDifferent": true,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "boundary_chance",
+     "postStateKeys": [
+      "t__e__e__b__ec_e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#0,4#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundary": {
+      "chance": true,
+      "kind": "DEGENERATE_CHANCE_ONE_OUTCOME",
+      "branches": 1
+     },
+     "snapshotSha256": "5639f7682d7c5f6f0aa78d2a7103374cd4d08b3326c21dcccadc188af54013cf",
+     "rootStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__ec_e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#1,7#8,3#4#0#5,5#8,5:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+     "planHash": "16be35ae59fce9f25e965fd37987f66fdf1e7cd38a430c0a4aefe757e6fab6a2",
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "bindingOk": true,
+     "frontierSummary": {
+      "phase": "playing",
+      "currentPlayer": "mouse",
+      "cat": "0,4",
+      "mouse": "8,3",
+      "catMovesLeft": 0,
+      "mouseMovesLeft": 3,
+      "mouseHasButter": true,
+      "mouseSkillActive": false,
+      "butterPositions": [
+       "5,5",
+       "8,5"
+      ],
+      "pendingButterSpawns": [],
+      "pendingButterPlacementDebt": 0,
+      "trapPosition": "1,1",
+      "catTrapsRemaining": 0,
+      "blockedTunnels": []
+     },
+     "replaySteps": [
+      {
+       "label": "U",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "L",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "L",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "L",
+       "transitionKind": "chance",
+       "branches": 1
+      }
+     ],
+     "candidateHash": "409665e36983ea73ab0b9f4627af62daac7ae9f3e54b851e1e1efcd613af9fcb"
+    }
+   ],
+   "candidateCount": 2,
+   "insufficientReason": null
+  },
+  {
+   "rootId": "G1T9",
+   "arm": "H1",
+   "originalPlan": "LLDL",
+   "originalPlanHash": "0d8424c67bfe25ca2827a83194de8d93609cc1924508649f6cce8b3a8009d6f7",
+   "originalRootStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__ec_e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#1,7#8,3#4#0#5,5#8,5:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+   "originalPostStateKeys": [
+    "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__ec_e__e__e__e__e__e__e__e__e__e__b__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,4#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "snapshotSha256": "5639f7682d7c5f6f0aa78d2a7103374cd4d08b3326c21dcccadc188af54013cf",
+   "attempted": [
+    {
+     "rootAction": "U",
+     "rootActionLegalIndex": 0,
+     "rootValue": -1684.342105263158,
+     "rootValueBound": "exact",
+     "rootValueMate": null,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "boundary_chance",
+     "planString": "UDDD",
+     "planChars": [
+      "U",
+      "D",
+      "D",
+      "D"
+     ],
+     "firstStepDifferent": true,
+     "replayOk": true,
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "replayReason": null,
+     "bindingOk": true,
+     "postStateKeys": [
+      "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__ec_b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,7#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundaryKind": "DEGENERATE_CHANCE_ONE_OUTCOME",
+     "branches": 1,
+     "eligible": true,
+     "rejectReason": null
+    },
+    {
+     "rootAction": "D",
+     "rootActionLegalIndex": 1,
+     "rootValue": -1588.5526315789475,
+     "rootValueBound": "exact",
+     "rootValueMate": null,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "boundary_chance",
+     "planString": "DLLD",
+     "planChars": [
+      "D",
+      "L",
+      "L",
+      "D"
+     ],
+     "firstStepDifferent": true,
+     "replayOk": true,
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "replayReason": null,
+     "bindingOk": true,
+     "postStateKeys": [
+      "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__ec_e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,5#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundaryKind": "DEGENERATE_CHANCE_ONE_OUTCOME",
+     "branches": 1,
+     "eligible": true,
+     "rejectReason": null
+    },
+    {
+     "rootAction": "L",
+     "rootActionLegalIndex": 2,
+     "rootValue": -1526.0526315789475,
+     "rootValueBound": "exact",
+     "rootValueMate": null,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "boundary_chance",
+     "planString": "LLDL",
+     "planChars": [
+      "L",
+      "L",
+      "D",
+      "L"
+     ],
+     "firstStepDifferent": false,
+     "replayOk": true,
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "replayReason": null,
+     "bindingOk": true,
+     "postStateKeys": [
+      "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__ec_e__e__e__e__e__e__e__e__e__e__b__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,4#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundaryKind": "DEGENERATE_CHANCE_ONE_OUTCOME",
+     "branches": 1,
+     "eligible": false,
+     "rejectReason": "SAME_AS_ORIGINAL_PLAN"
+    },
+    {
+     "rootAction": "R",
+     "rootActionLegalIndex": 3,
+     "rootValue": -1684.342105263158,
+     "rootValueBound": "exact",
+     "rootValueMate": null,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "boundary_chance",
+     "planString": "RDLD",
+     "planChars": [
+      "R",
+      "D",
+      "L",
+      "D"
+     ],
+     "firstStepDifferent": true,
+     "replayOk": true,
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "replayReason": null,
+     "bindingOk": true,
+     "postStateKeys": [
+      "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__ec_b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,7#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundaryKind": "DEGENERATE_CHANCE_ONE_OUTCOME",
+     "branches": 1,
+     "eligible": true,
+     "rejectReason": null
+    }
+   ],
+   "candidates": [
+    {
+     "candidateId": "G1T9/H1/C1",
+     "rootId": "G1T9",
+     "arm": "H1",
+     "originalPlan": "LLDL",
+     "planString": "DLLD",
+     "planChars": [
+      "D",
+      "L",
+      "L",
+      "D"
+     ],
+     "rootAction": "D",
+     "rootActionLegalIndex": 1,
+     "rootValue": -1588.5526315789475,
+     "rootValueBound": "exact",
+     "firstStepDifferent": true,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "boundary_chance",
+     "postStateKeys": [
+      "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__ec_e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,5#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundary": {
+      "chance": true,
+      "kind": "DEGENERATE_CHANCE_ONE_OUTCOME",
+      "branches": 1
+     },
+     "snapshotSha256": "5639f7682d7c5f6f0aa78d2a7103374cd4d08b3326c21dcccadc188af54013cf",
+     "rootStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__ec_e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#1,7#8,3#4#0#5,5#8,5:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+     "planHash": "f96c77c8c7e388975dc207e10e3ad0cc26485bb5711cad9aae6d4f61b3d21abc",
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "bindingOk": true,
+     "frontierSummary": {
+      "phase": "playing",
+      "currentPlayer": "mouse",
+      "cat": "3,5",
+      "mouse": "8,3",
+      "catMovesLeft": 0,
+      "mouseMovesLeft": 3,
+      "mouseHasButter": true,
+      "mouseSkillActive": false,
+      "butterPositions": [
+       "5,5",
+       "8,5"
+      ],
+      "pendingButterSpawns": [],
+      "pendingButterPlacementDebt": 0,
+      "trapPosition": "1,1",
+      "catTrapsRemaining": 0,
+      "blockedTunnels": []
+     },
+     "replaySteps": [
+      {
+       "label": "D",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "L",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "L",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "D",
+       "transitionKind": "chance",
+       "branches": 1
+      }
+     ],
+     "candidateHash": "006daa58ccddb07fca3b3cf1343838bfb19e16827484e66ffd4f6b1c98d6ecb0"
+    },
+    {
+     "candidateId": "G1T9/H1/C2",
+     "rootId": "G1T9",
+     "arm": "H1",
+     "originalPlan": "LLDL",
+     "planString": "UDDD",
+     "planChars": [
+      "U",
+      "D",
+      "D",
+      "D"
+     ],
+     "rootAction": "U",
+     "rootActionLegalIndex": 0,
+     "rootValue": -1684.342105263158,
+     "rootValueBound": "exact",
+     "firstStepDifferent": true,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "boundary_chance",
+     "postStateKeys": [
+      "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__ec_b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,7#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundary": {
+      "chance": true,
+      "kind": "DEGENERATE_CHANCE_ONE_OUTCOME",
+      "branches": 1
+     },
+     "snapshotSha256": "5639f7682d7c5f6f0aa78d2a7103374cd4d08b3326c21dcccadc188af54013cf",
+     "rootStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__ec_e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#1,7#8,3#4#0#5,5#8,5:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+     "planHash": "f29904b0632359c8d2fbcd3dd90f919107370ed78d4dfe2a93aac1166c0ceccd",
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "bindingOk": true,
+     "frontierSummary": {
+      "phase": "playing",
+      "currentPlayer": "mouse",
+      "cat": "3,7",
+      "mouse": "8,3",
+      "catMovesLeft": 0,
+      "mouseMovesLeft": 3,
+      "mouseHasButter": true,
+      "mouseSkillActive": false,
+      "butterPositions": [
+       "5,5",
+       "8,5"
+      ],
+      "pendingButterSpawns": [],
+      "pendingButterPlacementDebt": 0,
+      "trapPosition": "1,1",
+      "catTrapsRemaining": 0,
+      "blockedTunnels": []
+     },
+     "replaySteps": [
+      {
+       "label": "U",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "D",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "D",
+       "transitionKind": "deterministic",
+       "branches": 1
+      },
+      {
+       "label": "D",
+       "transitionKind": "chance",
+       "branches": 1
+      }
+     ],
+     "candidateHash": "25444d59084866708f38455d5d6e3c45a8cc35ec5f307553ca93afa4038d67da"
+    }
+   ],
+   "candidateCount": 2,
+   "insufficientReason": null
+  }
+ ]
+}

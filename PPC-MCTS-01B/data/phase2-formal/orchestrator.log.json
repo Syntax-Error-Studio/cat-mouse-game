@@ -1,0 +1,130 @@
+{
+  "updatedAt": "2026-11-16T17:09:21.938Z",
+  "label": "PHASE2_FORMAL",
+  "totalJobs": 20,
+  "heavyWorkerConcurrency": 1,
+  "serialFreshRepetitions": true,
+  "totalSearchCalls": 960,
+  "reps": [
+    {
+      "rep": 1,
+      "status": 0,
+      "signal": null,
+      "wallMs": 5061
+    },
+    {
+      "rep": 2,
+      "status": 0,
+      "signal": null,
+      "wallMs": 5049
+    },
+    {
+      "rep": 3,
+      "status": 0,
+      "signal": null,
+      "wallMs": 5044
+    },
+    {
+      "rep": 4,
+      "status": 0,
+      "signal": null,
+      "wallMs": 5043
+    },
+    {
+      "rep": 5,
+      "status": 0,
+      "signal": null,
+      "wallMs": 5040
+    },
+    {
+      "rep": 6,
+      "status": 0,
+      "signal": null,
+      "wallMs": 5042
+    },
+    {
+      "rep": 7,
+      "status": 0,
+      "signal": null,
+      "wallMs": 5041
+    },
+    {
+      "rep": 8,
+      "status": 0,
+      "signal": null,
+      "wallMs": 5061
+    },
+    {
+      "rep": 9,
+      "status": 0,
+      "signal": null,
+      "wallMs": 5050
+    },
+    {
+      "rep": 10,
+      "status": 0,
+      "signal": null,
+      "wallMs": 5042
+    },
+    {
+      "rep": 11,
+      "status": 0,
+      "signal": null,
+      "wallMs": 5050
+    },
+    {
+      "rep": 12,
+      "status": 0,
+      "signal": null,
+      "wallMs": 5058
+    },
+    {
+      "rep": 13,
+      "status": 0,
+      "signal": null,
+      "wallMs": 5052
+    },
+    {
+      "rep": 14,
+      "status": 0,
+      "signal": null,
+      "wallMs": 5053
+    },
+    {
+      "rep": 15,
+      "status": 0,
+      "signal": null,
+      "wallMs": 5060
+    },
+    {
+      "rep": 16,
+      "status": 0,
+      "signal": null,
+      "wallMs": 5054
+    },
+    {
+      "rep": 17,
+      "status": 0,
+      "signal": null,
+      "wallMs": 5051
+    },
+    {
+      "rep": 18,
+      "status": 0,
+      "signal": null,
+      "wallMs": 5072
+    },
+    {
+      "rep": 19,
+      "status": 0,
+      "signal": null,
+      "wallMs": 5035
+    },
+    {
+      "rep": 20,
+      "status": 0,
+      "signal": null,
+      "wallMs": 5036
+    }
+  ]
+}

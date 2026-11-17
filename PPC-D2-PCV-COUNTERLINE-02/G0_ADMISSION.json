@@ -1,0 +1,254 @@
+{
+  "round": "PPC-D2-PCV-COUNTERLINE-02",
+  "phase": "G0_IDENTITY_AND_RESOURCE_ADMISSION",
+  "generatedAt": "2026-11-16T23:44:00+08:00",
+  "readOnly": true,
+  "repo": {
+    "root": "F:/小猫小鼠",
+    "head": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+    "headExpected": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+    "headMatch": true,
+    "branch": "ppc/p1-id-state-identity-fix",
+    "branchMatch": true,
+    "gitStatusLineCount": 69,
+    "gitStatusTrackedModified": 15,
+    "gitStatusUntracked": 54,
+    "workingTreePreserved": true,
+    "checkoutOrResetOrCleanOrStash": "NOT_PERFORMED"
+  },
+  "frozenIdentities": [
+    {
+      "name": "FIXTURE_24ROOT_SHA256",
+      "path": "src/game/ai/__tests__/fixtures/ppcId01-human-roots.json",
+      "bytes": 264328,
+      "expected": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "actual": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "match": true
+    },
+    {
+      "name": "GAMEPLAY_MD_SHA256",
+      "path": "GAMEPLAY.md",
+      "expected": "e000778b114bea02ef09634085172ea435be143335721aa0cd04114afb2afd34",
+      "actual": "e000778b114bea02ef09634085172ea435be143335721aa0cd04114afb2afd34",
+      "match": true
+    },
+    {
+      "name": "P5_SHA256",
+      "path": "PPC-CAT-EVALUATOR-ABLATION-01/PRODUCTION_100MS_RESULTS.json",
+      "expected": "9d50560f107da52107cb68be94f4ac90214f8a50aabbc948f8f3114215278775",
+      "actual": "9d50560f107da52107cb68be94f4ac90214f8a50aabbc948f8f3114215278775",
+      "match": true
+    },
+    {
+      "name": "T2_CANDIDATE_FREEZE_SHA256",
+      "path": "PPC-T2-PCV-RESCUE-01/CANDIDATE_PLANS.json",
+      "expected": "8f5a3f9d99ac2f61c895255e72650b3761418cb58ff5152b7d5e94619f8fc3ed",
+      "actual": "8f5a3f9d99ac2f61c895255e72650b3761418cb58ff5152b7d5e94619f8fc3ed",
+      "match": true
+    },
+    {
+      "name": "TAIL_CANDIDATE_SHA256",
+      "path": "PPC-T2-PCV-TAIL-01/TAIL_CANDIDATES.json",
+      "expected": "39cc3569fbe2a9e7955b37e91ef203b07486ff7a02f3998dd32bc8004fcae8b8",
+      "actual": "39cc3569fbe2a9e7955b37e91ef203b07486ff7a02f3998dd32bc8004fcae8b8",
+      "match": true
+    },
+    {
+      "name": "SEAL_KERNEL_SHA256",
+      "path": "PPC-CAT-STRATEGY-SEAL-01/probe/seal_lib.ts",
+      "bytes": 21012,
+      "expected": "453915d3fd3a69bda5d113dd7e5732d20424a7f97cff739cf9b0aeee576a779b",
+      "actual": "453915d3fd3a69bda5d113dd7e5732d20424a7f97cff739cf9b0aeee576a779b",
+      "match": true
+    }
+  ],
+  "allFrozenIdentitiesMatch": true,
+  "productionSources": {
+    "count": 13,
+    "allMatch": true,
+    "baselineSource": "PPC-D2-PCV-COUNTERLINE-01/G0_RESUME_CHECK.json:productionSources",
+    "files": [
+      { "path": "src/game/ai/expectiminimax.ts", "match": true },
+      { "path": "src/game/ai/hardTurnPlanner.ts", "match": true },
+      { "path": "src/game/ai/planQuality.ts", "match": true },
+      { "path": "src/game/ai/legalActions.ts", "match": true },
+      { "path": "src/game/ai/preparedActions.ts", "match": true },
+      { "path": "src/game/ai/planBound.ts", "match": true },
+      { "path": "src/game/ai/transposition.ts", "match": true },
+      { "path": "src/game/ai/deadlineContext.ts", "match": true },
+      { "path": "src/game/ai/simulator.ts", "match": true },
+      { "path": "src/game/config.ts", "match": true },
+      { "path": "src/game/engine.ts", "match": true },
+      { "path": "src/game/openingFairness.ts", "match": true },
+      { "path": "GAMEPLAY.md", "match": true }
+    ]
+  },
+  "processInventory": {
+    "inventoryFile": "logs/g0_process_inventory.txt",
+    "capturedAt": "2026-11-16T23:41:57+08:00",
+    "nodeProcessTotal": 13,
+    "nodeProcessClassification": {
+      "workbuddyRuntime": 5,
+      "workbuddyMcpServers": 2,
+      "codexRuntime": 6,
+      "vitestOrForkWorker": 0,
+      "d2Benchmark": 0
+    },
+    "heavyWorkerRegex": "vitest|jest|bench|mocha",
+    "heavyWorkerCount": 0,
+    "duplicateBenchmarkCheck": {
+      "required": true,
+      "performed": true,
+      "pattern": "counterline|D2_PILOT|searchBestAction|expectiminimax|e1bench|g03|vision-bench|ppc-",
+      "rawMatchCount": 1,
+      "realMatchCount": 0,
+      "note": "The single match is the inventory-collection pwsh process itself (its own command line contains the literal path PPC-D2-PCV-COUNTERLINE-02). No second D2 instance, no second pilot artifact set."
+    },
+    "unrelatedProcessesTerminated": 0,
+    "note": "Per protocol no unrelated process was killed; the ChatGPT/Codex/WorkBuddy/Chrome footprint was left untouched."
+  },
+  "resourceGates": {
+    "FREE_PHYS_MB": 4096,
+    "FREE_COMMIT_MB": 8192,
+    "samplesPerAttempt": 5,
+    "attempts": [
+      {
+        "attempt": "ADMISSION-1",
+        "window": "2026-11-16T23:39:30..23:40:10+08:00",
+        "file": "logs/g0_resource_samples.json",
+        "samples": [
+          { "tag": "s1", "freePhysMB": 1882, "freeCommitMB": 5245, "committedMB": 28978, "availableMBytes": 1658, "processCount": 393, "heavyWorkerCount": 0, "nodeProcessCount": 13, "cpuLoadPct": 10 },
+          { "tag": "s2", "freePhysMB": 2549, "freeCommitMB": 5763, "committedMB": 28460, "availableMBytes": 2597, "processCount": 389, "heavyWorkerCount": 0, "nodeProcessCount": 13, "cpuLoadPct": 0 },
+          { "tag": "s3", "freePhysMB": 2907, "freeCommitMB": 6447, "committedMB": 27777, "availableMBytes": 2932, "processCount": 387, "heavyWorkerCount": 0, "nodeProcessCount": 13, "cpuLoadPct": 5 },
+          { "tag": "s4", "freePhysMB": 3037, "freeCommitMB": 8191, "committedMB": 26032, "availableMBytes": 3027, "processCount": 372, "heavyWorkerCount": 0, "nodeProcessCount": 13, "cpuLoadPct": 11 },
+          { "tag": "s5", "freePhysMB": 3411, "freeCommitMB": 8307, "committedMB": 25917, "availableMBytes": 3266, "processCount": 371, "heavyWorkerCount": 0, "nodeProcessCount": 13, "cpuLoadPct": 14 }
+        ],
+        "freePhysMin": 1882,
+        "freePhysMax": 3411,
+        "freeCommitMin": 5245,
+        "freeCommitMax": 8307,
+        "FREE_PHYS_GATE": "FAIL",
+        "FREE_COMMIT_GATE": "FAIL",
+        "freePhysShortfallMBAtBestSample": 685,
+        "freeCommitShortfallMBAtBestSample": 0,
+        "freeCommitMarginalMissNote": "s4 = 8191 MB, i.e. 1 MB below the 8192 MB threshold"
+      },
+      {
+        "attempt": "ADMISSION-2-RETRY",
+        "window": "2026-11-16T23:40:24..23:41:12+08:00",
+        "file": "logs/g0_resource_samples_retry.json",
+        "samples": [
+          { "tag": "r1", "freePhysMB": 2168, "freeCommitMB": 8113, "committedMB": 26111, "availableMBytes": 2072, "processCount": 379, "heavyWorkerCount": 0 },
+          { "tag": "r2", "freePhysMB": 2029, "freeCommitMB": 8082, "committedMB": 26142, "availableMBytes": 2012, "processCount": 379, "heavyWorkerCount": 0 },
+          { "tag": "r3", "freePhysMB": 2036, "freeCommitMB": 8072, "committedMB": 26152, "availableMBytes": 2220, "processCount": 380, "heavyWorkerCount": 0 },
+          { "tag": "r4", "freePhysMB": 1944, "freeCommitMB": 8182, "committedMB": 26042, "availableMBytes": 1934, "processCount": 378, "heavyWorkerCount": 0 },
+          { "tag": "r5", "freePhysMB": 2018, "freeCommitMB": 8249, "committedMB": 25975, "availableMBytes": 2002, "processCount": 370, "heavyWorkerCount": 0 }
+        ],
+        "freePhysMin": 1944,
+        "freePhysMax": 2168,
+        "freeCommitMin": 8072,
+        "freeCommitMax": 8249,
+        "FREE_PHYS_GATE": "FAIL",
+        "FREE_COMMIT_GATE": "FAIL",
+        "freePhysShortfallMBAtBestSample": 1928
+      }
+    ],
+    "combined": {
+      "freePhysMin": 1882,
+      "freePhysMax": 3411,
+      "freeCommitMin": 5245,
+      "freeCommitMax": 8307,
+      "availableMBytesMax": 3266,
+      "samplesTotal": 10,
+      "samplesMeetingFreePhys": 0,
+      "samplesMeetingFreeCommit": 2,
+      "samplesMeetingBoth": 0
+    }
+  },
+  "caliberObservation": {
+    "frozenCaliber": "Win32_OperatingSystem.FreePhysicalMemory",
+    "standbyListIncludedInGate": false,
+    "crossCheckAvailableMBytes": "Max Available MBytes across all 10 samples = 3266 MB, still below 4096 MB. No alternative caliber would flip the verdict.",
+    "substitutedCaliberToRelaxGate": false
+  },
+  "platformContext": {
+    "totalPhysMB": 16088,
+    "commitLimitMB": 34224,
+    "committedMBRange": [25917, 28978],
+    "pagefile": [
+      { "path": "C:/pagefile.sys", "allocatedMB": 2048, "currentUsageMB": 1110, "peakUsageMB": 2047 },
+      { "path": "E:/pagefile.sys", "allocatedMB": 16087, "currentUsageMB": 1422, "peakUsageMB": 4633 }
+    ],
+    "systemUptimeHours": 110.7,
+    "note": "Commit charge (25.9-29.0 GB) exceeds physical RAM (16.1 GB); the machine is over-committed by roughly 10-13 GB, which is the structural cause of the low FreePhysicalMemory."
+  },
+  "gates": {
+    "G0_IDENTITY": "PASS",
+    "G0_FROZEN_INPUTS": "PASS",
+    "G0_PRODUCTION_SOURCES_UNCHANGED": "PASS",
+    "G0_DUPLICATE_BENCHMARK": "PASS",
+    "G0_RESIDUAL_HEAVY_WORKER": "PASS",
+    "G0_RESOURCE_ADMISSION": "FAIL",
+    "G0_RESOURCE_ADMISSION_BLOCKING_ITEM": "FREE_PHYS_MB",
+    "G1_EXISTING_G6T2_EVIDENCE_REVIEW": "NOT_PERFORMED",
+    "G2_FIXED_DEPTH_D2": "NOT_PERFORMED",
+    "G3_PLAN_BRANCH_IDENTITY_AUDIT": "NOT_PERFORMED",
+    "G4_CANDIDATE_GENERATION_FREEZE": "NOT_PERFORMED",
+    "G5_PCV_TACTICAL_PROOF": "NOT_PERFORMED",
+    "G6_REPETITION_AND_SEAL": "NOT_PERFORMED"
+  },
+  "execution": {
+    "d2SearchStarted": false,
+    "d2Nodes": 0,
+    "candidatesFrozen": 0,
+    "proofsRun": false,
+    "h0": "NOT_PERFORMED",
+    "h1": "NOT_PERFORMED",
+    "heavyTaskLaunched": false,
+    "processesTerminated": 0,
+    "pagefileChanged": false,
+    "v8HeapExpanded": false,
+    "concurrencyRaised": false,
+    "productionSourceModified": false,
+    "gameRulesModified": false,
+    "searchMathModified": false,
+    "h1Modified": false,
+    "sidecarModified": false,
+    "guardModified": false,
+    "timingBudgetModified": false,
+    "full8StrataBatch": "NOT_AUTHORIZED",
+    "selfPlay": "NOT_PERFORMED",
+    "fullRegression": "NOT_PERFORMED",
+    "commit": "NO",
+    "push": "NO",
+    "merge": "NO",
+    "stopPerProtocol": true
+  },
+  "deliverables": [
+    "G0_ADMISSION.json",
+    "G0_ADMISSION_REPORT.md",
+    "RESOURCE_SAFETY_LOG.md",
+    "SOURCE_MANIFEST.json",
+    "SHA256SUMS.txt",
+    "logs/g0_frozen_identity.json",
+    "logs/g0_resource_samples.json",
+    "logs/g0_resource_samples_retry.json",
+    "logs/g0_process_inventory.txt"
+  ],
+  "notCreatedBecauseStageNotExecuted": [
+    "D2_PILOT_ROOT_VALUES.json",
+    "D2_PILOT_CANDIDATES.json",
+    "D2_PILOT_PLAN_REPLAYS.json",
+    "D2_PILOT_COUNTERLINES.json",
+    "CANDIDATE_FREEZE.json",
+    "D2_PILOT_PROOF_REP1.json",
+    "D2_PILOT_PROOF_REP2.json",
+    "D2_PILOT_CERTIFICATE_VERIFICATION.json",
+    "D2_PILOT_MATRIX.csv",
+    "REPORT.md"
+  ],
+  "answersPrecondition": {
+    "A_TO_I": "NOT_ANSWERABLE",
+    "reason": "Every question A-I requires a fixed-depth D2 search on G6T2/E1 (G2) plus candidate freeze and PCV proofs. Resource admission failed at G0, so no search was run and no answer is asserted. No answer is inferred from prior rounds or from memory."
+  }
+}

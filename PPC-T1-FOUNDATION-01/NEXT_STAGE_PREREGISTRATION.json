@@ -1,0 +1,275 @@
+{
+  "schemaVersion": "1.0",
+  "roundId": "PPC-T1-PCV-01",
+  "roundType": "READ_ONLY_MEASUREMENT",
+  "status": "PREREGISTERED_NOT_STARTED",
+  "createdAt": "2026-11-16",
+  "parentRound": "PPC-T1-FOUNDATION-01",
+  "parentDecision": "ARCHITECTURE_ONLY__NO_PRODUCTION_WIRING",
+  "title": "Plan-scoped one-sided counter-line verification (PCV): feasibility measurement",
+
+  "rationale": {
+    "problem": "Production search completes at most D2 under a 100ms main budget; it has no tactical proof capability. Root-level quantified proofs cost 46 nodes/1ms to 600k nodes/20s on the frozen sample and cannot be an online root layer.",
+    "hypothesis": "A quantifier restricted to the post-plan frontier (cat first turn fixed as the executed plan) can produce a verified decisive result (mouse forced win, or cat survival within H1) within a small reserved budget on a meaningful fraction of the 48 frozen combinations.",
+    "nonGoal": "This round does not choose a better plan, does not change the 100ms/150ms budgets, does not wire anything into production, and does not claim general superiority."
+  },
+
+  "frozenInputs": {
+    "repository": "F:\\小猫小鼠",
+    "branch": "ppc/p1-id-state-identity-fix",
+    "head": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+    "worktreePolicy": "Use the current local worktree; never substitute a remote HEAD for the local uncommitted candidate.",
+    "fixture": {
+      "path": "src/game/ai/__tests__/fixtures/ppcId01-human-roots.json",
+      "sha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "roots": 24
+    },
+    "arms": ["E1_baseline_leaf", "H1_corrected_hole_leaf"],
+    "combinations": 48,
+    "recordedRoundsPerCombination": 5,
+    "productionResults": {
+      "path": "PPC-CAT-EVALUATOR-ABLATION-01/PRODUCTION_100MS_RESULTS.json",
+      "sha256": "9d50560f107da52107cb68be94f4ac90214f8a50aabbc948f8f3114215278775",
+      "note": "Use the recorded finalPlan and timing fields; do not rerun the main search in this round."
+    },
+    "rules": {
+      "path": "GAMEPLAY.md",
+      "sha256": "e000778b114bea02ef09634085172ea435be143335721aa0cd04114afb2afd34",
+      "ruleset": 2
+    },
+    "quantifierKernel": {
+      "path": "PPC-CAT-STRATEGY-SEAL-01/probe/seal_lib.ts",
+      "sha256": "453915d3fd3a69bda5d113dd7e5732d20424a7f97cff739cf9b0aeee576a779b"
+    }
+  },
+
+  "productionConfigUnderTest": {
+    "mainSearchBudgetMs": 100,
+    "totalTurnBudgetMs": 150,
+    "configuredMaxDepthTurns": 4,
+    "maxNodes": 500000,
+    "useTranspositionTable": true,
+    "useAlphaBeta": true,
+    "useMoveOrdering": true,
+    "useThreatOrdering": false,
+    "maxThreatExtensions": 0,
+    "leaf": "resolveHardLeaf -> evaluateForCat",
+    "progressGuard": false,
+    "sidecar": {
+      "enabled": true,
+      "fixedPaths": 32,
+      "fixedCpuMs": 20,
+      "fixedExact": 16,
+      "maxTacticalCandidates": 6,
+      "note": "Unchanged. This round only measures a separate offline channel; it does not modify or re-tune the sidecar."
+    }
+  },
+
+  "method": {
+    "mainSearchRerun": false,
+    "replay": {
+      "sourcePlanField": "finalPlan from PRODUCTION_100MS_RESULTS.json",
+      "engine": "real rules (catMove/catPlaceTrap/endTurn boundary) with deterministic checks",
+      "assertions": [
+        "every action must be accepted by the real engine",
+        "the replayed cat turn must end exactly once",
+        "post-prefix stateKey must be recorded",
+        "the 5 recorded rounds of a combination must agree on finalPlan; if not, mark the combination INCONSISTENT and exclude it from strong coverage"
+      ],
+      "boundaryPolicy": "If the CAT->MOUSE boundary has pending ghosts or placement debt, the replay is CONDITIONAL_BOUNDARY: the frontier depends on a random outcome. Such a result may be recorded but must not be counted as an unconditional pre-decision proof."
+    },
+    "frontierQuantifier": {
+      "startActor": "mouse",
+      "startIdx": 1,
+      "modes": [
+        {
+          "name": "mouseForce_H0",
+          "mode": "mouseForce",
+          "H": 1,
+          "meaning": "Can the mouse force a win within its complete next turn? (one actor switch from the frontier)"
+        },
+        {
+          "name": "catSurvive_H0",
+          "mode": "catSurvive",
+          "H": 1,
+          "meaning": "Can the cat avoid MouseWins for the mouse's complete next turn? Weak guarantee."
+        },
+        {
+          "name": "catSurvive_H1",
+          "mode": "catSurvive",
+          "H": 2,
+          "meaning": "Can the cat avoid MouseWins across mouse+cat+mouse? Stronger guarantee; optional, only if budget allows."
+        }
+      ],
+      "forbidden": [
+        "deriving catSurvive from !mouseForce",
+        "reporting a cap-hit or null result as PROVEN",
+        "using Math.random anywhere in the search",
+        "hardcoding expected classifications or node counts"
+      ],
+      "verification": "Every PROVEN result must be re-checked by the independent verifier (re-enumerate all opponent actions and all positive-probability chance outcomes; policy must be complete). Any policy miss invalidates the result."
+    },
+    "repetitions": {
+      "mainSearch": 0,
+      "pcvPerFrontier": 5,
+      "execution": "serial, single worker, fresh state per repetition, deterministic seeds not required (search is chance-enumerative)"
+    },
+    "budgetModel": {
+      "availableSlackFormula": "150 - recordedTurnWallMs - safetyMarginMs; if recordedTurnWallMs is unavailable, use 150 - recordedMainElapsedMs - recordedPostSearchElapsedMs - safetyMarginMs and record which formula was used",
+      "safetyMarginMs": 5,
+      "note": "The recorded times come from P5. Where the recorded turn already exceeded 150ms, availableSlack is <= 0 and PCV could not run in production without an explicit budget reallocation."
+    }
+  },
+
+  "caps": {
+    "phase1": {
+      "nodeCap": 5000,
+      "wallCapMs": 20,
+      "strongModes": ["mouseForce_H0", "catSurvive_H1"],
+      "weakModes": ["catSurvive_H0"]
+    },
+    "escalation": {
+      "allowed": true,
+      "maxTimes": 1,
+      "nodeCap": 20000,
+      "wallCapMs": 40,
+      "condition": "Only if phase1 strong coverage is below the gate AND availableSlack >= wallCapMs on at least 75% of combinations.",
+      "note": "Escalation is a single preregistered step; no further budget increases are allowed in this round."
+    }
+  },
+
+  "outcomeTaxonomy": {
+    "REFUTED": "mouseForce_H0 returned true, cap not hit, independent verifier PROVEN, plan prefix and post-prefix stateKey bound. TACTICAL_PROOF of a mouse forced win within one mouse turn.",
+    "SURVIVES_WITHIN_H0": "catSurvive_H0 returned true, cap not hit, independent verifier PROVEN. TACTICAL_PROOF but weak (one mouse turn only).",
+    "SURVIVES_WITHIN_H1": "catSurvive_H1 returned true, cap not hit, independent verifier PROVEN. TACTICAL_PROOF within H1; stronger but optional.",
+    "UNKNOWN": "false, null, cap hit, deadline hit, verifier failure, or policy miss. Never safe.",
+    "CONDITIONAL_BOUNDARY": "The frontier depended on a stochastic CAT->MOUSE boundary outcome. Recorded, but excluded from unconditional strong coverage.",
+    "INCONSISTENT": "The 5 recorded finalPlan strings disagree or the replay fails. Excluded from all coverage counts and reported separately."
+  },
+
+  "gates": {
+    "G0_identity": {
+      "requirement": "fixture SHA, rules SHA, quantifier kernel SHA, branch and HEAD unchanged; replay stateKey recorded for every combination.",
+      "onFailure": "STOP; report identity mismatch; do not proceed."
+    },
+    "G1_zero_false_proofs": {
+      "requirement": "Every PROVEN result independently verified with 0 policy misses; 0 cap-hit results labeled PROVEN; 0 catSurvive derived from !mouseForce.",
+      "onFailure": "Invalidate the affected results and STOP the round; report as a soundness failure."
+    },
+    "G2_strong_coverage": {
+      "requirement": "At least 12 of 48 combinations produce REFUTED or SURVIVES_WITHIN_H1 under the phase1 caps, excluding CONDITIONAL_BOUNDARY and INCONSISTENT combinations.",
+      "onFailure": "PCV-NO-GO for production wiring. Escalation is allowed only under the preregistered escalation condition; if still below 12, the round ends NO-GO."
+    },
+    "G3_budget_feasibility": {
+      "requirement": "At least 75% of combinations have availableSlack >= the phase1 wallCapMs (20ms), and no combination requires more than the single escalation cap (40ms) to be decisive.",
+      "onFailure": "AMBER: PCV may only be used offline/shadow; no wiring without an explicit budget reallocation decision."
+    },
+    "G4_no_plan_change": {
+      "requirement": "In shadow mode, 0 plan changes; PCV never overrides the baseline plan in this round.",
+      "onFailure": "Invalidate the round; this is a wiring violation."
+    },
+    "G5_binding": {
+      "requirement": "Every result record includes plan string, post-prefix stateKey, H, mode, cap, truncated flag, node count, chance node count, elapsed ms, verifier verdict, and certificate hash.",
+      "onFailure": "The affected result is UNKNOWN; a proof without a binding is not a proof."
+    },
+    "G6_no_upgrade": {
+      "requirement": "NO_REFUTATION_FOUND, INCOMPLETE, CHANCE_MIXED, UNRESOLVED, and cap hits never appear in a PROOF field.",
+      "onFailure": "Invalidate the round; report as a taxonomy violation."
+    }
+  },
+
+  "decisionMatrix": {
+    "GREEN": "G0+G1+G2+G3+G4+G5+G6 pass: propose an integration design for a later round; still no production wiring in this round.",
+    "AMBER": "G0+G1+G2+G4+G5+G6 pass but G3 fails: PCV is offline/shadow only; wiring requires a future budget reallocation decision.",
+    "RED": "G2 fails after the single escalation: PCV-NO-GO.",
+    "INVALID": "Any G0/G1/G4/G5/G6 failure: the round's results are not usable; stop and report."
+  },
+
+  "killCriteria": [
+    "Any PROVEN result failing independent verification.",
+    "Any cap-hit or null result written into a PROOF field.",
+    "Any use of !mouseForce as a cat survival proof.",
+    "Any plan/stateKey mismatch between the proof and the replayed plan.",
+    "Any production source change.",
+    "Any change to game rules, search math, sidecar, guard, H1, or 100ms/150ms budgets.",
+    "Any parallel heavy worker or self-play.",
+    "Any hardcoded expected classification or node count."
+  ],
+
+  "forbiddenOperations": {
+    "modifyProductionSource": "FORBIDDEN",
+    "modifyGameRules": "FORBIDDEN",
+    "modifySearchMath": "FORBIDDEN",
+    "modifySidecar": "FORBIDDEN",
+    "modifyProgressGuard": "FORBIDDEN",
+    "modifyH1": "FORBIDDEN",
+    "modify100ms150ms": "FORBIDDEN",
+    "fullRegression": "FORBIDDEN",
+    "selfPlay": "FORBIDDEN",
+    "largeBenchmark": "FORBIDDEN",
+    "commit": "FORBIDDEN",
+    "push": "FORBIDDEN",
+    "merge": "FORBIDDEN",
+    "reset": "FORBIDDEN",
+    "clean": "FORBIDDEN",
+    "stash": "FORBIDDEN"
+  },
+
+  "resourcePlan": {
+    "workers": 1,
+    "serial": true,
+    "expectedRuntime": "Bounded: 48 replays + at most 720 phase1 PCV runs (3 modes x 5 repetitions x 48 frontiers) at <=20ms each, plus overhead; H1 is skipped when the wall budget is exhausted. No main-search rerun. If any single run exceeds its wall cap by more than 2x, abort that run and record a timeout, do not retry in a loop.",
+    "abortOn": [
+      "wall cap exceeded",
+      "node cap exceeded",
+      "verifier failure",
+      "stateKey mismatch",
+      "unexpected process count"
+    ]
+  },
+
+  "artifacts": {
+    "directory": "PPC-T1-PCV-01",
+    "files": [
+      "PREREGISTRATION.json",
+      "RESULTS.json",
+      "RESULTS_TABLE.csv",
+      "COST_HISTOGRAM.json",
+      "PROOF_RECORDS.json",
+      "IDENTITY.json",
+      "RUN_LOG.txt",
+      "REPORT.md"
+    ],
+    "selfHashExcluded": ["SOURCE_MANIFEST.json"]
+  },
+
+  "successCriteria": {
+    "scientific": "Measure the real cost and decisive-result distribution of plan-scoped PCV under a frozen, preregistered protocol; report counts, not significance claims.",
+    "engineering": "Determine whether a verified, plan-bound tactical result can be produced inside the existing 150ms envelope without changing the main search.",
+    "honesty": "No false proof, no UNRESOLVED-as-safe, no signal-to-proof upgrade, no production wiring in this round."
+  },
+
+  "limitations": [
+    "24 roots x 2 arms is a frozen sample, not a population inference.",
+    "H0 cat survival is a weak guarantee (one mouse turn).",
+    "H1 proofs may be too expensive for a small reserved budget; the measurement is designed to find that out, not to force a positive result.",
+    "A stochastic CAT->MOUSE boundary makes the frontier conditional; the first prototype does not include boundary CHANCE inside the quantifier.",
+    "PCV verifies only the executed plan (and at most two equal-primary alternatives in a later round); it does not verify the root's full action set."
+  ],
+
+  "nextRoundIfGreen": {
+    "id": "PPC-T1-PCV-02",
+    "type": "INTEGRATION_DESIGN_ONLY",
+    "note": "Produce an integration design and a new preregistration. No production code changes without a separate authorization."
+  },
+  "nextRoundIfAmber": {
+    "id": "PPC-T1-PCV-01B",
+    "type": "OFFLINE_SHADOW_ONLY",
+    "note": "Keep PCV offline; do not wire. Optionally measure whether trimming the sidecar can free the required slack, without changing production in this round."
+  },
+  "nextRoundIfRed": {
+    "id": "NONE",
+    "type": "STOP",
+    "note": "PCV-NO-GO. Do not escalate budget again; return to architecture options."
+  }
+}

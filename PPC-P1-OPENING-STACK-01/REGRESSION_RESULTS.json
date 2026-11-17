@@ -1,0 +1,298 @@
+{
+  "artifactId": "REGRESSION_RESULTS",
+  "round": "PPC-P1-OPENING-STACK-01",
+  "command": "HEAVY_WORKER_CONCURRENCY=1 npx vitest run --maxWorkers=1 --no-file-parallelism --reporter=verbose",
+  "log": "PPC-P1-OPENING-STACK-01/logs/13_full_regression.log",
+  "config": {
+    "fileParallelism": "disabled (--no-file-parallelism)",
+    "maxWorkers": 1,
+    "heapRaised": false,
+    "testScopeReduced": false,
+    "depthReduced": false,
+    "nodeLimitReduced": false,
+    "assertionsModified": false,
+    "duplicateHeavyTaskRunning": false,
+    "productionBudgetsTouched": false
+  },
+  "totals": {
+    "testFilesLine": "82 passed (82)",
+    "testsLine": "1022 passed | 4 skipped (1026)",
+    "durationLine": "1705.90s (transform 5.04s, setup 0ms, import 18.22s, tests 1673.62s, environment 6ms)",
+    "durationSeconds": 1705.9,
+    "startedAt": "11:20:03",
+    "passed": 1022,
+    "failed": 0,
+    "skipped": 4,
+    "filesPassed": 82,
+    "filesFailed": 0,
+    "enumeratedByRunner": 1026,
+    "nonzeroExit": false
+  },
+  "expectedVsActual": {
+    "previousRoundEnumerated": 1000,
+    "previousRoundBreakdown": "996 passed + 4 skipped",
+    "addedThisRound": 26,
+    "addedBy": "src/game/__tests__/openingFairnessStackSafety.test.ts",
+    "expectedNow": 1026,
+    "actualNow": 1026,
+    "delta": 0,
+    "note": "Nothing was deleted, skipped or loosened to match the expected number; the runner is the authority."
+  },
+  "failures": [],
+  "skippedTests": [
+    {
+      "mark": "↓",
+      "name": "src/game/ai/__tests__/boundedPlanRefutation.test.ts > G0.3W real-corpus regression (G4 / G1) > G0.3W-4. G4 BAD plan is PLAN_REFUTED with D→D→R witness",
+      "ms": 43
+    },
+    {
+      "mark": "↓",
+      "name": "src/game/ai/__tests__/boundedPlanRefutation.test.ts > G0.3W real-corpus regression (G4 / G1) > G0.3W-5. G4 candidate override: baseline BAD → RRRR (GOOD) when budget is sufficient",
+      "ms": 0
+    },
+    {
+      "mark": "↓",
+      "name": "src/game/ai/__tests__/boundedPlanRefutation.test.ts > G0.3W real-corpus regression (G4 / G1) > G0.3W-6. G1 T2: all candidates refuted → NO_OVERRIDE (baseline kept)",
+      "ms": 1
+    },
+    {
+      "mark": "↓",
+      "name": "src/game/ai/__tests__/boundedPlanRefutation.test.ts > G0.3W real-corpus regression (G4 / G1) > G0.3W-7. G1 T1: baseline not refuted → NO_OVERRIDE (baseline kept)",
+      "ms": 0
+    }
+  ],
+  "skippedClassification": {
+    "count": 4,
+    "expected": 4,
+    "mechanism": "ctx.skip() inside boundedPlanRefutation.test.ts when the fixture corpus root is absent (pre-existing, skips on every machine)",
+    "causedByThisRound": "NO"
+  },
+  "introducedByThisRound": {
+    "count": 0,
+    "note": "No failing test. The 26 tests this round added are inside the passed total."
+  },
+  "slowestTests": [
+    {
+      "mark": "✓",
+      "name": "src/game/ai/__tests__/hv18AvoidableLoss.test.ts > HV18-7 GAME4 T7 bounded survival (h=3)",
+      "ms": 780074
+    },
+    {
+      "mark": "✓",
+      "name": "src/game/ai/__tests__/hv14FiveGameForensics.test.ts > HV14-10 GAME4 T7/T8 deeper search: is there a legal defensive branch?",
+      "ms": 191304
+    },
+    {
+      "mark": "✓",
+      "name": "src/game/ai/__tests__/hv14FiveGameForensics.test.ts > HV14-16 GAME1 T1-T3 depth-3 mate probe",
+      "ms": 90356
+    },
+    {
+      "mark": "✓",
+      "name": "src/game/ai/__tests__/hv18AvoidableLoss.test.ts > HV18-6 GAME2 T4 bounded survival (h=2)",
+      "ms": 71671
+    },
+    {
+      "mark": "✓",
+      "name": "src/game/ai/__tests__/expectiminimax.test.ts > T1E-B E/F/G. the evaluator-batch cadence is observable and bounded by the node gate",
+      "ms": 66615
+    },
+    {
+      "mark": "✓",
+      "name": "src/game/ai/__tests__/hv14FiveGameForensics.test.ts > HV14-11 GAME4 per-turn depth-1 vs depth-2 decision table",
+      "ms": 53068
+    },
+    {
+      "mark": "✓",
+      "name": "src/game/ai/__tests__/hv18AvoidableLoss.test.ts > HV18-2 production witness and certified alternatives",
+      "ms": 46756
+    },
+    {
+      "mark": "✓",
+      "name": "src/game/ai/__tests__/expectiminimax.test.ts > T1E-B A/B/K. NO_DEADLINE and far-deadline searches return the EXACT same result",
+      "ms": 44354
+    },
+    {
+      "mark": "✓",
+      "name": "src/game/ai/__tests__/hv15SearchCostForensics.test.ts > HV15-P1-1 fixed-depth D1/D2 cost (profiled) at GAME2 T4 + control roots",
+      "ms": 41708
+    },
+    {
+      "mark": "✓",
+      "name": "src/game/ai/__tests__/expectiminimax.test.ts > T1E-B L. the evaluator-batch counter is SEARCH-LOCAL (two consecutive searches read identically)",
+      "ms": 36481
+    },
+    {
+      "mark": "✓",
+      "name": "src/game/ai/__tests__/hv18rQuantifierAudit.test.ts > HV18R-P4 DUDU and RUDD bounded robust survival (h=2)",
+      "ms": 33427
+    },
+    {
+      "mark": "✓",
+      "name": "src/game/__tests__/openingFairnessStackSafety.test.ts > OS-2 legal deep budgets terminate bounded (pre-fix: RangeError) > createGameState fails closed instead of overflowing for the same config",
+      "ms": 23324
+    },
+    {
+      "mark": "✓",
+      "name": "src/game/ai/__tests__/expectiminimax.test.ts > T1E-B §15. NO_DEADLINE adds ZERO clock reads (the seam returns before clock and counter)",
+      "ms": 22829
+    },
+    {
+      "mark": "✓",
+      "name": "src/game/ai/__tests__/hv15SearchCostForensics.test.ts > HV15-P1-2 profiler overhead estimate on T4 D1/D2 (3 fresh runs each)",
+      "ms": 21738
+    },
+    {
+      "mark": "✓",
+      "name": "src/game/ai/__tests__/hv12MouseResponses.test.ts > HV12 P1 — the whole legal mouse turn, measured before any cap is chosen > H12-C1: A vs B on every shared mouse line, with the witnesses replayed",
+      "ms": 10934
+    },
+    {
+      "mark": "✓",
+      "name": "src/game/ai/__tests__/hv12MouseResponses.test.ts > HV12 P1 — the whole legal mouse turn, measured before any cap is chosen > H12-B5: the honest scan of EVERY legal response, with caps stated",
+      "ms": 6768
+    },
+    {
+      "mark": "✓",
+      "name": "src/game/ai/__tests__/hv15SearchCostForensics.test.ts > HV15-P1-5 T4 full iterative D1+D2 wall time and node split (no deadline)",
+      "ms": 6563
+    },
+    {
+      "mark": "✓",
+      "name": "src/game/ai/__tests__/expectiminimax.test.ts > D4-A. Iterative maxDepth=D equals direct fixed-depth search D (value/mate/action)",
+      "ms": 5750
+    },
+    {
+      "mark": "✓",
+      "name": "src/game/ai/__tests__/expectiminimax.test.ts > F1A-3. catPlaceTrap no longer costs a phantom mate layer: production trap fixtures (F0.1 §3.4 regression)",
+      "ms": 5571
+    },
+    {
+      "mark": "✓",
+      "name": "src/game/ai/__tests__/hv15SearchCostForensics.test.ts > HV15-P2-1 how many D2 leaf states could share a distance map (key-population proxy)",
+      "ms": 5463
+    }
+  ],
+  "throughputSensitive": [
+    {
+      "name": "src/game/ai/__tests__/hv18AvoidableLoss.test.ts > HV18-7 GAME4 T7 bounded survival (h=3)",
+      "ms": 780074
+    },
+    {
+      "name": "src/game/ai/__tests__/hv14FiveGameForensics.test.ts > HV14-10 GAME4 T7/T8 deeper search: is there a legal defensive branch?",
+      "ms": 191304
+    },
+    {
+      "name": "src/game/ai/__tests__/hv14FiveGameForensics.test.ts > HV14-16 GAME1 T1-T3 depth-3 mate probe",
+      "ms": 90356
+    },
+    {
+      "name": "src/game/ai/__tests__/hv18AvoidableLoss.test.ts > HV18-6 GAME2 T4 bounded survival (h=2)",
+      "ms": 71671
+    },
+    {
+      "name": "src/game/ai/__tests__/expectiminimax.test.ts > T1E-B E/F/G. the evaluator-batch cadence is observable and bounded by the node gate",
+      "ms": 66615
+    },
+    {
+      "name": "src/game/ai/__tests__/hv14FiveGameForensics.test.ts > HV14-11 GAME4 per-turn depth-1 vs depth-2 decision table",
+      "ms": 53068
+    },
+    {
+      "name": "src/game/ai/__tests__/hv18AvoidableLoss.test.ts > HV18-2 production witness and certified alternatives",
+      "ms": 46756
+    },
+    {
+      "name": "src/game/ai/__tests__/expectiminimax.test.ts > T1E-B A/B/K. NO_DEADLINE and far-deadline searches return the EXACT same result",
+      "ms": 44354
+    },
+    {
+      "name": "src/game/ai/__tests__/hv15SearchCostForensics.test.ts > HV15-P1-1 fixed-depth D1/D2 cost (profiled) at GAME2 T4 + control roots",
+      "ms": 41708
+    },
+    {
+      "name": "src/game/ai/__tests__/expectiminimax.test.ts > T1E-B L. the evaluator-batch counter is SEARCH-LOCAL (two consecutive searches read identically)",
+      "ms": 36481
+    },
+    {
+      "name": "src/game/ai/__tests__/hv18rQuantifierAudit.test.ts > HV18R-P4 DUDU and RUDD bounded robust survival (h=2)",
+      "ms": 33427
+    },
+    {
+      "name": "src/game/__tests__/openingFairnessStackSafety.test.ts > OS-2 legal deep budgets terminate bounded (pre-fix: RangeError) > createGameState fails closed instead of overflowing for the same config",
+      "ms": 23324
+    },
+    {
+      "name": "src/game/ai/__tests__/expectiminimax.test.ts > T1E-B §15. NO_DEADLINE adds ZERO clock reads (the seam returns before clock and counter)",
+      "ms": 22829
+    },
+    {
+      "name": "src/game/ai/__tests__/hv15SearchCostForensics.test.ts > HV15-P1-2 profiler overhead estimate on T4 D1/D2 (3 fresh runs each)",
+      "ms": 21738
+    },
+    {
+      "name": "src/game/ai/__tests__/hv12MouseResponses.test.ts > HV12 P1 — the whole legal mouse turn, measured before any cap is chosen > H12-C1: A vs B on every shared mouse line, with the witnesses replayed",
+      "ms": 10934
+    },
+    {
+      "name": "src/game/ai/__tests__/hv12MouseResponses.test.ts > HV12 P1 — the whole legal mouse turn, measured before any cap is chosen > H12-B5: the honest scan of EVERY legal response, with caps stated",
+      "ms": 6768
+    },
+    {
+      "name": "src/game/ai/__tests__/hv15SearchCostForensics.test.ts > HV15-P1-5 T4 full iterative D1+D2 wall time and node split (no deadline)",
+      "ms": 6563
+    },
+    {
+      "name": "src/game/ai/__tests__/expectiminimax.test.ts > D4-A. Iterative maxDepth=D equals direct fixed-depth search D (value/mate/action)",
+      "ms": 5750
+    },
+    {
+      "name": "src/game/ai/__tests__/expectiminimax.test.ts > F1A-3. catPlaceTrap no longer costs a phantom mate layer: production trap fixtures (F0.1 §3.4 regression)",
+      "ms": 5571
+    },
+    {
+      "name": "src/game/ai/__tests__/hv15SearchCostForensics.test.ts > HV15-P2-1 how many D2 leaf states could share a distance map (key-population proxy)",
+      "ms": 5463
+    }
+  ],
+  "rawTail": " ✓ src/components/__tests__/dangerUi.test.ts > 危险区域数据来源 — UI 不重新实现规则 > 开关是可选开启、默认关闭，并且 PC/手机共用一个 store 0ms\n ✓ src/game/ai/__tests__/hv3TieBreakBlindSpot.test.ts > HV-3 P1 — 同分次级选择的可见范围 > 日志 Turn #5 的计划：反转计数为 0，回头路对次级评分完全不可见 1ms\n ✓ src/game/ai/__tests__/hv3TieBreakBlindSpot.test.ts > HV-3 P1 — 同分次级选择的可见范围 > 同一条四步回头路，不夹陷阱计 1 次，夹上 catPlaceTrap 就计 0 次 0ms\n ✓ src/game/ai/__tests__/hv3TieBreakBlindSpot.test.ts > HV-3 P1 — 同分次级选择的可见范围 > 整回合只走 2 步时，「原地来回」与「直线推进」的差别只由这一条决定 0ms\n ✓ src/game/ai/__tests__/hv3TieBreakBlindSpot.test.ts > HV-3 P1 — 同分次级选择的可见范围 > 边界配对的 (根动作, 子计划首步) 也不会计进父节点：链条从根节点就断了 0ms\n\n Test Files  82 passed (82)\n      Tests  1022 passed | 4 skipped (1026)\n   Start at  11:20:03\n   Duration  1705.90s (transform 5.04s, setup 0ms, import 18.22s, tests 1673.62s, environment 6ms)\n\n",
+  "comparisonToCheckpoint01": {
+    "previousRound": {
+      "testFiles": 81,
+      "passed": 996,
+      "failed": 0,
+      "skipped": 4,
+      "enumerated": 1000,
+      "durationSeconds": 1724.06
+    },
+    "thisRound": {
+      "testFiles": 82,
+      "passed": 1022,
+      "failed": 0,
+      "skipped": 4,
+      "enumerated": 1026,
+      "durationSeconds": 1705.9
+    },
+    "delta": {
+      "testFiles": 1,
+      "passed": 26,
+      "failed": 0,
+      "skipped": 0,
+      "enumerated": 26,
+      "durationSeconds": -18.16
+    },
+    "note": "+26 tests, +1 file: exactly the new openingFairnessStackSafety.test.ts (26 tests). Nothing removed, nothing un-skipped, no assertion relaxed. Total wall time is 1% shorter than the previous round, so the new file did not add a material cost."
+  },
+  "resourceSafety": {
+    "vitestProcessesBeforeRun": 0,
+    "concurrentHeavyTask": "none",
+    "workers": 1,
+    "fileParallelism": false,
+    "heapFlagRaised": false,
+    "longestSingleTestS": 780.074,
+    "totalWallS": 1705.9,
+    "peakHeapMB": 980,
+    "wallClockCapHit": "yes — HV18-7 ends at its own WALL_CLOCK_CAP, unchanged from the previous round"
+  },
+  "throughputSensitivityNote": "Absolute wall-clock figures from ONE serial run on this machine. Not a performance measurement; must not be compared across machines. T1E-B (44.4s + 66.6s) remains the same order as the previous round (70.5s), so the 120s per-test budget approved earlier is still the reason it passes."
+}

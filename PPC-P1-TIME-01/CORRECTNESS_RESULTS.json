@@ -1,0 +1,132 @@
+{
+  "task": "PPC-P1-TIME-01",
+  "verdict": "IMPLEMENTED_WITH_BLOCKED_GATES",
+  "gates": {
+    "TIME-0": {
+      "status": "PASS",
+      "evidence": [
+        "branch ppc/p1-id-state-identity-fix, HEAD 48eaac6c (unchanged)",
+        "src/game/ai/transposition.ts sha256 = 7b4aa8eb3fab994a4abc77fdf38800ab2a5f9da57d5eb33a1b37075e106c2d64 (P1-ID candidate preserved)",
+        "fixtures/ppcId01-human-roots.json sha256 = 1a59787a… (untouched)",
+        "fixtures/ppcId01-baseline-d1.json was NOT regenerated (PPC_P1_ID_CAPTURE not re-run)",
+        "fixtures/ppcTime01-baseline-planner.json sha256 = 2c1bab71… (frozen before the fix)",
+        "no unexplained worktree change; the untracked .doc was never touched"
+      ]
+    },
+    "TIME-1": {
+      "status": "PASS",
+      "evidence": [
+        "PPC-P1-TIME-01/fixtures/ppcTime01-baseline-fallback-reentry.json captured on the PRE-FIX tree",
+        "planner invocations: complete 1 / truncated 4 / empty 5 / invalid 5",
+        "receivedAbsoluteDeadline = false on every one of the 15 calls",
+        "distinct self-minted main deadlines per scenario: 1 / 4 / 5 / 5"
+      ]
+    },
+    "TIME-2": {
+      "status": "PASS",
+      "evidence": [
+        "planner level: identity(1000,100,150) with the clock at 1100 (closed) → hasSolution=false, plan=[], deadlineFired=true, totalNodes<=1, completedDepth=0",
+        "planner level: clock at 1070 (open) → search allowed, deadlineFired=false",
+        "planner level: 8 ms window really bounds the search (wall <60 ms, fewer nodes than a 100 ms control)",
+        "engine level: a clock that burns 200 ms per read yields EXACTLY 1 planner invocation for the whole turn (pre-fix: 1+catBaseMoves)",
+        "engine level: catAiMove(root, closedIdentity) reaches the planner 0 times; catAiMove(root, openIdentity) reaches it 1 time"
+      ]
+    },
+    "TIME-3": {
+      "status": "PASS",
+      "evidence": [
+        "POST-FIX fixture ppcTime01-postfix-fallback-shared.json, identical construction to the pre-fix one",
+        "invocation ladder unchanged: complete 1 / truncated 4 / empty 5 / invalid 5",
+        "every call received the turn identity (allCallsInherited = true in all four scenarios)",
+        "distinctInheritedMainDeadlines = 1, distinctInheritedTotalDeadlines = 1, distinctInheritedStarts = 1 in all four",
+        "NO_DEADLINE_REGRANT = TRUE",
+        "empty-plan turn still spends all moves and ends Playing (not stuck, not lost)"
+      ]
+    },
+    "TIME-4": {
+      "status": "PASS",
+      "evidence": [
+        "24 frozen human roots, fixed D1 (maxNodes 10000, frozen clock at 1000, leafEvaluator=evaluateCorrectedHoleForCat, refutation off)",
+        "identity-less calls: all 24 records byte-identical to the pre-fix witness (phase, completed, value, mate, depths, deadlineFired, budgetFired, plan, bestAction, planStatus, rootActions, nodes, ttHits, ttExactHits, alphaBetaCutoffs, orderedNodes)",
+        "identity-carrying calls: all 24 records identical too (identity = start 1000, main 100100, total 100100)",
+        "the frozen witness file is hash-pinned in the test (2c1bab71…) and was not regenerated"
+      ]
+    },
+    "TIME-5": {
+      "status": "PASS",
+      "scope": "Verified: normal 4-move turn, catBaseMoves=6 (no hardcoded 4), zero-cost trap placement, no teleport / one orthogonal step per move, capture mid-turn ends the game and stops spending moves, turn end keeps phase=Playing.",
+      "covered_by_existing_suites_not_reproved_here": [
+        "box push legality — productionGhostRuleSet / hardIntegration",
+        "tunnel blocking — productionGhostRuleSet",
+        "ghost butter announce / materialize timing — ghostButter, ghostButterEdge, productionGhostRuleSet",
+        "RULE-A no-move terminal — rules/mobility untouched; hardIntegration passes"
+      ],
+      "evidence": [
+        "hardTurnAbsoluteDeadlineEngine.test.ts: 6 real-rule cases, all green",
+        "every stated step satisfies: one orthogonal step AND exactly one move spent, OR a stationary step whose trap bookkeeping changed",
+        "capture case: cat at (4,4), mouse at (4,5) ⇒ phase=CatWins, steps<=2, catPosition == old mousePosition"
+      ]
+    },
+    "TIME-6": {
+      "status": "PASS",
+      "evidence": [
+        "sidecar deadlineControl.deadline.deadlineAtMs === identity.totalTurnDeadlineAtMs",
+        "guard deadlineControl.deadline.deadlineAtMs === identity.totalTurnDeadlineAtMs",
+        "the two consumers receive the SAME DeadlineContext object (toBe, not toEqual)",
+        "no override committed and partialCommitCount = 0 on the abort path"
+      ]
+    },
+    "TIME-7": {
+      "status": "PASS",
+      "evidence": [
+        "planning does not mutate the input state (JSON before == after)",
+        "no deadline artefact in any serialized state (mainSearchDeadlineAtMs / totalTurnDeadlineAtMs / startedAtMs absent)",
+        "every cat turn mints a fresh window (1000 vs 5000 produce different starts)",
+        "makeTurnDeadlineIdentity rejects NaN start and main > total",
+        "no global/singleton deadline and no cross-turn carry-over"
+      ]
+    },
+    "TIME-8": {
+      "status": "PASS",
+      "evidence": [
+        "a planner call without a turn identity still mints its own window (debug.budgetMs = 100, deadlineFired = false, plan produced)",
+        "NO_DEADLINE code paths in deadlineContext were not given a new clock read (monotonicNow is only reached when a finite deadline exists)",
+        "24-root identity-less parity equals the pre-fix witness (see TIME-4)"
+      ]
+    },
+    "TIME-9": {
+      "status": "PASS",
+      "evidence": [
+        "19 files run serially: 361 passed, 4 skipped, 1 failed",
+        "the 1 failure is expectiminimax > T1E-B — 30 s timeout, already reproduced on the P1-ID baseline in the previous round (pre-existing, unrelated to timing plumbing)",
+        "forcedLossTieBreakHv14Reachability FLT-HV14-4 still fails with the same pre-existing assertion (also baseline-reproducible)"
+      ]
+    },
+    "TIME-10": {
+      "status": "PASS",
+      "evidence": [
+        "npx tsc -b → exit 0",
+        "npm run build → exit 0, built in 5.96 s, dist/assets/index-2HcjSDx6.js 2712.86 kB"
+      ]
+    }
+  },
+  "absoluteDeadlineGate": {
+    "status": "BLOCKED",
+    "reason": "No frozen manifest defines a statistic / protocol / threshold for a complete Hard cat turn. The repo has M1 (SEARCH_CORE_MS) and M2 (PLANNER_CALL_WALL_MS) only — different measurement domains. Notion unreachable from this environment.",
+    "notDone": [
+      "did not adopt M2's 225 ms MAX as a turn allowance",
+      "did not add any grace window",
+      "did not claim 150 ms physical compliance"
+    ]
+  },
+  "timing": {
+    "status": "DIAGNOSTIC_ONLY",
+    "artifact": "PPC-P1-TIME-01/TIMING_RESULTS.json",
+    "samples": 24,
+    "protocol": "one real turn per frozen root, single process, serial, no repetition loop",
+    "turnWallMs": { "min": 106.65, "p50": 150.57, "p95": 153.15, "p99": 196.83, "max": 196.83 },
+    "plannerInvocationsPerTurn": { "distinct": [1], "max": 1 },
+    "turnsWithFallback": 1,
+    "notable": "G1T1 is a REAL frozen human root where the fix fires: no_hard_plan followed by 4 x turn_main_window_closed, 1 planner call instead of 5."
+  }
+}

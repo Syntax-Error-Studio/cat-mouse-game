@@ -1,0 +1,253 @@
+{
+  "artifactId": "DEEP_STACK_RESULTS",
+  "round": "PPC-P1-OPENING-STACK-01",
+  "OS2": {
+    "requirement": "catBaseMoves=100000 → validateGameConfig PASS, createGameState NO_UNCONTROLLED_EXCEPTION, openingFairness BOUNDED_TERMINATION, FALSE_CERTIFICATION=0",
+    "preFix": {
+      "validateOk": true,
+      "validateIssues": [],
+      "createInitialState": "ok catMovesLeft=100000 mouseMovesLeft=4",
+      "certifyOpening": "THROW RangeError: Maximum call stack size exceeded",
+      "verdict": null,
+      "reason": null,
+      "exploredNodes": null,
+      "createGameState": "THROW RangeError: Maximum call stack size exceeded",
+      "createGameStateStatus": null,
+      "errorName": "RangeError",
+      "errorMessage": "Maximum call stack size exceeded",
+      "ms": 522
+    },
+    "postFix": {
+      "validateOk": true,
+      "validateIssues": [],
+      "createInitialState": "ok catMovesLeft=100000 mouseMovesLeft=4",
+      "certifyOpening": "ok",
+      "verdict": "UNKNOWN",
+      "reason": "NODE_CAP",
+      "exploredNodes": 20000,
+      "createGameState": "ok(state:null)",
+      "createGameStateStatus": "unverified:NO_CERTIFIED_OPENING",
+      "errorName": null,
+      "errorMessage": null,
+      "ms": 25953
+    },
+    "checks": {
+      "validateGameConfig": "PASS",
+      "createGameState": "NO_UNCONTROLLED_EXCEPTION",
+      "openingFairness": "BOUNDED_TERMINATION",
+      "certificate": "UNKNOWN / NODE_CAP (never CERTIFIED)",
+      "exploitedNodesEqualsCap": true,
+      "falseCertification": 0
+    },
+    "postFixCreateGameStateDetail": "state=null, status.kind=unverified, reason=NO_CERTIFIED_OPENING (the existing fail-closed semantic, not a new one)",
+    "heapUsedMB": 251,
+    "v8HeapFlagRaised": false
+  },
+  "thresholdSweep": {
+    "method": "same fixture and caps as the pre-fix sweep; compares the two solvers budget by budget",
+    "rows": [
+      {
+        "catBaseMoves": 500,
+        "preFix": {
+          "outcome": "COMPLETED",
+          "verdict": "UNKNOWN",
+          "exploredNodes": 20000,
+          "ms": 444
+        },
+        "postFix": {
+          "outcome": "COMPLETED",
+          "verdict": "UNKNOWN",
+          "exploredNodes": 20000,
+          "ms": 458
+        }
+      },
+      {
+        "catBaseMoves": 1000,
+        "preFix": {
+          "outcome": "COMPLETED",
+          "verdict": "UNKNOWN",
+          "exploredNodes": 20000,
+          "ms": 422
+        },
+        "postFix": {
+          "outcome": "COMPLETED",
+          "verdict": "UNKNOWN",
+          "exploredNodes": 20000,
+          "ms": 350
+        }
+      },
+      {
+        "catBaseMoves": 1500,
+        "preFix": {
+          "outcome": "THROW RangeError",
+          "verdict": null,
+          "exploredNodes": null,
+          "ms": 79
+        },
+        "postFix": {
+          "outcome": "COMPLETED",
+          "verdict": "UNKNOWN",
+          "exploredNodes": 20000,
+          "ms": 394
+        }
+      },
+      {
+        "catBaseMoves": 2000,
+        "preFix": {
+          "outcome": "THROW RangeError",
+          "verdict": null,
+          "exploredNodes": null,
+          "ms": 61
+        },
+        "postFix": {
+          "outcome": "COMPLETED",
+          "verdict": "UNKNOWN",
+          "exploredNodes": 20000,
+          "ms": 371
+        }
+      },
+      {
+        "catBaseMoves": 2500,
+        "preFix": {
+          "outcome": "THROW RangeError",
+          "verdict": null,
+          "exploredNodes": null,
+          "ms": 58
+        },
+        "postFix": {
+          "outcome": "COMPLETED",
+          "verdict": "UNKNOWN",
+          "exploredNodes": 20000,
+          "ms": 523
+        }
+      },
+      {
+        "catBaseMoves": 3000,
+        "preFix": {
+          "outcome": "THROW RangeError",
+          "verdict": null,
+          "exploredNodes": null,
+          "ms": 58
+        },
+        "postFix": {
+          "outcome": "COMPLETED",
+          "verdict": "UNKNOWN",
+          "exploredNodes": 20000,
+          "ms": 1517
+        }
+      },
+      {
+        "catBaseMoves": 4000,
+        "preFix": {
+          "outcome": "THROW RangeError",
+          "verdict": null,
+          "exploredNodes": null,
+          "ms": 56
+        },
+        "postFix": {
+          "outcome": "COMPLETED",
+          "verdict": "UNKNOWN",
+          "exploredNodes": 20000,
+          "ms": 1732
+        }
+      },
+      {
+        "catBaseMoves": 6000,
+        "preFix": {
+          "outcome": "THROW RangeError",
+          "verdict": null,
+          "exploredNodes": null,
+          "ms": 57
+        },
+        "postFix": {
+          "outcome": "COMPLETED",
+          "verdict": "UNKNOWN",
+          "exploredNodes": 20000,
+          "ms": 1858
+        }
+      },
+      {
+        "catBaseMoves": 20000,
+        "preFix": {
+          "outcome": "THROW RangeError",
+          "verdict": null,
+          "exploredNodes": null,
+          "ms": 56
+        },
+        "postFix": {
+          "outcome": "COMPLETED",
+          "verdict": "UNKNOWN",
+          "exploredNodes": 20000,
+          "ms": 2774
+        }
+      },
+      {
+        "catBaseMoves": 100000,
+        "preFix": {
+          "outcome": "THROW RangeError",
+          "verdict": null,
+          "exploredNodes": null,
+          "ms": 58
+        },
+        "postFix": {
+          "outcome": "COMPLETED",
+          "verdict": "UNKNOWN",
+          "exploredNodes": 20000,
+          "ms": 2490
+        }
+      }
+    ],
+    "summary": {
+      "preFixCompleted": 2,
+      "preFixThrew": 8,
+      "postFixCompleted": 10,
+      "postFixThrew": 0,
+      "postFixAllUnknownNodeCap": true,
+      "preFixThrewDerivation": "count of _raw/stack_threshold_pre.json rows whose outcome starts with THROW (8 of 10; the two COMPLETED rows are 500 and 1000)"
+    }
+  },
+  "noUnboundedGrowth": {
+    "claim": "The frame stack is bounded by the node budget: every post-fix row stops at exploredNodes=20000 and returns UNKNOWN/NODE_CAP, so no input can grow the stack without bound.",
+    "evidence": [
+      "500:COMPLETED/20000",
+      "1000:COMPLETED/20000",
+      "1500:COMPLETED/20000",
+      "2000:COMPLETED/20000",
+      "2500:COMPLETED/20000",
+      "3000:COMPLETED/20000",
+      "4000:COMPLETED/20000",
+      "6000:COMPLETED/20000",
+      "20000:COMPLETED/20000",
+      "100000:COMPLETED/20000"
+    ]
+  },
+  "logs": [
+    "logs/06_stack_threshold_post.log",
+    "logs/07_baseline_witness_post.log",
+    "logs/11_promoted_tests.log",
+    "logs/13_full_regression.log"
+  ],
+  "raw": [
+    "_raw/stack_threshold_pre.json",
+    "_raw/stack_threshold_post.json",
+    "_raw/baseline_witness_pre.json",
+    "_raw/baseline_witness_post.json"
+  ],
+  "corrections": [
+    {
+      "field": "thresholdSweep.summary.preFixThrew",
+      "recordedValue": 0,
+      "correctedValue": 8,
+      "cause": "probe/assemble_results.mjs matched outcome === \"THROW\" exactly, while the raw rows record \"THROW RangeError\"; the filter therefore never matched",
+      "rawSource": "_raw/stack_threshold_pre.json (UNCHANGED)",
+      "rawSourceSha256": "071440717d4473f0960a297ab2e805643dd26750e84f7f5f3ad0cb1855cb4ab6",
+      "otherSummaryFieldsVerifiedUnchanged": {
+        "preFixCompleted": 2,
+        "postFixCompleted": 10,
+        "postFixThrew": 0,
+        "postFixAllUnknownNodeCap": true
+      },
+      "round": "PPC-P1-OPENING-SEAL-01"
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "round": "PPC-P1-QUALITY-01",
+  "kind": "reference-DP differential (diagnostic, not production code)",
+  "root": "Game5 T15 (frozenFixtures.game5TurnRoot(15)), depth 2, 2M nodes, H1 leaf",
+  "primaryValue": -925.0526315789473,
+  "primaryMate": null,
+  "productionPlan": "DRUL",
+  "differential": {
+    "rootActions": [
+      "D",
+      "L",
+      "U",
+      "R"
+    ],
+    "rootEqualCount": 4,
+    "graphSize": 8,
+    "old": {
+      "plan": "ULDR",
+      "length": 4,
+      "trueReversals": 0
+    },
+    "new": {
+      "plan": "DRUL",
+      "length": 4,
+      "trueReversals": 0
+    },
+    "perBranch": [
+      {
+        "first": "D",
+        "old": {
+          "plan": "DDUU",
+          "trueReversals": 1,
+          "score": 1
+        },
+        "new": {
+          "plan": "DRUL",
+          "trueReversals": 0,
+          "score": 0
+        }
+      },
+      {
+        "first": "L",
+        "old": {
+          "plan": "LLRR",
+          "trueReversals": 1,
+          "score": 1
+        },
+        "new": {
+          "plan": "LURD",
+          "trueReversals": 0,
+          "score": 0
+        }
+      },
+      {
+        "first": "U",
+        "old": {
+          "plan": "ULDR",
+          "trueReversals": 0,
+          "score": 0
+        },
+        "new": {
+          "plan": "ULDR",
+          "trueReversals": 0,
+          "score": 0
+        }
+      },
+      {
+        "first": "R",
+        "old": {
+          "plan": "RDLU",
+          "trueReversals": 0,
+          "score": 0
+        },
+        "new": {
+          "plan": "RDLU",
+          "trueReversals": 0,
+          "score": 0
+        }
+      }
+    ]
+  }
+}

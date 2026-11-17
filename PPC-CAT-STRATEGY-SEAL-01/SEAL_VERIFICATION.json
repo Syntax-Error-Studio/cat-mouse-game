@@ -1,0 +1,40 @@
+{
+  "artifactId": "SEAL_VERIFICATION",
+  "round": "PPC-CAT-STRATEGY-SEAL-01",
+  "phase": 7,
+  "generatedAt": "2026-11-15T08:07:22.741Z",
+  "generatedBy": "PPC-CAT-STRATEGY-SEAL-01/probe/seal.mjs",
+  "head": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+  "hashAlgorithm": "sha256 over raw bytes",
+  "contentFileCount": 24,
+  "manifest": {
+    "path": "SOURCE_MANIFEST.json",
+    "selfExcluded": true,
+    "sha256": "7138b75d8d6dbc4ddd32dcf98d05b548bceb39636f6513fac31a47ac00b0902f",
+    "bytes": 5264
+  },
+  "sha256sums": {
+    "path": "SHA256SUMS.txt",
+    "sha256": "f197046f6ee5b5475e9c57defb942b472a07d5b223b2ff9c6ce48ae394624a77",
+    "bytes": 2441,
+    "recordsManifestDigest": true
+  },
+  "archive": {
+    "path": "F:\\ppc-checkpoints\\PPC-CAT-STRATEGY-SEAL-01-deliverables.tar.gz",
+    "sha256": "773f47233ac5ea7a3c5fb78a807e5c1cfc24e038d0d8a521411965603aa0252a",
+    "bytes": 72298,
+    "memberCount": 26,
+    "outsideRepo": true
+  },
+  "restore": {
+    "dir": "F:\\ppc-checkpoints\\_restore_seal01",
+    "outsideRepo": true,
+    "filesChecked": 26,
+    "mismatches": 0,
+    "allByteIdentical": true,
+    "mismatchDetail": []
+  },
+  "selfReferenceCycleBroken": true,
+  "crlfLfFalseProof": "NONE — every digest is over raw Buffer bytes; restore compared byte-for-byte",
+  "previousRoundOverwritten": false
+}

@@ -1,0 +1,156 @@
+{
+  "artifactId": "SOURCE_MANIFEST",
+  "round": "PPC-P1-ID-01",
+  "project": "Project Perfect Cat",
+  "reconstructedAt": "2026-11-13",
+  "reconstructedBy": "PPC-P1-CLOSURE-FIX-01",
+  "RECONSTRUCTED_PROVENANCE_MANIFEST": true,
+  "reconstructionNotice": "This file did NOT exist when PPC-P1-ID-01 executed. It was reconstructed afterwards from that round's own REPORT.md, its logs/ and perf/ directories, the p1IdCandidate block carried forward in PPC-P1-TIME-01/SOURCE_MANIFEST.json, and `git show HEAD:<path>` blobs. It is presented as a reconstruction, never as an artifact produced during the original run. No hash below was taken from prose alone: every sha256 was recomputed from bytes on disk or from the HEAD blob.",
+  "baselineHead": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+  "branch": "ppc/p1-id-state-identity-fix",
+  "sha256Method": "sha256 over raw file bytes (binary read, 1 MiB chunks); for HEAD baselines, sha256 over the exact stdout bytes of `git show HEAD:<path>`. No normalisation, no checkout, no line-ending conversion.",
+  "crossVerificationSources": [
+    "PPC-P1-ID-01/REPORT.md (ID-0 gate states candidate sha 7b4aa8eb… and HEAD blob sha 2eea65ff…)",
+    "PPC-P1-TIME-01/SOURCE_MANIFEST.json → p1IdCandidate (carries the same candidate sha forward)",
+    "PPC-P1-CLOSURE-01/REPORT.md §1 (independent re-derivation of the same pair)",
+    "git show HEAD:src/game/ai/transposition.ts (authoritative baseline blob)"
+  ],
+  "productionFiles": [
+    {
+      "path": "src/game/ai/transposition.ts",
+      "role": "production",
+      "attributionRound": "PPC-P1-ID-01",
+      "headBaselineSha256": "2eea65ff6e6402313efe58fab65eaf81dd352a40b7254596e4a96a32e9fdf60c",
+      "headBaselinePresent": true,
+      "candidateSha256": "7b4aa8eb3fab994a4abc77fdf38800ab2a5f9da57d5eb33a1b37075e106c2d64",
+      "candidateBytes": 6784,
+      "evidence": "PPC-P1-ID-01/REPORT.md §2 ID-0 / §3; git diff src/game/ai/transposition.ts"
+    },
+    {
+      "path": "src/game/ai/__tests__/stateIdentityCollision.test.ts",
+      "role": "test",
+      "attributionRound": "PPC-P1-ID-01",
+      "headBaselineSha256": null,
+      "headBaselinePresent": false,
+      "candidateSha256": "4be1cf487e4af828db7982250abdfd58a576fb2367973edcb0adb8ef4af507e7",
+      "candidateBytes": 26215,
+      "evidence": "PPC-P1-ID-01/REPORT.md §2 测试现场; logs/pre_fix_test_run_final.log, logs/post_fix_test_run_final.log"
+    },
+    {
+      "path": "src/game/ai/__tests__/fixtures/ppcId01-human-roots.json",
+      "role": "fixture",
+      "attributionRound": "PPC-P1-ID-01",
+      "headBaselineSha256": null,
+      "headBaselinePresent": false,
+      "candidateSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "candidateBytes": 264328,
+      "evidence": "PPC-P1-ID-01/REPORT.md §3; 预注册 root_fixture_sha256"
+    },
+    {
+      "path": "src/game/ai/__tests__/fixtures/ppcId01-baseline-d1.json",
+      "role": "fixture",
+      "attributionRound": "PPC-P1-ID-01",
+      "headBaselineSha256": null,
+      "headBaselinePresent": false,
+      "candidateSha256": "80635906377dbe1e96aa6ef5bf80e48c2da22c213c19f51b205ca0d0438b8467",
+      "candidateBytes": 42327,
+      "evidence": "PPC-P1-ID-01/REPORT.md §2 ID-5 / §3"
+    }
+  ],
+  "artifactFiles": [
+    {
+      "path": "PPC-P1-ID-01/REPORT.md",
+      "sha256": "74097223467e1a104458192fb9a589419e7d07eb6b24f025b734895333226e53",
+      "bytes": 13398
+    },
+    {
+      "path": "PPC-P1-ID-01/perf/STATS.json",
+      "sha256": "29fe995b1758654b2d1b6eec3ef97bf5f129b7b01ec7e67635cadda4a7a5ffec",
+      "bytes": 6072
+    },
+    {
+      "path": "PPC-P1-ID-01/logs/baseline_flt_hv14.log",
+      "sha256": "a512c8d1d77484f04d683100d2ba8dd1a9a0d909d349f9a25540f70bf2fc66f6",
+      "bytes": 5451
+    },
+    {
+      "path": "PPC-P1-ID-01/logs/baseline_full_expectiminimax.log",
+      "sha256": "c97da61b7a1b86f86414519cd8463c5bac334ffe22c77fe2b50f7cf67aa198b3",
+      "bytes": 6192
+    },
+    {
+      "path": "PPC-P1-ID-01/logs/baseline_t1eb.log",
+      "sha256": "c38c7a648d50e399b49c1813e05d9fa0fa5b5b27e3c10ed5426455a76324c283",
+      "bytes": 3050
+    },
+    {
+      "path": "PPC-P1-ID-01/logs/build_attempt.log",
+      "sha256": "605da3b4ebd43fa4984ea76a9dfeb084b34ca912b54839ff5e35e805288cad61",
+      "bytes": 927
+    },
+    {
+      "path": "PPC-P1-ID-01/logs/build_final.log",
+      "sha256": "e80d63eef252570c773d799c7fa645d28c1d69056935d112e2df98b60137e4bb",
+      "bytes": 927
+    },
+    {
+      "path": "PPC-P1-ID-01/logs/id6_existing_regression.log",
+      "sha256": "fa68a4edd8247cd84e037888d8b359ab4d5de898e54987afb0a91fd506dcc270",
+      "bytes": 19846
+    },
+    {
+      "path": "PPC-P1-ID-01/logs/id6_existing_regression_serial.log",
+      "sha256": "0adf7ef22921df10555c44ced2dd1dd60a2ecd2d99ef26199b1d40e8e0429f28",
+      "bytes": 14884
+    },
+    {
+      "path": "PPC-P1-ID-01/logs/id6_plus_identity_final.log",
+      "sha256": "c0965317e96c08e3c57228e33681d9d6eef61075cbb4bdaf162911c035068e77",
+      "bytes": 15654
+    },
+    {
+      "path": "PPC-P1-ID-01/logs/micro_statekey.log",
+      "sha256": "5c57b5a6b2e6ec811a695bfc4f5fa1c17155f5deca092a8675b5b92978189bc2",
+      "bytes": 546
+    },
+    {
+      "path": "PPC-P1-ID-01/logs/post_fix_test_run.log",
+      "sha256": "efb1247af70d008f185e0441cd20f73de32a21869ca70157b6c46fa6a94313c4",
+      "bytes": 11113
+    },
+    {
+      "path": "PPC-P1-ID-01/logs/post_fix_test_run_final.log",
+      "sha256": "2ac277f644b07cda4b7a1dff318a8c334de9de16e6a195bd1962c5f167148f01",
+      "bytes": 7962
+    },
+    {
+      "path": "PPC-P1-ID-01/logs/pre_fix_test_run.log",
+      "sha256": "f32f3c38af156adaf124fd57d8f040ab7c0774c8c96cce029939492682b4cf6b",
+      "bytes": 18407
+    },
+    {
+      "path": "PPC-P1-ID-01/logs/pre_fix_test_run_final.log",
+      "sha256": "ceb1302408a151d00c411fde621094f90fc66e34722c8066d4d00601a8957d90",
+      "bytes": 18504
+    }
+  ],
+  "declaredDiff": {
+    "filesChanged": 1,
+    "insertions": 43,
+    "deletions": 1,
+    "source": "PPC-P1-ID-01/REPORT.md §3 `git diff --stat`",
+    "note": "The single-file scope is confirmed by the current working tree: only transposition.ts is modified for P1-ID; every other production file in the candidate is attributed to a later round."
+  },
+  "consistencyChecks": {
+    "candidateShaMatchesReport": true,
+    "baselineShaMatchesReport": true,
+    "humanRootsFixtureShaMatchesReport": true,
+    "headBaselineExists": true
+  },
+  "scope": {
+    "gameplayChange": "NO",
+    "searchMathChange": "NO",
+    "budgetChange": "NO",
+    "testFixtureOriginalsModifiedByThisRound": "NO"
+  }
+}

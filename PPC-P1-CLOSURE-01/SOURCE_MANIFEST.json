@@ -1,0 +1,177 @@
+{
+  "round": "PPC-P1-CLOSURE-01",
+  "generatedAt": "2026-11-13",
+  "mode": "READ_ONLY_AUDIT",
+  "git": {
+    "repo": "F:/小猫小鼠",
+    "branch": "ppc/p1-id-state-identity-fix",
+    "head": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+    "headLog": "48eaac6 research(ppc): archive ARIMAA-01 / PTB-1A / SEARCH-01 / MOUSE-01 / CAT-STRATEGY-01",
+    "commits": 0,
+    "push": 0,
+    "merge": 0,
+    "rebase": 0,
+    "reset": 0,
+    "clean": 0,
+    "stash": 0,
+    "worktreeState": "10 tracked files modified + 17 untracked entries (expected) — NOT clean, not described as clean"
+  },
+  "productionSourceChangedThisRound": 0,
+  "protected": {
+    "transposition_ts": {
+      "sha256": "7b4aa8eb3fab994a4abc77fdf38800ab2a5f9da57d5eb33a1b37075e106c2d64",
+      "expected": "7b4aa8eb",
+      "ok": true,
+      "bytes": 6784,
+      "round": "P1-ID-01"
+    },
+    "deadlineContext_ts": {
+      "sha256": "ced449445d70d1ba88cb20d88415b3c641d670aa886536fcacefa36b4aa50235",
+      "expected": "ced44944",
+      "ok": true,
+      "bytes": 14411,
+      "round": "P1-TIME-01"
+    },
+    "hardTurnPlanner_ts": {
+      "sha256": "27b1ce6dc62234d0c822b2b0b6341205ac189b5f76d7662a5d29d9e17ded75ff",
+      "expected": "27b1ce6d",
+      "ok": true,
+      "bytes": 36060,
+      "round": "P1-TIME-01"
+    },
+    "engine_ts": {
+      "sha256": "dbb5377af22a6471e31c899f9debe896e9e74a629f4fb50a47753bd492810f3e",
+      "expected": "dbb5377a",
+      "ok": true,
+      "bytes": 188461,
+      "round": "P1-TIME-01"
+    },
+    "planBound_ts": {
+      "sha256": "99c269f90e3d7a10abaf389d95ad25d14f586a05dc1899d439834064ae3bfcfd",
+      "expected": "99c269f9",
+      "ok": true,
+      "bytes": 4193,
+      "round": "P1-PLAN-01"
+    },
+    "expectiminimax_ts": {
+      "sha256": "42b6e71f0cf784c7072a4e11abb3408b7c922d9e8a746a787ddf0046b3917d1c",
+      "expected": "42b6e71f",
+      "ok": true,
+      "bytes": 107383,
+      "round": "P1-PLAN-01"
+    },
+    "planQuality_ts": {
+      "sha256": "f97dd2045733e1aa70abe6750299c00aff70f8152d6157d88acdec813c7b4cd2",
+      "expected": "f97dd204",
+      "ok": true,
+      "bytes": 28873,
+      "round": "P1-PLAN-01 + P1-QUALITY-01"
+    }
+  },
+  "manifestCrossCheck": {
+    "manifestsRead": [
+      "PPC-P1-TIME-01/SOURCE_MANIFEST.json",
+      "PPC-P1-TIME-02/SOURCE_MANIFEST.json",
+      "PPC-P1-PLAN-01/SOURCE_MANIFEST.json",
+      "PPC-P1-QUALITY-01/SOURCE_MANIFEST.json"
+    ],
+    "claims": 30,
+    "directMatch": 28,
+    "supersededByLaterRound": 2,
+    "unexplainedDivergence": 0,
+    "superseded": [
+      {
+        "path": "src/game/ai/planQuality.ts",
+        "declared": "c777b1bc877d45cbab6a0e77fe091ec2a0d6522fa8a483a563b666e8ede07442",
+        "declaredBy": "PPC-P1-PLAN-01",
+        "now": "f97dd2045733e1aa70abe6750299c00aff70f8152d6157d88acdec813c7b4cd2",
+        "why": "PPC-P1-QUALITY-01 modified it afterwards — expected"
+      },
+      {
+        "path": "src/game/ai/expectiminimax.ts",
+        "declared": "9b976ec9bdbfd2cc02f6bdbb1f28b8a47a7c7759d4119e35964e077b4593ce45",
+        "declaredBy": "PPC-P1-TIME-02 (marked UNMODIFIED since baseline)",
+        "now": "42b6e71f0cf784c7072a4e11abb3408b7c922d9e8a746a787ddf0046b3917d1c",
+        "why": "PPC-P1-PLAN-01 modified it afterwards — expected"
+      }
+    ],
+    "knownGap": "PPC-P1-ID-01/ has NO SOURCE_MANIFEST.json (only REPORT.md + logs/ + perf/). Its transposition.ts hash is corroborated by PPC-P1-ID-01/REPORT.md line 27 and by P1-TIME-01's p1IdCandidate — both = 7b4aa8eb…"
+  },
+  "gitBlobAttribution": {
+    "method": "sha256 of `git show HEAD:<path>` vs sha256 of the working file",
+    "rows": [
+      { "path": "src/game/ai/transposition.ts", "headBlob": "2eea65ff6e64", "now": "7b4aa8eb3fab", "round": "P1-ID-01" },
+      { "path": "src/game/ai/deadlineContext.ts", "headBlob": "dfab888bd407", "now": "ced449445d70", "round": "P1-TIME-01" },
+      { "path": "src/game/ai/hardTurnPlanner.ts", "headBlob": "71c845b6e28a", "now": "27b1ce6dc622", "round": "P1-TIME-01" },
+      { "path": "src/game/engine.ts", "headBlob": "ed72d0c92e0e", "now": "dbb5377af22a", "round": "P1-TIME-01" },
+      { "path": "src/game/ai/expectiminimax.ts", "headBlob": "9b976ec9bdbf", "now": "42b6e71f0cf7", "round": "P1-PLAN-01" },
+      { "path": "src/game/ai/planQuality.ts", "headBlob": "16a9894d6df5", "now": "f97dd2045733", "round": "P1-PLAN-01 -> P1-QUALITY-01" },
+      { "path": "src/game/ai/planBound.ts", "headBlob": null, "now": "99c269f90e3d", "round": "P1-PLAN-01 (new file)" }
+    ]
+  },
+  "frozenArtifactsPreserved": [
+    { "path": "src/game/ai/__tests__/fixtures/ppcId01-human-roots.json", "sha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09", "bytes": 264328, "ok": true },
+    { "path": "src/game/ai/__tests__/fixtures/ppcId01-baseline-d1.json", "sha256": "80635906377dbe1e96aa6ef5bf80e48c2da22c213c19f51b205ca0d0438b8467", "bytes": 42327, "ok": true },
+    { "path": "src/game/ai/__tests__/fixtures/ppcTime01-baseline-planner.json", "sha256": "2c1bab71e11ac59aab2eb2acc93fe221359d44d5e50a90b0651d59ca6c673885", "ok": true },
+    { "path": "PPC-P1-TIME-01/TIMING_RESULTS.json", "sha256": "74ff5aff8dd9d4dc445991c71efa09e7ff450458c22ef64513ced6c39320f0f8", "bytes": 9527, "ok": true },
+    { "path": "ai-training/human-logs/PPC-HV14/GAME1_H1.txt", "sha256": "2ac38df46877bdc17cc05f4a241e7e23811a43d8029f42db3a075d22f851f2e3", "ok": true },
+    { "path": "ai-training/human-logs/PPC-HV14/GAME2_H1.txt", "sha256": "12cdbb6a6d1930e78b656d53d6675fe2db930d825e646c8b40dce0c4b11954c4", "ok": true },
+    { "path": "ai-training/human-logs/PPC-HV14/GAME3_H1.txt", "sha256": "a7598bf6403bf441f9624dc1fa9738aca820d6434d389a9507e2fdbf6af543d7", "ok": true },
+    { "path": "ai-training/human-logs/PPC-HV14/GAME4_H1.txt", "sha256": "752b033310c773b5a2b0a7c153b09f5b7b467c4c3bc822e631f51aed15882b21", "ok": true },
+    { "path": "ai-training/human-logs/PPC-HV14/GAME5_H1.txt", "sha256": "f84d877ac4d3dedabda46b1774107f4533827c9e05e28d33b3dfc313909fe4b2", "ok": true },
+    { "path": "纸制版作业-先打印好-后在纸上做作业-第二次.doc", "sha256": "505bd083d753adde9c0e41362a175f0aec8dd806444601e9951526350006b626", "bytes": 89600, "mtime": "2026-10-16 20:50:04", "ok": true }
+  ],
+  "deliverables": [
+    { "path": "PPC-P1-CLOSURE-01/REPORT.md", "role": "main report" },
+    { "path": "PPC-P1-CLOSURE-01/SOURCE_MANIFEST.json", "role": "this file" },
+    { "path": "PPC-P1-CLOSURE-01/ARM_MANIFEST.json", "sha256": "51987d5bcd3622b5c9d5615e9acfc1348c2808b79b3b920827399c1b8b01125f", "bytes": 4598, "role": "frozen HEAD control arm" },
+    { "path": "PPC-P1-CLOSURE-01/INTEGRATION_DIFF_AUDIT.md", "sha256": "7bcc372c5015f1b2dd087a7fdecab5d8e4dbe21aff14dab75dd37ce8c993faa0", "bytes": 13833, "role": "integration boundary audit" },
+    { "path": "PPC-P1-CLOSURE-01/T1EB_FINDINGS.md", "sha256": "71c5e3533ba54aa427b70dba4a1960e1abd70565ada6133a0e74219e5044511f", "bytes": 6347, "role": "T1E-B attribution" },
+    { "path": "PPC-P1-CLOSURE-01/FLT_HV14_4_FINDINGS.md", "sha256": "3ee23bebe1210c9a37c888887483603c1c9197f5d2460bbd772667f00de0e71e", "bytes": 10930, "role": "FLT-HV14-4 attribution" },
+    { "path": "PPC-P1-CLOSURE-01/REGRESSION_AUTHORITY_STATUS.json", "sha256": "25545ce4a7cc4a5e8e0817742ba2653d391f5c74fdee2e6acda0e07aa6a0ea2f", "bytes": 4182, "role": "regression / timing authority ledger" },
+    { "path": "PPC-P1-CLOSURE-01/REMAINING_GATES.md", "sha256": "6415b951dba5c4134feddcd1921a1e4326a804eaef893b9aac1161f12546de48", "bytes": 8108, "role": "open gates" }
+  ],
+  "artifacts": {
+    "probes": [
+      { "path": "PPC-P1-CLOSURE-01/probe/vitest.config.mts", "sha256": "42f2f38915f482497460c1f781e824baf64db2a2e01fe7a75035ec4a735732b9", "bytes": 231 },
+      { "path": "PPC-P1-CLOSURE-01/probe/vitest.arm.config.mts", "sha256": "9c7562919e2c1690f5142fb8201a636739e2bc9d31ed820d79cc7824150a77c0", "bytes": 492 },
+      { "path": "PPC-P1-CLOSURE-01/probe/hv14_t4_probe.test.ts", "sha256": "aa28a0322b3a3111dda1434dbdaa5774998edea06b615619dedca673b659a232", "bytes": 8560 },
+      { "path": "PPC-P1-CLOSURE-01/probe/hv14_t4_winsearch.test.ts", "sha256": "f9e8b411a74b0164f879b90382c63b8da6096d3c7134a8ff7f634d6559c369ff", "bytes": 8156 },
+      { "path": "PPC-P1-CLOSURE-01/probe/hv14_t4_terminal.test.ts", "sha256": "9cb74e76b6427ea6e21527a3c4b5790e446397ff527238a7337cac0a6d010341", "bytes": 5111 },
+      { "path": "PPC-P1-CLOSURE-01/probe/hv14_t4_planner.test.ts", "sha256": "6c234ae542d005b4e5c2f0372caa83d0ec93b27c32d180f1cc02bb4db4d77e14", "bytes": 4434 },
+      { "path": "PPC-P1-CLOSURE-01/probe/hv14_all_roots.test.ts", "sha256": "761da3fbb9da6d6bed9f38ce8cedbb1514c188080d0fe40a424c40e181397be9", "bytes": 4253 },
+      { "path": "PPC-P1-CLOSURE-01/probe/statekey_micro.test.ts", "sha256": "ffc2a3ad54066ce67c6d565821cafdea34ca17c539607241704bf8aca5591823", "bytes": 3378 }
+    ],
+    "raw": [
+      { "path": "PPC-P1-CLOSURE-01/_raw/hv14_t4_probe.json", "sha256": "18a23bf7a12af2e59f3b857484a78bb5b31fc5f1caf79938b603548cd77398b5", "bytes": 6993 },
+      { "path": "PPC-P1-CLOSURE-01/_raw/hv14_t4_winsearch.json", "sha256": "b66ada3c16ddd0d6ef411f3001856b8d6755f9605010f15cfc2073b60bfcefd5", "bytes": 7273 },
+      { "path": "PPC-P1-CLOSURE-01/_raw/hv14_t4_terminal.json", "sha256": "7957144207fa0e1de459d2a6be1fe902839cadc20d8a6132891613e206ab24ad", "bytes": 2097 },
+      { "path": "PPC-P1-CLOSURE-01/_raw/hv14_t4_planner.json", "sha256": "b1737df92e011162a23b37c29f661b2f34e2d0ddb79220f8579fce896462415a", "bytes": 1027 },
+      { "path": "PPC-P1-CLOSURE-01/_raw/hv14_all_roots.json", "sha256": "23a313cf2544d32d59001559ec8d185467203ffba371c55bca9f2b994bb01a0c", "bytes": 13912 },
+      { "path": "PPC-P1-CLOSURE-01/_raw/statekey_micro.json", "sha256": "5b08fbdcd1ebcbe39251e54204a8b6af5046fc300a952af7d7d74a66367d78a3", "bytes": 806 }
+    ],
+    "logs": [
+      { "path": "PPC-P1-CLOSURE-01/logs/t1eb_isolated.log", "sha256": "d54faa9105f171d8c1575473bd07d4d17a2083b5783036eaa59ae9e286248844", "bytes": 4053, "exit": 1 },
+      { "path": "PPC-P1-CLOSURE-01/logs/t1eb_arm_head.log", "sha256": "21b0560cef55cb4267fedc783b032ccf736e2898b5ce9d1dc779a62d28037dbf", "bytes": 4107, "exit": 1 },
+      { "path": "PPC-P1-CLOSURE-01/logs/t1eb_arm_head_long.log", "sha256": "23352b3e9c8ee81b888ae726f4409448ff15460236cd4a34374a0f65c003dd15", "bytes": 3057, "exit": 0 },
+      { "path": "PPC-P1-CLOSURE-01/logs/t1eb_candidate_long.log", "sha256": "b29697ceda77f6f66ea31a54916765aad734386af887310e5e0c10f5da4b0103", "bytes": 3057, "exit": 0 },
+      { "path": "PPC-P1-CLOSURE-01/logs/tsc.log", "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", "bytes": 0, "exit": 0 }
+    ]
+  },
+  "verification": {
+    "tsc": "PASS (exit 0, empty log)",
+    "viteBuild": "NOT_PERFORMED (0 production changes this round)",
+    "fullRegression": "NOT_PERFORMED (1713s suite out of scope)",
+    "heavyTasks": 0,
+    "heavyWorkerConcurrency": 1,
+    "serialFreshRepetitions": true,
+    "timeoutsOrFrozenThresholdsChanged": false,
+    "fixturesChanged": false,
+    "vitestConfigChanged": false
+  },
+  "notes": [
+    "Probe files and the arm copy are NOT covered by tsc -b (tsconfig.app.json includes only \"src\"); they run through vitest/esbuild without type checking.",
+    "PPC-P1-CLOSURE-01/arm-head/ is a measurement-only frozen copy of src/ with the six production files restored to their HEAD blob. It must never be imported by src/ and should be archived once this audit is adjudicated.",
+    "This manifest deliberately does not hash itself."
+  ]
+}

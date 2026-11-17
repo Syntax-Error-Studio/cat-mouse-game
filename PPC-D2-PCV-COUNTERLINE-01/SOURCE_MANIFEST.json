@@ -1,0 +1,593 @@
+{
+  "round": "PPC-D2-PCV-COUNTERLINE-01",
+  "type": "OFFLINE_RESEARCH / SOURCE_AUDIT / D2_PILOT",
+  "generatedAt": "2026-11-16T11:43:39Z",
+  "selfHashIncluded": false,
+  "selfHashNote": "ARCHIVE_MANIFEST/SOURCE_MANIFEST must not contain its own digest; the authoritative copy is the entry in SHA256SUMS.txt, which is computed after this file is final.",
+  "phaseCompleted": [
+    "G0",
+    "G1",
+    "G2",
+    "G3",
+    "G4",
+    "G5"
+  ],
+  "phaseNotPerformed": [],
+  "identity": {
+    "head": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+    "branch": "ppc/p1-id-state-identity-fix",
+    "gitStatusLineCount": 69,
+    "gitStatusTrackedModified": 15,
+    "gitStatusUntracked": 54,
+    "workingTreeDiffersFromHead": true,
+    "preExistingChangesDisclosure": "The working tree carries pre-existing uncommitted changes (15 tracked modifications) that predate this round and were preserved untouched."
+  },
+  "frozenInputs": [
+    {
+      "name": "FIXTURE_SHA256",
+      "path": "src/game/ai/__tests__/fixtures/ppcId01-human-roots.json",
+      "present": true,
+      "bytes": 264328,
+      "expected": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "actual": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "match": true
+    },
+    {
+      "name": "P5_SHA256",
+      "path": "PPC-CAT-EVALUATOR-ABLATION-01/PRODUCTION_100MS_RESULTS.json",
+      "present": true,
+      "bytes": 73487,
+      "expected": "9d50560f107da52107cb68be94f4ac90214f8a50aabbc948f8f3114215278775",
+      "actual": "9d50560f107da52107cb68be94f4ac90214f8a50aabbc948f8f3114215278775",
+      "match": true
+    },
+    {
+      "name": "T2_CANDIDATE_FREEZE_SHA256",
+      "path": "PPC-T2-PCV-RESCUE-01/CANDIDATE_PLANS.json",
+      "present": true,
+      "bytes": 87474,
+      "expected": "8f5a3f9d99ac2f61c895255e72650b3761418cb58ff5152b7d5e94619f8fc3ed",
+      "actual": "8f5a3f9d99ac2f61c895255e72650b3761418cb58ff5152b7d5e94619f8fc3ed",
+      "match": true
+    },
+    {
+      "name": "TAIL_CANDIDATE_SHA256",
+      "path": "PPC-T2-PCV-TAIL-01/TAIL_CANDIDATES.json",
+      "present": true,
+      "bytes": 24338,
+      "expected": "39cc3569fbe2a9e7955b37e91ef203b07486ff7a02f3998dd32bc8004fcae8b8",
+      "actual": "39cc3569fbe2a9e7955b37e91ef203b07486ff7a02f3998dd32bc8004fcae8b8",
+      "match": true
+    },
+    {
+      "name": "SEAL_KERNEL_SHA256",
+      "path": "PPC-CAT-STRATEGY-SEAL-01/probe/seal_lib.ts",
+      "present": true,
+      "bytes": 21012,
+      "expected": "453915d3fd3a69bda5d113dd7e5732d20424a7f97cff739cf9b0aeee576a779b",
+      "actual": "453915d3fd3a69bda5d113dd7e5732d20424a7f97cff739cf9b0aeee576a779b",
+      "match": true
+    }
+  ],
+  "productionSources": [
+    {
+      "path": "src/game/ai/expectiminimax.ts",
+      "sha256": "50d27da5e9d0d47a1ad70efb542a3ec1510507fd14b825a52729ebb90f6d690c",
+      "bytes": 109353
+    },
+    {
+      "path": "src/game/ai/hardTurnPlanner.ts",
+      "sha256": "27b1ce6dc62234d0c822b2b0b6341205ac189b5f76d7662a5d29d9e17ded75ff",
+      "bytes": 36060
+    },
+    {
+      "path": "src/game/ai/planQuality.ts",
+      "sha256": "46979485d568dfff12e2f998353cda95616502a7433ac84c3d31801726090952",
+      "bytes": 30693
+    },
+    {
+      "path": "src/game/ai/legalActions.ts",
+      "sha256": "27ae2f468d19043425326c2fc42923aeae894a5f84d2e0684ee374808b50eb22",
+      "bytes": 2368
+    },
+    {
+      "path": "src/game/ai/preparedActions.ts",
+      "sha256": "67b76ad3de53fee6d3d32f9bc8ab9a02b52234857b23b7fc9091bd92011ad764",
+      "bytes": 5405
+    },
+    {
+      "path": "src/game/ai/planBound.ts",
+      "sha256": "4a212b75de6b5c47b6402c0745593169f6271a06d0f91fed99b7479f679b3dab",
+      "bytes": 8012
+    },
+    {
+      "path": "src/game/ai/transposition.ts",
+      "sha256": "7b4aa8eb3fab994a4abc77fdf38800ab2a5f9da57d5eb33a1b37075e106c2d64",
+      "bytes": 6784
+    },
+    {
+      "path": "src/game/ai/deadlineContext.ts",
+      "sha256": "ced449445d70d1ba88cb20d88415b3c641d670aa886536fcacefa36b4aa50235",
+      "bytes": 14411
+    },
+    {
+      "path": "src/game/ai/simulator.ts",
+      "sha256": "6d24d4f36d9f7e076fa36c9460ec51c674f1006f9cae00f7f5fb64771516df32",
+      "bytes": 8365
+    },
+    {
+      "path": "src/game/config.ts",
+      "sha256": "60e38c491c81f0b6d962bd32b306373de462cffcc9508b76c5bed02f9f70caae",
+      "bytes": 15048
+    },
+    {
+      "path": "src/game/engine.ts",
+      "sha256": "099f9a7b6d97b838c664aa7186be58465e5b01b8052af4b4e4e19a5644d19f06",
+      "bytes": 190506
+    },
+    {
+      "path": "src/game/openingFairness.ts",
+      "sha256": "9d19279cafefe545ea6fd2d49cd2d412986c0002977c7b37cf3e72787efd7908",
+      "bytes": 35834
+    },
+    {
+      "path": "GAMEPLAY.md",
+      "sha256": "e000778b114bea02ef09634085172ea435be143335721aa0cd04114afb2afd34",
+      "bytes": 21128
+    }
+  ],
+  "gates": {
+    "G0_IDENTITY": "PASS",
+    "G0_RESOURCE_ADMISSION": "FAIL",
+    "G0_DUPLICATE_BENCHMARK": "PASS",
+    "G0_RESIDUAL_HEAVY_WORKER": "FAIL",
+    "G1_SOURCE_CONTRACT_AUDIT": "PASS",
+    "G1_BRANCH_IDENTITY_PROVABLE": "BLOCKED",
+    "G2_D2_FIXED_DEPTH_PILOT": "NOT_PERFORMED",
+    "G3_CANDIDATE_FREEZE": "NOT_PERFORMED",
+    "G4_PCV_H0": "NOT_PERFORMED",
+    "G4_PCV_H1": "NOT_PERFORMED",
+    "G5_FRESH_PROCESS_REPETITIONS": "NOT_PERFORMED"
+  },
+  "blockers": [
+    {
+      "id": "RESOURCE_ADMISSION",
+      "detail": "At admission: FREE_PHYS_MB=755 (gate 4096), FREE_COMMIT_MB=4957 (gate 8192); 5 preflight samples, none passing. Postflight: FREE_PHYS_MB=1815 (still FAIL), FREE_COMMIT_MB=8298 (transiently passed). FREE_PHYS peaked at 2094 across the whole window, so physical memory is the binding constraint.",
+      "authority": "brief section 3",
+      "actionTaken": "read-only audit then stop; no pagefile / V8 heap / concurrency workaround"
+    },
+    {
+      "id": "CONCURRENT_HEAVY_WORKER",
+      "detail": "vitest run for PPC-MCTS-01B alive in the same workspace (pids 41868 / 27920 / 7560)",
+      "authority": "brief section 3 (no killing unrelated processes) + section 8 (no concurrent heavy jobs)",
+      "actionTaken": "recorded only; nothing terminated"
+    },
+    {
+      "id": "BRANCH_IDENTITY_UNVERIFIED",
+      "detail": "planBranches is keyed by stateKey only; per-root-action extraction is sound in principle under this strict config but the two empirical preconditions (repetitions===0, zero conflicting writes) were NOT measured this round",
+      "authority": "brief section 4.3 stop clause",
+      "actionTaken": "reported as BLOCKED, awaiting ChatGPT arbitration"
+    }
+  ],
+  "resource": {
+    "capturedAt": "2026-11-16T17:11:03.9533651+08:00",
+    "freePhysMb": 755,
+    "freeCommitMb": 4957,
+    "committedMb": 29266,
+    "commitLimitMb": 34224,
+    "processCount": 349,
+    "cpuLoadPct": 3,
+    "gateFreePhysMb": 4096,
+    "gateFreeCommitMb": 8192,
+    "admission": "FAIL"
+  },
+  "concurrency": {
+    "heavyWorkerCount": 3,
+    "heavyWorkerCommands": [
+      "C:\\Users\\zheng\\.workbuddy\\binaries\\node\\versions\\22.22.2-6\\node.exe C:\\Users\\zheng\\.workbuddy\\binaries\\node\\versions\\22.22.2-6/node_modules/npm/bin/npx-cli.js vitest run --config PPC-MCTS-01B/probe/vitest.config.mts",
+      "\"node\" \"F:\\小猫小鼠\\node_modules\\.bin\\\\..\\vitest\\vitest.mjs\" run --config PPC-MCTS-01B/probe/vitest.config.mts",
+      "C:\\Users\\zheng\\.workbuddy\\binaries\\node\\versions\\22.22.2-6\\node.exe --experimental-import-meta-resolve --require F:/小猫小鼠/node_modules/vitest/suppress-warnings.cjs --conditions node --conditions development F:\\小猫小鼠\\node_modules\\vitest\\dist\\workers\\forks.js"
+    ],
+    "belongsToThisRound": false,
+    "actionTaken": "NONE (not terminated, not suspended, not reprioritised)"
+  },
+  "priorArtifactsOverwritten": false,
+  "productionSourceChanged": false,
+  "d2SearchPerformed": true,
+  "deliverables": [
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/CANDIDATE_FREEZE.json",
+      "sha256": "aa3c5cb4a32225c3ab3360a59a6749be974a7f72691f8485ebe92db5bbc41aad",
+      "bytes": 6492
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/D2_MACHINE_STATE.json",
+      "sha256": "180f93daa5a67c191031306ae07234caf7c9fa97e935b0bc369dc48dec4c9d9b",
+      "bytes": 1355
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/D2_PILOT_CANDIDATES.json",
+      "sha256": "288f3b18c631b2b55e174a4a4ad250dbcc544b8f54cbc156f7eac5efd0f1d391",
+      "bytes": 16691
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/D2_PILOT_CERTIFICATE_VERIFICATION.json",
+      "sha256": "2197e9732c5aceedd7c1d2899fb73ef969af12e547ddf0da2144dbc19f249763",
+      "bytes": 1718
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/D2_PILOT_COUNTERLINES.json",
+      "sha256": "56f41227bdd8afb9e5e93419ff9a7736c2fd8eeed04f7affc3325fa475a19ea5",
+      "bytes": 111502
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/D2_PILOT_MATRIX.csv",
+      "sha256": "28e7b46b2dcc3d7bfe1b596fd485bbf9a61f5423e001e836c9c4095f76476fe2",
+      "bytes": 3434
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/D2_PILOT_PLAN_REPLAYS.json",
+      "sha256": "a44867f2a679f2f706d2cdc1fc7e69da12c178fd5f1bc76a5a87b07f2d09ed8e",
+      "bytes": 7054
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/D2_PILOT_PROOF_REP1.json",
+      "sha256": "aee6f9be26e149516573721bc7ade7acf89d03504fb45681bc7378144d7f6952",
+      "bytes": 10418
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/D2_PILOT_PROOF_REP2.json",
+      "sha256": "5da6cdf6823f68c62535bbb9c3c65603c910999c0005902fd1952f8b5a6c1f67",
+      "bytes": 10418
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/D2_PILOT_ROOT_VALUES.json",
+      "sha256": "af3a6a63be3f26f6154cdd41a10bb158044bd5ca54e0384d030c7a21d60d2913",
+      "bytes": 2500
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/D2_SEARCH_CONTRACT.md",
+      "sha256": "8354cd693e2d1c4e4c1c85d0d9a3a919864df04ca0576f2670ebc121a272fe4c",
+      "bytes": 20472
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/G0_RESUME_CHECK.json",
+      "sha256": "ee7126164cb23c8df1724fb82a62de7940217597b83426e83969803a00eb7b74",
+      "bytes": 12473
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/G0_RESUME_CHECK_REPORT.md",
+      "sha256": "c71df2bf5e8c0a27c8d38921511298e66ff8c47b9f61942ae9a13106c2de84ef",
+      "bytes": 20428
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/PHASE_STATUS.json",
+      "sha256": "9c63445a991fdac2703f2cf0845d787add84c332e747e05b01d16ec37b1321ca",
+      "bytes": 3557
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/REPORT.md",
+      "sha256": "195b2707c3aaa8617bd91173fcba83f41bba07d94bf87b615eab500c3739a0a9",
+      "bytes": 15042
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/REPORT_G0G1_PHASE_RECORD.md",
+      "sha256": "e665c20c6e668d9be9b4524fe84ba216ea75cc2b8b53f249ad5a143a1ffba451",
+      "bytes": 11068
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/RESOURCE_SAFETY_LOG.md",
+      "sha256": "d37a9b1800fe0cd2f2474280f0fdaf4b0ec7209b665465c8c76ad635ab4a0634",
+      "bytes": 18835
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/SOURCE_AND_IDENTITY_AUDIT.md",
+      "sha256": "243fc6ab62ca11693f055a78e4d9efb873893759d54efd292ed7789a3d6e339d",
+      "bytes": 9772
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/logs/cost_run.txt",
+      "sha256": "4cb88d2e797701a5119d01c1d0bd34ac08d97c341f00423aa69ab849ba095a37",
+      "bytes": 1319
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/logs/d2_cost.json",
+      "sha256": "b542efb933209b5fbd3510ce093843c127741045ce5ce829a61933eeeca5e70e",
+      "bytes": 660
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/logs/d2_search_rep2.json",
+      "sha256": "236ff66d3fafab060d762cb5524e639d3d2a8708010340abc551cebbd80ffaf1",
+      "bytes": 4142
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/logs/d2_smoke.json",
+      "sha256": "75f5bdf4bf0f535dbd104f0af6c6964b0a7d43d5f3afdc40e48d9c8369675857",
+      "bytes": 3472
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/logs/postflight_after_g2.json",
+      "sha256": "a40ba701b435254ddf61e2a81166f09849eaaf34adeca24f965d76662768011c",
+      "bytes": 4737
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/logs/postflight_identity.json",
+      "sha256": "a40ba701b435254ddf61e2a81166f09849eaaf34adeca24f965d76662768011c",
+      "bytes": 4737
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/logs/preflight_identity.err",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/logs/preflight_identity.json",
+      "sha256": "a40ba701b435254ddf61e2a81166f09849eaaf34adeca24f965d76662768011c",
+      "bytes": 4737
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/logs/proof_rep1_projection.json",
+      "sha256": "f602ae778a2fc01f6d90af861602d56685ed95d8689bc3e68fa86575f00e3954",
+      "bytes": 105
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/logs/proof_rep2_projection.json",
+      "sha256": "5f0c4eba600e9226c9d6ac6216e3994a2911250718dda54557e614d225774a69",
+      "bytes": 105
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/logs/resource_postflight.txt",
+      "sha256": "c0ce20c5d455f4b8debb4f1b7b82677fbc97acbf2dafa6a15df9e06ace3a2aec",
+      "bytes": 1354
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/logs/resource_preflight.txt",
+      "sha256": "e1e020473b763ecfd145245ed73329b1d586d739df69b35a626c26eb64a2b893",
+      "bytes": 2872
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/logs/resume_identity.err",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/logs/resume_identity.json",
+      "sha256": "a40ba701b435254ddf61e2a81166f09849eaaf34adeca24f965d76662768011c",
+      "bytes": 4737
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/logs/resume_postflight_identity.json",
+      "sha256": "a40ba701b435254ddf61e2a81166f09849eaaf34adeca24f965d76662768011c",
+      "bytes": 4737
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/logs/resume_process_inventory.txt",
+      "sha256": "2ff47835d904196b0a55a0253b7738026a91aa3ab3e9272bbe19cf13efb58911",
+      "bytes": 4872
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/logs/resume_resource_samples.txt",
+      "sha256": "3a97e15a9076a6c38863ce9351e22470b23f4d88cacb9432f293398fd8032582",
+      "bytes": 7762
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/logs/retry_identity.json",
+      "sha256": "a40ba701b435254ddf61e2a81166f09849eaaf34adeca24f965d76662768011c",
+      "bytes": 4737
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/logs/retry_postflight_identity.json",
+      "sha256": "a40ba701b435254ddf61e2a81166f09849eaaf34adeca24f965d76662768011c",
+      "bytes": 4737
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/logs/retry_process_inventory.txt",
+      "sha256": "902d99c9b75198f237c6b12ab6fe785bf91049359c9d1194ad5ea42198ed74d7",
+      "bytes": 2212
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/logs/retry_resource_samples.txt",
+      "sha256": "a1ec3a33dd044143c0432753aed8e05c73f4cb73c6076f2f27b26749766622b5",
+      "bytes": 6144
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/probe/cost.test.ts",
+      "sha256": "7aa37f5f985b00339d87c312e14593aa7f6e571140537dcd3513a053454e39e1",
+      "bytes": 2101
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/probe/d2_lib.ts",
+      "sha256": "bebed1b511e24cc2e6ff5e008543b0ba8fc174c1a737f1aee7afc1039ac07e3b",
+      "bytes": 23276
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/probe/d2_pilot_preflight.py",
+      "sha256": "eaa9f8e847307d5975570f8129eb0d8628623523f3148b600cdcda6c2e6c3555",
+      "bytes": 5220
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/probe/determinism.test.ts",
+      "sha256": "2f26520ed1cdf5cf5b171cdfe381e2344db46bfbdaa9e04279defb00750f1262",
+      "bytes": 2048
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/probe/emit_manifest.py",
+      "sha256": "25bbd8489347c8610793f53e66c1d34857d6a13a9bda09119230cea0bbed8f85",
+      "bytes": 10095
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/probe/freeze.test.ts",
+      "sha256": "f9041dfb2b8c9c9dff5101576f870e5c57b15d166b2592f2be041dfe5dd0a3be",
+      "bytes": 8098
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/probe/postprocess.py",
+      "sha256": "51b69cac699b04b101baecc90aa35426a7720e9e05e31e46796ea109ab89e622",
+      "bytes": 10165
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/probe/prove.test.ts",
+      "sha256": "7560c95f0db6857f29449b2ce1f53bee5e50b3a8fd6f93bb3bf577c76fe12baa",
+      "bytes": 4639
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/probe/resource_snapshot.ps1",
+      "sha256": "4223fda2dd5aee08d6609038101e3111ee92303ffe14e342455b5480c0763f5e",
+      "bytes": 2124
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/probe/smoke.test.ts",
+      "sha256": "ae590489f8c16a20a6da31f1adfeb1873ca6327efb675ed3e531ab7e0057850e",
+      "bytes": 1675
+    },
+    {
+      "path": "PPC-D2-PCV-COUNTERLINE-01/probe/vitest.config.mts",
+      "sha256": "4fd85a9b79d0f5b46115a555eef29af4ba6f50a57f3b2d6d70e034a18693af8b",
+      "bytes": 399
+    }
+  ],
+  "selfExcluded": [
+    "SOURCE_MANIFEST.json",
+    "SHA256SUMS.txt"
+  ],
+  "phaseNotPerformedNote": "G2..G5 performed on the single authorised root G1T9/E1 only. FULL_8_STRATA_BATCH remains NOT_AUTHORIZED and PRODUCTION_WIRING = NO.",
+  "admissionLatest": "PASS",
+  "admissionHistory": [
+    {
+      "attempt": "PREFLIGHT",
+      "at": "2026-11-16T17:05:00+08:00",
+      "result": "FAIL",
+      "blocking": "FREE_PHYS_MB + FREE_COMMIT_MB"
+    },
+    {
+      "attempt": "RESUME-1",
+      "at": "2026-11-16T17:28:00+08:00",
+      "result": "FAIL",
+      "blocking": "FREE_PHYS_MB"
+    },
+    {
+      "attempt": "RETRY",
+      "at": "2026-11-16T19:13:00+08:00",
+      "result": "PASS",
+      "blocking": null
+    }
+  ],
+  "resumeCheck": {
+    "round": "PPC-D2-G0-RESUME-CHECK",
+    "generatedAt": "2026-11-16T17:31:20+08:00",
+    "siblingTask": {
+      "name": "PPC-MCTS-01B",
+      "declaredCompleteByUser": true,
+      "vitestAlive": 0,
+      "forkWorkerAlive": 0,
+      "orphanChildAlive": 0,
+      "exitConfirmed": true,
+      "lastProbeEnd": "2026-11-16T17:20:10+08:00",
+      "lastProbeEvidence": "Start 17:17:47 + Duration 142.76s; Test Files 2 passed (2); Tests 2 passed (2)",
+      "lastArtifactWrite": "2026-11-16T17:24+08:00",
+      "killedByThisRound": false
+    },
+    "samples": 9,
+    "freePhysMbMin": 1561,
+    "freePhysMbMax": 2297,
+    "freeCommitMbMin": 8195,
+    "freeCommitMbMax": 8710,
+    "committedMbMin": 25514,
+    "committedMbMax": 26029,
+    "pagefileUsedMbMin": 2008,
+    "pagefileUsedMbMax": 2501,
+    "processCountMin": 335,
+    "processCountMax": 350,
+    "gates": {
+      "PROCESS_GATE": "PASS",
+      "FREE_PHYS_GATE": "FAIL",
+      "FREE_COMMIT_GATE": "PASS",
+      "IDENTITY_GATE": "PASS",
+      "RESOURCE_ADMISSION": "FAIL",
+      "RESOURCE_ADMISSION_BLOCKING_ITEM": "FREE_PHYS_MB",
+      "freePhysShortfallMBAtBestSample": 1799,
+      "freeCommitMarginMBAtWorstSample": 3
+    },
+    "heavyWorkerCount": 0,
+    "externalBuildSessionPresent": true,
+    "d2SearchStarted": false
+  },
+  "retryCheck": {
+    "attempt": "RETRY",
+    "window": "2026-11-16T19:13:00..19:13:34+08:00",
+    "samples": 6,
+    "freePhysMbMin": 5428,
+    "freePhysMbMax": 5841,
+    "freeCommitMbMin": 18649,
+    "freeCommitMbMax": 18661,
+    "committedMbMin": 15563,
+    "committedMbMax": 15575,
+    "pagefileUsedMbMin": 333,
+    "pagefileUsedMbMax": 373,
+    "processCountMin": 268,
+    "processCountMax": 270,
+    "gates": {
+      "PROCESS_GATE": "PASS",
+      "FREE_PHYS_GATE": "PASS",
+      "FREE_COMMIT_GATE": "PASS",
+      "IDENTITY_GATE": "PASS",
+      "RESOURCE_ADMISSION": "PASS"
+    },
+    "heavyWorkerCount": 0,
+    "externalBuildSessionPresent": false,
+    "systemRebooted": false,
+    "d2SearchStarted": false,
+    "d2SearchStartedAfterRetry": true,
+    "noteAfterRetry": "Admission PASS at RETRY; G2 pilot executed afterwards under explicit user instruction."
+  },
+  "pilot": {
+    "ROUND": "PPC-D2-PCV-COUNTERLINE-01",
+    "PHASE": "D2_SINGLE_ROOT_PILOT",
+    "PILOT_ROOT": "G1T9",
+    "PILOT_ARM": "E1",
+    "DEPTH_TURNS": 2,
+    "SEARCH_MODE": "FIXED_DEPTH_D2",
+    "D2_SEARCH_COMPLETED": true,
+    "D2_NODES": 2727890,
+    "D2_LEAF_NODES": 8213463,
+    "D2_CHANCE_NODES": 83263,
+    "D2_SEARCH_MS": 217108.023,
+    "D2_VALUE": -999990.9999999992,
+    "D2_MATE": "mouse",
+    "ROOT_ACTIONS_TOTAL": 4,
+    "ROOT_ACTIONS_EXACT": 4,
+    "COMPLETE_CAT_PLANS": 4,
+    "PLAN_IDENTITY_FAILURES": 0,
+    "CANDIDATES_FROZEN": 4,
+    "UNIQUE_FRONTIERS": 1,
+    "H0_REFUTED": 4,
+    "H0_UNRESOLVED": 0,
+    "H1_SURVIVAL_PROVEN": 0,
+    "H1_UNRESOLVED": 0,
+    "PROVEN_TACTICAL_RESCUE": 0,
+    "CHANCE_COMPLETE": true,
+    "VERIFY_FAILURES": 0,
+    "FALSE_PROVEN": 0,
+    "ZERO_REPETITIONS_IN_SEARCH": true,
+    "PROOF_REP_MATCH": true,
+    "SEARCH_REP_MATCH": true,
+    "PRODUCTION_SOURCE_CHANGED": "NO",
+    "GAME_RULES_CHANGED": "NO",
+    "SEARCH_MATH_CHANGED": "NO",
+    "H1_CHANGED": "NO",
+    "100MS_150MS_CHANGED": "NO",
+    "HEAVY_WORKER_CONCURRENCY": 1,
+    "SERIAL_FRESH_REPETITIONS": true,
+    "SELF_PLAY": "NOT_PERFORMED",
+    "FULL_REGRESSION": "NOT_PERFORMED",
+    "COMMIT": "NO",
+    "PUSH": "NO",
+    "MERGE": "NO",
+    "FULL_8_STRATA_BATCH": "NOT_AUTHORIZED",
+    "PRODUCTION_WIRING": "NO",
+    "STOP_FOR_CHATGPT_REVIEW": true,
+    "RSS_AFTER_MB": 288.6,
+    "HEAP_USED_AFTER_MB": 104.3,
+    "V8_HEAP_EXPANDED": "NO"
+  }
+}

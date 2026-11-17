@@ -1,0 +1,237 @@
+{
+  "round": "PPC-P2-PREPARED-TRANSITION-01",
+  "preRegisteredCriteria": {
+    "correctnesGate": "identical fixed-workload results",
+    "noRegressionGate": "B/A CI95 upper <= 1.05",
+    "positiveSpeedup": "B/A CI95 upper < 1.00",
+    "strongSpeedup": "B/A CI95 upper <= 0.98",
+    "aaGate": "A/A CI95 inside [1/1.05, 1.05]"
+  },
+  "protocol": {
+    "roots": 24,
+    "frozenRootFixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+    "d1": {
+      "depthTurns": 1,
+      "maxNodes": 10000,
+      "deadline": null,
+      "leaf": "explicit evaluateCorrectedHoleForCat",
+      "tt": true,
+      "alphaBeta": true,
+      "moveOrdering": true,
+      "maxThreatExtensions": 0,
+      "capturePlan": true
+    },
+    "atomicUnit": "one fresh Node process per arm per repetition, fully serial",
+    "primaryStatistic": "median of 5 in-process sweeps of the frozen D1 protocol (24 roots, maxNodes=10000)",
+    "sweepsPerProcess": 5,
+    "aaRepetitions": 20,
+    "abRepetitions": 20,
+    "heavyWorkerConcurrency": 1
+  },
+  "aa": {
+    "geometricMeanRatio": 0.9954525748434875,
+    "ci95": [
+      0.9879607827318281,
+      1.0030011778630548
+    ],
+    "medianRatio": 0.9972012357768089,
+    "worst": 1.029911728281875,
+    "best": 0.9685617589750792,
+    "interpretation": "Same source on both arms. The interval is +-0.8 %, i.e. the host resolves a 1 % effect at 95 % confidence with this protocol."
+  },
+  "ab": {
+    "geometricMeanRatio": 0.9149602414466868,
+    "ci95": [
+      0.9026941658332639,
+      0.9273929921275345
+    ],
+    "medianRatio": 0.9152217324315409,
+    "speedupPct": 8.503975855331324,
+    "worst": 0.9899851817884586,
+    "best": 0.8727008783763338,
+    "rootsSlowerThanBaseline": 0,
+    "rootsFasterThanBaseline": 24,
+    "slowestRoot": {
+      "id": "G1T9",
+      "medianAMs": 5.363299999999981,
+      "medianBMs": 5.0586000000000695,
+      "geoRatio": 0.9462833373264136,
+      "ci95": [
+        0.9279048860593849,
+        0.9650257994700407
+      ]
+    },
+    "fastestRoot": {
+      "id": "G1T4",
+      "medianAMs": 3.095299999999952,
+      "medianBMs": 2.697200000000066,
+      "geoRatio": 0.8686812197641586,
+      "ci95": [
+        0.8542055218446007,
+        0.8834022284723962
+      ]
+    }
+  },
+  "gates": {
+    "AA_CALIBRATION": "PASS",
+    "CORRECTNESS_GATE": "PASS",
+    "NO_REGRESSION_GATE": "PASS",
+    "POSITIVE_SPEEDUP_EVIDENCE": "YES",
+    "STRONG_SPEEDUP_EVIDENCE": "YES"
+  },
+  "realTime": {
+    "authority": "DIAGNOSTIC ONLY",
+    "whyRepeated": "Pass 1 reported plans 22→23, fallback 2→1 and a single changed root (G1T1). Pass 2, identical code and command, reported 23→23, 1→1 and a different changed root (G1T3). A 100 ms cliff cannot be sampled once. Neither sample was discarded; both are kept and 3 more were added.",
+    "samples": 5,
+    "perRun": [
+      {
+        "run": 1,
+        "rawFile": "_raw/deadline_integration_run1.json",
+        "rawSha256": "0947ae5eb8591fa4d93e165b3267b0c9ccc7ef1849e82e0add5f97be38772714",
+        "totalNodeRatio": 1.081318,
+        "perRootMedianNodeRatio": 1.1359,
+        "planned": {
+          "baseline": 22,
+          "candidate": 23
+        },
+        "fallbackLogged": {
+          "baseline": 2,
+          "candidate": 1
+        },
+        "changedRootIds": [
+          "G1T1"
+        ],
+        "medianTurnWallMs": {
+          "baseline": 151.02,
+          "candidate": 151.05
+        }
+      },
+      {
+        "run": 2,
+        "rawFile": "_raw/deadline_integration_run2.json",
+        "rawSha256": "14439600ffa4c89ce80ffeaf89784023a2e62150407f9b636ccccf3a1872f7eb",
+        "totalNodeRatio": 1.107095,
+        "perRootMedianNodeRatio": 1.1563,
+        "planned": {
+          "baseline": 23,
+          "candidate": 23
+        },
+        "fallbackLogged": {
+          "baseline": 1,
+          "candidate": 1
+        },
+        "changedRootIds": [
+          "G2T6",
+          "G1T3"
+        ],
+        "medianTurnWallMs": {
+          "baseline": 150.88,
+          "candidate": 150.94
+        }
+      },
+      {
+        "run": 3,
+        "rawFile": "_raw/deadline_integration_run3.json",
+        "rawSha256": "a819f7316c5858c26d73cc75cc4903b96edb91629c74e2ab613d12146ec32910",
+        "totalNodeRatio": 1.16993,
+        "perRootMedianNodeRatio": 1.1961,
+        "planned": {
+          "baseline": 22,
+          "candidate": 23
+        },
+        "fallbackLogged": {
+          "baseline": 2,
+          "candidate": 1
+        },
+        "changedRootIds": [
+          "G2T6",
+          "G1T1",
+          "G1T3"
+        ],
+        "medianTurnWallMs": {
+          "baseline": 150.96,
+          "candidate": 151.05
+        }
+      },
+      {
+        "run": 4,
+        "rawFile": "_raw/deadline_integration_run4.json",
+        "rawSha256": "55cfd70b27fabce215981b944651978ef6ca799e909dfe9daa28273eb4621a1b",
+        "totalNodeRatio": 1.15686,
+        "perRootMedianNodeRatio": 1.2155,
+        "planned": {
+          "baseline": 23,
+          "candidate": 23
+        },
+        "fallbackLogged": {
+          "baseline": 1,
+          "candidate": 1
+        },
+        "changedRootIds": [
+          "G1T3"
+        ],
+        "medianTurnWallMs": {
+          "baseline": 151.02,
+          "candidate": 150.96
+        }
+      },
+      {
+        "run": 5,
+        "rawFile": "_raw/deadline_integration_run5.json",
+        "rawSha256": "ed83c9979797a6ce93d0b8b1c6ca2067dfa0900c758a80393617c86ab8be0b64",
+        "totalNodeRatio": 1.16262,
+        "perRootMedianNodeRatio": 1.1576,
+        "planned": {
+          "baseline": 23,
+          "candidate": 23
+        },
+        "fallbackLogged": {
+          "baseline": 1,
+          "candidate": 1
+        },
+        "changedRootIds": [],
+        "medianTurnWallMs": {
+          "baseline": 151.02,
+          "candidate": 151.02
+        }
+      }
+    ],
+    "robust": {
+      "moreNodesInEveryRun": true,
+      "totalNodeRatioRange": {
+        "min": 1.081318,
+        "max": 1.16993
+      },
+      "perRootMedianNodeRatioRange": {
+        "min": 1.1359,
+        "max": 1.2155
+      },
+      "medianTurnWallUnchanged": true,
+      "noRootEverLostAPlan": true,
+      "noNewFallbackEver": true
+    },
+    "fragile": {
+      "planOrDepthChangedRootsPerRun": [
+        1,
+        2,
+        3,
+        1,
+        0
+      ],
+      "range": {
+        "min": 0,
+        "max": 3
+      },
+      "unionOfChangedRootIds": [
+        "G1T1",
+        "G1T3",
+        "G2T6"
+      ],
+      "note": "Which roots change — and whether any changes at all — flips run to run. This gate therefore does NOT support \"the optimisation produces better plans\"; it only supports \"it explores more within the same budget\"."
+    },
+    "conclusion": "MORE_SEARCH_WITHIN_100MS = YES (candidate explores more nodes in 5/5 runs, median turn wall unchanged). BETTER_VERIFIED_DECISION = NONE: which roots change plan/depth flips run to run (0-3 per run), so this gate cannot be used to claim better play."
+  },
+  "conclusion": "PROVEN_SPEEDUP: fixed-workload wall clock drops to 91.50 % of baseline (95 % CI 90.27-92.74 %).",
+  "absoluteDeadlineGate": "BLOCKED",
+  "absoluteDeadlineNote": "A relative speedup on a fixed workload is NOT a physical 150 ms compliance claim. The M1/M2 distribution gates are a narrower measurement domain and are not used here."
+}

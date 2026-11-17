@@ -1,0 +1,531 @@
+{
+  "id": "S02_BUTTER_NEAR_TUNNEL",
+  "provenance": "SYNTHETIC",
+  "derivedFrom": "G6T2 terrain (real map), tactical fields replaced",
+  "hypothesis": "黄油紧贴传送通道时，通道本身成为「取油捷径」，猫需要把通道算进封锁成本。",
+  "note": null,
+  "legalActionsAtConstruction": [
+    "U",
+    "D",
+    "L",
+    "T"
+  ],
+  "state": {
+    "board": [
+      [
+        {
+          "type": "tunnel",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "tunnel",
+          "hasButter": false
+        }
+      ],
+      [
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "box",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "piece": "mouse",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        }
+      ],
+      [
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "box",
+          "hasButter": false
+        },
+        {
+          "type": "box",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "box",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        }
+      ],
+      [
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "piece": "cat",
+          "hasButter": false
+        },
+        {
+          "type": "box",
+          "hasButter": false
+        },
+        {
+          "type": "pile",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "box",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        }
+      ],
+      [
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "pile",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        }
+      ],
+      [
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "box",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        }
+      ],
+      [
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "box",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "box",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "pile",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        }
+      ],
+      [
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "box",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "mouse_hole",
+          "hasButter": false
+        },
+        {
+          "type": "mouse_hole",
+          "hasButter": false
+        }
+      ],
+      [
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "pile",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "box",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "box",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "mouse_hole",
+          "hasButter": false
+        },
+        {
+          "type": "mouse_hole",
+          "hasButter": false
+        }
+      ],
+      [
+        {
+          "type": "tunnel",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "empty",
+          "hasButter": false
+        },
+        {
+          "type": "tunnel",
+          "hasButter": false
+        }
+      ]
+    ],
+    "config": {
+      "boardSize": 10,
+      "mouseHole": {
+        "r": 7,
+        "c": 8,
+        "size": 2
+      },
+      "boxCount": 12,
+      "pileCount": 4,
+      "butterCount": 2,
+      "mouseStart": {
+        "r": 7,
+        "c": 8
+      },
+      "catStart": {
+        "r": 1,
+        "c": 1
+      },
+      "mouseBaseMoves": 4,
+      "mouseCarryingMoves": 3,
+      "mouseSkillExtraMoves": 3,
+      "catBaseMoves": 4,
+      "gameMode": "single",
+      "difficulty": "hard"
+    },
+    "gameMode": "single",
+    "phase": "playing",
+    "currentPlayer": "cat",
+    "catPosition": {
+      "r": 3,
+      "c": 3
+    },
+    "mousePosition": {
+      "r": 1,
+      "c": 6
+    },
+    "catMovesLeft": 4,
+    "mouseMovesLeft": 0,
+    "butterPositions": [
+      {
+        "r": 0,
+        "c": 1
+      }
+    ],
+    "pendingButterSpawns": [],
+    "pendingButterPlacementDebt": 0,
+    "mouseHasButter": false,
+    "mouseSkillActive": false,
+    "trapPosition": null,
+    "catTrapsRemaining": 1,
+    "blockedTunnels": [],
+    "message": "",
+    "tunnelExitChoices": [],
+    "catActionLog": [],
+    "gameEventLog": [],
+    "lastHardSearch": null,
+    "hardSearchHistory": [],
+    "hardProgressGuardMemory": {
+      "version": 1,
+      "previousNoProgressLoop": false,
+      "previousSignature": {
+        "catStart": "1,1",
+        "catEnd": "3,3",
+        "plan": "TDRRD",
+        "boxHash": "..........|..X.......|....XX.X..|....X...X.|..........|...X......|...X.X....|.X........|...X..X...|..........",
+        "trap": "1,1"
+      },
+      "previousPlanLabel": "TDRRD",
+      "previousCatStart": "1,1",
+      "previousCatEnd": "3,3",
+      "mouseTurnObserved": true,
+      "previousRootKey": "t__e__e__e__e__e__e__e__e__tm_e__ec_b__e__e__e__e__e__e__e__e__e__e__b__e__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#1,1#0,9#4#0#1,6|2,6##0#0#0#_#1###10:4:3:3:4:2:single:hard",
+      "previousEndKey": "3,3"
+    }
+  },
+  "summary": {
+    "phase": "playing",
+    "currentPlayer": "cat",
+    "cat": "3,3",
+    "mouse": "1,6",
+    "catMovesLeft": 4,
+    "mouseMovesLeft": 0,
+    "mouseHasButter": false,
+    "mouseSkillActive": false,
+    "butterPositions": [
+      "0,1"
+    ],
+    "pendingButterSpawns": [],
+    "pendingButterPlacementDebt": 0,
+    "trapPosition": null,
+    "catTrapsRemaining": 1,
+    "blockedTunnels": []
+  }
+}

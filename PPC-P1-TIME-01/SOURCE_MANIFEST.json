@@ -1,0 +1,124 @@
+{
+  "task": "PPC-P1-TIME-01 — Hard Cat Turn-Wide Absolute Deadline Closure",
+  "capturedAt": "2026-11-12",
+  "branch": "ppc/p1-id-state-identity-fix",
+  "head": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+  "headUnchanged": true,
+  "worktreeBase": "P1-ID candidate tree (uncommitted), i.e. 48eaac6 + the P1-ID transposition.ts change",
+  "note": "The comparison baseline for THIS round is the P1-ID candidate worktree, NOT bare HEAD. No commit, push, merge, rebase, reset, clean or stash was performed.",
+
+  "p1IdCandidate": {
+    "file": "src/game/ai/transposition.ts",
+    "sha256": "7b4aa8eb3fab994a4abc77fdf38800ab2a5f9da57d5eb33a1b37075e106c2d64",
+    "preserved": true,
+    "note": "Byte-identical to the value recorded in PPC-P1-ID-01/REPORT.md. Not touched this round."
+  },
+
+  "files": [
+    {
+      "path": "src/game/ai/deadlineContext.ts",
+      "role": "modified",
+      "baselineBlobSha256": "dfab888bd40787a35145e82a546cf4c3228adf2c47f6aa8233edaf8205cf6e3c",
+      "candidateSha256": "ced449445d70d1ba88cb20d88415b3c641d670aa886536fcacefa36b4aa50235",
+      "delta": "+99 / -1",
+      "summary": "Adds TurnDeadlineIdentity + makeTurnDeadlineIdentity + mainSearchWindowOpen; exports the one monotonic clock (monotonicNow, previously the private defaultClock with a different Date.now fallback)."
+    },
+    {
+      "path": "src/game/ai/hardTurnPlanner.ts",
+      "role": "modified",
+      "baselineBlobSha256": "71c845b6e28afae9a795c7e01e932a8866180ef8a61432c42c382d6e7609cad5",
+      "candidateSha256": "27b1ce6dc62234d0c822b2b0b6341205ac189b5f76d7662a5d29d9e17ded75ff",
+      "delta": "+55 / -8",
+      "summary": "HardTurnPlanOptions.turnDeadline; main deadline and turn/sidecar/guard wall are inherited absolute instants when an identity is supplied; the clock comes from the identity."
+    },
+    {
+      "path": "src/game/engine.ts",
+      "role": "modified",
+      "baselineBlobSha256": "ed72d0c92e0ef140cba1b8cd8def3b4e30b3df741fb233efd14f756456bae0f5",
+      "candidateSha256": "dbb5377af22a6471e31c899f9debe896e9e74a629f4fb50a47753bd492810f3e",
+      "delta": "+77 / -6",
+      "summary": "computeCatAiTrajectory(state, now) mints ONE identity per Hard turn and threads it into the first plan and all three fallback sites; catAiMove(state, turnDeadline?) refuses to start a search once the turn's main window is closed and goes straight to the legacy heuristic."
+    },
+    {
+      "path": "src/game/ai/transposition.ts",
+      "role": "unchanged-carried-from-P1-ID",
+      "candidateSha256": "7b4aa8eb3fab994a4abc77fdf38800ab2a5f9da57d5eb33a1b37075e106c2d64",
+      "delta": "0 this round"
+    }
+  ],
+
+  "newTests": [
+    {
+      "path": "src/game/ai/__tests__/hardTurnAbsoluteDeadline.test.ts",
+      "sha256": "4ada71d726f907adf5e589d8eac83bdae8d16de82b6ed6385318fec53cdfb877",
+      "tests": 13,
+      "gates": ["TIME-2", "TIME-4", "TIME-6", "TIME-7", "TIME-8"]
+    },
+    {
+      "path": "src/game/ai/__tests__/hardTurnAbsoluteDeadlineEngine.test.ts",
+      "sha256": "6822a91e4ee058ea46994beb5425df03eb6a47469df370b050a89d51c4842b39",
+      "tests": 11,
+      "gates": ["TIME-2 (engine)", "TIME-3", "TIME-5", "TIME-7"]
+    }
+  ],
+
+  "fixtures": [
+    {
+      "path": "src/game/ai/__tests__/fixtures/ppcId01-human-roots.json",
+      "sha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "origin": "PPC-NEXTGEN-01/research/log-forensics/human_roots.json (24 roots)",
+      "frozen": true,
+      "modifiedThisRound": false
+    },
+    {
+      "path": "src/game/ai/__tests__/fixtures/ppcTime01-baseline-planner.json",
+      "sha256": "2c1bab71e11ac59aab2eb2acc93fe221359d44d5e50a90b0651d59ca6c673885",
+      "origin": "Captured this round on the PRE-FIX tree (see PPC-P1-TIME-01/probe/capture_baseline.test.ts)",
+      "frozen": true,
+      "modifiedSinceCapture": false,
+      "note": "P1-ID D1 工件 was NOT regenerated (PPC_P1_ID_CAPTURE was not re-run)."
+    },
+    {
+      "path": "PPC-P1-TIME-01/fixtures/ppcTime01-baseline-fallback-reentry.json",
+      "sha256": "4d354e81fffa7a5a25867dd3f9d9b6f4eb90bd331f7fdaf8dbda55d5571667a1",
+      "origin": "PRE-FIX capture, stub planner + real trajectory",
+      "ladder": { "complete": 1, "truncated": 4, "empty": 5, "invalid": 5 },
+      "receivedAbsoluteDeadlineOnEveryCall": false
+    },
+    {
+      "path": "PPC-P1-TIME-01/fixtures/ppcTime01-postfix-fallback-shared.json",
+      "sha256": "40db7900066df37f8e76fa8f77b6b5fc82fe1e1c75ea0ed529e5bdcab8b18d43",
+      "origin": "POST-FIX capture, identical construction",
+      "ladder": { "complete": 1, "truncated": 4, "empty": 5, "invalid": 5 },
+      "distinctInheritedMainDeadlinesPerScenario": 1
+    }
+  ],
+
+  "untouchedProtected": {
+    "path": "纸制版作业-先打印好-后在纸上做作业-第二次.doc",
+    "tracked": false,
+    "note": "Never opened, moved, overwritten or committed."
+  },
+
+  "notModified": [
+    "GAMEPLAY.md",
+    "src/game/ai/evaluation.ts",
+    "src/game/ai/correctedHoleLeaf.ts",
+    "src/game/ai/planQuality.ts",
+    "src/game/ai/searchConfig.ts",
+    "src/game/ai/expectiminimax.ts",
+    "src/game/ai/boundedPlanRefutation.ts",
+    "src/game/ai/progressGuard.ts",
+    "src/game/ai/transposition.ts (content; only the P1-ID candidate is present)"
+  ],
+
+  "git": {
+    "commit": false,
+    "push": false,
+    "merge": false,
+    "rebase": false,
+    "reset": false,
+    "clean": false,
+    "stash": false
+  }
+}

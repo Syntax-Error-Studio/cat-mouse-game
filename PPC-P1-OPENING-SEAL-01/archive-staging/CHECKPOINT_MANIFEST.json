@@ -1,0 +1,153 @@
+{
+  "artifactId": "OPENING_SEAL_ARCHIVE_MANIFEST",
+  "round": "PPC-P1-OPENING-SEAL-01",
+  "base": {
+    "commit": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+    "checkpoint01": {
+      "path": "F:/ppc-checkpoints/PPC-P1-CHECKPOINT-01-candidate.tar.gz",
+      "sha256": "5cd732828856f2b3cd903cc20c584bbb0fec7906d283ec08415bd2653a9425d5",
+      "overwritten": false
+    },
+    "openingStack01": {
+      "path": "F:/ppc-checkpoints/PPC-P1-OPENING-STACK-01-candidate.tar.gz",
+      "sha256": "a6a7795c4f31533a8127ec9e8594a4974aad019b73f69a1421a5c04930c2d015",
+      "overwritten": false
+    }
+  },
+  "selfContained": false,
+  "selfContainedNote": "Only this round's resealed test bytes + sealing evidence. Rebuilding the candidate needs the base commit and the two prior archives; see RESTORE.md.",
+  "archiveSha256Location": "Not inside this archive (a package cannot contain its own hash). Recorded in PPC-P1-OPENING-SEAL-01/ARCHIVE_SHA256.txt after packaging, and re-derivable with sha256sum.",
+  "excludedOnPurpose": {
+    "RESTORE_VERIFICATION.json": "output of the verifier run against the shipped archive; regenerated on demand, embedding it would make the archive hash depend on a verification of itself",
+    "logs/*restore*": "restore-verification transcripts; kept repo-side because each run rewrites its own transcript, which would make the archive describe a different archive on every rebuild",
+    "archive-staging/": "the staging copy of these members"
+  },
+  "members": [
+    {
+      "repoPath": "PPC-P1-OPENING-SEAL-01/RESTORE.md",
+      "archivePath": "RESTORE.md",
+      "kind": "restore-instructions-corrected",
+      "sha256": "cbd5637c13466f1cdfe73283845c1f744e5ba4a55afeae1aa33ea97a65f73fe8",
+      "bytes": 6535,
+      "lineEnding": "LF"
+    },
+    {
+      "repoPath": "src/game/__tests__/openingFairnessStackSafety.test.ts",
+      "archivePath": "files/src/game/__tests__/openingFairnessStackSafety.test.ts",
+      "kind": "test-source-resealed",
+      "sha256": "f9ef6537858605e8381a503bc04fe7b09c6462774274f166f70c02b46458fa3f",
+      "bytes": 20127,
+      "lineEnding": "LF"
+    },
+    {
+      "repoPath": "PPC-P1-OPENING-SEAL-01/REPORT.md",
+      "archivePath": "evidence/PPC-P1-OPENING-SEAL-01/REPORT.md",
+      "kind": "report",
+      "sha256": "b7dc9c624ee35ddb9cc8091306c82d4be9b0c0d4a5c09305d66cf7a7289b8033",
+      "bytes": 12953,
+      "lineEnding": "LF"
+    },
+    {
+      "repoPath": "PPC-P1-OPENING-SEAL-01/SOURCE_MANIFEST.json",
+      "archivePath": "evidence/PPC-P1-OPENING-SEAL-01/SOURCE_MANIFEST.json",
+      "kind": "manifest",
+      "sha256": "0b3db0826127395539bd7fe81b59a579fda484132d0e8174363448d1993301c4",
+      "bytes": 14499,
+      "lineEnding": "LF"
+    },
+    {
+      "repoPath": "PPC-P1-OPENING-SEAL-01/EVIDENCE_CORRECTIONS.json",
+      "archivePath": "evidence/PPC-P1-OPENING-SEAL-01/EVIDENCE_CORRECTIONS.json",
+      "kind": "correction",
+      "sha256": "39b47b47e5dae3eb124057ae52b9bcbc6c0c7fe3ba3ff6879afdcad7fdad916e",
+      "bytes": 3260,
+      "lineEnding": "LF"
+    },
+    {
+      "repoPath": "PPC-P1-OPENING-SEAL-01/probe/build_source_manifest.mjs",
+      "archivePath": "evidence/PPC-P1-OPENING-SEAL-01/probe/build_source_manifest.mjs",
+      "kind": "probe",
+      "sha256": "5cba662e89b8424845e44886c32d3839aa652610b249a9e53d281674f8828171",
+      "bytes": 5705,
+      "lineEnding": "LF"
+    },
+    {
+      "repoPath": "PPC-P1-OPENING-SEAL-01/probe/verify_restore.mjs",
+      "archivePath": "evidence/PPC-P1-OPENING-SEAL-01/probe/verify_restore.mjs",
+      "kind": "probe",
+      "sha256": "fe07bcbdcdabde32f20d645fc99fcfb74ea0d1a1fa49a68a4c47e9cd51f1315c",
+      "bytes": 13970,
+      "lineEnding": "LF"
+    },
+    {
+      "repoPath": "PPC-P1-OPENING-SEAL-01/probe/build_archive.mjs",
+      "archivePath": "evidence/PPC-P1-OPENING-SEAL-01/probe/build_archive.mjs",
+      "kind": "probe",
+      "sha256": "27ef597f6b6722d3a625d85c19167a6ef98fd62a9eab3786134519a42426a3b3",
+      "bytes": 6585,
+      "lineEnding": "LF"
+    },
+    {
+      "repoPath": "PPC-P1-OPENING-SEAL-01/_raw/pre_state.json",
+      "archivePath": "evidence/PPC-P1-OPENING-SEAL-01/_raw/pre_state.json",
+      "kind": "raw",
+      "sha256": "60790535887aa11cab23a26f1e4bcbda451eda31b982c6d591fcc91c79314cc9",
+      "bytes": 8044,
+      "lineEnding": "LF"
+    },
+    {
+      "repoPath": "PPC-P1-OPENING-SEAL-01/_raw/status_seal.txt",
+      "archivePath": "evidence/PPC-P1-OPENING-SEAL-01/_raw/status_seal.txt",
+      "kind": "raw",
+      "sha256": "251b50ce9065a0f3547d0eb4a61afe60a29b1f0376c18452dd9dbc14a8eff61e",
+      "bytes": 1697,
+      "lineEnding": "LF"
+    },
+    {
+      "repoPath": "PPC-P1-OPENING-SEAL-01/_raw/from_archive/DEEP_STACK_RESULTS.pre_seal.json",
+      "archivePath": "evidence/PPC-P1-OPENING-SEAL-01/_raw/from_archive/DEEP_STACK_RESULTS.pre_seal.json",
+      "kind": "raw",
+      "sha256": "ee74e832aba34fb72e68500ef18888506eb0e47bb7de1ef870d039948038cb41",
+      "bytes": 6425,
+      "lineEnding": "LF"
+    },
+    {
+      "repoPath": "PPC-P1-OPENING-SEAL-01/logs/01_sealed_test_file.log",
+      "archivePath": "evidence/PPC-P1-OPENING-SEAL-01/logs/01_sealed_test_file.log",
+      "kind": "log",
+      "sha256": "264c0f031ace952cae20ddfb692b7453a1f1c113a874f8d74f0b746f5f917ee5",
+      "bytes": 7638,
+      "lineEnding": "LF"
+    },
+    {
+      "repoPath": "PPC-P1-OPENING-SEAL-01/logs/02_source_manifest.log",
+      "archivePath": "evidence/PPC-P1-OPENING-SEAL-01/logs/02_source_manifest.log",
+      "kind": "log",
+      "sha256": "69be993ab2567f50c008de92344163ec1fb938f76de62fdec54217ba091a0e11",
+      "bytes": 191,
+      "lineEnding": "LF"
+    },
+    {
+      "repoPath": "PPC-P1-OPENING-SEAL-01/logs/05_related_suites.log",
+      "archivePath": "evidence/PPC-P1-OPENING-SEAL-01/logs/05_related_suites.log",
+      "kind": "log",
+      "sha256": "df9f5ff61f1957b9cc17009735704ec8d55409a5c3a3c44d164afa105ef0e502",
+      "bytes": 3834,
+      "lineEnding": "LF"
+    },
+    {
+      "repoPath": "PPC-P1-OPENING-SEAL-01/logs/07_tsc.log",
+      "archivePath": "evidence/PPC-P1-OPENING-SEAL-01/logs/07_tsc.log",
+      "kind": "log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "lineEnding": "LF"
+    }
+  ],
+  "totals": {
+    "files": 15,
+    "bytes": 111463,
+    "CRLF": 0,
+    "LF": 15
+  }
+}

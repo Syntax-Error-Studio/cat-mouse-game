@@ -1,0 +1,121 @@
+{
+  "round": "PPC-P1-PLAN-01",
+  "branch": "ppc/p1-id-state-identity-fix",
+  "head": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+  "workingTreeDiffStat": "src/game/ai/deadlineContext.ts | 99 +++++++++++++++++++++++++++++++++++++++++-\n src/game/ai/expectiminimax.ts  |  6 ++-\n src/game/ai/hardTurnPlanner.ts | 55 ++++++++++++++++++++---\n src/game/ai/planQuality.ts     | 26 ++++++++++-\n src/game/ai/transposition.ts   | 44 ++++++++++++++++++-\n src/game/engine.ts             | 77 +++++++++++++++++++++++++++++---\n 6 files changed, 289 insertions(+), 18 deletions(-)",
+  "files": [
+    {
+      "path": "src/game/ai/planBound.ts",
+      "role": "NEW — the single proven plan-action bound",
+      "sha256": "99c269f90e3d7a10abaf389d95ad25d14f586a05dc1899d439834064ae3bfcfd",
+      "bytes": 4193
+    },
+    {
+      "path": "src/game/ai/planQuality.ts",
+      "role": "CHANGED — buildPlanForFirstAction + extractBestCatTurnPlan default cap",
+      "sha256": "c777b1bc877d45cbab6a0e77fe091ec2a0d6522fa8a483a563b666e8ede07442",
+      "bytes": 26557
+    },
+    {
+      "path": "src/game/ai/expectiminimax.ts",
+      "role": "CHANGED — buildCatTurnPlan default cap",
+      "sha256": "42b6e71f0cf784c7072a4e11abb3408b7c922d9e8a746a787ddf0046b3917d1c",
+      "bytes": 107383
+    },
+    {
+      "path": "src/game/ai/transposition.ts",
+      "role": "P1-ID-01 preserved (must be 7b4aa8eb…)",
+      "sha256": "7b4aa8eb3fab994a4abc77fdf38800ab2a5f9da57d5eb33a1b37075e106c2d64",
+      "bytes": 6784
+    },
+    {
+      "path": "src/game/ai/deadlineContext.ts",
+      "role": "P1-TIME-01 preserved",
+      "sha256": "ced449445d70d1ba88cb20d88415b3c641d670aa886536fcacefa36b4aa50235",
+      "bytes": 14411
+    },
+    {
+      "path": "src/game/ai/hardTurnPlanner.ts",
+      "role": "P1-TIME-01 preserved",
+      "sha256": "27b1ce6dc62234d0c822b2b0b6341205ac189b5f76d7662a5d29d9e17ded75ff",
+      "bytes": 36060
+    },
+    {
+      "path": "src/game/engine.ts",
+      "role": "P1-TIME-01 preserved",
+      "sha256": "dbb5377af22a6471e31c899f9debe896e9e74a629f4fb50a47753bd492810f3e",
+      "bytes": 188461
+    },
+    {
+      "path": "src/game/ai/forcedLossTieBreak.ts",
+      "role": "consumer, unchanged",
+      "sha256": "a27c91f90adbb1e415b5350668304d0d85036f5091b1b648693e72ac88b2cf03",
+      "bytes": 5204
+    },
+    {
+      "path": "src/game/ai/simulator.ts",
+      "role": "rule adapter, unchanged",
+      "sha256": "6d24d4f36d9f7e076fa36c9460ec51c674f1006f9cae00f7f5fb64771516df32",
+      "bytes": 8365
+    },
+    {
+      "path": "src/game/ai/legalActions.ts",
+      "role": "rule adapter, unchanged",
+      "sha256": "c32fda291329ed192391ace961b8783e2e36d79e84b60f148ca6c296c05cf1c5",
+      "bytes": 2851
+    },
+    {
+      "path": "src/game/ai/boundedPlanRefutation.ts",
+      "role": "sidecar, unchanged",
+      "sha256": "42423439390a39b02c99ea2b23bd739a58e065dbd8ac92d1f0300f7a1add4d80",
+      "bytes": 48681
+    },
+    {
+      "path": "src/game/ai/progressGuard.ts",
+      "role": "guard, unchanged",
+      "sha256": "619a012572f2aefba5400c7bbddb17e4d4f608d897816278e44ed8ccde922914",
+      "bytes": 13668
+    },
+    {
+      "path": "src/game/ai/evaluation.ts",
+      "role": "leaf evaluator, unchanged",
+      "sha256": "e5246fa9d9976468fad3130b66216b3c214b4f786e9408b9306718bcc1cf8dd3",
+      "bytes": 33959
+    },
+    {
+      "path": "src/game/ai/__tests__/planTurnActionBound.test.ts",
+      "role": "NEW — PLAN-0..PLAN-9 gates",
+      "sha256": "691ff9002cf92b1facf22354d2d325a8ac23efa1cc2359b781e21d219171595a",
+      "bytes": 21958
+    },
+    {
+      "path": "src/game/ai/__tests__/planActionBoundFixtures.ts",
+      "role": "NEW — shared fixtures",
+      "sha256": "1da29be5572955c9158d25c92aa08fdbebed91cabeb4d6517614bf692c643985",
+      "bytes": 11302
+    },
+    {
+      "path": "src/game/ai/__tests__/fixtures/ppcId01-human-roots.json",
+      "role": "frozen roots (P1-ID-01)",
+      "sha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "bytes": 264328
+    },
+    {
+      "path": "src/game/ai/__tests__/fixtures/ppcId01-baseline-d1.json",
+      "role": "frozen D1 baseline (P1-ID-01)",
+      "sha256": "80635906377dbe1e96aa6ef5bf80e48c2da22c213c19f51b205ca0d0438b8467",
+      "bytes": 42327
+    },
+    {
+      "path": "src/game/ai/__tests__/fixtures/ppcTime01-baseline-planner.json",
+      "role": "frozen planner baseline (P1-TIME-01)",
+      "sha256": "2c1bab71e11ac59aab2eb2acc93fe221359d44d5e50a90b0651d59ca6c673885",
+      "bytes": 25658
+    }
+  ],
+  "protected": {
+    "transposition.ts": "7b4aa8eb3fab994a4abc77fdf38800ab2a5f9da57d5eb33a1b37075e106c2d64",
+    "transposition_expected": "7b4aa8eb3fab994a4abc77fdf38800ab2a5f9da57d5eb33a1b37075e106c2d64",
+    "transposition_ok": true
+  }
+}

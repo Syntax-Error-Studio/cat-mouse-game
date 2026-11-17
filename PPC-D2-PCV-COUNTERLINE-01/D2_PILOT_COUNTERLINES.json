@@ -1,0 +1,1509 @@
+{
+  "round": "PPC-D2-PCV-COUNTERLINE-01",
+  "phase": "G2_COUNTERLINES",
+  "rootId": "G1T9",
+  "marker": "PRINCIPAL_COUNTERLINE_NOT_EXHAUSTIVE_PROOF",
+  "note": "One principal mouse line per frontier branch, taken from ctx.planBranches. A single principal line is NOT a proof over all mouse strategies, and a CHANCE fork is not collapsed: every outcome is recorded in steps[].outcomes.",
+  "candidates": [
+    {
+      "legalIndex": 0,
+      "rootAction": "U",
+      "planString": "UDDR",
+      "extracted": true,
+      "frontierOk": true,
+      "frontierCount": 1,
+      "frontierIdx": [
+        1
+      ],
+      "counterlines": [
+        {
+          "marker": "PRINCIPAL_COUNTERLINE_NOT_EXHAUSTIVE_PROOF",
+          "frontierIndex": 0,
+          "frontierStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+          "line": [
+            "R",
+            "S",
+            "R",
+            "R",
+            "R",
+            "R"
+          ],
+          "lineString": "RSRRRR",
+          "steps": [
+            {
+              "step": 0,
+              "fromStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+              "player": "mouse",
+              "action": "R",
+              "branchOfState": "DETERMINISTIC",
+              "outcomes": [
+                {
+                  "weight": 1,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__em_e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,4#0#2#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 2,
+                  "terminal": null
+                }
+              ],
+              "stopReason": null
+            },
+            {
+              "step": 1,
+              "fromStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__em_e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,4#0#2#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+              "player": "mouse",
+              "action": "S",
+              "branchOfState": "DETERMINISTIC",
+              "outcomes": [
+                {
+                  "weight": 1,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__em_e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,4#0#5#5,5|8,5##0#0#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 5,
+                  "terminal": null
+                }
+              ],
+              "stopReason": null
+            },
+            {
+              "step": 2,
+              "fromStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__em_e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,4#0#5#5,5|8,5##0#0#1#1,1#0###10:4:3:3:4:2:single:hard",
+              "player": "mouse",
+              "action": "R",
+              "branchOfState": "CHANCE",
+              "outcomes": [
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#1,3:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#1,4:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#1,5:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#1,6:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#2,1:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#2,2:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#2,3:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#2,4:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#3,1:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#3,2:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#3,3:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#3,4:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#3,5:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#3,6:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#4,1:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#4,3:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#4,4:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#4,6:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#4,7:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#5,1:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#5,2:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#5,7:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#6,1:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#6,2:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#6,4:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#7,1:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#7,2:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#7,3:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#8,1:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#8,2:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                }
+              ],
+              "stopReason": null
+            },
+            {
+              "step": 3,
+              "fromStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#1,3:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+              "player": "mouse",
+              "action": "R",
+              "branchOfState": "DETERMINISTIC",
+              "outcomes": [
+                {
+                  "weight": 1,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__e__em_e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,6#0#3#5,5#1,3:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 3,
+                  "terminal": null
+                }
+              ],
+              "stopReason": null
+            },
+            {
+              "step": 4,
+              "fromStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__e__em_e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,6#0#3#5,5#1,3:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+              "player": "mouse",
+              "action": "R",
+              "branchOfState": "DETERMINISTIC",
+              "outcomes": [
+                {
+                  "weight": 1,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__e__e__em_m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,7#0#2#5,5#1,3:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 2,
+                  "terminal": null
+                }
+              ],
+              "stopReason": null
+            },
+            {
+              "step": 5,
+              "fromStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__e__e__em_m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,7#0#2#5,5#1,3:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+              "player": "mouse",
+              "action": "R",
+              "branchOfState": "DETERMINISTIC",
+              "outcomes": [
+                {
+                  "weight": 1,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__e__e__e__mm_m__t__e__e__e__e__e__e__e__e__t__#single#mouse_wins#mouse#2,8#8,8#0#2#5,5#1,3:0#0#0#0#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 2,
+                  "terminal": "mouse"
+                }
+              ],
+              "stopReason": null
+            }
+          ],
+          "reachedCatTurn": false,
+          "terminal": "mouse",
+          "complete": true,
+          "stopReason": "TERMINAL_MOUSE",
+          "missingBranchEntries": [],
+          "chanceForkCount": 1
+        }
+      ]
+    },
+    {
+      "legalIndex": 1,
+      "rootAction": "D",
+      "planString": "DUDR",
+      "extracted": true,
+      "frontierOk": true,
+      "frontierCount": 1,
+      "frontierIdx": [
+        1
+      ],
+      "counterlines": [
+        {
+          "marker": "PRINCIPAL_COUNTERLINE_NOT_EXHAUSTIVE_PROOF",
+          "frontierIndex": 0,
+          "frontierStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+          "line": [
+            "R",
+            "S",
+            "R",
+            "R",
+            "R",
+            "R"
+          ],
+          "lineString": "RSRRRR",
+          "steps": [
+            {
+              "step": 0,
+              "fromStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+              "player": "mouse",
+              "action": "R",
+              "branchOfState": "DETERMINISTIC",
+              "outcomes": [
+                {
+                  "weight": 1,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__em_e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,4#0#2#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 2,
+                  "terminal": null
+                }
+              ],
+              "stopReason": null
+            },
+            {
+              "step": 1,
+              "fromStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__em_e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,4#0#2#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+              "player": "mouse",
+              "action": "S",
+              "branchOfState": "DETERMINISTIC",
+              "outcomes": [
+                {
+                  "weight": 1,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__em_e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,4#0#5#5,5|8,5##0#0#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 5,
+                  "terminal": null
+                }
+              ],
+              "stopReason": null
+            },
+            {
+              "step": 2,
+              "fromStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__em_e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,4#0#5#5,5|8,5##0#0#1#1,1#0###10:4:3:3:4:2:single:hard",
+              "player": "mouse",
+              "action": "R",
+              "branchOfState": "CHANCE",
+              "outcomes": [
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#1,3:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#1,4:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#1,5:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#1,6:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#2,1:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#2,2:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#2,3:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#2,4:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#3,1:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#3,2:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#3,3:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#3,4:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#3,5:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#3,6:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#4,1:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#4,3:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#4,4:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#4,6:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#4,7:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#5,1:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#5,2:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#5,7:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#6,1:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#6,2:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#6,4:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#7,1:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#7,2:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#7,3:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#8,1:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#8,2:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                }
+              ],
+              "stopReason": null
+            },
+            {
+              "step": 3,
+              "fromStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#1,3:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+              "player": "mouse",
+              "action": "R",
+              "branchOfState": "DETERMINISTIC",
+              "outcomes": [
+                {
+                  "weight": 1,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__e__em_e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,6#0#3#5,5#1,3:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 3,
+                  "terminal": null
+                }
+              ],
+              "stopReason": null
+            },
+            {
+              "step": 4,
+              "fromStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__e__em_e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,6#0#3#5,5#1,3:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+              "player": "mouse",
+              "action": "R",
+              "branchOfState": "DETERMINISTIC",
+              "outcomes": [
+                {
+                  "weight": 1,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__e__e__em_m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,7#0#2#5,5#1,3:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 2,
+                  "terminal": null
+                }
+              ],
+              "stopReason": null
+            },
+            {
+              "step": 5,
+              "fromStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__e__e__em_m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,7#0#2#5,5#1,3:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+              "player": "mouse",
+              "action": "R",
+              "branchOfState": "DETERMINISTIC",
+              "outcomes": [
+                {
+                  "weight": 1,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__e__e__e__mm_m__t__e__e__e__e__e__e__e__e__t__#single#mouse_wins#mouse#2,8#8,8#0#2#5,5#1,3:0#0#0#0#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 2,
+                  "terminal": "mouse"
+                }
+              ],
+              "stopReason": null
+            }
+          ],
+          "reachedCatTurn": false,
+          "terminal": "mouse",
+          "complete": true,
+          "stopReason": "TERMINAL_MOUSE",
+          "missingBranchEntries": [],
+          "chanceForkCount": 1
+        }
+      ]
+    },
+    {
+      "legalIndex": 2,
+      "rootAction": "L",
+      "planString": "LDRR",
+      "extracted": true,
+      "frontierOk": true,
+      "frontierCount": 1,
+      "frontierIdx": [
+        1
+      ],
+      "counterlines": [
+        {
+          "marker": "PRINCIPAL_COUNTERLINE_NOT_EXHAUSTIVE_PROOF",
+          "frontierIndex": 0,
+          "frontierStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+          "line": [
+            "R",
+            "S",
+            "R",
+            "R",
+            "R",
+            "R"
+          ],
+          "lineString": "RSRRRR",
+          "steps": [
+            {
+              "step": 0,
+              "fromStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+              "player": "mouse",
+              "action": "R",
+              "branchOfState": "DETERMINISTIC",
+              "outcomes": [
+                {
+                  "weight": 1,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__em_e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,4#0#2#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 2,
+                  "terminal": null
+                }
+              ],
+              "stopReason": null
+            },
+            {
+              "step": 1,
+              "fromStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__em_e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,4#0#2#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+              "player": "mouse",
+              "action": "S",
+              "branchOfState": "DETERMINISTIC",
+              "outcomes": [
+                {
+                  "weight": 1,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__em_e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,4#0#5#5,5|8,5##0#0#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 5,
+                  "terminal": null
+                }
+              ],
+              "stopReason": null
+            },
+            {
+              "step": 2,
+              "fromStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__em_e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,4#0#5#5,5|8,5##0#0#1#1,1#0###10:4:3:3:4:2:single:hard",
+              "player": "mouse",
+              "action": "R",
+              "branchOfState": "CHANCE",
+              "outcomes": [
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#1,3:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#1,4:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#1,5:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#1,6:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#2,1:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#2,2:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#2,3:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#2,4:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#3,1:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#3,2:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#3,3:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#3,4:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#3,5:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#3,6:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#4,1:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#4,3:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#4,4:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#4,6:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#4,7:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#5,1:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#5,2:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#5,7:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#6,1:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#6,2:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#6,4:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#7,1:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#7,2:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#7,3:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#8,1:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#8,2:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                }
+              ],
+              "stopReason": null
+            },
+            {
+              "step": 3,
+              "fromStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#1,3:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+              "player": "mouse",
+              "action": "R",
+              "branchOfState": "DETERMINISTIC",
+              "outcomes": [
+                {
+                  "weight": 1,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__e__em_e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,6#0#3#5,5#1,3:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 3,
+                  "terminal": null
+                }
+              ],
+              "stopReason": null
+            },
+            {
+              "step": 4,
+              "fromStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__e__em_e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,6#0#3#5,5#1,3:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+              "player": "mouse",
+              "action": "R",
+              "branchOfState": "DETERMINISTIC",
+              "outcomes": [
+                {
+                  "weight": 1,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__e__e__em_m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,7#0#2#5,5#1,3:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 2,
+                  "terminal": null
+                }
+              ],
+              "stopReason": null
+            },
+            {
+              "step": 5,
+              "fromStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__e__e__em_m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,7#0#2#5,5#1,3:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+              "player": "mouse",
+              "action": "R",
+              "branchOfState": "DETERMINISTIC",
+              "outcomes": [
+                {
+                  "weight": 1,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__e__e__e__mm_m__t__e__e__e__e__e__e__e__e__t__#single#mouse_wins#mouse#2,8#8,8#0#2#5,5#1,3:0#0#0#0#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 2,
+                  "terminal": "mouse"
+                }
+              ],
+              "stopReason": null
+            }
+          ],
+          "reachedCatTurn": false,
+          "terminal": "mouse",
+          "complete": true,
+          "stopReason": "TERMINAL_MOUSE",
+          "missingBranchEntries": [],
+          "chanceForkCount": 1
+        }
+      ]
+    },
+    {
+      "legalIndex": 3,
+      "rootAction": "R",
+      "planString": "RUDD",
+      "extracted": true,
+      "frontierOk": true,
+      "frontierCount": 1,
+      "frontierIdx": [
+        1
+      ],
+      "counterlines": [
+        {
+          "marker": "PRINCIPAL_COUNTERLINE_NOT_EXHAUSTIVE_PROOF",
+          "frontierIndex": 0,
+          "frontierStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+          "line": [
+            "R",
+            "S",
+            "R",
+            "R",
+            "R",
+            "R"
+          ],
+          "lineString": "RSRRRR",
+          "steps": [
+            {
+              "step": 0,
+              "fromStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+              "player": "mouse",
+              "action": "R",
+              "branchOfState": "DETERMINISTIC",
+              "outcomes": [
+                {
+                  "weight": 1,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__em_e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,4#0#2#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 2,
+                  "terminal": null
+                }
+              ],
+              "stopReason": null
+            },
+            {
+              "step": 1,
+              "fromStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__em_e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,4#0#2#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+              "player": "mouse",
+              "action": "S",
+              "branchOfState": "DETERMINISTIC",
+              "outcomes": [
+                {
+                  "weight": 1,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__em_e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,4#0#5#5,5|8,5##0#0#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 5,
+                  "terminal": null
+                }
+              ],
+              "stopReason": null
+            },
+            {
+              "step": 2,
+              "fromStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__em_e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,4#0#5#5,5|8,5##0#0#1#1,1#0###10:4:3:3:4:2:single:hard",
+              "player": "mouse",
+              "action": "R",
+              "branchOfState": "CHANCE",
+              "outcomes": [
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#1,3:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#1,4:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#1,5:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#1,6:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#2,1:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#2,2:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#2,3:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#2,4:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#3,1:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#3,2:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#3,3:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#3,4:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#3,5:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#3,6:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#4,1:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#4,3:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#4,4:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#4,6:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#4,7:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#5,1:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#5,2:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#5,7:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#6,1:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#6,2:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#6,4:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#7,1:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#7,2:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#7,3:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#8,1:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                },
+                {
+                  "weight": 0.03333333333333333,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#8,2:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 4,
+                  "terminal": null
+                }
+              ],
+              "stopReason": null
+            },
+            {
+              "step": 3,
+              "fromStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,5#0#4#5,5#1,3:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+              "player": "mouse",
+              "action": "R",
+              "branchOfState": "DETERMINISTIC",
+              "outcomes": [
+                {
+                  "weight": 1,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__e__em_e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,6#0#3#5,5#1,3:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 3,
+                  "terminal": null
+                }
+              ],
+              "stopReason": null
+            },
+            {
+              "step": 4,
+              "fromStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__e__em_e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,6#0#3#5,5#1,3:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+              "player": "mouse",
+              "action": "R",
+              "branchOfState": "DETERMINISTIC",
+              "outcomes": [
+                {
+                  "weight": 1,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__e__e__em_m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,7#0#2#5,5#1,3:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 2,
+                  "terminal": null
+                }
+              ],
+              "stopReason": null
+            },
+            {
+              "step": 5,
+              "fromStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__e__e__em_m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,7#0#2#5,5#1,3:0#0#1#1#1,1#0###10:4:3:3:4:2:single:hard",
+              "player": "mouse",
+              "action": "R",
+              "branchOfState": "DETERMINISTIC",
+              "outcomes": [
+                {
+                  "weight": 1,
+                  "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__e__e__e__mm_m__t__e__e__e__e__e__e__e__e__t__#single#mouse_wins#mouse#2,8#8,8#0#2#5,5#1,3:0#0#0#0#1,1#0###10:4:3:3:4:2:single:hard",
+                  "player": "mouse",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 2,
+                  "terminal": "mouse"
+                }
+              ],
+              "stopReason": null
+            }
+          ],
+          "reachedCatTurn": false,
+          "terminal": "mouse",
+          "complete": true,
+          "stopReason": "TERMINAL_MOUSE",
+          "missingBranchEntries": [],
+          "chanceForkCount": 1
+        }
+      ]
+    }
+  ]
+}

@@ -3362,7 +3362,20 @@ test('T1E-B A/B/K. NO_DEADLINE and far-deadline searches return the EXACT same r
   expect(far.completedDepth).toBe(nd.completedDepth);
   expect(far.attemptedDepth).toBe(nd.attemptedDepth);
   expect(far.completed).toBe(nd.completed);
-});
+  // PPC-P1-CLOSURE-FIX-01 — explicit budget, matching the sibling E/F/G and L
+  // cases above. This case runs TWO ~1M-node depth-4 exhaustive searches with no
+  // pruning, so it was only ever passing on the global 30 s default while the
+  // machine happened to be fast enough. Same sources, measured on this machine:
+  //   frozen HEAD arm   42.4 s (30 s budget ⇒ FAIL), 39.7 s (240 s budget ⇒ PASS)
+  //   candidate         43.4 s (30 s budget ⇒ FAIL), 41.9 s (240 s budget ⇒ PASS)
+  //   2026-11-12 run    18.5 s
+  //   this round, later 17.2 s
+  // i.e. a 2.4× throughput swing with byte-identical code, spanning both sides of
+  // the default budget. That makes the default the wrong contract for this case:
+  // the assertions are exact and deterministic, only the wall clock is not. So
+  // the budget is widened and NOTHING else changes — node count, depth,
+  // TT/ordering/alpha-beta flags, and every assertion stay exactly as they were.
+}, 120_000);
 
 test('T1E-B §15. NO_DEADLINE adds ZERO clock reads (the seam returns before clock and counter)', () => {
   const s = t1ebBig();

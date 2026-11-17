@@ -1,0 +1,232 @@
+{
+  "artifactId": "REGRESSION_RESULTS",
+  "round": "PPC-CAT-STRATEGY-SEAL-01",
+  "phase": 8,
+  "generatedAt": "2026-11-15",
+  "head": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+  "branch": "ppc/p1-id-state-identity-fix",
+  "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+  "fixtureBytes": 264328,
+  "scope": "independent correctness seal of PPC-CAT-STRATEGY-01; research only; zero production edits",
+  "kernel": "PPC-CAT-STRATEGY-SEAL-01/probe/seal_lib.ts (prune DISABLED; separate catSurvive search; CHANCE=AND over all positive-probability outcomes; mode-dependent terminal polarity; terminal judged BEFORE horizon cut; node cap -> null -> UNRESOLVED)",
+  "suites": [
+    {
+      "id": "counterexamples",
+      "phase": 3,
+      "probe": "PPC-CAT-STRATEGY-SEAL-01/probe/counterexamples.test.ts",
+      "log": "PPC-CAT-STRATEGY-SEAL-01/logs/counterexamples_run.log",
+      "runCommand": "HEAVY_WORKER_CONCURRENCY=1 npx vitest run --config PPC-CAT-STRATEGY-SEAL-01/probe/vitest.config.mts --maxWorkers=1 --no-file-parallelism PPC-CAT-STRATEGY-SEAL-01/probe/counterexamples.test.ts",
+      "testFiles": 1,
+      "testsPassed": 7,
+      "testsFailed": 0,
+      "durationMs": 1030,
+      "tests": ["A", "B", "C", "D", "E", "F", "TERMINAL_BEFORE_HORIZON"],
+      "defectCoverage": {
+        "F1_invalid_negation": ["A", "B", "C", "D", "E"],
+        "F2_terminal_polarity": ["TERMINAL_BEFORE_HORIZON", "B", "C"],
+        "resource_exhaustion_vs_verdict": ["F"]
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "recertify",
+      "phase": 4,
+      "probe": "PPC-CAT-STRATEGY-SEAL-01/probe/recertify.test.ts",
+      "log": "PPC-CAT-STRATEGY-SEAL-01/logs/recertify_g6t3_smoke.log",
+      "runCommand": "HEAVY_WORKER_CONCURRENCY=1 npx vitest run --config PPC-CAT-STRATEGY-SEAL-01/probe/vitest.config.mts --maxWorkers=1 --no-file-parallelism PPC-CAT-STRATEGY-SEAL-01/probe/recertify.test.ts",
+      "testFiles": 1,
+      "testsPassed": 3,
+      "testsFailed": 0,
+      "durationMs": 446020,
+      "tests": ["G6T2 root + openings + UURR/DRRR/DRDR + DR uniqueness", "G6T3 H0 mouse forced win + independent certificate", "aggregates STRATEGY_CERTIFICATE_VERIFICATION.json"],
+      "certificates": 2,
+      "allProven": true,
+      "result": "PASS"
+    },
+    {
+      "id": "cohort",
+      "phase": 5,
+      "probe": "PPC-CAT-STRATEGY-SEAL-01/probe/cohort.test.ts",
+      "log": "PPC-CAT-STRATEGY-SEAL-01/logs/cohort_run.log",
+      "runCommand": "HEAVY_WORKER_CONCURRENCY=1 npx vitest run --config PPC-CAT-STRATEGY-SEAL-01/probe/vitest.config.mts --maxWorkers=1 --no-file-parallelism PPC-CAT-STRATEGY-SEAL-01/probe/cohort.test.ts",
+      "testFiles": 1,
+      "testsPassed": 1,
+      "testsFailed": 0,
+      "durationMs": 167560,
+      "rootCount": 24,
+      "result": "PASS"
+    },
+    {
+      "id": "attribution",
+      "phase": 6,
+      "probe": "PPC-CAT-STRATEGY-SEAL-01/probe/attribution.test.ts",
+      "log": "PPC-CAT-STRATEGY-SEAL-01/logs/attribution_run.log",
+      "runCommand": "HEAVY_WORKER_CONCURRENCY=1 npx vitest run --config PPC-CAT-STRATEGY-SEAL-01/probe/vitest.config.mts --maxWorkers=1 --no-file-parallelism PPC-CAT-STRATEGY-SEAL-01/probe/attribution.test.ts",
+      "testFiles": 1,
+      "testsPassed": 1,
+      "testsFailed": 0,
+      "durationMs": 148840,
+      "result": "PASS"
+    }
+  ],
+  "totals": {
+    "testFiles": 4,
+    "testsPassed": 12,
+    "testsFailed": 0,
+    "allSuitesPass": true
+  },
+  "cohort": {
+    "artifact": "ROOT_CLASSIFICATION_V2.json",
+    "rootCount": 24,
+    "cap": 600000,
+    "horizon": { "H0": 1, "H1": 2, "cut": "cat node idx >= 2*H" },
+    "counts": {
+      "CAT_SURVIVAL_CERTIFIED_WITHIN_H1": 15,
+      "MOUSE_FORCED_WIN_WITHIN_H0": 4,
+      "MOUSE_FORCED_WIN_WITHIN_H1": 1,
+      "CAT_FORCED_WIN_WITHIN_H1": 0,
+      "CHANCE_DEPENDENT_OUTCOME": 0,
+      "UNRESOLVED": 4
+    },
+    "previousCounts": {
+      "CAT_SURVIVAL_CERTIFIED_WITHIN_H1": 18,
+      "MOUSE_FORCED_WIN_WITHIN_H0": 3,
+      "MOUSE_FORCED_WIN_WITHIN_H1": 3
+    },
+    "certificatesProven": 20,
+    "certificatesFailed": 0,
+    "policyMissesTotal": 0,
+    "unresolvedRoots": ["G6T2", "G2T7", "G1T5", "G1T8"],
+    "changedRoots": [
+      { "id": "G6T2", "previous": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1", "now": "UNRESOLVED", "cause": "F1: survive search truncated at cap 600000 (h1=null, cs=null); honest UNRESOLVED not PASS" },
+      { "id": "G2T7", "previous": "MOUSE_FORCED_WIN_WITHIN_H1", "now": "UNRESOLVED", "cause": "F1/F3: h1 and survive truncated at cap; previous mouse-H1 label not reproducible under corrected kernel" },
+      { "id": "G1T5", "previous": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1", "now": "UNRESOLVED", "cause": "F1: h0=false h1=false but survive=null (truncated); cleanest F1 demo - old !mouseForcesWin would wrongly certify survival" },
+      { "id": "G1T8", "previous": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1", "now": "UNRESOLVED", "cause": "F1: h0=false h1=false but survive=null (truncated); cleanest F1 demo" },
+      { "id": "G1T9", "previous": "MOUSE_FORCED_WIN_WITHIN_H1", "now": "MOUSE_FORCED_WIN_WITHIN_H0", "cause": "F2/F3 corrected: mouse forced win already at H0 (h0=true), stronger than previous H1 label" }
+    ],
+    "rootsReclassified": "24/24",
+    "noRootDeleted": true,
+    "capNotLowered": true,
+    "horizonNotReduced": true
+  },
+  "certificates": {
+    "artifact": "STRATEGY_CERTIFICATE_VERIFICATION.json",
+    "verifier": "seal_lib.ts verifyCatCertificate / verifyMouseCertificate (independent DFS, no shared boolean combinator, no prune)",
+    "proverVerifierIndependence": "prover=solve(); verifier=standalone walk(); share NO boolean-negation function",
+    "recertify": [
+      { "root": "G6T2", "prefix": "DRRR", "branch": 0, "question": "catSurvive H1", "side": "cat", "verdict": "PROVEN", "leaves": 117382, "branches": 31236, "chanceNodes": 549, "policyMisses": 0, "policySize": 3250 },
+      { "root": "G6T3", "question": "mouseForce H0", "side": "mouse", "verdict": "PROVEN", "leaves": 457, "branches": 45, "chanceNodes": 0, "maxDepth": 7, "policyMisses": 0, "policySize": 66 }
+    ],
+    "cohortProven": 20,
+    "allProven": true,
+    "contract": "every universal node re-enumerates ALL legal opponent actions and ALL positive-probability CHANCE outcomes; every existential node follows the extracted policy; missing policy = hard fail"
+  },
+  "attribution": {
+    "artifact": "E1_CORRECTED_HOLE_ATTRIBUTION.json",
+    "recommendation": "EVALUATOR_SHADOW_RECOMMENDATION.md",
+    "root": "G6T2",
+    "protocols": {
+      "faithful": "createSearchContext(rules,400000,TT,AB,ordering,0,false)",
+      "attribution": "createSearchContext(rules,8000000,false,false,false,0,false)+evalCache=undefined"
+    },
+    "faithfulVsAttributionMatch": true,
+    "attributionNodes": 1283054,
+    "attributionUniqueHorizonKeys": 25214,
+    "attributionTruncated": false,
+    "E1_D2_rootValues": [-658.2105263157898, -658.2105263157898, -658.2105263157898],
+    "E1_D2_distinct": 1,
+    "E1_D2_tie": true,
+    "E1_sharedDecisiveKeysAcrossAllRoots": 22,
+    "corrected_D2_rootValues": [-1145.4473684210525, -1054, -1145.4473684210525],
+    "corrected_D2_distinct": 2,
+    "corrected_sharedDecisiveKeysAcrossAllRoots": 0,
+    "holeControlIdentity": { "statement": "correctedTotal === E1total - 2*holeControl_E1", "leavesChecked": 25214, "maxAbsError": 0, "verified": true },
+    "D1_crossCheck": { "E1_value": -247.23684210526318, "corrected_value": -447.2368421052632, "delta": -200, "impliedHoleControlE1": 100, "decisiveLeafHoleControlE1": 100, "identityHolds": true },
+    "existingTempo": { "distinctAtD2Horizon": ["200.000000000"], "phase": "cat|4|0", "endStateContribution": -150, "discriminativePower": "NONE" },
+    "proposedCrossTurnTempo": {
+      "definition": "margin = ceil(catHoleGateDistance/catBaseMoves) - ceil(mouseWinRouteDistance/mouseBaseMoves)",
+      "endStates": [
+        { "plan": "UURR", "margin": 1, "verdict": "MOUSE_FORCED_WIN_WITHIN_H1" },
+        { "plan": "DRRR", "margin": -1, "verdict": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1" },
+        { "plan": "DRDR", "margin": -1, "verdict": "CHANCE_DEPENDENT_OUTCOME" }
+      ],
+      "discriminativePower": "directional (separates UURR from DRRR/DRDR); does NOT separate survival from chance-dependent",
+      "wiredToProduction": false
+    }
+  },
+  "sourceIntegrity": {
+    "artifact": "_raw/source_integrity.json",
+    "checkedModified": 29,
+    "modifiedMismatches": 0,
+    "depsChecked": 16,
+    "depsMismatches": 0,
+    "totalMismatches": 0,
+    "productionSourceChanged": false,
+    "gameRulesChanged": false,
+    "searchMathChanged": false,
+    "h1Changed": false,
+    "sidecarChanged": false,
+    "note": "15 src files show git ' M' = REAL uncommitted prior-round production changes (P1-ID / P2 / P1-CLOSURE-FIX), NOT CRLF artifacts: git diff --stat -- src = 1015 insertions / 219 deletions and git diff --ignore-cr-at-eol --stat -- src = SAME 1015+/219- (e.g. config.ts adds PPC-P1-CLOSURE-FIX-01 cat-move-budget validation importing MAX_CERTIFIABLE_CAT_MOVE_BUDGET from ./ai/planBound). All 15 byte-identical to frozen PPC-CAT-STRATEGY-01/SOURCE_MANIFEST.json (0 mismatches). NOT this round's edits: this seal wrote only to PPC-CAT-STRATEGY-SEAL-01/ (untracked) + F:/ppc-checkpoints/ (outside repo); HEAD unchanged 48eaac6c. PRODUCTION_SOURCE_CHANGED=NO holds relative to the frozen baseline sealed against.",
+    "gitWorkingTree": {
+      "head": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+      "branch": "ppc/p1-id-state-identity-fix",
+      "modifiedSrcFileCount": 15,
+      "diffStatInsertions": 1015,
+      "diffStatDeletions": 219,
+      "diffIgnoreCrAtEolInsertions": 1015,
+      "diffIgnoreCrAtEolDeletions": 219,
+      "realContentNotCrlf": true,
+      "coreAutocrlf": true,
+      "gitattributesPresent": false,
+      "allByteIdenticalToFrozenBaseline": true,
+      "changedByThisRound": false,
+      "thisRoundWriteScope": ["PPC-CAT-STRATEGY-SEAL-01/ (untracked)", "F:/ppc-checkpoints/ (outside repo)"]
+    }
+  },
+  "resourceSafety": {
+    "artifact": "RESOURCE_SAFETY_LOG.md",
+    "heavyWorkerConcurrency": 1,
+    "serialFreshRepetitions": true,
+    "fileParallelism": false,
+    "maxWorkers": 1,
+    "duplicateBenchmarkCheck": "REQUIRED",
+    "duplicateBenchmarkResult": "no benchmark for THIS repo; running reliability benchmark targets external docmap-studio port 3255, left running (killing external process = unauthorized destructive action)",
+    "absoluteDeadlineGate": "BLOCKED",
+    "elapsedMsInformationalOnly": true,
+    "archivesVerified": 4,
+    "archiveMismatch": 0
+  },
+  "verdict": {
+    "ROUND": "PPC-CAT-STRATEGY-SEAL-01",
+    "SOURCE_INTEGRITY": "PASS",
+    "QUANTIFIER_DUALITY_CORRECT": "YES",
+    "CHANCE_ALL_OUTCOMES_VALIDATED": "YES",
+    "HORIZON_TERMINAL_ORDER": "CORRECT",
+    "STRATEGY_CERTIFICATE_VERIFICATION": "PASS",
+    "G6T2_ROOT_CLASS": "UNRESOLVED",
+    "G6T2_DRRR_CATSURVIVE": "PROVEN",
+    "G6T2_UURR_MOUSEFORCEDWIN": "PROVEN",
+    "G6T2_DRDR": "CHANCE_DEPENDENT_OUTCOME",
+    "G6T2_DR_UNIQUE_SAFE_TWOSTEP": true,
+    "G6T3_ROOT_CLASS": "MOUSE_FORCED_WIN_WITHIN_H0",
+    "G6T3_CERTIFICATE": "PROVEN",
+    "ROOTS_RECLASSIFIED": "24/24",
+    "UNRESOLVED_ROOTS": 4,
+    "E1_D2_EQUALITY_CAUSE": "CONVERGENCE_ON_22_SHARED_DECISIVE_LEAVES_PLUS_HOLECONTROL_SIGN_BUG",
+    "CORRECTED_HOLE_CAUSAL_DIFFERENCE": "HOLECONTROL_SIGN_FLIP (corrected=E1-2*holeControl_E1, maxAbsError=0 over 25214 leaves); breaks convergence (0 shared decisive), D separates -1054 vs U/L -1145.447",
+    "NEW_TEMPO_FEATURE_JUSTIFIED": "YES_AS_DIRECTIONAL_SHADOW (existing tempo constant +200/-150 zero discriminative power; proposed cross-turn margin +1/-1/-1 aligns with verdicts; NOT a complete classifier - chance-dependence requires certificate)",
+    "PRODUCTION_SOURCE_CHANGED": "NO",
+    "GAME_RULES_CHANGED": "NO",
+    "SEARCH_MATH_CHANGED": "NO",
+    "H1_CHANGED": "NO",
+    "SIDECAR_CHANGED": "NO",
+    "ABSOLUTE_DEADLINE_GATE": "BLOCKED",
+    "NEW_EFFICACY_AUTHORITY": "NONE",
+    "HEAVY_WORKER_CONCURRENCY": 1,
+    "SERIAL_FRESH_REPETITIONS": "TRUE",
+    "DUPLICATE_BENCHMARK_CHECK": "REQUIRED",
+    "COMMIT": "NO",
+    "PUSH": "NO",
+    "MERGE": "NO"
+  }
+}

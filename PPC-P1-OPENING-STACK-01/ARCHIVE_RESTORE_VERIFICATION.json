@@ -1,0 +1,44 @@
+{
+  "artifactId": "RESTORE_VERIFICATION",
+  "round": "PPC-P1-OPENING-STACK-01",
+  "archive": "F:/ppc-checkpoints/PPC-P1-OPENING-STACK-01-candidate.tar.gz",
+  "archiveBytes": 85538,
+  "archiveSha256": "a6a7795c4f31533a8127ec9e8594a4974aad019b73f69a1421a5c04930c2d015",
+  "extractedTo": "F:\\ppc-checkpoints\\restore-verify-opening-stack\\restore-DJGNWO",
+  "method": "tar -xzf into a fresh mkdtemp OUTSIDE the repository, then byte-level comparison against CHECKPOINT_MANIFEST.json. `git apply` is deliberately NOT used: in this repo it can report success while doing nothing.",
+  "members": 29,
+  "sha256": {
+    "ok": 29,
+    "bad": []
+  },
+  "bytes": {
+    "ok": 29,
+    "bad": []
+  },
+  "lineEndings": {
+    "ok": 29,
+    "bad": []
+  },
+  "fileList": {
+    "expected": 31,
+    "found": 31,
+    "missing": [],
+    "extra": []
+  },
+  "worktreeEquality": [
+    {
+      "path": "src/game/openingFairness.ts",
+      "archive": "9d19279cafefe545ea6fd2d49cd2d412986c0002977c7b37cf3e72787efd7908",
+      "worktree": "9d19279cafefe545ea6fd2d49cd2d412986c0002977c7b37cf3e72787efd7908",
+      "equal": true
+    },
+    {
+      "path": "src/game/__tests__/openingFairnessStackSafety.test.ts",
+      "archive": "fade32eef38a454a73d3acf70c3d9aaa94adfb035f439bcb312181d442820a03",
+      "worktree": "fade32eef38a454a73d3acf70c3d9aaa94adfb035f439bcb312181d442820a03",
+      "equal": true
+    }
+  ],
+  "worktreeTouched": false,
+  "CHECKPOINT_RESTORABILITY": "PASS"
+}

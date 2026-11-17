@@ -6,6 +6,7 @@ import { stateKey } from './transposition';
 import { generateLegalSearchActions } from './legalActions';
 import { type SearchContext } from './expectiminimax';
 import { evaluateForCat } from './evaluation';
+import { catMoveBudgetRejectionReason, hasCertifiableCatMoveBudget, maxCatTurnPlanActions } from './planBound';
 
 /**
  * PPC-FLT-FIX-1: the leaf evaluator the searching context ACTUALLY used.
@@ -77,19 +78,69 @@ export function dirKey(a: SearchAction): string {
   return a.type;
 }
 
+/** The one place the direction-opposite relation is defined. */
+const OPPOSITE_DIRECTION: Record<string, string> = {
+  ArrowUp: 'ArrowDown',
+  ArrowDown: 'ArrowUp',
+  ArrowLeft: 'ArrowRight',
+  ArrowRight: 'ArrowLeft',
+};
+
+/**
+ * Direction-key level opposite test.
+ *
+ * Exists so a prefix that is only remembered as a DIRECTION KEY (see
+ * `PlanPrefixContext.prevCatStepKey`) can be scored against a real action
+ * without manufacturing a dummy `SearchAction` for it. Keeps the opposite table
+ * single-sourced.
+ */
+export function isOppositeDirection(aKey: string, bKey: string): boolean {
+  return OPPOSITE_DIRECTION[aKey] === bKey;
+}
+
 export function isImmediateReversal(a: SearchAction, b: SearchAction): boolean {
   if (a.type !== 'catStep' || b.type !== 'catStep') return false;
-  const OPPOSITES: Record<string, string> = {
-    ArrowUp: 'ArrowDown',
-    ArrowDown: 'ArrowUp',
-    ArrowLeft: 'ArrowRight',
-    ArrowRight: 'ArrowLeft',
-  };
-  return OPPOSITES[a.direction!.key] === b.direction!.key;
+  return isOppositeDirection(a.direction!.key, b.direction!.key);
 }
 
 export function countReversals(plan: SearchAction[]): number {
   let count = 0;
+  for (let i = 1; i < plan.length; i++) {
+    if (isImmediateReversal(plan[i - 1], plan[i])) count++;
+  }
+  return count;
+}
+
+/**
+ * PPC-P1-QUALITY-01 — TRUE reversal count of a whole cat-turn plan, including
+ * the edge that leaves an externally-supplied prefix.
+ *
+ * Why this exists: `countReversals(plan)` walks pairs INSIDE one array only.
+ * The DP used to score a branch as
+ *
+ *     actionReversal + countReversals(childPlan)
+ *
+ * which charges the prefix→action edge and the interior of the child, but NOT
+ * the edge `action → childPlan[0]` that the concatenation silently creates.
+ * Two exactly-equal branches could therefore be ranked by a number that omitted
+ * one edge each, and the extractor returned the plan with MORE real reversals
+ * (registered as PPC-PLAN-001; see `BASELINE_REVERSAL_WITNESS.json`).
+ *
+ * Contract: given the prefix direction key and the FULL plan, every adjacent
+ * pair is charged exactly once —
+ *   1. prefix → plan[0]        (only when the prefix exists and both are steps)
+ *   2. plan[i-1] → plan[i]     (every interior pair, i = 1..n-1)
+ * There is no third source, so nothing can be counted twice. A non-`catStep`
+ * action (`catPlaceTrap`) never forms a reversal on either side: it is not a
+ * direction, so it breaks the chain rather than inventing an opposite.
+ */
+export function countPlanReversals(prefixCatStepKey: string | null, plan: SearchAction[]): number {
+  if (plan.length === 0) return 0;
+  let count = 0;
+  const head = plan[0];
+  if (prefixCatStepKey !== null && head.type === 'catStep' && isOppositeDirection(prefixCatStepKey, head.direction!.key)) {
+    count++;
+  }
   for (let i = 1; i < plan.length; i++) {
     if (isImmediateReversal(plan[i - 1], plan[i])) count++;
   }
@@ -176,6 +227,20 @@ export function planFullTurnCompleteness(
   plan: SearchAction[],
   rules: RuleSet,
 ): PlanCompletionVerdict {
+  // PPC-P1-CLOSURE-FIX-01: the completeness invariant is stated over a turn that
+  // spends a discrete budget. On a non-certifiable `catMovesLeft` (fractional /
+  // NaN / ±Infinity / negative / a budget whose plan bound is not representable)
+  // every downstream test is meaningless: `NaN > 0` is false, so the residual
+  // check below would declare a truncated plan complete. Reject the ROOT before
+  // replaying anything.
+  const budgetRejection = catMoveBudgetRejectionReason(root.catMovesLeft);
+  if (budgetRejection !== null) {
+    return {
+      kind: 'TRUNCATED',
+      catMovesLeft: root.catMovesLeft,
+      reason: `invalid cat move budget (${budgetRejection})`,
+    };
+  }
   let cur = root;
   for (const a of plan) {
     const t = simulateSearchAction(cur, a, rules);
@@ -242,9 +307,17 @@ export function buildPlanForFirstAction(
   root: GameEngineState,
   firstAction: SearchAction,
   ctx: SearchContext,
-  maxLength = 8,
+  // PPC-P1-PLAN-01: one shared, proven bound (see `planBound.ts`) instead of the
+  // legacy constant 8 — the same number `buildCatTurnPlan` and
+  // `extractBestCatTurnPlan` use.
+  maxLength: number = maxCatTurnPlanActions(root),
 ): SearchAction[] {
   const plan: SearchAction[] = [];
+  // PPC-P1-CLOSURE-FIX-01: no plan at all on a non-certifiable budget. Returning
+  // `[]` (rather than a short "plausible" plan) is what makes every caller fail
+  // closed: `buildCandidate` turns it into `null`, and completeness is never
+  // asked about a turn whose budget is illegal.
+  if (!hasCertifiableCatMoveBudget(root)) return plan;
   // Reject a non-cat / no-op action outright. A no-op would otherwise "walk"
   // without consuming the cat's turn and could be certified as a complete plan.
   if (firstAction.type !== 'catStep' && firstAction.type !== 'catPlaceTrap') return plan;
@@ -420,6 +493,20 @@ interface PlanPrefixContext {
  * Memo key: (graphKey, prevCatStepKey) — correctly distinguishes the same
  * state under different prefix directions (e.g., after Down vs after Up).
  *
+ * PPC-P1-PLAN-01 — why the remaining capacity does NOT belong in the memo key.
+ * `maxLength` is decremented along the recursion, so two paths that reach the
+ * same state at different depths arrive with different remaining capacity. That
+ * would make the cached `bestPlan` context-dependent — UNLESS the capacity can
+ * never bind. It cannot: `maxCatTurnPlanActions(root)` is an upper bound on the
+ * length of ANY legal action sequence from `root`, so for a path that has
+ * already spent `k` actions the remaining capacity is `bound - k`, and
+ * `k + (actions from here) ≤ bound` gives `bound - k ≥ (actions from here)`.
+ * The cap is therefore a non-binding slack on every path, the `maxLength <= 0`
+ * cut can only be reached by an ILLEGAL sequence, and the memo entry is a
+ * function of (state, prefix) alone. The `maxLength` parameter keeps its
+ * meaning for a caller that explicitly asks for a shorter cap; it is simply
+ * never the binding constraint when it is the default.
+ *
  * Fallback: if graph lookup misses (TT hit or no tie), uses planBranches
  * single-action walk (same as buildCatTurnPlan).
  */
@@ -428,8 +515,13 @@ export function extractBestCatTurnPlan(
   rules: RuleSet,
   graph: EqualPrimaryGraph,
   planBranches: Map<string, SearchAction>,
-  maxLength = 8,
+  // PPC-P1-PLAN-01: same proven bound as every other extractor.
+  maxLength: number = maxCatTurnPlanActions(root),
 ): SearchAction[] {
+  // PPC-P1-CLOSURE-FIX-01: an illegal budget has no bound, so there is nothing
+  // to extract. Fail closed with an empty plan; callers keep whatever the
+  // search produced (or nothing), never a plan certified against a broken root.
+  if (!hasCertifiableCatMoveBudget(root)) return [];
   // Find the root's graph key. The root is at depth = the graph's depthTurns.
   // We need to discover which depthTurns the graph was recorded at.
   // The graph keys are `${stateKey}|${depthTurns}`. Try all possible depths.
@@ -477,6 +569,15 @@ function extractDp(
   if (state.phase !== GamePhase.Playing || state.currentPlayer !== PieceType.Cat) {
     return [];
   }
+  // PPC-P1-CLOSURE-FIX-01: defensive re-check per node. A child of a legal root
+  // always carries an integer budget (a catStep decrements by 1, `catPlaceTrap`
+  // keeps it, `endTurn` reseeds it from `config.catBaseMoves`), so this only
+  // fires if a state was hand-built outside the contract — and then it fails
+  // closed instead of extending the plan on an unsound bound.
+  if (!hasCertifiableCatMoveBudget(state)) return [];
+  // PPC-P1-PLAN-01: with the default cap this cut is unreachable for a legal
+  // sequence (see the memo-soundness note on `extractBestCatTurnPlan`); it stays
+  // as the explicit answer for a caller that asked for a shorter cap.
   if (maxLength <= 0) return [];
 
   const sk = stateKey(state);
@@ -515,13 +616,6 @@ function extractDp(
   for (const action of actionsToTry) {
     const trans = simulateSearchAction(state, action, rules);
 
-    // Compute reversal contribution of this action.
-    let actionReversal = 0;
-    if (action.type === 'catStep' && prefix.prevCatStepKey !== null) {
-      const dummyPrev: SearchAction = { type: 'catStep', direction: { key: prefix.prevCatStepKey, dr: 0, dc: 0, label: '' } };
-      if (isImmediateReversal(dummyPrev, action)) actionReversal = 1;
-    }
-
     // Build child prefix context.
     const childPrefix: PlanPrefixContext = {
       prevCatStepKey: action.type === 'catStep' ? action.direction!.key : null,
@@ -554,7 +648,14 @@ function extractDp(
     }
 
     const fullPlan = [action, ...childPlan];
-    const totalReversal = actionReversal + countReversals(childPlan);
+    // PPC-P1-QUALITY-01: score the CONCATENATED plan, not the two halves.
+    // The old form `actionReversal + countReversals(childPlan)` charges the
+    // prefix edge and the child's interior but drops the `action → childPlan[0]`
+    // edge that the concatenation creates, so an exactly-equal branch that
+    // walks back on itself could look as cheap as a straight line (PPC-PLAN-001).
+    // `countPlanReversals` walks every adjacent pair of `fullPlan` exactly once
+    // and is the single source of the reversal total.
+    const totalReversal = countPlanReversals(prefix.prevCatStepKey, fullPlan);
 
     if (totalReversal < bestReversal || (totalReversal === bestReversal && bestPlan.length === 0)) {
       bestPlan = fullPlan;

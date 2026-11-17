@@ -1,0 +1,57 @@
+{
+  "artifactId": "EVIDENCE_CORRECTIONS",
+  "round": "PPC-P1-OPENING-SEAL-01",
+  "scope": "Corrections to derived evidence only. No raw forensic record was modified.",
+  "corrections": [
+    {
+      "id": "SEAL-C1",
+      "file": "PPC-P1-OPENING-STACK-01/DEEP_STACK_RESULTS.json",
+      "jsonPath": "thresholdSweep.summary.preFixThrew",
+      "recordedValue": 0,
+      "correctedValue": 8,
+      "cause": "The deriving probe compared the raw outcome with an exact equality: thrPre.rows.filter((r) => r.outcome === 'THROW').length. The raw rows record the outcome as 'THROW RangeError', so the predicate matched nothing and the summary claimed 0 pre-fix throws even though 8 of the 10 budget rows threw.",
+      "derivation": "count of _raw/stack_threshold_pre.json rows whose outcome string starts with 'THROW' = 8 (1500, 2000, 2500, 3000, 4000, 6000, 20000, 100000). The two COMPLETED rows are 500 and 1000.",
+      "rawSource": {
+        "path": "PPC-P1-OPENING-STACK-01/_raw/stack_threshold_pre.json",
+        "sha256": "071440717d4473f0960a297ab2e805643dd26750e84f7f5f3ad0cb1855cb4ab6",
+        "modified": "NO"
+      },
+      "preCorrectionBytes": {
+        "recoveredFrom": "F:/ppc-checkpoints/PPC-P1-OPENING-STACK-01-candidate.tar.gz :: ./files/PPC-P1-OPENING-STACK-01/DEEP_STACK_RESULTS.json",
+        "copyKeptAt": "PPC-P1-OPENING-SEAL-01/_raw/from_archive/DEEP_STACK_RESULTS.pre_seal.json",
+        "sha256": "ee74e832aba34fb72e68500ef18888506eb0e47bb7de1ef870d039948038cb41"
+      },
+      "postCorrectionBytes": {
+        "sha256": "fed92afe875b80c8dfb355b90756516b5acdb035ef4ebbd4d59fb3a289490374"
+      },
+      "siblingFieldsRecomputed": {
+        "preFixCompleted": { "recorded": 2, "recomputed": 2, "verdict": "UNCHANGED_CORRECT" },
+        "postFixCompleted": { "recorded": 10, "recomputed": 10, "verdict": "UNCHANGED_CORRECT" },
+        "postFixThrew": { "recorded": 0, "recomputed": 0, "verdict": "UNCHANGED_CORRECT" },
+        "postFixAllUnknownNodeCap": { "recorded": true, "recomputed": true, "verdict": "UNCHANGED_CORRECT" }
+      },
+      "derivingProbeFixed": {
+        "path": "PPC-P1-OPENING-STACK-01/probe/assemble_results.mjs",
+        "lines": [118, 120],
+        "change": "outcome === 'THROW'  ->  String(outcome).startsWith('THROW')",
+        "note": "Fixed so a future re-run of the assembler cannot reproduce the wrong count. The evidence file itself was corrected by an explicit, auditable write, not by re-running the assembler (a re-run would have needed the full regression log to regenerate sibling artifacts)."
+      }
+    }
+  ],
+  "otherEvidenceRechecked": [
+    {
+      "file": "PPC-P1-OPENING-STACK-01/DEEP_STACK_RESULTS.json",
+      "jsonPath": "OS2.preFix",
+      "claim": "M=100000 threw RangeError from both certifyOpening and createGameState",
+      "matches": "PPC-P1-OPENING-STACK-01/_raw/baseline_witness_pre.json",
+      "verdict": "CONSISTENT"
+    },
+    {
+      "file": "PPC-P1-OPENING-STACK-01/DEEP_STACK_RESULTS.json",
+      "jsonPath": "OS2.postFix",
+      "claim": "M=100000 -> UNKNOWN / NODE_CAP / exploredNodes=20000 / createGameState state=null unverified NO_CERTIFIED_OPENING",
+      "matches": "PPC-P1-OPENING-STACK-01/_raw/baseline_witness_post.json",
+      "verdict": "CONSISTENT"
+    }
+  ]
+}

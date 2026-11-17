@@ -1,0 +1,124 @@
+{
+  "rows": [
+    {
+      "board": "corridor M=1",
+      "catMovesLeft": 1,
+      "catTrapsRemaining": 1,
+      "bound": 2,
+      "longestLegalSequence": 2,
+      "exceeded": false,
+      "dfsTruncated": false,
+      "visits": 3
+    },
+    {
+      "board": "corridor M=2",
+      "catMovesLeft": 2,
+      "catTrapsRemaining": 1,
+      "bound": 4,
+      "longestLegalSequence": 3,
+      "exceeded": false,
+      "dfsTruncated": false,
+      "visits": 10
+    },
+    {
+      "board": "corridor M=3",
+      "catMovesLeft": 3,
+      "catTrapsRemaining": 1,
+      "bound": 5,
+      "longestLegalSequence": 5,
+      "exceeded": false,
+      "dfsTruncated": false,
+      "visits": 26
+    },
+    {
+      "board": "corridor M=4",
+      "catMovesLeft": 4,
+      "catTrapsRemaining": 1,
+      "bound": 7,
+      "longestLegalSequence": 6,
+      "exceeded": false,
+      "dfsTruncated": false,
+      "visits": 70
+    },
+    {
+      "board": "corridor M=5",
+      "catMovesLeft": 5,
+      "catTrapsRemaining": 1,
+      "bound": 8,
+      "longestLegalSequence": 8,
+      "exceeded": false,
+      "dfsTruncated": false,
+      "visits": 175
+    },
+    {
+      "board": "corridor M=6",
+      "catMovesLeft": 6,
+      "catTrapsRemaining": 1,
+      "bound": 10,
+      "longestLegalSequence": 9,
+      "exceeded": false,
+      "dfsTruncated": false,
+      "visits": 461
+    },
+    {
+      "board": "corridor M=9",
+      "catMovesLeft": 9,
+      "catTrapsRemaining": 1,
+      "bound": 14,
+      "longestLegalSequence": 14,
+      "exceeded": false,
+      "dfsTruncated": false,
+      "visits": 7898
+    },
+    {
+      "board": "open M=2",
+      "catMovesLeft": 2,
+      "catTrapsRemaining": 1,
+      "bound": 4,
+      "longestLegalSequence": 3,
+      "exceeded": false,
+      "dfsTruncated": false,
+      "visits": 61
+    },
+    {
+      "board": "open M=3",
+      "catMovesLeft": 3,
+      "catTrapsRemaining": 1,
+      "bound": 5,
+      "longestLegalSequence": 5,
+      "exceeded": false,
+      "dfsTruncated": false,
+      "visits": 345
+    },
+    {
+      "board": "open M=4",
+      "catMovesLeft": 4,
+      "catTrapsRemaining": 1,
+      "bound": 7,
+      "longestLegalSequence": 6,
+      "exceeded": false,
+      "dfsTruncated": false,
+      "visits": 1781
+    },
+    {
+      "board": "open M=6",
+      "catMovesLeft": 6,
+      "catTrapsRemaining": 1,
+      "bound": 10,
+      "longestLegalSequence": 9,
+      "exceeded": false,
+      "dfsTruncated": false,
+      "visits": 45147
+    },
+    {
+      "board": "open M=6, no trap stock",
+      "catMovesLeft": 6,
+      "catTrapsRemaining": 0,
+      "bound": 10,
+      "longestLegalSequence": 6,
+      "exceeded": false,
+      "dfsTruncated": false,
+      "visits": 4436
+    }
+  ]
+}

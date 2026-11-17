@@ -8,7 +8,8 @@ import {
   type RefutationDiagnostics,
 } from './boundedPlanRefutation';
 import { finiteDeadline, makeControl, makeFiniteDeadline, markAbort,
-  type DeadlineContext, type SidecarControl } from './deadlineContext';
+  monotonicNow,
+  type DeadlineContext, type SidecarControl, type TurnDeadlineIdentity } from './deadlineContext';
 // G0.4F-2B-1.6 — M3-lite Progress Guard (imports the production helper + the
 // feature flag; NO ai-training/ imports).
 import {
@@ -204,6 +205,22 @@ export interface HardTurnPlanOptions {
     passMemory?: HardProgressGuardMemory | null;
     totalTurnBudgetMs?: number;
   };
+  /**
+   * PPC-P1-TIME-01 — the CAT TURN's absolute time identity (see
+   * `deadlineContext.TurnDeadlineIdentity`).
+   *
+   * When present, this call does NOT mint a window: `deadlineMs` for the main
+   * search becomes `turnDeadline.mainSearchDeadlineAtMs` and the sidecar/guard
+   * wall becomes `turnDeadline.totalTurnDeadlineAtMs`, both absolute and both
+   * belonging to the turn rather than to this call. A fallback re-plan in the
+   * same turn therefore spends the REMAINING time of the original window, and a
+   * call whose window has already closed cannot search at all.
+   *
+   * When absent, the call behaves exactly as before (it mints its own window
+   * from `now()`), which is correct for a standalone planner call that really
+   * does own its whole turn.
+   */
+  turnDeadline?: TurnDeadlineIdentity;
 }
 
 /**
@@ -221,9 +238,18 @@ export function planHardCatTurn(
   state: GameEngineState,
   opts: HardTurnPlanOptions,
 ): HardTurnPlan {
-  const now = opts.now ?? (typeof performance !== 'undefined' ? () => performance.now() : () => Date.now());
+  // PPC-P1-TIME-01: a turn identity carries THE clock of the turn, so a call
+  // that inherits one must not fall back to a second `performance.now()`
+  // expression — that is how two clocks end up measured against one deadline.
+  const now = opts.now ?? opts.turnDeadline?.now ?? monotonicNow;
+  // `t0` stays the per-CALL origin: it is what `elapsedMs` reports (the cost of
+  // this call), and changing that would silently redefine an existing metric.
   const t0 = now();
-  const deadlineMs = t0 + opts.timeBudgetMs;
+  // The DEADLINE, by contrast, belongs to the turn when one is inherited: an
+  // absolute instant computed once at turn entry, never `t0 + budget` again.
+  const mainDeadlineAtMs = opts.turnDeadline
+    ? opts.turnDeadline.mainSearchDeadlineAtMs
+    : t0 + opts.timeBudgetMs;
 
   const search = searchBestActionIterative(state, {
     rules: opts.rules,
@@ -237,7 +263,7 @@ export function planHardCatTurn(
     // omitted flag to `?? true`, so the OFF ruling only holds when set explicitly.
     useThreatOrdering: false,
     leafEvaluator: opts.leafEvaluator ?? evaluateForCat,
-    deadlineMs,
+    deadlineMs: mainDeadlineAtMs,
     now,
     // G0.3B FINAL: selective threat extension FAILED real-snapshot validation
     // (REAL Turn5: completedDepth 1→0, empty-plan fallback 10/20). Production
@@ -251,6 +277,11 @@ export function planHardCatTurn(
   let refutation: RefutationDiagnostics | undefined;
 
   // ---- G0.4F-2B-1.9BE-R1E §6/§8: ONE turn deadline per planner call ----
+  // PPC-P1-TIME-01: "per planner call" is now the FALLBACK case only. When the
+  // caller passes the cat turn's `TurnDeadlineIdentity`, the window below is the
+  // turn's own — minted once at turn entry — and a second planner call in the
+  // same turn re-uses it instead of minting another. See `HardTurnPlanOptions.
+  // turnDeadline`.
   // `plannerCallStart` + `totalTurnBudgetMs` is resolved to a FINITE_ABSOLUTE context
   // HERE, before any consumer exists, and that one object is what the bounded
   // refutation sidecar and the progress guard's rescue probe both receive. Neither of
@@ -268,10 +299,20 @@ export function planHardCatTurn(
   // numbers below are equal and there is literally one object for the whole turn. The
   // second construction only exists for a caller that omits the budget while enabling
   // one of the two consumers — where HEAD already ran two different walls.
-  const turnDeadline = makeFiniteDeadline(t0 + (sidecarBudgetMs ?? guardBudgetMs), now);
-  const guardDeadline = sidecarBudgetMs === guardBudgetMs
+  //
+  // PPC-P1-TIME-01: when the call inherits the turn's identity, that ONE absolute
+  // instant wins for both consumers. A fallback re-plan can therefore only spend
+  // what is LEFT of the turn, never a fresh 150 ms, and the guard cannot be handed
+  // a later wall than the sidecar.
+  const turnTotalDeadlineAtMs = opts.turnDeadline
+    ? opts.turnDeadline.totalTurnDeadlineAtMs
+    : t0 + (sidecarBudgetMs ?? guardBudgetMs);
+  const turnDeadline = makeFiniteDeadline(turnTotalDeadlineAtMs, now);
+  const guardDeadline = opts.turnDeadline
     ? turnDeadline
-    : makeFiniteDeadline(t0 + guardBudgetMs, now);
+    : (sidecarBudgetMs === guardBudgetMs
+      ? turnDeadline
+      : makeFiniteDeadline(t0 + guardBudgetMs, now));
 
   // ---- G0.3W sidecar (feature-flagged, default OFF) ----
   if (opts.refutation?.enabled) {

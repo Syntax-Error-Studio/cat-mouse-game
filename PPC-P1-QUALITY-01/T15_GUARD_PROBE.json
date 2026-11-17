@@ -1,0 +1,43 @@
+{
+  "round": "PPC-P1-QUALITY-01",
+  "root": "Game5 T15",
+  "depth1Plan": "DDLD",
+  "depth2Plan": "DRUL",
+  "depth2CompletedDepth": 2,
+  "previousCompletedPlan": "DDLD",
+  "previousCompletedDepth": 1,
+  "guardedPlan": "DRUL",
+  "guardDebug": {
+    "rescueApplied": false,
+    "originalPlan": "DRUL",
+    "rescuePlan": "",
+    "triggered": false,
+    "abortReason": "no_trigger"
+  },
+  "guardedActualPlan": "DDLD",
+  "guardedActualDebug": {
+    "rescueApplied": true,
+    "originalPlan": "DRUL",
+    "rescuePlan": "DDLD",
+    "triggered": true,
+    "abortReason": "none"
+  },
+  "trigger": {
+    "trigger": false,
+    "reasons": [
+      "SIGNATURE_DIFFERS"
+    ]
+  },
+  "reversals": {
+    "depth1Plan": 0,
+    "depth2Plan": 0,
+    "previousCompletedPlan": 0,
+    "guardedPlan": 0
+  },
+  "oldExpectations": {
+    "depth2Plan": "ULDR",
+    "previousCompletedPlan": "DDLD",
+    "guardedPlan": "DDLD",
+    "guardedOriginalPlan": "ULDR"
+  }
+}

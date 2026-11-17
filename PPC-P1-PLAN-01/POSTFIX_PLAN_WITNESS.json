@@ -1,0 +1,330 @@
+{
+  "generatedAt": "2026-11-13T04:13:16.856Z",
+  "note": "Diagnostic witness. Written by PPC-P1-PLAN-01/probe/witness.test.ts from the CURRENT source tree.",
+  "legacyFixedCap": 8,
+  "cases": {
+    "PLAN-1": {
+      "board": "10x10, piles everywhere except column 3 rows 1..6, the 2x2 hole and the 4 tunnels; mouse inside the hole",
+      "catBaseMoves": 9,
+      "catMovesLeftAtRoot": 9,
+      "catTrapsRemaining": 1,
+      "legalActionsAtRoot": 2,
+      "search": {
+        "value": -972,
+        "mate": null,
+        "completed": true,
+        "nodes": 111,
+        "bestAction": "ArrowDown"
+      },
+      "returnedPlan": {
+        "length": 10,
+        "label": "DDDDDTUUUU",
+        "verdict": {
+          "kind": "COMPLETE_TURN_BOUNDARY",
+          "catMovesLeft": 0,
+          "reason": "turn handed off to mouse"
+        }
+      },
+      "uncappedReference": {
+        "length": 9,
+        "label": "DUDUDUDUD",
+        "verdict": {
+          "kind": "COMPLETE_TURN_BOUNDARY",
+          "catMovesLeft": 0,
+          "reason": "turn handed off to mouse"
+        }
+      },
+      "legalFullLine": {
+        "length": 10,
+        "label": "DDDDDTUUUU",
+        "replayOk": true,
+        "allEffective": true,
+        "endActor": "mouse",
+        "endCatMovesLeft": 0,
+        "verdict": {
+          "kind": "COMPLETE_TURN_BOUNDARY",
+          "catMovesLeft": 0,
+          "reason": "turn handed off to mouse"
+        }
+      }
+    },
+    "PLAN-3": {
+      "note": "value/mate/bestAction come from the search; the plan length comes from post-search extraction. Same real ctx for every extractor.",
+      "value": -972,
+      "mate": null,
+      "bestAction": "ArrowDown",
+      "completed": true,
+      "equalPrimaryGraphNodes": 79,
+      "equalPrimaryGraphRootActions": [
+        "ArrowDown",
+        "T"
+      ],
+      "planBranchesEntries": 112,
+      "entryPoints": {
+        "buildCatTurnPlan": {
+          "length": 9,
+          "label": "DUDUDUDUD",
+          "verdict": {
+            "kind": "COMPLETE_TURN_BOUNDARY",
+            "catMovesLeft": 0,
+            "reason": "turn handed off to mouse"
+          }
+        },
+        "buildPlanForFirstAction": {
+          "length": 9,
+          "label": "DUDUDUDUD",
+          "verdict": {
+            "kind": "COMPLETE_TURN_BOUNDARY",
+            "catMovesLeft": 0,
+            "reason": "turn handed off to mouse"
+          }
+        },
+        "extractBestCatTurnPlan_dp": {
+          "length": 10,
+          "label": "DDDDDTUUUU",
+          "verdict": {
+            "kind": "COMPLETE_TURN_BOUNDARY",
+            "catMovesLeft": 0,
+            "reason": "turn handed off to mouse"
+          }
+        },
+        "extractBestCatTurnPlan_fallbackWalk": {
+          "length": 9,
+          "label": "DUDUDUDUD",
+          "verdict": {
+            "kind": "COMPLETE_TURN_BOUNDARY",
+            "catMovesLeft": 0,
+            "reason": "turn handed off to mouse"
+          }
+        },
+        "buildCandidate": {
+          "length": 9,
+          "label": "DUDUDUDUD",
+          "verdict": {
+            "kind": "COMPLETE_TURN_BOUNDARY",
+            "catMovesLeft": 0,
+            "reason": "turn handed off to mouse"
+          }
+        },
+        "buildCatTurnPlan_uncapped": {
+          "length": 9,
+          "label": "DUDUDUDUD",
+          "verdict": {
+            "kind": "COMPLETE_TURN_BOUNDARY",
+            "catMovesLeft": 0,
+            "reason": "turn handed off to mouse"
+          }
+        },
+        "extractBestCatTurnPlan_fallbackWalk_uncapped": {
+          "length": 9,
+          "label": "DUDUDUDUD",
+          "verdict": {
+            "kind": "COMPLETE_TURN_BOUNDARY",
+            "catMovesLeft": 0,
+            "reason": "turn handed off to mouse"
+          }
+        },
+        "extractBestCatTurnPlan_dp_uncapped": {
+          "length": 10,
+          "label": "DDDDDTUUUU",
+          "verdict": {
+            "kind": "COMPLETE_TURN_BOUNDARY",
+            "catMovesLeft": 0,
+            "reason": "turn handed off to mouse"
+          }
+        }
+      }
+    },
+    "PLAN-2": {
+      "board": "10x10 open board (no boxes/piles/butter), mouse inside the hole",
+      "catBaseMoves": 6,
+      "catMovesLeftAtRoot": 6,
+      "intendedPlan": "TUDTUDTDD",
+      "replay": {
+        "ok": true,
+        "steps": [
+          {
+            "i": 0,
+            "action": "T",
+            "effective": true,
+            "catMovesLeft": 6,
+            "catTrapsRemaining": 0,
+            "trap": {
+              "r": 3,
+              "c": 3
+            },
+            "cat": {
+              "r": 3,
+              "c": 3
+            },
+            "actor": "cat"
+          },
+          {
+            "i": 1,
+            "action": "U",
+            "effective": true,
+            "catMovesLeft": 5,
+            "catTrapsRemaining": 0,
+            "trap": {
+              "r": 3,
+              "c": 3
+            },
+            "cat": {
+              "r": 2,
+              "c": 3
+            },
+            "actor": "cat"
+          },
+          {
+            "i": 2,
+            "action": "D",
+            "effective": true,
+            "catMovesLeft": 4,
+            "catTrapsRemaining": 1,
+            "trap": null,
+            "cat": {
+              "r": 3,
+              "c": 3
+            },
+            "actor": "cat"
+          },
+          {
+            "i": 3,
+            "action": "T",
+            "effective": true,
+            "catMovesLeft": 4,
+            "catTrapsRemaining": 0,
+            "trap": {
+              "r": 3,
+              "c": 3
+            },
+            "cat": {
+              "r": 3,
+              "c": 3
+            },
+            "actor": "cat"
+          },
+          {
+            "i": 4,
+            "action": "U",
+            "effective": true,
+            "catMovesLeft": 3,
+            "catTrapsRemaining": 0,
+            "trap": {
+              "r": 3,
+              "c": 3
+            },
+            "cat": {
+              "r": 2,
+              "c": 3
+            },
+            "actor": "cat"
+          },
+          {
+            "i": 5,
+            "action": "D",
+            "effective": true,
+            "catMovesLeft": 2,
+            "catTrapsRemaining": 1,
+            "trap": null,
+            "cat": {
+              "r": 3,
+              "c": 3
+            },
+            "actor": "cat"
+          },
+          {
+            "i": 6,
+            "action": "T",
+            "effective": true,
+            "catMovesLeft": 2,
+            "catTrapsRemaining": 0,
+            "trap": {
+              "r": 3,
+              "c": 3
+            },
+            "cat": {
+              "r": 3,
+              "c": 3
+            },
+            "actor": "cat"
+          },
+          {
+            "i": 7,
+            "action": "D",
+            "effective": true,
+            "catMovesLeft": 1,
+            "catTrapsRemaining": 0,
+            "trap": {
+              "r": 3,
+              "c": 3
+            },
+            "cat": {
+              "r": 4,
+              "c": 3
+            },
+            "actor": "cat"
+          },
+          {
+            "i": 8,
+            "action": "D",
+            "effective": true,
+            "catMovesLeft": 0,
+            "catTrapsRemaining": 0,
+            "trap": {
+              "r": 3,
+              "c": 3
+            },
+            "cat": {
+              "r": 5,
+              "c": 3
+            },
+            "actor": "mouse"
+          }
+        ],
+        "movements": 6,
+        "placements": 3,
+        "endCatMovesLeft": 0,
+        "endActor": "mouse",
+        "verdict": {
+          "kind": "COMPLETE_TURN_BOUNDARY",
+          "catMovesLeft": 0,
+          "reason": "turn handed off to mouse"
+        }
+      },
+      "chainedBranches": 9,
+      "entryPoints": {
+        "buildCatTurnPlan": {
+          "length": 9,
+          "label": "TUDTUDTDD"
+        },
+        "buildPlanForFirstAction": {
+          "length": 9,
+          "label": "TUDTUDTDD"
+        },
+        "extractBestCatTurnPlan_fallbackWalk": {
+          "length": 9,
+          "label": "TUDTUDTDD"
+        },
+        "buildCandidate": {
+          "length": 9,
+          "label": "TUDTUDTDD"
+        }
+      },
+      "uncappedReference": {
+        "length": 9,
+        "label": "TUDTUDTDD"
+      },
+      "truncatedPrefixVerdict": {
+        "kind": "TRUNCATED",
+        "catMovesLeft": 1,
+        "reason": "plan ended with catMovesLeft=1 > 0 and legal actions available"
+      },
+      "fullPlanVerdict": {
+        "kind": "COMPLETE_TURN_BOUNDARY",
+        "catMovesLeft": 0,
+        "reason": "turn handed off to mouse"
+      }
+    }
+  }
+}

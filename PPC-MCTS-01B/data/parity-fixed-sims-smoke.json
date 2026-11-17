@@ -1,0 +1,89 @@
+{
+  "driver": "parityFixedSims",
+  "label": "SMOKE_NOT_EVIDENCE",
+  "phase": "FIXED_COMPLETED_SIMULATION_PARITY",
+  "isPhase1": false,
+  "note": "SMOKE ONLY — proves the fixed-completed-simulation workload executes. Not the pre-registered 960-call Phase 1.",
+  "generatedAt": "2026-11-16T15:47:04.784Z",
+  "wallMs": 473,
+  "node": "v22.22.2",
+  "fixture": {
+    "path": "src/game/ai/__tests__/fixtures/ppcId01-human-roots.json",
+    "sha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+    "expected": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09"
+  },
+  "config": {
+    "workload": "maxCompletedSimulations (test-only seam)",
+    "now": "const 0 (deadline cannot fire)",
+    "completedSimulations": [
+      20
+    ],
+    "maxNodesSafetyNet": 500000,
+    "maxHandoffs": 4,
+    "c": 1.4142135623730951,
+    "rolloutModes": [
+      "hybrid"
+    ],
+    "seedFormula": "uctSeed(rootId,'UCT-H',0)"
+  },
+  "cells": [
+    {
+      "root": "G2T6",
+      "mode": "hybrid",
+      "K": 20,
+      "pass": true,
+      "anomaly": null,
+      "fieldDiffs": [],
+      "digestDiffCount": 0,
+      "firstDivergentSimulation": null,
+      "simulations": 20,
+      "nodesCreated": 21,
+      "rolloutSteps": 155,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 1226,
+        "prepared": 693
+      },
+      "impureFallbacks": 0,
+      "treeDigest": "c4eb76c2df68e6eab3cec2bcc86e4f272d2c7f706ae64380453fbd14df37f71e",
+      "planTraceDigest": "681170e02a4e394bda01e27c138b50c37be4026e94c7293e6522fc9e3ba56ad8"
+    },
+    {
+      "root": "G1T1",
+      "mode": "hybrid",
+      "K": 20,
+      "pass": true,
+      "anomaly": null,
+      "fieldDiffs": [],
+      "digestDiffCount": 0,
+      "firstDivergentSimulation": null,
+      "simulations": 20,
+      "nodesCreated": 21,
+      "rolloutSteps": 271,
+      "chanceSamples": 0,
+      "ruleCalls": {
+        "baseline": 2405,
+        "prepared": 1194
+      },
+      "impureFallbacks": 0,
+      "treeDigest": "e9c5fe46a666387c3d003dc00988cd0e2e9e8b9c29ed38b4c6f9972514347213",
+      "planTraceDigest": "4aee677b19963652980e0564785ec0c8c7ce666ad909abd9ec5bc3f3173d7190"
+    }
+  ],
+  "totals": {
+    "cells": 2,
+    "passed": 2,
+    "failed": 0,
+    "anomalies": 0,
+    "simulationsPerCell": [
+      20
+    ],
+    "ruleCalls": {
+      "baseline": 3631,
+      "prepared": 1887
+    },
+    "savingFraction": 0.4803084549710823,
+    "impureFallbacks": 0
+  },
+  "verdict": "PASS"
+}

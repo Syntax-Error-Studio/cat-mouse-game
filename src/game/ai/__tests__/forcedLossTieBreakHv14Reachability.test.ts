@@ -29,8 +29,9 @@
 import { expect, test } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import { createEngineRuleSet } from '../../engine';
+import { createEngineRuleSet, endTurn } from '../../engine';
 import type { GameEngineState } from '../../engine';
+import { applyNoMoveLoss } from '../../rules/mobility';
 import { GamePhase, PieceType, DIRECTIONS } from '../../types';
 import { restoreHardRoot, type HardRootSnapshot } from '../hardHistory';
 import {
@@ -62,6 +63,39 @@ const LOG_SHA256: Record<(typeof GAMES)[number], string> = {
   GAME4: '752b033310c773b5a2b0a7c153b09f5b7b467c4c3bc822e631f51aed15882b21',
   GAME5: 'f84d877ac4d3dedabda46b1774107f4533827c9e05e28d33b3dfc313909fe4b2',
 };
+
+/**
+ * PPC-P1-CLOSURE-FIX-01 — the ONE registered reproduction gap in the HV14 corpus.
+ *
+ * GAME3 T4 was logged by an engine build that did not see the win: it scored
+ * `-1052.947…` with `mate=null` and played `D→R→R→R`, which leaves the game
+ * running. The current engine scores `999996` (`MATE_SCORE - 4`) with
+ * `mate=cat` and plays `D→D→D→L`.
+ *
+ * This is NOT a tolerance and NOT a "current is not worse" relaxation: the
+ * logged value is DECLARED STALE and the root is instead held to a stronger,
+ * independently checkable claim — the witness wins in the REAL engine. The
+ * evidence lives in `PPC-P1-CLOSURE-FIX-01/HV14_REPRODUCTION_GAP.json`; the
+ * historical log file itself is never modified (its SHA-256 is asserted above).
+ *
+ * The other 44 roots keep the strict, exact, no-tolerance comparison.
+ */
+const STALE_BLINDSPOT = {
+  game: 'GAME3' as const,
+  turn: 4,
+  /** Value/mate as recorded by the historical build (proven stale). */
+  loggedValue: -1052.9473684210527,
+  loggedMate: null as MateSide,
+  /** What the current engine returns, and why: a mate in 4 cat steps. */
+  currentValue: 999996,
+  currentMate: 'cat' as MateSide,
+  /** The only winning line, found by exhaustive real-engine replay (212 seqs). */
+  witness: ['ArrowDown', 'ArrowDown', 'ArrowDown', 'ArrowLeft'] as const,
+  witnessText: 'DDDL',
+  /** Cat walks the left column into (8,0); the mouse is sealed into (9,0). */
+  expectedCat: '8,0',
+  expectedMouse: '9,0',
+} as const;
 
 const rules = createEngineRuleSet();
 const rc = (p: { r: number; c: number }): string => `${p.r},${p.c}`;
@@ -471,6 +505,28 @@ function rerunRoot(t: ParsedTurn): {
   return { ctx, res, tracked };
 }
 
+/**
+ * Replay a cat plan through the REAL engine — the same transition path a match
+ * uses (`catMove` → RULE-A settlement → `endTurn` at the turn boundary, then
+ * RULE-A again for the fresh mouse turn). This is deliberately NOT the search's
+ * own simulator: the stale-blindspot witness must be verified by the rules, not
+ * by the component whose value is under test.
+ */
+function replayRealEngine(root: GameEngineState, dirKeys: readonly string[]): GameEngineState {
+  let cur = root;
+  for (const key of dirKeys) {
+    const direction = DIRECTIONS.find((d) => d.key === key)!;
+    const next = rules.catMove(cur, direction);
+    expect(next, `real engine must accept ${key} at ${cur.catPosition.r},${cur.catPosition.c}`).not.toBe(cur);
+    cur = applyNoMoveLoss(next);
+    if (cur.phase === GamePhase.Playing && cur.currentPlayer === PieceType.Cat && cur.catMovesLeft <= 0) {
+      cur = applyNoMoveLoss(endTurn(cur));
+    }
+    if (cur.phase !== GamePhase.Playing) break;
+  }
+  return cur;
+}
+
 test('FLT-HV14-4 fixed-depth rerun: root score, gate, candidate completeness, branch conflicts', () => {
   let reproduced = 0;
   let boundMismatch = 0;
@@ -486,14 +542,54 @@ test('FLT-HV14-4 fixed-depth rerun: root score, gate, candidate completeness, br
   let truncatedRootCandidates = 0;
   let selectorPlanChanges = 0;
   const coverageRows: string[] = [];
+  let staleBlindspotHits = 0;
+  const staleBlindspotRows: string[] = [];
 
   for (const t of TURNS) {
     const { ctx, res, tracked } = rerunRoot(t);
     totalNodes += ctx.diagnostics.nodes;
     expect(res.completed, `${t.game} T${t.turn} depth ${t.completedDepth} completed`).toBe(true);
-    expect(res.value, `${t.game} T${t.turn} root value reproduces`).toBe(t.rootValue);
-    expect(res.mate, `${t.game} T${t.turn} root mate reproduces`).toBe(t.rootMate);
-    reproduced++;
+    const isStale = t.game === STALE_BLINDSPOT.game && t.turn === STALE_BLINDSPOT.turn;
+    if (isStale) {
+      // --- the ONE registered exception: still fully specified, never skipped ---
+      // 1. It really is the root on record, and the historical numbers are the
+      //    ones this exception was granted for.
+      expect(t.loggedKey, 'stale blindspot root identity').toBe(stateKey(t.state));
+      expect(t.rootValue, 'logged (stale) root value').toBe(STALE_BLINDSPOT.loggedValue);
+      expect(t.rootMate, 'logged (stale) root mate').toBe(STALE_BLINDSPOT.loggedMate);
+      // 2. The current engine must return the registered values — this is an
+      //    exact assertion, not a tolerance band.
+      expect(res.value, 'current root value = MATE_SCORE - 4').toBe(STALE_BLINDSPOT.currentValue);
+      expect(res.mate, 'current root mate').toBe(STALE_BLINDSPOT.currentMate);
+      // 3. The claim is independently verified: replay the witness through the
+      //    real engine and require an actual CatWins, with the cat sealing the
+      //    mouse into the corner cell.
+      const seen = replayRealEngine(t.state, STALE_BLINDSPOT.witness);
+      expect(seen.phase, `${STALE_BLINDSPOT.witnessText} must end the game in a cat win`).toBe(GamePhase.CatWins);
+      expect(rc(seen.catPosition)).toBe(STALE_BLINDSPOT.expectedCat);
+      expect(rc(seen.mousePosition)).toBe(STALE_BLINDSPOT.expectedMouse);
+      // 4. And the logged plan demonstrably does NOT win — the blindspot is a
+      //    real strength delta, not a scoring quibble.
+      const loggedDirs = t.plan.map((a) => {
+        if (a.type !== 'catStep' || !a.direction) {
+          throw new Error(`logged GAME3 T4 plan is not all cat steps: ${a.type}`);
+        }
+        return a.direction.key;
+      });
+      const loggedSeen = replayRealEngine(t.state, loggedDirs);
+      expect(loggedSeen.phase, 'the historical plan must not reach CatWins').toBe(GamePhase.Playing);
+      staleBlindspotHits++;
+      staleBlindspotRows.push(
+        `${t.game}T${t.turn} logged=${STALE_BLINDSPOT.loggedValue}/mate:null`
+        + ` current=${res.value}/mate:${String(res.mate)}`
+        + ` witness=${STALE_BLINDSPOT.witnessText}→${seen.phase}@${rc(seen.catPosition)}`
+        + ` loggedPlan→${loggedSeen.phase}`,
+      );
+    } else {
+      expect(res.value, `${t.game} T${t.turn} root value reproduces`).toBe(t.rootValue);
+      expect(res.mate, `${t.game} T${t.turn} root mate reproduces`).toBe(t.rootMate);
+      reproduced++;
+    }
 
     // ---- planBranches overwrite diagnosis -------------------------------
     const byKey = new Map<string, Set<string>>();
@@ -643,7 +739,9 @@ test('FLT-HV14-4 fixed-depth rerun: root score, gate, candidate completeness, br
   }
 
   console.log(
-    `\nFLT-HV14-4 reruns=${TURNS.length} reproduced=${reproduced} boundMismatchEntries=${boundMismatch}`
+    `\nFLT-HV14-4 reruns=${TURNS.length} reproduced=${reproduced}`
+    + ` staleBlindspots=${staleBlindspotHits} [${staleBlindspotRows.join('; ')}]`
+    + ` boundMismatchEntries=${boundMismatch}`
     + ` planBranchesConflictKeys=${conflicts} conflictTurns=${conflictTurns}`
     + ` overwrittenPlanChanges=${planOverwriteChanged}`
     + ` forcedLossFiringRoots=${gateFires} [${firingRoots.join(' ')}] totalNodes=${totalNodes}`
@@ -653,7 +751,10 @@ test('FLT-HV14-4 fixed-depth rerun: root score, gate, candidate completeness, br
     + `\n  boundMismatchTurns=${boundRows.length}: ${boundRows.join(' ')}`
     + `\n  conflicts:\n  ${conflictRows.join('\n  ')}`,
   );
-  expect(reproduced).toBe(TURNS.length);
+  // Every non-exceptional root reproduces its logged score EXACTLY (no
+  // tolerance), and the corpus has exactly one registered stale blindspot.
+  expect(reproduced).toBe(TURNS.length - 1);
+  expect(staleBlindspotHits).toBe(1);
   // The fixed-depth rerun must reproduce the PRODUCTION root score/mate even
   // when its bound profile differs (11 entries observed), but bound metadata
   // itself is search-order dependent.

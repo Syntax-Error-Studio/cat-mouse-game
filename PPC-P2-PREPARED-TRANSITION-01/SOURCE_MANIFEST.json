@@ -1,0 +1,76 @@
+{
+  "artifactId": "SOURCE_MANIFEST",
+  "round": "PPC-P2-PREPARED-TRANSITION-01",
+  "project": "Project Perfect Cat",
+  "date": "2026-11-14",
+  "branch": "ppc/p1-id-state-identity-fix",
+  "head": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+  "sha256Method": "sha256 over raw on-disk bytes (binary read); gitBlob = git hash-object of the same bytes",
+  "changedThisRound": {
+    "count": 4,
+    "production": 3,
+    "tests": 1
+  },
+  "files": [
+    {
+      "path": "src/game/ai/preparedActions.ts",
+      "role": "production (new module)",
+      "change": "added — candidate enumeration + one-simulation prepared batch",
+      "pre": null,
+      "post": {
+        "sha256": "67b76ad3de53fee6d3d32f9bc8ab9a02b52234857b23b7fc9091bd92011ad764",
+        "bytes": 5405,
+        "lineEnding": "LF",
+        "gitBlob": "33d961fa6cadd66ce09a3ec96d7751566db02fbb"
+      }
+    },
+    {
+      "path": "src/game/ai/legalActions.ts",
+      "role": "production",
+      "change": "re-expressed on top of the shared candidate enumeration; contract unchanged",
+      "pre": {
+        "sha256Lf": "c32fda291329ed192391ace961b8783e2e36d79e84b60f148ca6c296c05cf1c5",
+        "bytesLf": 2851,
+        "sha256WorktreeCrlf": "7458e822fdb27957c7a3e57f3b26daddf75218caad2074158c954110e8ee3dcc",
+        "bytesWorktreeCrlf": 2926,
+        "gitBlob": "f517407c4f9c86f9cae949bbefd5ba5c7675567c",
+        "note": "worktree copy had CRLF (core.autocrlf=true); both forms recorded because a sha256 is only meaningful with its line ending"
+      },
+      "post": {
+        "sha256": "27ae2f468d19043425326c2fc42923aeae894a5f84d2e0684ee374808b50eb22",
+        "bytes": 2368,
+        "lineEnding": "LF",
+        "gitBlob": "471f00d13551eec42934eed46446929836f08ecb"
+      }
+    },
+    {
+      "path": "src/game/ai/expectiminimax.ts",
+      "role": "production",
+      "change": "search hot path uses the prepared batch (root + interior nodes); one simulation per candidate",
+      "pre": {
+        "sha256": "8ac2698587b426df39efc2bb3b451db89d21477e6c60a30ad90e387dfaad052c",
+        "bytes": 107714,
+        "lineEnding": "LF",
+        "provenance": "PPC-P1-CHECKPOINT-01/checkpoint/source/src/game/ai/expectiminimax.ts (== PPC-P1-OPENING-SEAL-01 SOURCE_MANIFEST.postSha256)"
+      },
+      "post": {
+        "sha256": "50d27da5e9d0d47a1ad70efb542a3ec1510507fd14b825a52729ebb90f6d690c",
+        "bytes": 109353,
+        "lineEnding": "LF",
+        "gitBlob": "93795d0c1f740c0ac9e184a429f8847e42b4e2f3"
+      }
+    },
+    {
+      "path": "src/game/ai/__tests__/preparedTransition.test.ts",
+      "role": "test (new)",
+      "change": "added — 18 contract tests for the prepared-transition reuse",
+      "pre": null,
+      "post": {
+        "sha256": "249ac63e2239f261fb3711ae90fd597af40334a3d0c32df31eb637638dc0255c",
+        "bytes": 23023,
+        "lineEnding": "CRLF",
+        "gitBlob": "e9f11005723b7c514436d3e22aa739d50c8056f3"
+      }
+    }
+  ]
+}

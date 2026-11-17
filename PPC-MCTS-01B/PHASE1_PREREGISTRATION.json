@@ -1,0 +1,127 @@
+{
+  "experiment": "PPC-MCTS-01B / PHASE1_FIXED_COMPLETED_SIMULATION_PARITY",
+  "round": "PPC-MCTS-01B-HARNESS-REPAIR",
+  "status": "PRE_REGISTERED_NOT_STARTED",
+  "statusMeaning": "The harness is repaired and smoke-verified. The formal envelope has NOT been launched and must not be launched before external review and explicit authorisation.",
+  "registeredAt": "2026-11-16T15:40:00Z",
+  "isolatedDirectory": "PPC-MCTS-01B/",
+  "productionSourcesTouched": false,
+  "purpose": "Prove that UCT-H-PREPARED makes exactly the same decisions as UCT-H-BASELINE under a workload that is fixed in COMPLETED SIMULATIONS (not in tree nodes and not in wall clock).",
+  "constants": {
+    "PHASE1_ROOTS": 24,
+    "PHASE1_REPETITIONS": 20,
+    "PHASE1_ARMS": 2,
+    "COMPLETED_SIMULATIONS_PER_CALL": 200,
+    "TOTAL_SEARCH_CALLS": 960,
+    "FRESH_NODE_PROCESSES": 20,
+    "CALLS_PER_PROCESS": 48,
+    "MAX_HANDOFFS": 4,
+    "MAX_NODES": 500000,
+    "UCB_C": 1.4142135623730951,
+    "ROLLOUT_MODE": "hybrid (both arms)",
+    "HEAVY_WORKER_CONCURRENCY": 1,
+    "SERIAL_FRESH_REPETITIONS": true
+  },
+  "constantsRationale": {
+    "COMPLETED_SIMULATIONS_PER_CALL": "The experiment must compare a fixed AMOUNT OF SEARCH, not a fixed amount of tree growth. Under a node cap the two arms only run equally many simulations when they already agree, so the previous driver could not detect the divergence it claimed to test.",
+    "MAX_NODES": "Kept at the production value 500000. It is a safety net only: if it fires before K the call is an EXECUTION ANOMALY, never a shorter experiment.",
+    "MAX_HANDOFFS": "Frozen at the production horizon (4 action-right hand-offs).",
+    "ROLLOUT_MODE": "UCT-H is the arm under study; its rollout is the frozen hybrid policy in both arms."
+  },
+  "roots": {
+    "source": "src/game/ai/__tests__/fixtures/ppcId01-human-roots.json",
+    "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+    "count": 24,
+    "restore": "restoreHardRoot(state)"
+  },
+  "seed": {
+    "formula": "uctSeed(rootId, 'UCT-H', repetition)",
+    "rule": "Both arms of the same (root, repetition) cell MUST use the identical seed string. The arm identity is not part of the seed.",
+    "note": "uctSeed embeds an FNV-1a hash of `${rootId}:${algorithm}:${repetition}`; the two RNG streams are then derived from seedFor([seed,'chance']) and seedFor([seed,'policy'])."
+  },
+  "stopMechanism": {
+    "name": "maxCompletedSimulations",
+    "testOnly": true,
+    "evaluatedAt": "the TOP of the simulation loop, i.e. after the previous simulation completed AND was backpropagated",
+    "neverMidSimulation": true,
+    "sharedByBothArms": true,
+    "implementation": [
+      "PPC-MCTS-01B/proto/uctBaseline.ts",
+      "PPC-MCTS-01B/proto/uctPrepared.ts"
+    ],
+    "counterSemantics": "`sims` is incremented only after `backprop` returns, so reaching K always means K complete simulations, each of which committed statistics.",
+    "clock": "now() => 0 and deadlineMs = 1 ⇒ deadlineAt = 1 ⇒ the deadline can never fire",
+    "reportedFlag": "diagnostics.completedSimulationLimitHit"
+  },
+  "executionAnomalies": {
+    "policy": "Any of these makes the call an EXECUTION ANOMALY. The cell is recorded and the run FAILS. K is NEVER silently lowered.",
+    "conditions": [
+      "diagnostics.nodeCapHit === true before K simulations",
+      "diagnostics.deadlineHit === true",
+      "diagnostics.abortedSimulations > 0",
+      "diagnostics.completedSimulationLimitHit === false",
+      "diagnostics.simulations !== K"
+    ],
+    "recordedAs": "HARNESS_EXECUTION_ANOMALY"
+  },
+  "comparedAxes": {
+    "mustBeIdentical": [
+      "number of complete simulations (200)",
+      "per-simulation event sequence (via per-simulation SHA256 digest, in order)",
+      "per-simulation digest, all 200",
+      "whole search tree (node kind, hand-off depth, stateKey, visit count, total/mean reward, edge key + transition kind, CHANCE weights, per-outcome sample counter, per-outcome stateKey, CHANCE mass error)",
+      "node visit statistics (nodesCreated, chanceNodes, rootVisits, maxHandoffsReached)",
+      "cumulative reward (root.totalReward)",
+      "average reward (root.meanReward)",
+      "CHANCE sample count",
+      "final plan, planLength, planCost, treePlanLength, extensionSteps",
+      "rootAction and every rootActionStats entry",
+      "plan-phase event digest"
+    ],
+    "allowedToDiffer": [
+      "elapsedMs (wall time inside the searcher)",
+      "wallMs (harness-measured)",
+      "ruleCalls (the whole point: the prepared arm performs fewer rule transitions)"
+    ]
+  },
+  "failureHandling": {
+    "onFirstDifference": "STOP the formal Phase 1 immediately.",
+    "forensics": "The driver re-runs the same (root, repetition, arm) with captureSimulation = <first divergent index> and capturePlan = true, and stores both arms' complete event bodies for that simulation plus both plan-phase digests.",
+    "noPartialCredit": "A single divergent cell makes the experiment FAIL; the verdict is not averaged or re-run away."
+  },
+  "determinismPolicy": {
+    "mathRandom": "Phase 1 installs a fixed-seed LCG stub for Math.random around the whole call and RESETS it per call, because exactly one impurity exists in the transition kernel: engine.catMove → sanitizeItemOverlaps relocates a butter that sits under the trap. The stub makes that draw reproducible on both arms.",
+    "expectedDraws": 0,
+    "ifDrawsAreNonZero": "recorded as mathRandomDraws on the cell; the cell is still valid (both arms saw the same stub sequence) but the report must list those cells separately.",
+    "probeAnecdote": "probe/impl/rolloutReuseParity.test.ts runs its whole corpus under a throw-on-call guard and asserts 0 draws, which is the evidence that the 24 frozen roots do not reach the impurity."
+  },
+  "driver": {
+    "entry": "PPC-MCTS-01B/drivers/phase1Parity.ts",
+    "bundle": "PPC-MCTS-01B/build/phase1Parity.mjs",
+    "invocation": "node PPC-MCTS-01B/build/phase1Parity.mjs --rep=<1..20>",
+    "isolation": "spawnSync per repetition: the next fresh Node process starts only after the previous one has EXITED (HEAVY_WORKER_CONCURRENCY=1, SERIAL_FRESH_REPETITIONS=TRUE)",
+    "outputs": [
+      "PPC-MCTS-01B/data/phase1-formal/rep-NN.jsonl  (one record per (root), covering BOTH arms; appended, never truncated)",
+      "PPC-MCTS-01B/data/phase1-formal/rep-NN.summary.json",
+      "PPC-MCTS-01B/data/phase1-formal/rep-NN.checkpoint.json",
+      "PPC-MCTS-01B/data/phase1-formal/ENVELOPE.json (written by the orchestrator: exit codes, wall times, per-rep validation)"
+    ],
+    "resume": "Existing JSONL records are parsed and the corresponding (root, arm) cells are skipped. A pre-existing file is never deleted.",
+    "orchestrator": "PPC-MCTS-01B/scripts/runPhase1.mjs --confirm=PHASE1_FORMAL_APPROVED",
+    "formalOutDir": "PPC-MCTS-01B/data/phase1-formal",
+    "perRepValidation": "the orchestrator validates each repetition before starting the next: 24 records, 2 arm-calls each, K=200 per arm, seam reached, no node-cap/deadline stop, 0 aborted, 0 Math.random draws, 200 digests per arm and element-wise equality"
+  },
+  "smokeEvidenceStatus": {
+    "run": "PPC-MCTS-01B/data/phase1-smoke/",
+    "label": "SMOKE_NOT_EVIDENCE",
+    "shape": "2 roots x K=20 x 2 arms = 4 calls",
+    "role": "proves the harness executes end to end; carries no evidential weight about parity"
+  },
+  "notStarted": {
+    "formal960": true,
+    "phase2": true,
+    "selfPlay": true,
+    "formalV2_1700Groups": true,
+    "exhaustiveOracle": true
+  }
+}

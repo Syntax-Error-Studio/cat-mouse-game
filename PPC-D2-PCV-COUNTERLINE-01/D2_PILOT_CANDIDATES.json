@@ -1,0 +1,386 @@
+{
+  "round": "PPC-D2-PCV-COUNTERLINE-01",
+  "phase": "G2_CANDIDATES",
+  "rootId": "G1T9",
+  "arm": "E1",
+  "depthTurns": 2,
+  "candidateSource": "OFFLINE_REGENERATED_D2",
+  "search": {
+    "completed": true,
+    "value": -999990.9999999992,
+    "mate": "mouse",
+    "nodes": 2727890,
+    "leafNodes": 8213463,
+    "chanceNodes": 83263,
+    "elapsedMs": 217108.023,
+    "planBranchEntries": 64428,
+    "diagnostics": {
+      "nodes": 2727890,
+      "chanceNodes": 83263,
+      "maxDepthReached": 12,
+      "repetitions": 0,
+      "terminalNodes": 9582,
+      "leafNodes": 8213463,
+      "budgetCutoffs": 0,
+      "deadlineCutoffs": 0,
+      "noLegalActionNodes": 0,
+      "ttProbes": 0,
+      "ttHits": 0,
+      "ttDepthMismatches": 0,
+      "ttExactHits": 0,
+      "ttStores": 0,
+      "alphaBetaCutoffs": 0,
+      "alphaBetaMaxCutoffs": 0,
+      "alphaBetaMinCutoffs": 0,
+      "fullWindowChanceSearches": 83263,
+      "orderedNodes": 0,
+      "ttFirstMoveCount": 0,
+      "tacticalFirstMoveCount": 0,
+      "orderingChangedFirstMove": 0,
+      "firstMoveCutoffCount": 0,
+      "extensionsTriggered": 0,
+      "extendedNodes": 0,
+      "criticalLeaves": 0,
+      "extensionAbortCount": 0,
+      "extensionDepthReached": 0,
+      "interceptionTriggerChecks": 0,
+      "interceptionGeometryCalls": 0,
+      "interceptionTriggeredLeaves": 0,
+      "interceptionExtendedLeaves": 0,
+      "interceptionExtraNodes": 0,
+      "interceptionMaxExtraDepth": 0
+    },
+    "gates": {
+      "SEARCH_COMPLETED": true,
+      "NO_BUDGET_TRUNCATION": true,
+      "NO_DEADLINE_TRUNCATION": true,
+      "NO_EXTENSION_ABORT": true,
+      "ROOT_ACTION_COUNT_MATCH": true,
+      "ROOT_ORDER_ALIGNED": true,
+      "ALL_ROOT_BOUNDS_EXACT": true,
+      "ZERO_REPETITIONS": true,
+      "NODE_CAP_NOT_HIT": true
+    }
+  },
+  "extraction": {
+    "legalRootActions": 4,
+    "extracted": 4,
+    "rejected": 0,
+    "rejectionByClass": {},
+    "identityFailures": 0
+  },
+  "candidates": [
+    {
+      "rootId": "G1T9",
+      "arm": "E1",
+      "legalIndex": 0,
+      "rootAction": "U",
+      "rootActionValue": -999990.9999999992,
+      "rootActionMate": "mouse",
+      "rootActionBound": "exact",
+      "extracted": true,
+      "rejection": null,
+      "planEmptyReason": null,
+      "catTurnPlan": [
+        "U",
+        "D",
+        "D",
+        "R"
+      ],
+      "planString": "UDDR",
+      "planHash": "be0267685b1f1b9120b9ddc806fb000dc9f029899300f94681864edc105c7965",
+      "planLength": 4,
+      "planMaxLength": 7,
+      "completenessKind": "COMPLETE_CHANCE_BOUNDARY",
+      "completenessOk": true,
+      "planCompleteness": {
+        "kind": "COMPLETE_CHANCE_BOUNDARY",
+        "catMovesLeft": 0,
+        "reason": "final catStep -> ghost/debt CAT→MOUSE CHANCE boundary (moves exhausted)"
+      },
+      "replayOk": true,
+      "replayStatus": "VALID_MOUSE_FRONTIER",
+      "replayReason": null,
+      "replayCrossCheck": true,
+      "replaySteps": [
+        {
+          "label": "U",
+          "transitionKind": "deterministic",
+          "branches": 1
+        },
+        {
+          "label": "D",
+          "transitionKind": "deterministic",
+          "branches": 1
+        },
+        {
+          "label": "D",
+          "transitionKind": "deterministic",
+          "branches": 1
+        },
+        {
+          "label": "R",
+          "transitionKind": "chance",
+          "branches": 1
+        }
+      ],
+      "postPrefixStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "postPrefixStateKeys": [
+        "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+      ],
+      "postPrefixCanonicalSnapshot": "[{\"blockedTunnels\":[],\"butterPositions\":[\"5,5\",\"8,5\"],\"cat\":\"2,8\",\"catMovesLeft\":0,\"catTrapsRemaining\":0,\"currentPlayer\":\"mouse\",\"mouse\":\"8,3\",\"mouseHasButter\":true,\"mouseMovesLeft\":3,\"mouseSkillActive\":false,\"pendingButterPlacementDebt\":0,\"pendingButterSpawns\":[],\"phase\":\"playing\",\"trapPosition\":\"1,1\"}]",
+      "postPrefixSnapshotSha256": "1e80c279a23d09456d42e79937252e8296abce2698de5b3447e1d0c5bbca6ff5",
+      "chanceBranchCount": 1,
+      "chanceOutcomes": [
+        {
+          "branchIdx": 0,
+          "weight": 1,
+          "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+          "terminal": null
+        }
+      ],
+      "chanceProbabilitySum": 1,
+      "chanceAllPositive": true,
+      "boundaryEval": -1759.078947368421,
+      "reversalCount": 1,
+      "revisitCount": 1,
+      "uniqueProgress": 3,
+      "candidateSource": "OFFLINE_REGENERATED_D2",
+      "postPrefixSnapshotSha256V2": "208cde0e81ed24f463c795572921fa75981366383e3ff951924812da4b028ee5"
+    },
+    {
+      "rootId": "G1T9",
+      "arm": "E1",
+      "legalIndex": 1,
+      "rootAction": "D",
+      "rootActionValue": -999990.9999999992,
+      "rootActionMate": "mouse",
+      "rootActionBound": "exact",
+      "extracted": true,
+      "rejection": null,
+      "planEmptyReason": null,
+      "catTurnPlan": [
+        "D",
+        "U",
+        "D",
+        "R"
+      ],
+      "planString": "DUDR",
+      "planHash": "d87ba666f84858009688b1bdd103477d6ecb65ac025b6d37058f4157e1886713",
+      "planLength": 4,
+      "planMaxLength": 7,
+      "completenessKind": "COMPLETE_CHANCE_BOUNDARY",
+      "completenessOk": true,
+      "planCompleteness": {
+        "kind": "COMPLETE_CHANCE_BOUNDARY",
+        "catMovesLeft": 0,
+        "reason": "final catStep -> ghost/debt CAT→MOUSE CHANCE boundary (moves exhausted)"
+      },
+      "replayOk": true,
+      "replayStatus": "VALID_MOUSE_FRONTIER",
+      "replayReason": null,
+      "replayCrossCheck": true,
+      "replaySteps": [
+        {
+          "label": "D",
+          "transitionKind": "deterministic",
+          "branches": 1
+        },
+        {
+          "label": "U",
+          "transitionKind": "deterministic",
+          "branches": 1
+        },
+        {
+          "label": "D",
+          "transitionKind": "deterministic",
+          "branches": 1
+        },
+        {
+          "label": "R",
+          "transitionKind": "chance",
+          "branches": 1
+        }
+      ],
+      "postPrefixStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "postPrefixStateKeys": [
+        "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+      ],
+      "postPrefixCanonicalSnapshot": "[{\"blockedTunnels\":[],\"butterPositions\":[\"5,5\",\"8,5\"],\"cat\":\"2,8\",\"catMovesLeft\":0,\"catTrapsRemaining\":0,\"currentPlayer\":\"mouse\",\"mouse\":\"8,3\",\"mouseHasButter\":true,\"mouseMovesLeft\":3,\"mouseSkillActive\":false,\"pendingButterPlacementDebt\":0,\"pendingButterSpawns\":[],\"phase\":\"playing\",\"trapPosition\":\"1,1\"}]",
+      "postPrefixSnapshotSha256": "1e80c279a23d09456d42e79937252e8296abce2698de5b3447e1d0c5bbca6ff5",
+      "chanceBranchCount": 1,
+      "chanceOutcomes": [
+        {
+          "branchIdx": 0,
+          "weight": 1,
+          "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+          "terminal": null
+        }
+      ],
+      "chanceProbabilitySum": 1,
+      "chanceAllPositive": true,
+      "boundaryEval": -1759.078947368421,
+      "reversalCount": 2,
+      "revisitCount": 2,
+      "uniqueProgress": 2,
+      "candidateSource": "OFFLINE_REGENERATED_D2",
+      "postPrefixSnapshotSha256V2": "208cde0e81ed24f463c795572921fa75981366383e3ff951924812da4b028ee5"
+    },
+    {
+      "rootId": "G1T9",
+      "arm": "E1",
+      "legalIndex": 2,
+      "rootAction": "L",
+      "rootActionValue": -999990.9999999992,
+      "rootActionMate": "mouse",
+      "rootActionBound": "exact",
+      "extracted": true,
+      "rejection": null,
+      "planEmptyReason": null,
+      "catTurnPlan": [
+        "L",
+        "D",
+        "R",
+        "R"
+      ],
+      "planString": "LDRR",
+      "planHash": "6990560455fb58d2c42bf6dfd4ae10578e9a448d672a367948e3a22855ca8ad2",
+      "planLength": 4,
+      "planMaxLength": 7,
+      "completenessKind": "COMPLETE_CHANCE_BOUNDARY",
+      "completenessOk": true,
+      "planCompleteness": {
+        "kind": "COMPLETE_CHANCE_BOUNDARY",
+        "catMovesLeft": 0,
+        "reason": "final catStep -> ghost/debt CAT→MOUSE CHANCE boundary (moves exhausted)"
+      },
+      "replayOk": true,
+      "replayStatus": "VALID_MOUSE_FRONTIER",
+      "replayReason": null,
+      "replayCrossCheck": true,
+      "replaySteps": [
+        {
+          "label": "L",
+          "transitionKind": "deterministic",
+          "branches": 1
+        },
+        {
+          "label": "D",
+          "transitionKind": "deterministic",
+          "branches": 1
+        },
+        {
+          "label": "R",
+          "transitionKind": "deterministic",
+          "branches": 1
+        },
+        {
+          "label": "R",
+          "transitionKind": "chance",
+          "branches": 1
+        }
+      ],
+      "postPrefixStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "postPrefixStateKeys": [
+        "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+      ],
+      "postPrefixCanonicalSnapshot": "[{\"blockedTunnels\":[],\"butterPositions\":[\"5,5\",\"8,5\"],\"cat\":\"2,8\",\"catMovesLeft\":0,\"catTrapsRemaining\":0,\"currentPlayer\":\"mouse\",\"mouse\":\"8,3\",\"mouseHasButter\":true,\"mouseMovesLeft\":3,\"mouseSkillActive\":false,\"pendingButterPlacementDebt\":0,\"pendingButterSpawns\":[],\"phase\":\"playing\",\"trapPosition\":\"1,1\"}]",
+      "postPrefixSnapshotSha256": "1e80c279a23d09456d42e79937252e8296abce2698de5b3447e1d0c5bbca6ff5",
+      "chanceBranchCount": 1,
+      "chanceOutcomes": [
+        {
+          "branchIdx": 0,
+          "weight": 1,
+          "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+          "terminal": null
+        }
+      ],
+      "chanceProbabilitySum": 1,
+      "chanceAllPositive": true,
+      "boundaryEval": -1759.078947368421,
+      "reversalCount": 0,
+      "revisitCount": 0,
+      "uniqueProgress": 4,
+      "candidateSource": "OFFLINE_REGENERATED_D2",
+      "postPrefixSnapshotSha256V2": "208cde0e81ed24f463c795572921fa75981366383e3ff951924812da4b028ee5"
+    },
+    {
+      "rootId": "G1T9",
+      "arm": "E1",
+      "legalIndex": 3,
+      "rootAction": "R",
+      "rootActionValue": -999990.9999999992,
+      "rootActionMate": "mouse",
+      "rootActionBound": "exact",
+      "extracted": true,
+      "rejection": null,
+      "planEmptyReason": null,
+      "catTurnPlan": [
+        "R",
+        "U",
+        "D",
+        "D"
+      ],
+      "planString": "RUDD",
+      "planHash": "7a96fa3b05c547788b76d561f57cd82024d18fde6d7c146d0b620249ee366934",
+      "planLength": 4,
+      "planMaxLength": 7,
+      "completenessKind": "COMPLETE_CHANCE_BOUNDARY",
+      "completenessOk": true,
+      "planCompleteness": {
+        "kind": "COMPLETE_CHANCE_BOUNDARY",
+        "catMovesLeft": 0,
+        "reason": "final catStep -> ghost/debt CAT→MOUSE CHANCE boundary (moves exhausted)"
+      },
+      "replayOk": true,
+      "replayStatus": "VALID_MOUSE_FRONTIER",
+      "replayReason": null,
+      "replayCrossCheck": true,
+      "replaySteps": [
+        {
+          "label": "R",
+          "transitionKind": "deterministic",
+          "branches": 1
+        },
+        {
+          "label": "U",
+          "transitionKind": "deterministic",
+          "branches": 1
+        },
+        {
+          "label": "D",
+          "transitionKind": "deterministic",
+          "branches": 1
+        },
+        {
+          "label": "D",
+          "transitionKind": "chance",
+          "branches": 1
+        }
+      ],
+      "postPrefixStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "postPrefixStateKeys": [
+        "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+      ],
+      "postPrefixCanonicalSnapshot": "[{\"blockedTunnels\":[],\"butterPositions\":[\"5,5\",\"8,5\"],\"cat\":\"2,8\",\"catMovesLeft\":0,\"catTrapsRemaining\":0,\"currentPlayer\":\"mouse\",\"mouse\":\"8,3\",\"mouseHasButter\":true,\"mouseMovesLeft\":3,\"mouseSkillActive\":false,\"pendingButterPlacementDebt\":0,\"pendingButterSpawns\":[],\"phase\":\"playing\",\"trapPosition\":\"1,1\"}]",
+      "postPrefixSnapshotSha256": "1e80c279a23d09456d42e79937252e8296abce2698de5b3447e1d0c5bbca6ff5",
+      "chanceBranchCount": 1,
+      "chanceOutcomes": [
+        {
+          "branchIdx": 0,
+          "weight": 1,
+          "stateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+          "terminal": null
+        }
+      ],
+      "chanceProbabilitySum": 1,
+      "chanceAllPositive": true,
+      "boundaryEval": -1759.078947368421,
+      "reversalCount": 1,
+      "revisitCount": 1,
+      "uniqueProgress": 3,
+      "candidateSource": "OFFLINE_REGENERATED_D2",
+      "postPrefixSnapshotSha256V2": "208cde0e81ed24f463c795572921fa75981366383e3ff951924812da4b028ee5"
+    }
+  ]
+}

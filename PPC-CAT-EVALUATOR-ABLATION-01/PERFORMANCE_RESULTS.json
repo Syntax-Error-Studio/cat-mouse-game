@@ -1,0 +1,596 @@
+{
+  "artifactId": "PERFORMANCE_RESULTS",
+  "round": "PPC-CAT-EVALUATOR-ABLATION-01",
+  "phase": 7,
+  "generatedAt": "2026-11-15T13:39:07.250Z",
+  "generatedBy": "PPC-CAT-EVALUATOR-ABLATION-01/probe/p6_perf_aggregate.test.ts",
+  "head": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+  "productionSourceChanged": false,
+  "design": {
+    "aaPairs": 20,
+    "abPairs": 20,
+    "freshProcessPerRun": true,
+    "serial": true,
+    "depth": 1,
+    "protocol": "faithful createSearchContext(rules,400000,TT,AB,ordering)+leafFor(arm), no wall-clock deadline"
+  },
+  "evalSelfCost_7_1": {
+    "e1PassMs": {
+      "mean": 357.0950424999999,
+      "sd": 92.26532213625332,
+      "min": 133.51519999999982,
+      "max": 444.46169999999984
+    },
+    "h1PassMs": {
+      "mean": 351.083505,
+      "sd": 93.63370431356424,
+      "min": 133.0983000000001,
+      "max": 441.59470000000147
+    },
+    "e1PerCallNs": 235395.54548450882,
+    "h1PerCallNs": 231432.76532630192,
+    "ratioH1overE1": {
+      "geometricMean": 0.9784967932791737,
+      "ci95": [
+        0.9462331964575162,
+        1.0118604779901246
+      ],
+      "raw": [
+        0.9699570503021041,
+        1.0202984463522,
+        1.0281750692056053,
+        0.9981269965979049,
+        0.9734709326350981,
+        0.5971972202592327,
+        1.1125992564303209,
+        0.8354067211797526,
+        0.8420082957222199,
+        1.0855556121642256,
+        1.0166352916752006,
+        1.0892176048173687,
+        1.081632912995359,
+        1.0944856971418127,
+        1.0036211717105785,
+        1.0182377879442819,
+        0.9357138512105292,
+        0.9585600798412659,
+        0.9060037730886386,
+        1.0256185857223725,
+        0.9787806435254259,
+        1.0737455733318568,
+        0.9823383460268834,
+        0.8869847313662861,
+        0.9081828344681295,
+        0.9621124751858807,
+        1.0011288332263981,
+        1.0974510743123016,
+        1.0019358268520135,
+        1.0069407646400426,
+        1.0360560623908084,
+        1.0033348124417143,
+        0.9848746479428372,
+        0.9447122287651208,
+        0.9635848105920963,
+        0.9136346281355633,
+        0.8510092918936267,
+        1.0447495210813,
+        1.0657353709863493,
+        1.0458767359490015
+      ]
+    },
+    "h1SlowerReps": 21
+  },
+  "searchCost_7_2": {
+    "e1RunCount": 60,
+    "h1RunCount": 20,
+    "perRoot": [
+      {
+        "rootId": "G6T1",
+        "e1MeanMs": 60.43333333333333,
+        "h1MeanMs": 60.2,
+        "e1Reps": 60,
+        "h1Reps": 20,
+        "ratioH1overE1": 0.9961389961389963
+      },
+      {
+        "rootId": "G6T2",
+        "e1MeanMs": 6.333333333333333,
+        "h1MeanMs": 6.5,
+        "e1Reps": 60,
+        "h1Reps": 20,
+        "ratioH1overE1": 1.0263157894736843
+      },
+      {
+        "rootId": "G6T3",
+        "e1MeanMs": 4,
+        "h1MeanMs": 4.1,
+        "e1Reps": 60,
+        "h1Reps": 20,
+        "ratioH1overE1": 1.025
+      },
+      {
+        "rootId": "G5T1",
+        "e1MeanMs": 24.183333333333334,
+        "h1MeanMs": 23,
+        "e1Reps": 60,
+        "h1Reps": 20,
+        "ratioH1overE1": 0.9510682288077188
+      },
+      {
+        "rootId": "G5T2",
+        "e1MeanMs": 10.883333333333333,
+        "h1MeanMs": 9.85,
+        "e1Reps": 60,
+        "h1Reps": 20,
+        "ratioH1overE1": 0.9050535987748851
+      },
+      {
+        "rootId": "G5T3",
+        "e1MeanMs": 8,
+        "h1MeanMs": 8.4,
+        "e1Reps": 60,
+        "h1Reps": 20,
+        "ratioH1overE1": 1.05
+      },
+      {
+        "rootId": "G5T4",
+        "e1MeanMs": 5.166666666666667,
+        "h1MeanMs": 5.75,
+        "e1Reps": 60,
+        "h1Reps": 20,
+        "ratioH1overE1": 1.1129032258064515
+      },
+      {
+        "rootId": "G2T1",
+        "e1MeanMs": 39.96666666666667,
+        "h1MeanMs": 40.15,
+        "e1Reps": 60,
+        "h1Reps": 20,
+        "ratioH1overE1": 1.0045871559633026
+      },
+      {
+        "rootId": "G2T2",
+        "e1MeanMs": 3.466666666666667,
+        "h1MeanMs": 3.45,
+        "e1Reps": 60,
+        "h1Reps": 20,
+        "ratioH1overE1": 0.9951923076923077
+      },
+      {
+        "rootId": "G2T3",
+        "e1MeanMs": 5.666666666666667,
+        "h1MeanMs": 6.1,
+        "e1Reps": 60,
+        "h1Reps": 20,
+        "ratioH1overE1": 1.076470588235294
+      },
+      {
+        "rootId": "G2T4",
+        "e1MeanMs": 5.25,
+        "h1MeanMs": 5.3,
+        "e1Reps": 60,
+        "h1Reps": 20,
+        "ratioH1overE1": 1.0095238095238095
+      },
+      {
+        "rootId": "G2T5",
+        "e1MeanMs": 9.3,
+        "h1MeanMs": 8.95,
+        "e1Reps": 60,
+        "h1Reps": 20,
+        "ratioH1overE1": 0.9623655913978493
+      },
+      {
+        "rootId": "G2T6",
+        "e1MeanMs": 4.166666666666667,
+        "h1MeanMs": 4.55,
+        "e1Reps": 60,
+        "h1Reps": 20,
+        "ratioH1overE1": 1.0919999999999999
+      },
+      {
+        "rootId": "G2T7",
+        "e1MeanMs": 4.166666666666667,
+        "h1MeanMs": 4.3,
+        "e1Reps": 60,
+        "h1Reps": 20,
+        "ratioH1overE1": 1.0319999999999998
+      },
+      {
+        "rootId": "G2T8",
+        "e1MeanMs": 14.05,
+        "h1MeanMs": 13.6,
+        "e1Reps": 60,
+        "h1Reps": 20,
+        "ratioH1overE1": 0.9679715302491102
+      },
+      {
+        "rootId": "G1T1",
+        "e1MeanMs": 27.95,
+        "h1MeanMs": 29.2,
+        "e1Reps": 60,
+        "h1Reps": 20,
+        "ratioH1overE1": 1.0447227191413238
+      },
+      {
+        "rootId": "G1T2",
+        "e1MeanMs": 6.183333333333334,
+        "h1MeanMs": 6.45,
+        "e1Reps": 60,
+        "h1Reps": 20,
+        "ratioH1overE1": 1.0431266846361187
+      },
+      {
+        "rootId": "G1T3",
+        "e1MeanMs": 3.3666666666666667,
+        "h1MeanMs": 3.55,
+        "e1Reps": 60,
+        "h1Reps": 20,
+        "ratioH1overE1": 1.0544554455445545
+      },
+      {
+        "rootId": "G1T4",
+        "e1MeanMs": 2.05,
+        "h1MeanMs": 3.15,
+        "e1Reps": 60,
+        "h1Reps": 20,
+        "ratioH1overE1": 1.5365853658536586
+      },
+      {
+        "rootId": "G1T5",
+        "e1MeanMs": 5.183333333333334,
+        "h1MeanMs": 5.45,
+        "e1Reps": 60,
+        "h1Reps": 20,
+        "ratioH1overE1": 1.0514469453376205
+      },
+      {
+        "rootId": "G1T6",
+        "e1MeanMs": 9.166666666666666,
+        "h1MeanMs": 8.7,
+        "e1Reps": 60,
+        "h1Reps": 20,
+        "ratioH1overE1": 0.9490909090909091
+      },
+      {
+        "rootId": "G1T7",
+        "e1MeanMs": 6.266666666666667,
+        "h1MeanMs": 6.7,
+        "e1Reps": 60,
+        "h1Reps": 20,
+        "ratioH1overE1": 1.069148936170213
+      },
+      {
+        "rootId": "G1T8",
+        "e1MeanMs": 5.183333333333334,
+        "h1MeanMs": 5.4,
+        "e1Reps": 60,
+        "h1Reps": 20,
+        "ratioH1overE1": 1.0418006430868167
+      },
+      {
+        "rootId": "G1T9",
+        "e1MeanMs": 4.916666666666667,
+        "h1MeanMs": 5.05,
+        "e1Reps": 60,
+        "h1Reps": 20,
+        "ratioH1overE1": 1.0271186440677964
+      }
+    ],
+    "geometricMeanRatioH1overE1": 1.0375719666375514
+  },
+  "aaCalibration_7_3": {
+    "ratios": 480,
+    "geometricMean": 0.9869466150837995,
+    "ci95": [
+      0.9743761815652818,
+      0.999679219847708
+    ],
+    "noiseSdLog": 0.14328531044351264,
+    "calibrationPass": false,
+    "verdict": "FAIL (systematic two-process bias)",
+    "perRootGeometricMean": [
+      {
+        "rootId": "G6T1",
+        "gm": 1.0000024087660857
+      },
+      {
+        "rootId": "G6T2",
+        "gm": 1.039256351847022
+      },
+      {
+        "rootId": "G6T3",
+        "gm": 1.0087557788983785
+      },
+      {
+        "rootId": "G5T1",
+        "gm": 0.9838848387543835
+      },
+      {
+        "rootId": "G5T2",
+        "gm": 0.9862657037147715
+      },
+      {
+        "rootId": "G5T3",
+        "gm": 1.000839093579083
+      },
+      {
+        "rootId": "G5T4",
+        "gm": 0.9747821379701602
+      },
+      {
+        "rootId": "G2T1",
+        "gm": 0.9939167599483417
+      },
+      {
+        "rootId": "G2T2",
+        "gm": 0.9202796426909723
+      },
+      {
+        "rootId": "G2T3",
+        "gm": 0.9829459045564617
+      },
+      {
+        "rootId": "G2T4",
+        "gm": 0.9923220928831727
+      },
+      {
+        "rootId": "G2T5",
+        "gm": 0.9699478459057274
+      },
+      {
+        "rootId": "G2T6",
+        "gm": 1.0112196509975333
+      },
+      {
+        "rootId": "G2T7",
+        "gm": 1.0112196509975333
+      },
+      {
+        "rootId": "G2T8",
+        "gm": 1.0111153160734832
+      },
+      {
+        "rootId": "G1T1",
+        "gm": 0.9947625726085151
+      },
+      {
+        "rootId": "G1T2",
+        "gm": 0.9724070471477757
+      },
+      {
+        "rootId": "G1T3",
+        "gm": 0.9577655008625032
+      },
+      {
+        "rootId": "G1T4",
+        "gm": 0.9799308653125577
+      },
+      {
+        "rootId": "G1T5",
+        "gm": 0.9947458259305311
+      },
+      {
+        "rootId": "G1T6",
+        "gm": 0.9881942796696309
+      },
+      {
+        "rootId": "G1T7",
+        "gm": 0.9789211121142403
+      },
+      {
+        "rootId": "G1T8",
+        "gm": 0.9799308653125577
+      },
+      {
+        "rootId": "G1T9",
+        "gm": 0.9596572719114627
+      }
+    ]
+  },
+  "abEffect_7_3": {
+    "ratios": 480,
+    "geometricMean": 1.0295901875628806,
+    "ci95": [
+      1.012576298307663,
+      1.0468899539693537
+    ],
+    "h1Slower": true,
+    "perRoot": [
+      {
+        "rootId": "G6T1",
+        "geometricMean": 1.0026023633003076,
+        "median": 1,
+        "min": 0.8266666666666667,
+        "max": 1.1587301587301588,
+        "reps": 20
+      },
+      {
+        "rootId": "G6T2",
+        "geometricMean": 1.031721271112155,
+        "median": 1,
+        "min": 0.6666666666666666,
+        "max": 1.4,
+        "reps": 20
+      },
+      {
+        "rootId": "G6T3",
+        "geometricMean": 1.0468802349768656,
+        "median": 1,
+        "min": 0.75,
+        "max": 1.6666666666666667,
+        "reps": 20
+      },
+      {
+        "rootId": "G5T1",
+        "geometricMean": 0.9511394973555651,
+        "median": 0.957427536231884,
+        "min": 0.696969696969697,
+        "max": 1.0909090909090908,
+        "reps": 20
+      },
+      {
+        "rootId": "G5T2",
+        "geometricMean": 0.8890818549435586,
+        "median": 0.9,
+        "min": 0.5294117647058824,
+        "max": 1.2727272727272727,
+        "reps": 20
+      },
+      {
+        "rootId": "G5T3",
+        "geometricMean": 1.0708730092872516,
+        "median": 1.0625,
+        "min": 0.6428571428571429,
+        "max": 1.7142857142857142,
+        "reps": 20
+      },
+      {
+        "rootId": "G5T4",
+        "geometricMean": 1.1288310943116255,
+        "median": 1.1,
+        "min": 0.8571428571428571,
+        "max": 1.5,
+        "reps": 20
+      },
+      {
+        "rootId": "G2T1",
+        "geometricMean": 1.00897184462974,
+        "median": 1.0274024024024024,
+        "min": 0.7962962962962963,
+        "max": 1.263157894736842,
+        "reps": 20
+      },
+      {
+        "rootId": "G2T2",
+        "geometricMean": 0.9889048329050316,
+        "median": 1,
+        "min": 0.75,
+        "max": 1.3333333333333333,
+        "reps": 20
+      },
+      {
+        "rootId": "G2T3",
+        "geometricMean": 1.0752476888038716,
+        "median": 1.0833333333333335,
+        "min": 0.75,
+        "max": 1.4,
+        "reps": 20
+      },
+      {
+        "rootId": "G2T4",
+        "geometricMean": 0.984331402501806,
+        "median": 1,
+        "min": 0.625,
+        "max": 1.4,
+        "reps": 20
+      },
+      {
+        "rootId": "G2T5",
+        "geometricMean": 0.9581161331150175,
+        "median": 1,
+        "min": 0.8,
+        "max": 1.4444444444444444,
+        "reps": 20
+      },
+      {
+        "rootId": "G2T6",
+        "geometricMean": 1.069234599991188,
+        "median": 1,
+        "min": 0.6666666666666666,
+        "max": 1.5,
+        "reps": 20
+      },
+      {
+        "rootId": "G2T7",
+        "geometricMean": 1.034038007034165,
+        "median": 1,
+        "min": 0.8,
+        "max": 1.25,
+        "reps": 20
+      },
+      {
+        "rootId": "G2T8",
+        "geometricMean": 0.9745327194506631,
+        "median": 1,
+        "min": 0.5833333333333334,
+        "max": 1.0769230769230769,
+        "reps": 20
+      },
+      {
+        "rootId": "G1T1",
+        "geometricMean": 1.0303561012892233,
+        "median": 1,
+        "min": 0.8055555555555556,
+        "max": 1.4814814814814814,
+        "reps": 20
+      },
+      {
+        "rootId": "G1T2",
+        "geometricMean": 1.0283759285097314,
+        "median": 1,
+        "min": 0.8571428571428571,
+        "max": 1.5,
+        "reps": 20
+      },
+      {
+        "rootId": "G1T3",
+        "geometricMean": 0.9947458259305311,
+        "median": 1,
+        "min": 0.75,
+        "max": 2,
+        "reps": 20
+      },
+      {
+        "rootId": "G1T4",
+        "geometricMean": 1.4990686002883413,
+        "median": 1.5,
+        "min": 1,
+        "max": 2.5,
+        "reps": 20
+      },
+      {
+        "rootId": "G1T5",
+        "geometricMean": 1.0231310942022025,
+        "median": 1,
+        "min": 0.625,
+        "max": 1.6,
+        "reps": 20
+      },
+      {
+        "rootId": "G1T6",
+        "geometricMean": 0.9286025389995853,
+        "median": 0.8944444444444444,
+        "min": 0.75,
+        "max": 1.3333333333333333,
+        "reps": 20
+      },
+      {
+        "rootId": "G1T7",
+        "geometricMean": 1.0294152522449906,
+        "median": 1,
+        "min": 0.75,
+        "max": 1.6666666666666667,
+        "reps": 20
+      },
+      {
+        "rootId": "G1T8",
+        "geometricMean": 1.0346102680038756,
+        "median": 1,
+        "min": 0.7142857142857143,
+        "max": 1.6,
+        "reps": 20
+      },
+      {
+        "rootId": "G1T9",
+        "geometricMean": 1.0435074746190556,
+        "median": 1,
+        "min": 1,
+        "max": 1.25,
+        "reps": 20
+      }
+    ]
+  },
+  "performanceVerdict": "BLOCKED_AA_CALIBRATION",
+  "note": "A/A FAIL ⇒ PERFORMANCE BLOCKED; correctness evidence (P2/P3/P4) is preserved unchanged, never fabricated or deleted. Ratios >1 ⇒ H1 slower."
+}

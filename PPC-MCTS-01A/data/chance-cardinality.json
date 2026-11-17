@@ -1,0 +1,181 @@
+{
+  "meta": {
+    "round": "PPC-MCTS-01A",
+    "generatedAt": "2026-11-16T05:41:53.609Z",
+    "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+    "method": "Read-only random walk with the shared simulator; counts are the number of outcomes in a butter-pickup CHANCE layer.",
+    "caveat": "Outcome count is state-dependent and not an average over search rollouts; it bounds the per-candidate evaluation multiplier."
+  },
+  "perRoot": [
+    {
+      "rootId": "G6T1",
+      "samples": 2,
+      "counts": [
+        31,
+        29
+      ]
+    },
+    {
+      "rootId": "G6T2",
+      "samples": 3,
+      "counts": [
+        25,
+        25,
+        28
+      ]
+    },
+    {
+      "rootId": "G6T3",
+      "samples": 1,
+      "counts": [
+        25
+      ]
+    },
+    {
+      "rootId": "G5T1",
+      "samples": 1,
+      "counts": [
+        33
+      ]
+    },
+    {
+      "rootId": "G5T2",
+      "samples": 0,
+      "counts": []
+    },
+    {
+      "rootId": "G5T3",
+      "samples": 0,
+      "counts": []
+    },
+    {
+      "rootId": "G5T4",
+      "samples": 0,
+      "counts": []
+    },
+    {
+      "rootId": "G2T1",
+      "samples": 0,
+      "counts": []
+    },
+    {
+      "rootId": "G2T2",
+      "samples": 0,
+      "counts": []
+    },
+    {
+      "rootId": "G2T3",
+      "samples": 0,
+      "counts": []
+    },
+    {
+      "rootId": "G2T4",
+      "samples": 3,
+      "counts": [
+        34,
+        34,
+        34
+      ]
+    },
+    {
+      "rootId": "G2T5",
+      "samples": 0,
+      "counts": []
+    },
+    {
+      "rootId": "G2T6",
+      "samples": 0,
+      "counts": []
+    },
+    {
+      "rootId": "G2T7",
+      "samples": 1,
+      "counts": [
+        25
+      ]
+    },
+    {
+      "rootId": "G2T8",
+      "samples": 0,
+      "counts": []
+    },
+    {
+      "rootId": "G1T1",
+      "samples": 0,
+      "counts": []
+    },
+    {
+      "rootId": "G1T2",
+      "samples": 0,
+      "counts": []
+    },
+    {
+      "rootId": "G1T3",
+      "samples": 0,
+      "counts": []
+    },
+    {
+      "rootId": "G1T4",
+      "samples": 2,
+      "counts": [
+        29,
+        25
+      ]
+    },
+    {
+      "rootId": "G1T5",
+      "samples": 6,
+      "counts": [
+        25,
+        27,
+        24,
+        24,
+        29,
+        24
+      ]
+    },
+    {
+      "rootId": "G1T6",
+      "samples": 0,
+      "counts": []
+    },
+    {
+      "rootId": "G1T7",
+      "samples": 0,
+      "counts": []
+    },
+    {
+      "rootId": "G1T8",
+      "samples": 1,
+      "counts": [
+        32
+      ]
+    },
+    {
+      "rootId": "G1T9",
+      "samples": 1,
+      "counts": [
+        28
+      ]
+    }
+  ],
+  "aggregate": {
+    "chanceLayers": 21,
+    "min": 24,
+    "p50": 28,
+    "p95": 34,
+    "max": 34,
+    "mean": 28.095238095238095,
+    "histogram": {
+      "24": 3,
+      "25": 6,
+      "27": 1,
+      "28": 2,
+      "29": 3,
+      "31": 1,
+      "32": 1,
+      "33": 1,
+      "34": 3
+    }
+  }
+}

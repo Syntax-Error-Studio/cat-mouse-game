@@ -1,0 +1,6 @@
+path   = F:/ppc-checkpoints/PPC-P1-OPENING-SEAL-01-candidate.tar.gz
+sha256 = 27dbc3c2f4ad183f75808ab3394f0ff3675505ea6781591000b5a5594706dd2f
+bytes  = 34119
+members(regular files, excludes directories) = 16
+manifest members = 15 (+ CHECKPOINT_MANIFEST.json itself)
+computed = 2026-11-14T04:21:50.347Z

@@ -190,8 +190,13 @@ describe('G0.4F-2B-1.8 M3-lite human-validation logging', () => {
       rules, timeBudgetMs: 600000, maxDepthTurns: 2, maxNodes: 2_000_000,
       leafEvaluator: evaluateCorrectedHoleForCat, refutation: { enabled: false },
     });
-    // Frozen P26 authority: plan == ULDR, guard debug present with enabled=false.
-    expect(p.plan.map(label).join('')).toBe('ULDR');
+    // PPC-P1-QUALITY-01: the frozen authority was the plan the OLD reversal
+    // accounting produced ('ULDR'). The corrected accounting makes the Up
+    // branch cost 1 instead of 0 (it used to be mis-charged at a deeper node),
+    // so the four root branches tie at zero reversals and the first recorded
+    // action — Down — wins: 'DRUL'. Primary value, mate, depth and the guard-off
+    // semantics are unchanged; see PPC-P1-QUALITY-01/OLD_VS_NEW_DP_T15.json.
+    expect(p.plan.map(label).join('')).toBe('DRUL');
     expect(p.debug.progressGuard?.enabled).toBe(false);
     // The captured diag structurally fits the log formatter.
     const pg = p.debug.progressGuard as ProgressGuardLogFields | undefined;
@@ -209,7 +214,7 @@ describe('G0.4F-2B-1.8 M3-lite human-validation logging', () => {
       rules, timeBudgetMs: 600000, maxDepthTurns: 2, maxNodes: 2_000_000,
       leafEvaluator: evaluateCorrectedHoleForCat, refutation: { enabled: false },
     });
-    expect(pOn.plan.map(label).join('')).toBe('ULDR');
+    expect(pOn.plan.map(label).join('')).toBe('DRUL');
     HARD_PROGRESS_GUARD_CONFIG.enabled = false;
   });
 

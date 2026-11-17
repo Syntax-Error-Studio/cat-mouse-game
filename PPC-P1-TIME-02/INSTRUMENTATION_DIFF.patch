@@ -1,0 +1,484 @@
+--- src/game/engine.ts
++++ arm/game/engine.ts
+@@ -1,3 +1,5 @@
++import { TRACE, nowMs, bump } from './ai/traceSink';
++
+ // ============================================================
+ // Game engine — pure logic, no UI
+ // 参考 C# 原型：步数制移动 + 技能系统 + 四角传送 + 陷阱
+@@ -870,6 +872,7 @@
+ // --- Cat move ---
+ 
+ export function catMove(state: GameEngineState, direction: Direction): GameEngineState {
++  bump('catMove');
+   state = sanitizeItemOverlaps(state);
+   if (state.phase !== GamePhase.Playing || state.currentPlayer !== PieceType.Cat) return state;
+   if (state.catMovesLeft <= 0) return state;
+@@ -972,6 +975,7 @@
+ 
+ 
+ export function catPlaceTrap(state: GameEngineState): GameEngineState {
++  bump('catPlaceTrap');
+   if (state.phase !== GamePhase.Playing || state.currentPlayer !== PieceType.Cat) return state;
+   // 场上已有陷阱时不能直接放新的，必须先回收
+   if (state.trapPosition !== null) return { ...state, message: '🪤 场上已有捕鼠夹！先到陷阱格子上收回才能放新的。' };
+@@ -1491,6 +1495,7 @@
+   target: Point,
+   state: GameEngineState,
+ ): Point[] | null {
++  bump('bfsCatPathToStand');
+   const boardSize = state.config.boardSize;
+   const tunnelCorners = getTunnelCorners(state.config);
+   const visited = new Set<string>();
+@@ -1541,6 +1546,7 @@
+   decision: HardTrapStandDecision | null,
+   mousePlans: MousePlan[],
+ ): boolean {
++  bump('shouldCommitTrapPlan');
+   if (!decision) return false;
+ 
+   const catDistToStand = decision.path.length - 1;
+@@ -1568,6 +1574,7 @@
+   mousePlans: MousePlan[],
+   holeGateCells: Point[],
+ ): HardTrapStandDecision | null {
++  bump('chooseHardTrapStandCell');
+   if (state.trapPosition !== null || state.catTrapsRemaining <= 0) return null;
+ 
+   // Collect candidate cells: all reachable non-obstacle cells on the board.
+@@ -1709,6 +1716,7 @@
+   state: GameEngineState,
+   butterPositions: Point[] = state.butterPositions,
+ ): Point[] | null {
++  bump('findNearestHolePathForHard');
+   const holeCells = getMouseHoleCells(state.config);
+   let bestPath: Point[] | null = null;
+   let bestLen = Infinity;
+@@ -1895,6 +1903,7 @@
+   trap: Point,
+   state: GameEngineState,
+ ): number {
++  bump('estimateTrapBypassCost');
+   if (!plan.path || plan.path.length < 2) return 0;
+ 
+   const original = plan.path.length - 1;
+@@ -1922,6 +1931,7 @@
+   state: GameEngineState,
+   mousePlans: MousePlan[],
+ ): EmergencyHoleBlockDecision | null {
++  bump('findEmergencyHoleBlockDecision');
+   const candidates: EmergencyHoleBlockDecision[] = [];
+ 
+   for (const plan of mousePlans) {
+@@ -2023,6 +2033,7 @@
+   holeDefenseMode: HoleDefenseMode,
+   mouseEtaToHole: number,
+ ): Point | null {
++  bump('chooseHardStrategicTarget');
+   const primary = mousePlans[0] || null;
+   if (!primary) return state.mousePosition;
+ 
+@@ -2115,6 +2126,7 @@
+   _catTrapPos: { r: number; c: number } | null,
+   butterPositions: { r: number; c: number }[],
+ ): Point[] | null {
++  bump('bfsPath');
+   const boardSize = config.boardSize;
+   const tunnelCorners = getTunnelCorners(config);
+   const key = (p: Point) => `${p.r},${p.c}`;
+@@ -2182,6 +2194,7 @@
+   _catTrapPos: { r: number; c: number } | null,
+   butterPositions: { r: number; c: number }[],
+ ): number | null {
++  bump('bfsDistance');
+   const boardSize = config.boardSize;
+   const tunnelCorners = getTunnelCorners(config);
+   const startKey = `${start.r},${start.c}`;
+@@ -2248,6 +2261,7 @@
+ 
+ /** Count escape routes for the mouse (open corridors on the board, excluding cat position). */
+ function countMouseEscapeRoutes(mousePos: Point, board: Board, config: GameConfig, catPos: Point): number {
++  bump('countMouseEscapeRoutes');
+   let count = 0;
+   for (const d of DIRECTIONS) {
+     const nr = mousePos.r + d.dr;
+@@ -2333,6 +2347,7 @@
+   config: GameConfig,
+   butterPositions: { r: number; c: number }[],
+ ): { boxes: Point[]; pushable: { boxR: number; boxC: number; pushDir: Direction; destR: number; destC: number }[] } {
++  bump('computeCatBoxAdjacency');
+   const boxes: Point[] = [];
+   const pushable: { boxR: number; boxC: number; pushDir: Direction; destR: number; destC: number }[] = [];
+ 
+@@ -2756,6 +2771,7 @@
+ }
+ 
+ function catAiHard(state: GameEngineState): GameEngineState | null {
++  TRACE.mark('hard_body_enter', { movesLeft: state.catMovesLeft, traps: state.catTrapsRemaining, hasButter: state.mouseHasButter, butterSpots: state.butterPositions.length });
+   const catPos = state.catPosition;
+   const mousePos = state.mousePosition;
+   const { config } = state;
+@@ -2806,7 +2822,9 @@
+   // - carrying butter -> nearest hole
+   // - no butter -> best butter
+   // - carrying butter but may use skill -> another butter chain
++  const __mpT = TRACE.enabled ? nowMs() : 0;
+   const mousePlans = buildMousePlansForHard(state);
++  if (TRACE.enabled) TRACE.mark('phase_mousePlans', { ms: nowMs() - __mpT, plans: mousePlans.length });
+   const primaryPlan = mousePlans[0] || null;
+ 
+   let mousePredictedPath: Point[] = primaryPlan?.path || [];
+@@ -2833,7 +2851,9 @@
+   // 1b. Emergency hole block detection — highest priority after direct catch.
+   // When mouse carries butter (or can chain skill+butters) and is about to enter the hole,
+   // find the real entry gate and block it. This overrides generic gate scoring.
++  const __emT = TRACE.enabled ? nowMs() : 0;
+   const emergencyDecision = findEmergencyHoleBlockDecision(state, mousePlans);
++  if (TRACE.enabled) TRACE.mark('phase_emergency', { ms: nowMs() - __emT, found: emergencyDecision !== null });
+ 
+   const entryGate = emergencyDecision?.entryGate ?? null;
+   const mouseEtaToHole = emergencyDecision?.mouseEta ?? Infinity;
+@@ -3032,6 +3052,7 @@
+     `HARD_PLAN target=${interceptTarget ? `(${interceptTarget.r},${interceptTarget.c})` : 'none'} gates=${holeGateCells.length} mode=${holeDefenseMode} trap=${state.trapPosition ? `(${state.trapPosition.r},${state.trapPosition.c})` : 'none'} trapsLeft=${state.catTrapsRemaining} plans=[${planStr || 'none'}]`,
+   );
+ 
++  const __tsT = TRACE.enabled ? nowMs() : 0;
+   const rawTrapStandDecision =
+     !emergencyBlockActive &&
+     !emergencyFallbackActive &&
+@@ -3040,6 +3061,7 @@
+       ? chooseHardTrapStandCell(state, mousePlans, holeGateCells)
+       : null;
+ 
++  if (TRACE.enabled) TRACE.mark('phase_trapStand', { ms: nowMs() - __tsT, hasDecision: rawTrapStandDecision !== null });
+   const trapStandDecision =
+     shouldCommitTrapPlan(state, rawTrapStandDecision, mousePlans)
+       ? rawTrapStandDecision
+@@ -3079,6 +3101,7 @@
+   }
+ 
+   // ================================================================
++  const __cdT = TRACE.enabled ? nowMs() : 0;
+   // PHASE 2: Evaluate each possible direction
+   // ================================================================
+ 
+@@ -3722,6 +3745,7 @@
+     return null;
+   }
+ 
++  if (TRACE.enabled) TRACE.mark('phase_candidateLoop', { ms: nowMs() - __cdT, candidates: candidates.length });
+   candidates.sort((a, b) => b.score - a.score);
+   const best = candidates[0];
+ 
+@@ -3798,6 +3822,7 @@
+ 
+   state = logAction(state, `HARD_CHOOSE dir=(${chosenDir.dr},${chosenDir.dc}) reason=${chooseReason}`);
+ 
++  TRACE.mark('hard_body_leave');
+   return catMove(state, chosenDir);
+ }
+ 
+@@ -3878,6 +3903,7 @@
+   if (state.currentPlayer !== PieceType.Cat || state.phase !== GamePhase.Playing) return null;
+   if (state.catMovesLeft <= 0) return null;
+ 
++  TRACE.mark('catAiMove_enter', { movesLeft: state.catMovesLeft });
+   const difficulty = state.config.difficulty || DifficultyConst.Easy;
+ 
+   // Difficulty routing (F1B-5): Easy → catAiEasy, Medium → legacy catAiHard,
+@@ -3901,8 +3927,13 @@
+           (turnDeadline.now() - turnDeadline.startedAtMs).toFixed(1)
+         }ms budget=${(turnDeadline.mainSearchDeadlineAtMs - turnDeadline.startedAtMs).toFixed(0)}ms`,
+       );
+-      return catAiHard(closed);
+-    }
++      TRACE.mark('catAiHard_enter', { site: 'closed_window' });
++      const __hT1 = TRACE.enabled ? nowMs() : 0;
++      const __h1 = catAiHard(closed);
++      TRACE.mark('catAiHard_return', { site: 'closed_window', isNull: __h1 === null, ms: TRACE.enabled ? nowMs() - __hT1 : 0 });
++      return __h1;
++    }
++    TRACE.mark('planner_enter', { site: 'catAiMove', movesLeft: state.catMovesLeft });
+     const plan = planHardCatTurn(state, {
+       rules: createEngineRuleSet(),
+       timeBudgetMs: DEFAULT_SEARCH_CONFIG.timeBudgetMsPerCatTurn,
+@@ -3915,6 +3946,7 @@
+       // fallback step; the planner then never mints a second full budget.
+       turnDeadline,
+     });
++    TRACE.mark('planner_return_probe', { site: 'catAiMove', completedDepth: plan.completedDepth, planLen: plan.plan.length });
+     state = { ...state, lastHardSearch: plan.debug };
+     const first = plan.plan[0] ?? plan.bestAction;
+     if (first) {
+@@ -3925,7 +3957,11 @@
+     // No plan / fallback: log explicitly, then legacy heuristic step.
+     logFallback(state, `SEARCH_FALLBACK reason=no_hard_plan (plan len ${plan.plan.length}, completedDepth ${plan.completedDepth})`);
+   }
+-  return catAiHard(state);
++  TRACE.mark('catAiHard_enter', { site: 'no_plan' });
++  const __hT2 = TRACE.enabled ? nowMs() : 0;
++  const __h2 = catAiHard(state);
++  TRACE.mark('catAiHard_return', { site: 'no_plan', isNull: __h2 === null, ms: TRACE.enabled ? nowMs() - __hT2 : 0 });
++  return __h2;
+ }
+ 
+ export function getDirectionByKey(key: string): Direction | null {
+@@ -4005,6 +4041,8 @@
+ 
+   const steps: CatAiStep[] = [];
+   let current = state;
++  TRACE.mark('turn_enter', { movesLeft: state.catMovesLeft, difficulty: String(state.config.difficulty) });
++
+ 
+   // If cat has no moves left for this turn, give it the base moves
+   if (current.catMovesLeft <= 0) {
+@@ -4059,6 +4097,7 @@
+       HARD_TRIAL.totalTurnBudgetMs,
+       now,
+     );
++    TRACE.mark('planner_enter', { site: 'trajectory', movesLeft: current.catMovesLeft });
+     const planned = planHardCatTurn(current, {
+       rules: createEngineRuleSet(),
+       timeBudgetMs: hardMainBudgetMs,
+@@ -4072,6 +4111,7 @@
+     // F1B (HARD_SEARCH debug): persist the debug record onto the state so the
+     // UI debug panel can render it (with copy). Debug-only — excluded from
+     // gameAffectingEqual / stateKey.
++    TRACE.mark('planner_return', { site: 'trajectory', completedDepth: planned.completedDepth, planLen: planned.plan.length, hasSolution: planned.hasSolution, deadlineFired: planned.deadlineFired });
+     current = { ...current, lastHardSearch: planned.debug };
+     // G0.2: record the EXACT root snapshot + production diagnostics into the
+     // bounded history (deep copy; never affects the search).
+@@ -4118,6 +4158,7 @@
+     }
+   }
+ 
++  TRACE.mark('plan_decided', { planLen: hardPlanActions ? hardPlanActions.length : 0, fallbackAlready: execFacts.fallbackOccurred });
+   let stuckCount = 0; // Track consecutive no-move iterations to prevent infinite loops
+   const maxStuck = 5;
+   let safety = 0;
+@@ -4131,12 +4172,17 @@
+     }
+     const from = { ...current.catPosition };
+     const catMovesLeftBefore = current.catMovesLeft;
++    TRACE.mark('step_begin', { movesLeft: current.catMovesLeft, planIdx: hardPlanIdx, planLen: hardPlanActions ? hardPlanActions.length : 0 });
++
+ 
+     // Plan-driven step (Hard) OR legacy single step (Easy/Medium/Hard-fallback).
+     let nextState: GameEngineState | null;
+     if (hardPlanActions && hardPlanIdx < hardPlanActions.length) {
+       const action = hardPlanActions[hardPlanIdx++];
++      const __apT = TRACE.enabled ? nowMs() : 0;
+       const applied = applyPlanCatAction(current, action);
++      if (TRACE.enabled) TRACE.mark('plan_action_applied', { ms: nowMs() - __apT, valid: applied.valid });
++
+       if (!applied.valid) {
+         // F1B-4: plan/state mismatch → explicit, non-silent fallback: the rest
+         // of this turn uses the legacy heuristic (no deadlock).
+@@ -4287,6 +4333,7 @@
+     current = nextState;
+   }
+ 
++  TRACE.mark('exec_done', { steps: steps.length, movesLeft: current.catMovesLeft, phase: String(current.phase) });
+   // G0.4F-2B-1.9B §11: finalize the single current-turn execution truth from
+   // the collected facts (plan completed? moves exhausted? game ended?), then
+   // derive matchedPlan once. Both the history logging AND the M3 memory
+@@ -4367,6 +4414,7 @@
+     }
+   }
+ 
++  TRACE.mark('turn_return', { steps: steps.length, movesLeft: current.catMovesLeft });
+   return steps;
+ }
+ 
+@@ -4422,6 +4470,7 @@
+   state: GameEngineState,
+   action: SearchAction,
+ ): { state: GameEngineState; valid: boolean } {
++  bump('applyPlanCatAction');
+   if (action.type === 'catStep') {
+     const next = catMove(state, action.direction);
+     const changed =
+@@ -4450,6 +4499,7 @@
+  * Returns null when no direction yields a real move.
+  */
+ function forceCatMoveTowardsMouse(state: GameEngineState): GameEngineState | null {
++  bump('forceCatMoveTowardsMouse');
+   const legal = getLegalCatDirections(state);
+   if (legal.length === 0) return null;
+ 
+--- src/game/ai/hardTurnPlanner.ts
++++ arm/game/ai/hardTurnPlanner.ts
+@@ -1,3 +1,4 @@
++import { TRACE } from './traceSink';
+ import type { GameEngineState } from '../engine';
+ import type { RuleSet, SearchAction } from './searchTypes';
+ import { searchBestActionIterative, type IterativeSearchResult, type MateSide, type SearchBoundType } from './expectiminimax';
+@@ -238,6 +239,8 @@
+   state: GameEngineState,
+   opts: HardTurnPlanOptions,
+ ): HardTurnPlan {
++
++  TRACE.mark('planner_fn_enter', { hasIdentity: !!opts.turnDeadline, budgetMs: opts.timeBudgetMs, sidecar: !!opts.refutation?.enabled });
+   // PPC-P1-TIME-01: a turn identity carries THE clock of the turn, so a call
+   // that inherits one must not fall back to a second `performance.now()`
+   // expression — that is how two clocks end up measured against one deadline.
+@@ -251,6 +254,13 @@
+     ? opts.turnDeadline.mainSearchDeadlineAtMs
+     : t0 + opts.timeBudgetMs;
+ 
++  const __prof = TRACE.enabled ? {
++    stateKeyCalls: 0, stateKeyMs: 0, legalActionsCalls: 0, legalActionsMs: 0,
++    transitionCalls: 0, transitionMs: 0, evaluateCalls: 0, evaluateMs: 0,
++    ttProbeCalls: 0, ttStoreCalls: 0, orderingSortCalls: 0, orderingSortMs: 0,
++    leafStateKeys: new Set<string>(), repeatedLeafEvals: 0,
++  } : undefined;
++  TRACE.mark('search_enter', { deadlineAtMs: mainDeadlineAtMs });
+   const search = searchBestActionIterative(state, {
+     rules: opts.rules,
+     maxDepthTurns: opts.maxDepthTurns ?? 4,
+@@ -270,7 +280,10 @@
+     // is rolled back to 0 credits; the extension machinery stays in the code
+     // base for experiments/forensics only (see G0.3B report).
+     maxThreatExtensions: 0,
++    profiler: __prof,
+   });
++  TRACE.mark('search_return', { deadlineAtMs: mainDeadlineAtMs, completedDepth: search.completedDepth, attemptedDepth: search.attemptedDepth, deadlineExceeded: search.deadlineExceeded, nodes: search.diagnostics.totalNodes, deadlineCutoffs: search.diagnostics.deadlineCutoffs, budgetExhausted: search.budgetExhausted });
++  if (__prof) TRACE.mark('search_stats', { stateKeyCalls: __prof.stateKeyCalls, stateKeyMs: __prof.stateKeyMs, legalActionsCalls: __prof.legalActionsCalls, legalActionsMs: __prof.legalActionsMs, transitionCalls: __prof.transitionCalls, transitionMs: __prof.transitionMs, evaluateCalls: __prof.evaluateCalls, evaluateMs: __prof.evaluateMs, ttProbeCalls: __prof.ttProbeCalls, ttStoreCalls: __prof.ttStoreCalls, orderingSortCalls: __prof.orderingSortCalls, orderingSortMs: __prof.orderingSortMs, repeatedLeafEvals: __prof.repeatedLeafEvals, uniqueLeafKeys: __prof.leafStateKeys.size });
+   const elapsedMs = now() - t0;
+ 
+   let plan = search.catTurnPlan;
+@@ -372,6 +385,7 @@
+         sidecarAbortReason: 'deadline',
+       };
+     } else {
++      const __scT = TRACE.enabled ? now() : 0;
+       const sidecar = runRefutationSidecar(state, search.catTurnPlan, search.value, {
+         rules: opts.rules,
+         deadline: turnDeadline,
+@@ -379,7 +393,7 @@
+         enabled: true,
+       });
+       plan = sidecar.plan;
+-      refutation = { ...sidecar.diagnostics, refutationWallMs: now() - refStart };
++      if (TRACE.enabled) TRACE.mark('sidecar_return', { ms: now() - __scT, overrideUsed: sidecar.diagnostics.overrideUsed, abort: String(sidecar.diagnostics.sidecarAbortReason), triggered: sidecar.diagnostics.refutationTriggered });
+     }
+   }
+ 
+@@ -387,6 +401,7 @@
+   let progressGuardDebug: ProgressGuardDebug | undefined;
+   {
+     const guardEnabled = HARD_PROGRESS_GUARD_CONFIG.enabled;
++    const __gdT = TRACE.enabled ? now() : 0;
+     if (guardEnabled) {
+       // G0.4F-2B-1.6R §7/§8 + R1E §8: the guard receives the SAME DeadlineContext
+       // object the planner derived at entry (or the one equal to it), never a scalar
+@@ -403,6 +418,7 @@
+           refutation = refutation ? { ...refutation, selectedPlanSource: 'baseline' } : refutation;
+         }
+       }
++      TRACE.mark('guard_return', { ms: TRACE.enabled ? now() - __gdT : 0, applied: guardResult.applied });
+       progressGuardDebug = guardResult.debug;
+     } else {
+       progressGuardDebug = {
+@@ -445,6 +461,7 @@
+     progressGuard: progressGuardDebug,
+   };
+ 
++  TRACE.mark('planner_fn_return', { planLen: plan.length, completedDepth: search.completedDepth, sidecarDiag: !!refutation });
+   return {
+     plan,
+     bestAction: search.bestAction,
+--- src/game/ai/expectiminimax.ts
++++ arm/game/ai/expectiminimax.ts
+@@ -49,6 +49,8 @@
+  * interior node) and the remaining work inside one node is additionally bounded
+  * by EVAL_DEADLINE_CHECK_INTERVAL below.
+  */
++import { TRACE, bump } from './traceSink';
++
+ export const DEADLINE_CHECK_INTERVAL = 1;
+ 
+ /**
+@@ -83,11 +85,27 @@
+  * matched the interval against the shared node counter), so the clock is not
+  * a per-node hot spot.
+  */
++/** PPC-P1-TIME-02 trace only: first-observation latch, reset per search. */
++let __traceDlSeen = false;
++let __traceDlNode = -1;
++
+ function deadlineReached(ctx: SearchContext, nodeCount: { count: number }): boolean {
+   if (ctx.deadlineMs === undefined) return false;
+   if (nodeCount.count % DEADLINE_CHECK_INTERVAL !== 0) return false;
+   const clock = ctx.now ?? defaultNow;
+-  return clock() >= ctx.deadlineMs;
++  // PPC-P1-TIME-02: bind the single clock read to a local so the FIRST
++  // overrun observation can be reported. The predicate is unchanged.
++  const sampled = clock();
++  const over = sampled >= ctx.deadlineMs;
++  if (over) {
++    bump('nodeDeadlineHits');
++    if (!__traceDlSeen) {
++      __traceDlSeen = true;
++      __traceDlNode = nodeCount.count;
++      TRACE.mark('deadline_first_observed', { overrunMs: sampled - ctx.deadlineMs, node: nodeCount.count, deadlineAtMs: ctx.deadlineMs });
++    }
++  }
++  return over;
+ }
+ 
+ /**
+@@ -113,6 +131,7 @@
+   if (ctx.evalCheckCounter % EVAL_DEADLINE_CHECK_INTERVAL !== 0) return false;
+   const clock = ctx.now ?? defaultNow;
+   if (clock() >= ctx.deadlineMs) {
++    bump('evalDeadlineHits');
+     ctx.evalDeadlineHit = true;
+     ctx.diagnostics.deadlineCutoffs++;
+     return true;
+@@ -943,6 +962,8 @@
+   // T1E-B: evaluator-batch deadline observation (observes the clock + sets a flag only;
+   // the evaluator's value, the cache and the profiler paths are unchanged).
+   evalBatchDeadlineObserved(ctx);
++  if (__traceDlSeen) bump('evalAfterDl');
++
+   // G0.3C: per-search evaluation memoization. evaluateForCat is pure, so the
+   // same stateKey always yields the same value. The caller passes the key it
+   // already computed (from _search's repetition check / TT probe) to avoid a
+@@ -1710,7 +1731,10 @@
+   // T1E-B: a deadline observed inside the evaluator batch takes this SAME abort path.
+   if (deadlineReached(ctx, nodeCount) || ctx.evalDeadlineHit) {
+     ctx.diagnostics.deadlineCutoffs++;
++    const __aeT = TRACE.enabled ? performance.now() : 0;
+     const dlLeaf = evaluateLeaf(state, ctx, key);
++    if (TRACE.enabled) { bump('abortEvalMs', performance.now() - __aeT); bump('abortEvalCount'); }
++
+     maybeFrontierSample(ctx, {
+       stateKey: key,
+       owner: state.currentPlayer === PieceType.Cat ? 'cat' : 'mouse',
+@@ -2199,6 +2223,9 @@
+   state: GameEngineState,
+   opts: IterativeSearchOptions,
+ ): IterativeSearchResult {
++  __traceDlSeen = false;
++  __traceDlNode = -1;
++  TRACE.mark('iter_enter', { deadlineAtMs: opts.deadlineMs ?? null, maxDepthTurns: opts.maxDepthTurns });
+   const ctx = createSearchContext(
+     opts.rules,
+     opts.maxNodes,
+@@ -2317,6 +2344,7 @@
+   const finalMate = lastCompleted ? lastCompleted.mate : null;
+   const finalAction = lastCompleted ? lastCompleted.bestAction : null;
+ 
++  TRACE.mark('search_loop_done', { completedDepth, attemptedDepth, nodes: d.nodes, deadlineCutoffs: d.deadlineCutoffs, firstDlNode: __traceDlNode, budgetExhausted, deadlineExceeded });
+   // G0.3A/G0.3E-R2: apply plan-quality selection ONCE, after the loop.
+   if (lastCompleted) {
+     ctx.planBranches = lastPlanBranches;
+@@ -2352,6 +2380,7 @@
+     prevPlan = finalizeCompletedIterationPlan(state, ctx, prevCompleted);
+   }
+ 
++  TRACE.mark('search_post_plan_done');
+   return {
+     bestAction: finalAction,
+     value: finalValue,

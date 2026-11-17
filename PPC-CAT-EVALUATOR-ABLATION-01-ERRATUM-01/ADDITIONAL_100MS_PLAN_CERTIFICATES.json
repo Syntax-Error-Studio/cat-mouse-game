@@ -1,0 +1,1070 @@
+{
+  "artifactId": "ADDITIONAL_100MS_PLAN_CERTIFICATES",
+  "round": "PPC-CAT-EVALUATOR-ABLATION-01-ERRATUM-01",
+  "generatedAt": "2026-11-15T16:38:43.114Z",
+  "generatedBy": "PPC-CAT-EVALUATOR-ABLATION-01-ERRATUM-01/probe/erratum.test.ts",
+  "head": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+  "productionSourceChanged": false,
+  "purpose": "Every actual 100 ms plan not already bound by a P4 certificate gets an independent quantifier certification. No 24-root search rerun.",
+  "contract": {
+    "H0": 1,
+    "H1": 2,
+    "cap": 600000,
+    "chance": "ALL positive-probability outcomes, AND",
+    "terminalBeforeHorizon": true,
+    "capToUnresolved": true,
+    "noSurvivalFromNegation": true
+  },
+  "plans": [
+    {
+      "rootId": "G5T3",
+      "arm": "E1",
+      "planString": "LLDR",
+      "source": "P5 modal finalPlan over 5 fresh-process rounds",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "fixtureSnapshotSha256": "8f38951c8d0106a0c81a28fe160e85d9f007ebe7e4cd743e4637087851d0d2b7",
+      "restoredStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__b__e__e__e__e__e__e__b__e__e__e__e__b__e__e__e__e__e__e__p__e__e__p__e__e__e__e__e__ec_e__e__e__b__e__e__e__b__b__e__e__e__e__e__e__e__e__e__e__p__b__e__b__e__m__m__e__e__e__e__b__b__e__b__m__m__t__e__e__e__e__em_e__e__e__t__#single#playing#cat#5,3#9,5#4#0#1,6|6,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "stateSha": "0632d0616c04a512ef9b23cd6893c9fb39c13e85cc93d5f7be7ecfce401b624b",
+      "replay": {
+        "ok": true,
+        "failedAt": null,
+        "plan": [
+          "L",
+          "L",
+          "D",
+          "R"
+        ],
+        "steps": [
+          {
+            "index": 0,
+            "label": "L",
+            "frontierBefore": 1,
+            "frontierAfter": 1,
+            "chance": false
+          },
+          {
+            "index": 1,
+            "label": "L",
+            "frontierBefore": 1,
+            "frontierAfter": 1,
+            "chance": false
+          },
+          {
+            "index": 2,
+            "label": "D",
+            "frontierBefore": 1,
+            "frontierAfter": 1,
+            "chance": false
+          },
+          {
+            "index": 3,
+            "label": "R",
+            "frontierBefore": 1,
+            "frontierAfter": 1,
+            "chance": false
+          }
+        ],
+        "frontier": [
+          {
+            "postIdx": 1,
+            "postPlayer": "mouse",
+            "postPhase": "playing",
+            "postStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__b__e__e__e__e__e__e__b__e__e__e__e__b__e__e__e__e__e__e__p__e__e__p__e__e__e__e__e__e__e__e__e__b__e__e__e__e__ec_b__e__e__e__e__e__e__e__b__e__p__b__e__b__e__m__m__e__e__e__e__b__b__e__b__m__m__t__e__e__e__e__em_e__e__e__t__#single#playing#mouse#6,2#9,5#0#3#1,6|6,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+            "postSummary": {
+              "phase": "playing",
+              "currentPlayer": "mouse",
+              "cat": "6,2",
+              "mouse": "9,5",
+              "catMovesLeft": 0,
+              "mouseMovesLeft": 3,
+              "mouseHasButter": true,
+              "mouseSkillActive": false,
+              "butterPositions": [
+                "1,6",
+                "6,6"
+              ],
+              "pendingButterSpawns": [],
+              "pendingButterPlacementDebt": 0,
+              "trapPosition": "1,1",
+              "catTrapsRemaining": 0,
+              "blockedTunnels": []
+            }
+          }
+        ],
+        "chanceNodes": 0,
+        "catTurnEnded": true,
+        "catMovesLeftValues": [
+          0
+        ]
+      },
+      "applyPrefixCrossCheck": {
+        "ok": true,
+        "branchCount": 1,
+        "idx": [
+          1
+        ],
+        "stateKeysEqual": true
+      },
+      "branches": [
+        {
+          "branchIdx": 0,
+          "postStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__b__e__e__e__e__e__e__b__e__e__e__e__b__e__e__e__e__e__e__p__e__e__p__e__e__e__e__e__e__e__e__e__b__e__e__e__e__ec_b__e__e__e__e__e__e__e__b__e__p__b__e__b__e__m__m__e__e__e__e__b__b__e__b__m__m__t__e__e__e__e__em_e__e__e__t__#single#playing#mouse#6,2#9,5#0#3#1,6|6,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+          "postIdx": 1,
+          "postPlayer": "mouse",
+          "postPhase": "playing",
+          "postSummary": {
+            "phase": "playing",
+            "currentPlayer": "mouse",
+            "cat": "6,2",
+            "mouse": "9,5",
+            "catMovesLeft": 0,
+            "mouseMovesLeft": 3,
+            "mouseHasButter": true,
+            "mouseSkillActive": false,
+            "butterPositions": [
+              "1,6",
+              "6,6"
+            ],
+            "pendingButterSpawns": [],
+            "pendingButterPlacementDebt": 0,
+            "trapPosition": "1,1",
+            "catTrapsRemaining": 0,
+            "blockedTunnels": []
+          },
+          "h0MouseForcedWin": false,
+          "h1MouseForcedWin": true,
+          "h1CatSurvive": false,
+          "h1CatForcedWin": false,
+          "stats": {
+            "h0": {
+              "nodes": 37,
+              "truncated": false,
+              "chanceNodes": 0,
+              "chanceOutcomes": 0,
+              "memoHits": 26,
+              "cutoffs": 0,
+              "maxIdx": 1,
+              "elapsedMs": 1
+            },
+            "h1": {
+              "nodes": 1543,
+              "truncated": false,
+              "chanceNodes": 2,
+              "chanceOutcomes": 48,
+              "memoHits": 812,
+              "cutoffs": 197,
+              "maxIdx": 3,
+              "elapsedMs": 51
+            },
+            "survive": {
+              "nodes": 1543,
+              "truncated": false,
+              "chanceNodes": 2,
+              "chanceOutcomes": 48,
+              "memoHits": 812,
+              "cutoffs": 197,
+              "maxIdx": 3,
+              "elapsedMs": 43
+            },
+            "catForce": {
+              "nodes": 287,
+              "truncated": false,
+              "chanceNodes": 0,
+              "chanceOutcomes": 0,
+              "memoHits": 114,
+              "cutoffs": 217,
+              "maxIdx": 3,
+              "elapsedMs": 8
+            }
+          },
+          "class": "MOUSE_FORCED_WIN_WITHIN_H1",
+          "certificates": [
+            {
+              "certId": "8fc1454be61c61a4",
+              "question": "mouseForce",
+              "horizon": 2,
+              "side": "mouse",
+              "solveNodes": 1543,
+              "solveTruncated": false,
+              "policySize": 141,
+              "verdict": "PROVEN",
+              "ok": true,
+              "leaves": 756,
+              "branches": 69,
+              "chanceNodes": 0,
+              "maxDepth": 10,
+              "policyMisses": 0,
+              "reason": null,
+              "counterexample": null,
+              "verifyElapsedMs": 16
+            }
+          ]
+        }
+      ],
+      "aggregated": {
+        "h0": false,
+        "h1": true,
+        "survive": false,
+        "catForce": false
+      },
+      "aggregatedClass": "MOUSE_FORCED_WIN_WITHIN_H1",
+      "proofStatus": "PROVEN",
+      "certificateCount": 1,
+      "verifier": {
+        "verifyFailures": 0,
+        "certUnresolved": 0,
+        "definiteTrueLabels": 1
+      },
+      "contract": {
+        "H0": 1,
+        "H1": 2,
+        "cap": 600000,
+        "chance": "ALL positive-probability outcomes, AND",
+        "terminalBeforeHorizon": true,
+        "capToUnresolved": true,
+        "noSurvivalFromNegation": true
+      },
+      "elapsedMs": 120
+    },
+    {
+      "rootId": "G2T2",
+      "arm": "E1",
+      "planString": "DLUL",
+      "source": "P5 modal finalPlan over 5 fresh-process rounds",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "fixtureSnapshotSha256": "56c7a052ab37ca911e13b38f3294232ab4cb93631d44f8a12a89dd3ec6e4a1fe",
+      "restoredStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__e__e__e__ec_e__e__b__e__e__e__b__e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__e__e__e__e__e__e__e__e__b__em_e__e__e__e__b__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#1,5#5,8#4#0#5,2|6,1##0#0#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "stateSha": "04d92e224e480b8388412d4bedcfdcea1e9dcdbadef04b1e99e8d1555b0d0f0d",
+      "replay": {
+        "ok": true,
+        "failedAt": null,
+        "plan": [
+          "D",
+          "L",
+          "U",
+          "L"
+        ],
+        "steps": [
+          {
+            "index": 0,
+            "label": "D",
+            "frontierBefore": 1,
+            "frontierAfter": 1,
+            "chance": false
+          },
+          {
+            "index": 1,
+            "label": "L",
+            "frontierBefore": 1,
+            "frontierAfter": 1,
+            "chance": false
+          },
+          {
+            "index": 2,
+            "label": "U",
+            "frontierBefore": 1,
+            "frontierAfter": 1,
+            "chance": false
+          },
+          {
+            "index": 3,
+            "label": "L",
+            "frontierBefore": 1,
+            "frontierAfter": 1,
+            "chance": false
+          }
+        ],
+        "frontier": [
+          {
+            "postIdx": 1,
+            "postPlayer": "mouse",
+            "postPhase": "playing",
+            "postStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__e__ec_e__e__e__e__b__e__e__e__b__e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__e__e__e__e__e__e__e__e__b__em_e__e__e__e__b__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#1,3#5,8#0#4#5,2|6,1##0#0#0#1,1#0###10:4:3:3:4:2:single:hard",
+            "postSummary": {
+              "phase": "playing",
+              "currentPlayer": "mouse",
+              "cat": "1,3",
+              "mouse": "5,8",
+              "catMovesLeft": 0,
+              "mouseMovesLeft": 4,
+              "mouseHasButter": false,
+              "mouseSkillActive": false,
+              "butterPositions": [
+                "6,1",
+                "5,2"
+              ],
+              "pendingButterSpawns": [],
+              "pendingButterPlacementDebt": 0,
+              "trapPosition": "1,1",
+              "catTrapsRemaining": 0,
+              "blockedTunnels": []
+            }
+          }
+        ],
+        "chanceNodes": 0,
+        "catTurnEnded": true,
+        "catMovesLeftValues": [
+          0
+        ]
+      },
+      "applyPrefixCrossCheck": {
+        "ok": true,
+        "branchCount": 1,
+        "idx": [
+          1
+        ],
+        "stateKeysEqual": true
+      },
+      "branches": [
+        {
+          "branchIdx": 0,
+          "postStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__e__ec_e__e__e__e__b__e__e__e__b__e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__e__e__e__e__e__e__e__e__b__em_e__e__e__e__b__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#1,3#5,8#0#4#5,2|6,1##0#0#0#1,1#0###10:4:3:3:4:2:single:hard",
+          "postIdx": 1,
+          "postPlayer": "mouse",
+          "postPhase": "playing",
+          "postSummary": {
+            "phase": "playing",
+            "currentPlayer": "mouse",
+            "cat": "1,3",
+            "mouse": "5,8",
+            "catMovesLeft": 0,
+            "mouseMovesLeft": 4,
+            "mouseHasButter": false,
+            "mouseSkillActive": false,
+            "butterPositions": [
+              "6,1",
+              "5,2"
+            ],
+            "pendingButterSpawns": [],
+            "pendingButterPlacementDebt": 0,
+            "trapPosition": "1,1",
+            "catTrapsRemaining": 0,
+            "blockedTunnels": []
+          },
+          "h0MouseForcedWin": false,
+          "h1MouseForcedWin": false,
+          "h1CatSurvive": true,
+          "h1CatForcedWin": false,
+          "stats": {
+            "h0": {
+              "nodes": 14,
+              "truncated": false,
+              "chanceNodes": 0,
+              "chanceOutcomes": 0,
+              "memoHits": 8,
+              "cutoffs": 0,
+              "maxIdx": 1,
+              "elapsedMs": 0
+            },
+            "h1": {
+              "nodes": 122,
+              "truncated": false,
+              "chanceNodes": 1,
+              "chanceOutcomes": 27,
+              "memoHits": 79,
+              "cutoffs": 44,
+              "maxIdx": 3,
+              "elapsedMs": 4
+            },
+            "survive": {
+              "nodes": 122,
+              "truncated": false,
+              "chanceNodes": 1,
+              "chanceOutcomes": 27,
+              "memoHits": 79,
+              "cutoffs": 44,
+              "maxIdx": 3,
+              "elapsedMs": 3
+            },
+            "catForce": {
+              "nodes": 297,
+              "truncated": false,
+              "chanceNodes": 0,
+              "chanceOutcomes": 0,
+              "memoHits": 51,
+              "cutoffs": 252,
+              "maxIdx": 3,
+              "elapsedMs": 7
+            }
+          },
+          "class": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+          "certificates": [
+            {
+              "certId": "7fa77bd186036bff",
+              "question": "catSurvive",
+              "horizon": 2,
+              "side": "cat",
+              "solveNodes": 122,
+              "solveTruncated": false,
+              "policySize": 44,
+              "verdict": "PROVEN",
+              "ok": true,
+              "leaves": 328,
+              "branches": 78,
+              "chanceNodes": 1,
+              "maxDepth": 13,
+              "policyMisses": 0,
+              "reason": null,
+              "counterexample": null,
+              "verifyElapsedMs": 5
+            }
+          ]
+        }
+      ],
+      "aggregated": {
+        "h0": false,
+        "h1": false,
+        "survive": true,
+        "catForce": false
+      },
+      "aggregatedClass": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "proofStatus": "PROVEN",
+      "certificateCount": 1,
+      "verifier": {
+        "verifyFailures": 0,
+        "certUnresolved": 0,
+        "definiteTrueLabels": 1
+      },
+      "contract": {
+        "H0": 1,
+        "H1": 2,
+        "cap": 600000,
+        "chance": "ALL positive-probability outcomes, AND",
+        "terminalBeforeHorizon": true,
+        "capToUnresolved": true,
+        "noSurvivalFromNegation": true
+      },
+      "elapsedMs": 20
+    },
+    {
+      "rootId": "G2T2",
+      "arm": "H1",
+      "planString": "DDDD",
+      "source": "P5 modal finalPlan over 5 fresh-process rounds",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "fixtureSnapshotSha256": "56c7a052ab37ca911e13b38f3294232ab4cb93631d44f8a12a89dd3ec6e4a1fe",
+      "restoredStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__e__e__e__ec_e__e__b__e__e__e__b__e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__e__e__e__e__e__e__e__e__b__em_e__e__e__e__b__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#1,5#5,8#4#0#5,2|6,1##0#0#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "stateSha": "04d92e224e480b8388412d4bedcfdcea1e9dcdbadef04b1e99e8d1555b0d0f0d",
+      "replay": {
+        "ok": true,
+        "failedAt": null,
+        "plan": [
+          "D",
+          "D",
+          "D",
+          "D"
+        ],
+        "steps": [
+          {
+            "index": 0,
+            "label": "D",
+            "frontierBefore": 1,
+            "frontierAfter": 1,
+            "chance": false
+          },
+          {
+            "index": 1,
+            "label": "D",
+            "frontierBefore": 1,
+            "frontierAfter": 1,
+            "chance": false
+          },
+          {
+            "index": 2,
+            "label": "D",
+            "frontierBefore": 1,
+            "frontierAfter": 1,
+            "chance": false
+          },
+          {
+            "index": 3,
+            "label": "D",
+            "frontierBefore": 1,
+            "frontierAfter": 1,
+            "chance": false
+          }
+        ],
+        "frontier": [
+          {
+            "postIdx": 1,
+            "postPlayer": "mouse",
+            "postPhase": "playing",
+            "postStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__e__e__e__e__e__e__ec_e__b__em_e__e__e__e__b__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#5,5#5,8#0#4#5,2|6,1##0#0#0#1,1#0###10:4:3:3:4:2:single:hard",
+            "postSummary": {
+              "phase": "playing",
+              "currentPlayer": "mouse",
+              "cat": "5,5",
+              "mouse": "5,8",
+              "catMovesLeft": 0,
+              "mouseMovesLeft": 4,
+              "mouseHasButter": false,
+              "mouseSkillActive": false,
+              "butterPositions": [
+                "6,1",
+                "5,2"
+              ],
+              "pendingButterSpawns": [],
+              "pendingButterPlacementDebt": 0,
+              "trapPosition": "1,1",
+              "catTrapsRemaining": 0,
+              "blockedTunnels": []
+            }
+          }
+        ],
+        "chanceNodes": 0,
+        "catTurnEnded": true,
+        "catMovesLeftValues": [
+          0
+        ]
+      },
+      "applyPrefixCrossCheck": {
+        "ok": true,
+        "branchCount": 1,
+        "idx": [
+          1
+        ],
+        "stateKeysEqual": true
+      },
+      "branches": [
+        {
+          "branchIdx": 0,
+          "postStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__e__e__e__e__e__e__ec_e__b__em_e__e__e__e__b__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#5,5#5,8#0#4#5,2|6,1##0#0#0#1,1#0###10:4:3:3:4:2:single:hard",
+          "postIdx": 1,
+          "postPlayer": "mouse",
+          "postPhase": "playing",
+          "postSummary": {
+            "phase": "playing",
+            "currentPlayer": "mouse",
+            "cat": "5,5",
+            "mouse": "5,8",
+            "catMovesLeft": 0,
+            "mouseMovesLeft": 4,
+            "mouseHasButter": false,
+            "mouseSkillActive": false,
+            "butterPositions": [
+              "6,1",
+              "5,2"
+            ],
+            "pendingButterSpawns": [],
+            "pendingButterPlacementDebt": 0,
+            "trapPosition": "1,1",
+            "catTrapsRemaining": 0,
+            "blockedTunnels": []
+          },
+          "h0MouseForcedWin": false,
+          "h1MouseForcedWin": false,
+          "h1CatSurvive": true,
+          "h1CatForcedWin": false,
+          "stats": {
+            "h0": {
+              "nodes": 14,
+              "truncated": false,
+              "chanceNodes": 0,
+              "chanceOutcomes": 0,
+              "memoHits": 8,
+              "cutoffs": 0,
+              "maxIdx": 1,
+              "elapsedMs": 0
+            },
+            "h1": {
+              "nodes": 114,
+              "truncated": false,
+              "chanceNodes": 1,
+              "chanceOutcomes": 25,
+              "memoHits": 74,
+              "cutoffs": 41,
+              "maxIdx": 3,
+              "elapsedMs": 3
+            },
+            "survive": {
+              "nodes": 114,
+              "truncated": false,
+              "chanceNodes": 1,
+              "chanceOutcomes": 25,
+              "memoHits": 74,
+              "cutoffs": 41,
+              "maxIdx": 3,
+              "elapsedMs": 3
+            },
+            "catForce": {
+              "nodes": 172,
+              "truncated": false,
+              "chanceNodes": 0,
+              "chanceOutcomes": 0,
+              "memoHits": 32,
+              "cutoffs": 144,
+              "maxIdx": 3,
+              "elapsedMs": 4
+            }
+          },
+          "class": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+          "certificates": [
+            {
+              "certId": "4c9feedd93f830f8",
+              "question": "catSurvive",
+              "horizon": 2,
+              "side": "cat",
+              "solveNodes": 114,
+              "solveTruncated": false,
+              "policySize": 41,
+              "verdict": "PROVEN",
+              "ok": true,
+              "leaves": 307,
+              "branches": 73,
+              "chanceNodes": 1,
+              "maxDepth": 13,
+              "policyMisses": 0,
+              "reason": null,
+              "counterexample": null,
+              "verifyElapsedMs": 4
+            }
+          ]
+        }
+      ],
+      "aggregated": {
+        "h0": false,
+        "h1": false,
+        "survive": true,
+        "catForce": false
+      },
+      "aggregatedClass": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "proofStatus": "PROVEN",
+      "certificateCount": 1,
+      "verifier": {
+        "verifyFailures": 0,
+        "certUnresolved": 0,
+        "definiteTrueLabels": 1
+      },
+      "contract": {
+        "H0": 1,
+        "H1": 2,
+        "cap": 600000,
+        "chance": "ALL positive-probability outcomes, AND",
+        "terminalBeforeHorizon": true,
+        "capToUnresolved": true,
+        "noSurvivalFromNegation": true
+      },
+      "elapsedMs": 15
+    },
+    {
+      "rootId": "G2T6",
+      "arm": "H1",
+      "planString": "LUUU",
+      "source": "P5 modal finalPlan over 5 fresh-process rounds",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "fixtureSnapshotSha256": "20f33cea1179b6dc24a88fc5c1ec71f4ca1c3c1b565cb401ee17da85683a3601",
+      "restoredStateKey": "t__e__e__e__e__e__e__e__e__tm_e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__ec_e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#cat#8,2#0,9#4#0#2,5|4,7##0#0#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "stateSha": "59db14ae9d4be6769d5f153ed41631db6474d71dd1dc2f4c5969583f1a874a0c",
+      "replay": {
+        "ok": true,
+        "failedAt": null,
+        "plan": [
+          "L",
+          "U",
+          "U",
+          "U"
+        ],
+        "steps": [
+          {
+            "index": 0,
+            "label": "L",
+            "frontierBefore": 1,
+            "frontierAfter": 1,
+            "chance": false
+          },
+          {
+            "index": 1,
+            "label": "U",
+            "frontierBefore": 1,
+            "frontierAfter": 1,
+            "chance": false
+          },
+          {
+            "index": 2,
+            "label": "U",
+            "frontierBefore": 1,
+            "frontierAfter": 1,
+            "chance": false
+          },
+          {
+            "index": 3,
+            "label": "U",
+            "frontierBefore": 1,
+            "frontierAfter": 1,
+            "chance": false
+          }
+        ],
+        "frontier": [
+          {
+            "postIdx": 1,
+            "postPlayer": "mouse",
+            "postPhase": "playing",
+            "postStateKey": "t__e__e__e__e__e__e__e__e__tm_e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__e__e__ec_e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#mouse#5,1#0,9#0#4#2,5|4,7##0#0#0#1,1#0###10:4:3:3:4:2:single:hard",
+            "postSummary": {
+              "phase": "playing",
+              "currentPlayer": "mouse",
+              "cat": "5,1",
+              "mouse": "0,9",
+              "catMovesLeft": 0,
+              "mouseMovesLeft": 4,
+              "mouseHasButter": false,
+              "mouseSkillActive": false,
+              "butterPositions": [
+                "2,5",
+                "4,7"
+              ],
+              "pendingButterSpawns": [],
+              "pendingButterPlacementDebt": 0,
+              "trapPosition": "1,1",
+              "catTrapsRemaining": 0,
+              "blockedTunnels": []
+            }
+          }
+        ],
+        "chanceNodes": 0,
+        "catTurnEnded": true,
+        "catMovesLeftValues": [
+          0
+        ]
+      },
+      "applyPrefixCrossCheck": {
+        "ok": true,
+        "branchCount": 1,
+        "idx": [
+          1
+        ],
+        "stateKeysEqual": true
+      },
+      "branches": [
+        {
+          "branchIdx": 0,
+          "postStateKey": "t__e__e__e__e__e__e__e__e__tm_e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__e__e__ec_e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#mouse#5,1#0,9#0#4#2,5|4,7##0#0#0#1,1#0###10:4:3:3:4:2:single:hard",
+          "postIdx": 1,
+          "postPlayer": "mouse",
+          "postPhase": "playing",
+          "postSummary": {
+            "phase": "playing",
+            "currentPlayer": "mouse",
+            "cat": "5,1",
+            "mouse": "0,9",
+            "catMovesLeft": 0,
+            "mouseMovesLeft": 4,
+            "mouseHasButter": false,
+            "mouseSkillActive": false,
+            "butterPositions": [
+              "2,5",
+              "4,7"
+            ],
+            "pendingButterSpawns": [],
+            "pendingButterPlacementDebt": 0,
+            "trapPosition": "1,1",
+            "catTrapsRemaining": 0,
+            "blockedTunnels": []
+          },
+          "h0MouseForcedWin": false,
+          "h1MouseForcedWin": false,
+          "h1CatSurvive": true,
+          "h1CatForcedWin": false,
+          "stats": {
+            "h0": {
+              "nodes": 12,
+              "truncated": false,
+              "chanceNodes": 0,
+              "chanceOutcomes": 0,
+              "memoHits": 3,
+              "cutoffs": 0,
+              "maxIdx": 1,
+              "elapsedMs": 0
+            },
+            "h1": {
+              "nodes": 205,
+              "truncated": false,
+              "chanceNodes": 7,
+              "chanceOutcomes": 209,
+              "memoHits": 129,
+              "cutoffs": 44,
+              "maxIdx": 3,
+              "elapsedMs": 7
+            },
+            "survive": {
+              "nodes": 3349,
+              "truncated": false,
+              "chanceNodes": 65,
+              "chanceOutcomes": 1957,
+              "memoHits": 2259,
+              "cutoffs": 44,
+              "maxIdx": 3,
+              "elapsedMs": 106
+            },
+            "catForce": {
+              "nodes": 102,
+              "truncated": false,
+              "chanceNodes": 0,
+              "chanceOutcomes": 0,
+              "memoHits": 44,
+              "cutoffs": 75,
+              "maxIdx": 3,
+              "elapsedMs": 2
+            }
+          },
+          "class": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+          "certificates": [
+            {
+              "certId": "bbc9b17d08028a5b",
+              "question": "catSurvive",
+              "horizon": 2,
+              "side": "cat",
+              "solveNodes": 3349,
+              "solveTruncated": false,
+              "policySize": 44,
+              "verdict": "PROVEN",
+              "ok": true,
+              "leaves": 11380,
+              "branches": 3305,
+              "chanceNodes": 65,
+              "maxDepth": 16,
+              "policyMisses": 0,
+              "reason": null,
+              "counterexample": null,
+              "verifyElapsedMs": 98
+            }
+          ]
+        }
+      ],
+      "aggregated": {
+        "h0": false,
+        "h1": false,
+        "survive": true,
+        "catForce": false
+      },
+      "aggregatedClass": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "proofStatus": "PROVEN",
+      "certificateCount": 1,
+      "verifier": {
+        "verifyFailures": 0,
+        "certUnresolved": 0,
+        "definiteTrueLabels": 1
+      },
+      "contract": {
+        "H0": 1,
+        "H1": 2,
+        "cap": 600000,
+        "chance": "ALL positive-probability outcomes, AND",
+        "terminalBeforeHorizon": true,
+        "capToUnresolved": true,
+        "noSurvivalFromNegation": true
+      },
+      "elapsedMs": 214
+    },
+    {
+      "rootId": "G1T4",
+      "arm": "H1",
+      "planString": "LLLL",
+      "source": "P5 modal finalPlan over 5 fresh-process rounds",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "fixtureSnapshotSha256": "1acd9e356a3ee300c0d2b46d30745e0c9c9553de7230a673495a3a55f4e30d81",
+      "restoredStateKey": "t__e__e__e__e__e__e__e__e__tm_e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__e__e__b__e__e__e__e__b__b__b__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__e__ec_e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#8,6#0,9#4#0#1,4|2,5##0#0#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "stateSha": "0353b5e6f1f57c0f890b73e5c10ae8a3a880d04d3be758a1153214a9bce43385",
+      "replay": {
+        "ok": true,
+        "failedAt": null,
+        "plan": [
+          "L",
+          "L",
+          "L",
+          "L"
+        ],
+        "steps": [
+          {
+            "index": 0,
+            "label": "L",
+            "frontierBefore": 1,
+            "frontierAfter": 1,
+            "chance": false
+          },
+          {
+            "index": 1,
+            "label": "L",
+            "frontierBefore": 1,
+            "frontierAfter": 1,
+            "chance": false
+          },
+          {
+            "index": 2,
+            "label": "L",
+            "frontierBefore": 1,
+            "frontierAfter": 1,
+            "chance": false
+          },
+          {
+            "index": 3,
+            "label": "L",
+            "frontierBefore": 1,
+            "frontierAfter": 1,
+            "chance": false
+          }
+        ],
+        "frontier": [
+          {
+            "postIdx": 1,
+            "postPlayer": "mouse",
+            "postPhase": "playing",
+            "postStateKey": "t__e__e__e__e__e__e__e__e__tm_e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__e__e__b__e__e__e__e__b__b__b__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__ec_e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#8,2#0,9#0#4#1,4|2,5##0#0#0#1,1#0###10:4:3:3:4:2:single:hard",
+            "postSummary": {
+              "phase": "playing",
+              "currentPlayer": "mouse",
+              "cat": "8,2",
+              "mouse": "0,9",
+              "catMovesLeft": 0,
+              "mouseMovesLeft": 4,
+              "mouseHasButter": false,
+              "mouseSkillActive": false,
+              "butterPositions": [
+                "1,4",
+                "2,5"
+              ],
+              "pendingButterSpawns": [],
+              "pendingButterPlacementDebt": 0,
+              "trapPosition": "1,1",
+              "catTrapsRemaining": 0,
+              "blockedTunnels": []
+            }
+          }
+        ],
+        "chanceNodes": 0,
+        "catTurnEnded": true,
+        "catMovesLeftValues": [
+          0
+        ]
+      },
+      "applyPrefixCrossCheck": {
+        "ok": true,
+        "branchCount": 1,
+        "idx": [
+          1
+        ],
+        "stateKeysEqual": true
+      },
+      "branches": [
+        {
+          "branchIdx": 0,
+          "postStateKey": "t__e__e__e__e__e__e__e__e__tm_e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__e__e__b__e__e__e__e__b__b__b__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__ec_e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#8,2#0,9#0#4#1,4|2,5##0#0#0#1,1#0###10:4:3:3:4:2:single:hard",
+          "postIdx": 1,
+          "postPlayer": "mouse",
+          "postPhase": "playing",
+          "postSummary": {
+            "phase": "playing",
+            "currentPlayer": "mouse",
+            "cat": "8,2",
+            "mouse": "0,9",
+            "catMovesLeft": 0,
+            "mouseMovesLeft": 4,
+            "mouseHasButter": false,
+            "mouseSkillActive": false,
+            "butterPositions": [
+              "1,4",
+              "2,5"
+            ],
+            "pendingButterSpawns": [],
+            "pendingButterPlacementDebt": 0,
+            "trapPosition": "1,1",
+            "catTrapsRemaining": 0,
+            "blockedTunnels": []
+          },
+          "h0MouseForcedWin": false,
+          "h1MouseForcedWin": false,
+          "h1CatSurvive": true,
+          "h1CatForcedWin": false,
+          "stats": {
+            "h0": {
+              "nodes": 13,
+              "truncated": false,
+              "chanceNodes": 0,
+              "chanceOutcomes": 0,
+              "memoHits": 8,
+              "cutoffs": 0,
+              "maxIdx": 1,
+              "elapsedMs": 0
+            },
+            "h1": {
+              "nodes": 223,
+              "truncated": false,
+              "chanceNodes": 23,
+              "chanceOutcomes": 561,
+              "memoHits": 159,
+              "cutoffs": 40,
+              "maxIdx": 3,
+              "elapsedMs": 7
+            },
+            "survive": {
+              "nodes": 7122,
+              "truncated": false,
+              "chanceNodes": 374,
+              "chanceOutcomes": 8839,
+              "memoHits": 11134,
+              "cutoffs": 40,
+              "maxIdx": 3,
+              "elapsedMs": 275
+            },
+            "catForce": {
+              "nodes": 84,
+              "truncated": false,
+              "chanceNodes": 0,
+              "chanceOutcomes": 0,
+              "memoHits": 43,
+              "cutoffs": 60,
+              "maxIdx": 3,
+              "elapsedMs": 2
+            }
+          },
+          "class": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+          "certificates": [
+            {
+              "certId": "0f68890104a7a8ef",
+              "question": "catSurvive",
+              "horizon": 2,
+              "side": "cat",
+              "solveNodes": 7122,
+              "solveTruncated": false,
+              "policySize": 40,
+              "verdict": "PROVEN",
+              "ok": true,
+              "leaves": 32512,
+              "branches": 7082,
+              "chanceNodes": 374,
+              "maxDepth": 17,
+              "policyMisses": 0,
+              "reason": null,
+              "counterexample": null,
+              "verifyElapsedMs": 270
+            }
+          ]
+        }
+      ],
+      "aggregated": {
+        "h0": false,
+        "h1": false,
+        "survive": true,
+        "catForce": false
+      },
+      "aggregatedClass": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "proofStatus": "PROVEN",
+      "certificateCount": 1,
+      "verifier": {
+        "verifyFailures": 0,
+        "certUnresolved": 0,
+        "definiteTrueLabels": 1
+      },
+      "contract": {
+        "H0": 1,
+        "H1": 2,
+        "cap": 600000,
+        "chance": "ALL positive-probability outcomes, AND",
+        "terminalBeforeHorizon": true,
+        "capToUnresolved": true,
+        "noSurvivalFromNegation": true
+      },
+      "elapsedMs": 555
+    }
+  ]
+}

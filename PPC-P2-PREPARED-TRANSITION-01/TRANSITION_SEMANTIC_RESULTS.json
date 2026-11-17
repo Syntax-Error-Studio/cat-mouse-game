@@ -1,0 +1,236 @@
+{
+  "_provenance": {
+    "round": "PPC-P2-PREPARED-TRANSITION-01",
+    "rawFile": "_raw/transition_semantics.json",
+    "rawSha256": "2d5e4405484a6d7e13181567f27e028e17bd0abdf2a9d8679ed02a28c5bdad61",
+    "what": "Prepared-vs-fresh transition parity over the 24 roots.",
+    "note": "This file is the raw measurement plus this provenance block. No value was edited."
+  },
+  "round": "PPC-P2-PREPARED-TRANSITION-01",
+  "semantics": "For every prepared action, an INDEPENDENT second simulateSearchAction must produce the same transition (stateKey, full state JSON for deterministic; outcome order/weights for chance).",
+  "totals": {
+    "actions": 91,
+    "deterministic": 91,
+    "chance": 0,
+    "mismatches": 0,
+    "fullStateMismatches": 0
+  },
+  "roots": [
+    {
+      "id": "G6T1",
+      "actions": 5,
+      "deterministic": 5,
+      "chance": 0,
+      "mismatches": 0,
+      "fullStateMismatches": 0,
+      "chanceDetails": []
+    },
+    {
+      "id": "G6T2",
+      "actions": 3,
+      "deterministic": 3,
+      "chance": 0,
+      "mismatches": 0,
+      "fullStateMismatches": 0,
+      "chanceDetails": []
+    },
+    {
+      "id": "G6T3",
+      "actions": 3,
+      "deterministic": 3,
+      "chance": 0,
+      "mismatches": 0,
+      "fullStateMismatches": 0,
+      "chanceDetails": []
+    },
+    {
+      "id": "G5T1",
+      "actions": 5,
+      "deterministic": 5,
+      "chance": 0,
+      "mismatches": 0,
+      "fullStateMismatches": 0,
+      "chanceDetails": []
+    },
+    {
+      "id": "G5T2",
+      "actions": 4,
+      "deterministic": 4,
+      "chance": 0,
+      "mismatches": 0,
+      "fullStateMismatches": 0,
+      "chanceDetails": []
+    },
+    {
+      "id": "G5T3",
+      "actions": 4,
+      "deterministic": 4,
+      "chance": 0,
+      "mismatches": 0,
+      "fullStateMismatches": 0,
+      "chanceDetails": []
+    },
+    {
+      "id": "G5T4",
+      "actions": 3,
+      "deterministic": 3,
+      "chance": 0,
+      "mismatches": 0,
+      "fullStateMismatches": 0,
+      "chanceDetails": []
+    },
+    {
+      "id": "G2T1",
+      "actions": 5,
+      "deterministic": 5,
+      "chance": 0,
+      "mismatches": 0,
+      "fullStateMismatches": 0,
+      "chanceDetails": []
+    },
+    {
+      "id": "G2T2",
+      "actions": 4,
+      "deterministic": 4,
+      "chance": 0,
+      "mismatches": 0,
+      "fullStateMismatches": 0,
+      "chanceDetails": []
+    },
+    {
+      "id": "G2T3",
+      "actions": 4,
+      "deterministic": 4,
+      "chance": 0,
+      "mismatches": 0,
+      "fullStateMismatches": 0,
+      "chanceDetails": []
+    },
+    {
+      "id": "G2T4",
+      "actions": 3,
+      "deterministic": 3,
+      "chance": 0,
+      "mismatches": 0,
+      "fullStateMismatches": 0,
+      "chanceDetails": []
+    },
+    {
+      "id": "G2T5",
+      "actions": 4,
+      "deterministic": 4,
+      "chance": 0,
+      "mismatches": 0,
+      "fullStateMismatches": 0,
+      "chanceDetails": []
+    },
+    {
+      "id": "G2T6",
+      "actions": 3,
+      "deterministic": 3,
+      "chance": 0,
+      "mismatches": 0,
+      "fullStateMismatches": 0,
+      "chanceDetails": []
+    },
+    {
+      "id": "G2T7",
+      "actions": 4,
+      "deterministic": 4,
+      "chance": 0,
+      "mismatches": 0,
+      "fullStateMismatches": 0,
+      "chanceDetails": []
+    },
+    {
+      "id": "G2T8",
+      "actions": 4,
+      "deterministic": 4,
+      "chance": 0,
+      "mismatches": 0,
+      "fullStateMismatches": 0,
+      "chanceDetails": []
+    },
+    {
+      "id": "G1T1",
+      "actions": 5,
+      "deterministic": 5,
+      "chance": 0,
+      "mismatches": 0,
+      "fullStateMismatches": 0,
+      "chanceDetails": []
+    },
+    {
+      "id": "G1T2",
+      "actions": 4,
+      "deterministic": 4,
+      "chance": 0,
+      "mismatches": 0,
+      "fullStateMismatches": 0,
+      "chanceDetails": []
+    },
+    {
+      "id": "G1T3",
+      "actions": 4,
+      "deterministic": 4,
+      "chance": 0,
+      "mismatches": 0,
+      "fullStateMismatches": 0,
+      "chanceDetails": []
+    },
+    {
+      "id": "G1T4",
+      "actions": 4,
+      "deterministic": 4,
+      "chance": 0,
+      "mismatches": 0,
+      "fullStateMismatches": 0,
+      "chanceDetails": []
+    },
+    {
+      "id": "G1T5",
+      "actions": 2,
+      "deterministic": 2,
+      "chance": 0,
+      "mismatches": 0,
+      "fullStateMismatches": 0,
+      "chanceDetails": []
+    },
+    {
+      "id": "G1T6",
+      "actions": 4,
+      "deterministic": 4,
+      "chance": 0,
+      "mismatches": 0,
+      "fullStateMismatches": 0,
+      "chanceDetails": []
+    },
+    {
+      "id": "G1T7",
+      "actions": 3,
+      "deterministic": 3,
+      "chance": 0,
+      "mismatches": 0,
+      "fullStateMismatches": 0,
+      "chanceDetails": []
+    },
+    {
+      "id": "G1T8",
+      "actions": 3,
+      "deterministic": 3,
+      "chance": 0,
+      "mismatches": 0,
+      "fullStateMismatches": 0,
+      "chanceDetails": []
+    },
+    {
+      "id": "G1T9",
+      "actions": 4,
+      "deterministic": 4,
+      "chance": 0,
+      "mismatches": 0,
+      "fullStateMismatches": 0,
+      "chanceDetails": []
+    }
+  ]
+}

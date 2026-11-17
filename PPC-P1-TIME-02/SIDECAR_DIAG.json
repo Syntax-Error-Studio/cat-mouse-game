@@ -1,0 +1,505 @@
+{
+  "protocol": "DIAGNOSTIC — production src/game, one planHardCatTurn per turn with the production turn identity, reading plan.debug.refutation. Bounded reps, one process, serial. Not an authority.",
+  "caveat": "Reads a diagnostics field the production planner already fills for the debug panel. No probe code is compiled into the measured path.",
+  "reps": 3,
+  "targets": [
+    "G1T1",
+    "G1T5",
+    "G1T4",
+    "G5T4"
+  ],
+  "rows": [
+    {
+      "id": "G1T1",
+      "rep": 0,
+      "plannerWallMs": 150.423,
+      "searchElapsedMs": 102.003,
+      "postSearchMs": 48.42,
+      "completedDepth": 1,
+      "attemptedDepth": 2,
+      "hasSolution": true,
+      "deadlineFired": true,
+      "planLen": 5,
+      "refutation": {
+        "triggered": true,
+        "overrideUsed": false,
+        "abort": "deadline",
+        "candidateCount": 6,
+        "candidatesProbed": 0,
+        "candidateStatuses": [],
+        "baselineProbeStatus": null,
+        "pathCount": 0,
+        "exactLocalChecks": 0,
+        "refutationCpuMs": 0,
+        "refutationWallMs": 47.812,
+        "deadlineControl": {
+          "deadline": {
+            "kind": "FINITE_ABSOLUTE",
+            "deadlineAtMs": 1174.3485,
+            "clockOrigin": "performance.now",
+            "totalDeadlineClockReads": 2058
+          },
+          "finite": {
+            "kind": "FINITE_ABSOLUTE",
+            "deadlineAtMs": 1174.3485,
+            "clockOrigin": "performance.now",
+            "totalDeadlineClockReads": 2058
+          },
+          "deadlineAbort": true,
+          "abortPhase": "probe_expansion",
+          "deadlineObservedAtMs": 1174.4841,
+          "candidateCount": 6,
+          "partialCommitCount": 0
+        }
+      }
+    },
+    {
+      "id": "G1T1",
+      "rep": 1,
+      "plannerWallMs": 150.235,
+      "searchElapsedMs": 101.14,
+      "postSearchMs": 49.095,
+      "completedDepth": 1,
+      "attemptedDepth": 2,
+      "hasSolution": true,
+      "deadlineFired": true,
+      "planLen": 5,
+      "refutation": {
+        "triggered": true,
+        "overrideUsed": false,
+        "abort": "deadline",
+        "candidateCount": 6,
+        "candidatesProbed": 0,
+        "candidateStatuses": [],
+        "baselineProbeStatus": null,
+        "pathCount": 0,
+        "exactLocalChecks": 0,
+        "refutationCpuMs": 0,
+        "refutationWallMs": 48.882,
+        "deadlineControl": {
+          "deadline": {
+            "kind": "FINITE_ABSOLUTE",
+            "deadlineAtMs": 1324.9466,
+            "clockOrigin": "performance.now",
+            "totalDeadlineClockReads": 2377
+          },
+          "finite": {
+            "kind": "FINITE_ABSOLUTE",
+            "deadlineAtMs": 1324.9466,
+            "clockOrigin": "performance.now",
+            "totalDeadlineClockReads": 2377
+          },
+          "deadlineAbort": true,
+          "abortPhase": "probe_expansion",
+          "deadlineObservedAtMs": 1324.9795,
+          "candidateCount": 6,
+          "partialCommitCount": 0
+        }
+      }
+    },
+    {
+      "id": "G1T1",
+      "rep": 2,
+      "plannerWallMs": 150.228,
+      "searchElapsedMs": 100.873,
+      "postSearchMs": 49.355,
+      "completedDepth": 1,
+      "attemptedDepth": 2,
+      "hasSolution": true,
+      "deadlineFired": true,
+      "planLen": 5,
+      "refutation": {
+        "triggered": true,
+        "overrideUsed": false,
+        "abort": "deadline",
+        "candidateCount": 6,
+        "candidatesProbed": 0,
+        "candidateStatuses": [],
+        "baselineProbeStatus": null,
+        "pathCount": 0,
+        "exactLocalChecks": 0,
+        "refutationCpuMs": 0,
+        "refutationWallMs": 49.143,
+        "deadlineControl": {
+          "deadline": {
+            "kind": "FINITE_ABSOLUTE",
+            "deadlineAtMs": 1475.2618,
+            "clockOrigin": "performance.now",
+            "totalDeadlineClockReads": 2578
+          },
+          "finite": {
+            "kind": "FINITE_ABSOLUTE",
+            "deadlineAtMs": 1475.2618,
+            "clockOrigin": "performance.now",
+            "totalDeadlineClockReads": 2578
+          },
+          "deadlineAbort": true,
+          "abortPhase": "probe_loop",
+          "deadlineObservedAtMs": 1475.2866,
+          "candidateCount": 6,
+          "partialCommitCount": 0
+        }
+      }
+    },
+    {
+      "id": "G1T5",
+      "rep": 0,
+      "plannerWallMs": 150.502,
+      "searchElapsedMs": 114.544,
+      "postSearchMs": 35.957,
+      "completedDepth": 1,
+      "attemptedDepth": 2,
+      "hasSolution": true,
+      "deadlineFired": true,
+      "planLen": 4,
+      "refutation": {
+        "triggered": true,
+        "overrideUsed": false,
+        "abort": "deadline",
+        "candidateCount": 6,
+        "candidatesProbed": 0,
+        "candidateStatuses": [],
+        "baselineProbeStatus": null,
+        "pathCount": 0,
+        "exactLocalChecks": 0,
+        "refutationCpuMs": 0,
+        "refutationWallMs": 35.466,
+        "deadlineControl": {
+          "deadline": {
+            "kind": "FINITE_ABSOLUTE",
+            "deadlineAtMs": 1625.5817,
+            "clockOrigin": "performance.now",
+            "totalDeadlineClockReads": 8711
+          },
+          "finite": {
+            "kind": "FINITE_ABSOLUTE",
+            "deadlineAtMs": 1625.5817,
+            "clockOrigin": "performance.now",
+            "totalDeadlineClockReads": 8711
+          },
+          "deadlineAbort": true,
+          "abortPhase": "probe_loop",
+          "deadlineObservedAtMs": 1625.5998,
+          "candidateCount": 6,
+          "partialCommitCount": 0
+        }
+      }
+    },
+    {
+      "id": "G1T5",
+      "rep": 1,
+      "plannerWallMs": 150.342,
+      "searchElapsedMs": 113.247,
+      "postSearchMs": 37.095,
+      "completedDepth": 1,
+      "attemptedDepth": 2,
+      "hasSolution": true,
+      "deadlineFired": true,
+      "planLen": 4,
+      "refutation": {
+        "triggered": true,
+        "overrideUsed": false,
+        "abort": "deadline",
+        "candidateCount": 6,
+        "candidatesProbed": 0,
+        "candidateStatuses": [],
+        "baselineProbeStatus": null,
+        "pathCount": 0,
+        "exactLocalChecks": 0,
+        "refutationCpuMs": 0,
+        "refutationWallMs": 36.86,
+        "deadlineControl": {
+          "deadline": {
+            "kind": "FINITE_ABSOLUTE",
+            "deadlineAtMs": 1776.1693,
+            "clockOrigin": "performance.now",
+            "totalDeadlineClockReads": 10245
+          },
+          "finite": {
+            "kind": "FINITE_ABSOLUTE",
+            "deadlineAtMs": 1776.1693,
+            "clockOrigin": "performance.now",
+            "totalDeadlineClockReads": 10245
+          },
+          "deadlineAbort": true,
+          "abortPhase": "probe_expansion",
+          "deadlineObservedAtMs": 1776.2854,
+          "candidateCount": 6,
+          "partialCommitCount": 0
+        }
+      }
+    },
+    {
+      "id": "G1T5",
+      "rep": 2,
+      "plannerWallMs": 150.212,
+      "searchElapsedMs": 112.501,
+      "postSearchMs": 37.712,
+      "completedDepth": 1,
+      "attemptedDepth": 2,
+      "hasSolution": true,
+      "deadlineFired": true,
+      "planLen": 4,
+      "refutation": {
+        "triggered": true,
+        "overrideUsed": false,
+        "abort": "deadline",
+        "candidateCount": 6,
+        "candidatesProbed": 0,
+        "candidateStatuses": [],
+        "baselineProbeStatus": null,
+        "pathCount": 0,
+        "exactLocalChecks": 0,
+        "refutationCpuMs": 0,
+        "refutationWallMs": 37.524,
+        "deadlineControl": {
+          "deadline": {
+            "kind": "FINITE_ABSOLUTE",
+            "deadlineAtMs": 1926.6054,
+            "clockOrigin": "performance.now",
+            "totalDeadlineClockReads": 11986
+          },
+          "finite": {
+            "kind": "FINITE_ABSOLUTE",
+            "deadlineAtMs": 1926.6054,
+            "clockOrigin": "performance.now",
+            "totalDeadlineClockReads": 11986
+          },
+          "deadlineAbort": true,
+          "abortPhase": "probe_expansion",
+          "deadlineObservedAtMs": 1926.6418,
+          "candidateCount": 6,
+          "partialCommitCount": 0
+        }
+      }
+    },
+    {
+      "id": "G1T4",
+      "rep": 0,
+      "plannerWallMs": 123.7,
+      "searchElapsedMs": 101.536,
+      "postSearchMs": 22.164,
+      "completedDepth": 2,
+      "attemptedDepth": 3,
+      "hasSolution": true,
+      "deadlineFired": true,
+      "planLen": 4,
+      "refutation": {
+        "triggered": true,
+        "overrideUsed": false,
+        "abort": "baseline_not_refuted",
+        "candidateCount": 6,
+        "candidatesProbed": 6,
+        "candidateStatuses": [
+          "NO_REFUTATION_FOUND",
+          "NO_REFUTATION_FOUND",
+          "NO_REFUTATION_FOUND",
+          "NO_REFUTATION_FOUND",
+          "NO_REFUTATION_FOUND",
+          "NO_REFUTATION_FOUND"
+        ],
+        "baselineProbeStatus": "NO_REFUTATION_FOUND",
+        "pathCount": 108,
+        "exactLocalChecks": 0,
+        "refutationCpuMs": 18.341,
+        "refutationWallMs": 21.979,
+        "deadlineControl": {
+          "deadline": {
+            "kind": "FINITE_ABSOLUTE",
+            "deadlineAtMs": 2077.0029999999997,
+            "clockOrigin": "performance.now",
+            "totalDeadlineClockReads": 729
+          },
+          "finite": {
+            "kind": "FINITE_ABSOLUTE",
+            "deadlineAtMs": 2077.0029999999997,
+            "clockOrigin": "performance.now",
+            "totalDeadlineClockReads": 729
+          },
+          "deadlineAbort": false,
+          "abortPhase": "none",
+          "deadlineObservedAtMs": 0,
+          "candidateCount": 6,
+          "partialCommitCount": 0
+        }
+      }
+    },
+    {
+      "id": "G1T4",
+      "rep": 1,
+      "plannerWallMs": 121.772,
+      "searchElapsedMs": 101.751,
+      "postSearchMs": 20.021,
+      "completedDepth": 2,
+      "attemptedDepth": 3,
+      "hasSolution": true,
+      "deadlineFired": true,
+      "planLen": 4,
+      "refutation": {
+        "triggered": true,
+        "overrideUsed": false,
+        "abort": "baseline_not_refuted",
+        "candidateCount": 6,
+        "candidatesProbed": 6,
+        "candidateStatuses": [
+          "NO_REFUTATION_FOUND",
+          "NO_REFUTATION_FOUND",
+          "NO_REFUTATION_FOUND",
+          "NO_REFUTATION_FOUND",
+          "NO_REFUTATION_FOUND",
+          "NO_REFUTATION_FOUND"
+        ],
+        "baselineProbeStatus": "NO_REFUTATION_FOUND",
+        "pathCount": 108,
+        "exactLocalChecks": 0,
+        "refutationCpuMs": 15.225,
+        "refutationWallMs": 19.811,
+        "deadlineControl": {
+          "deadline": {
+            "kind": "FINITE_ABSOLUTE",
+            "deadlineAtMs": 2200.7941,
+            "clockOrigin": "performance.now",
+            "totalDeadlineClockReads": 729
+          },
+          "finite": {
+            "kind": "FINITE_ABSOLUTE",
+            "deadlineAtMs": 2200.7941,
+            "clockOrigin": "performance.now",
+            "totalDeadlineClockReads": 729
+          },
+          "deadlineAbort": false,
+          "abortPhase": "none",
+          "deadlineObservedAtMs": 0,
+          "candidateCount": 6,
+          "partialCommitCount": 0
+        }
+      }
+    },
+    {
+      "id": "G1T4",
+      "rep": 2,
+      "plannerWallMs": 121.224,
+      "searchElapsedMs": 102.067,
+      "postSearchMs": 19.157,
+      "completedDepth": 2,
+      "attemptedDepth": 3,
+      "hasSolution": true,
+      "deadlineFired": true,
+      "planLen": 4,
+      "refutation": {
+        "triggered": true,
+        "overrideUsed": false,
+        "abort": "baseline_not_refuted",
+        "candidateCount": 6,
+        "candidatesProbed": 6,
+        "candidateStatuses": [
+          "NO_REFUTATION_FOUND",
+          "NO_REFUTATION_FOUND",
+          "NO_REFUTATION_FOUND",
+          "NO_REFUTATION_FOUND",
+          "NO_REFUTATION_FOUND",
+          "NO_REFUTATION_FOUND"
+        ],
+        "baselineProbeStatus": "NO_REFUTATION_FOUND",
+        "pathCount": 108,
+        "exactLocalChecks": 0,
+        "refutationCpuMs": 14.726,
+        "refutationWallMs": 18.855,
+        "deadlineControl": {
+          "deadline": {
+            "kind": "FINITE_ABSOLUTE",
+            "deadlineAtMs": 2322.6548,
+            "clockOrigin": "performance.now",
+            "totalDeadlineClockReads": 729
+          },
+          "finite": {
+            "kind": "FINITE_ABSOLUTE",
+            "deadlineAtMs": 2322.6548,
+            "clockOrigin": "performance.now",
+            "totalDeadlineClockReads": 729
+          },
+          "deadlineAbort": false,
+          "abortPhase": "none",
+          "deadlineObservedAtMs": 0,
+          "candidateCount": 6,
+          "partialCommitCount": 0
+        }
+      }
+    },
+    {
+      "id": "G5T4",
+      "rep": 0,
+      "plannerWallMs": 105.271,
+      "searchElapsedMs": 105.072,
+      "postSearchMs": 0.199,
+      "completedDepth": 2,
+      "attemptedDepth": 3,
+      "hasSolution": true,
+      "deadlineFired": true,
+      "planLen": 4,
+      "refutation": {
+        "triggered": false,
+        "overrideUsed": false,
+        "abort": "mate_bypass",
+        "candidateCount": 0,
+        "candidatesProbed": 0,
+        "candidateStatuses": [],
+        "baselineProbeStatus": null,
+        "pathCount": 0,
+        "exactLocalChecks": 0,
+        "refutationCpuMs": 0,
+        "refutationWallMs": 0
+      }
+    },
+    {
+      "id": "G5T4",
+      "rep": 1,
+      "plannerWallMs": 104.458,
+      "searchElapsedMs": 104.287,
+      "postSearchMs": 0.171,
+      "completedDepth": 2,
+      "attemptedDepth": 3,
+      "hasSolution": true,
+      "deadlineFired": true,
+      "planLen": 4,
+      "refutation": {
+        "triggered": false,
+        "overrideUsed": false,
+        "abort": "mate_bypass",
+        "candidateCount": 0,
+        "candidatesProbed": 0,
+        "candidateStatuses": [],
+        "baselineProbeStatus": null,
+        "pathCount": 0,
+        "exactLocalChecks": 0,
+        "refutationCpuMs": 0,
+        "refutationWallMs": 0
+      }
+    },
+    {
+      "id": "G5T4",
+      "rep": 2,
+      "plannerWallMs": 104.051,
+      "searchElapsedMs": 103.894,
+      "postSearchMs": 0.157,
+      "completedDepth": 2,
+      "attemptedDepth": 3,
+      "hasSolution": true,
+      "deadlineFired": true,
+      "planLen": 4,
+      "refutation": {
+        "triggered": false,
+        "overrideUsed": false,
+        "abort": "mate_bypass",
+        "candidateCount": 0,
+        "candidatesProbed": 0,
+        "candidateStatuses": [],
+        "baselineProbeStatus": null,
+        "pathCount": 0,
+        "exactLocalChecks": 0,
+        "refutationCpuMs": 0,
+        "refutationWallMs": 0
+      }
+    }
+  ]
+}

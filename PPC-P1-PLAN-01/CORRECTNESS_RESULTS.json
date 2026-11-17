@@ -1,0 +1,155 @@
+{
+  "round": "PPC-P1-PLAN-01",
+  "generatedAt": "2026-11-13",
+  "gates": [
+    {
+      "gate": "PLAN-0",
+      "name": "source identity / workspace / P1-ID + P1-TIME-01 preservation",
+      "status": "PASS",
+      "evidence": {
+        "branch": "ppc/p1-id-state-identity-fix",
+        "head": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+        "transposition_sha256": "7b4aa8eb3fab994a4abc77fdf38800ab2a5f9da57d5eb33a1b37075e106c2d64",
+        "transposition_expected": "7b4aa8eb3fab994a4abc77fdf38800ab2a5f9da57d5eb33a1b37075e106c2d64",
+        "p1_id_tests": "stateIdentityCollision.test.ts 35/35 PASS",
+        "p1_time_01_tests": "hardTurnAbsoluteDeadline(.Engine).test.ts 24/24 PASS",
+        "p1_time_02_artifacts": "PPC-P1-TIME-02/ untouched"
+      }
+    },
+    {
+      "gate": "PLAN-1",
+      "name": "9-move turn: legacy 8-action truncation reproduced and closed",
+      "status": "PASS",
+      "evidence": "BASELINE_TRUNCATION_WITNESS.json cases.PLAN-1 (plan 8 'DDDDDTUU' TRUNCATED, catMovesLeft=2, uncapped 9 'DUDUDUDUD' COMPLETE, legal 10-action line 'DDDDDTUUUU') -> POSTFIX_PLAN_WITNESS.json cases.PLAN-1 (plan 10 COMPLETE); planTurnActionBound.test.ts PLAN-1 (2 tests)"
+    },
+    {
+      "gate": "PLAN-2",
+      "name": "6-move / 9-action TUDTUDTDD repaired",
+      "status": "PASS",
+      "evidence": "BASELINE: all extractors 8 'TUDTUDTD', buildCandidate null; POSTFIX: all extractors 9 'TUDTUDTDD', buildCandidate 9; replay 6 moves + 3 placements all effective, turn ends on mouse"
+    },
+    {
+      "gate": "PLAN-3",
+      "name": "all extraction entry points use the same bound",
+      "status": "PASS",
+      "evidence": "planTurnActionBound.test.ts PLAN-3: buildCatTurnPlan / buildPlanForFirstAction / extractBestCatTurnPlan(DP) / (walk) all COMPLETE and identical to maxLength=1000; previousCompletedPlan observed"
+    },
+    {
+      "gate": "PLAN-4",
+      "name": "full turn and CHANCE boundary",
+      "status": "PASS",
+      "evidence": "planTurnActionBound.test.ts PLAN-4: final catStep -> COMPLETE_CHANCE_BOUNDARY, plan keeps the final cat action only; PLAN-2 asserts COMPLETE_TURN_BOUNDARY on the 9-action line; capture/no-legal-actions paths unchanged (planFullTurnCompleteness untouched)"
+    },
+    {
+      "gate": "PLAN-5",
+      "name": "zero-cost trap, collection, termination",
+      "status": "PASS",
+      "evidence": "planTurnActionBound.test.ts PLAN-5 (3 tests) + BOUND_DFS_TABLE.json: exhaustive DFS never exceeds the bound on 12 root shapes"
+    },
+    {
+      "gate": "PLAN-6",
+      "name": "DP memo / path cycle / prefix context",
+      "status": "PASS",
+      "evidence": "proof in PLAN_ACTION_BOUND_PROOF.md §3 + PLAN_EXTRACTION_CALL_GRAPH.md §3 (cap non-binding => memo is a function of (state,prefix)); PLAN-6 asserts determinism, cap-independence and reversal-aware prefix ordering"
+    },
+    {
+      "gate": "PLAN-7",
+      "name": "default 4-step map + 24 human roots parity",
+      "status": "PASS",
+      "evidence": "PARITY_RESULTS.json: 24/24 roots reproduce the frozen ppcId01-baseline-d1.json (key, completed, value, mate, action, plan, ttSize) exactly; stateIdentityCollision.test.ts ID-5 35/35 PASS"
+    },
+    {
+      "gate": "PLAN-8",
+      "name": "search math and input state unchanged",
+      "status": "PASS",
+      "evidence": "identical value/mate/action/ttSize on 24 roots; PLAN-9 test: two runs of the same protocol give identical value/mate/nodes; extraction is post-search and reads no search field back"
+    },
+    {
+      "gate": "PLAN-9",
+      "name": "shared deadline and fail-closed post-processing",
+      "status": "PASS",
+      "evidence": "planTurnActionBound.test.ts PLAN-9: expired ctx => buildCandidate null (unchanged); deadlineContext/engine P1-TIME-01 code untouched; P1-TIME-01 suite 24/24"
+    },
+    {
+      "gate": "PLAN-10",
+      "name": "existing regression suite",
+      "status": "PASS_WITH_2_PREEXISTING_FAILURES",
+      "evidence": "logs/regression_full.log: 973 tests, 7 failed / 961 passed / 5 skipped, 79 files. All 7 were re-run in isolation (logs/regression_isolated.log + appendix): 5 pass in isolation (HV10-E1, HV10-E4, HV8-C2, TIME-6 x2) and only 2 remain failing (T1E-B 30s timeout, FLT-HV14-4). FLT-HV14-4 is proven pre-existing by A/B: logs/ab_flt_hv14_legacy_cap.log reproduces the identical failure with the legacy cap restored."
+    },
+    {
+      "gate": "PLAN-11",
+      "name": "TypeScript and Vite build",
+      "status": "PASS",
+      "evidence": "npx tsc -b exit 0; npx vite build --config vite.config.build-tmp.ts exit 0 (logs/vite_build.log), temp config removed afterwards"
+    },
+    {
+      "gate": "PLAN-12",
+      "name": "resource / performance non-regression, scope declared",
+      "status": "PASS_DIAGNOSTIC_ONLY",
+      "evidence": "PERFORMANCE_RESULTS.json: extraction walk p50 0.049 ms / DP p50 0.059 ms vs search p50 7.561 ms over 24 roots, single pass; not a formal benchmark, no efficacy authority"
+    }
+  ],
+  "extraCoverage": [
+    "trap already on the board at the root + collection by stepping (PLAN-5)",
+    "trap stock zero => no placement offered (PLAN-5)",
+    "placement costs no move, double placement impossible (PLAN-5)",
+    "final step capture / CHANCE boundary / no-legal-action endings (PLAN-4 + completeness invariant untouched)",
+    "missing successor branch => TRUNCATED and buildCandidate null (PLAN-2 third test)",
+    "completed-depth plan and previous-completed-depth plan (PLAN-3 second test)",
+    "forced-loss tie-break candidate built from a complete plan (PLAN-2)",
+    "equal-primary graph with tie (DP path) and without tie (fallback walk) (PLAN-3)",
+    "different cat move budgets 0..12 (PLAN-0 table)",
+    "abnormal input (NaN / +Inf / negative / 0 budget) clamps, never invents a plan (PLAN-0)"
+  ],
+  "failureTriage": [
+    {
+      "test": "T1E-B (expectiminimax.test.ts)",
+      "fullSuite": "FAIL",
+      "isolated": "FAIL",
+      "class": "PREEXISTING_TARGETED",
+      "note": "30s timeout on a no-deadline vs far-deadline A/B; registered pre-existing failure, not touched this round."
+    },
+    {
+      "test": "FLT-HV14-4 (forcedLossTieBreakHv14Reachability.test.ts)",
+      "fullSuite": "FAIL",
+      "isolated": "FAIL",
+      "class": "PREEXISTING_TARGETED",
+      "note": "root value 999996 vs -1052.947; A/B with the legacy cap restored reproduces it identically (logs/ab_flt_hv14_legacy_cap.log) => independent of the plan bound."
+    },
+    {
+      "test": "HV10-E1 (hv10RootScout.test.ts)",
+      "fullSuite": "FAIL",
+      "isolated": "PASS",
+      "class": "PRESENT_THROUGHPUT_FRAGILE",
+      "note": "asserts scan 213.2ms < production call 151.5ms under full-suite contention; passes in isolation."
+    },
+    {
+      "test": "HV10-E4 (hv10RootScout.test.ts)",
+      "fullSuite": "FAIL",
+      "isolated": "PASS",
+      "class": "PRESENT_THROUGHPUT_FRAGILE",
+      "note": "same family: cost-growth assertion measured against live wall clock."
+    },
+    {
+      "test": "HV8-C2 (hv8WitnessPush.test.ts)",
+      "fullSuite": "FAIL",
+      "isolated": "PASS",
+      "class": "PRESENT_THROUGHPUT_FRAGILE",
+      "note": "target-directed variant measured against the 100ms budget; sensitive to host throughput."
+    },
+    {
+      "test": "TIME-6 a (hardTurnAbsoluteDeadline.test.ts)",
+      "fullSuite": "FAIL",
+      "isolated": "PASS",
+      "class": "PRESENT_THROUGHPUT_FRAGILE",
+      "note": "'sidecar actually ran: expected false to be true' — under contention the main search finished early enough that the refutation sidecar never triggered. Not a deadline-identity violation: the identity assertions that did run passed. Isolated 24/24 (appendix of logs/regression_isolated.log)."
+    },
+    {
+      "test": "TIME-6 b (hardTurnAbsoluteDeadline.test.ts)",
+      "fullSuite": "FAIL",
+      "isolated": "PASS",
+      "class": "PRESENT_THROUGHPUT_FRAGILE",
+      "note": "same root cause as TIME-6 a: sidecar control undefined because the sidecar never ran."
+    }
+  ]
+}

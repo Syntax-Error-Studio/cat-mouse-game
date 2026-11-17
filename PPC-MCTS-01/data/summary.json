@@ -1,0 +1,7661 @@
+{
+  "round": "PPC-MCTS-01",
+  "generatedAt": "2026-11-16T08:30:27.047Z",
+  "status": "COMPLETE",
+  "authority": {
+    "roots": "PPC-CAT-STRATEGY-SEAL-01 REAL-HUMAN-REPLAY 24 roots",
+    "repetitions": 20,
+    "algorithms": [
+      "RACE",
+      "UCT-R",
+      "UCT-H"
+    ],
+    "searchCalls": 1440,
+    "budgetsMs": {
+      "main": 100,
+      "fullTurn": 150
+    },
+    "nodeCap": 500000,
+    "horizonHandoffs": 4,
+    "note": "24-root development validation only; NOT a formal win-rate conclusion."
+  },
+  "files": {
+    "rawDir": "F:\\小猫小鼠\\PPC-MCTS-01\\out\\raw",
+    "logsDir": "F:\\小猫小鼠\\PPC-MCTS-01\\logs",
+    "perRoot": "F:\\小猫小鼠\\PPC-MCTS-01\\data\\per-root.json",
+    "summary": "F:\\小猫小鼠\\PPC-MCTS-01\\data\\summary.json",
+    "csv": "F:\\小猫小鼠\\PPC-MCTS-01\\data\\summary.csv"
+  },
+  "integrity": {
+    "records": 1440,
+    "roots": 24,
+    "repetitions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "fixtureSha256": [
+      "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09"
+    ],
+    "errors": [
+      "19|G2T7|UCT-R: total 187.0ms > 150ms",
+      "19|G2T7|UCT-H: total 518.4ms > 150ms",
+      "19|G2T8|RACE: total 227.9ms > 150ms",
+      "19|G2T8|UCT-R: total 159.3ms > 150ms"
+    ]
+  },
+  "byAlgorithm": {
+    "RACE": {
+      "calls": 480,
+      "errors": 0,
+      "mathRandomCalls": 0,
+      "replayOkRate": 1,
+      "fullPlanRate": 0.9896,
+      "meanRootActionRepetitionRate": 0.975,
+      "stableRoots": 19,
+      "searchMs": {
+        "n": 480,
+        "mean": 106.83,
+        "min": 100.718,
+        "p50": 104.881,
+        "p95": 116.45,
+        "p99": 130.79,
+        "max": 227.519
+      },
+      "planMs": {
+        "n": 480,
+        "mean": 0.002,
+        "min": 0,
+        "p50": 0.001,
+        "p95": 0.004,
+        "p99": 0.009,
+        "max": 0.241
+      },
+      "totalMs": {
+        "n": 480,
+        "mean": 107.199,
+        "min": 101.231,
+        "p50": 105.301,
+        "p95": 116.907,
+        "p99": 131.461,
+        "max": 227.949
+      },
+      "nodes": {
+        "n": 480,
+        "mean": 586.844,
+        "min": 42,
+        "p50": 359.5,
+        "p95": 1600.2,
+        "p99": 2562.94,
+        "max": 2691
+      },
+      "simulations": {
+        "n": 0,
+        "mean": null,
+        "min": null,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "chanceSamples": {
+        "n": 480,
+        "mean": 0,
+        "min": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "withinBudgetRate": 0.9979
+    },
+    "UCT-R": {
+      "calls": 480,
+      "errors": 0,
+      "mathRandomCalls": 0,
+      "replayOkRate": 1,
+      "fullPlanRate": 1,
+      "meanRootActionRepetitionRate": 0.55,
+      "stableRoots": 0,
+      "searchMs": {
+        "n": 480,
+        "mean": 100.402,
+        "min": 99.609,
+        "p50": 100.03,
+        "p95": 100.476,
+        "p99": 101.068,
+        "max": 186.403
+      },
+      "planMs": {
+        "n": 480,
+        "mean": 0.492,
+        "min": 0.187,
+        "p50": 0.469,
+        "p95": 0.958,
+        "p99": 1.696,
+        "max": 3.288
+      },
+      "totalMs": {
+        "n": 480,
+        "mean": 100.894,
+        "min": 100.191,
+        "p50": 100.523,
+        "p95": 101.265,
+        "p99": 102.128,
+        "max": 187.046
+      },
+      "nodes": {
+        "n": 480,
+        "mean": 175.54,
+        "min": 39,
+        "p50": 120,
+        "p95": 365.15,
+        "p99": 480.63,
+        "max": 492
+      },
+      "simulations": {
+        "n": 480,
+        "mean": 150.617,
+        "min": 37,
+        "p50": 102,
+        "p95": 308.05,
+        "p99": 525.68,
+        "max": 574
+      },
+      "chanceSamples": {
+        "n": 480,
+        "mean": 69.319,
+        "min": 0,
+        "p50": 30.5,
+        "p95": 257.25,
+        "p99": 311.05,
+        "max": 364
+      },
+      "withinBudgetRate": 0.9958
+    },
+    "UCT-H": {
+      "calls": 480,
+      "errors": 0,
+      "mathRandomCalls": 0,
+      "replayOkRate": 1,
+      "fullPlanRate": 1,
+      "meanRootActionRepetitionRate": 0.7021,
+      "stableRoots": 3,
+      "searchMs": {
+        "n": 480,
+        "mean": 101.611,
+        "min": 99.999,
+        "p50": 100.427,
+        "p95": 102.561,
+        "p99": 106.556,
+        "max": 514.075
+      },
+      "planMs": {
+        "n": 480,
+        "mean": 2.326,
+        "min": 0.179,
+        "p50": 2.257,
+        "p95": 4.812,
+        "p99": 7.146,
+        "max": 9.166
+      },
+      "totalMs": {
+        "n": 480,
+        "mean": 103.937,
+        "min": 100.214,
+        "p50": 102.869,
+        "p95": 106.747,
+        "p99": 111.279,
+        "max": 518.378
+      },
+      "nodes": {
+        "n": 480,
+        "mean": 20,
+        "min": 2,
+        "p50": 10,
+        "p95": 84,
+        "p99": 156,
+        "max": 160
+      },
+      "simulations": {
+        "n": 480,
+        "mean": 17.658,
+        "min": 1,
+        "p50": 8,
+        "p95": 56,
+        "p99": 164,
+        "max": 171
+      },
+      "chanceSamples": {
+        "n": 480,
+        "mean": 7.463,
+        "min": 0,
+        "p50": 0,
+        "p95": 41.05,
+        "p99": 56,
+        "max": 57
+      },
+      "withinBudgetRate": 0.9979
+    }
+  },
+  "paired": {
+    "rootActionAgreement": {
+      "RACE_vs_UCT-R": {
+        "pairs": 480,
+        "same": 236,
+        "rate": 0.4917
+      },
+      "RACE_vs_UCT-H": {
+        "pairs": 480,
+        "same": 152,
+        "rate": 0.3167
+      },
+      "UCT-R_vs_UCT-H": {
+        "pairs": 480,
+        "same": 140,
+        "rate": 0.2917
+      }
+    },
+    "fullPlanAgreement": {
+      "RACE_vs_UCT-R": {
+        "pairs": 480,
+        "same": 15,
+        "rate": 0.0313
+      },
+      "RACE_vs_UCT-H": {
+        "pairs": 480,
+        "same": 12,
+        "rate": 0.025
+      },
+      "UCT-R_vs_UCT-H": {
+        "pairs": 480,
+        "same": 2,
+        "rate": 0.0042
+      }
+    },
+    "perRootModalActionAgreement": {
+      "RACE_vs_UCT-R": {
+        "roots": 24,
+        "same": 17,
+        "rate": 0.7083
+      },
+      "RACE_vs_UCT-H": {
+        "roots": 24,
+        "same": 9,
+        "rate": 0.375
+      },
+      "UCT-R_vs_UCT-H": {
+        "roots": 24,
+        "same": 8,
+        "rate": 0.3333
+      }
+    }
+  },
+  "perRoot": [
+    {
+      "rootId": "G1T1",
+      "algorithm": "RACE",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CDown",
+      "rootActionModeCount": 18,
+      "rootActionRepetitionRate": 0.9,
+      "rootActionDistinct": 1,
+      "rootActionCounts": {
+        "CDown": 18
+      },
+      "planMode": "CDownCDownTCDownCDown",
+      "planModeCount": 18,
+      "planRepetitionRate": 0.9,
+      "planDistinct": 2,
+      "fullPlanRate": 0.9,
+      "replayOkRate": 1,
+      "meanPlanLength": 4.5,
+      "meanNodes": 281.4,
+      "simulations": {
+        "n": 0,
+        "mean": null,
+        "min": null,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0,
+        "min": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 105.503,
+        "min": 103.321,
+        "p50": 104.542,
+        "p95": 111.96,
+        "p99": 114.302,
+        "max": 114.888
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.002,
+        "min": 0.001,
+        "p50": 0.002,
+        "p95": 0.004,
+        "p99": 0.006,
+        "max": 0.007
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 105.931,
+        "min": 103.736,
+        "p50": 104.969,
+        "p95": 112.751,
+        "p99": 114.738,
+        "max": 115.234
+      },
+      "actions": [
+        {
+          "action": "CDown",
+          "reps": 18,
+          "meanVisits": null,
+          "meanValue": 0.382625,
+          "transitionKinds": []
+        },
+        {
+          "action": "CLeft",
+          "reps": 18,
+          "meanVisits": null,
+          "meanValue": 0.311296,
+          "transitionKinds": []
+        },
+        {
+          "action": "CRight",
+          "reps": 18,
+          "meanVisits": null,
+          "meanValue": 0.264235,
+          "transitionKinds": []
+        },
+        {
+          "action": "CUp",
+          "reps": 18,
+          "meanVisits": null,
+          "meanValue": 0.214868,
+          "transitionKinds": []
+        },
+        {
+          "action": "T",
+          "reps": 18,
+          "meanVisits": null,
+          "meanValue": 0.352778,
+          "transitionKinds": []
+        }
+      ]
+    },
+    {
+      "rootId": "G1T1",
+      "algorithm": "UCT-R",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CDown",
+      "rootActionModeCount": 10,
+      "rootActionRepetitionRate": 0.5,
+      "rootActionDistinct": 3,
+      "rootActionCounts": {
+        "CDown": 10,
+        "CLeft": 7,
+        "T": 3
+      },
+      "planMode": "CLeftCDownCUpCDown",
+      "planModeCount": 2,
+      "planRepetitionRate": 0.1,
+      "planDistinct": 18,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4.4,
+      "meanNodes": 94.2,
+      "simulations": {
+        "n": 20,
+        "mean": 92.4,
+        "min": 38,
+        "p50": 93.5,
+        "p95": 105.7,
+        "p99": 146.74,
+        "max": 157
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0,
+        "min": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 100.221,
+        "min": 99.997,
+        "p50": 100.041,
+        "p95": 101.006,
+        "p99": 101.029,
+        "max": 101.034
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.605,
+        "min": 0.465,
+        "p50": 0.58,
+        "p95": 0.776,
+        "p99": 0.909,
+        "max": 0.942
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 100.826,
+        "min": 100.462,
+        "p50": 100.634,
+        "p95": 101.623,
+        "p99": 101.643,
+        "max": 101.648
+      },
+      "actions": [
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 19.15,
+          "meanValue": 0.147614,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": 19.05,
+          "meanValue": 0.151237,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "T",
+          "reps": 20,
+          "meanVisits": 18.7,
+          "meanValue": 0.144315,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": 18.05,
+          "meanValue": 0.128921,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": 17.45,
+          "meanValue": 0.118076,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G1T1",
+      "algorithm": "UCT-H",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CDown",
+      "rootActionModeCount": 14,
+      "rootActionRepetitionRate": 0.7,
+      "rootActionDistinct": 2,
+      "rootActionCounts": {
+        "CDown": 14,
+        "CLeft": 6
+      },
+      "planMode": "CDownTCDownCDownCDown",
+      "planModeCount": 14,
+      "planRepetitionRate": 0.7,
+      "planDistinct": 2,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 5,
+      "meanNodes": 7.2,
+      "simulations": {
+        "n": 20,
+        "mean": 5.25,
+        "min": 3,
+        "p50": 5,
+        "p95": 6.1,
+        "p99": 7.62,
+        "max": 8
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0,
+        "min": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 100.556,
+        "min": 100.032,
+        "p50": 100.479,
+        "p95": 101.297,
+        "p99": 101.835,
+        "max": 101.969
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 5.736,
+        "min": 2.368,
+        "p50": 5.654,
+        "p95": 7.466,
+        "p99": 8.752,
+        "max": 9.074
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 106.292,
+        "min": 102.851,
+        "p50": 106.157,
+        "p95": 108.133,
+        "p99": 109.134,
+        "max": 109.384
+      },
+      "actions": [
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 1.3,
+          "meanValue": 0.074051,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": 1.05,
+          "meanValue": 0.070338,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": 1,
+          "meanValue": 0.050894,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": 1,
+          "meanValue": 0.056515,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "T",
+          "reps": 20,
+          "meanVisits": 0.9,
+          "meanValue": 0.052739,
+          "transitionKinds": [
+            "deterministic",
+            "unvisited"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G1T2",
+      "algorithm": "RACE",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CDown",
+      "rootActionModeCount": 20,
+      "rootActionRepetitionRate": 1,
+      "rootActionDistinct": 1,
+      "rootActionCounts": {
+        "CDown": 20
+      },
+      "planMode": "CDownCRightCRightCDown",
+      "planModeCount": 20,
+      "planRepetitionRate": 1,
+      "planDistinct": 1,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 406.2,
+      "simulations": {
+        "n": 0,
+        "mean": null,
+        "min": null,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0,
+        "min": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 103.484,
+        "min": 101.835,
+        "p50": 103.14,
+        "p95": 105.308,
+        "p99": 106.08,
+        "max": 106.273
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.003,
+        "min": 0.001,
+        "p50": 0.002,
+        "p95": 0.005,
+        "p99": 0.024,
+        "max": 0.029
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 103.966,
+        "min": 102.102,
+        "p50": 103.557,
+        "p95": 105.773,
+        "p99": 106.594,
+        "max": 106.799
+      },
+      "actions": [
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.729106,
+          "transitionKinds": []
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.599656,
+          "transitionKinds": []
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.729106,
+          "transitionKinds": []
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.610266,
+          "transitionKinds": []
+        }
+      ]
+    },
+    {
+      "rootId": "G1T2",
+      "algorithm": "UCT-R",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CDown",
+      "rootActionModeCount": 13,
+      "rootActionRepetitionRate": 0.65,
+      "rootActionDistinct": 3,
+      "rootActionCounts": {
+        "CDown": 13,
+        "CLeft": 3,
+        "CRight": 4
+      },
+      "planMode": "CDownCDownCRightCUp",
+      "planModeCount": 3,
+      "planRepetitionRate": 0.15,
+      "planDistinct": 17,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 96.2,
+      "simulations": {
+        "n": 20,
+        "mean": 94.75,
+        "min": 69,
+        "p50": 98.5,
+        "p95": 109.1,
+        "p99": 110.62,
+        "max": 111
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0,
+        "min": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 100.168,
+        "min": 99.998,
+        "p50": 100.063,
+        "p95": 100.523,
+        "p99": 101.214,
+        "max": 101.387
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.565,
+        "min": 0.434,
+        "p50": 0.575,
+        "p95": 0.704,
+        "p99": 0.799,
+        "max": 0.823
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 100.733,
+        "min": 100.45,
+        "p50": 100.644,
+        "p95": 101.197,
+        "p99": 101.811,
+        "max": 101.965
+      },
+      "actions": [
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": 25.5,
+          "meanValue": 0.260018,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": 23.95,
+          "meanValue": 0.24087,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 23.15,
+          "meanValue": 0.230286,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": 22.15,
+          "meanValue": 0.21611,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G1T2",
+      "algorithm": "UCT-H",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CUp",
+      "rootActionModeCount": 10,
+      "rootActionRepetitionRate": 0.5,
+      "rootActionDistinct": 3,
+      "rootActionCounts": {
+        "CDown": 2,
+        "CLeft": 8,
+        "CUp": 10
+      },
+      "planMode": "CUpCUpCDownCDown",
+      "planModeCount": 10,
+      "planRepetitionRate": 0.5,
+      "planDistinct": 4,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 7.2,
+      "simulations": {
+        "n": 20,
+        "mean": 5.3,
+        "min": 4,
+        "p50": 5,
+        "p95": 6.2,
+        "p99": 9.24,
+        "max": 10
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0,
+        "min": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 100.632,
+        "min": 100.001,
+        "p50": 100.543,
+        "p95": 101.449,
+        "p99": 101.966,
+        "max": 102.095
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 3.17,
+        "min": 1.476,
+        "p50": 3.31,
+        "p95": 4.217,
+        "p99": 4.514,
+        "max": 4.589
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 103.802,
+        "min": 101.492,
+        "p50": 103.947,
+        "p95": 104.732,
+        "p99": 106.293,
+        "max": 106.684
+      },
+      "actions": [
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": 1.75,
+          "meanValue": 0.079882,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 1.45,
+          "meanValue": 0.079882,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": 1.05,
+          "meanValue": 0.04839,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": 1.05,
+          "meanValue": 0.047706,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G1T3",
+      "algorithm": "RACE",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CUp",
+      "rootActionModeCount": 17,
+      "rootActionRepetitionRate": 0.85,
+      "rootActionDistinct": 2,
+      "rootActionCounts": {
+        "CDown": 3,
+        "CUp": 17
+      },
+      "planMode": "CUpCUpCRightCLeft",
+      "planModeCount": 17,
+      "planRepetitionRate": 0.85,
+      "planDistinct": 2,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 279,
+      "simulations": {
+        "n": 0,
+        "mean": null,
+        "min": null,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0,
+        "min": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 108.126,
+        "min": 105.871,
+        "p50": 108.01,
+        "p95": 111.533,
+        "p99": 112.923,
+        "max": 113.27
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.001,
+        "min": 0.001,
+        "p50": 0.001,
+        "p95": 0.002,
+        "p99": 0.003,
+        "max": 0.003
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 108.57,
+        "min": 106.458,
+        "p50": 108.398,
+        "p95": 111.813,
+        "p99": 113.348,
+        "max": 113.731
+      },
+      "actions": [
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.229453,
+          "transitionKinds": []
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.227022,
+          "transitionKinds": []
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.229453,
+          "transitionKinds": []
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.233978,
+          "transitionKinds": []
+        }
+      ]
+    },
+    {
+      "rootId": "G1T3",
+      "algorithm": "UCT-R",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CRight",
+      "rootActionModeCount": 10,
+      "rootActionRepetitionRate": 0.5,
+      "rootActionDistinct": 4,
+      "rootActionCounts": {
+        "CDown": 3,
+        "CLeft": 2,
+        "CRight": 10,
+        "CUp": 5
+      },
+      "planMode": "CRightCLeftCDownCUp",
+      "planModeCount": 3,
+      "planRepetitionRate": 0.15,
+      "planDistinct": 15,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 96.8,
+      "simulations": {
+        "n": 20,
+        "mean": 95.1,
+        "min": 57,
+        "p50": 95,
+        "p95": 111.55,
+        "p99": 119.91,
+        "max": 122
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0,
+        "min": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 100.135,
+        "min": 99.998,
+        "p50": 100.037,
+        "p95": 100.368,
+        "p99": 101.028,
+        "max": 101.193
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.535,
+        "min": 0.324,
+        "p50": 0.492,
+        "p95": 0.973,
+        "p99": 1.204,
+        "max": 1.261
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 100.67,
+        "min": 100.341,
+        "p50": 100.529,
+        "p95": 101.151,
+        "p99": 102.194,
+        "max": 102.455
+      },
+      "actions": [
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": 26,
+          "meanValue": 0.25365,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": 24.1,
+          "meanValue": 0.233631,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": 22.9,
+          "meanValue": 0.217648,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 22.1,
+          "meanValue": 0.210066,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G1T3",
+      "algorithm": "UCT-H",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CDown",
+      "rootActionModeCount": 9,
+      "rootActionRepetitionRate": 0.45,
+      "rootActionDistinct": 4,
+      "rootActionCounts": {
+        "CDown": 9,
+        "CLeft": 5,
+        "CRight": 5,
+        "CUp": 1
+      },
+      "planMode": "CDownCUpCRightCRight",
+      "planModeCount": 8,
+      "planRepetitionRate": 0.4,
+      "planDistinct": 5,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 7.4,
+      "simulations": {
+        "n": 20,
+        "mean": 5.55,
+        "min": 4,
+        "p50": 6,
+        "p95": 6.05,
+        "p99": 6.81,
+        "max": 7
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0,
+        "min": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 100.589,
+        "min": 100.005,
+        "p50": 100.565,
+        "p95": 101.262,
+        "p99": 101.297,
+        "max": 101.306
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 3.27,
+        "min": 2.374,
+        "p50": 3.154,
+        "p95": 4.437,
+        "p99": 4.747,
+        "max": 4.825
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 103.86,
+        "min": 102.948,
+        "p50": 103.841,
+        "p95": 105.741,
+        "p99": 106.016,
+        "max": 106.085
+      },
+      "actions": [
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": 1.45,
+          "meanValue": 0.07577,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": 1.4,
+          "meanValue": 0.073189,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": 1.4,
+          "meanValue": 0.073189,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 1.3,
+          "meanValue": 0.07491,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G1T4",
+      "algorithm": "RACE",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CLeft",
+      "rootActionModeCount": 20,
+      "rootActionRepetitionRate": 1,
+      "rootActionDistinct": 1,
+      "rootActionCounts": {
+        "CLeft": 20
+      },
+      "planMode": "CLeftCLeftCLeftCLeft",
+      "planModeCount": 20,
+      "planRepetitionRate": 1,
+      "planDistinct": 1,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 593,
+      "simulations": {
+        "n": 0,
+        "mean": null,
+        "min": null,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0,
+        "min": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 106.63,
+        "min": 103.662,
+        "p50": 106.067,
+        "p95": 109.712,
+        "p99": 111.592,
+        "max": 112.062
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.001,
+        "min": 0.001,
+        "p50": 0.001,
+        "p95": 0.002,
+        "p99": 0.002,
+        "max": 0.003
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 107.061,
+        "min": 103.969,
+        "p50": 106.521,
+        "p95": 110.193,
+        "p99": 112.066,
+        "max": 112.534
+      },
+      "actions": [
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.08825,
+          "transitionKinds": []
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.100182,
+          "transitionKinds": []
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.08825,
+          "transitionKinds": []
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.089141,
+          "transitionKinds": []
+        }
+      ]
+    },
+    {
+      "rootId": "G1T4",
+      "algorithm": "UCT-R",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CLeft",
+      "rootActionModeCount": 11,
+      "rootActionRepetitionRate": 0.55,
+      "rootActionDistinct": 4,
+      "rootActionCounts": {
+        "CDown": 1,
+        "CLeft": 11,
+        "CRight": 1,
+        "CUp": 7
+      },
+      "planMode": "CLeftCDownCLeftCUp",
+      "planModeCount": 7,
+      "planRepetitionRate": 0.35,
+      "planDistinct": 11,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 100.5,
+      "simulations": {
+        "n": 20,
+        "mean": 99.05,
+        "min": 80,
+        "p50": 98.5,
+        "p95": 114.4,
+        "p99": 120.48,
+        "max": 122
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 1.7,
+        "min": 0,
+        "p50": 2,
+        "p95": 3,
+        "p99": 3,
+        "max": 3
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 100.136,
+        "min": 99.998,
+        "p50": 100.092,
+        "p95": 100.387,
+        "p99": 100.46,
+        "max": 100.479
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.582,
+        "min": 0.418,
+        "p50": 0.558,
+        "p95": 0.8,
+        "p99": 0.877,
+        "max": 0.896
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 100.718,
+        "min": 100.473,
+        "p50": 100.698,
+        "p95": 101.007,
+        "p99": 101.059,
+        "max": 101.073
+      },
+      "actions": [
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": 25.65,
+          "meanValue": 0.037717,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 25.4,
+          "meanValue": 0.033409,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": 24.2,
+          "meanValue": 0.019305,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": 23.8,
+          "meanValue": 0.013501,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G1T4",
+      "algorithm": "UCT-H",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CLeft",
+      "rootActionModeCount": 15,
+      "rootActionRepetitionRate": 0.75,
+      "rootActionDistinct": 2,
+      "rootActionCounts": {
+        "CDown": 5,
+        "CLeft": 15
+      },
+      "planMode": "CLeftCUpCLeftCLeft",
+      "planModeCount": 15,
+      "planRepetitionRate": 0.75,
+      "planDistinct": 3,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 8.1,
+      "simulations": {
+        "n": 20,
+        "mean": 6.3,
+        "min": 3,
+        "p50": 7,
+        "p95": 7,
+        "p99": 7,
+        "max": 7
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0,
+        "min": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 100.656,
+        "min": 99.999,
+        "p50": 100.679,
+        "p95": 101.396,
+        "p99": 101.572,
+        "max": 101.616
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 3.604,
+        "min": 1.888,
+        "p50": 3.33,
+        "p95": 5.415,
+        "p99": 7.57,
+        "max": 8.108
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 104.26,
+        "min": 102.33,
+        "p50": 104.248,
+        "p95": 105.719,
+        "p99": 108.248,
+        "max": 108.88
+      },
+      "actions": [
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 1.95,
+          "meanValue": 0.084662,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": 1.85,
+          "meanValue": 0.079786,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": 1.3,
+          "meanValue": 0.06595,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": 1.2,
+          "meanValue": 0.073189,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G1T5",
+      "algorithm": "RACE",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CUp",
+      "rootActionModeCount": 20,
+      "rootActionRepetitionRate": 1,
+      "rootActionDistinct": 1,
+      "rootActionCounts": {
+        "CUp": 20
+      },
+      "planMode": "CUpCLeftCUpCLeft",
+      "planModeCount": 20,
+      "planRepetitionRate": 1,
+      "planDistinct": 1,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 241.5,
+      "simulations": {
+        "n": 0,
+        "mean": null,
+        "min": null,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0,
+        "min": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 126.797,
+        "min": 119.036,
+        "p50": 126.703,
+        "p95": 131.957,
+        "p99": 137.728,
+        "max": 139.171
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.002,
+        "min": 0.001,
+        "p50": 0.002,
+        "p95": 0.002,
+        "p99": 0.002,
+        "max": 0.002
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 127.254,
+        "min": 119.414,
+        "p50": 127.449,
+        "p95": 132.447,
+        "p99": 138.206,
+        "max": 139.646
+      },
+      "actions": [
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.233933,
+          "transitionKinds": []
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.366038,
+          "transitionKinds": []
+        }
+      ]
+    },
+    {
+      "rootId": "G1T5",
+      "algorithm": "UCT-R",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CUp",
+      "rootActionModeCount": 19,
+      "rootActionRepetitionRate": 0.95,
+      "rootActionDistinct": 2,
+      "rootActionCounts": {
+        "CDown": 1,
+        "CUp": 19
+      },
+      "planMode": "CUpCLeftCLeftCLeft",
+      "planModeCount": 5,
+      "planRepetitionRate": 0.25,
+      "planDistinct": 14,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 90.2,
+      "simulations": {
+        "n": 20,
+        "mean": 88.25,
+        "min": 73,
+        "p50": 91,
+        "p95": 99.1,
+        "p99": 100.62,
+        "max": 101
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 116.95,
+        "min": 76,
+        "p50": 119.5,
+        "p95": 145.05,
+        "p99": 145.81,
+        "max": 146
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 100.084,
+        "min": 99.988,
+        "p50": 100.039,
+        "p95": 100.226,
+        "p99": 100.51,
+        "max": 100.581
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.487,
+        "min": 0.314,
+        "p50": 0.47,
+        "p95": 0.624,
+        "p99": 0.644,
+        "max": 0.648
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 100.571,
+        "min": 100.316,
+        "p50": 100.511,
+        "p95": 100.812,
+        "p99": 101.001,
+        "max": 101.048
+      },
+      "actions": [
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": 54.45,
+          "meanValue": 0.049696,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": 33.8,
+          "meanValue": -0.064037,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G1T5",
+      "algorithm": "UCT-H",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CDown",
+      "rootActionModeCount": 17,
+      "rootActionRepetitionRate": 0.85,
+      "rootActionDistinct": 2,
+      "rootActionCounts": {
+        "CDown": 17,
+        "CUp": 3
+      },
+      "planMode": "CDownCUpCUpCRight",
+      "planModeCount": 9,
+      "planRepetitionRate": 0.45,
+      "planDistinct": 4,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 4.1,
+      "simulations": {
+        "n": 20,
+        "mean": 2.25,
+        "min": 1,
+        "p50": 2,
+        "p95": 3,
+        "p99": 3,
+        "max": 3
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 6.1,
+        "min": 3,
+        "p50": 6,
+        "p95": 9,
+        "p99": 9,
+        "max": 9
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 102.41,
+        "min": 100.093,
+        "p50": 101.155,
+        "p95": 107.461,
+        "p99": 109.226,
+        "max": 109.667
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 3.05,
+        "min": 1.754,
+        "p50": 2.916,
+        "p95": 4.408,
+        "p99": 4.712,
+        "max": 4.788
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 105.46,
+        "min": 102.223,
+        "p50": 105.01,
+        "p95": 111.76,
+        "p99": 112.582,
+        "max": 112.788
+      },
+      "actions": [
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": 1.15,
+          "meanValue": -0.243234,
+          "transitionKinds": [
+            "deterministic",
+            "unvisited"
+          ]
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": 1.1,
+          "meanValue": -0.261637,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G1T6",
+      "algorithm": "RACE",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CRight",
+      "rootActionModeCount": 20,
+      "rootActionRepetitionRate": 1,
+      "rootActionDistinct": 1,
+      "rootActionCounts": {
+        "CRight": 20
+      },
+      "planMode": "CRightCRightCRightCDown",
+      "planModeCount": 20,
+      "planRepetitionRate": 1,
+      "planDistinct": 1,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 252.4,
+      "simulations": {
+        "n": 0,
+        "mean": null,
+        "min": null,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0,
+        "min": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 105.195,
+        "min": 103.126,
+        "p50": 104.965,
+        "p95": 107.108,
+        "p99": 107.342,
+        "max": 107.4
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.002,
+        "min": 0.001,
+        "p50": 0.002,
+        "p95": 0.003,
+        "p99": 0.003,
+        "max": 0.003
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 105.608,
+        "min": 103.398,
+        "p50": 105.449,
+        "p95": 107.777,
+        "p99": 107.817,
+        "max": 107.827
+      },
+      "actions": [
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.050857,
+          "transitionKinds": []
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": -0.084425,
+          "transitionKinds": []
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.16067,
+          "transitionKinds": []
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": -0.004463,
+          "transitionKinds": []
+        }
+      ]
+    },
+    {
+      "rootId": "G1T6",
+      "algorithm": "UCT-R",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CDown",
+      "rootActionModeCount": 7,
+      "rootActionRepetitionRate": 0.35,
+      "rootActionDistinct": 3,
+      "rootActionCounts": {
+        "CDown": 7,
+        "CRight": 6,
+        "CUp": 7
+      },
+      "planMode": "CDownCUpCUpCDown",
+      "planModeCount": 3,
+      "planRepetitionRate": 0.15,
+      "planDistinct": 17,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 125.4,
+      "simulations": {
+        "n": 20,
+        "mean": 90.4,
+        "min": 66,
+        "p50": 91.5,
+        "p95": 102.05,
+        "p99": 102.81,
+        "max": 103
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 92.4,
+        "min": 69,
+        "p50": 94,
+        "p95": 103.05,
+        "p99": 103.81,
+        "max": 104
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 100.052,
+        "min": 99.997,
+        "p50": 100.017,
+        "p95": 100.176,
+        "p99": 100.281,
+        "max": 100.307
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.557,
+        "min": 0.373,
+        "p50": 0.52,
+        "p95": 0.797,
+        "p99": 0.797,
+        "max": 0.797
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 100.609,
+        "min": 100.381,
+        "p50": 100.571,
+        "p95": 100.804,
+        "p99": 100.895,
+        "max": 100.918
+      },
+      "actions": [
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": 24.8,
+          "meanValue": 0.165284,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": 23.5,
+          "meanValue": 0.147115,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": 22.85,
+          "meanValue": 0.137673,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 19.25,
+          "meanValue": 0.085908,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G1T6",
+      "algorithm": "UCT-H",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CRight",
+      "rootActionModeCount": 7,
+      "rootActionRepetitionRate": 0.35,
+      "rootActionDistinct": 4,
+      "rootActionCounts": {
+        "CDown": 6,
+        "CLeft": 1,
+        "CRight": 7,
+        "CUp": 6
+      },
+      "planMode": "CDownCUpCUpCDown",
+      "planModeCount": 6,
+      "planRepetitionRate": 0.3,
+      "planDistinct": 8,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 6.8,
+      "simulations": {
+        "n": 20,
+        "mean": 4.85,
+        "min": 3,
+        "p50": 5,
+        "p95": 6,
+        "p99": 6,
+        "max": 6
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 4.85,
+        "min": 3,
+        "p50": 5,
+        "p95": 6,
+        "p99": 6,
+        "max": 6
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 100.992,
+        "min": 100.061,
+        "p50": 100.924,
+        "p95": 101.977,
+        "p99": 102.442,
+        "max": 102.558
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 2.91,
+        "min": 1.869,
+        "p50": 2.794,
+        "p95": 4.346,
+        "p99": 4.765,
+        "max": 4.87
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 103.902,
+        "min": 101.949,
+        "p50": 103.776,
+        "p95": 105.57,
+        "p99": 106.615,
+        "max": 106.877
+      },
+      "actions": [
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": 1.4,
+          "meanValue": -0.048261,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": 1.35,
+          "meanValue": -0.048683,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": 1.05,
+          "meanValue": -0.06581,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 1.05,
+          "meanValue": -0.06581,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G1T7",
+      "algorithm": "RACE",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CRight",
+      "rootActionModeCount": 20,
+      "rootActionRepetitionRate": 1,
+      "rootActionDistinct": 1,
+      "rootActionCounts": {
+        "CRight": 20
+      },
+      "planMode": "CRightCRightCRightCUp",
+      "planModeCount": 19,
+      "planRepetitionRate": 0.95,
+      "planDistinct": 2,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 606.8,
+      "simulations": {
+        "n": 0,
+        "mean": null,
+        "min": null,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0,
+        "min": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 102.358,
+        "min": 101.121,
+        "p50": 102.245,
+        "p95": 103.705,
+        "p99": 105.48,
+        "max": 105.924
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.002,
+        "min": 0.001,
+        "p50": 0.002,
+        "p95": 0.003,
+        "p99": 0.005,
+        "max": 0.005
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 102.822,
+        "min": 101.487,
+        "p50": 102.713,
+        "p95": 104.084,
+        "p99": 105.916,
+        "max": 106.374
+      },
+      "actions": [
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.145054,
+          "transitionKinds": []
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.376007,
+          "transitionKinds": []
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.33272,
+          "transitionKinds": []
+        }
+      ]
+    },
+    {
+      "rootId": "G1T7",
+      "algorithm": "UCT-R",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CRight",
+      "rootActionModeCount": 15,
+      "rootActionRepetitionRate": 0.75,
+      "rootActionDistinct": 3,
+      "rootActionCounts": {
+        "CLeft": 1,
+        "CRight": 15,
+        "CUp": 4
+      },
+      "planMode": "CRightCRightCRightCUp",
+      "planModeCount": 3,
+      "planRepetitionRate": 0.15,
+      "planDistinct": 14,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 97.2,
+      "simulations": {
+        "n": 20,
+        "mean": 95.5,
+        "min": 78,
+        "p50": 97,
+        "p95": 106,
+        "p99": 106,
+        "max": 106
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0.45,
+        "min": 0,
+        "p50": 0,
+        "p95": 2,
+        "p99": 2,
+        "max": 2
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 100.157,
+        "min": 99.997,
+        "p50": 100.02,
+        "p95": 100.669,
+        "p99": 100.785,
+        "max": 100.815
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.503,
+        "min": 0.4,
+        "p50": 0.482,
+        "p95": 0.661,
+        "p99": 0.668,
+        "max": 0.67
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 100.66,
+        "min": 100.441,
+        "p50": 100.601,
+        "p95": 101.126,
+        "p99": 101.197,
+        "max": 101.214
+      },
+      "actions": [
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": 35.85,
+          "meanValue": 0.148975,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": 31,
+          "meanValue": 0.10838,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 28.65,
+          "meanValue": 0.085445,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G1T7",
+      "algorithm": "UCT-H",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CLeft",
+      "rootActionModeCount": 15,
+      "rootActionRepetitionRate": 0.75,
+      "rootActionDistinct": 2,
+      "rootActionCounts": {
+        "CLeft": 15,
+        "CRight": 5
+      },
+      "planMode": "CLeftCUpCDownCRight",
+      "planModeCount": 15,
+      "planRepetitionRate": 0.75,
+      "planDistinct": 2,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 7.6,
+      "simulations": {
+        "n": 20,
+        "mean": 5.75,
+        "min": 5,
+        "p50": 6,
+        "p95": 6,
+        "p99": 6,
+        "max": 6
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0,
+        "min": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 100.949,
+        "min": 100.162,
+        "p50": 100.689,
+        "p95": 102.025,
+        "p99": 103.666,
+        "max": 104.076
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 3.09,
+        "min": 2.216,
+        "p50": 2.837,
+        "p95": 4.048,
+        "p99": 4.404,
+        "max": 4.493
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 104.039,
+        "min": 102.737,
+        "p50": 103.818,
+        "p95": 105.954,
+        "p99": 106.68,
+        "max": 106.861
+      },
+      "actions": [
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": 2,
+          "meanValue": 0.057596,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": 2,
+          "meanValue": -0.002495,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 1.75,
+          "meanValue": -0.052683,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G1T8",
+      "algorithm": "RACE",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CLeft",
+      "rootActionModeCount": 20,
+      "rootActionRepetitionRate": 1,
+      "rootActionDistinct": 1,
+      "rootActionCounts": {
+        "CLeft": 20
+      },
+      "planMode": "CLeftCDownCRightCLeft",
+      "planModeCount": 20,
+      "planRepetitionRate": 1,
+      "planDistinct": 1,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 292,
+      "simulations": {
+        "n": 0,
+        "mean": null,
+        "min": null,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0,
+        "min": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 109.492,
+        "min": 106.906,
+        "p50": 108.786,
+        "p95": 113.008,
+        "p99": 114.258,
+        "max": 114.57
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.002,
+        "min": 0.001,
+        "p50": 0.002,
+        "p95": 0.003,
+        "p99": 0.003,
+        "max": 0.003
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 109.94,
+        "min": 107.284,
+        "p50": 109.189,
+        "p95": 113.507,
+        "p99": 114.913,
+        "max": 115.264
+      },
+      "actions": [
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.026633,
+          "transitionKinds": []
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": -0.052634,
+          "transitionKinds": []
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": -0.052634,
+          "transitionKinds": []
+        }
+      ]
+    },
+    {
+      "rootId": "G1T8",
+      "algorithm": "UCT-R",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CLeft",
+      "rootActionModeCount": 8,
+      "rootActionRepetitionRate": 0.4,
+      "rootActionDistinct": 3,
+      "rootActionCounts": {
+        "CLeft": 8,
+        "CRight": 4,
+        "CUp": 8
+      },
+      "planMode": "CLeftCDownCDownCDown",
+      "planModeCount": 2,
+      "planRepetitionRate": 0.1,
+      "planDistinct": 14,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 98.5,
+      "simulations": {
+        "n": 20,
+        "mean": 96.9,
+        "min": 82,
+        "p50": 100,
+        "p95": 105,
+        "p99": 105,
+        "max": 105
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 36.7,
+        "min": 19,
+        "p50": 38,
+        "p95": 43.35,
+        "p99": 48.67,
+        "max": 50
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 100.217,
+        "min": 99.994,
+        "p50": 100.063,
+        "p95": 100.759,
+        "p99": 101.192,
+        "max": 101.3
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.477,
+        "min": 0.388,
+        "p50": 0.473,
+        "p95": 0.558,
+        "p99": 0.576,
+        "max": 0.581
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 100.694,
+        "min": 100.427,
+        "p50": 100.582,
+        "p95": 101.152,
+        "p99": 101.663,
+        "max": 101.791
+      },
+      "actions": [
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 35.25,
+          "meanValue": -0.076852,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": 31.75,
+          "meanValue": -0.099021,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": 29.9,
+          "meanValue": -0.123461,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G1T8",
+      "algorithm": "UCT-H",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CRight",
+      "rootActionModeCount": 13,
+      "rootActionRepetitionRate": 0.65,
+      "rootActionDistinct": 3,
+      "rootActionCounts": {
+        "CLeft": 5,
+        "CRight": 13,
+        "CUp": 2
+      },
+      "planMode": "CLeftCDownCRightCLeft",
+      "planModeCount": 5,
+      "planRepetitionRate": 0.25,
+      "planDistinct": 6,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 16.2,
+      "simulations": {
+        "n": 20,
+        "mean": 14.45,
+        "min": 12,
+        "p50": 14,
+        "p95": 16.05,
+        "p99": 16.81,
+        "max": 17
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0,
+        "min": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 100.67,
+        "min": 100.022,
+        "p50": 100.584,
+        "p95": 101.639,
+        "p99": 101.966,
+        "max": 102.048
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 1.826,
+        "min": 1.038,
+        "p50": 1.712,
+        "p95": 3.09,
+        "p99": 3.188,
+        "max": 3.212
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 102.496,
+        "min": 101.429,
+        "p50": 102.509,
+        "p95": 103.528,
+        "p99": 103.781,
+        "max": 103.844
+      },
+      "actions": [
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": 5.1,
+          "meanValue": 0.01193,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": 4.9,
+          "meanValue": 0.011443,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 4.45,
+          "meanValue": -0.008522,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G1T9",
+      "algorithm": "RACE",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CDown",
+      "rootActionModeCount": 20,
+      "rootActionRepetitionRate": 1,
+      "rootActionDistinct": 1,
+      "rootActionCounts": {
+        "CDown": 20
+      },
+      "planMode": "CDownCDownCRightCLeft",
+      "planModeCount": 20,
+      "planRepetitionRate": 1,
+      "planDistinct": 1,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 244.8,
+      "simulations": {
+        "n": 0,
+        "mean": null,
+        "min": null,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0,
+        "min": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 108.853,
+        "min": 104.029,
+        "p50": 109.241,
+        "p95": 113.974,
+        "p99": 114.068,
+        "max": 114.092
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.002,
+        "min": 0.001,
+        "p50": 0.002,
+        "p95": 0.002,
+        "p99": 0.004,
+        "max": 0.004
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 109.373,
+        "min": 105.058,
+        "p50": 109.728,
+        "p95": 114.324,
+        "p99": 114.461,
+        "max": 114.496
+      },
+      "actions": [
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": -0.287328,
+          "transitionKinds": []
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": -0.449489,
+          "transitionKinds": []
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": -0.449489,
+          "transitionKinds": []
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": -0.449489,
+          "transitionKinds": []
+        }
+      ]
+    },
+    {
+      "rootId": "G1T9",
+      "algorithm": "UCT-R",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CDown",
+      "rootActionModeCount": 10,
+      "rootActionRepetitionRate": 0.5,
+      "rootActionDistinct": 4,
+      "rootActionCounts": {
+        "CDown": 10,
+        "CLeft": 6,
+        "CRight": 2,
+        "CUp": 2
+      },
+      "planMode": "CDownCDownCDownCUp",
+      "planModeCount": 4,
+      "planRepetitionRate": 0.2,
+      "planDistinct": 13,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 115.3,
+      "simulations": {
+        "n": 20,
+        "mean": 78.4,
+        "min": 63,
+        "p50": 79.5,
+        "p95": 89.05,
+        "p99": 89.81,
+        "max": 90
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 108.15,
+        "min": 82,
+        "p50": 110.5,
+        "p95": 122.3,
+        "p99": 126.86,
+        "max": 128
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 100.091,
+        "min": 99.987,
+        "p50": 100.03,
+        "p95": 100.402,
+        "p99": 100.654,
+        "max": 100.717
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.628,
+        "min": 0.44,
+        "p50": 0.531,
+        "p95": 1.309,
+        "p99": 1.484,
+        "max": 1.528
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 100.719,
+        "min": 100.474,
+        "p50": 100.568,
+        "p95": 101.399,
+        "p99": 101.5,
+        "max": 101.525
+      },
+      "actions": [
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": 21.15,
+          "meanValue": -0.201275,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 19.6,
+          "meanValue": -0.243026,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": 19.15,
+          "meanValue": -0.236457,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": 18.5,
+          "meanValue": -0.246085,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G1T9",
+      "algorithm": "UCT-H",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CDown",
+      "rootActionModeCount": 13,
+      "rootActionRepetitionRate": 0.65,
+      "rootActionDistinct": 4,
+      "rootActionCounts": {
+        "CDown": 13,
+        "CLeft": 3,
+        "CRight": 1,
+        "CUp": 3
+      },
+      "planMode": "CDownCUpCRightCDown",
+      "planModeCount": 3,
+      "planRepetitionRate": 0.15,
+      "planDistinct": 14,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 6.3,
+      "simulations": {
+        "n": 20,
+        "mean": 4.35,
+        "min": 3,
+        "p50": 4,
+        "p95": 5,
+        "p99": 5,
+        "max": 5
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 13.15,
+        "min": 9,
+        "p50": 12,
+        "p95": 15,
+        "p99": 15,
+        "max": 15
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 102.329,
+        "min": 100.056,
+        "p50": 101.092,
+        "p95": 106.517,
+        "p99": 109.112,
+        "max": 109.761
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 3.07,
+        "min": 2.02,
+        "p50": 2.826,
+        "p95": 4.96,
+        "p99": 5.09,
+        "max": 5.122
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 105.4,
+        "min": 102.68,
+        "p50": 103.889,
+        "p95": 108.91,
+        "p99": 113.232,
+        "max": 114.313
+      },
+      "actions": [
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 1.15,
+          "meanValue": -0.431989,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": 1.15,
+          "meanValue": -0.39608,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": 1.1,
+          "meanValue": -0.384108,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": 0.95,
+          "meanValue": -0.297944,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G2T1",
+      "algorithm": "RACE",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "T",
+      "rootActionModeCount": 20,
+      "rootActionRepetitionRate": 1,
+      "rootActionDistinct": 1,
+      "rootActionCounts": {
+        "T": 20
+      },
+      "planMode": "TCRightCRightCRightCRight",
+      "planModeCount": 20,
+      "planRepetitionRate": 1,
+      "planDistinct": 1,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 5,
+      "meanNodes": 1261.4,
+      "simulations": {
+        "n": 0,
+        "mean": null,
+        "min": null,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0,
+        "min": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 101.971,
+        "min": 101.221,
+        "p50": 101.956,
+        "p95": 102.603,
+        "p99": 102.765,
+        "max": 102.805
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.001,
+        "min": 0.001,
+        "p50": 0.001,
+        "p95": 0.002,
+        "p99": 0.002,
+        "max": 0.002
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 102.151,
+        "min": 101.391,
+        "p50": 102.135,
+        "p95": 102.856,
+        "p99": 102.963,
+        "max": 102.989
+      },
+      "actions": [
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.27542,
+          "transitionKinds": []
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.306732,
+          "transitionKinds": []
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.393973,
+          "transitionKinds": []
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.253597,
+          "transitionKinds": []
+        },
+        {
+          "action": "T",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.437417,
+          "transitionKinds": []
+        }
+      ]
+    },
+    {
+      "rootId": "G2T1",
+      "algorithm": "UCT-R",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CRight",
+      "rootActionModeCount": 6,
+      "rootActionRepetitionRate": 0.3,
+      "rootActionDistinct": 4,
+      "rootActionCounts": {
+        "CLeft": 4,
+        "CRight": 6,
+        "CUp": 4,
+        "T": 6
+      },
+      "planMode": "CLeftCDownCRightCDown",
+      "planModeCount": 1,
+      "planRepetitionRate": 0.05,
+      "planDistinct": 20,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4.55,
+      "meanNodes": 255.4,
+      "simulations": {
+        "n": 20,
+        "mean": 253.8,
+        "min": 114,
+        "p50": 271.5,
+        "p95": 288.9,
+        "p99": 302.58,
+        "max": 306
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0,
+        "min": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 100.062,
+        "min": 99.999,
+        "p50": 100.028,
+        "p95": 100.244,
+        "p99": 100.416,
+        "max": 100.459
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.265,
+        "min": 0.197,
+        "p50": 0.236,
+        "p95": 0.363,
+        "p99": 0.503,
+        "max": 0.538
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 100.327,
+        "min": 100.21,
+        "p50": 100.297,
+        "p95": 100.575,
+        "p99": 100.705,
+        "max": 100.738
+      },
+      "actions": [
+        {
+          "action": "T",
+          "reps": 20,
+          "meanVisits": 52.5,
+          "meanValue": 0.088319,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": 51.8,
+          "meanValue": 0.085497,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": 50.85,
+          "meanValue": 0.080159,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 50.6,
+          "meanValue": 0.079835,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": 48.05,
+          "meanValue": 0.068216,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G2T1",
+      "algorithm": "UCT-H",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CUp",
+      "rootActionModeCount": 15,
+      "rootActionRepetitionRate": 0.75,
+      "rootActionDistinct": 2,
+      "rootActionCounts": {
+        "CDown": 5,
+        "CUp": 15
+      },
+      "planMode": "CUpCDownCRightTCRight",
+      "planModeCount": 15,
+      "planRepetitionRate": 0.75,
+      "planDistinct": 3,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 5,
+      "meanNodes": 17.2,
+      "simulations": {
+        "n": 20,
+        "mean": 15.2,
+        "min": 5,
+        "p50": 16,
+        "p95": 17,
+        "p99": 17,
+        "max": 17
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0,
+        "min": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 100.241,
+        "min": 100.007,
+        "p50": 100.225,
+        "p95": 100.502,
+        "p99": 100.542,
+        "max": 100.552
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 1.969,
+        "min": 1.585,
+        "p50": 1.934,
+        "p95": 2.519,
+        "p99": 2.575,
+        "max": 2.589
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 102.21,
+        "min": 101.836,
+        "p50": 102.161,
+        "p95": 102.724,
+        "p99": 102.855,
+        "max": 102.888
+      },
+      "actions": [
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": 3.65,
+          "meanValue": 0.164711,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "T",
+          "reps": 20,
+          "meanVisits": 2.95,
+          "meanValue": 0.127203,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": 2.9,
+          "meanValue": 0.123122,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 2.9,
+          "meanValue": 0.131323,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": 2.8,
+          "meanValue": 0.075638,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G2T2",
+      "algorithm": "RACE",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CUp",
+      "rootActionModeCount": 20,
+      "rootActionRepetitionRate": 1,
+      "rootActionDistinct": 1,
+      "rootActionCounts": {
+        "CUp": 20
+      },
+      "planMode": "CDownCLeftCUpCRight",
+      "planModeCount": 20,
+      "planRepetitionRate": 1,
+      "planDistinct": 1,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 1458.3,
+      "simulations": {
+        "n": 0,
+        "mean": null,
+        "min": null,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0,
+        "min": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 102.558,
+        "min": 101.464,
+        "p50": 102.311,
+        "p95": 104.832,
+        "p99": 105.142,
+        "max": 105.22
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.001,
+        "min": 0,
+        "p50": 0.001,
+        "p95": 0.001,
+        "p99": 0.002,
+        "max": 0.002
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 102.757,
+        "min": 101.625,
+        "p50": 102.51,
+        "p95": 105.133,
+        "p99": 105.518,
+        "max": 105.614
+      },
+      "actions": [
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.172725,
+          "transitionKinds": []
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.172725,
+          "transitionKinds": []
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.172725,
+          "transitionKinds": []
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.172725,
+          "transitionKinds": []
+        }
+      ]
+    },
+    {
+      "rootId": "G2T2",
+      "algorithm": "UCT-R",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CDown",
+      "rootActionModeCount": 13,
+      "rootActionRepetitionRate": 0.65,
+      "rootActionDistinct": 2,
+      "rootActionCounts": {
+        "CDown": 13,
+        "CRight": 7
+      },
+      "planMode": "CDownCDownCDownCRight",
+      "planModeCount": 7,
+      "planRepetitionRate": 0.35,
+      "planDistinct": 10,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 284.1,
+      "simulations": {
+        "n": 20,
+        "mean": 282.5,
+        "min": 183,
+        "p50": 296.5,
+        "p95": 310.15,
+        "p99": 312.43,
+        "max": 313
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0.15,
+        "min": 0,
+        "p50": 0,
+        "p95": 1,
+        "p99": 1,
+        "max": 1
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 100.12,
+        "min": 99.988,
+        "p50": 100.03,
+        "p95": 100.508,
+        "p99": 100.884,
+        "max": 100.978
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.232,
+        "min": 0.198,
+        "p50": 0.218,
+        "p95": 0.328,
+        "p99": 0.383,
+        "max": 0.396
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 100.352,
+        "min": 100.2,
+        "p50": 100.242,
+        "p95": 100.716,
+        "p99": 101.243,
+        "max": 101.374
+      },
+      "actions": [
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": 76.05,
+          "meanValue": 0.162899,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": 74.8,
+          "meanValue": 0.159129,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": 67.6,
+          "meanValue": 0.139173,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 64.05,
+          "meanValue": 0.128434,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G2T2",
+      "algorithm": "UCT-H",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CDown",
+      "rootActionModeCount": 17,
+      "rootActionRepetitionRate": 0.85,
+      "rootActionDistinct": 2,
+      "rootActionCounts": {
+        "CDown": 17,
+        "CRight": 3
+      },
+      "planMode": "CDownCDownCUpCDown",
+      "planModeCount": 12,
+      "planRepetitionRate": 0.6,
+      "planDistinct": 3,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 20.1,
+      "simulations": {
+        "n": 20,
+        "mean": 18.25,
+        "min": 11,
+        "p50": 20,
+        "p95": 21,
+        "p99": 21,
+        "max": 21
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0,
+        "min": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 100.327,
+        "min": 100.005,
+        "p50": 100.265,
+        "p95": 100.582,
+        "p99": 101.746,
+        "max": 102.037
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.757,
+        "min": 0.528,
+        "p50": 0.617,
+        "p95": 1.304,
+        "p99": 1.45,
+        "max": 1.487
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 101.085,
+        "min": 100.609,
+        "p50": 100.966,
+        "p95": 101.625,
+        "p99": 103.144,
+        "max": 103.524
+      },
+      "actions": [
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": 4.75,
+          "meanValue": 0.055942,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": 4.7,
+          "meanValue": 0.052748,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 4.45,
+          "meanValue": 0.048997,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": 4.35,
+          "meanValue": 0.048997,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G2T3",
+      "algorithm": "RACE",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CLeft",
+      "rootActionModeCount": 20,
+      "rootActionRepetitionRate": 1,
+      "rootActionDistinct": 1,
+      "rootActionCounts": {
+        "CLeft": 20
+      },
+      "planMode": "CLeftCDownCLeftCDown",
+      "planModeCount": 20,
+      "planRepetitionRate": 1,
+      "planDistinct": 1,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 198.2,
+      "simulations": {
+        "n": 0,
+        "mean": null,
+        "min": null,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0,
+        "min": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 105.83,
+        "min": 101.965,
+        "p50": 104.971,
+        "p95": 109.773,
+        "p99": 109.816,
+        "max": 109.826
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.006,
+        "min": 0.002,
+        "p50": 0.005,
+        "p95": 0.009,
+        "p99": 0.009,
+        "max": 0.01
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 106.28,
+        "min": 102.287,
+        "p50": 105.6,
+        "p95": 110.215,
+        "p99": 110.257,
+        "max": 110.267
+      },
+      "actions": [
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.305751,
+          "transitionKinds": []
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.437933,
+          "transitionKinds": []
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.25031,
+          "transitionKinds": []
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.378394,
+          "transitionKinds": []
+        }
+      ]
+    },
+    {
+      "rootId": "G2T3",
+      "algorithm": "UCT-R",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CLeft",
+      "rootActionModeCount": 10,
+      "rootActionRepetitionRate": 0.5,
+      "rootActionDistinct": 4,
+      "rootActionCounts": {
+        "CDown": 3,
+        "CLeft": 10,
+        "CRight": 2,
+        "CUp": 5
+      },
+      "planMode": "CLeftCDownCLeftCDown",
+      "planModeCount": 4,
+      "planRepetitionRate": 0.2,
+      "planDistinct": 15,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 147.3,
+      "simulations": {
+        "n": 20,
+        "mean": 145.6,
+        "min": 82,
+        "p50": 109,
+        "p95": 300.1,
+        "p99": 301.62,
+        "max": 302
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 6.6,
+        "min": 1,
+        "p50": 4.5,
+        "p95": 17,
+        "p99": 17,
+        "max": 17
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 100.039,
+        "min": 99.997,
+        "p50": 100.02,
+        "p95": 100.098,
+        "p99": 100.201,
+        "max": 100.227
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.526,
+        "min": 0.258,
+        "p50": 0.491,
+        "p95": 0.801,
+        "p99": 1.029,
+        "max": 1.086
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 100.565,
+        "min": 100.299,
+        "p50": 100.551,
+        "p95": 100.805,
+        "p99": 101.038,
+        "max": 101.096
+      },
+      "actions": [
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 39.55,
+          "meanValue": 0.136653,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": 36.15,
+          "meanValue": 0.114756,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": 35.35,
+          "meanValue": 0.104061,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": 34.55,
+          "meanValue": 0.107589,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G2T3",
+      "algorithm": "UCT-H",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CDown",
+      "rootActionModeCount": 20,
+      "rootActionRepetitionRate": 1,
+      "rootActionDistinct": 1,
+      "rootActionCounts": {
+        "CDown": 20
+      },
+      "planMode": "CDownCUpCDownCDown",
+      "planModeCount": 14,
+      "planRepetitionRate": 0.7,
+      "planDistinct": 3,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 10.5,
+      "simulations": {
+        "n": 20,
+        "mean": 8.5,
+        "min": 5,
+        "p50": 6,
+        "p95": 17,
+        "p99": 17,
+        "max": 17
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0,
+        "min": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 100.674,
+        "min": 100.003,
+        "p50": 100.486,
+        "p95": 101.253,
+        "p99": 103.968,
+        "max": 104.647
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 2.638,
+        "min": 1.287,
+        "p50": 2.587,
+        "p95": 3.834,
+        "p99": 3.98,
+        "max": 4.017
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 103.312,
+        "min": 102.313,
+        "p50": 102.977,
+        "p95": 105.05,
+        "p99": 105.757,
+        "max": 105.934
+      },
+      "actions": [
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": 2.65,
+          "meanValue": 0.14583,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": 2.2,
+          "meanValue": 0.111932,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": 1.85,
+          "meanValue": 0.061088,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 1.8,
+          "meanValue": 0.004028,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G2T4",
+      "algorithm": "RACE",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CDown",
+      "rootActionModeCount": 20,
+      "rootActionRepetitionRate": 1,
+      "rootActionDistinct": 1,
+      "rootActionCounts": {
+        "CDown": 20
+      },
+      "planMode": "CDownCLeftCLeftCLeft",
+      "planModeCount": 20,
+      "planRepetitionRate": 1,
+      "planDistinct": 1,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 272.4,
+      "simulations": {
+        "n": 0,
+        "mean": null,
+        "min": null,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0,
+        "min": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 111.145,
+        "min": 108.668,
+        "p50": 110.938,
+        "p95": 114.515,
+        "p99": 114.98,
+        "max": 115.096
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.002,
+        "min": 0.001,
+        "p50": 0.002,
+        "p95": 0.003,
+        "p99": 0.003,
+        "max": 0.003
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 111.542,
+        "min": 109.048,
+        "p50": 111.351,
+        "p95": 114.921,
+        "p99": 115.444,
+        "max": 115.575
+      },
+      "actions": [
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.329155,
+          "transitionKinds": []
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.329155,
+          "transitionKinds": []
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.262186,
+          "transitionKinds": []
+        }
+      ]
+    },
+    {
+      "rootId": "G2T4",
+      "algorithm": "UCT-R",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CDown",
+      "rootActionModeCount": 12,
+      "rootActionRepetitionRate": 0.6,
+      "rootActionDistinct": 3,
+      "rootActionCounts": {
+        "CDown": 12,
+        "CLeft": 7,
+        "CRight": 1
+      },
+      "planMode": "CDownCDownCDownCDown",
+      "planModeCount": 3,
+      "planRepetitionRate": 0.15,
+      "planDistinct": 14,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 164.5,
+      "simulations": {
+        "n": 20,
+        "mean": 87.25,
+        "min": 68,
+        "p50": 86,
+        "p95": 102.15,
+        "p99": 104.43,
+        "max": 105
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 130.35,
+        "min": 99,
+        "p50": 132.5,
+        "p95": 152.3,
+        "p99": 156.86,
+        "max": 158
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 100.174,
+        "min": 99.995,
+        "p50": 100.059,
+        "p95": 100.659,
+        "p99": 100.812,
+        "max": 100.851
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.578,
+        "min": 0.376,
+        "p50": 0.509,
+        "p95": 1.139,
+        "p99": 1.221,
+        "max": 1.241
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 100.752,
+        "min": 100.385,
+        "p50": 100.661,
+        "p95": 101.3,
+        "p99": 101.318,
+        "max": 101.323
+      },
+      "actions": [
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": 32.25,
+          "meanValue": 0.022583,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 31.05,
+          "meanValue": 0.001984,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": 23.95,
+          "meanValue": -0.068353,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G2T4",
+      "algorithm": "UCT-H",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CDown",
+      "rootActionModeCount": 13,
+      "rootActionRepetitionRate": 0.65,
+      "rootActionDistinct": 3,
+      "rootActionCounts": {
+        "CDown": 13,
+        "CLeft": 6,
+        "CRight": 1
+      },
+      "planMode": "CDownCUpCLeftCDown",
+      "planModeCount": 6,
+      "planRepetitionRate": 0.3,
+      "planDistinct": 7,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 6.7,
+      "simulations": {
+        "n": 20,
+        "mean": 4.7,
+        "min": 4,
+        "p50": 4.5,
+        "p95": 5.2,
+        "p99": 8.24,
+        "max": 9
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 14.15,
+        "min": 11,
+        "p50": 13.5,
+        "p95": 16.55,
+        "p99": 24.91,
+        "max": 27
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 101.762,
+        "min": 100.013,
+        "p50": 100.983,
+        "p95": 104.841,
+        "p99": 107.574,
+        "max": 108.257
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 2.033,
+        "min": 1.563,
+        "p50": 1.937,
+        "p95": 2.588,
+        "p99": 2.844,
+        "max": 2.909
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 103.795,
+        "min": 101.882,
+        "p50": 103.184,
+        "p95": 106.874,
+        "p99": 110.307,
+        "max": 111.165
+      },
+      "actions": [
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 1.75,
+          "meanValue": 0.039308,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": 1.7,
+          "meanValue": 0.064023,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": 1.25,
+          "meanValue": -0.059754,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G2T5",
+      "algorithm": "RACE",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CDown",
+      "rootActionModeCount": 20,
+      "rootActionRepetitionRate": 1,
+      "rootActionDistinct": 1,
+      "rootActionCounts": {
+        "CDown": 20
+      },
+      "planMode": "CDownCDownCDownCLeft",
+      "planModeCount": 20,
+      "planRepetitionRate": 1,
+      "planDistinct": 1,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 285.8,
+      "simulations": {
+        "n": 0,
+        "mean": null,
+        "min": null,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0,
+        "min": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 105.048,
+        "min": 102.592,
+        "p50": 104.976,
+        "p95": 106.951,
+        "p99": 107.635,
+        "max": 107.807
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.002,
+        "min": 0.001,
+        "p50": 0.002,
+        "p95": 0.002,
+        "p99": 0.003,
+        "max": 0.003
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 105.445,
+        "min": 102.965,
+        "p50": 105.406,
+        "p95": 107.342,
+        "p99": 108.05,
+        "max": 108.227
+      },
+      "actions": [
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.249508,
+          "transitionKinds": []
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.120627,
+          "transitionKinds": []
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.119057,
+          "transitionKinds": []
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.119057,
+          "transitionKinds": []
+        }
+      ]
+    },
+    {
+      "rootId": "G2T5",
+      "algorithm": "UCT-R",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CDown",
+      "rootActionModeCount": 14,
+      "rootActionRepetitionRate": 0.7,
+      "rootActionDistinct": 3,
+      "rootActionCounts": {
+        "CDown": 14,
+        "CLeft": 2,
+        "CRight": 4
+      },
+      "planMode": "CDownCDownCDownCUp",
+      "planModeCount": 7,
+      "planRepetitionRate": 0.35,
+      "planDistinct": 10,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 123.5,
+      "simulations": {
+        "n": 20,
+        "mean": 87.25,
+        "min": 69,
+        "p50": 86,
+        "p95": 98.55,
+        "p99": 122.11,
+        "max": 128
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 87.25,
+        "min": 69,
+        "p50": 86,
+        "p95": 98.55,
+        "p99": 122.11,
+        "max": 128
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 100.154,
+        "min": 99.999,
+        "p50": 100.051,
+        "p95": 100.457,
+        "p99": 100.497,
+        "max": 100.506
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.597,
+        "min": 0.344,
+        "p50": 0.536,
+        "p95": 1.065,
+        "p99": 1.128,
+        "max": 1.144
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 100.751,
+        "min": 100.365,
+        "p50": 100.732,
+        "p95": 101.166,
+        "p99": 101.246,
+        "max": 101.266
+      },
+      "actions": [
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": 23.5,
+          "meanValue": 0.151459,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": 22.3,
+          "meanValue": 0.138813,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 21.2,
+          "meanValue": 0.122303,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": 20.25,
+          "meanValue": 0.103989,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G2T5",
+      "algorithm": "UCT-H",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CRight",
+      "rootActionModeCount": 10,
+      "rootActionRepetitionRate": 0.5,
+      "rootActionDistinct": 4,
+      "rootActionCounts": {
+        "CDown": 7,
+        "CLeft": 1,
+        "CRight": 10,
+        "CUp": 2
+      },
+      "planMode": "CRightCDownCLeftCDown",
+      "planModeCount": 3,
+      "planRepetitionRate": 0.15,
+      "planDistinct": 11,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 8.3,
+      "simulations": {
+        "n": 20,
+        "mean": 6.25,
+        "min": 5,
+        "p50": 6,
+        "p95": 7.15,
+        "p99": 9.43,
+        "max": 10
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 6.25,
+        "min": 5,
+        "p50": 6,
+        "p95": 7.15,
+        "p99": 9.43,
+        "max": 10
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 100.628,
+        "min": 100.039,
+        "p50": 100.777,
+        "p95": 101.065,
+        "p99": 101.086,
+        "max": 101.091
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 2.615,
+        "min": 1.498,
+        "p50": 2.51,
+        "p95": 3.49,
+        "p99": 4.042,
+        "max": 4.18
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 103.243,
+        "min": 102.174,
+        "p50": 103.067,
+        "p95": 104.277,
+        "p99": 104.812,
+        "max": 104.946
+      },
+      "actions": [
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": 2.15,
+          "meanValue": 0.172671,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": 1.45,
+          "meanValue": -0.017337,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": 1.35,
+          "meanValue": 0.024649,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 1.3,
+          "meanValue": -0.126302,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G2T6",
+      "algorithm": "RACE",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CLeft",
+      "rootActionModeCount": 16,
+      "rootActionRepetitionRate": 0.8,
+      "rootActionDistinct": 2,
+      "rootActionCounts": {
+        "CLeft": 16,
+        "CRight": 4
+      },
+      "planMode": "CLeftCUpCUpCUp",
+      "planModeCount": 16,
+      "planRepetitionRate": 0.8,
+      "planDistinct": 2,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 493.5,
+      "simulations": {
+        "n": 0,
+        "mean": null,
+        "min": null,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0,
+        "min": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 105.632,
+        "min": 100.718,
+        "p50": 106.173,
+        "p95": 108.921,
+        "p99": 110.825,
+        "max": 111.301
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.003,
+        "min": 0,
+        "p50": 0.001,
+        "p95": 0.004,
+        "p99": 0.026,
+        "max": 0.031
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 106.051,
+        "min": 101.231,
+        "p50": 106.638,
+        "p95": 109.397,
+        "p99": 111.301,
+        "max": 111.776
+      },
+      "actions": [
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.047196,
+          "transitionKinds": []
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.064498,
+          "transitionKinds": []
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.063858,
+          "transitionKinds": []
+        }
+      ]
+    },
+    {
+      "rootId": "G2T6",
+      "algorithm": "UCT-R",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CLeft",
+      "rootActionModeCount": 8,
+      "rootActionRepetitionRate": 0.4,
+      "rootActionDistinct": 3,
+      "rootActionCounts": {
+        "CDown": 7,
+        "CLeft": 8,
+        "CRight": 5
+      },
+      "planMode": "CDownCLeftCRightCLeft",
+      "planModeCount": 2,
+      "planRepetitionRate": 0.1,
+      "planDistinct": 16,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 110,
+      "simulations": {
+        "n": 20,
+        "mean": 108.4,
+        "min": 92,
+        "p50": 106.5,
+        "p95": 121.9,
+        "p99": 150.78,
+        "max": 158
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 3.5,
+        "min": 0,
+        "p50": 3,
+        "p95": 8.3,
+        "p99": 12.86,
+        "max": 14
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 100.092,
+        "min": 100.002,
+        "p50": 100.029,
+        "p95": 100.272,
+        "p99": 100.316,
+        "max": 100.327
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.485,
+        "min": 0.369,
+        "p50": 0.48,
+        "p95": 0.572,
+        "p99": 0.604,
+        "max": 0.612
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 100.577,
+        "min": 100.424,
+        "p50": 100.535,
+        "p95": 100.79,
+        "p99": 100.863,
+        "max": 100.881
+      },
+      "actions": [
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 36.75,
+          "meanValue": 0.040269,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": 36.1,
+          "meanValue": 0.03801,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": 35.55,
+          "meanValue": 0.031779,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G2T6",
+      "algorithm": "UCT-H",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CLeft",
+      "rootActionModeCount": 9,
+      "rootActionRepetitionRate": 0.45,
+      "rootActionDistinct": 3,
+      "rootActionCounts": {
+        "CDown": 6,
+        "CLeft": 9,
+        "CRight": 5
+      },
+      "planMode": "CLeftCDownCUpCRight",
+      "planModeCount": 9,
+      "planRepetitionRate": 0.45,
+      "planDistinct": 3,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 13.2,
+      "simulations": {
+        "n": 20,
+        "mean": 11.3,
+        "min": 9,
+        "p50": 11,
+        "p95": 12.4,
+        "p99": 18.48,
+        "max": 20
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0,
+        "min": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 100.599,
+        "min": 100.094,
+        "p50": 100.558,
+        "p95": 101.298,
+        "p99": 101.369,
+        "max": 101.387
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 2.593,
+        "min": 1.284,
+        "p50": 2.443,
+        "p95": 3.768,
+        "p99": 3.839,
+        "max": 3.857
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 103.191,
+        "min": 102.046,
+        "p50": 103.178,
+        "p95": 104.275,
+        "p99": 104.471,
+        "max": 104.52
+      },
+      "actions": [
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": 4.1,
+          "meanValue": 0.071775,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 3.8,
+          "meanValue": 0.067806,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": 3.4,
+          "meanValue": 0.062423,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G2T7",
+      "algorithm": "RACE",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CUp",
+      "rootActionModeCount": 20,
+      "rootActionRepetitionRate": 1,
+      "rootActionDistinct": 1,
+      "rootActionCounts": {
+        "CUp": 20
+      },
+      "planMode": "CUpCRightCUpCUp",
+      "planModeCount": 20,
+      "planRepetitionRate": 1,
+      "planDistinct": 1,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 218.3,
+      "simulations": {
+        "n": 0,
+        "mean": null,
+        "min": null,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0,
+        "min": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 112.028,
+        "min": 107.126,
+        "p50": 111.898,
+        "p95": 116.45,
+        "p99": 116.921,
+        "max": 117.039
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.002,
+        "min": 0.001,
+        "p50": 0.002,
+        "p95": 0.002,
+        "p99": 0.006,
+        "max": 0.007
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 112.467,
+        "min": 107.474,
+        "p50": 112.324,
+        "p95": 116.907,
+        "p99": 117.549,
+        "max": 117.71
+      },
+      "actions": [
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.015008,
+          "transitionKinds": []
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.049474,
+          "transitionKinds": []
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.084439,
+          "transitionKinds": []
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.084439,
+          "transitionKinds": []
+        }
+      ]
+    },
+    {
+      "rootId": "G2T7",
+      "algorithm": "UCT-R",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CLeft",
+      "rootActionModeCount": 7,
+      "rootActionRepetitionRate": 0.35,
+      "rootActionDistinct": 4,
+      "rootActionCounts": {
+        "CDown": 6,
+        "CLeft": 7,
+        "CRight": 3,
+        "CUp": 4
+      },
+      "planMode": "CLeftCUpCDownCDown",
+      "planModeCount": 2,
+      "planRepetitionRate": 0.1,
+      "planDistinct": 18,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 98.3,
+      "simulations": {
+        "n": 20,
+        "mean": 96.8,
+        "min": 37,
+        "p50": 96.5,
+        "p95": 109.6,
+        "p99": 149.12,
+        "max": 159
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 35.85,
+        "min": 16,
+        "p50": 35.5,
+        "p95": 60.05,
+        "p99": 60.81,
+        "max": 61
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 104.446,
+        "min": 99.993,
+        "p50": 100.058,
+        "p95": 104.984,
+        "p99": 170.119,
+        "max": 186.403
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.657,
+        "min": 0.347,
+        "p50": 0.523,
+        "p95": 1.801,
+        "p99": 2.043,
+        "max": 2.104
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 105.102,
+        "min": 100.34,
+        "p50": 100.599,
+        "p95": 106.351,
+        "p99": 170.907,
+        "max": 187.046
+      },
+      "actions": [
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": 25.85,
+          "meanValue": 0.001515,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 24.15,
+          "meanValue": -0.026714,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": 23.65,
+          "meanValue": -0.027329,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": 23.15,
+          "meanValue": -0.039589,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G2T7",
+      "algorithm": "UCT-H",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CDown",
+      "rootActionModeCount": 13,
+      "rootActionRepetitionRate": 0.65,
+      "rootActionDistinct": 3,
+      "rootActionCounts": {
+        "CDown": 13,
+        "CLeft": 6,
+        "CUp": 1
+      },
+      "planMode": "CDownCUpCUpCUp",
+      "planModeCount": 12,
+      "planRepetitionRate": 0.6,
+      "planDistinct": 4,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 9.1,
+      "simulations": {
+        "n": 20,
+        "mean": 7.2,
+        "min": 1,
+        "p50": 7,
+        "p95": 8.2,
+        "p99": 11.24,
+        "max": 12
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0,
+        "min": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 121.274,
+        "min": 100.099,
+        "p50": 100.516,
+        "p95": 122.133,
+        "p99": 435.687,
+        "max": 514.075
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 3.142,
+        "min": 2.227,
+        "p50": 2.816,
+        "p95": 4.447,
+        "p99": 6.649,
+        "max": 7.199
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 124.416,
+        "min": 102.63,
+        "p50": 103.349,
+        "p95": 128.67,
+        "p99": 440.436,
+        "max": 518.378
+      },
+      "actions": [
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 1.95,
+          "meanValue": -0.03019,
+          "transitionKinds": [
+            "deterministic",
+            "unvisited"
+          ]
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": 1.9,
+          "meanValue": -0.142292,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": 1.7,
+          "meanValue": -0.134132,
+          "transitionKinds": [
+            "deterministic",
+            "unvisited"
+          ]
+        },
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": 1.65,
+          "meanValue": -0.133677,
+          "transitionKinds": [
+            "deterministic",
+            "unvisited"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G2T8",
+      "algorithm": "RACE",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CDown",
+      "rootActionModeCount": 19,
+      "rootActionRepetitionRate": 0.95,
+      "rootActionDistinct": 1,
+      "rootActionCounts": {
+        "CDown": 19
+      },
+      "planMode": "CDownCDownCDownCRight",
+      "planModeCount": 19,
+      "planRepetitionRate": 0.95,
+      "planDistinct": 2,
+      "fullPlanRate": 0.95,
+      "replayOkRate": 1,
+      "meanPlanLength": 3.8,
+      "meanNodes": 225.7,
+      "simulations": {
+        "n": 0,
+        "mean": null,
+        "min": null,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0,
+        "min": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 113.942,
+        "min": 102.79,
+        "p50": 105.93,
+        "p95": 148.624,
+        "p99": 211.74,
+        "max": 227.519
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.015,
+        "min": 0.001,
+        "p50": 0.002,
+        "p95": 0.026,
+        "p99": 0.198,
+        "max": 0.241
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 114.417,
+        "min": 103.231,
+        "p50": 106.453,
+        "p95": 149.096,
+        "p99": 212.179,
+        "max": 227.949
+      },
+      "actions": [
+        {
+          "action": "CDown",
+          "reps": 19,
+          "meanVisits": null,
+          "meanValue": 0.015004,
+          "transitionKinds": []
+        },
+        {
+          "action": "CLeft",
+          "reps": 19,
+          "meanVisits": null,
+          "meanValue": -0.156731,
+          "transitionKinds": []
+        },
+        {
+          "action": "CRight",
+          "reps": 19,
+          "meanVisits": null,
+          "meanValue": -0.066501,
+          "transitionKinds": []
+        },
+        {
+          "action": "CUp",
+          "reps": 19,
+          "meanVisits": null,
+          "meanValue": -0.116269,
+          "transitionKinds": []
+        }
+      ]
+    },
+    {
+      "rootId": "G2T8",
+      "algorithm": "UCT-R",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CRight",
+      "rootActionModeCount": 9,
+      "rootActionRepetitionRate": 0.45,
+      "rootActionDistinct": 4,
+      "rootActionCounts": {
+        "CDown": 7,
+        "CLeft": 1,
+        "CRight": 9,
+        "CUp": 3
+      },
+      "planMode": "CDownCDownCDownCUp",
+      "planModeCount": 2,
+      "planRepetitionRate": 0.1,
+      "planDistinct": 17,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 130.5,
+      "simulations": {
+        "n": 20,
+        "mean": 86.95,
+        "min": 59,
+        "p50": 88,
+        "p95": 106.6,
+        "p99": 130.92,
+        "max": 137
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 87.95,
+        "min": 59,
+        "p50": 88.5,
+        "p95": 107.6,
+        "p99": 131.92,
+        "max": 138
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 102.994,
+        "min": 99.985,
+        "p50": 100.02,
+        "p95": 103.614,
+        "p99": 147.696,
+        "max": 158.716
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.551,
+        "min": 0.399,
+        "p50": 0.546,
+        "p95": 0.663,
+        "p99": 0.672,
+        "max": 0.675
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 103.544,
+        "min": 100.384,
+        "p50": 100.59,
+        "p95": 104.049,
+        "p99": 148.219,
+        "max": 159.261
+      },
+      "actions": [
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": 23,
+          "meanValue": 0.027304,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": 22.9,
+          "meanValue": 0.03299,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": 21.35,
+          "meanValue": 0.007699,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 19.7,
+          "meanValue": -0.020965,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G2T8",
+      "algorithm": "UCT-H",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CDown",
+      "rootActionModeCount": 15,
+      "rootActionRepetitionRate": 0.75,
+      "rootActionDistinct": 4,
+      "rootActionCounts": {
+        "CDown": 15,
+        "CLeft": 2,
+        "CRight": 2,
+        "CUp": 1
+      },
+      "planMode": "CDownCLeftCUpCRight",
+      "planModeCount": 5,
+      "planRepetitionRate": 0.25,
+      "planDistinct": 12,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 19.8,
+      "simulations": {
+        "n": 20,
+        "mean": 17.9,
+        "min": 4,
+        "p50": 17.5,
+        "p95": 20.55,
+        "p99": 28.91,
+        "max": 31
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 17.9,
+        "min": 4,
+        "p50": 17.5,
+        "p95": 20.55,
+        "p99": 28.91,
+        "max": 31
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 100.777,
+        "min": 100.077,
+        "p50": 100.772,
+        "p95": 101.399,
+        "p99": 102.677,
+        "max": 102.997
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 2.451,
+        "min": 1.299,
+        "p50": 2.039,
+        "p95": 4.068,
+        "p99": 8.147,
+        "max": 9.166
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 103.228,
+        "min": 101.425,
+        "p50": 102.766,
+        "p95": 105.017,
+        "p99": 110.734,
+        "max": 112.163
+      },
+      "actions": [
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": 4.55,
+          "meanValue": -1,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": 4.5,
+          "meanValue": -1,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": 4.45,
+          "meanValue": -1,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 4.4,
+          "meanValue": -1,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G5T1",
+      "algorithm": "RACE",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CDown",
+      "rootActionModeCount": 20,
+      "rootActionRepetitionRate": 1,
+      "rootActionDistinct": 1,
+      "rootActionCounts": {
+        "CDown": 20
+      },
+      "planMode": "CDownCDownTCDownCRight",
+      "planModeCount": 20,
+      "planRepetitionRate": 1,
+      "planDistinct": 1,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 5,
+      "meanNodes": 832.9,
+      "simulations": {
+        "n": 0,
+        "mean": null,
+        "min": null,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0,
+        "min": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 105.367,
+        "min": 103.035,
+        "p50": 104.842,
+        "p95": 108.814,
+        "p99": 113.682,
+        "max": 114.899
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.001,
+        "min": 0.001,
+        "p50": 0.001,
+        "p95": 0.004,
+        "p99": 0.005,
+        "max": 0.005
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 105.6,
+        "min": 103.221,
+        "p50": 105.015,
+        "p95": 109.218,
+        "p99": 114.317,
+        "max": 115.592
+      },
+      "actions": [
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": -0.078681,
+          "transitionKinds": []
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": -0.185172,
+          "transitionKinds": []
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": -0.162099,
+          "transitionKinds": []
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": -0.195416,
+          "transitionKinds": []
+        },
+        {
+          "action": "T",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": -0.123221,
+          "transitionKinds": []
+        }
+      ]
+    },
+    {
+      "rootId": "G5T1",
+      "algorithm": "UCT-R",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CDown",
+      "rootActionModeCount": 8,
+      "rootActionRepetitionRate": 0.4,
+      "rootActionDistinct": 5,
+      "rootActionCounts": {
+        "CDown": 8,
+        "CLeft": 5,
+        "CRight": 2,
+        "CUp": 1,
+        "T": 4
+      },
+      "planMode": "CDownCLeftCDownCDown",
+      "planModeCount": 3,
+      "planRepetitionRate": 0.15,
+      "planDistinct": 16,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4.45,
+      "meanNodes": 217.3,
+      "simulations": {
+        "n": 20,
+        "mean": 215.9,
+        "min": 102,
+        "p50": 226,
+        "p95": 250.25,
+        "p99": 254.05,
+        "max": 255
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 195.5,
+        "min": 111,
+        "p50": 205.5,
+        "p95": 235.1,
+        "p99": 236.62,
+        "max": 237
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 100.052,
+        "min": 100.012,
+        "p50": 100.033,
+        "p95": 100.115,
+        "p99": 100.203,
+        "max": 100.225
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.293,
+        "min": 0.215,
+        "p50": 0.253,
+        "p95": 0.473,
+        "p99": 0.529,
+        "max": 0.543
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 100.345,
+        "min": 100.257,
+        "p50": 100.298,
+        "p95": 100.519,
+        "p99": 100.574,
+        "max": 100.587
+      },
+      "actions": [
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": 46.6,
+          "meanValue": -0.020193,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 45.15,
+          "meanValue": -0.019895,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "T",
+          "reps": 20,
+          "meanVisits": 44.1,
+          "meanValue": -0.027769,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": 41.45,
+          "meanValue": -0.046113,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": 38.6,
+          "meanValue": -0.069119,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G5T1",
+      "algorithm": "UCT-H",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CDown",
+      "rootActionModeCount": 13,
+      "rootActionRepetitionRate": 0.65,
+      "rootActionDistinct": 4,
+      "rootActionCounts": {
+        "CDown": 13,
+        "CLeft": 3,
+        "CRight": 1,
+        "T": 3
+      },
+      "planMode": "CDownCDownCDownTCRight",
+      "planModeCount": 10,
+      "planRepetitionRate": 0.5,
+      "planDistinct": 6,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 5.05,
+      "meanNodes": 12.9,
+      "simulations": {
+        "n": 20,
+        "mean": 10.85,
+        "min": 6,
+        "p50": 11.5,
+        "p95": 12.05,
+        "p99": 12.81,
+        "max": 13
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 13.6,
+        "min": 3,
+        "p50": 14.5,
+        "p95": 19,
+        "p99": 19,
+        "max": 19
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 100.433,
+        "min": 100.036,
+        "p50": 100.312,
+        "p95": 101.158,
+        "p99": 101.787,
+        "max": 101.944
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 2.08,
+        "min": 1.44,
+        "p50": 1.872,
+        "p95": 2.744,
+        "p99": 3.976,
+        "max": 4.284
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 102.513,
+        "min": 101.721,
+        "p50": 102.246,
+        "p95": 103.771,
+        "p99": 104.361,
+        "max": 104.508
+      },
+      "actions": [
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": 2.45,
+          "meanValue": -0.108483,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "T",
+          "reps": 20,
+          "meanVisits": 2.45,
+          "meanValue": -0.121255,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 2.2,
+          "meanValue": -0.258184,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": 1.95,
+          "meanValue": -0.231692,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": 1.8,
+          "meanValue": -0.370644,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G5T2",
+      "algorithm": "RACE",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CDown",
+      "rootActionModeCount": 20,
+      "rootActionRepetitionRate": 1,
+      "rootActionDistinct": 1,
+      "rootActionCounts": {
+        "CDown": 20
+      },
+      "planMode": "CDownCDownCRightCRight",
+      "planModeCount": 20,
+      "planRepetitionRate": 1,
+      "planDistinct": 1,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 945.4,
+      "simulations": {
+        "n": 0,
+        "mean": null,
+        "min": null,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0,
+        "min": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 102.515,
+        "min": 101.589,
+        "p50": 102.333,
+        "p95": 103.953,
+        "p99": 104.199,
+        "max": 104.26
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.001,
+        "min": 0.001,
+        "p50": 0.001,
+        "p95": 0.002,
+        "p99": 0.002,
+        "max": 0.002
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 102.726,
+        "min": 101.779,
+        "p50": 102.496,
+        "p95": 104.132,
+        "p99": 104.453,
+        "max": 104.533
+      },
+      "actions": [
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": -0.057707,
+          "transitionKinds": []
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": -0.242889,
+          "transitionKinds": []
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": -0.057707,
+          "transitionKinds": []
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": -0.245041,
+          "transitionKinds": []
+        }
+      ]
+    },
+    {
+      "rootId": "G5T2",
+      "algorithm": "UCT-R",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CDown",
+      "rootActionModeCount": 16,
+      "rootActionRepetitionRate": 0.8,
+      "rootActionDistinct": 2,
+      "rootActionCounts": {
+        "CDown": 16,
+        "CLeft": 4
+      },
+      "planMode": "CDownCDownCDownCRight",
+      "planModeCount": 4,
+      "planRepetitionRate": 0.2,
+      "planDistinct": 13,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 444.6,
+      "simulations": {
+        "n": 20,
+        "mean": 213.45,
+        "min": 142,
+        "p50": 223.5,
+        "p95": 247.1,
+        "p99": 248.62,
+        "max": 249
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 213.55,
+        "min": 142,
+        "p50": 223.5,
+        "p95": 248.05,
+        "p99": 248.81,
+        "max": 249
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 100.046,
+        "min": 99.931,
+        "p50": 100.029,
+        "p95": 100.166,
+        "p99": 100.214,
+        "max": 100.226
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.308,
+        "min": 0.217,
+        "p50": 0.285,
+        "p95": 0.439,
+        "p99": 0.444,
+        "max": 0.446
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 100.354,
+        "min": 100.232,
+        "p50": 100.326,
+        "p95": 100.535,
+        "p99": 100.588,
+        "max": 100.601
+      },
+      "actions": [
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": 61.9,
+          "meanValue": 0.063023,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 57.55,
+          "meanValue": 0.048794,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": 49.2,
+          "meanValue": 0.012246,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": 44.8,
+          "meanValue": -0.010832,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G5T2",
+      "algorithm": "UCT-H",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CDown",
+      "rootActionModeCount": 17,
+      "rootActionRepetitionRate": 0.85,
+      "rootActionDistinct": 3,
+      "rootActionCounts": {
+        "CDown": 17,
+        "CLeft": 1,
+        "CRight": 2
+      },
+      "planMode": "CDownCDownCUpCDown",
+      "planModeCount": 8,
+      "planRepetitionRate": 0.4,
+      "planDistinct": 6,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 17.3,
+      "simulations": {
+        "n": 20,
+        "mean": 15.3,
+        "min": 10,
+        "p50": 16.5,
+        "p95": 18.05,
+        "p99": 18.81,
+        "max": 19
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 15.3,
+        "min": 10,
+        "p50": 16.5,
+        "p95": 18.05,
+        "p99": 18.81,
+        "max": 19
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 100.278,
+        "min": 100.046,
+        "p50": 100.259,
+        "p95": 100.534,
+        "p99": 100.612,
+        "max": 100.631
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.996,
+        "min": 0.566,
+        "p50": 0.858,
+        "p95": 1.486,
+        "p99": 2.265,
+        "max": 2.459
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 101.274,
+        "min": 100.717,
+        "p50": 101.18,
+        "p95": 101.804,
+        "p99": 102.833,
+        "max": 103.091
+      },
+      "actions": [
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": 4.15,
+          "meanValue": -0.050283,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": 4,
+          "meanValue": -0.076623,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": 3.6,
+          "meanValue": -0.135593,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 3.55,
+          "meanValue": -0.119833,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G5T3",
+      "algorithm": "RACE",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CLeft",
+      "rootActionModeCount": 20,
+      "rootActionRepetitionRate": 1,
+      "rootActionDistinct": 1,
+      "rootActionCounts": {
+        "CLeft": 20
+      },
+      "planMode": "CLeftCDownCRightCRight",
+      "planModeCount": 20,
+      "planRepetitionRate": 1,
+      "planDistinct": 1,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 2256.1,
+      "simulations": {
+        "n": 0,
+        "mean": null,
+        "min": null,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0,
+        "min": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 102.8,
+        "min": 102.021,
+        "p50": 102.638,
+        "p95": 103.698,
+        "p99": 104.167,
+        "max": 104.284
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.001,
+        "min": 0,
+        "p50": 0.001,
+        "p95": 0.001,
+        "p99": 0.003,
+        "max": 0.003
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 102.983,
+        "min": 102.184,
+        "p50": 102.803,
+        "p95": 103.941,
+        "p99": 104.461,
+        "max": 104.592
+      },
+      "actions": [
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": -0.320661,
+          "transitionKinds": []
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": -0.298143,
+          "transitionKinds": []
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": -0.320661,
+          "transitionKinds": []
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": -0.320661,
+          "transitionKinds": []
+        }
+      ]
+    },
+    {
+      "rootId": "G5T3",
+      "algorithm": "UCT-R",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CRight",
+      "rootActionModeCount": 8,
+      "rootActionRepetitionRate": 0.4,
+      "rootActionDistinct": 4,
+      "rootActionCounts": {
+        "CDown": 4,
+        "CLeft": 7,
+        "CRight": 8,
+        "CUp": 1
+      },
+      "planMode": "CLeftCDownCDownCDown",
+      "planModeCount": 4,
+      "planRepetitionRate": 0.2,
+      "planDistinct": 15,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 233.9,
+      "simulations": {
+        "n": 20,
+        "mean": 232.5,
+        "min": 163,
+        "p50": 249.5,
+        "p95": 266.45,
+        "p99": 273.29,
+        "max": 275
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0.25,
+        "min": 0,
+        "p50": 0,
+        "p95": 1.05,
+        "p99": 1.81,
+        "max": 2
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 100.053,
+        "min": 99.995,
+        "p50": 100.046,
+        "p95": 100.135,
+        "p99": 100.165,
+        "max": 100.173
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.26,
+        "min": 0.187,
+        "p50": 0.227,
+        "p95": 0.401,
+        "p99": 0.448,
+        "max": 0.46
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 100.313,
+        "min": 100.211,
+        "p50": 100.284,
+        "p95": 100.458,
+        "p99": 100.598,
+        "max": 100.633
+      },
+      "actions": [
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": 62.05,
+          "meanValue": 0.026964,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 58.4,
+          "meanValue": 0.007843,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": 58.3,
+          "meanValue": 0.013709,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": 53.75,
+          "meanValue": -0.005961,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G5T3",
+      "algorithm": "UCT-H",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CUp",
+      "rootActionModeCount": 20,
+      "rootActionRepetitionRate": 1,
+      "rootActionDistinct": 1,
+      "rootActionCounts": {
+        "CUp": 20
+      },
+      "planMode": "CUpCDownCDownCRight",
+      "planModeCount": 18,
+      "planRepetitionRate": 0.9,
+      "planDistinct": 3,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 19.9,
+      "simulations": {
+        "n": 20,
+        "mean": 18,
+        "min": 12,
+        "p50": 18.5,
+        "p95": 20,
+        "p99": 20,
+        "max": 20
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0,
+        "min": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 100.302,
+        "min": 100.027,
+        "p50": 100.27,
+        "p95": 100.609,
+        "p99": 100.611,
+        "max": 100.612
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.537,
+        "min": 0.418,
+        "p50": 0.446,
+        "p95": 0.697,
+        "p99": 1.532,
+        "max": 1.74
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 100.839,
+        "min": 100.446,
+        "p50": 100.768,
+        "p95": 101.289,
+        "p99": 102.139,
+        "max": 102.352
+      },
+      "actions": [
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": 7.1,
+          "meanValue": -0.279425,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": 4.1,
+          "meanValue": -0.55747,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 3.85,
+          "meanValue": -0.741857,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": 2.95,
+          "meanValue": -0.872977,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G5T4",
+      "algorithm": "RACE",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CUp",
+      "rootActionModeCount": 20,
+      "rootActionRepetitionRate": 1,
+      "rootActionDistinct": 1,
+      "rootActionCounts": {
+        "CUp": 20
+      },
+      "planMode": "CUpCUpCRightCRight",
+      "planModeCount": 20,
+      "planRepetitionRate": 1,
+      "planDistinct": 1,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 655.6,
+      "simulations": {
+        "n": 0,
+        "mean": null,
+        "min": null,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0,
+        "min": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 105.69,
+        "min": 104.164,
+        "p50": 104.737,
+        "p95": 108.55,
+        "p99": 116.327,
+        "max": 118.271
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.001,
+        "min": 0,
+        "p50": 0.001,
+        "p95": 0.001,
+        "p99": 0.002,
+        "max": 0.002
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 105.873,
+        "min": 104.322,
+        "p50": 104.899,
+        "p95": 108.732,
+        "p99": 116.718,
+        "max": 118.715
+      },
+      "actions": [
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": -999995,
+          "transitionKinds": []
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": -999995,
+          "transitionKinds": []
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": -999995,
+          "transitionKinds": []
+        }
+      ]
+    },
+    {
+      "rootId": "G5T4",
+      "algorithm": "UCT-R",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CUp",
+      "rootActionModeCount": 15,
+      "rootActionRepetitionRate": 0.75,
+      "rootActionDistinct": 3,
+      "rootActionCounts": {
+        "CLeft": 4,
+        "CRight": 1,
+        "CUp": 15
+      },
+      "planMode": "CUpCDownCLeftCDown",
+      "planModeCount": 3,
+      "planRepetitionRate": 0.15,
+      "planDistinct": 16,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 350.3,
+      "simulations": {
+        "n": 20,
+        "mean": 478.4,
+        "min": 321,
+        "p50": 509,
+        "p95": 555.95,
+        "p99": 570.39,
+        "max": 574
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 4.95,
+        "min": 1,
+        "p50": 4.5,
+        "p95": 10.05,
+        "p99": 10.81,
+        "max": 11
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 100.075,
+        "min": 99.999,
+        "p50": 100.026,
+        "p95": 100.38,
+        "p99": 100.422,
+        "max": 100.433
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.221,
+        "min": 0.188,
+        "p50": 0.202,
+        "p95": 0.279,
+        "p99": 0.35,
+        "max": 0.368
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 100.296,
+        "min": 100.191,
+        "p50": 100.259,
+        "p95": 100.574,
+        "p99": 100.611,
+        "max": 100.621
+      },
+      "actions": [
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": 184.6,
+          "meanValue": -0.538661,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 163.65,
+          "meanValue": -0.555461,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": 130.15,
+          "meanValue": -0.590613,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G5T4",
+      "algorithm": "UCT-H",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CRight",
+      "rootActionModeCount": 20,
+      "rootActionRepetitionRate": 1,
+      "rootActionDistinct": 1,
+      "rootActionCounts": {
+        "CRight": 20
+      },
+      "planMode": "CRightCDownCRightCRight",
+      "planModeCount": 19,
+      "planRepetitionRate": 0.95,
+      "planDistinct": 2,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 153.5,
+      "simulations": {
+        "n": 20,
+        "mean": 160.2,
+        "min": 145,
+        "p50": 162,
+        "p95": 171,
+        "p99": 171,
+        "max": 171
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0,
+        "min": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 100.254,
+        "min": 100.016,
+        "p50": 100.24,
+        "p95": 100.658,
+        "p99": 100.71,
+        "max": 100.722
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.241,
+        "min": 0.179,
+        "p50": 0.219,
+        "p95": 0.379,
+        "p99": 0.481,
+        "max": 0.507
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 100.495,
+        "min": 100.214,
+        "p50": 100.462,
+        "p95": 100.869,
+        "p99": 101.157,
+        "max": 101.229
+      },
+      "actions": [
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": 68.05,
+          "meanValue": -0.895927,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": 46.15,
+          "meanValue": -1,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 46,
+          "meanValue": -1,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G6T1",
+      "algorithm": "RACE",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CDown",
+      "rootActionModeCount": 18,
+      "rootActionRepetitionRate": 0.9,
+      "rootActionDistinct": 1,
+      "rootActionCounts": {
+        "CDown": 18
+      },
+      "planMode": "CDownCDownTCRightCRight",
+      "planModeCount": 18,
+      "planRepetitionRate": 0.9,
+      "planDistinct": 2,
+      "fullPlanRate": 0.9,
+      "replayOkRate": 1,
+      "meanPlanLength": 4.5,
+      "meanNodes": 255,
+      "simulations": {
+        "n": 0,
+        "mean": null,
+        "min": null,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0,
+        "min": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 105.44,
+        "min": 103.356,
+        "p50": 104.635,
+        "p95": 111.122,
+        "p99": 111.195,
+        "max": 111.213
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.002,
+        "min": 0.001,
+        "p50": 0.001,
+        "p95": 0.003,
+        "p99": 0.003,
+        "max": 0.003
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 105.968,
+        "min": 103.683,
+        "p50": 105.161,
+        "p95": 111.843,
+        "p99": 112.209,
+        "max": 112.3
+      },
+      "actions": [
+        {
+          "action": "CDown",
+          "reps": 18,
+          "meanVisits": null,
+          "meanValue": -0.054452,
+          "transitionKinds": []
+        },
+        {
+          "action": "CLeft",
+          "reps": 18,
+          "meanVisits": null,
+          "meanValue": -0.142827,
+          "transitionKinds": []
+        },
+        {
+          "action": "CRight",
+          "reps": 18,
+          "meanVisits": null,
+          "meanValue": -0.124515,
+          "transitionKinds": []
+        },
+        {
+          "action": "CUp",
+          "reps": 18,
+          "meanVisits": null,
+          "meanValue": -0.202499,
+          "transitionKinds": []
+        },
+        {
+          "action": "T",
+          "reps": 18,
+          "meanVisits": null,
+          "meanValue": -0.078272,
+          "transitionKinds": []
+        }
+      ]
+    },
+    {
+      "rootId": "G6T1",
+      "algorithm": "UCT-R",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CDown",
+      "rootActionModeCount": 6,
+      "rootActionRepetitionRate": 0.3,
+      "rootActionDistinct": 5,
+      "rootActionCounts": {
+        "CDown": 6,
+        "CLeft": 2,
+        "CRight": 5,
+        "CUp": 3,
+        "T": 4
+      },
+      "planMode": "CLeftCDownCDownCUp",
+      "planModeCount": 2,
+      "planRepetitionRate": 0.1,
+      "planDistinct": 19,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4.5,
+      "meanNodes": 112.3,
+      "simulations": {
+        "n": 20,
+        "mean": 110.6,
+        "min": 57,
+        "p50": 109.5,
+        "p95": 153.3,
+        "p99": 157.86,
+        "max": 159
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 26.9,
+        "min": 8,
+        "p50": 24,
+        "p95": 42.1,
+        "p99": 43.62,
+        "max": 44
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 99.987,
+        "min": 99.609,
+        "p50": 100,
+        "p95": 100.275,
+        "p99": 100.364,
+        "max": 100.386
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 1.208,
+        "min": 0.408,
+        "p50": 1.161,
+        "p95": 1.906,
+        "p99": 3.011,
+        "max": 3.288
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 101.195,
+        "min": 100.44,
+        "p50": 101.073,
+        "p95": 102.287,
+        "p99": 103.302,
+        "max": 103.556
+      },
+      "actions": [
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": 23.25,
+          "meanValue": -0.044478,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "T",
+          "reps": 20,
+          "meanVisits": 23.1,
+          "meanValue": -0.040656,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": 21.8,
+          "meanValue": -0.061529,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 21.7,
+          "meanValue": -0.067906,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": 20.75,
+          "meanValue": -0.082777,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G6T1",
+      "algorithm": "UCT-H",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CLeft",
+      "rootActionModeCount": 13,
+      "rootActionRepetitionRate": 0.65,
+      "rootActionDistinct": 2,
+      "rootActionCounts": {
+        "CDown": 7,
+        "CLeft": 13
+      },
+      "planMode": "CLeftCDownCRightTCRight",
+      "planModeCount": 13,
+      "planRepetitionRate": 0.65,
+      "planDistinct": 3,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 5,
+      "meanNodes": 14.7,
+      "simulations": {
+        "n": 20,
+        "mean": 12.8,
+        "min": 6,
+        "p50": 13.5,
+        "p95": 19,
+        "p99": 19,
+        "max": 19
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0,
+        "min": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 100.323,
+        "min": 100.03,
+        "p50": 100.232,
+        "p95": 100.613,
+        "p99": 100.895,
+        "max": 100.966
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 2.607,
+        "min": 1.831,
+        "p50": 2.089,
+        "p95": 4.44,
+        "p99": 4.581,
+        "max": 4.616
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 102.93,
+        "min": 102.047,
+        "p50": 102.467,
+        "p95": 105.127,
+        "p99": 105.13,
+        "max": 105.13
+      },
+      "actions": [
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 3.05,
+          "meanValue": 0.027157,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "T",
+          "reps": 20,
+          "meanVisits": 2.85,
+          "meanValue": 0.024156,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": 2.4,
+          "meanValue": 0.018318,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": 2.35,
+          "meanValue": 0.016096,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": 2.15,
+          "meanValue": 0.008849,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G6T2",
+      "algorithm": "RACE",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CUp",
+      "rootActionModeCount": 20,
+      "rootActionRepetitionRate": 1,
+      "rootActionDistinct": 1,
+      "rootActionCounts": {
+        "CUp": 20
+      },
+      "planMode": "CUpCUpCRightCRight",
+      "planModeCount": 20,
+      "planRepetitionRate": 1,
+      "planDistinct": 1,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 766.1,
+      "simulations": {
+        "n": 0,
+        "mean": null,
+        "min": null,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0,
+        "min": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 103.746,
+        "min": 102.338,
+        "p50": 103.103,
+        "p95": 106.458,
+        "p99": 107.358,
+        "max": 107.582
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.001,
+        "min": 0.001,
+        "p50": 0.001,
+        "p95": 0.002,
+        "p99": 0.002,
+        "max": 0.002
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 103.972,
+        "min": 102.519,
+        "p50": 103.298,
+        "p95": 106.807,
+        "p99": 107.698,
+        "max": 107.921
+      },
+      "actions": [
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.225657,
+          "transitionKinds": []
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.235516,
+          "transitionKinds": []
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": 0.320171,
+          "transitionKinds": []
+        }
+      ]
+    },
+    {
+      "rootId": "G6T2",
+      "algorithm": "UCT-R",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CUp",
+      "rootActionModeCount": 12,
+      "rootActionRepetitionRate": 0.6,
+      "rootActionDistinct": 3,
+      "rootActionCounts": {
+        "CDown": 4,
+        "CLeft": 4,
+        "CUp": 12
+      },
+      "planMode": "CUpCDownCUpCDown",
+      "planModeCount": 2,
+      "planRepetitionRate": 0.1,
+      "planDistinct": 17,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 298.8,
+      "simulations": {
+        "n": 20,
+        "mean": 167.1,
+        "min": 60,
+        "p50": 179.5,
+        "p95": 224,
+        "p99": 224,
+        "max": 224
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 261.35,
+        "min": 100,
+        "p50": 273.5,
+        "p95": 356.4,
+        "p99": 362.48,
+        "max": 364
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 100.042,
+        "min": 99.999,
+        "p50": 100.022,
+        "p95": 100.126,
+        "p99": 100.193,
+        "max": 100.209
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.354,
+        "min": 0.229,
+        "p50": 0.301,
+        "p95": 0.615,
+        "p99": 0.684,
+        "max": 0.701
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 100.395,
+        "min": 100.241,
+        "p50": 100.349,
+        "p95": 100.653,
+        "p99": 100.708,
+        "max": 100.722
+      },
+      "actions": [
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": 62.35,
+          "meanValue": 0.108419,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": 52.7,
+          "meanValue": 0.080143,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 52.05,
+          "meanValue": 0.074551,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G6T2",
+      "algorithm": "UCT-H",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CDown",
+      "rootActionModeCount": 14,
+      "rootActionRepetitionRate": 0.7,
+      "rootActionDistinct": 3,
+      "rootActionCounts": {
+        "CDown": 14,
+        "CLeft": 3,
+        "CUp": 3
+      },
+      "planMode": "CDownCRightCDownCUp",
+      "planModeCount": 6,
+      "planRepetitionRate": 0.3,
+      "planDistinct": 9,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 13.5,
+      "simulations": {
+        "n": 20,
+        "mean": 11.7,
+        "min": 7,
+        "p50": 12.5,
+        "p95": 14.05,
+        "p99": 14.81,
+        "max": 15
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 36.2,
+        "min": 21,
+        "p50": 38.5,
+        "p95": 46,
+        "p99": 46,
+        "max": 46
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 100.688,
+        "min": 100.017,
+        "p50": 100.369,
+        "p95": 102.915,
+        "p99": 104.464,
+        "max": 104.851
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.99,
+        "min": 0.576,
+        "p50": 0.829,
+        "p95": 1.859,
+        "p99": 2.326,
+        "max": 2.443
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 101.678,
+        "min": 100.622,
+        "p50": 101.182,
+        "p95": 104.055,
+        "p99": 106.154,
+        "max": 106.679
+      },
+      "actions": [
+        {
+          "action": "CDown",
+          "reps": 20,
+          "meanVisits": 4.3,
+          "meanValue": 0.001634,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": 3.75,
+          "meanValue": -0.208688,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 3.65,
+          "meanValue": -0.19343,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G6T3",
+      "algorithm": "RACE",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CRight",
+      "rootActionModeCount": 20,
+      "rootActionRepetitionRate": 1,
+      "rootActionDistinct": 1,
+      "rootActionCounts": {
+        "CRight": 20
+      },
+      "planMode": "CRightCDownCDownCDown",
+      "planModeCount": 20,
+      "planRepetitionRate": 1,
+      "planDistinct": 1,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 763.2,
+      "simulations": {
+        "n": 0,
+        "mean": null,
+        "min": null,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 0,
+        "min": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 103.763,
+        "min": 101.19,
+        "p50": 103.235,
+        "p95": 108.036,
+        "p99": 111.37,
+        "max": 112.203
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.001,
+        "min": 0.001,
+        "p50": 0.001,
+        "p95": 0.002,
+        "p99": 0.002,
+        "max": 0.002
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 104.016,
+        "min": 101.377,
+        "p50": 103.44,
+        "p95": 108.383,
+        "p99": 111.663,
+        "max": 112.484
+      },
+      "actions": [
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": -0.77235,
+          "transitionKinds": []
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": -0.504619,
+          "transitionKinds": []
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": null,
+          "meanValue": -0.77235,
+          "transitionKinds": []
+        }
+      ]
+    },
+    {
+      "rootId": "G6T3",
+      "algorithm": "UCT-R",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CRight",
+      "rootActionModeCount": 17,
+      "rootActionRepetitionRate": 0.85,
+      "rootActionDistinct": 3,
+      "rootActionCounts": {
+        "CLeft": 1,
+        "CRight": 17,
+        "CUp": 2
+      },
+      "planMode": "CRightCDownCDownCDown",
+      "planModeCount": 3,
+      "planRepetitionRate": 0.15,
+      "planDistinct": 13,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 328.5,
+      "simulations": {
+        "n": 20,
+        "mean": 217.55,
+        "min": 98,
+        "p50": 236,
+        "p95": 264.35,
+        "p99": 269.67,
+        "max": 271
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 253.15,
+        "min": 104,
+        "p50": 275.5,
+        "p95": 308.35,
+        "p99": 313.67,
+        "max": 315
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 100.046,
+        "min": 100.008,
+        "p50": 100.022,
+        "p95": 100.148,
+        "p99": 100.219,
+        "max": 100.237
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.331,
+        "min": 0.218,
+        "p50": 0.301,
+        "p95": 0.475,
+        "p99": 0.58,
+        "max": 0.606
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 100.376,
+        "min": 100.23,
+        "p50": 100.365,
+        "p95": 100.617,
+        "p99": 100.723,
+        "max": 100.75
+      },
+      "actions": [
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": 86.6,
+          "meanValue": -0.09844,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 66,
+          "meanValue": -0.153452,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": 64.95,
+          "meanValue": -0.1614,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "G6T3",
+      "algorithm": "UCT-H",
+      "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "provenance": "REAL-HUMAN-REPLAY",
+      "repetitions": 20,
+      "rootActionMode": "CLeft",
+      "rootActionModeCount": 15,
+      "rootActionRepetitionRate": 0.75,
+      "rootActionDistinct": 3,
+      "rootActionCounts": {
+        "CLeft": 15,
+        "CRight": 3,
+        "CUp": 2
+      },
+      "planMode": "CLeftCLeftCRightCUp",
+      "planModeCount": 7,
+      "planRepetitionRate": 0.35,
+      "planDistinct": 9,
+      "fullPlanRate": 1,
+      "replayOkRate": 1,
+      "meanPlanLength": 4,
+      "meanNodes": 73.2,
+      "simulations": {
+        "n": 20,
+        "mean": 51.6,
+        "min": 32,
+        "p50": 55,
+        "p95": 56.05,
+        "p99": 56.81,
+        "max": 57
+      },
+      "chanceSamples": {
+        "n": 20,
+        "mean": 51.6,
+        "min": 32,
+        "p50": 55,
+        "p95": 56.05,
+        "p99": 56.81,
+        "max": 57
+      },
+      "searchMs": {
+        "n": 20,
+        "mean": 100.322,
+        "min": 100.017,
+        "p50": 100.285,
+        "p95": 100.865,
+        "p99": 101.075,
+        "max": 101.128
+      },
+      "planMs": {
+        "n": 20,
+        "mean": 0.443,
+        "min": 0.215,
+        "p50": 0.268,
+        "p95": 1.922,
+        "p99": 1.959,
+        "max": 1.968
+      },
+      "totalMs": {
+        "n": 20,
+        "mean": 100.765,
+        "min": 100.289,
+        "p50": 100.53,
+        "p95": 102.391,
+        "p99": 102.512,
+        "max": 102.543
+      },
+      "actions": [
+        {
+          "action": "CLeft",
+          "reps": 20,
+          "meanVisits": 17.3,
+          "meanValue": -1,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CRight",
+          "reps": 20,
+          "meanVisits": 17.15,
+          "meanValue": -1,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        },
+        {
+          "action": "CUp",
+          "reps": 20,
+          "meanVisits": 17.15,
+          "meanValue": -1,
+          "transitionKinds": [
+            "deterministic"
+          ]
+        }
+      ]
+    }
+  ]
+}

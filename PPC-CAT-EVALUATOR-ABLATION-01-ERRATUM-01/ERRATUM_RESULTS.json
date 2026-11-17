@@ -1,0 +1,277 @@
+{
+  "artifactId": "ERRATUM_RESULTS",
+  "round": "PPC-CAT-EVALUATOR-ABLATION-01-ERRATUM-01",
+  "generatedAt": "2026-11-15T16:38:43.115Z",
+  "generatedBy": "PPC-CAT-EVALUATOR-ABLATION-01-ERRATUM-01/probe/erratum.test.ts",
+  "head": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+  "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+  "authorizations": {
+    "productionSourceChange": "NO",
+    "gameRulesChange": "NO",
+    "searchMathChange": "NO",
+    "h1Change": "NO",
+    "budgetChange": "NO",
+    "full24RootRerun": "NO",
+    "p5P6Rerun": "NO",
+    "selfPlay": "NO",
+    "commit": "NO",
+    "push": "NO",
+    "merge": "NO"
+  },
+  "p7Erratum": {
+    "p7Original": {
+      "source": "PPC-CAT-EVALUATOR-ABLATION-01/_raw/p7_decision.json",
+      "sha256": "a0f13ec2f8cd5b61b1d634e702178fbda679680bdb882a54baed901f8731b7b1",
+      "counts": {
+        "actionChanges": 5,
+        "planChanges": 10,
+        "rescuedProvenMouseWins": 0,
+        "introducedProvenMouseWins": 0,
+        "lostProvenCatSurvival": 0,
+        "provenSurvivalGains": 0,
+        "certSupportedActionChanges": 5,
+        "actionChangesMissingProof": 0,
+        "unresolvedCombos": 2,
+        "unresolvedRoots": [
+          "G1T5"
+        ],
+        "d1To100msReproducedE1": 22,
+        "d1To100msReproducedH1": 22,
+        "roots": 24
+      },
+      "unreproducedE1": [
+        "G5T1",
+        "G1T3"
+      ],
+      "unreproducedH1": [
+        "G2T6",
+        "G1T4"
+      ],
+      "comparison": "P7 compared D1 selectedAction (bestAction) with the real-100ms first executed action."
+    },
+    "correctedCounts": {
+      "roots": 24,
+      "bestActionChanges": 5,
+      "d1ExecutableFirstChanges": 5,
+      "msExecutableFirstChanges": 3,
+      "msFirstChangeRoots": [
+        "G6T1",
+        "G5T1",
+        "G1T3"
+      ],
+      "d1ToMsFirstReproducedE1": 23,
+      "d1ToMsFirstReproducedH1": 22,
+      "d1ToMsFirstUnreproducedE1": [
+        "G1T3"
+      ],
+      "d1ToMsFirstUnreproducedH1": [
+        "G2T6",
+        "G1T4"
+      ],
+      "d1FullPlanReproducedE1": 21,
+      "d1FullPlanReproducedH1": 21,
+      "d1FullPlanChanged": 10,
+      "msFullPlanChanged": 10,
+      "p7ReportedE1": 22,
+      "p7ReportedH1": 22
+    },
+    "deltaVsP7": {
+      "e1D1To100msReproduction": {
+        "before": 22,
+        "after": 23
+      },
+      "h1D1To100msReproduction": {
+        "before": 22,
+        "after": 22
+      },
+      "e1UnreproducedRoots": {
+        "before": [
+          "G5T1",
+          "G1T3"
+        ],
+        "after": [
+          "G1T3"
+        ]
+      },
+      "h1UnreproducedRoots": {
+        "before": [
+          "G2T6",
+          "G1T4"
+        ],
+        "after": [
+          "G2T6",
+          "G1T4"
+        ]
+      },
+      "bestActionChanges": {
+        "before": 5,
+        "after": 5
+      },
+      "d1FullPlanChanges": {
+        "before": 10,
+        "after": 10
+      },
+      "note": "bestAction and executable-plan changes coincide at D1 (5 roots), but the D1→100ms reproduction denominator changes because G5T1/E1 executable plan first step D equals the 100 ms first step D."
+    },
+    "explanation": {
+      "bestAction": "D1 selectedAction (root action selected by the fixed-depth comparison).",
+      "d1ExecutablePlan": "D1 catTurnPlan[0]; plan comes from planBranches and may be replaced by the equal-primary extraction, so plan[0] can differ from bestAction.",
+      "actual100msPlan": "P5 finalPlan[0] (post sidecar/guard); every P5 round executes a prefix identical to finalPlan.",
+      "error": "P7 compared bestAction with the 100 ms executed first action. G5T1/E1 is the explicit counterexample: bestAction U, executable plan DLUTR, 100 ms actual plan DLUTR.",
+      "G5T1E1": {
+        "bestAction": "U",
+        "d1ExecutablePlan": "DLUTR",
+        "actual100msPlan": "DLUTR",
+        "p7Comparison": "U != D -> reported unreproduced",
+        "correctedComparison": "D == D -> reproduced"
+      }
+    }
+  },
+  "planCoverage": {
+    "combos": 48,
+    "certBindsActualPlanBeforeErratum": 42,
+    "uncoveredBeforeErratum": [
+      {
+        "rootId": "G5T3",
+        "arm": "E1",
+        "certPlan": "LDDD",
+        "actualPlan": "LLDR",
+        "selectedAction": "L",
+        "reason": "P4 certificate plan differs from actual 100 ms plan"
+      },
+      {
+        "rootId": "G2T2",
+        "arm": "E1",
+        "certPlan": "DDDR",
+        "actualPlan": "DLUL",
+        "selectedAction": "D",
+        "reason": "P4 certificate plan differs from actual 100 ms plan"
+      },
+      {
+        "rootId": "G2T2",
+        "arm": "H1",
+        "certPlan": "DDDR",
+        "actualPlan": "DDDD",
+        "selectedAction": "D",
+        "reason": "P4 certificate plan differs from actual 100 ms plan"
+      },
+      {
+        "rootId": "G2T6",
+        "arm": "H1",
+        "certPlan": "RURD",
+        "actualPlan": "LUUU",
+        "selectedAction": "D",
+        "reason": "P4 certificate plan differs from actual 100 ms plan"
+      },
+      {
+        "rootId": "G1T3",
+        "arm": "E1",
+        "certPlan": "DRRR",
+        "actualPlan": "UUUL",
+        "selectedAction": "D",
+        "reason": "P4 certificate plan differs from actual 100 ms plan"
+      },
+      {
+        "rootId": "G1T4",
+        "arm": "H1",
+        "certPlan": "ULDR",
+        "actualPlan": "LLLL",
+        "selectedAction": "U",
+        "reason": "P4 certificate plan differs from actual 100 ms plan"
+      }
+    ],
+    "uncoveredNowCertified": [
+      {
+        "rootId": "G1T3",
+        "arm": "E1",
+        "plan": "UUUL",
+        "class": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+        "proof": "PROVEN"
+      },
+      {
+        "rootId": "G1T3",
+        "arm": "H1",
+        "plan": "RRRR",
+        "class": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+        "proof": "PROVEN",
+        "reusedFromP4": true
+      },
+      {
+        "rootId": "G5T3",
+        "arm": "E1",
+        "plan": "LLDR",
+        "class": "MOUSE_FORCED_WIN_WITHIN_H1",
+        "proof": "PROVEN"
+      },
+      {
+        "rootId": "G2T2",
+        "arm": "E1",
+        "plan": "DLUL",
+        "class": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+        "proof": "PROVEN"
+      },
+      {
+        "rootId": "G2T2",
+        "arm": "H1",
+        "plan": "DDDD",
+        "class": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+        "proof": "PROVEN"
+      },
+      {
+        "rootId": "G2T6",
+        "arm": "H1",
+        "plan": "LUUU",
+        "class": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+        "proof": "PROVEN"
+      },
+      {
+        "rootId": "G1T4",
+        "arm": "H1",
+        "plan": "LLLL",
+        "class": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+        "proof": "PROVEN"
+      }
+    ],
+    "afterErratumAll48Bound": true
+  },
+  "g1t3": {
+    "e1": {
+      "plan": "UUUL",
+      "class": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "proof": "PROVEN",
+      "certificate": "PPC-CAT-EVALUATOR-ABLATION-01-ERRATUM-01/G1T3_E1_100MS_CERTIFICATE.json"
+    },
+    "h1": {
+      "plan": "RRRR",
+      "class": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "proof": "PROVEN",
+      "reused": true,
+      "reuseEligible": true
+    },
+    "e1UuulProvenMouseWin": false,
+    "h1RrrrProvenCatSafe": true,
+    "PROVEN_100MS_TACTICAL_GAIN": false
+  },
+  "verdicts": {
+    "E1_G1T3_UUUL_quantifier": {
+      "class": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "proof": "PROVEN"
+    },
+    "H1_G1T3_RRRR_quantifier": {
+      "class": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "proof": "PROVEN",
+      "source": "P4 reused after identity match"
+    },
+    "H1_real100msProvenTacticalBenefit": false,
+    "PROVEN_100MS_TACTICAL_GAIN": false,
+    "productionWiringAuthorized": false,
+    "performanceGate": "Existing A/A calibration gate remains authoritative; no production wiring follows from a local tactical finding."
+  },
+  "identity": {
+    "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+    "head": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+    "allOriginalsUnchanged": true,
+    "allSourcesUnchanged": true,
+    "sourceIdentityFile": "PPC-CAT-EVALUATOR-ABLATION-01-ERRATUM-01/SOURCE_AND_ARTIFACT_IDENTITY.json"
+  }
+}

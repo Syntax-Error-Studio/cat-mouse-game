@@ -1,0 +1,44 @@
+{
+  "artifactId": "STRATEGY_CERTIFICATE_VERIFICATION",
+  "round": "PPC-CAT-STRATEGY-SEAL-01",
+  "phase": 4,
+  "generatedAt": "2026-11-15T07:20:17.700Z",
+  "verifier": "seal_lib.ts verifyCatCertificate / verifyMouseCertificate (independent DFS, no shared boolean combinator, no prune)",
+  "contract": "every universal node re-enumerates ALL legal opponent actions and ALL positive-probability CHANCE outcomes; every existential node follows the extracted policy; missing policy = hard fail",
+  "proverVerifierIndependence": "prover=solve(); verifier=standalone walk(); they share NO boolean-negation function",
+  "certificates": [
+    {
+      "root": "G6T2",
+      "prefix": "DRRR",
+      "branch": 0,
+      "question": "catSurvive H1",
+      "side": "cat",
+      "verdict": "PROVEN",
+      "ok": true,
+      "leaves": 117382,
+      "branches": 31236,
+      "chanceNodes": 549,
+      "policyMisses": 0,
+      "reason": null,
+      "counterexample": null
+    },
+    {
+      "root": "G6T3",
+      "question": "mouseForce H0",
+      "side": "mouse",
+      "verdict": "PROVEN",
+      "ok": true,
+      "leaves": 457,
+      "branches": 45,
+      "chanceNodes": 0,
+      "maxDepth": 7,
+      "policyMisses": 0,
+      "reason": null,
+      "counterexample": null,
+      "elapsedMs": 10,
+      "policySize": 66
+    }
+  ],
+  "count": 2,
+  "allProven": true
+}

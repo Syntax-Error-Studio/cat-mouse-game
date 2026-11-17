@@ -1,0 +1,2283 @@
+{
+ "schemaVersion": "1.0",
+ "round": "PPC-T1-PCV-01",
+ "generatedAt": "2026-11-16T06:09:09.813Z",
+ "verifier": "PPC-CAT-STRATEGY-SEAL-01/probe/seal_lib.ts verifyMouseCertificate / verifyCatCertificate (independent; re-enumerates all opponent actions + all positive-probability chance outcomes; no shared boolean combinator with solve)",
+ "checks": {
+  "verifierCap": 600000,
+  "trueResultsVerified": true,
+  "falseProven": 0,
+  "verifyFailures": 0,
+  "trueUnverified": 0,
+  "capAsProof": 0,
+  "policyMisses": 0,
+  "contradictions": 0,
+  "catSurviveDerivedFromNegation": false,
+  "chanceWeightRule": "only positive-probability outcomes; CHANCE = AND; uniform weights from the real engine enumerators",
+  "terminalBeforeHorizon": true,
+  "unresolvedNotPass": true
+ },
+ "totals": {
+  "strata": 48,
+  "observations": 240,
+  "queries": 720
+ },
+ "strata": [
+  {
+   "rootId": "G6T1",
+   "arm": "E1",
+   "class": "SURVIVES_WITHIN_H0",
+   "planHash": "bce322b6fb60184e97f2222a73b065de0d96c614f3fa28b05ccee1f60a47a0df",
+   "postStateKeys": [
+    "t__e__e__e__e__e__e__e__e__tm_e__ec_e__e__e__e__e__e__e__e__e__e__b__b__e__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#1,1#0,9#0#4#1,6|2,6##0#0#0#0,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 13,
+     "chanceNodes": 2,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "05670ce602e16649091336bbd057a8f5342d41bca3364d606e08515a226cf8f7"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 13,
+     "chanceNodes": 2,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 95,
+     "policyMisses": 0,
+     "certHash": "4124cdc90187f272aedc9191b37f713990c516cb637cc3fc7961f3e61b939167"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": null,
+     "proofStatus": "UNRESOLVED_CAP",
+     "nodes": 5001,
+     "chanceNodes": 23,
+     "truncated": true,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "withinPhase1": false,
+     "certHash": "d73673f8ea6eb43f53ce7359f6b30e37da9f2a2379fd3111ba455157c5c4e5e2"
+    }
+   ]
+  },
+  {
+   "rootId": "G6T1",
+   "arm": "H1",
+   "class": "SURVIVES_WITHIN_H0",
+   "planHash": "d9bddefc5fa6c014d7f6c93245a09a4123e0e2fc4cea72c0ef886ee644127543",
+   "postStateKeys": [
+    "t__e__e__e__e__e__e__e__e__tm_e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#0,9#0#4#1,6|2,6##0#0#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 13,
+     "chanceNodes": 2,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "0d7235e915942d96287d41c61008a811fcf3fe48ac29759f6ea0d9572f84d289"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 13,
+     "chanceNodes": 2,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 85,
+     "policyMisses": 0,
+     "certHash": "f9ccfec6f7f16334c93683bb756b1973800075dbf262db4220648ab4c918736e"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": null,
+     "proofStatus": "UNRESOLVED_CAP",
+     "nodes": 5001,
+     "chanceNodes": 24,
+     "truncated": true,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "withinPhase1": false,
+     "certHash": "6620e0efe8e702fd2262e935e3fb559fbbd0aaa136ad3710c0f87bddb7df22c6"
+    }
+   ]
+  },
+  {
+   "rootId": "G6T2",
+   "arm": "E1",
+   "class": "SURVIVES_WITHIN_H0",
+   "planHash": "2c5ad10179f85d7c54eaff30cf46ead7ca5f3a0050df76cad8e6b80fa1a5e19e",
+   "postStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__ec_em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#1,5#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 101,
+     "chanceNodes": 5,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "bb39da006be38195881de4a3dd07e22939ac7479efaf1b74ae34aeca4ee1e6e9"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 1893,
+     "chanceNodes": 5,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 5794,
+     "policyMisses": 0,
+     "certHash": "565915f497da59ba12bcdf905e8667ff8dd4ab08b426c905fd5d6332e37d73be"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": false,
+     "proofStatus": "UNRESOLVED_CAP",
+     "nodes": 5001,
+     "chanceNodes": 60,
+     "truncated": true,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "withinPhase1": false,
+     "certHash": "1c67fd011ea0d3cf236727769a4f2a556440ade29fcc77e4259c1b75582d3d5f"
+    }
+   ]
+  },
+  {
+   "rootId": "G6T2",
+   "arm": "H1",
+   "class": "SURVIVES_WITHIN_H0",
+   "planHash": "2c5ad10179f85d7c54eaff30cf46ead7ca5f3a0050df76cad8e6b80fa1a5e19e",
+   "postStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__ec_em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#1,5#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 101,
+     "chanceNodes": 5,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "bb39da006be38195881de4a3dd07e22939ac7479efaf1b74ae34aeca4ee1e6e9"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 1893,
+     "chanceNodes": 5,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 5794,
+     "policyMisses": 0,
+     "certHash": "565915f497da59ba12bcdf905e8667ff8dd4ab08b426c905fd5d6332e37d73be"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": false,
+     "proofStatus": "UNRESOLVED_CAP",
+     "nodes": 5001,
+     "chanceNodes": 60,
+     "truncated": true,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "withinPhase1": false,
+     "certHash": "1c67fd011ea0d3cf236727769a4f2a556440ade29fcc77e4259c1b75582d3d5f"
+    }
+   ]
+  },
+  {
+   "rootId": "G6T3",
+   "arm": "E1",
+   "class": "REFUTED",
+   "planHash": "a225d7d038c53bb97b514edaed5067c809b0f61cdc99d8f2b39db643e1d97226",
+   "postStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__ec_e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__em_e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#4,6#7,6#0#3#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 67,
+     "chanceNodes": 7,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 4,
+     "policyMisses": 0,
+     "certHash": "8450e9f4ccf96767053ad896d78034497ff37eb16730cc97bdb779c374006386"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 257,
+     "chanceNodes": 7,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "c3ad45c492f1676b94ff88a72d04cda2dce84fdf1b0ecd917adb0ad7d928d9d5"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": null,
+     "proofStatus": "UNRESOLVED_CAP",
+     "nodes": 5001,
+     "chanceNodes": 121,
+     "truncated": true,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "withinPhase1": false,
+     "certHash": "0975ee1475f8dc08b4800edd2a63508c11a6a3c01d5f638f78fc1ddc36c6820f"
+    }
+   ]
+  },
+  {
+   "rootId": "G6T3",
+   "arm": "H1",
+   "class": "REFUTED",
+   "planHash": "a225d7d038c53bb97b514edaed5067c809b0f61cdc99d8f2b39db643e1d97226",
+   "postStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__ec_e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__em_e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#4,6#7,6#0#3#5,1|8,4##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 67,
+     "chanceNodes": 7,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 4,
+     "policyMisses": 0,
+     "certHash": "8450e9f4ccf96767053ad896d78034497ff37eb16730cc97bdb779c374006386"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 257,
+     "chanceNodes": 7,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "c3ad45c492f1676b94ff88a72d04cda2dce84fdf1b0ecd917adb0ad7d928d9d5"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": null,
+     "proofStatus": "UNRESOLVED_CAP",
+     "nodes": 5001,
+     "chanceNodes": 121,
+     "truncated": true,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "withinPhase1": false,
+     "certHash": "0975ee1475f8dc08b4800edd2a63508c11a6a3c01d5f638f78fc1ddc36c6820f"
+    }
+   ]
+  },
+  {
+   "rootId": "G5T1",
+   "arm": "E1",
+   "class": "SURVIVES_WITHIN_H0",
+   "planHash": "9349d1c54ce4ba3332a3d8512bf75a7b13b83c6fb22fd5552dbaa726135917ec",
+   "postStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__ec_e__b__e__e__e__e__e__e__e__e__p__e__e__b__e__e__e__e__e__e__b__e__e__e__e__b__e__e__e__e__e__e__p__e__e__p__e__e__e__e__e__e__e__e__e__b__e__e__e__b__b__e__e__e__e__e__e__e__e__e__e__p__b__e__b__e__m__m__e__e__e__e__b__b__e__b__m__m__tm_e__e__e__e__e__e__e__e__t__#single#playing#mouse#1,1#9,0#0#4#1,6|8,1##0#0#0#1,0#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 41,
+     "chanceNodes": 6,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "2433a82de46acb5edb8015f80769aac4638515b00215dca353d46828fe74aa8b"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 940,
+     "chanceNodes": 6,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 3167,
+     "policyMisses": 0,
+     "certHash": "b5857c4af107169f46cd2b09fad0e178187f9170de5d8be0deedfac71635d2fe"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": false,
+     "proofStatus": "UNRESOLVED_CAP",
+     "nodes": 5001,
+     "chanceNodes": 52,
+     "truncated": true,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "withinPhase1": false,
+     "certHash": "ac978a342c1f14afb2cb472079eacb313766b05eb017c98e28fb1c934daf45b5"
+    }
+   ]
+  },
+  {
+   "rootId": "G5T1",
+   "arm": "H1",
+   "class": "SURVIVES_WITHIN_H0",
+   "planHash": "0ebd4a547918a45a255ea236b0be39b350dfda19c38499861441316f31088a1d",
+   "postStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__b__e__e__e__e__e__e__b__ec_e__e__e__b__e__e__e__e__e__e__p__e__e__p__e__e__e__e__e__e__e__e__e__b__e__e__e__b__b__e__e__e__e__e__e__e__e__e__e__p__b__e__b__e__m__m__e__e__e__e__b__b__e__b__m__m__tm_e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#9,0#0#4#1,6|8,1##0#0#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 41,
+     "chanceNodes": 6,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "f540b8d8afa851433b140c7935220acfa8e8e2e5c8bd21e4eacefdbea5233ee8"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 737,
+     "chanceNodes": 6,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 2481,
+     "policyMisses": 0,
+     "certHash": "4af42d1d4346ba2f2acc05c7a9af4327b7d3279a389281409edc81d82d53fab9"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": false,
+     "proofStatus": "UNRESOLVED_CAP",
+     "nodes": 5001,
+     "chanceNodes": 58,
+     "truncated": true,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "withinPhase1": false,
+     "certHash": "da4c2d3baa781490ba9ee8f2cfc33ce10981b5d2432b085c799f0276f0a49cc1"
+    }
+   ]
+  },
+  {
+   "rootId": "G5T2",
+   "arm": "E1",
+   "class": "SURVIVES_WITHIN_H1",
+   "planHash": "ca94d7d9f63fddd292e44de90fe511b4f358489a884100e492bbea2de7332910",
+   "postStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__b__e__e__e__e__e__e__b__e__e__e__e__b__e__e__e__e__e__e__p__e__e__p__e__e__e__ec_e__e__e__e__e__b__e__e__e__b__b__e__e__e__e__e__e__e__e__e__e__p__b__e__b__e__m__m__e__e__e__e__b__b__e__b__m__m__t__e__em_e__e__e__e__e__e__t__#single#playing#mouse#5,1#9,2#0#3#1,6|6,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 41,
+     "chanceNodes": 0,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "9ceb53c84b752a1cdcad673021d23532ef3bfb6df1fc61e04679b87139cc349d"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 41,
+     "chanceNodes": 0,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 125,
+     "policyMisses": 0,
+     "certHash": "f3603d873a8d966ebce6e33a8e248628538b9a9e6d6af4136ba6a05346191c2d"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 291,
+     "chanceNodes": 2,
+     "truncated": false,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 845,
+     "policyMisses": 0,
+     "withinPhase1": true,
+     "certHash": "e1886e39b73850dc02a203301035c00425d09c59d4b72ec09875e3e2433b5356"
+    }
+   ]
+  },
+  {
+   "rootId": "G5T2",
+   "arm": "H1",
+   "class": "SURVIVES_WITHIN_H1",
+   "planHash": "ca94d7d9f63fddd292e44de90fe511b4f358489a884100e492bbea2de7332910",
+   "postStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__b__e__e__e__e__e__e__b__e__e__e__e__b__e__e__e__e__e__e__p__e__e__p__e__e__e__ec_e__e__e__e__e__b__e__e__e__b__b__e__e__e__e__e__e__e__e__e__e__p__b__e__b__e__m__m__e__e__e__e__b__b__e__b__m__m__t__e__em_e__e__e__e__e__e__t__#single#playing#mouse#5,1#9,2#0#3#1,6|6,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 41,
+     "chanceNodes": 0,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "9ceb53c84b752a1cdcad673021d23532ef3bfb6df1fc61e04679b87139cc349d"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 41,
+     "chanceNodes": 0,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 125,
+     "policyMisses": 0,
+     "certHash": "f3603d873a8d966ebce6e33a8e248628538b9a9e6d6af4136ba6a05346191c2d"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 291,
+     "chanceNodes": 2,
+     "truncated": false,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 845,
+     "policyMisses": 0,
+     "withinPhase1": true,
+     "certHash": "e1886e39b73850dc02a203301035c00425d09c59d4b72ec09875e3e2433b5356"
+    }
+   ]
+  },
+  {
+   "rootId": "G5T3",
+   "arm": "E1",
+   "class": "SURVIVES_WITHIN_H0",
+   "planHash": "da20750eee4785d2b34856c3625f04c2e9ac8a303cb4c21044a707faa28962d9",
+   "postStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__b__e__e__e__e__e__e__b__e__e__e__e__b__e__e__e__e__e__e__p__e__e__p__e__e__e__e__e__e__e__e__e__b__e__e__e__e__ec_b__e__e__e__e__e__e__e__b__e__p__b__e__b__e__m__m__e__e__e__e__b__b__e__b__m__m__t__e__e__e__e__em_e__e__e__t__#single#playing#mouse#6,2#9,5#0#3#1,6|6,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 37,
+     "chanceNodes": 0,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "cdf44b9b21b7772525003a841b61b2e9a07d53d6671cda8383c06a9b2bfd591f"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 37,
+     "chanceNodes": 0,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 101,
+     "policyMisses": 0,
+     "certHash": "73f404cbb0241a897f3cf34720466845df0a6e6bfd6696ad7206aa7d67e687f5"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 1543,
+     "chanceNodes": 2,
+     "truncated": false,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "withinPhase1": false,
+     "certHash": "6a758fdac6a026deaa68a952a35e96d01eeb5939d9d401a853a4fe41bc178a9e"
+    }
+   ]
+  },
+  {
+   "rootId": "G5T3",
+   "arm": "H1",
+   "class": "SURVIVES_WITHIN_H0",
+   "planHash": "819bad23ee2c788a5fa8504c5ac3dbeb9b245db2572060d49400a16bd812e4a3",
+   "postStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__b__e__e__e__e__e__e__b__e__e__e__e__b__e__e__e__e__e__e__p__e__e__p__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__p__b__e__b__e__m__m__e__e__ec_e__b__b__e__b__m__m__t__e__b__e__e__em_e__e__e__t__#single#playing#mouse#8,2#9,5#0#3#1,6|6,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 30,
+     "chanceNodes": 0,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "b9c82bd000ac8a83a7c537c6c4ef19d068a316ad55f3552fc96530e06dcd55ce"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 30,
+     "chanceNodes": 0,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 75,
+     "policyMisses": 0,
+     "certHash": "400b12b8c051702ec4b9816c0eb93b8c9c3b3a01184fa0a6bf5a1bfee227ebcb"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 729,
+     "chanceNodes": 0,
+     "truncated": false,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "withinPhase1": true,
+     "certHash": "199ce08e35215aff6ea98f69813bff38943716916316b4af65757b3024e9bd2b"
+    }
+   ]
+  },
+  {
+   "rootId": "G5T4",
+   "arm": "E1",
+   "class": "REFUTED",
+   "planHash": "ac2ccc319c24f2d1e49aac061be2f082f03efaf7628a2dbc8bba8285bd08bed6",
+   "postStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__b__e__e__e__e__e__e__b__e__e__e__e__b__e__e__e__e__e__e__p__e__e__p__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__p__b__e__b__e__m__m__e__e__ec_e__b__b__e__b__m__m__t__b__e__e__e__e__e__e__em_t__#single#playing#mouse#8,2#9,8#0#3#1,6|6,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 1,
+     "chanceNodes": 0,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 2,
+     "policyMisses": 0,
+     "certHash": "ac7f8f7774a72c3259e1369017d56a49c16048bff299c9a65220aae87d46ebc1"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 1,
+     "chanceNodes": 0,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "cae51c1a817d316d6c581466aca49fca06abc231832d24136e21a834db8ecf19"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 1,
+     "chanceNodes": 0,
+     "truncated": false,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "withinPhase1": true,
+     "certHash": "95f1a6291d76e8260895961685bd55467718319ba326aa47736793a4132e576c"
+    }
+   ]
+  },
+  {
+   "rootId": "G5T4",
+   "arm": "H1",
+   "class": "REFUTED",
+   "planHash": "a8377b3e35bb7701a8f77f4f4c589fe469bcaf8ccfb3a42b11f62bf8c07862c1",
+   "postStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__b__e__e__e__e__e__e__b__e__e__e__e__b__e__e__e__e__e__e__p__e__e__p__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__p__b__e__b__e__m__m__e__e__e__e__b__b__e__b__m__m__t__e__b__e__e__ec_e__e__em_t__#single#playing#mouse#9,5#9,8#0#3#1,6|6,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 1,
+     "chanceNodes": 0,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 2,
+     "policyMisses": 0,
+     "certHash": "37b63323bb3ccb8b39ade4307b2b47c3daba06d6f7b5072ca7cfdddb19795372"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 1,
+     "chanceNodes": 0,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "0b61d6305fa21a8c567ee1de99be43aa0061d14ff0d15c9ada96d4924e7b6c2a"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 1,
+     "chanceNodes": 0,
+     "truncated": false,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "withinPhase1": true,
+     "certHash": "687246e69d24034d66fb091c000bb667c3823327b6315cb89a7a3ff3791cdd25"
+    }
+   ]
+  },
+  {
+   "rootId": "G2T1",
+   "arm": "E1",
+   "class": "SURVIVES_WITHIN_H1",
+   "planHash": "3bfe9301b8fe5293a281bb0b7eff8daa242a653772632a1a4cbf093f816cee1a",
+   "postStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__e__e__e__e__ec_e__e__b__e__e__e__b__e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__em_e__e__e__e__e__e__e__b__e__e__e__e__e__b__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#1,5#4,9#0#4#5,2|6,1##0#0#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 18,
+     "chanceNodes": 0,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "cf3d0dea40f57680cd576ededf5764f9827608983cb31974b3619100aa77dd59"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 18,
+     "chanceNodes": 0,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 54,
+     "policyMisses": 0,
+     "certHash": "0968d473a6ca9f09f4ca844254e046a9c53c7ce32b8e67bc0e5188805007e956"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 180,
+     "chanceNodes": 3,
+     "truncated": false,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 519,
+     "policyMisses": 0,
+     "withinPhase1": true,
+     "certHash": "e3a493dd5a94fa8c31a0c247832d3da44eab4c7a90a355a9bb54269b6f487cd1"
+    }
+   ]
+  },
+  {
+   "rootId": "G2T1",
+   "arm": "H1",
+   "class": "SURVIVES_WITHIN_H1",
+   "planHash": "3bfe9301b8fe5293a281bb0b7eff8daa242a653772632a1a4cbf093f816cee1a",
+   "postStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__e__e__e__e__ec_e__e__b__e__e__e__b__e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__em_e__e__e__e__e__e__e__b__e__e__e__e__e__b__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#1,5#4,9#0#4#5,2|6,1##0#0#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 18,
+     "chanceNodes": 0,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "cf3d0dea40f57680cd576ededf5764f9827608983cb31974b3619100aa77dd59"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 18,
+     "chanceNodes": 0,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 54,
+     "policyMisses": 0,
+     "certHash": "0968d473a6ca9f09f4ca844254e046a9c53c7ce32b8e67bc0e5188805007e956"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 180,
+     "chanceNodes": 3,
+     "truncated": false,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 519,
+     "policyMisses": 0,
+     "withinPhase1": true,
+     "certHash": "e3a493dd5a94fa8c31a0c247832d3da44eab4c7a90a355a9bb54269b6f487cd1"
+    }
+   ]
+  },
+  {
+   "rootId": "G2T2",
+   "arm": "E1",
+   "class": "SURVIVES_WITHIN_H1",
+   "planHash": "30b5a6934b53f816077ebec542c5accb3ec152564cdc102edc2a9da7ed2dba9b",
+   "postStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__e__e__ec_e__e__e__e__b__e__e__e__b__e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__e__e__e__e__e__e__e__e__b__em_e__e__e__e__b__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#1,3#5,8#0#4#5,2|6,1##0#0#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 14,
+     "chanceNodes": 0,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "3a104cd271d0eff3192243a70f1fff05fd1d7831c270c3d4fb85fa130e3f02ce"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 14,
+     "chanceNodes": 0,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 41,
+     "policyMisses": 0,
+     "certHash": "dd1a2d4f90fccf5ccb5db09f8e406b0907dff66ec3ff76c4f0760f842f9eb068"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 122,
+     "chanceNodes": 1,
+     "truncated": false,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 328,
+     "policyMisses": 0,
+     "withinPhase1": true,
+     "certHash": "52876249b292f84b4fa3d57417fffc7218744faf16fd87a7d35cce77b4785e54"
+    }
+   ]
+  },
+  {
+   "rootId": "G2T2",
+   "arm": "H1",
+   "class": "SURVIVES_WITHIN_H1",
+   "planHash": "3989c4e0b53b03fa44fba6af89eeaa5f4347e8496e934ce81364e132cfca25ed",
+   "postStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__e__e__e__e__e__e__ec_e__b__em_e__e__e__e__b__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#5,5#5,8#0#4#5,2|6,1##0#0#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 14,
+     "chanceNodes": 0,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "85ca44c706b23818d983f38b001ca3f9c82dcdee08426f5f6e505a5a9f95f404"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 14,
+     "chanceNodes": 0,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 41,
+     "policyMisses": 0,
+     "certHash": "941a3812d3a3039ce73d1549a494f187df4485d4d5632f560527b75f69c30b7b"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 114,
+     "chanceNodes": 1,
+     "truncated": false,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 307,
+     "policyMisses": 0,
+     "withinPhase1": true,
+     "certHash": "f05aa8721b0f23ac21fab67fdb716e6282ccae4aab631554619ca9602c5b3eb9"
+    }
+   ]
+  },
+  {
+   "rootId": "G2T3",
+   "arm": "E1",
+   "class": "SURVIVES_WITHIN_H0",
+   "planHash": "74e371cb6c4cb33021353b84266a425b6468e592763d78dc0222b8d778b399a5",
+   "postStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__p__e__e__e__e__b__e__b__b__b__e__e__e__e__e__e__e__e__p__em_ec_b__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__b__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#4,6#4,5#0#4#5,2|6,1##0#0#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 11,
+     "chanceNodes": 1,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "1e010e7a2857e255da7631b23d7d1008153dd27e34882e9c20d85cda7b68109a"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 11,
+     "chanceNodes": 1,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 55,
+     "policyMisses": 0,
+     "certHash": "c20a39197af59ebcdf3bcfa13b53a1a230c2b0d0b59e98a72d77ddf5cd4e39e6"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": null,
+     "proofStatus": "UNRESOLVED_CAP",
+     "nodes": 5001,
+     "chanceNodes": 140,
+     "truncated": true,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "withinPhase1": false,
+     "certHash": "1d110c1b6b61acdec6634fa5e33a330518d3a1ee41c35db9b1f0b5545f7eab2b"
+    }
+   ]
+  },
+  {
+   "rootId": "G2T3",
+   "arm": "H1",
+   "class": "SURVIVES_WITHIN_H0",
+   "planHash": "74e371cb6c4cb33021353b84266a425b6468e592763d78dc0222b8d778b399a5",
+   "postStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__p__e__e__e__e__b__e__b__b__b__e__e__e__e__e__e__e__e__p__em_ec_b__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__b__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#4,6#4,5#0#4#5,2|6,1##0#0#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 11,
+     "chanceNodes": 1,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "1e010e7a2857e255da7631b23d7d1008153dd27e34882e9c20d85cda7b68109a"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 11,
+     "chanceNodes": 1,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 55,
+     "policyMisses": 0,
+     "certHash": "c20a39197af59ebcdf3bcfa13b53a1a230c2b0d0b59e98a72d77ddf5cd4e39e6"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": null,
+     "proofStatus": "UNRESOLVED_CAP",
+     "nodes": 5001,
+     "chanceNodes": 140,
+     "truncated": true,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "withinPhase1": false,
+     "certHash": "1d110c1b6b61acdec6634fa5e33a330518d3a1ee41c35db9b1f0b5545f7eab2b"
+    }
+   ]
+  },
+  {
+   "rootId": "G2T4",
+   "arm": "E1",
+   "class": "SURVIVES_WITHIN_H0",
+   "planHash": "44c067e0619086b9935cf145896e121b4859c11307d8c674fe9032646bd95c09",
+   "postStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__e__e__e__em_ec_e__e__e__b__e__e__e__e__e__b__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#5,3#5,2#0#3#2,5|6,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 81,
+     "chanceNodes": 11,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "9870a5b9b58a371012de60a7148b78b1ea1927d0e58fd34db6c85f662ec5e26f"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 1215,
+     "chanceNodes": 11,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 4196,
+     "policyMisses": 0,
+     "certHash": "23fe83caf42a793bf4a6a6c93e83bb1c77b94a98d29f75128166b4b5c139bd09"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": false,
+     "proofStatus": "UNRESOLVED_CAP",
+     "nodes": 5001,
+     "chanceNodes": 60,
+     "truncated": true,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "withinPhase1": false,
+     "certHash": "9be639f68e0befa9366a24946097fef2e4de9a33abc1cff35e1ac7c5466f4d81"
+    }
+   ]
+  },
+  {
+   "rootId": "G2T4",
+   "arm": "H1",
+   "class": "SURVIVES_WITHIN_H0",
+   "planHash": "44c067e0619086b9935cf145896e121b4859c11307d8c674fe9032646bd95c09",
+   "postStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__e__e__e__em_ec_e__e__e__b__e__e__e__e__e__b__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#5,3#5,2#0#3#2,5|6,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 81,
+     "chanceNodes": 11,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "9870a5b9b58a371012de60a7148b78b1ea1927d0e58fd34db6c85f662ec5e26f"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 1215,
+     "chanceNodes": 11,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 4196,
+     "policyMisses": 0,
+     "certHash": "23fe83caf42a793bf4a6a6c93e83bb1c77b94a98d29f75128166b4b5c139bd09"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": false,
+     "proofStatus": "UNRESOLVED_CAP",
+     "nodes": 5001,
+     "chanceNodes": 60,
+     "truncated": true,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "withinPhase1": false,
+     "certHash": "9be639f68e0befa9366a24946097fef2e4de9a33abc1cff35e1ac7c5466f4d81"
+    }
+   ]
+  },
+  {
+   "rootId": "G2T5",
+   "arm": "E1",
+   "class": "SURVIVES_WITHIN_H1",
+   "planHash": "61671e0580348ec7f3e54437d39424de4f898c3b6633e11703a29d3c84131e0f",
+   "postStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__ec_e__e__e__e__e__m__m__t__e__em_b__e__e__e__e__e__t__#single#playing#mouse#8,2#9,2#0#3#2,5|4,7##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 22,
+     "chanceNodes": 0,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "b6f8ba9e8ef8db38f40689761cf54547e735683ef72f2d745be039acb3414e00"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 22,
+     "chanceNodes": 0,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 63,
+     "policyMisses": 0,
+     "certHash": "b6099522ebc16adca11db1d521fac9c1ca53dee7747a609fbdefabb3359fbc18"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 228,
+     "chanceNodes": 0,
+     "truncated": false,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 623,
+     "policyMisses": 0,
+     "withinPhase1": true,
+     "certHash": "b9220db84e78cfc4811f611f5a008d20e00b34210ff58d5376df1c8fe6337f1c"
+    }
+   ]
+  },
+  {
+   "rootId": "G2T5",
+   "arm": "H1",
+   "class": "SURVIVES_WITHIN_H1",
+   "planHash": "61671e0580348ec7f3e54437d39424de4f898c3b6633e11703a29d3c84131e0f",
+   "postStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__ec_e__e__e__e__e__m__m__t__e__em_b__e__e__e__e__e__t__#single#playing#mouse#8,2#9,2#0#3#2,5|4,7##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 22,
+     "chanceNodes": 0,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "b6f8ba9e8ef8db38f40689761cf54547e735683ef72f2d745be039acb3414e00"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 22,
+     "chanceNodes": 0,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 63,
+     "policyMisses": 0,
+     "certHash": "b6099522ebc16adca11db1d521fac9c1ca53dee7747a609fbdefabb3359fbc18"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 228,
+     "chanceNodes": 0,
+     "truncated": false,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 623,
+     "policyMisses": 0,
+     "withinPhase1": true,
+     "certHash": "b9220db84e78cfc4811f611f5a008d20e00b34210ff58d5376df1c8fe6337f1c"
+    }
+   ]
+  },
+  {
+   "rootId": "G2T6",
+   "arm": "E1",
+   "class": "SURVIVES_WITHIN_H1",
+   "planHash": "9fb9c11472321126050f95e921f81fabb2e79f1c9aa4e09127b61792cd9bdc19",
+   "postStateKeys": [
+    "t__e__e__e__e__e__e__e__e__tm_e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__e__e__ec_e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#mouse#5,1#0,9#0#4#2,5|4,7##0#0#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 12,
+     "chanceNodes": 0,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "29ad4765cbf4fbb3537a0b22fd818028c07915b2bc55aab6d586ba9e8baf8cbb"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 12,
+     "chanceNodes": 0,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 33,
+     "policyMisses": 0,
+     "certHash": "fcfb58827cf14d765d67ff353fbcbe098ad5c5bd0d634902949777aca7771318"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 3349,
+     "chanceNodes": 65,
+     "truncated": false,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 11380,
+     "policyMisses": 0,
+     "withinPhase1": false,
+     "certHash": "7de9074ae13ff1bf07e7741ccc7ee275dcb524fd43a830b7ea40b796be8d40a1"
+    }
+   ]
+  },
+  {
+   "rootId": "G2T6",
+   "arm": "H1",
+   "class": "SURVIVES_WITHIN_H1",
+   "planHash": "9fb9c11472321126050f95e921f81fabb2e79f1c9aa4e09127b61792cd9bdc19",
+   "postStateKeys": [
+    "t__e__e__e__e__e__e__e__e__tm_e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__e__e__ec_e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#mouse#5,1#0,9#0#4#2,5|4,7##0#0#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 12,
+     "chanceNodes": 0,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "29ad4765cbf4fbb3537a0b22fd818028c07915b2bc55aab6d586ba9e8baf8cbb"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 12,
+     "chanceNodes": 0,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 33,
+     "policyMisses": 0,
+     "certHash": "fcfb58827cf14d765d67ff353fbcbe098ad5c5bd0d634902949777aca7771318"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 3349,
+     "chanceNodes": 65,
+     "truncated": false,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 11380,
+     "policyMisses": 0,
+     "withinPhase1": false,
+     "certHash": "7de9074ae13ff1bf07e7741ccc7ee275dcb524fd43a830b7ea40b796be8d40a1"
+    }
+   ]
+  },
+  {
+   "rootId": "G2T7",
+   "arm": "E1",
+   "class": "SURVIVES_WITHIN_H0",
+   "planHash": "9e000774eb2fd34ca7e16fe41b834e65aa2fa7b9f25a6f9ede4a2506741793cc",
+   "postStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__b__e__e__e__ec_e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__em_e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#mouse#2,2#4,9#0#4#2,5|4,7##0#0#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 48,
+     "chanceNodes": 3,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "71efbb2b37f67ae976fffca3ff5e5a5d3814079f497c818a532cd58fd2898711"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 1460,
+     "chanceNodes": 31,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 5195,
+     "policyMisses": 0,
+     "certHash": "c60e813af782770f274896f121583cb2bede99723ae66e80b993cafde3a7ef6f"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": false,
+     "proofStatus": "UNRESOLVED_CAP",
+     "nodes": 5001,
+     "chanceNodes": 234,
+     "truncated": true,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "withinPhase1": false,
+     "certHash": "044147cda40d395e8ea2a83b7a912aa97e4e4a39ecadc4a916b90ca6c41cac0a"
+    }
+   ]
+  },
+  {
+   "rootId": "G2T7",
+   "arm": "H1",
+   "class": "SURVIVES_WITHIN_H0",
+   "planHash": "9e000774eb2fd34ca7e16fe41b834e65aa2fa7b9f25a6f9ede4a2506741793cc",
+   "postStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__b__e__e__e__ec_e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__em_e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#mouse#2,2#4,9#0#4#2,5|4,7##0#0#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 48,
+     "chanceNodes": 3,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "71efbb2b37f67ae976fffca3ff5e5a5d3814079f497c818a532cd58fd2898711"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 1460,
+     "chanceNodes": 31,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 5195,
+     "policyMisses": 0,
+     "certHash": "c60e813af782770f274896f121583cb2bede99723ae66e80b993cafde3a7ef6f"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": false,
+     "proofStatus": "UNRESOLVED_CAP",
+     "nodes": 5001,
+     "chanceNodes": 234,
+     "truncated": true,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "withinPhase1": false,
+     "certHash": "044147cda40d395e8ea2a83b7a912aa97e4e4a39ecadc4a916b90ca6c41cac0a"
+    }
+   ]
+  },
+  {
+   "rootId": "G2T8",
+   "arm": "E1",
+   "class": "REFUTED",
+   "planHash": "eaa1e443983c5516c5d236edf7de4d0583abd3668475fdd932cd54d97bfb4081",
+   "postStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__em_e__e__e__ec_e__e__e__b__e__e__e__e__e__e__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#mouse#5,3#4,9#0#3#2,5|8,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 32,
+     "chanceNodes": 0,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 4,
+     "policyMisses": 0,
+     "certHash": "21f2e5c765685d304b1d3fb9be7f85cba2d58ef2a66b765f7cada6f7efbdfd9a"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 32,
+     "chanceNodes": 0,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "aa26730d1e87bdbb4ba84fed25b4b420e9b3ad80057bd055a9a2aa13a43e32d1"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 2622,
+     "chanceNodes": 7,
+     "truncated": false,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "withinPhase1": false,
+     "certHash": "38d566c4f445c5fc57cd0986f8bd050fb8fceb291f0e9ebe87bcf7b295ff53c8"
+    }
+   ]
+  },
+  {
+   "rootId": "G2T8",
+   "arm": "H1",
+   "class": "REFUTED",
+   "planHash": "eaa1e443983c5516c5d236edf7de4d0583abd3668475fdd932cd54d97bfb4081",
+   "postStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__em_e__e__e__ec_e__e__e__b__e__e__e__e__e__e__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#mouse#5,3#4,9#0#3#2,5|8,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 32,
+     "chanceNodes": 0,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 4,
+     "policyMisses": 0,
+     "certHash": "21f2e5c765685d304b1d3fb9be7f85cba2d58ef2a66b765f7cada6f7efbdfd9a"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 32,
+     "chanceNodes": 0,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "aa26730d1e87bdbb4ba84fed25b4b420e9b3ad80057bd055a9a2aa13a43e32d1"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 2622,
+     "chanceNodes": 7,
+     "truncated": false,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "withinPhase1": false,
+     "certHash": "38d566c4f445c5fc57cd0986f8bd050fb8fceb291f0e9ebe87bcf7b295ff53c8"
+    }
+   ]
+  },
+  {
+   "rootId": "G1T1",
+   "arm": "E1",
+   "class": "SURVIVES_WITHIN_H1",
+   "planHash": "421a667fc8ca08387a0d50d0e268b55401c853dd47c80580e3d058fb2f55ca70",
+   "postStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__e__e__b__e__e__ec_e__b__b__b__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#5,1#8,5#0#4#1,4|2,5##0#0#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 23,
+     "chanceNodes": 0,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "12ab95b6bb634c1218c688ed2bf39fca2cae959c4f790dd9cedb19c72777dbf1"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 23,
+     "chanceNodes": 0,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 79,
+     "policyMisses": 0,
+     "certHash": "5eff2fb2a230f9b48576a0326ebb7d5c08be23b101869c12304b6b35ea8bb95d"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 146,
+     "chanceNodes": 0,
+     "truncated": false,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 431,
+     "policyMisses": 0,
+     "withinPhase1": true,
+     "certHash": "841f33e7253eae369dbf995c948fdc439a658ec7ec5377b93d2cd8f6862f26ce"
+    }
+   ]
+  },
+  {
+   "rootId": "G1T1",
+   "arm": "H1",
+   "class": "SURVIVES_WITHIN_H1",
+   "planHash": "421a667fc8ca08387a0d50d0e268b55401c853dd47c80580e3d058fb2f55ca70",
+   "postStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__e__e__b__e__e__ec_e__b__b__b__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__em_e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#5,1#8,5#0#4#1,4|2,5##0#0#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 23,
+     "chanceNodes": 0,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "12ab95b6bb634c1218c688ed2bf39fca2cae959c4f790dd9cedb19c72777dbf1"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 23,
+     "chanceNodes": 0,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 79,
+     "policyMisses": 0,
+     "certHash": "5eff2fb2a230f9b48576a0326ebb7d5c08be23b101869c12304b6b35ea8bb95d"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 146,
+     "chanceNodes": 0,
+     "truncated": false,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 431,
+     "policyMisses": 0,
+     "withinPhase1": true,
+     "certHash": "841f33e7253eae369dbf995c948fdc439a658ec7ec5377b93d2cd8f6862f26ce"
+    }
+   ]
+  },
+  {
+   "rootId": "G1T2",
+   "arm": "E1",
+   "class": "SURVIVES_WITHIN_H1",
+   "planHash": "daa3f6cc080985b1e3db2622ddf557c8508e8615a8c3b523f830f4fbda299740",
+   "postStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__e__e__b__e__e__e__e__b__b__b__p__e__p__e__e__e__e__e__b__e__b__p__b__e__e__e__e__ec_em_e__e__p__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#7,3#7,4#0#4#1,4|2,5##0#0#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 15,
+     "chanceNodes": 0,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "f70a4b84f20c524c878cf9cfcd0fb9c7b6a20a74f5a2534c819efe13ca199d51"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 15,
+     "chanceNodes": 0,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 48,
+     "policyMisses": 0,
+     "certHash": "24861985b828f53c70538331f6df7e8ccab0c4ff8e045bc2e4df0b1fa6ae4f42"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 120,
+     "chanceNodes": 0,
+     "truncated": false,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 340,
+     "policyMisses": 0,
+     "withinPhase1": true,
+     "certHash": "ad927ccc75b8a5bc11787b70836d2a848dad933a30c13528c715c17c800f8b22"
+    }
+   ]
+  },
+  {
+   "rootId": "G1T2",
+   "arm": "H1",
+   "class": "SURVIVES_WITHIN_H1",
+   "planHash": "daa3f6cc080985b1e3db2622ddf557c8508e8615a8c3b523f830f4fbda299740",
+   "postStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__e__e__b__e__e__e__e__b__b__b__p__e__p__e__e__e__e__e__b__e__b__p__b__e__e__e__e__ec_em_e__e__p__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#7,3#7,4#0#4#1,4|2,5##0#0#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 15,
+     "chanceNodes": 0,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "f70a4b84f20c524c878cf9cfcd0fb9c7b6a20a74f5a2534c819efe13ca199d51"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 15,
+     "chanceNodes": 0,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 48,
+     "policyMisses": 0,
+     "certHash": "24861985b828f53c70538331f6df7e8ccab0c4ff8e045bc2e4df0b1fa6ae4f42"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 120,
+     "chanceNodes": 0,
+     "truncated": false,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 340,
+     "policyMisses": 0,
+     "withinPhase1": true,
+     "certHash": "ad927ccc75b8a5bc11787b70836d2a848dad933a30c13528c715c17c800f8b22"
+    }
+   ]
+  },
+  {
+   "rootId": "G1T3",
+   "arm": "E1",
+   "class": "SURVIVES_WITHIN_H1",
+   "planHash": "cdc8613b7b0b15928e25602ee78b521e3137a11989035aa021951d2df3dc3f2a",
+   "postStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__e__e__b__e__e__ec_e__b__b__b__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__e__e__e__em_e__e__t__#single#playing#mouse#5,1#9,6#0#4#1,4|2,5##0#0#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 18,
+     "chanceNodes": 0,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "212c7bf8d0dbd26819facf78e90f72ae5d2111e8866279a93275704394762862"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 18,
+     "chanceNodes": 0,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 61,
+     "policyMisses": 0,
+     "certHash": "41b32e0920ca08407ca84052eaa0c5ff4209bc6fd202ddf843125295caed372f"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 179,
+     "chanceNodes": 0,
+     "truncated": false,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 470,
+     "policyMisses": 0,
+     "withinPhase1": true,
+     "certHash": "aa06020b6287eac83c64c33cc2521d55b52dc158cc89548515eb0282adfd66ad"
+    }
+   ]
+  },
+  {
+   "rootId": "G1T3",
+   "arm": "H1",
+   "class": "SURVIVES_WITHIN_H1",
+   "planHash": "ad49738ddc9ea282f541a4d462213ce512bde2d3a9aeb89ff414a34398985d30",
+   "postStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__e__e__b__e__e__e__e__b__b__b__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__e__ec_e__m__m__t__e__e__e__e__e__em_e__e__t__#single#playing#mouse#8,6#9,6#0#4#1,4|2,5##0#0#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 15,
+     "chanceNodes": 0,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "79dea7d795e9b523647b828d5db579c94b98fcd9bf1f028428e763c55270719c"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 15,
+     "chanceNodes": 0,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 47,
+     "policyMisses": 0,
+     "certHash": "d5811b2b21dab7ff056a941a9845bb061e5351970a528d81d7d8719db7f08a9f"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 170,
+     "chanceNodes": 0,
+     "truncated": false,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 423,
+     "policyMisses": 0,
+     "withinPhase1": true,
+     "certHash": "0dd71f9c14b7fef7915f49dda5c6876399bc9bf71b910c38f5c9baa13b23cbc7"
+    }
+   ]
+  },
+  {
+   "rootId": "G1T4",
+   "arm": "E1",
+   "class": "SURVIVES_WITHIN_H0",
+   "planHash": "956a519ae9c6969e8799656f51a2d006a589fc64d69e3173bc8cd11b48632a00",
+   "postStateKeys": [
+    "t__e__e__e__e__e__e__e__e__tm_e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__e__e__b__e__e__e__e__b__b__b__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__ec_e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#8,2#0,9#0#4#1,4|2,5##0#0#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 13,
+     "chanceNodes": 0,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "34e803dcbc2d87a8f15c3f8a18e266838575b7943f722c515b55203ba6182293"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 13,
+     "chanceNodes": 0,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 39,
+     "policyMisses": 0,
+     "certHash": "1283a298dddcb750acbc0a05e694f93f262326f84b522631534ee1faacd957c2"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": null,
+     "proofStatus": "UNRESOLVED_CAP",
+     "nodes": 5001,
+     "chanceNodes": 202,
+     "truncated": true,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "withinPhase1": false,
+     "certHash": "c241733c443af0ee9d45731c7aa9f5c8bc9f5431d84a1e26643aff6ee71e29d3"
+    }
+   ]
+  },
+  {
+   "rootId": "G1T4",
+   "arm": "H1",
+   "class": "SURVIVES_WITHIN_H0",
+   "planHash": "956a519ae9c6969e8799656f51a2d006a589fc64d69e3173bc8cd11b48632a00",
+   "postStateKeys": [
+    "t__e__e__e__e__e__e__e__e__tm_e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__e__e__e__b__e__e__e__e__b__b__b__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__ec_e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#8,2#0,9#0#4#1,4|2,5##0#0#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 13,
+     "chanceNodes": 0,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "34e803dcbc2d87a8f15c3f8a18e266838575b7943f722c515b55203ba6182293"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 13,
+     "chanceNodes": 0,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 39,
+     "policyMisses": 0,
+     "certHash": "1283a298dddcb750acbc0a05e694f93f262326f84b522631534ee1faacd957c2"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": null,
+     "proofStatus": "UNRESOLVED_CAP",
+     "nodes": 5001,
+     "chanceNodes": 202,
+     "truncated": true,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "withinPhase1": false,
+     "certHash": "c241733c443af0ee9d45731c7aa9f5c8bc9f5431d84a1e26643aff6ee71e29d3"
+    }
+   ]
+  },
+  {
+   "rootId": "G1T5",
+   "arm": "E1",
+   "class": "SURVIVES_WITHIN_H0",
+   "planHash": "e51c8d529170edb6fa724a0dc5206dafa2431750b5193588992a6a63dacfe4ea",
+   "postStateKeys": [
+    "t__e__e__e__e__em_e__e__e__t__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__ec_e__b__e__e__b__e__e__e__b__e__e__e__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#0,5#0#4#1,4|2,5##0#0#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 89,
+     "chanceNodes": 21,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "b6bfbc841edf1f5cc97fde2ca442d4a28e2e072ed0df41bfdf0a11c70f4c6c63"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 6978,
+     "chanceNodes": 403,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 31825,
+     "policyMisses": 0,
+     "certHash": "f511d502eed5da8282cd19d24dc936f69d53c4b6d228cc5ca8a9f73d1aa98d35"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": false,
+     "proofStatus": "UNRESOLVED_CAP",
+     "nodes": 5001,
+     "chanceNodes": 136,
+     "truncated": true,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "withinPhase1": false,
+     "certHash": "7012c468b94f99c9413a4408b98b1679d8a8d91abeba94aa2f18df5b998d29f9"
+    }
+   ]
+  },
+  {
+   "rootId": "G1T5",
+   "arm": "H1",
+   "class": "SURVIVES_WITHIN_H0",
+   "planHash": "e51c8d529170edb6fa724a0dc5206dafa2431750b5193588992a6a63dacfe4ea",
+   "postStateKeys": [
+    "t__e__e__e__e__em_e__e__e__t__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__ec_e__b__e__e__b__e__e__e__b__e__e__e__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#0,5#0#4#1,4|2,5##0#0#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 89,
+     "chanceNodes": 21,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "b6bfbc841edf1f5cc97fde2ca442d4a28e2e072ed0df41bfdf0a11c70f4c6c63"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 6978,
+     "chanceNodes": 403,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 31825,
+     "policyMisses": 0,
+     "certHash": "f511d502eed5da8282cd19d24dc936f69d53c4b6d228cc5ca8a9f73d1aa98d35"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": false,
+     "proofStatus": "UNRESOLVED_CAP",
+     "nodes": 5001,
+     "chanceNodes": 136,
+     "truncated": true,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "withinPhase1": false,
+     "certHash": "7012c468b94f99c9413a4408b98b1679d8a8d91abeba94aa2f18df5b998d29f9"
+    }
+   ]
+  },
+  {
+   "rootId": "G1T6",
+   "arm": "E1",
+   "class": "SURVIVES_WITHIN_H1",
+   "planHash": "6d798287fc5ce51c54342d850c3c44c2e02ec1051c62148fd7b8c4c091f832c7",
+   "postStateKeys": [
+    "t__e__e__e__e__e__em_e__e__t__e__e__b__e__e__e__b__e__e__e__e__e__e__e__ec_e__b__e__e__e__e__e__e__e__e__b__e__e__b__e__e__e__b__e__e__e__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,4#0,6#0#3#5,5|8,2##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 47,
+     "chanceNodes": 0,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "d6d21b7d58398925a3205f5034e102e3aaa4537ba3402cc05c777fc7bbbd7ebc"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 47,
+     "chanceNodes": 0,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 142,
+     "policyMisses": 0,
+     "certHash": "249093675c70040c0f4cc1354a9c4abb66b60ed28e3629a1d0fbfb3cae3a25cb"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 2164,
+     "chanceNodes": 5,
+     "truncated": false,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 6952,
+     "policyMisses": 0,
+     "withinPhase1": false,
+     "certHash": "6b4adb47454fc4b923a1aa61311e0fb850d511b841463874e343f14a49ae2333"
+    }
+   ]
+  },
+  {
+   "rootId": "G1T6",
+   "arm": "H1",
+   "class": "SURVIVES_WITHIN_H1",
+   "planHash": "a3f3792b0b93879131117cb922947cad7f9e53ce57cfaf710e2956feca9431c3",
+   "postStateKeys": [
+    "t__e__e__e__e__e__em_e__e__t__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__ec_e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,5#0,6#0#3#5,5|8,2##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 49,
+     "chanceNodes": 0,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "1dbdf9f4f6aa04e71f7b09733c0efe7a2935ef9784dac783e5ffcf2f3eadccc1"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 49,
+     "chanceNodes": 0,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 154,
+     "policyMisses": 0,
+     "certHash": "42abdebe4089aed8e123da8dda688835440983a1d7925dbe30f4cd94494afaab"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 1078,
+     "chanceNodes": 2,
+     "truncated": false,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 3609,
+     "policyMisses": 0,
+     "withinPhase1": false,
+     "certHash": "9328b6042181ce8d361d19f14cd9053660f2bbf85a530489fb7c239818230665"
+    }
+   ]
+  },
+  {
+   "rootId": "G1T7",
+   "arm": "E1",
+   "class": "SURVIVES_WITHIN_H1",
+   "planHash": "d6f22aae0e47801a7c353b4299540fdfd15d6da35f1dc0efa9b67694bc06f941",
+   "postStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__b__e__em_e__e__e__e__e__e__e__b__e__ec_e__e__e__e__e__e__e__e__e__e__b__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,8#1,8#0#3#5,5|8,2##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 40,
+     "chanceNodes": 0,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "f68d5ca66207ac8078369609441d5ba4b2f219f552951d277d44aacde8859867"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 40,
+     "chanceNodes": 0,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 114,
+     "policyMisses": 0,
+     "certHash": "4ac804be7f5e6b41fe507a055b2fa8acd89d56e38008f15729b352540ff204fc"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 1105,
+     "chanceNodes": 2,
+     "truncated": false,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 3756,
+     "policyMisses": 0,
+     "withinPhase1": false,
+     "certHash": "fa2d862d41043d37127327de57e9133cb9e01cdee5758db75761c67993842887"
+    }
+   ]
+  },
+  {
+   "rootId": "G1T7",
+   "arm": "H1",
+   "class": "SURVIVES_WITHIN_H1",
+   "planHash": "a8dc3174ff06326d987a94ae6e573bd73efd4dba609231d394a027e6a73529e6",
+   "postStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__b__e__em_e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__ec_e__b__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,7#1,8#0#3#5,5|8,2##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 39,
+     "chanceNodes": 0,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "4b5423f94a5177b69d755b19cb3fbe8aadf95be309b1b707d1c6ad9d685eda0f"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 39,
+     "chanceNodes": 0,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 122,
+     "policyMisses": 0,
+     "certHash": "e8d3e0628c58ff0c88b9328d58cde2e369464aca1ba2ffeee25d1d2fd7e196fd"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 990,
+     "chanceNodes": 2,
+     "truncated": false,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 3394,
+     "policyMisses": 0,
+     "withinPhase1": false,
+     "certHash": "f0eba2e16b0109359f6a439cf5dc86843b7e9a11bc3956fbcf54b3424012e0c8"
+    }
+   ]
+  },
+  {
+   "rootId": "G1T8",
+   "arm": "E1",
+   "class": "SURVIVES_WITHIN_H0",
+   "planHash": "0fc647a0fb9222753e252fb5126634f1c0d454bbb927a1201b424af7946cc984",
+   "postStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__ec_e__b__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__e__e__e__m__m__tm_e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,7#9,0#0#4#5,5|8,2##0#0#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 37,
+     "chanceNodes": 2,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "e7ac0b3b6b543c0058b16f730d5aae1d86099e9c961ae715bde2684bbb913daf"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 637,
+     "chanceNodes": 2,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 2337,
+     "policyMisses": 0,
+     "certHash": "f7dfe8a42768a9fe39328c919af60734def74af278a432aced5658505dfb9b77"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": false,
+     "proofStatus": "UNRESOLVED_CAP",
+     "nodes": 5001,
+     "chanceNodes": 50,
+     "truncated": true,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "withinPhase1": false,
+     "certHash": "f840d60f35a4c7ab7094d8ebc193a4e4e1357fbe7ad8fbf64d5799b416487973"
+    }
+   ]
+  },
+  {
+   "rootId": "G1T8",
+   "arm": "H1",
+   "class": "SURVIVES_WITHIN_H0",
+   "planHash": "567aee01ea9c3725876b837705d69ece0759dff7becbf3dcff5cb5b20314de7d",
+   "postStateKeys": [
+    "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__ec_e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__e__e__e__e__e__m__m__tm_e__e__e__e__e__e__e__e__t__#single#playing#mouse#1,7#9,0#0#4#5,5|8,2##0#0#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 37,
+     "chanceNodes": 2,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "b00c009c8b24aa1148ac7c69e6f017793f6a96713f2657f2329ba13de1e79a8d"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 687,
+     "chanceNodes": 2,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 2521,
+     "policyMisses": 0,
+     "certHash": "c0bf7db4a6466ec0a3d159ab4909bd5d349e19c0db2240e701d01fcce819595e"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": false,
+     "proofStatus": "UNRESOLVED_CAP",
+     "nodes": 5001,
+     "chanceNodes": 48,
+     "truncated": true,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "withinPhase1": false,
+     "certHash": "fb9fd1a73d4d17d48c3f531f83c50281be226aa88c4632ac48c1cb06697b63e4"
+    }
+   ]
+  },
+  {
+   "rootId": "G1T9",
+   "arm": "E1",
+   "class": "REFUTED",
+   "planHash": "feddd1c206ec1f68e3fbacaaeb39432b0da514aecb8a51a90d8ef4ae602fe9b1",
+   "postStateKeys": [
+    "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__ec_b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,4#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 659,
+     "chanceNodes": 36,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 103,
+     "policyMisses": 0,
+     "certHash": "f401073707a4e20e71d64deb2c981f972c4574c0924ab4b87eba9b4897836492"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 1250,
+     "chanceNodes": 36,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "f9307b8138ca50672280965d9e54e64125600b11c9b69d558f7fbdae7c4b8f77"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 4822,
+     "chanceNodes": 418,
+     "truncated": false,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "withinPhase1": false,
+     "certHash": "7250c30c5a0059fad26c4bf362fb5759dc54304b257bdefeab134a6dcc2031df"
+    }
+   ]
+  },
+  {
+   "rootId": "G1T9",
+   "arm": "H1",
+   "class": "REFUTED",
+   "planHash": "0d8424c67bfe25ca2827a83194de8d93609cc1924508649f6cce8b3a8009d6f7",
+   "postStateKeys": [
+    "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__ec_e__e__e__e__e__e__e__e__e__e__b__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,4#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "mouseForce_H0": [
+    {
+     "value": true,
+     "proofStatus": "PROVEN",
+     "nodes": 659,
+     "chanceNodes": 36,
+     "verifyVerdict": "PROVEN",
+     "verifyLeaves": 103,
+     "policyMisses": 0,
+     "certHash": "45b54ae4c771dfd1e2d5f6f34907d6d618dd1f1cb970c30a5a35149f9af3354a"
+    }
+   ],
+   "catSurvive_H0": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 1250,
+     "chanceNodes": 36,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "certHash": "9ec4ee54d43f6b2e1d35fc489da94f159e9f86f4a22c5788b3e8e1df2ba84b4d"
+    }
+   ],
+   "catSurvive_H1_phase1": [
+    {
+     "value": false,
+     "proofStatus": "NOT_PROVEN",
+     "nodes": 3071,
+     "chanceNodes": 264,
+     "truncated": false,
+     "verifyVerdict": null,
+     "verifyLeaves": null,
+     "policyMisses": null,
+     "withinPhase1": false,
+     "certHash": "0dc04b86bd80e16bc1380ec4625eee338a3bfc302116d9d37d240b800340c54e"
+    }
+   ]
+  }
+ ]
+}

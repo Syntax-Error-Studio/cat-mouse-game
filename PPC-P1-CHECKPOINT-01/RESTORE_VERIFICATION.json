@@ -1,0 +1,53 @@
+{
+  "artifactId": "RESTORE_VERIFICATION",
+  "round": "PPC-P1-CHECKPOINT-01",
+  "verifiedAt": "2026-11-13T13:17:21.774Z",
+  "archive": {
+    "path": "F:/ppc-checkpoints/PPC-P1-CHECKPOINT-01-candidate.tar.gz",
+    "sha256": "5cd732828856f2b3cd903cc20c584bbb0fec7906d283ec08415bd2653a9425d5",
+    "bytes": 4051823
+  },
+  "extractedTo": "F:\\ppc-checkpoints\\restore-verify\\restore-m3C2Q6",
+  "method": "tar -xzf into a fresh mkdtemp directory outside the repository; per-file sha256/bytes/EOL compared against CHECKPOINT_MANIFEST.json; file-list equality checked both ways. NO git apply, NO git write command, NO touch of the working tree.",
+  "manifestMembers": 429,
+  "byteExactMatches": 429,
+  "failures": [],
+  "extras": [],
+  "missing": [],
+  "archiveEqualsWorktree": {
+    "matched": 420,
+    "mismatched": 0,
+    "detail": []
+  },
+  "eolPreserved": [
+    "source/src/game/ai/__tests__/expectiminimax.test.ts",
+    "source/src/game/ai/__tests__/hardTurnAbsoluteDeadlineEngine.test.ts",
+    "source/src/game/engine.ts",
+    "evidence/PPC-P1-ID-01/perf/STATS.json",
+    "evidence/PPC-P1-TIME-01/CALL_GRAPH.md",
+    "evidence/PPC-P1-TIME-01/SOURCE_MANIFEST.json",
+    "evidence/PPC-P1-TIME-02/INSTRUMENTATION_MANIFEST.json",
+    "evidence/PPC-P1-TIME-02/SOURCE_MANIFEST.json",
+    "evidence/PPC-P1-TIME-02/TURN_ACCOUNTING.json",
+    "evidence/PPC-P1-TIME-02/trace/aggregate.py",
+    "evidence/PPC-P1-TIME-02/trace/arm/game/ai/turnLazy.ts",
+    "evidence/PPC-P1-TIME-02/trace/arm/game/engine.ts",
+    "evidence/PPC-P1-TIME-02/trace/run_trace.test.ts",
+    "evidence/PPC-P1-PLAN-01/CORRECTNESS_RESULTS.json",
+    "evidence/PPC-P1-PLAN-01/SOURCE_MANIFEST.json",
+    "evidence/PPC-P1-QUALITY-01/BASELINE_REVERSAL_WITNESS.json",
+    "evidence/PPC-P1-QUALITY-01/CORRECTNESS_RESULTS.json",
+    "evidence/PPC-P1-QUALITY-01/POSTFIX_REVERSAL_WITNESS.json",
+    "evidence/PPC-P1-QUALITY-01/SOURCE_MANIFEST.json",
+    "evidence/PPC-P1-CLOSURE-01/arm-head/src/game/ai/__tests__/expectiminimax.test.ts",
+    "evidence/PPC-P1-CLOSURE-01/arm-head/src/game/ai/__tests__/hardTurnAbsoluteDeadlineEngine.test.ts",
+    "evidence/PPC-P1-CLOSURE-01/arm-head/src/game/ai/__tests__/m3MemoryRepair.test.ts",
+    "evidence/PPC-P1-CLOSURE-01/arm-head/src/game/ai/__tests__/planCompletionRepair.test.ts",
+    "evidence/PPC-P1-CLOSURE-01/arm-head/src/game/ai/turnLazy.ts",
+    "evidence/PPC-P1-CLOSURE-01/probe/hv14_t4_planner.test.ts",
+    "evidence/PPC-P1-CLOSURE-01/probe/hv14_t4_terminal.test.ts",
+    "evidence/PPC-P1-CLOSURE-FIX-01/_raw/changed_files.json",
+    "evidence/PPC-P1-CLOSURE-FIX-01/_raw/manifest_crosscheck.json"
+  ],
+  "verdict": "PASS"
+}

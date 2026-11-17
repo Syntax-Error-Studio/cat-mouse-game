@@ -1,0 +1,1053 @@
+{
+  "artefact": "PHASE2_ANALYSIS",
+  "generatedAt": "2026-11-16T17:11:09.531Z",
+  "inputs": {
+    "dir": "PPC-MCTS-01B/data/phase2-formal",
+    "files": [
+      "rep-01.jsonl",
+      "rep-02.jsonl",
+      "rep-03.jsonl",
+      "rep-04.jsonl",
+      "rep-05.jsonl",
+      "rep-06.jsonl",
+      "rep-07.jsonl",
+      "rep-08.jsonl",
+      "rep-09.jsonl",
+      "rep-10.jsonl",
+      "rep-11.jsonl",
+      "rep-12.jsonl",
+      "rep-13.jsonl",
+      "rep-14.jsonl",
+      "rep-15.jsonl",
+      "rep-16.jsonl",
+      "rep-17.jsonl",
+      "rep-18.jsonl",
+      "rep-19.jsonl",
+      "rep-20.jsonl"
+    ],
+    "sha256": [
+      {
+        "file": "rep-01.jsonl",
+        "sha256": "8e066c793e889e2af5608e02a2a54225c8587a3244a5550ef3f4a139c7341cb2"
+      },
+      {
+        "file": "rep-02.jsonl",
+        "sha256": "cbba64f08e65f233ca838d1548aa6addc07f1c81e3ce53453ed1037522a860fe"
+      },
+      {
+        "file": "rep-03.jsonl",
+        "sha256": "3b41d402dcb1049b18b6b0a947999c8ba64a6af6913c4ff21630e8ea8f274822"
+      },
+      {
+        "file": "rep-04.jsonl",
+        "sha256": "0029383e710e0e227b7ba13bf6812596dbfaed75a85a7133928cab3487615403"
+      },
+      {
+        "file": "rep-05.jsonl",
+        "sha256": "af9dd93994172078eae52bf7526d17eea07f588c9d37e81b7984441c3be5f766"
+      },
+      {
+        "file": "rep-06.jsonl",
+        "sha256": "fe43f37b41783cf07bf6e24757d3a80193634c35c1e20b86f92f07f98d5a42b1"
+      },
+      {
+        "file": "rep-07.jsonl",
+        "sha256": "4d2f34a1b270f61a86449ddc9d077b3fb081b4505fef2d1562026ef1b3bef0a4"
+      },
+      {
+        "file": "rep-08.jsonl",
+        "sha256": "2083032687179260c485e5f62ed991018e0f590a8c47ba6a1def179ae5774502"
+      },
+      {
+        "file": "rep-09.jsonl",
+        "sha256": "ef8829f1ef3c72cdd5d10aa1659ba4eab3ccb10f0c281a605ee21d5b2384cc41"
+      },
+      {
+        "file": "rep-10.jsonl",
+        "sha256": "4a3d22f2fb42421cd75170a7060fa156e89a1b561627341b6f4352d9264d4a4c"
+      },
+      {
+        "file": "rep-11.jsonl",
+        "sha256": "1f41c6c248b461ec98d6e9a39cef1c969ec67a1234abe823cde6bbb74362c8ed"
+      },
+      {
+        "file": "rep-12.jsonl",
+        "sha256": "f1beb62877192d188dc678589c4425f6dda9f4d12e4c301477f4cd52179af90e"
+      },
+      {
+        "file": "rep-13.jsonl",
+        "sha256": "da70b2be05b0348ce2a316fd1f8e0966125db5fb9ff1f3f921f27890cdc9f901"
+      },
+      {
+        "file": "rep-14.jsonl",
+        "sha256": "e79da3f30787e4199cd3dd0c0b2a99fec2cba9d9df4a2e46687e80d4ce7d1e6e"
+      },
+      {
+        "file": "rep-15.jsonl",
+        "sha256": "f26e86c5d58c8981b1076f9f157e307aa53fc3e5bea2920c961e22880bb2da49"
+      },
+      {
+        "file": "rep-16.jsonl",
+        "sha256": "82944008eec16c31718b61cf4542fe4ce7d3972b7ed863525e720de83e2bb084"
+      },
+      {
+        "file": "rep-17.jsonl",
+        "sha256": "2116b40601f29c4cfb33caece3467065798e881b67fb2522452b035b99a7992d"
+      },
+      {
+        "file": "rep-18.jsonl",
+        "sha256": "1df4b775775ed77092203479ab4d062ca7c7e800d0ecc0e417ce003a35162348"
+      },
+      {
+        "file": "rep-19.jsonl",
+        "sha256": "d364fe97b76473015e4dd7868a561655db53368cfef2687f88dffa928a51f0c3"
+      },
+      {
+        "file": "rep-20.jsonl",
+        "sha256": "34cef41a79f6bd4767e76d76ce2bff4e26f3efa3116cec4f091329414a286271"
+      }
+    ]
+  },
+  "integrity": {
+    "records": 960,
+    "cells": 480,
+    "pairs": 480,
+    "missingPairs": 0,
+    "errors": 0,
+    "replayFailures": 0,
+    "replayTerminal": 0,
+    "planFullTurnConsumed": 960,
+    "mathRandomCalls": 0,
+    "deadlineFired": 960,
+    "budgetFired": 0,
+    "withinPlanner150ms": 960,
+    "legacyPilotComparable150ms": 960,
+    "overPlanner150ms": 0,
+    "repetitions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "roots": [
+      "G1T1",
+      "G1T2",
+      "G1T3",
+      "G1T4",
+      "G1T5",
+      "G1T6",
+      "G1T7",
+      "G1T8",
+      "G1T9",
+      "G2T1",
+      "G2T2",
+      "G2T3",
+      "G2T4",
+      "G2T5",
+      "G2T6",
+      "G2T7",
+      "G2T8",
+      "G5T1",
+      "G5T2",
+      "G5T3",
+      "G5T4",
+      "G6T1",
+      "G6T2",
+      "G6T3"
+    ],
+    "files": [
+      "rep-01.jsonl",
+      "rep-02.jsonl",
+      "rep-03.jsonl",
+      "rep-04.jsonl",
+      "rep-05.jsonl",
+      "rep-06.jsonl",
+      "rep-07.jsonl",
+      "rep-08.jsonl",
+      "rep-09.jsonl",
+      "rep-10.jsonl",
+      "rep-11.jsonl",
+      "rep-12.jsonl",
+      "rep-13.jsonl",
+      "rep-14.jsonl",
+      "rep-15.jsonl",
+      "rep-16.jsonl",
+      "rep-17.jsonl",
+      "rep-18.jsonl",
+      "rep-19.jsonl",
+      "rep-20.jsonl"
+    ]
+  },
+  "efficiency": {
+    "baselineSims": {
+      "n": 480,
+      "mean": 27.666666666666668,
+      "p25": 15,
+      "p50": 18,
+      "p75": 21.25,
+      "p95": 58.049999999999955,
+      "p99": 167,
+      "min": 7,
+      "max": 170
+    },
+    "preparedSims": {
+      "n": 480,
+      "mean": 27.675,
+      "p25": 15,
+      "p50": 18,
+      "p75": 22,
+      "p95": 58,
+      "p99": 162,
+      "min": 7,
+      "max": 164
+    },
+    "pairedDiff": {
+      "n": 480,
+      "mean": 0.008333333333333333,
+      "p25": 0,
+      "p50": 0,
+      "p75": 1,
+      "p95": 2,
+      "p99": 7.2099999999999795,
+      "min": -11,
+      "max": 9
+    },
+    "meanPairedDiff": 0.008333333333333333,
+    "relativeGain": 0.0003012048192771084,
+    "bootstrap": {
+      "method": "root-stratified paired cluster bootstrap (cluster = root, 24 clusters)",
+      "iterations": 10000,
+      "seed": 20261117,
+      "meanDiffCI95": {
+        "low": -0.4875,
+        "high": 0.30833333333333335
+      },
+      "relativeGainCI95": {
+        "low": -0.011866675218649566,
+        "high": 0.016512664285158282
+      },
+      "shareOfResamplesWithPositiveDiff": 0.5719
+    },
+    "orderBalanced": {
+      "why": "The two arms run back to back in each fresh process and the order alternates by repetition, so the arm that runs first pays JIT warm-up. The pooled estimate lets that bias cancel; this block separates the two effects.",
+      "preparedRanSecond": {
+        "reps": "odd",
+        "cells": 240,
+        "relativeGain": 0.013785790031813362
+      },
+      "preparedRanFirst": {
+        "reps": "even",
+        "cells": 240,
+        "relativeGain": -0.013025902081149872
+      },
+      "orderEffect": {
+        "value": 0.013405846056481617,
+        "ci95": {
+          "low": -0.004247442451942314,
+          "high": 0.0423256510738229
+        }
+      },
+      "balancedArmEffect": {
+        "value": 0.00037994397533174483,
+        "ci95": {
+          "low": -0.011645768243798798,
+          "high": 0.016741257194920305
+        }
+      }
+    }
+  },
+  "timeByArm": {
+    "baseline": {
+      "searchMs": {
+        "n": 480,
+        "mean": 100.34985562499988,
+        "p25": 100.09827499999977,
+        "p50": 100.22460000000001,
+        "p75": 100.32777499999989,
+        "p95": 101.49413999999997,
+        "p99": 102.61112799999985,
+        "min": 99.98230000000001,
+        "max": 106.35339999999997
+      },
+      "plannerWallMs": {
+        "n": 480,
+        "mean": 101.06309083333339,
+        "p25": 100.56479999999999,
+        "p50": 100.77075000000002,
+        "p75": 101.32602499999985,
+        "p95": 102.55533000000004,
+        "p99": 103.96240300000007,
+        "min": 100.07330000000002,
+        "max": 106.89540000000034
+      },
+      "replayMs": {
+        "n": 480,
+        "mean": 0.15282354166666626,
+        "p25": 0.1287000000002081,
+        "p50": 0.13429999999985398,
+        "p75": 0.14684999999997217,
+        "p95": 0.22327000000001926,
+        "p99": 0.4436459999999871,
+        "min": 0.11779999999998836,
+        "max": 1.175200000000018
+      },
+      "validationEndToEndMs": {
+        "n": 480,
+        "mean": 101.21591437500007,
+        "p25": 100.7066749999999,
+        "p50": 100.9090000000001,
+        "p75": 101.45722499999965,
+        "p95": 102.82991499999976,
+        "p99": 104.16126100000012,
+        "min": 100.21349999999984,
+        "max": 107.02380000000039
+      }
+    },
+    "prepared": {
+      "searchMs": {
+        "n": 480,
+        "mean": 100.31837312499992,
+        "p25": 100.11230000000012,
+        "p50": 100.21989999999994,
+        "p75": 100.33364999999979,
+        "p95": 101.12005999999997,
+        "p99": 102.11891299999972,
+        "min": 99.93169999999998,
+        "max": 103.83350000000019
+      },
+      "plannerWallMs": {
+        "n": 480,
+        "mean": 101.06920791666668,
+        "p25": 100.59979999999985,
+        "p50": 100.80009999999993,
+        "p75": 101.36650000000007,
+        "p95": 102.68732500000027,
+        "p99": 103.66690999999997,
+        "min": 100.07139999999981,
+        "max": 104.46329999999989
+      },
+      "replayMs": {
+        "n": 480,
+        "mean": 0.1507720833333392,
+        "p25": 0.12880000000029668,
+        "p50": 0.13429999999971187,
+        "p75": 0.14945000000005848,
+        "p95": 0.2150550000001855,
+        "p99": 0.4298839999999552,
+        "min": 0.11819999999988795,
+        "max": 0.4538000000000011
+      },
+      "validationEndToEndMs": {
+        "n": 480,
+        "mean": 101.21998000000012,
+        "p25": 100.748175,
+        "p50": 100.94325000000018,
+        "p75": 101.50312500000031,
+        "p95": 102.97515000000043,
+        "p99": 103.81119400000007,
+        "min": 100.19669999999996,
+        "max": 104.59310000000005
+      }
+    }
+  },
+  "structure": {
+    "baseline": {
+      "simulations": {
+        "n": 480,
+        "mean": 27.666666666666668,
+        "p25": 15,
+        "p50": 18,
+        "p75": 21.25,
+        "p95": 58.049999999999955,
+        "p99": 167,
+        "min": 7,
+        "max": 170
+      },
+      "nodesCreated": {
+        "n": 480,
+        "mean": 30.297916666666666,
+        "p25": 17,
+        "p50": 20,
+        "p75": 23,
+        "p95": 81.09999999999991,
+        "p99": 158.20999999999998,
+        "min": 9,
+        "max": 160
+      },
+      "rolloutSteps": {
+        "n": 480,
+        "mean": 229.54375,
+        "p25": 213.25,
+        "p50": 238,
+        "p75": 258,
+        "p95": 284,
+        "p99": 290,
+        "min": 114,
+        "max": 290
+      },
+      "chanceSamples": {
+        "n": 480,
+        "mean": 13.191666666666666,
+        "p25": 0,
+        "p50": 0,
+        "p75": 20,
+        "p95": 55,
+        "p99": 58,
+        "min": 0,
+        "max": 60
+      },
+      "treePlanLength": {
+        "n": 480,
+        "mean": 2.73125,
+        "p25": 2,
+        "p50": 3,
+        "p75": 3,
+        "p95": 4,
+        "p99": 4,
+        "min": 2,
+        "max": 4
+      },
+      "extensionSteps": {
+        "n": 480,
+        "mean": 1.4354166666666666,
+        "p25": 1,
+        "p50": 1,
+        "p75": 2,
+        "p95": 3,
+        "p99": 3,
+        "min": 0,
+        "max": 3
+      },
+      "planLength": {
+        "n": 480,
+        "mean": 4.166666666666667,
+        "p25": 4,
+        "p50": 4,
+        "p75": 4,
+        "p95": 5,
+        "p99": 5,
+        "min": 4,
+        "max": 5
+      },
+      "planActionCost": {
+        "n": 480,
+        "mean": 4,
+        "p25": 4,
+        "p50": 4,
+        "p75": 4,
+        "p95": 4,
+        "p99": 4,
+        "min": 4,
+        "max": 4
+      },
+      "ruleCalls": {
+        "n": 480,
+        "mean": 2069.5291666666667,
+        "p25": 1885,
+        "p50": 2111,
+        "p75": 2269,
+        "p95": 2624,
+        "p99": 2850.63,
+        "min": 1097,
+        "max": 2885
+      },
+      "preparedSteps": {
+        "n": 480,
+        "mean": 0,
+        "p25": 0,
+        "p50": 0,
+        "p75": 0,
+        "p95": 0,
+        "p99": 0,
+        "min": 0,
+        "max": 0
+      },
+      "impureFallbacks": {
+        "n": 480,
+        "mean": 0,
+        "p25": 0,
+        "p50": 0,
+        "p75": 0,
+        "p95": 0,
+        "p99": 0,
+        "min": 0,
+        "max": 0
+      },
+      "planExtendedShare": 0.9041666666666667
+    },
+    "prepared": {
+      "simulations": {
+        "n": 480,
+        "mean": 27.675,
+        "p25": 15,
+        "p50": 18,
+        "p75": 22,
+        "p95": 58,
+        "p99": 162,
+        "min": 7,
+        "max": 164
+      },
+      "nodesCreated": {
+        "n": 480,
+        "mean": 30.272916666666667,
+        "p25": 17,
+        "p50": 20,
+        "p75": 24,
+        "p95": 81,
+        "p99": 154.20999999999998,
+        "min": 9,
+        "max": 157
+      },
+      "rolloutSteps": {
+        "n": 480,
+        "mean": 231.79791666666668,
+        "p25": 217.25,
+        "p50": 245.5,
+        "p75": 259,
+        "p95": 280,
+        "p99": 303,
+        "min": 115,
+        "max": 303
+      },
+      "chanceSamples": {
+        "n": 480,
+        "mean": 13.289583333333333,
+        "p25": 0,
+        "p50": 0,
+        "p75": 20,
+        "p95": 55,
+        "p99": 57.20999999999998,
+        "min": 0,
+        "max": 59
+      },
+      "treePlanLength": {
+        "n": 480,
+        "mean": 2.779166666666667,
+        "p25": 2,
+        "p50": 3,
+        "p75": 3,
+        "p95": 4,
+        "p99": 4,
+        "min": 2,
+        "max": 4
+      },
+      "extensionSteps": {
+        "n": 480,
+        "mean": 1.3875,
+        "p25": 1,
+        "p50": 1,
+        "p75": 2,
+        "p95": 3,
+        "p99": 3,
+        "min": 0,
+        "max": 3
+      },
+      "planLength": {
+        "n": 480,
+        "mean": 4.166666666666667,
+        "p25": 4,
+        "p50": 4,
+        "p75": 4,
+        "p95": 5,
+        "p99": 5,
+        "min": 4,
+        "max": 5
+      },
+      "planActionCost": {
+        "n": 480,
+        "mean": 4,
+        "p25": 4,
+        "p50": 4,
+        "p75": 4,
+        "p95": 4,
+        "p99": 4,
+        "min": 4,
+        "max": 4
+      },
+      "ruleCalls": {
+        "n": 480,
+        "mean": 1092.6520833333334,
+        "p25": 990,
+        "p50": 1116,
+        "p75": 1206.25,
+        "p95": 1384.1,
+        "p99": 1641.2599999999998,
+        "min": 548,
+        "max": 1670
+      },
+      "preparedSteps": {
+        "n": 480,
+        "mean": 236.83958333333334,
+        "p25": 221.75,
+        "p50": 249,
+        "p75": 263,
+        "p95": 282.04999999999995,
+        "p99": 303.41999999999996,
+        "min": 118,
+        "max": 306
+      },
+      "impureFallbacks": {
+        "n": 480,
+        "mean": 0,
+        "p25": 0,
+        "p50": 0,
+        "p75": 0,
+        "p95": 0,
+        "p99": 0,
+        "min": 0,
+        "max": 0
+      },
+      "planExtendedShare": 0.8875
+    }
+  },
+  "perRoot": [
+    {
+      "root": "G1T1",
+      "cells": 20,
+      "baselineMean": 16.05,
+      "preparedMean": 16.5,
+      "meanDiff": 0.45,
+      "relativeGain": 0.028037383177570093,
+      "improvedCells": 10,
+      "equalCells": 9,
+      "worseCells": 1
+    },
+    {
+      "root": "G1T2",
+      "cells": 20,
+      "baselineMean": 15.75,
+      "preparedMean": 16,
+      "meanDiff": 0.25,
+      "relativeGain": 0.015873015873015872,
+      "improvedCells": 5,
+      "equalCells": 15,
+      "worseCells": 0
+    },
+    {
+      "root": "G1T3",
+      "cells": 20,
+      "baselineMean": 18.15,
+      "preparedMean": 18.5,
+      "meanDiff": 0.35,
+      "relativeGain": 0.01928374655647383,
+      "improvedCells": 8,
+      "equalCells": 11,
+      "worseCells": 1
+    },
+    {
+      "root": "G1T4",
+      "cells": 20,
+      "baselineMean": 20.85,
+      "preparedMean": 21.15,
+      "meanDiff": 0.3,
+      "relativeGain": 0.014388489208633093,
+      "improvedCells": 4,
+      "equalCells": 15,
+      "worseCells": 1
+    },
+    {
+      "root": "G1T5",
+      "cells": 20,
+      "baselineMean": 7.65,
+      "preparedMean": 7.75,
+      "meanDiff": 0.1,
+      "relativeGain": 0.013071895424836602,
+      "improvedCells": 2,
+      "equalCells": 18,
+      "worseCells": 0
+    },
+    {
+      "root": "G1T6",
+      "cells": 20,
+      "baselineMean": 15,
+      "preparedMean": 15.15,
+      "meanDiff": 0.15,
+      "relativeGain": 0.01,
+      "improvedCells": 8,
+      "equalCells": 8,
+      "worseCells": 4
+    },
+    {
+      "root": "G1T7",
+      "cells": 20,
+      "baselineMean": 17.55,
+      "preparedMean": 17.8,
+      "meanDiff": 0.25,
+      "relativeGain": 0.014245014245014245,
+      "improvedCells": 4,
+      "equalCells": 15,
+      "worseCells": 1
+    },
+    {
+      "root": "G1T8",
+      "cells": 20,
+      "baselineMean": 37.3,
+      "preparedMean": 37.35,
+      "meanDiff": 0.05,
+      "relativeGain": 0.0013404825737265418,
+      "improvedCells": 5,
+      "equalCells": 14,
+      "worseCells": 1
+    },
+    {
+      "root": "G1T9",
+      "cells": 20,
+      "baselineMean": 13.65,
+      "preparedMean": 13.75,
+      "meanDiff": 0.1,
+      "relativeGain": 0.007326007326007326,
+      "improvedCells": 3,
+      "equalCells": 16,
+      "worseCells": 1
+    },
+    {
+      "root": "G2T1",
+      "cells": 20,
+      "baselineMean": 16.65,
+      "preparedMean": 17.05,
+      "meanDiff": 0.4,
+      "relativeGain": 0.024024024024024027,
+      "improvedCells": 7,
+      "equalCells": 13,
+      "worseCells": 0
+    },
+    {
+      "root": "G2T2",
+      "cells": 20,
+      "baselineMean": 20.95,
+      "preparedMean": 21.35,
+      "meanDiff": 0.4,
+      "relativeGain": 0.01909307875894988,
+      "improvedCells": 8,
+      "equalCells": 12,
+      "worseCells": 0
+    },
+    {
+      "root": "G2T3",
+      "cells": 20,
+      "baselineMean": 18.2,
+      "preparedMean": 18.75,
+      "meanDiff": 0.55,
+      "relativeGain": 0.030219780219780223,
+      "improvedCells": 12,
+      "equalCells": 7,
+      "worseCells": 1
+    },
+    {
+      "root": "G2T4",
+      "cells": 20,
+      "baselineMean": 13.5,
+      "preparedMean": 13.7,
+      "meanDiff": 0.2,
+      "relativeGain": 0.014814814814814815,
+      "improvedCells": 5,
+      "equalCells": 14,
+      "worseCells": 1
+    },
+    {
+      "root": "G2T5",
+      "cells": 20,
+      "baselineMean": 19.95,
+      "preparedMean": 20.15,
+      "meanDiff": 0.2,
+      "relativeGain": 0.010025062656641605,
+      "improvedCells": 4,
+      "equalCells": 16,
+      "worseCells": 0
+    },
+    {
+      "root": "G2T6",
+      "cells": 20,
+      "baselineMean": 37.95,
+      "preparedMean": 38.15,
+      "meanDiff": 0.2,
+      "relativeGain": 0.005270092226613966,
+      "improvedCells": 8,
+      "equalCells": 9,
+      "worseCells": 3
+    },
+    {
+      "root": "G2T7",
+      "cells": 20,
+      "baselineMean": 22.15,
+      "preparedMean": 22.4,
+      "meanDiff": 0.25,
+      "relativeGain": 0.011286681715575621,
+      "improvedCells": 8,
+      "equalCells": 9,
+      "worseCells": 3
+    },
+    {
+      "root": "G2T8",
+      "cells": 20,
+      "baselineMean": 57.15,
+      "preparedMean": 56.7,
+      "meanDiff": -0.45,
+      "relativeGain": -0.007874015748031496,
+      "improvedCells": 2,
+      "equalCells": 9,
+      "worseCells": 9
+    },
+    {
+      "root": "G5T1",
+      "cells": 20,
+      "baselineMean": 12,
+      "preparedMean": 12.2,
+      "meanDiff": 0.2,
+      "relativeGain": 0.016666666666666666,
+      "improvedCells": 6,
+      "equalCells": 13,
+      "worseCells": 1
+    },
+    {
+      "root": "G5T2",
+      "cells": 20,
+      "baselineMean": 17.7,
+      "preparedMean": 17.85,
+      "meanDiff": 0.15,
+      "relativeGain": 0.00847457627118644,
+      "improvedCells": 6,
+      "equalCells": 11,
+      "worseCells": 3
+    },
+    {
+      "root": "G5T3",
+      "cells": 20,
+      "baselineMean": 19.95,
+      "preparedMean": 20.55,
+      "meanDiff": 0.6,
+      "relativeGain": 0.03007518796992481,
+      "improvedCells": 12,
+      "equalCells": 7,
+      "worseCells": 1
+    },
+    {
+      "root": "G5T4",
+      "cells": 20,
+      "baselineMean": 164.85,
+      "preparedMean": 159.85,
+      "meanDiff": -5,
+      "relativeGain": -0.030330603579011222,
+      "improvedCells": 0,
+      "equalCells": 0,
+      "worseCells": 20
+    },
+    {
+      "root": "G6T1",
+      "cells": 20,
+      "baselineMean": 14.8,
+      "preparedMean": 15.35,
+      "meanDiff": 0.55,
+      "relativeGain": 0.037162162162162164,
+      "improvedCells": 10,
+      "equalCells": 0,
+      "worseCells": 10
+    },
+    {
+      "root": "G6T2",
+      "cells": 20,
+      "baselineMean": 11.55,
+      "preparedMean": 12.1,
+      "meanDiff": 0.55,
+      "relativeGain": 0.04761904761904762,
+      "improvedCells": 10,
+      "equalCells": 2,
+      "worseCells": 8
+    },
+    {
+      "root": "G6T3",
+      "cells": 20,
+      "baselineMean": 54.7,
+      "preparedMean": 54.1,
+      "meanDiff": -0.6,
+      "relativeGain": -0.010968921389396709,
+      "improvedCells": 1,
+      "equalCells": 9,
+      "worseCells": 10
+    }
+  ],
+  "perRep": [
+    {
+      "repetition": 1,
+      "cells": 24,
+      "baselineMean": 27.708333333333332,
+      "preparedMean": 28.208333333333332,
+      "meanDiff": 0.5,
+      "relativeGain": 0.01804511278195489
+    },
+    {
+      "repetition": 2,
+      "cells": 24,
+      "baselineMean": 27.75,
+      "preparedMean": 27.625,
+      "meanDiff": -0.125,
+      "relativeGain": -0.0045045045045045045
+    },
+    {
+      "repetition": 3,
+      "cells": 24,
+      "baselineMean": 27.375,
+      "preparedMean": 27.958333333333332,
+      "meanDiff": 0.5833333333333334,
+      "relativeGain": 0.021308980213089804
+    },
+    {
+      "repetition": 4,
+      "cells": 24,
+      "baselineMean": 27.875,
+      "preparedMean": 27.5,
+      "meanDiff": -0.375,
+      "relativeGain": -0.013452914798206279
+    },
+    {
+      "repetition": 5,
+      "cells": 24,
+      "baselineMean": 27.75,
+      "preparedMean": 28.125,
+      "meanDiff": 0.375,
+      "relativeGain": 0.013513513513513514
+    },
+    {
+      "repetition": 6,
+      "cells": 24,
+      "baselineMean": 27.833333333333332,
+      "preparedMean": 27.583333333333332,
+      "meanDiff": -0.25,
+      "relativeGain": -0.008982035928143712
+    },
+    {
+      "repetition": 7,
+      "cells": 24,
+      "baselineMean": 27.583333333333332,
+      "preparedMean": 27.875,
+      "meanDiff": 0.2916666666666667,
+      "relativeGain": 0.010574018126888218
+    },
+    {
+      "repetition": 8,
+      "cells": 24,
+      "baselineMean": 28,
+      "preparedMean": 27.75,
+      "meanDiff": -0.25,
+      "relativeGain": -0.008928571428571428
+    },
+    {
+      "repetition": 9,
+      "cells": 24,
+      "baselineMean": 27.375,
+      "preparedMean": 27.791666666666668,
+      "meanDiff": 0.4166666666666667,
+      "relativeGain": 0.015220700152207002
+    },
+    {
+      "repetition": 10,
+      "cells": 24,
+      "baselineMean": 27.833333333333332,
+      "preparedMean": 27.416666666666668,
+      "meanDiff": -0.4166666666666667,
+      "relativeGain": -0.014970059880239523
+    },
+    {
+      "repetition": 11,
+      "cells": 24,
+      "baselineMean": 27.5,
+      "preparedMean": 27.875,
+      "meanDiff": 0.375,
+      "relativeGain": 0.013636363636363636
+    },
+    {
+      "repetition": 12,
+      "cells": 24,
+      "baselineMean": 27.833333333333332,
+      "preparedMean": 27.416666666666668,
+      "meanDiff": -0.4166666666666667,
+      "relativeGain": -0.014970059880239523
+    },
+    {
+      "repetition": 13,
+      "cells": 24,
+      "baselineMean": 27.333333333333332,
+      "preparedMean": 27.625,
+      "meanDiff": 0.2916666666666667,
+      "relativeGain": 0.010670731707317074
+    },
+    {
+      "repetition": 14,
+      "cells": 24,
+      "baselineMean": 28,
+      "preparedMean": 27.5,
+      "meanDiff": -0.5,
+      "relativeGain": -0.017857142857142856
+    },
+    {
+      "repetition": 15,
+      "cells": 24,
+      "baselineMean": 27.375,
+      "preparedMean": 27.666666666666668,
+      "meanDiff": 0.2916666666666667,
+      "relativeGain": 0.010654490106544902
+    },
+    {
+      "repetition": 16,
+      "cells": 24,
+      "baselineMean": 27.625,
+      "preparedMean": 27.125,
+      "meanDiff": -0.5,
+      "relativeGain": -0.01809954751131222
+    },
+    {
+      "repetition": 17,
+      "cells": 24,
+      "baselineMean": 27.5,
+      "preparedMean": 27.666666666666668,
+      "meanDiff": 0.16666666666666666,
+      "relativeGain": 0.006060606060606061
+    },
+    {
+      "repetition": 18,
+      "cells": 24,
+      "baselineMean": 27.625,
+      "preparedMean": 27.333333333333332,
+      "meanDiff": -0.2916666666666667,
+      "relativeGain": -0.010558069381598794
+    },
+    {
+      "repetition": 19,
+      "cells": 24,
+      "baselineMean": 27.541666666666668,
+      "preparedMean": 28.041666666666668,
+      "meanDiff": 0.5,
+      "relativeGain": 0.018154311649016642
+    },
+    {
+      "repetition": 20,
+      "cells": 24,
+      "baselineMean": 27.916666666666668,
+      "preparedMean": 27.416666666666668,
+      "meanDiff": -0.5,
+      "relativeGain": -0.017910447761194027
+    }
+  ],
+  "claims": {
+    "ruleCallsReduced": "see structure.*.ruleCalls — a cost statement, not a strength statement",
+    "simulationsIncreased": "NOT supported by this sample: the order-balanced 95% CI of the relative gain includes 0",
+    "orderBias": "running first in a fresh process costs 1.34% of throughput, which is larger than any arm effect measured here",
+    "playingStrength": "NOT MEASURED — no self-play, no oracle, no ladder. Simulations per second is not playing strength."
+  }
+}

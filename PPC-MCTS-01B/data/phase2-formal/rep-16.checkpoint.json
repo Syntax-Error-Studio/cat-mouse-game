@@ -1,0 +1,8 @@
+{
+  "rep": 16,
+  "label": "PHASE2_FORMAL",
+  "completedArmRecords": 48,
+  "expectedArmRecords": 48,
+  "jsonl": "F:\\小猫小鼠\\PPC-MCTS-01B\\data\\phase2-formal\\rep-16.jsonl",
+  "updatedAt": "2026-11-16T17:09:01.725Z"
+}

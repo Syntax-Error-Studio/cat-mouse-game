@@ -1,0 +1,272 @@
+--- PPC-MCTS-01/proto/uct.ts	2026-11-16 13:03:34.818304900 +0800
++++ PPC-MCTS-01B/proto/uctPrepared.ts	2026-11-16 17:48:36.833096700 +0800
+@@ -1,33 +1,61 @@
+ /**
+- * PPC-MCTS-01 — Stepwise Stochastic UCT (research prototype).
++ * PPC-MCTS-01B-IMPLEMENTATION — UCT-H with ROLLOUT-ONLY prepared-transition reuse.
+  *
+- * Design contract (frozen by the task):
+- *   - transitions/legality = the REAL search kernel:
+- *       generateLegalSearchActions, simulateSearchAction, stateKey, gameAffectingEqual.
+- *   - one node per decision state; CHANCE is an explicit layer that samples one
+- *     validated outcome with the MCTS-owned seeded PRNG (never Math.random).
+- *   - cat-perspective zero-sum value; cat nodes maximise, mouse nodes minimise.
+- *   - UCB1 with c = sqrt(2) (normalised reward in [-1, 1]).
+- *   - depth counted in ACTION-RIGHT HAND-OFFS (not tree plies), horizon H=4.
+- *   - 100 ms wall budget, 500 000 node safety cap, statistics committed only
+- *     for COMPLETE simulations.
+- *   - UCT-R rollout = uniform random; UCT-H rollout = frozen hybrid evaluator.
+- *     Both share the SAME leaf evaluator: hybridEvaluateForCat.
++ * This file is a byte-for-byte fork of `PPC-MCTS-01/proto/uct.ts` EXCEPT for the
++ * rollout path. The original file is NOT modified; both arms are importable
++ * side by side so the same driver can compare them.
++ *
++ * FROZEN (identical to the fork parent — verified by the diff artefact):
++ *   - `evaluateLeaf`, `isTerminal`, `handoffDelta`, `actionKey`
++ *   - `makeDecisionNode`, `makeChanceNode`
++ *   - `simulate()` (tree descent, cycle detection, CHANCE sampling)
++ *   - `applyEdge()` (tree expansion — still simulates on its own, so the
++ *     `illegal no-op edge reached the tree` cross-check stays REACHABLE)
++ *   - `createDecision`, `noteCreation`, `selectEdge`, `backprop`,
++ *     `bestRootEdge`
++ *   - `extractPlan()` (tree walk + extension — untouched, per the brief)
++ *   - UCB1 / c / MAX-MIN / maxHandoffs / maxNodes / budgets: not parameters of
++ *     this file, they come from the caller.
++ *
++ * CHANGED (rollout only, `rollout()` and three new private helpers):
++ *   1. one `generatePreparedSearchActions(state, rules)` call per rollout step
++ *      produces the legal actions AND the transition that proved each one legal;
++ *   2. hybrid guidance reads `prepared[i].transition` instead of re-simulating;
++ *   3. every legal candidate is still evaluated (no top-k, no sampling, no
++ *      weight change) — only the source of the transition moved;
++ *   4. a single-legal-action state keeps its direct-execution behaviour: the
++ *      action is taken without any guidance evaluation and without an RNG draw;
++ *   5. the chosen action consumes its prepared transition instead of simulating
++ *      a third time;
++ *   6. the batch is a `const` inside one loop iteration — it is released when
++ *      the step ends and is never stored on a node, never shared across
++ *      simulations, never shared across workers.
++ *
++ * FAIL-CLOSED CARVE-OUT (brief §三.4): `engine.catMove` starts with
++ * `sanitizeItemOverlaps`, which — and ONLY when `trapPosition` coincides with a
++ * butter — calls `generateSingleButterPosition` and therefore `Math.random`.
++ * Such a transition is not a function of its inputs, so reuse would silently
++ * change the number of entropy draws. The rollout step therefore detects that
++ * exact precondition and falls back to the untouched legacy two-step path
++ * (generate + live guidance + execute) for that step, counting it in
++ * `rolloutImpureFallbacks`. This is a structural guard, not a sample-based one.
+  */
+ import type { GameEngineState } from '../../src/game/engine';
+ import type { RuleSet, SearchAction, SearchTransitionResult } from '../../src/game/ai/searchTypes';
+ import { generateLegalSearchActions } from '../../src/game/ai/legalActions';
++import { generatePreparedSearchActions } from '../../src/game/ai/preparedActions';
++import type { PreparedSearchAction } from '../../src/game/ai/preparedActions';
+ import { simulateSearchAction } from '../../src/game/ai/simulator';
+ import { stateKey } from '../../src/game/ai/transposition';
+ import { gameAffectingEqual } from '../../src/game/ai/stateCompare';
+ import { mateActionCost } from '../../src/game/ai/expectiminimax';
+ import { hybridEvaluateForCat } from '../../src/game/ai/hybridLeaf';
+ import { GamePhase, PieceType } from '../../src/game/types';
+-import type { Rng } from './seededRng';
+-import { mulberry32, seedFor, hashString32 } from './seededRng';
+-import { normalizeLeafValue, terminalReward } from './value';
+-import { validateChance, sampleChance } from './chance';
+-import type { ValidatedChance } from './chance';
++import type { Rng } from '../../PPC-MCTS-01/proto/seededRng';
++import { mulberry32, seedFor, hashString32 } from '../../PPC-MCTS-01/proto/seededRng';
++import { normalizeLeafValue, terminalReward } from '../../PPC-MCTS-01/proto/value';
++import { validateChance, sampleChance } from '../../PPC-MCTS-01/proto/chance';
++import type { ValidatedChance } from '../../PPC-MCTS-01/proto/chance';
+ 
+ export type RolloutMode = 'random' | 'hybrid';
+ 
+@@ -111,6 +139,12 @@
+   deadlineHit: boolean;
+   nodeCapHit: boolean;
+   postDeadlineNodeCreations: number;
++  /** Rollout steps that consumed a prepared batch (prepared arm only). */
++  rolloutPreparedSteps: number;
++  /** Rollout steps that fell back to the legacy two-step path (impure guard). */
++  rolloutLegacySteps: number;
++  /** Rollout steps that hit the trap/butter overlap guard. */
++  rolloutImpureFallbacks: number;
+ }
+ 
+ export interface UctResult {
+@@ -219,6 +253,19 @@
+   return acc;
+ }
+ 
++/**
++ * The SAME arithmetic as `guidanceValue`, reading the transition that was
++ * already computed instead of recomputing it. Terminal-aware `evaluateLeaf`,
++ * full positive-probability outcome sweep, original weights and original order.
++ */
++function guidanceValueFromTransition(transition: SearchTransitionResult): number {
++  if (transition.kind === 'deterministic') return evaluateLeaf(transition.state);
++  const v = validateChance(transition.outcomes);
++  let acc = 0;
++  for (let i = 0; i < v.outcomes.length; i++) acc += v.weights[i] * evaluateLeaf(v.outcomes[i].state);
++  return acc;
++}
++
+ function selectRolloutAction(
+   state: GameEngineState,
+   actions: SearchAction[],
+@@ -244,6 +291,56 @@
+   return actions[best[rng.int(best.length)]];
+ }
+ 
++/**
++ * Prepared-batch twin of `selectRolloutAction`, returning the INDEX so the
++ * caller can pick up the matching transition.
++ *
++ * RNG discipline is identical, statement for statement:
++ *   - the single-action case is handled by the CALLER and draws nothing;
++ *   - `random` draws exactly one `rng.int(L)`;
++ *   - `hybrid` draws exactly one `rng.int(|best|)`, and one `rng.int(L)` only
++ *     when every candidate was non-finite.
++ */
++function selectPreparedRolloutIndex(
++  state: GameEngineState,
++  batch: PreparedSearchAction[],
++  mode: RolloutMode,
++  rng: Rng,
++): number {
++  if (mode === 'random') return rng.int(batch.length);
++
++  const maximize = state.currentPlayer === PieceType.Cat;
++  let bestVal = maximize ? -Infinity : Infinity;
++  let best: number[] = [];
++  for (let i = 0; i < batch.length; i++) {
++    const val = guidanceValueFromTransition(batch[i].transition);
++    if (!Number.isFinite(val)) continue;
++    const better = maximize ? val > bestVal + 1e-12 : val < bestVal - 1e-12;
++    const equal = Math.abs(val - bestVal) <= 1e-12;
++    if (better) { bestVal = val; best = [i]; }
++    else if (equal) best.push(i);
++  }
++  if (best.length === 0) return rng.int(batch.length);
++  return best[rng.int(best.length)];
++}
++
++/**
++ * Mirror of the ONLY impurity precondition in the transition kernel:
++ * `sanitizeItemOverlaps` (engine.ts:507) returns its input unchanged unless
++ * `trapPosition` exists AND sits on a butter, in which case `catMove` draws
++ * `Math.random` to relocate that butter. Detected structurally, before any
++ * reuse decision.
++ */
++function hitsNonPureItemOverlap(state: GameEngineState): boolean {
++  const trap = state.trapPosition;
++  if (!trap || trap.r === undefined) return false;
++  const butters = state.butterPositions;
++  for (let i = 0; i < butters.length; i++) {
++    if (butters[i].r === trap.r && butters[i].c === trap.c) return true;
++  }
++  return false;
++}
++
+ interface SimOutcome {
+   completed: boolean;
+   path: UctNode[];
+@@ -253,7 +350,7 @@
+   maxHandoffs: number;
+ }
+ 
+-export class UctSearch {
++export class UctSearchPrepared {
+   private readonly opts: Required<Pick<UctOptions, 'deadlineMs' | 'maxHandoffs' | 'maxNodes' | 'c' | 'seed' | 'rollout'>> & {
+     rules: RuleSet; now: () => number; maxRolloutActions: number;
+   };
+@@ -276,6 +373,9 @@
+   private nodeCapHit = false;
+   private postDeadlineCreations = 0;
+   private deadlineReached = false;
++  private rolloutPreparedSteps = 0;
++  private rolloutLegacySteps = 0;
++  private rolloutImpureFallbacks = 0;
+ 
+   constructor(state: GameEngineState, options: UctOptions) {
+     this.opts = {
+@@ -350,6 +450,9 @@
+         deadlineHit: this.deadlineHit,
+         nodeCapHit: this.nodeCapHit,
+         postDeadlineNodeCreations: this.postDeadlineCreations,
++        rolloutPreparedSteps: this.rolloutPreparedSteps,
++        rolloutLegacySteps: this.rolloutLegacySteps,
++        rolloutImpureFallbacks: this.rolloutImpureFallbacks,
+       },
+       chanceSamples: this.chanceSamples,
+     };
+@@ -537,10 +640,36 @@
+         if (this.deadlineReached) return { completed: false, reward: 0, steps, chanceSamples, maxHandoffs };
+         if (this.opts.now() >= this.deadlineAt) { this.deadlineReached = true; return { completed: false, reward: 0, steps, chanceSamples, maxHandoffs }; }
+       }
+-      const actions = generateLegalSearchActions(state, this.opts.rules);
+-      if (actions.length === 0) break;
+-      const action = selectRolloutAction(state, actions, this.opts.rollout, this.opts.rules, this.policyRng);
+-      const res = simulateSearchAction(state, action, this.opts.rules);
++
++      // ============================ CHANGED REGION ============================
++      // One preparation per step. The batch dies with this iteration: it is
++      // never attached to a node and never outlives the step.
++      let res: SearchTransitionResult;
++      if (hitsNonPureItemOverlap(state)) {
++        // Fail-closed: this state can reach Math.random through catMove, so the
++        // prepared shortcut is not a pure function. Reproduce the legacy path
++        // verbatim for this step.
++        const actions = generateLegalSearchActions(state, this.opts.rules);
++        if (actions.length === 0) break;
++        const action = selectRolloutAction(state, actions, this.opts.rollout, this.opts.rules, this.policyRng);
++        res = simulateSearchAction(state, action, this.opts.rules);
++        this.rolloutImpureFallbacks++;
++        this.rolloutLegacySteps++;
++      } else {
++        const batch = generatePreparedSearchActions(state, this.opts.rules);
++        if (batch.length === 0) break;
++        if (batch.length === 1) {
++          // Single legal action: unchanged direct execution. No guidance sweep,
++          // no RNG draw, no tie-break — only the third simulation is skipped.
++          res = batch[0].transition;
++        } else {
++          const idx = selectPreparedRolloutIndex(state, batch, this.opts.rollout, this.policyRng);
++          res = batch[idx].transition;
++        }
++        this.rolloutPreparedSteps++;
++      }
++      // ========================== END CHANGED REGION ==========================
++
+       let next: GameEngineState;
+       if (res.kind === 'chance') {
+         const v = validateChance(res.outcomes);
+@@ -585,15 +714,8 @@
+ 
+   /**
+    * Principal-line cat-turn plan: repeatedly take the most-visited child while
+-   * the actor is still the cat and the edge is deterministic. The walk stops at
+-   * the action-right hand-off, at a CHANCE boundary, at a terminal, or when no
+-   * explored child exists.
+-   *
+-   * If the principal line ends before the hand-off only because the tree was
+-   * not expanded that deep, the remaining cat actions are filled with the same
+-   * rollout policy used by this arm (uniform for UCT-R, hybrid-guided for
+-   * UCT-H). Those steps are counted separately as `extensionSteps` so tree
+-   * evidence and completion can never be confused.
++   * the actor is still the cat and the edge is deterministic. UNCHANGED by this
++   * round — the extension still uses the legacy two-step policy call.
+    */
+   extractPlan(): { plan: SearchAction[]; treeLength: number; extended: boolean; extensionSteps: number } {
+     const plan: SearchAction[] = [];
+@@ -651,3 +773,11 @@
+ export function uctSeed(rootId: string, algorithm: string, repetition: number): string {
+   return `PPC-MCTS-01|${rootId}|${algorithm}|rep=${repetition}|h=${hashString32(`${rootId}:${algorithm}:${repetition}`)}`;
+ }
++
++/** Exposed for the parity driver: the guard used to decide fail-closed. */
++export const __internals = {
++  hitsNonPureItemOverlap,
++  guidanceValueFromTransition,
++  selectPreparedRolloutIndex,
++  ROOT_TRANSITION,
++};

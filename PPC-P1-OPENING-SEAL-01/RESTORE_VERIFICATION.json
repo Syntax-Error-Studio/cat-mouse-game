@@ -1,0 +1,411 @@
+{
+  "artifactId": "RESTORE_VERIFICATION",
+  "round": "PPC-P1-OPENING-SEAL-01",
+  "method": "git archive of the base commit into an isolated directory, then the three archive overlays in the documented order, then per-file byte comparison against the sealed SOURCE_MANIFEST and a bidirectional file-list check. No checkout/reset/clean/stash; no git apply.",
+  "isolatedWorkDir": "F:\\ppc-checkpoints\\restore-seal-01\\run-ThfMvT",
+  "workingTreeTouched": false,
+  "archive": {
+    "path": "F:/ppc-checkpoints/PPC-P1-OPENING-SEAL-01-candidate.tar.gz",
+    "sha256": "27dbc3c2f4ad183f75808ab3394f0ff3675505ea6781591000b5a5594706dd2f",
+    "bytes": 34119,
+    "members": 16
+  },
+  "base": {
+    "commit": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+    "exportedFiles": 493,
+    "trackedFilesInCommit": 493,
+    "exportedEqualsTracked": true,
+    "trackedSrcFiles": 153,
+    "hasGitDir": false
+  },
+  "overlays": {
+    "steps": [
+      {
+        "step": 2,
+        "archive": "PPC-P1-CHECKPOINT-01-candidate.tar.gz",
+        "from": "source/",
+        "wrote": 24,
+        "paths": [
+          "src/game/ai/deadlineContext.ts",
+          "src/game/ai/expectiminimax.ts",
+          "src/game/ai/hardTurnPlanner.ts",
+          "src/game/ai/planBound.ts",
+          "src/game/ai/planQuality.ts",
+          "src/game/ai/transposition.ts",
+          "src/game/ai/__tests__/expectiminimax.test.ts",
+          "src/game/ai/__tests__/fixtures/ppcId01-baseline-d1.json",
+          "src/game/ai/__tests__/fixtures/ppcId01-human-roots.json",
+          "src/game/ai/__tests__/fixtures/ppcTime01-baseline-planner.json",
+          "src/game/ai/__tests__/forcedLossTieBreakHv14Reachability.test.ts",
+          "src/game/ai/__tests__/hardTurnAbsoluteDeadline.test.ts",
+          "src/game/ai/__tests__/hardTurnAbsoluteDeadlineEngine.test.ts",
+          "src/game/ai/__tests__/hv14FiveGameForensics.test.ts",
+          "src/game/ai/__tests__/hv2PlanTieQuality.test.ts",
+          "src/game/ai/__tests__/m3liteHumanValidationLogging.test.ts",
+          "src/game/ai/__tests__/planActionBoundFixtures.ts",
+          "src/game/ai/__tests__/planReversalAccounting.test.ts",
+          "src/game/ai/__tests__/planTurnActionBound.test.ts",
+          "src/game/ai/__tests__/progressGuard.test.ts",
+          "src/game/ai/__tests__/stateIdentityCollision.test.ts",
+          "src/game/config.ts",
+          "src/game/engine.ts",
+          "src/game/__tests__/catMoveBudgetInputDomain.test.ts"
+        ]
+      },
+      {
+        "step": 3,
+        "archive": "PPC-P1-OPENING-STACK-01-candidate.tar.gz",
+        "from": "files/src/",
+        "wrote": 2,
+        "paths": [
+          "src/game/openingFairness.ts",
+          "src/game/__tests__/openingFairnessStackSafety.test.ts"
+        ]
+      },
+      {
+        "step": 4,
+        "archive": "PPC-P1-OPENING-SEAL-01-candidate.tar.gz",
+        "from": "files/src/",
+        "wrote": 1,
+        "paths": [
+          "src/game/__tests__/openingFairnessStackSafety.test.ts"
+        ]
+      }
+    ],
+    "totalWrites": 27,
+    "distinctPaths": 26
+  },
+  "manifest": {
+    "source": "archive member evidence/PPC-P1-OPENING-SEAL-01/SOURCE_MANIFEST.json",
+    "sha256": "0b3db0826127395539bd7fe81b59a579fda484132d0e8174363448d1993301c4",
+    "identicalToRepoCopy": true,
+    "files": 26
+  },
+  "perFile": {
+    "total": 26,
+    "present": 26,
+    "sha256Match": 26,
+    "bytesMatch": 26,
+    "eolMatch": 26,
+    "mismatches": [],
+    "rows": [
+      {
+        "path": "src/game/__tests__/catMoveBudgetInputDomain.test.ts",
+        "present": true,
+        "sha256": "57d9b51cb9f97678d9c5872c3e9214d3d09cf34c22b1ef222f84921e3edb000a",
+        "bytes": 16231,
+        "eol": "LF",
+        "sha256Ok": true,
+        "bytesOk": true,
+        "eolOk": true
+      },
+      {
+        "path": "src/game/__tests__/openingFairnessStackSafety.test.ts",
+        "present": true,
+        "sha256": "f9ef6537858605e8381a503bc04fe7b09c6462774274f166f70c02b46458fa3f",
+        "bytes": 20127,
+        "eol": "LF",
+        "sha256Ok": true,
+        "bytesOk": true,
+        "eolOk": true
+      },
+      {
+        "path": "src/game/ai/__tests__/expectiminimax.test.ts",
+        "present": true,
+        "sha256": "521340c59689a6d405d6777b71d6a8a4228850b46403ba352b73008a4ef75688",
+        "bytes": 161383,
+        "eol": "CRLF",
+        "sha256Ok": true,
+        "bytesOk": true,
+        "eolOk": true
+      },
+      {
+        "path": "src/game/ai/__tests__/fixtures/ppcId01-baseline-d1.json",
+        "present": true,
+        "sha256": "80635906377dbe1e96aa6ef5bf80e48c2da22c213c19f51b205ca0d0438b8467",
+        "bytes": 42327,
+        "eol": "LF",
+        "sha256Ok": true,
+        "bytesOk": true,
+        "eolOk": true
+      },
+      {
+        "path": "src/game/ai/__tests__/fixtures/ppcId01-human-roots.json",
+        "present": true,
+        "sha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+        "bytes": 264328,
+        "eol": "LF",
+        "sha256Ok": true,
+        "bytesOk": true,
+        "eolOk": true
+      },
+      {
+        "path": "src/game/ai/__tests__/fixtures/ppcTime01-baseline-planner.json",
+        "present": true,
+        "sha256": "2c1bab71e11ac59aab2eb2acc93fe221359d44d5e50a90b0651d59ca6c673885",
+        "bytes": 25658,
+        "eol": "LF",
+        "sha256Ok": true,
+        "bytesOk": true,
+        "eolOk": true
+      },
+      {
+        "path": "src/game/ai/__tests__/forcedLossTieBreakHv14Reachability.test.ts",
+        "present": true,
+        "sha256": "d0ebb25e5f5927c27bf91f11d4ddcb642e7d515616499473c8c533d87ef8b03a",
+        "bytes": 36228,
+        "eol": "LF",
+        "sha256Ok": true,
+        "bytesOk": true,
+        "eolOk": true
+      },
+      {
+        "path": "src/game/ai/__tests__/hardTurnAbsoluteDeadline.test.ts",
+        "present": true,
+        "sha256": "4ada71d726f907adf5e589d8eac83bdae8d16de82b6ed6385318fec53cdfb877",
+        "bytes": 18024,
+        "eol": "LF",
+        "sha256Ok": true,
+        "bytesOk": true,
+        "eolOk": true
+      },
+      {
+        "path": "src/game/ai/__tests__/hardTurnAbsoluteDeadlineEngine.test.ts",
+        "present": true,
+        "sha256": "6822a91e4ee058ea46994beb5425df03eb6a47469df370b050a89d51c4842b39",
+        "bytes": 18160,
+        "eol": "CRLF",
+        "sha256Ok": true,
+        "bytesOk": true,
+        "eolOk": true
+      },
+      {
+        "path": "src/game/ai/__tests__/hv14FiveGameForensics.test.ts",
+        "present": true,
+        "sha256": "99bd3633891533d5f61cd9836c76cf05ff00782f4b6deb1d5d30bb99c40b3e74",
+        "bytes": 45430,
+        "eol": "LF",
+        "sha256Ok": true,
+        "bytesOk": true,
+        "eolOk": true
+      },
+      {
+        "path": "src/game/ai/__tests__/hv2PlanTieQuality.test.ts",
+        "present": true,
+        "sha256": "4455d7314918d676f65b9c5fbc04349a9336d1be4496fbc80d18076fd8720eff",
+        "bytes": 6117,
+        "eol": "LF",
+        "sha256Ok": true,
+        "bytesOk": true,
+        "eolOk": true
+      },
+      {
+        "path": "src/game/ai/__tests__/m3liteHumanValidationLogging.test.ts",
+        "present": true,
+        "sha256": "73bd3c13fe36e7445f0e22c6633ed32ad0a7fc3841b9b14d77f95df18866e767",
+        "bytes": 11886,
+        "eol": "LF",
+        "sha256Ok": true,
+        "bytesOk": true,
+        "eolOk": true
+      },
+      {
+        "path": "src/game/ai/__tests__/planActionBoundFixtures.ts",
+        "present": true,
+        "sha256": "9e6357cdde151d83812e0f4546ba496378187ee7e1775d6cd17a7e3284ee5e08",
+        "bytes": 11825,
+        "eol": "LF",
+        "sha256Ok": true,
+        "bytesOk": true,
+        "eolOk": true
+      },
+      {
+        "path": "src/game/ai/__tests__/planReversalAccounting.test.ts",
+        "present": true,
+        "sha256": "6736d435f89e1018345d39532568f2d50565bc967051561f3dfe8aba6597aa6c",
+        "bytes": 15254,
+        "eol": "LF",
+        "sha256Ok": true,
+        "bytesOk": true,
+        "eolOk": true
+      },
+      {
+        "path": "src/game/ai/__tests__/planTurnActionBound.test.ts",
+        "present": true,
+        "sha256": "691ff9002cf92b1facf22354d2d325a8ac23efa1cc2359b781e21d219171595a",
+        "bytes": 21958,
+        "eol": "LF",
+        "sha256Ok": true,
+        "bytesOk": true,
+        "eolOk": true
+      },
+      {
+        "path": "src/game/ai/__tests__/progressGuard.test.ts",
+        "present": true,
+        "sha256": "0d80ee542ca8662088b14a73641ef37f0d0cd3c04d093da2d59a24181f9d0965",
+        "bytes": 34482,
+        "eol": "LF",
+        "sha256Ok": true,
+        "bytesOk": true,
+        "eolOk": true
+      },
+      {
+        "path": "src/game/ai/__tests__/stateIdentityCollision.test.ts",
+        "present": true,
+        "sha256": "4be1cf487e4af828db7982250abdfd58a576fb2367973edcb0adb8ef4af507e7",
+        "bytes": 26215,
+        "eol": "LF",
+        "sha256Ok": true,
+        "bytesOk": true,
+        "eolOk": true
+      },
+      {
+        "path": "src/game/ai/deadlineContext.ts",
+        "present": true,
+        "sha256": "ced449445d70d1ba88cb20d88415b3c641d670aa886536fcacefa36b4aa50235",
+        "bytes": 14411,
+        "eol": "LF",
+        "sha256Ok": true,
+        "bytesOk": true,
+        "eolOk": true
+      },
+      {
+        "path": "src/game/ai/expectiminimax.ts",
+        "present": true,
+        "sha256": "8ac2698587b426df39efc2bb3b451db89d21477e6c60a30ad90e387dfaad052c",
+        "bytes": 107714,
+        "eol": "LF",
+        "sha256Ok": true,
+        "bytesOk": true,
+        "eolOk": true
+      },
+      {
+        "path": "src/game/ai/hardTurnPlanner.ts",
+        "present": true,
+        "sha256": "27b1ce6dc62234d0c822b2b0b6341205ac189b5f76d7662a5d29d9e17ded75ff",
+        "bytes": 36060,
+        "eol": "LF",
+        "sha256Ok": true,
+        "bytesOk": true,
+        "eolOk": true
+      },
+      {
+        "path": "src/game/ai/planBound.ts",
+        "present": true,
+        "sha256": "4a212b75de6b5c47b6402c0745593169f6271a06d0f91fed99b7479f679b3dab",
+        "bytes": 8012,
+        "eol": "LF",
+        "sha256Ok": true,
+        "bytesOk": true,
+        "eolOk": true
+      },
+      {
+        "path": "src/game/ai/planQuality.ts",
+        "present": true,
+        "sha256": "46979485d568dfff12e2f998353cda95616502a7433ac84c3d31801726090952",
+        "bytes": 30693,
+        "eol": "LF",
+        "sha256Ok": true,
+        "bytesOk": true,
+        "eolOk": true
+      },
+      {
+        "path": "src/game/ai/transposition.ts",
+        "present": true,
+        "sha256": "7b4aa8eb3fab994a4abc77fdf38800ab2a5f9da57d5eb33a1b37075e106c2d64",
+        "bytes": 6784,
+        "eol": "LF",
+        "sha256Ok": true,
+        "bytesOk": true,
+        "eolOk": true
+      },
+      {
+        "path": "src/game/config.ts",
+        "present": true,
+        "sha256": "60e38c491c81f0b6d962bd32b306373de462cffcc9508b76c5bed02f9f70caae",
+        "bytes": 15048,
+        "eol": "LF",
+        "sha256Ok": true,
+        "bytesOk": true,
+        "eolOk": true
+      },
+      {
+        "path": "src/game/engine.ts",
+        "present": true,
+        "sha256": "099f9a7b6d97b838c664aa7186be58465e5b01b8052af4b4e4e19a5644d19f06",
+        "bytes": 190506,
+        "eol": "CRLF",
+        "sha256Ok": true,
+        "bytesOk": true,
+        "eolOk": true
+      },
+      {
+        "path": "src/game/openingFairness.ts",
+        "present": true,
+        "sha256": "9d19279cafefe545ea6fd2d49cd2d412986c0002977c7b37cf3e72787efd7908",
+        "bytes": 35834,
+        "eol": "LF",
+        "sha256Ok": true,
+        "bytesOk": true,
+        "eolOk": true
+      }
+    ]
+  },
+  "fileList": {
+    "expectedSetSize": 165,
+    "restoredSrcFiles": 165,
+    "missingFromRestore": [],
+    "extraInRestore": [],
+    "trackedSrcFilesMissing": [],
+    "missingCount": 0,
+    "extraCount": 0,
+    "pass": true
+  },
+  "wholeTreeCrossCheck": {
+    "scope": "src/**",
+    "restoredSrcFiles": 165,
+    "liveSrcFiles": 165,
+    "overlay": {
+      "paths": 26,
+      "rawIdenticalToWorktree": 26,
+      "differing": []
+    },
+    "baseFromGitArchive": {
+      "paths": 139,
+      "blobIdenticalToBaseCommit": 139,
+      "differing": []
+    },
+    "rawIdenticalToWorktree": 162,
+    "rawDiffering": [
+      "src/game/ai/turnLazy.ts",
+      "src/game/ai/__tests__/m3MemoryRepair.test.ts",
+      "src/game/ai/__tests__/planCompletionRepair.test.ts"
+    ],
+    "eolNormalizedIdenticalToWorktree": 165,
+    "eolNormalizedDiffering": [],
+    "liveOnlyFiles": [],
+    "eolNote": "core.autocrlf=true keeps 134 base files CRLF in the worktree; git archive emits the stored LF blobs, so raw byte equality with the worktree is only expected for the overlay files.",
+    "pass": true
+  },
+  "priorArchives": {
+    "checkpoint01": {
+      "before": "5cd732828856f2b3cd903cc20c584bbb0fec7906d283ec08415bd2653a9425d5",
+      "after": "5cd732828856f2b3cd903cc20c584bbb0fec7906d283ec08415bd2653a9425d5",
+      "unchanged": true
+    },
+    "openingStack01": {
+      "before": "a6a7795c4f31533a8127ec9e8594a4974aad019b73f69a1421a5c04930c2d015",
+      "after": "a6a7795c4f31533a8127ec9e8594a4974aad019b73f69a1421a5c04930c2d015",
+      "unchanged": true
+    }
+  },
+  "repositoryUntouched": {
+    "headBefore": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+    "headAfter": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+    "headUnchanged": true,
+    "statusEntriesBefore": 37,
+    "statusEntriesAfter": 37,
+    "statusUnchanged": true
+  },
+  "CHECKPOINT_RESTORABILITY": "PASS"
+}

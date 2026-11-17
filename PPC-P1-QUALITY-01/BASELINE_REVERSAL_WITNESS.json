@@ -1,0 +1,242 @@
+{
+  "round": "PPC-P1-QUALITY-01",
+  "kind": "observation-only counterexample table",
+  "scope": "diagnostic leaf isolates the secondary comparator; no strength claim",
+  "leafEvaluator": "s => s.trapPosition === null ? 0 : -1",
+  "cases": {
+    "V-M2": {
+      "axis": "vertical",
+      "catMovesLeftAtRoot": 2,
+      "catBaseMoves": 2,
+      "catTrapsRemaining": 1,
+      "primary": {
+        "completed": true,
+        "value": 0,
+        "mate": null,
+        "nodes": 7,
+        "ttSize": 8
+      },
+      "chosenPlan": "UD",
+      "chosenActions": [
+        "ArrowUp",
+        "ArrowDown"
+      ],
+      "chosenReversals": 1,
+      "chosenVerdict": {
+        "kind": "COMPLETE_TURN_BOUNDARY",
+        "catMovesLeft": 0,
+        "reason": "turn handed off to mouse"
+      },
+      "referenceStraightLine": "DD",
+      "referenceEffective": true,
+      "referenceReversals": 0,
+      "referenceVerdict": {
+        "kind": "COMPLETE_TURN_BOUNDARY",
+        "catMovesLeft": 0,
+        "reason": "turn handed off to mouse"
+      },
+      "referenceEndMovesLeft": 0,
+      "referenceEndPlayer": "mouse",
+      "picksFewerReversals": false
+    },
+    "V-M3": {
+      "axis": "vertical",
+      "catMovesLeftAtRoot": 3,
+      "catBaseMoves": 3,
+      "catTrapsRemaining": 1,
+      "primary": {
+        "completed": true,
+        "value": 0,
+        "mate": null,
+        "nodes": 15,
+        "ttSize": 16
+      },
+      "chosenPlan": "UDD",
+      "chosenActions": [
+        "ArrowUp",
+        "ArrowDown",
+        "ArrowDown"
+      ],
+      "chosenReversals": 1,
+      "chosenVerdict": {
+        "kind": "COMPLETE_TURN_BOUNDARY",
+        "catMovesLeft": 0,
+        "reason": "turn handed off to mouse"
+      },
+      "referenceStraightLine": "DDD",
+      "referenceEffective": true,
+      "referenceReversals": 0,
+      "referenceVerdict": {
+        "kind": "COMPLETE_TURN_BOUNDARY",
+        "catMovesLeft": 0,
+        "reason": "turn handed off to mouse"
+      },
+      "referenceEndMovesLeft": 0,
+      "referenceEndPlayer": "mouse",
+      "picksFewerReversals": false
+    },
+    "V-M4": {
+      "axis": "vertical",
+      "catMovesLeftAtRoot": 4,
+      "catBaseMoves": 4,
+      "catTrapsRemaining": 1,
+      "primary": {
+        "completed": true,
+        "value": 0,
+        "mate": null,
+        "nodes": 29,
+        "ttSize": 30
+      },
+      "chosenPlan": "UDDD",
+      "chosenActions": [
+        "ArrowUp",
+        "ArrowDown",
+        "ArrowDown",
+        "ArrowDown"
+      ],
+      "chosenReversals": 1,
+      "chosenVerdict": {
+        "kind": "COMPLETE_TURN_BOUNDARY",
+        "catMovesLeft": 0,
+        "reason": "turn handed off to mouse"
+      },
+      "referenceStraightLine": "DDDD",
+      "referenceEffective": true,
+      "referenceReversals": 0,
+      "referenceVerdict": {
+        "kind": "COMPLETE_TURN_BOUNDARY",
+        "catMovesLeft": 0,
+        "reason": "turn handed off to mouse"
+      },
+      "referenceEndMovesLeft": 0,
+      "referenceEndPlayer": "mouse",
+      "picksFewerReversals": false
+    },
+    "H-M2": {
+      "axis": "horizontal",
+      "catMovesLeftAtRoot": 2,
+      "catBaseMoves": 2,
+      "catTrapsRemaining": 1,
+      "primary": {
+        "completed": true,
+        "value": 0,
+        "mate": null,
+        "nodes": 7,
+        "ttSize": 8
+      },
+      "chosenPlan": "LR",
+      "chosenActions": [
+        "ArrowLeft",
+        "ArrowRight"
+      ],
+      "chosenReversals": 1,
+      "chosenVerdict": {
+        "kind": "COMPLETE_TURN_BOUNDARY",
+        "catMovesLeft": 0,
+        "reason": "turn handed off to mouse"
+      },
+      "referenceStraightLine": "RR",
+      "referenceEffective": true,
+      "referenceReversals": 0,
+      "referenceVerdict": {
+        "kind": "COMPLETE_TURN_BOUNDARY",
+        "catMovesLeft": 0,
+        "reason": "turn handed off to mouse"
+      },
+      "referenceEndMovesLeft": 0,
+      "referenceEndPlayer": "mouse",
+      "picksFewerReversals": false
+    },
+    "H-M3": {
+      "axis": "horizontal",
+      "catMovesLeftAtRoot": 3,
+      "catBaseMoves": 3,
+      "catTrapsRemaining": 1,
+      "primary": {
+        "completed": true,
+        "value": 0,
+        "mate": null,
+        "nodes": 15,
+        "ttSize": 16
+      },
+      "chosenPlan": "LRR",
+      "chosenActions": [
+        "ArrowLeft",
+        "ArrowRight",
+        "ArrowRight"
+      ],
+      "chosenReversals": 1,
+      "chosenVerdict": {
+        "kind": "COMPLETE_TURN_BOUNDARY",
+        "catMovesLeft": 0,
+        "reason": "turn handed off to mouse"
+      },
+      "referenceStraightLine": "RRR",
+      "referenceEffective": true,
+      "referenceReversals": 0,
+      "referenceVerdict": {
+        "kind": "COMPLETE_TURN_BOUNDARY",
+        "catMovesLeft": 0,
+        "reason": "turn handed off to mouse"
+      },
+      "referenceEndMovesLeft": 0,
+      "referenceEndPlayer": "mouse",
+      "picksFewerReversals": false
+    },
+    "H-M4": {
+      "axis": "horizontal",
+      "catMovesLeftAtRoot": 4,
+      "catBaseMoves": 4,
+      "catTrapsRemaining": 1,
+      "primary": {
+        "completed": true,
+        "value": 0,
+        "mate": null,
+        "nodes": 29,
+        "ttSize": 30
+      },
+      "chosenPlan": "LRRR",
+      "chosenActions": [
+        "ArrowLeft",
+        "ArrowRight",
+        "ArrowRight",
+        "ArrowRight"
+      ],
+      "chosenReversals": 1,
+      "chosenVerdict": {
+        "kind": "COMPLETE_TURN_BOUNDARY",
+        "catMovesLeft": 0,
+        "reason": "turn handed off to mouse"
+      },
+      "referenceStraightLine": "RRRR",
+      "referenceEffective": true,
+      "referenceReversals": 0,
+      "referenceVerdict": {
+        "kind": "COMPLETE_TURN_BOUNDARY",
+        "catMovesLeft": 0,
+        "reason": "turn handed off to mouse"
+      },
+      "referenceEndMovesLeft": 0,
+      "referenceEndPlayer": "mouse",
+      "picksFewerReversals": false
+    }
+  },
+  "phase": "BASELINE (before the accounting fix)",
+  "capturedAt": "2026-11-13",
+  "summary": {
+    "cases": 6,
+    "allPickOneMoreReversalThanReference": true,
+    "allPrimaryIdentical": true,
+    "axesCovered": [
+      "horizontal",
+      "vertical"
+    ],
+    "moveBudgetsCovered": [
+      2,
+      3,
+      4
+    ],
+    "registeredDefect": "PPC-PLAN-001 (PPC-NEXTGEN-01/CORRECTNESS_REGISTER.md)",
+    "registeredWitness": "research/search-audit/out/reversal_boundary_counterexample.json"
+  }
+}

@@ -312,62 +312,6 @@ function depthAfter(actionActor: PieceType, nextActor: PieceType, depthTurns: nu
 }
 
 /**
- * CHANCE aggregation, adversarial to the mouse's probability-1 guarantee.
- *
- * A forced mouse win needs EVERY positive-probability outcome to win. One SAFE
- * outcome refutes that guarantee, so the solve may short-circuit there — but
- * only AFTER the whole outcome list is validated: every weight must be finite
- * and strictly positive and the weights must sum to 1. A malformed CHANCE node
- * (zero/negative/NaN/Infinity weight, wrong total mass, empty list) is
- * UNKNOWN/INVALID_CHANCE and can never be certified, regardless of which
- * outcome happens to be listed first.
- */
-function solveChanceOutcomes(
-  outcomes: { state: GameEngineState; weight: number }[],
-  actionActor: PieceType,
-  depthTurns: number,
-  ctx: SolveCtx,
-): InternalTri {
-  if (outcomes.length === 0) return unknown('INVALID_CHANCE');
-
-  // Pass 1 — mass validation. Nothing here may depend on an outcome's verdict.
-  let weightSum = 0;
-  for (const outcome of outcomes) {
-    if (!Number.isFinite(outcome.weight) || outcome.weight <= 0) return unknown('INVALID_CHANCE');
-    weightSum += outcome.weight;
-  }
-  if (!Number.isFinite(weightSum) || Math.abs(weightSum - 1) > 1e-6) {
-    return unknown('INVALID_CHANCE');
-  }
-
-  // Pass 2 — solve. SAFE only refutes a probability-1 win; it does not make the
-  // remaining outcomes safe.
-  let sawUnknown: OpeningUnknownReason | null = null;
-  let allWin = true;
-  for (const outcome of outcomes) {
-    const r = solve(outcome.state, depthAfter(actionActor, outcome.state.currentPlayer, depthTurns), ctx);
-    if (r.tri === 'SAFE') return SAFE; // one survivable spawn refutes a forced win
-    if (r.tri === 'UNKNOWN') {
-      allWin = false;
-      sawUnknown = sawUnknown ?? (r.reason ?? 'NODE_CAP');
-    }
-  }
-  if (allWin) return WIN;
-  return unknown(sawUnknown ?? 'NODE_CAP');
-}
-
-function applyAction(
-  state: GameEngineState,
-  action: SearchAction,
-  depthTurns: number,
-  ctx: SolveCtx,
-): InternalTri {
-  const result = simulateSearchAction(state, action, ctx.rules);
-  if (result.kind === 'chance') return solveChanceOutcomes(result.outcomes, state.currentPlayer, depthTurns, ctx);
-  return solve(result.state, depthAfter(state.currentPlayer, result.state.currentPlayer, depthTurns), ctx);
-}
-
-/**
  * Deterministic action ORDERING. Pure performance heuristic — the search still
  * tries every legal action until one settles the node. Moving the mouse closer
  * (in the relaxed metric) to a pickup-and-return line is tried first, so a
@@ -403,14 +347,90 @@ function orderActions(state: GameEngineState, actions: SearchAction[], ctx: Solv
     .map((e) => e.a);
 }
 
+// ---------------------------------------------------------------------------
+// Explicit-stack DFS
+//
+// One real transition used to be one `solve` call, so a cat turn with M
+// remaining steps nested M `solve` frames — each of them carrying its own
+// `generateLegalSearchActions` / `simulateSearchAction` frames. The node cap is
+// 20000, but the JS call stack dies at roughly a thousand of those levels, so
+// the two disagreed: `catBaseMoves >= ~1500` made `certifyOpening` throw
+// `RangeError: Maximum call stack size exceeded`, and took `createGameState`
+// with it (PPC-P1-OPENING-STACK-01).
+//
+// The traversal below is the SAME depth-first search in the SAME order, driven
+// by a heap stack instead of the call stack. Every observable is preserved:
+//   - `ctx.nodes++` still runs once per expanded state, in DFS order, BEFORE
+//     the terminal / horizon / memo / prune tests, so `exploredNodes`, the node
+//     at which the cap trips and every downstream verdict are unchanged;
+//   - the memo is consulted at the same point and written only when a node is
+//     fully decided (UNKNOWN is never memoized);
+//   - the legal-action list is generated and ordered at the same moment;
+//   - the OR (mouse) / AND (cat) short-circuits and the CHANCE validation pass
+//     keep their original order, so `witnessAction` and `prunedNodes` match;
+//   - no frame copies a board: it holds only a reference to the state its
+//     transition produced, so peak live memory stays O(depth), exactly what the
+//     call stack used to hold.
+// ---------------------------------------------------------------------------
+
+interface NodeFrame {
+  kind: 'node';
+  state: GameEngineState;
+  depthTurns: number;
+  /** Aggregation of this node (actor, not phase). Filled at entry. */
+  mouseActor: boolean;
+  /** Memo key; '' until the node passes the terminal/horizon tests. */
+  memoKey: string;
+  actions: SearchAction[];
+  /** Index of the action whose transition has just been (or is about to be) run. */
+  index: number;
+  entered: boolean;
+  winWitness: SearchAction | null;
+  sawSafe: boolean;
+  sawUnknown: boolean;
+  unknownReason: OpeningUnknownReason | null;
+}
+
+interface ChanceFrame {
+  kind: 'chance';
+  outcomes: { state: GameEngineState; weight: number }[];
+  actionActor: PieceType;
+  depthTurns: number;
+  index: number;
+  validated: boolean;
+  allWin: boolean;
+  sawUnknown: OpeningUnknownReason | null;
+}
+
+type Frame = NodeFrame | ChanceFrame;
+
+/** One stack step: the frame is decided, or a child frame must run first. */
+type Step = { kind: 'done'; result: InternalTri } | { kind: 'child'; frame: Frame };
+
+function newNodeFrame(state: GameEngineState, depthTurns: number): NodeFrame {
+  return {
+    kind: 'node',
+    state,
+    depthTurns,
+    mouseActor: false,
+    memoKey: '',
+    actions: [],
+    index: 0,
+    entered: false,
+    winWitness: null,
+    sawSafe: false,
+    sawUnknown: false,
+    unknownReason: null,
+  };
+}
+
 /**
- * Three-valued AND/OR over real transitions.
- *
- * Mouse nodes are OR (the mouse needs one winning strategy → WIN on the first
- * winning action). Cat nodes are AND (the cat needs one surviving response →
- * SAFE on the first safe action). CHANCE is adversarial to the guarantee.
+ * Node entry — the original prologue of `solve`, unchanged in content and
+ * order. Returns a decided result, or `null` when the node must expand its
+ * actions.
  */
-function solve(state: GameEngineState, depthTurns: number, ctx: SolveCtx): InternalTri {
+function enterNode(f: NodeFrame, ctx: SolveCtx): InternalTri | null {
+  const state = f.state;
   if (ctx.nodes >= ctx.maxNodes) {
     ctx.capHit = true;
     return unknown('NODE_CAP');
@@ -423,9 +443,10 @@ function solve(state: GameEngineState, depthTurns: number, ctx: SolveCtx): Inter
   // The actor decides the aggregation, not the phase: a ChoosingTunnelExit
   // state is still the MOUSE's choice (OR), never a cat AND node.
   const mouseActor = state.currentPlayer === PieceType.Mouse;
+  f.mouseActor = mouseActor;
   const mouseTurn = state.phase === GamePhase.Playing && mouseActor;
 
-  if (depthTurns <= 0) {
+  if (f.depthTurns <= 0) {
     // The mouse's (H+1)-th turn starts here: outside the declared "H mouse
     // turns" horizon, so the certificate says nothing about it.
     if (mouseActor) return SAFE;
@@ -436,7 +457,8 @@ function solve(state: GameEngineState, depthTurns: number, ctx: SolveCtx): Inter
     return unknown('HORIZON');
   }
 
-  const memoKey = `${stateKey(state)}|d${depthTurns}`;
+  const memoKey = `${stateKey(state)}|d${f.depthTurns}`;
+  f.memoKey = memoKey;
   const memoHit = ctx.memo.get(memoKey);
   if (memoHit) return memoHit === 'WIN' ? WIN : SAFE;
 
@@ -453,63 +475,222 @@ function solve(state: GameEngineState, depthTurns: number, ctx: SolveCtx): Inter
   const ghostsPending = (state.pendingButterSpawns?.length ?? 0) > 0
     || (state.pendingButterPlacementDebt ?? 0) > 0;
   if (ctx.relaxedPrune && mouseTurn && !ghostsPending && catHasPatrolEscape(state)) {
-    if (relaxedMinSteps(state, ctx.relaxed) > relaxedMaxSteps(state, depthTurns)) {
+    if (relaxedMinSteps(state, ctx.relaxed) > relaxedMaxSteps(state, f.depthTurns)) {
       ctx.prunedNodes++;
       ctx.memo.set(memoKey, 'SAFE');
       return SAFE;
     }
   }
 
-  const actions = orderActions(state, generateLegalSearchActions(state, ctx.rules), ctx);
-  if (actions.length === 0) {
+  f.actions = orderActions(state, generateLegalSearchActions(state, ctx.rules), ctx);
+  if (f.actions.length === 0) {
     // A settled mouse with no action is CatWins (RULE-A), a settled cat with no
     // action is MouseWins; both are terminal phases and were handled above. A
     // Playing dead end can only come from a non-real RuleSet — fail closed.
     return unknown('UNSUPPORTED_CONFIG');
   }
+  return null;
+}
 
-  let winWitness: SearchAction | null = null;
-  let sawSafe = false;
-  let sawUnknown = false;
-  let unknownReason: OpeningUnknownReason | null = null;
+/** Node exit — the original epilogue of `solve`, unchanged. */
+function finishNode(f: NodeFrame, ctx: SolveCtx): InternalTri {
+  let result: InternalTri;
+  if (f.winWitness) result = { tri: 'WIN', witness: f.winWitness };
+  else if (f.mouseActor) result = f.sawUnknown ? unknown(f.unknownReason ?? 'NODE_CAP') : SAFE;
+  else if (f.sawSafe) result = SAFE;
+  else if (f.sawUnknown) result = unknown(f.unknownReason ?? 'NODE_CAP');
+  else result = WIN;
 
-  for (const action of actions) {
-    const r = applyAction(state, action, depthTurns, ctx);
-    if (mouseActor) {
-      // OR: one winning strategy is enough; otherwise one unproven strategy
-      // blocks a SAFE certificate.
-      if (r.tri === 'WIN') {
-        winWitness = r.witness ?? action;
-        break;
+  // Only a fully decided node is memoized; UNKNOWN never is. `memoKey` is
+  // always set here (a frame only reaches the action loop through `enterNode`).
+  if (f.memoKey !== '' && (result.tri === 'WIN' || result.tri === 'SAFE')) {
+    ctx.memo.set(f.memoKey, result.tri);
+  }
+  return result;
+}
+
+/**
+ * Build the child frame for one action — the original `applyAction`, split into
+ * "run the real transition" + "decide which frame kind it yields".
+ */
+function childFrame(
+  state: GameEngineState,
+  action: SearchAction,
+  depthTurns: number,
+  ctx: SolveCtx,
+): Frame {
+  const result = simulateSearchAction(state, action, ctx.rules);
+  if (result.kind === 'chance') {
+    return {
+      kind: 'chance',
+      outcomes: result.outcomes,
+      actionActor: state.currentPlayer,
+      depthTurns,
+      index: 0,
+      validated: false,
+      allWin: true,
+      sawUnknown: null,
+    };
+  }
+  return newNodeFrame(
+    result.state,
+    depthAfter(state.currentPlayer, result.state.currentPlayer, depthTurns),
+  );
+}
+
+/**
+ * CHANCE aggregation, adversarial to the mouse's probability-1 guarantee.
+ *
+ * A forced mouse win needs EVERY positive-probability outcome to win. One SAFE
+ * outcome refutes that guarantee, so the solve may short-circuit there — but
+ * only AFTER the whole outcome list is validated: every weight must be finite
+ * and strictly positive and the weights must sum to 1. A malformed CHANCE node
+ * (zero/negative/NaN/Infinity weight, wrong total mass, empty list) is
+ * UNKNOWN/INVALID_CHANCE and can never be certified, regardless of which
+ * outcome happens to be listed first.
+ */
+function advanceChance(f: ChanceFrame): Step {
+  if (!f.validated) {
+    f.validated = true;
+    // Pass 1 — mass validation. Nothing here may depend on an outcome's verdict.
+    if (f.outcomes.length === 0) return { kind: 'done', result: unknown('INVALID_CHANCE') };
+    let weightSum = 0;
+    for (const outcome of f.outcomes) {
+      if (!Number.isFinite(outcome.weight) || outcome.weight <= 0) {
+        return { kind: 'done', result: unknown('INVALID_CHANCE') };
       }
-      if (r.tri === 'SAFE') sawSafe = true;
-      else {
-        sawUnknown = true;
-        unknownReason = unknownReason ?? (r.reason ?? 'NODE_CAP');
-      }
-    } else {
-      // AND: one surviving cat response is enough; otherwise one unproven
-      // response blocks a PROVEN loss.
-      if (r.tri === 'SAFE') {
-        sawSafe = true;
-        break;
-      }
-      if (r.tri === 'UNKNOWN') {
-        sawUnknown = true;
-        unknownReason = unknownReason ?? (r.reason ?? 'NODE_CAP');
-      }
+      weightSum += outcome.weight;
+    }
+    if (!Number.isFinite(weightSum) || Math.abs(weightSum - 1) > 1e-6) {
+      return { kind: 'done', result: unknown('INVALID_CHANCE') };
     }
   }
 
-  let result: InternalTri;
-  if (winWitness) result = { tri: 'WIN', witness: winWitness };
-  else if (mouseActor) result = sawUnknown ? unknown(unknownReason ?? 'NODE_CAP') : SAFE;
-  else if (sawSafe) result = SAFE;
-  else if (sawUnknown) result = unknown(unknownReason ?? 'NODE_CAP');
-  else result = WIN;
+  if (f.index >= f.outcomes.length) {
+    // Pass 2 finished. SAFE only refutes a probability-1 win; it does not make
+    // the remaining outcomes safe.
+    return { kind: 'done', result: f.allWin ? WIN : unknown(f.sawUnknown ?? 'NODE_CAP') };
+  }
+  const outcome = f.outcomes[f.index];
+  return {
+    kind: 'child',
+    frame: newNodeFrame(
+      outcome.state,
+      depthAfter(f.actionActor, outcome.state.currentPlayer, f.depthTurns),
+    ),
+  };
+}
 
-  if (result.tri === 'WIN' || result.tri === 'SAFE') ctx.memo.set(memoKey, result.tri);
-  return result;
+/** Feed one completed child result back into a node frame. */
+function onNodeChild(f: NodeFrame, r: InternalTri, ctx: SolveCtx): Step {
+  if (f.mouseActor) {
+    // OR: one winning strategy is enough; otherwise one unproven strategy
+    // blocks a SAFE certificate.
+    if (r.tri === 'WIN') {
+      f.winWitness = r.witness ?? f.actions[f.index];
+      return { kind: 'done', result: finishNode(f, ctx) };
+    }
+    if (r.tri === 'SAFE') {
+      f.sawSafe = true;
+    } else {
+      f.sawUnknown = true;
+      f.unknownReason = f.unknownReason ?? (r.reason ?? 'NODE_CAP');
+    }
+  } else {
+    // AND: one surviving cat response is enough; otherwise one unproven
+    // response blocks a PROVEN loss.
+    if (r.tri === 'SAFE') {
+      f.sawSafe = true;
+      return { kind: 'done', result: finishNode(f, ctx) };
+    }
+    if (r.tri === 'UNKNOWN') {
+      f.sawUnknown = true;
+      f.unknownReason = f.unknownReason ?? (r.reason ?? 'NODE_CAP');
+    }
+  }
+
+  f.index++;
+  if (f.index >= f.actions.length) return { kind: 'done', result: finishNode(f, ctx) };
+  return { kind: 'child', frame: childFrame(f.state, f.actions[f.index], f.depthTurns, ctx) };
+}
+
+/** Feed one completed child result back into a CHANCE frame. */
+function onChanceChild(f: ChanceFrame, r: InternalTri): Step {
+  if (r.tri === 'SAFE') return { kind: 'done', result: SAFE }; // one survivable spawn refutes a forced win
+  if (r.tri === 'UNKNOWN') {
+    f.allWin = false;
+    f.sawUnknown = f.sawUnknown ?? (r.reason ?? 'NODE_CAP');
+  }
+  f.index++;
+  if (f.index >= f.outcomes.length) {
+    return { kind: 'done', result: f.allWin ? WIN : unknown(f.sawUnknown ?? 'NODE_CAP') };
+  }
+  const outcome = f.outcomes[f.index];
+  return {
+    kind: 'child',
+    frame: newNodeFrame(
+      outcome.state,
+      depthAfter(f.actionActor, outcome.state.currentPlayer, f.depthTurns),
+    ),
+  };
+}
+
+/**
+ * Three-valued AND/OR over real transitions, driven by an explicit stack.
+ *
+ * Mouse nodes are OR (the mouse needs one winning strategy → WIN on the first
+ * winning action). Cat nodes are AND (the cat needs one surviving response →
+ * SAFE on the first safe action). CHANCE is adversarial to the guarantee.
+ *
+ * Depth is bounded by the node budget (`maxNodes`), not by the JS stack, so a
+ * legal-but-large cat move budget now terminates with UNKNOWN/NODE_CAP instead
+ * of throwing.
+ */
+function solve(rootState: GameEngineState, rootDepthTurns: number, ctx: SolveCtx): InternalTri {
+  const stack: Frame[] = [newNodeFrame(rootState, rootDepthTurns)];
+  /** Result of the child that just finished; consumed by the frame below it. */
+  let pending: InternalTri | null = null;
+
+  for (;;) {
+    if (pending !== null) {
+      if (stack.length === 0) return pending; // the root finished
+      const top = stack[stack.length - 1];
+      const child: InternalTri = pending;
+      pending = null;
+      const step: Step = top.kind === 'node' ? onNodeChild(top, child, ctx) : onChanceChild(top, child);
+      if (step.kind === 'done') {
+        stack.pop();
+        pending = step.result;
+      } else {
+        stack.push(step.frame);
+      }
+      continue;
+    }
+
+    // `pending === null` and an empty stack is unreachable: the root's result is
+    // consumed above. The guard makes an accidental invariant break loud.
+    if (stack.length === 0) throw new Error('openingFairness: empty frame stack');
+
+    const top = stack[stack.length - 1];
+    const step = top.kind === 'node' ? advanceNode(top, ctx) : advanceChance(top);
+    if (step.kind === 'done') {
+      stack.pop();
+      pending = step.result;
+    } else {
+      stack.push(step.frame);
+    }
+  }
+}
+
+/** Advance a node frame: run its entry, then descend into the next action. */
+function advanceNode(f: NodeFrame, ctx: SolveCtx): Step {
+  if (!f.entered) {
+    f.entered = true;
+    const decided = enterNode(f, ctx);
+    if (decided) return { kind: 'done', result: decided };
+  }
+  if (f.index >= f.actions.length) return { kind: 'done', result: finishNode(f, ctx) };
+  return { kind: 'child', frame: childFrame(f.state, f.actions[f.index], f.depthTurns, ctx) };
 }
 
 export interface CertifyOptions {

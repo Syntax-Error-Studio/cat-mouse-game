@@ -1,0 +1,279 @@
+{
+  "round": "PPC-P1-QUALITY-01",
+  "kind": "observation-only counterexample table",
+  "scope": "diagnostic leaf isolates the secondary comparator; no strength claim",
+  "leafEvaluator": "s => s.trapPosition === null ? 0 : -1",
+  "cases": {
+    "V-M2": {
+      "axis": "vertical",
+      "catMovesLeftAtRoot": 2,
+      "catBaseMoves": 2,
+      "catTrapsRemaining": 1,
+      "primary": {
+        "completed": true,
+        "value": 0,
+        "mate": null,
+        "nodes": 7,
+        "ttSize": 8
+      },
+      "chosenPlan": "DD",
+      "chosenActions": [
+        "ArrowDown",
+        "ArrowDown"
+      ],
+      "chosenReversals": 0,
+      "chosenVerdict": {
+        "kind": "COMPLETE_TURN_BOUNDARY",
+        "catMovesLeft": 0,
+        "reason": "turn handed off to mouse"
+      },
+      "referenceStraightLine": "DD",
+      "referenceEffective": true,
+      "referenceReversals": 0,
+      "referenceVerdict": {
+        "kind": "COMPLETE_TURN_BOUNDARY",
+        "catMovesLeft": 0,
+        "reason": "turn handed off to mouse"
+      },
+      "referenceEndMovesLeft": 0,
+      "referenceEndPlayer": "mouse",
+      "picksFewerReversals": true
+    },
+    "V-M3": {
+      "axis": "vertical",
+      "catMovesLeftAtRoot": 3,
+      "catBaseMoves": 3,
+      "catTrapsRemaining": 1,
+      "primary": {
+        "completed": true,
+        "value": 0,
+        "mate": null,
+        "nodes": 15,
+        "ttSize": 16
+      },
+      "chosenPlan": "DDD",
+      "chosenActions": [
+        "ArrowDown",
+        "ArrowDown",
+        "ArrowDown"
+      ],
+      "chosenReversals": 0,
+      "chosenVerdict": {
+        "kind": "COMPLETE_TURN_BOUNDARY",
+        "catMovesLeft": 0,
+        "reason": "turn handed off to mouse"
+      },
+      "referenceStraightLine": "DDD",
+      "referenceEffective": true,
+      "referenceReversals": 0,
+      "referenceVerdict": {
+        "kind": "COMPLETE_TURN_BOUNDARY",
+        "catMovesLeft": 0,
+        "reason": "turn handed off to mouse"
+      },
+      "referenceEndMovesLeft": 0,
+      "referenceEndPlayer": "mouse",
+      "picksFewerReversals": true
+    },
+    "V-M4": {
+      "axis": "vertical",
+      "catMovesLeftAtRoot": 4,
+      "catBaseMoves": 4,
+      "catTrapsRemaining": 1,
+      "primary": {
+        "completed": true,
+        "value": 0,
+        "mate": null,
+        "nodes": 29,
+        "ttSize": 30
+      },
+      "chosenPlan": "DDDD",
+      "chosenActions": [
+        "ArrowDown",
+        "ArrowDown",
+        "ArrowDown",
+        "ArrowDown"
+      ],
+      "chosenReversals": 0,
+      "chosenVerdict": {
+        "kind": "COMPLETE_TURN_BOUNDARY",
+        "catMovesLeft": 0,
+        "reason": "turn handed off to mouse"
+      },
+      "referenceStraightLine": "DDDD",
+      "referenceEffective": true,
+      "referenceReversals": 0,
+      "referenceVerdict": {
+        "kind": "COMPLETE_TURN_BOUNDARY",
+        "catMovesLeft": 0,
+        "reason": "turn handed off to mouse"
+      },
+      "referenceEndMovesLeft": 0,
+      "referenceEndPlayer": "mouse",
+      "picksFewerReversals": true
+    },
+    "H-M2": {
+      "axis": "horizontal",
+      "catMovesLeftAtRoot": 2,
+      "catBaseMoves": 2,
+      "catTrapsRemaining": 1,
+      "primary": {
+        "completed": true,
+        "value": 0,
+        "mate": null,
+        "nodes": 7,
+        "ttSize": 8
+      },
+      "chosenPlan": "RR",
+      "chosenActions": [
+        "ArrowRight",
+        "ArrowRight"
+      ],
+      "chosenReversals": 0,
+      "chosenVerdict": {
+        "kind": "COMPLETE_TURN_BOUNDARY",
+        "catMovesLeft": 0,
+        "reason": "turn handed off to mouse"
+      },
+      "referenceStraightLine": "RR",
+      "referenceEffective": true,
+      "referenceReversals": 0,
+      "referenceVerdict": {
+        "kind": "COMPLETE_TURN_BOUNDARY",
+        "catMovesLeft": 0,
+        "reason": "turn handed off to mouse"
+      },
+      "referenceEndMovesLeft": 0,
+      "referenceEndPlayer": "mouse",
+      "picksFewerReversals": true
+    },
+    "H-M3": {
+      "axis": "horizontal",
+      "catMovesLeftAtRoot": 3,
+      "catBaseMoves": 3,
+      "catTrapsRemaining": 1,
+      "primary": {
+        "completed": true,
+        "value": 0,
+        "mate": null,
+        "nodes": 15,
+        "ttSize": 16
+      },
+      "chosenPlan": "RRR",
+      "chosenActions": [
+        "ArrowRight",
+        "ArrowRight",
+        "ArrowRight"
+      ],
+      "chosenReversals": 0,
+      "chosenVerdict": {
+        "kind": "COMPLETE_TURN_BOUNDARY",
+        "catMovesLeft": 0,
+        "reason": "turn handed off to mouse"
+      },
+      "referenceStraightLine": "RRR",
+      "referenceEffective": true,
+      "referenceReversals": 0,
+      "referenceVerdict": {
+        "kind": "COMPLETE_TURN_BOUNDARY",
+        "catMovesLeft": 0,
+        "reason": "turn handed off to mouse"
+      },
+      "referenceEndMovesLeft": 0,
+      "referenceEndPlayer": "mouse",
+      "picksFewerReversals": true
+    },
+    "H-M4": {
+      "axis": "horizontal",
+      "catMovesLeftAtRoot": 4,
+      "catBaseMoves": 4,
+      "catTrapsRemaining": 1,
+      "primary": {
+        "completed": true,
+        "value": 0,
+        "mate": null,
+        "nodes": 29,
+        "ttSize": 30
+      },
+      "chosenPlan": "RRRR",
+      "chosenActions": [
+        "ArrowRight",
+        "ArrowRight",
+        "ArrowRight",
+        "ArrowRight"
+      ],
+      "chosenReversals": 0,
+      "chosenVerdict": {
+        "kind": "COMPLETE_TURN_BOUNDARY",
+        "catMovesLeft": 0,
+        "reason": "turn handed off to mouse"
+      },
+      "referenceStraightLine": "RRRR",
+      "referenceEffective": true,
+      "referenceReversals": 0,
+      "referenceVerdict": {
+        "kind": "COMPLETE_TURN_BOUNDARY",
+        "catMovesLeft": 0,
+        "reason": "turn handed off to mouse"
+      },
+      "referenceEndMovesLeft": 0,
+      "referenceEndPlayer": "mouse",
+      "picksFewerReversals": true
+    }
+  },
+  "phase": "POSTFIX (after the accounting fix)",
+  "capturedAt": "2026-11-13",
+  "summary": {
+    "cases": 6,
+    "primaryFieldsIdenticalToBaseline": true,
+    "plansChanged": [
+      "V-M2",
+      "V-M3",
+      "V-M4",
+      "H-M2",
+      "H-M3",
+      "H-M4"
+    ],
+    "allNowPickFewerReversals": true,
+    "allReversalsNowZero": true,
+    "allStillComplete": true,
+    "beforeAfter": {
+      "V-M2": {
+        "before": "UD",
+        "after": "DD",
+        "reversalsBefore": 1,
+        "reversalsAfter": 0
+      },
+      "V-M3": {
+        "before": "UDD",
+        "after": "DDD",
+        "reversalsBefore": 1,
+        "reversalsAfter": 0
+      },
+      "V-M4": {
+        "before": "UDDD",
+        "after": "DDDD",
+        "reversalsBefore": 1,
+        "reversalsAfter": 0
+      },
+      "H-M2": {
+        "before": "LR",
+        "after": "RR",
+        "reversalsBefore": 1,
+        "reversalsAfter": 0
+      },
+      "H-M3": {
+        "before": "LRR",
+        "after": "RRR",
+        "reversalsBefore": 1,
+        "reversalsAfter": 0
+      },
+      "H-M4": {
+        "before": "LRRR",
+        "after": "RRRR",
+        "reversalsBefore": 1,
+        "reversalsAfter": 0
+      }
+    }
+  }
+}

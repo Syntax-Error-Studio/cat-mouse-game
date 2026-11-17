@@ -1,0 +1,344 @@
+{
+  "round": "PPC-T2-PCV-RESCUE-01",
+  "title": "Proof-guided Tactical Plan Rescue",
+  "type": "OFFLINE_RESEARCH_AND_CERTIFICATION",
+  "generatedAt": "2026-11-16T07:06:08.000Z",
+  "identity": {
+    "worktree": "F:\\小猫小鼠",
+    "branch": "ppc/p1-id-state-identity-fix",
+    "head": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+    "fixture": "src/game/ai/__tests__/fixtures/ppcId01-human-roots.json",
+    "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09"
+  },
+  "inputs": [
+    {
+      "path": "GAMEPLAY.md",
+      "role": "frozen game rules",
+      "bytes": 21128,
+      "sha256": "e000778b114bea02ef09634085172ea435be143335721aa0cd04114afb2afd34"
+    },
+    {
+      "path": "src/game/ai/__tests__/fixtures/ppcId01-human-roots.json",
+      "role": "frozen 24-root fixture",
+      "bytes": 264328,
+      "sha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09"
+    },
+    {
+      "path": "PPC-CAT-EVALUATOR-ABLATION-01/PRODUCTION_100MS_RESULTS.json",
+      "role": "frozen P5 production-100ms results",
+      "bytes": 73487,
+      "sha256": "9d50560f107da52107cb68be94f4ac90214f8a50aabbc948f8f3114215278775"
+    },
+    {
+      "path": "PPC-CAT-STRATEGY-SEAL-01/probe/seal_lib.ts",
+      "role": "frozen quantifier kernel",
+      "bytes": 21012,
+      "sha256": "453915d3fd3a69bda5d113dd7e5732d20424a7f97cff739cf9b0aeee576a779b"
+    },
+    {
+      "path": "src/game/ai/preparedActions.ts",
+      "role": "production prepared search actions",
+      "bytes": 5405,
+      "sha256": "67b76ad3de53fee6d3d32f9bc8ab9a02b52234857b23b7fc9091bd92011ad764"
+    },
+    {
+      "path": "src/game/ai/expectiminimax.ts",
+      "role": "production search",
+      "bytes": 109353,
+      "sha256": "50d27da5e9d0d47a1ad70efb542a3ec1510507fd14b825a52729ebb90f6d690c"
+    },
+    {
+      "path": "src/game/engine.ts",
+      "role": "production engine/rule set",
+      "bytes": 190506,
+      "sha256": "099f9a7b6d97b838c664aa7186be58465e5b01b8052af4b4e4e19a5644d19f06"
+    },
+    {
+      "path": "PPC-T1-PCV-01/PROOF_RESULTS.json",
+      "role": "T1 baseline certificates",
+      "bytes": 879491,
+      "sha256": "3ccef93d914b4c1702078bcaafd612386bd5d953b70d729ccba3825ab1c272ca"
+    },
+    {
+      "path": "PPC-T1-PCV-01/OBSERVATIONS_240.json",
+      "role": "T1 240 observations",
+      "bytes": 918585,
+      "sha256": "2a7c44f73e86a6cb663f4018a8b573b73f17bffe500e9c04e3d823df8510ebc3"
+    },
+    {
+      "path": "PPC-T1-PCV-01/REPORT.md",
+      "role": "T1 report and timing definition",
+      "bytes": 28640,
+      "sha256": "6b5702f779663b5086f5340ea5ed7e6508a7a666a3399b2dc6d68774a675776b"
+    },
+    {
+      "path": "PPC-T1-PCV-01/SOURCE_MANIFEST.json",
+      "role": "T1 input/output manifest",
+      "bytes": 11150,
+      "sha256": "01f39e30be90b422f3cc6108a1373f85eed981a31b482b5df2a89797cf84f133"
+    },
+    {
+      "path": "PPC-T1-PCV-01/CERTIFICATE_VERIFICATION.json",
+      "role": "T1 certificate verification",
+      "bytes": 74715,
+      "sha256": "d1c9dd49e3d889b06a0a148e82a3d6303628b19a9a084d005c08d1eeaf476f4e"
+    },
+    {
+      "path": "PPC-T1-PCV-01/PREREGISTRATION_AMENDMENT.md",
+      "role": "T1 preregistration amendment",
+      "bytes": 9943,
+      "sha256": "a7fccf0c0020751f6b5bb67b869345c604ac4b970baee47a0c1a13523b473f7a"
+    },
+    {
+      "path": "PPC-T1-FOUNDATION-01/NEXT_STAGE_PREREGISTRATION.json",
+      "role": "frozen next-stage preregistration",
+      "bytes": 13476,
+      "sha256": "3dd79a40fda42af91056c3662fbb92ae0ad0da2c9fa9e50670eea139f3b06bfc"
+    },
+    {
+      "path": "PPC-CAT-EVALUATOR-ABLATION-01/_raw/d1_rep1.json",
+      "role": "frozen D1 exact search cross-check",
+      "bytes": 221940,
+      "sha256": "148a2fda5e37ca9f180ca6916f37a43717cff4b176548491375411f1091f80fb"
+    }
+  ],
+  "timingDefinitionAudit": {
+    "t1WithinPhase1": "nodes <= 5000 && solveElapsedMs <= 20",
+    "scope": "SOLVE_ONLY",
+    "verifierIncluded": false,
+    "conclusion": "T1 G2 20ms threshold excludes independent verifier; this round records solve-only and solve+verify separately and never presents solve-only as full verification time."
+  },
+  "methods": {
+    "candidateSource": {
+      "p5PlanBranchesAvailable": false,
+      "fallback": "OFFLINE_REGENERATED_D1",
+      "exactD1": "createSearchContext(rules, 8000000, false, false, false, 0, false); leafEvaluator=arm; capturePlan=true; searchBestAction(root, 1, ctx)",
+      "continuation": "SAME_EXACT_D1_PLAN_BRANCHES",
+      "sameSearchFallbacks": 0,
+      "crossCheckMismatches": 0,
+      "maxCandidatesPerStratum": 2,
+      "sortBeforeProof": "exclude original; different first step first; descending exact root value; ascending legal action index; cap 2",
+      "frozenBeforeProofs": true,
+      "frozenAt": "2026-11-16T06:59:08.770Z",
+      "frozenSha256": "8f5a3f9d99ac2f61c895255e72650b3761418cb58ff5152b7d5e94619f8fc3ed"
+    },
+    "replay": {
+      "actions": "generatePreparedSearchActions + simulateSearchAction",
+      "rules": "createEngineRuleSet",
+      "requirements": [
+        "every action legal",
+        "all cat moves consumed",
+        "correct cat-to-mouse boundary",
+        "trap/box/tunnel/butter/ghost/placement-debt state retained",
+        "complete post-prefix stateKey"
+      ],
+      "validResults": 16,
+      "invalidResults": 0
+    },
+    "h0": {
+      "mode": "mouseForce",
+      "horizon": 1,
+      "startIdx": 1,
+      "nodeCap": 600000,
+      "chanceRule": "AND over all positive-probability CAT->MOUSE CHANCE outcomes",
+      "verifier": "independent re-enumeration; eventual resolution required",
+      "refutedStatus": "ALTERNATIVE_REFUTED_H0"
+    },
+    "h1": {
+      "mode": "catSurvive",
+      "horizon": 2,
+      "startIdx": 1,
+      "nodeCap": 5000,
+      "phase1Frozen": true,
+      "automaticEscalation": false,
+      "gate": "run only for candidates not proven refuted by H0",
+      "runs": 0,
+      "reason": "ALL_CANDIDATES_H0_REFUTED"
+    },
+    "rescueCriterion": "baseline mouseForce_H0=true with verifier PROVEN AND alternative catSurvive_H1=true with independent verifier PROVEN",
+    "serialRepetitions": 2,
+    "heavyWorkerConcurrency": 1,
+    "determinismFields": ["verdicts", "node counts", "policies", "summary"],
+    "determinismResult": true
+  },
+  "results": {
+    "strataTotal": 8,
+    "baselineCertified": 8,
+    "baselineCertHashMatch": 8,
+    "candidatesFrozen": 16,
+    "candidatesProcessed": 16,
+    "candidatesRefutedH0": 16,
+    "candidatesH1Run": 0,
+    "candidatesH1Certified": 0,
+    "provenTacticalRescueStrata": 0,
+    "rescueStatus": "NO_PROVEN_TACTICAL_RESCUE_H1",
+    "chanceBoundaries": 12,
+    "chanceBoundaryNote": "all 12 have exactly one positive-probability outcome",
+    "deterministicBoundaries": 4,
+    "h0NodesMedian": 51,
+    "h0NodesMax": 820,
+    "h0SolveMsMedian": 2.4855,
+    "h0TotalMsMedian": 2.591,
+    "h0TotalMsMax": 30.918,
+    "h0Within25ms": 13,
+    "verifyFailures": 0,
+    "falseProven": 0,
+    "planIdentityFailures": 0,
+    "resourceRep1": {
+      "rssMB": 166.7,
+      "heapUsedMB": 84.9,
+      "elapsedMs": 161.74
+    },
+    "resourceRep2": {
+      "rssMB": 166.3,
+      "heapUsedMB": 84.8,
+      "elapsedMs": 163.4
+    }
+  },
+  "outputs": [
+    {
+      "path": "REPORT.md",
+      "role": "round report",
+      "bytes": 12767,
+      "sha256": "12c74d16d1f46c60a36570e4e4c9ad52a595eacf2a4d2f52cf0aa4f026e79d49"
+    },
+    {
+      "path": "CANDIDATE_SOURCE_AUDIT.md",
+      "role": "candidate source audit",
+      "bytes": 7414,
+      "sha256": "a07464f1242647ebebe527232c55c1293052fd57f2491fbb4c3826bfb0abf016"
+    },
+    {
+      "path": "CANDIDATE_PLANS.json",
+      "role": "frozen candidate plans",
+      "bytes": 87474,
+      "sha256": "8f5a3f9d99ac2f61c895255e72650b3761418cb58ff5152b7d5e94619f8fc3ed"
+    },
+    {
+      "path": "BASELINE_CERTIFICATES.json",
+      "role": "baseline certificate re-binding",
+      "bytes": 91994,
+      "sha256": "0a0e837169a551aaef5eebe4ad7d82cbf6e063290820eab31c373da712724649"
+    },
+    {
+      "path": "ALTERNATIVE_PROOF_RESULTS.json",
+      "role": "H0/H1 alternative proof results",
+      "bytes": 211920,
+      "sha256": "3351036f445e843c876d3629ea7698abd1e56c704aaffadeca74151cd7ef050a"
+    },
+    {
+      "path": "CERTIFICATE_VERIFICATION.json",
+      "role": "independent certificate verification",
+      "bytes": 260920,
+      "sha256": "2b8b31c02390153ba8806daf9c5bc601b5399ab8ffe670ce3e705d91eb0c286f"
+    },
+    {
+      "path": "RESCUE_MATRIX.csv",
+      "role": "per-candidate rescue matrix",
+      "bytes": 9353,
+      "sha256": "0eb4973d21f3e2b43a157d6c6c0310311b63e8a51d8d53bd52aa3bc9b71cd882"
+    },
+    {
+      "path": "RESOURCE_SAFETY_LOG.md",
+      "role": "resource safety log",
+      "bytes": 4778,
+      "sha256": "73c594e81d524b3de589c07d18c0c2c1cb1cafbdaa589d616705e1c19b5a5e17"
+    },
+    {
+      "path": "_raw/AGGREGATE.json",
+      "role": "aggregate summary",
+      "bytes": 4232,
+      "sha256": "3ca85afc15a65d14658fe5f77bd7fda5b1fe5cc8feb2f5a950e30edb756c33a1"
+    },
+    {
+      "path": "_raw/CANDIDATE_FREEZE.json",
+      "role": "pre-proof candidate freeze",
+      "bytes": 343,
+      "sha256": "ccd1925c1a4b489e330bd014c1dcc57434e1ab0e3c895c1f994c38f825e716f7"
+    },
+    {
+      "path": "_raw/D1_CROSSCHECK.json",
+      "role": "D1 cross-check against frozen P3",
+      "bytes": 1715,
+      "sha256": "820c903c14d9c9d6cfc3749476b395882a2dd3c7094fa7a3cce7186aea7ceda0"
+    },
+    {
+      "path": "_raw/FRONTIER_INSPECTION.json",
+      "role": "representative frontier inspection",
+      "bytes": 1952,
+      "sha256": "215616c99cf4c23d00d3a25c83ecd94ef75ccc26bab409e58de7072e0f10d066"
+    },
+    {
+      "path": "_raw/candidate_generation_summary.json",
+      "role": "candidate generation summary",
+      "bytes": 19078,
+      "sha256": "50a2ff2d1c1e7645baca6c3686ab53b94738a51fda7fd23c59cf5291f4a24832"
+    },
+    {
+      "path": "_raw/proof_rep1.json",
+      "role": "fresh proof repetition 1",
+      "bytes": 299027,
+      "sha256": "50170ff37f8ab816ba9125ad9022778c1dc8d281d862b32e5b9054a16861e0b6"
+    },
+    {
+      "path": "_raw/proof_rep2.json",
+      "role": "fresh proof repetition 2",
+      "bytes": 299020,
+      "sha256": "3c044e2c6d9c3b9daf514952aa7c50158fca2ac00964d01ebb6eb4e514aa9833"
+    },
+    {
+      "path": "probe/aggregate_rescue.mjs",
+      "role": "aggregation method",
+      "bytes": 12608,
+      "sha256": "a0e8180b819ae2f4969a3b8990c1e0b20345812b8c8d14fe116620df2acb57bd"
+    },
+    {
+      "path": "probe/generate_candidates.test.ts",
+      "role": "candidate generation and freeze method",
+      "bytes": 5948,
+      "sha256": "6552f554d8b5873d10b4d5ae1f3b24fb3964821f93a9cb652a89dfe86473cf59"
+    },
+    {
+      "path": "probe/inspect_frontier.test.ts",
+      "role": "frontier inspection method",
+      "bytes": 2393,
+      "sha256": "1391f08a16ca02e93cacc5858264f4c20e3ad3186e60342cc7ead1717c24f391"
+    },
+    {
+      "path": "probe/prove_alternatives.test.ts",
+      "role": "H0/H1 proof method",
+      "bytes": 14801,
+      "sha256": "1d30fdbd3804ece6096cc8f7e2307e1d16aba9d527199da9c5ba503f70344733"
+    },
+    {
+      "path": "probe/rescue_lib.ts",
+      "role": "shared rescue library",
+      "bytes": 19178,
+      "sha256": "1015fdc2daf1427dad3297e5828e0183d2270c9c7913556d61dfd85bb9ec0d60"
+    },
+    {
+      "path": "probe/vitest.config.mts",
+      "role": "serial test configuration",
+      "bytes": 546,
+      "sha256": "79ca71fd440b0c5ec20e5842485620ce9f57ecc1a499e3b3860479f60b853a01"
+    }
+  ],
+  "statusFlags": {
+    "PRODUCTION_SOURCE_CHANGED": "NO",
+    "PRODUCTION_WIRING": "NO",
+    "GAME_RULES_CHANGED": "NO",
+    "SEARCH_MATH_CHANGED": "NO",
+    "H1_CHANGED": "NO",
+    "SIDECAR_CHANGED": "NO",
+    "GUARD_CHANGED": "NO",
+    "100MS_150MS_CHANGED": "NO",
+    "SELF_PLAY": "NOT_PERFORMED",
+    "FULL_REGRESSION": "NOT_PERFORMED",
+    "COMMIT": "NO",
+    "PUSH": "NO",
+    "MERGE": "NO"
+  },
+  "selfHashIncluded": false,
+  "selfHashNote": "SOURCE_MANIFEST.json is excluded from its own outputs list; its digest is recorded in SHA256SUMS.txt.",
+  "decision": "NEGATIVE_RESCUE__STOP_FOR_REVIEW"
+}

@@ -1,0 +1,31 @@
+{
+  "round": "PPC-MCTS-01",
+  "purpose": "Transitive production sources reached by out/bench.mjs that are NOT pinned in the frozen MANIFEST.json. Recorded separately so the executed code is fully identified without mutating the frozen manifest source list.",
+  "note": "RACE arm calls planHardCatTurn (hardTurnPlanner.ts) which reaches expectiminimax.ts / searchConfig.ts / deadlineContext.ts; the plan cost uses mateActionCost (expectiminimax.ts). All are bundled into out/bench.mjs, whose bytes are verified identical to a rebuild (sha e75b413e...).",
+  "files": {
+    "src/game/ai/hardTurnPlanner.ts": {
+      "bytes": 36060,
+      "sha256": "27b1ce6dc62234d0c822b2b0b6341205ac189b5f76d7662a5d29d9e17ded75ff"
+    },
+    "src/game/ai/expectiminimax.ts": {
+      "bytes": 109353,
+      "sha256": "50d27da5e9d0d47a1ad70efb542a3ec1510507fd14b825a52729ebb90f6d690c"
+    },
+    "src/game/ai/stateCompare.ts": {
+      "bytes": 4602,
+      "sha256": "7c6339357b7eb0d2687aa4cb2842a7a4f0d51f5b0ab288851b13901e536ad017"
+    },
+    "src/game/ai/searchConfig.ts": {
+      "bytes": 5670,
+      "sha256": "0c960794de784785b8f12ac39fabf141bc1e82afd4cf8dc8d5788de12cabcd5c"
+    },
+    "src/game/ai/deadlineContext.ts": {
+      "bytes": 14411,
+      "sha256": "ced449445d70d1ba88cb20d88415b3c641d670aa886536fcacefa36b4aa50235"
+    },
+    "src/game/config.ts": {
+      "bytes": 15048,
+      "sha256": "60e38c491c81f0b6d962bd32b306373de462cffcc9508b76c5bed02f9f70caae"
+    }
+  }
+}

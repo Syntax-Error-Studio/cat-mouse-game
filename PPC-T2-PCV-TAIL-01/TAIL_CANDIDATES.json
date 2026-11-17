@@ -1,0 +1,610 @@
+{
+ "round": "PPC-T2-PCV-TAIL-01",
+ "phase": "TAIL_CANDIDATES_FROZEN",
+ "generatedAt": "2026-11-16T08:00:56.136Z",
+ "generatedBy": "PPC-T2-PCV-TAIL-01/probe/tail_lib.ts",
+ "head": "48eaac6c4f3801d351787696ba5876995b64e8d8",
+ "branch": "ppc/p1-id-state-identity-fix",
+ "fixtureSha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+ "source": {
+  "path": "PPC-T2-PCV-RESCUE-01/CANDIDATE_PLANS.json",
+  "sha256": "8f5a3f9d99ac2f61c895255e72650b3761418cb58ff5152b7d5e94619f8fc3ed",
+  "field": "strata[].attempted",
+  "regenerated": false
+ },
+ "method": {
+  "identity": "real RuleSet replay; stateKey + recursively key-sorted canonical snapshot JSON + SHA-256; full field diff for dedup",
+  "dedup": "G2T8 E1/H1 LDDR share one proof group iff root and post canonical snapshots are identical; G1T9/H1 RDLD reuses the T2 UDDD H0 certificate iff full post-state identity matches",
+  "proofRuns": 0,
+  "h0": "mouseForce H=1 startIdx=1 cap=600000; all positive-probability CHANCE outcomes ANDed",
+  "h1": "catSurvive H=2 startIdx=1 cap=5000; only when H0 not refuted; 20ms phase-1 gate is solve-only"
+ },
+ "expected": {
+  "originalRecords": 4,
+  "uniqueFrontiers": 2,
+  "reusedCertificates": 1,
+  "g2t8Shared": true,
+  "t4ReusesUddd": true
+ },
+ "proofsRunBeforeFreeze": false,
+ "records": [
+  {
+   "recordId": "T1",
+   "rootId": "G2T8",
+   "arm": "E1",
+   "planString": "LDDR",
+   "planChars": [
+    "L",
+    "D",
+    "D",
+    "R"
+   ],
+   "planHash": "b78ee5dbb069ca23785809d24a9f779244e1bd5af2e03c8cc9d0772cb69170d7",
+   "source": {
+    "kind": "T2_ATTEMPTED_CAP_EXCLUDED",
+    "path": "PPC-T2-PCV-RESCUE-01/CANDIDATE_PLANS.json",
+    "fileSha256": "8f5a3f9d99ac2f61c895255e72650b3761418cb58ff5152b7d5e94619f8fc3ed",
+    "stratum": "G2T8/E1",
+    "attemptedIndex": 2,
+    "attempted": {
+     "rootAction": "L",
+     "rootActionLegalIndex": 2,
+     "rootValue": -711.2719298245615,
+     "rootValueBound": "exact",
+     "rootValueMate": null,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "boundary_chance",
+     "planString": "LDDR",
+     "planChars": [
+      "L",
+      "D",
+      "D",
+      "R"
+     ],
+     "firstStepDifferent": true,
+     "replayOk": true,
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "replayReason": null,
+     "bindingOk": true,
+     "postStateKeys": [
+      "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__e__e__e__e__b__b__e__b__b__e__e__e__e__ec_e__p__e__e__e__e__em_e__b__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#mouse#4,2#4,9#0#3#2,5|8,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundaryKind": "DEGENERATE_CHANCE_ONE_OUTCOME",
+     "branches": 1,
+     "eligible": true,
+     "rejectReason": null
+    }
+   },
+   "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__b__e__e__e__ec_e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__em_e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#cat#2,2#4,9#4#0#2,5#8,6:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+   "rootSnapshotSha256": "985b24a76bf5ad8f45975ac703337c17c28ace0811fae3d32dc45514ce3518dc",
+   "rootSnapshotSha256Recomputed": "985b24a76bf5ad8f45975ac703337c17c28ace0811fae3d32dc45514ce3518dc",
+   "rootKeyMatchesT2": true,
+   "postStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__e__e__e__e__b__b__e__b__b__e__e__e__e__ec_e__p__e__e__e__e__em_e__b__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#mouse#4,2#4,9#0#3#2,5|8,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+   "postStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__e__e__e__e__b__b__e__b__b__e__e__e__e__ec_e__p__e__e__e__e__em_e__b__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#mouse#4,2#4,9#0#3#2,5|8,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "postSnapshotSha256": "cf5d70d7a2077cadbf15fb8cb2d103f00af2bbdefda47c43a1c25d965580b872",
+   "postIdentityFields": {
+    "phase": "playing",
+    "currentPlayer": "mouse",
+    "cat": "4,2",
+    "mouse": "4,9",
+    "catMovesLeft": 0,
+    "mouseMovesLeft": 3,
+    "mouseHasButter": true,
+    "mouseSkillActive": false,
+    "butterPositions": [
+     "2,5",
+     "8,6"
+    ],
+    "pendingButterSpawns": [],
+    "pendingButterPlacementDebt": 0,
+    "trapPosition": "1,1",
+    "catTrapsRemaining": 0,
+    "blockedTunnels": []
+   },
+   "t2PostStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__e__e__e__e__b__b__e__b__b__e__e__e__e__ec_e__p__e__e__e__e__em_e__b__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#mouse#4,2#4,9#0#3#2,5|8,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "postKeyMatchesT2": true,
+   "replay": {
+    "ok": true,
+    "status": "VALID_MOUSE_FRONTIER",
+    "reason": null,
+    "applyPrefixCrossCheck": true,
+    "bindingOk": true,
+    "steps": [
+     {
+      "label": "L",
+      "transitionKind": "deterministic",
+      "branches": 1
+     },
+     {
+      "label": "D",
+      "transitionKind": "deterministic",
+      "branches": 1
+     },
+     {
+      "label": "D",
+      "transitionKind": "deterministic",
+      "branches": 1
+     },
+     {
+      "label": "R",
+      "transitionKind": "chance",
+      "branches": 1
+     }
+    ]
+   },
+   "chance": {
+    "chance": true,
+    "kind": "DEGENERATE_CHANCE_ONE_OUTCOME",
+    "branchCount": 1,
+    "probabilities": [
+     1
+    ],
+    "allPositive": true,
+    "sumWeights": 1
+   },
+   "dedupGroupId": "G2T8_LDDR_SHARED",
+   "reuse": null,
+   "identityMapping": {
+    "expected": "T1_EQUALS_T2_BY_FULL_STATE",
+    "matched": true
+   },
+   "plansEqualT2Source": true,
+   "proofsRunBeforeFreeze": false
+  },
+  {
+   "recordId": "T2",
+   "rootId": "G2T8",
+   "arm": "H1",
+   "planString": "LDDR",
+   "planChars": [
+    "L",
+    "D",
+    "D",
+    "R"
+   ],
+   "planHash": "b78ee5dbb069ca23785809d24a9f779244e1bd5af2e03c8cc9d0772cb69170d7",
+   "source": {
+    "kind": "T2_ATTEMPTED_CAP_EXCLUDED",
+    "path": "PPC-T2-PCV-RESCUE-01/CANDIDATE_PLANS.json",
+    "fileSha256": "8f5a3f9d99ac2f61c895255e72650b3761418cb58ff5152b7d5e94619f8fc3ed",
+    "stratum": "G2T8/H1",
+    "attemptedIndex": 2,
+    "attempted": {
+     "rootAction": "L",
+     "rootActionLegalIndex": 2,
+     "rootValue": -1611.2719298245615,
+     "rootValueBound": "exact",
+     "rootValueMate": null,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "boundary_chance",
+     "planString": "LDDR",
+     "planChars": [
+      "L",
+      "D",
+      "D",
+      "R"
+     ],
+     "firstStepDifferent": true,
+     "replayOk": true,
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "replayReason": null,
+     "bindingOk": true,
+     "postStateKeys": [
+      "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__e__e__e__e__b__b__e__b__b__e__e__e__e__ec_e__p__e__e__e__e__em_e__b__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#mouse#4,2#4,9#0#3#2,5|8,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundaryKind": "DEGENERATE_CHANCE_ONE_OUTCOME",
+     "branches": 1,
+     "eligible": true,
+     "rejectReason": null
+    }
+   },
+   "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__b__e__e__e__ec_e__e__e__p__e__e__e__e__b__e__b__b__e__b__b__e__e__e__e__e__e__p__e__e__e__e__em_e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#cat#2,2#4,9#4#0#2,5#8,6:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+   "rootSnapshotSha256": "985b24a76bf5ad8f45975ac703337c17c28ace0811fae3d32dc45514ce3518dc",
+   "rootSnapshotSha256Recomputed": "985b24a76bf5ad8f45975ac703337c17c28ace0811fae3d32dc45514ce3518dc",
+   "rootKeyMatchesT2": true,
+   "postStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__e__e__e__e__b__b__e__b__b__e__e__e__e__ec_e__p__e__e__e__e__em_e__b__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#mouse#4,2#4,9#0#3#2,5|8,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+   "postStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__e__e__e__e__b__b__e__b__b__e__e__e__e__ec_e__p__e__e__e__e__em_e__b__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#mouse#4,2#4,9#0#3#2,5|8,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "postSnapshotSha256": "cf5d70d7a2077cadbf15fb8cb2d103f00af2bbdefda47c43a1c25d965580b872",
+   "postIdentityFields": {
+    "phase": "playing",
+    "currentPlayer": "mouse",
+    "cat": "4,2",
+    "mouse": "4,9",
+    "catMovesLeft": 0,
+    "mouseMovesLeft": 3,
+    "mouseHasButter": true,
+    "mouseSkillActive": false,
+    "butterPositions": [
+     "2,5",
+     "8,6"
+    ],
+    "pendingButterSpawns": [],
+    "pendingButterPlacementDebt": 0,
+    "trapPosition": "1,1",
+    "catTrapsRemaining": 0,
+    "blockedTunnels": []
+   },
+   "t2PostStateKeys": [
+    "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__b__e__e__e__e__e__e__e__p__e__e__e__e__e__e__b__b__e__b__b__e__e__e__e__ec_e__p__e__e__e__e__em_e__b__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__p__e__e__e__p__e__e__e__b__b__m__m__e__e__e__e__e__e__e__e__m__m__t__e__e__b__e__e__e__e__e__t__#single#playing#mouse#4,2#4,9#0#3#2,5|8,6##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "postKeyMatchesT2": true,
+   "replay": {
+    "ok": true,
+    "status": "VALID_MOUSE_FRONTIER",
+    "reason": null,
+    "applyPrefixCrossCheck": true,
+    "bindingOk": true,
+    "steps": [
+     {
+      "label": "L",
+      "transitionKind": "deterministic",
+      "branches": 1
+     },
+     {
+      "label": "D",
+      "transitionKind": "deterministic",
+      "branches": 1
+     },
+     {
+      "label": "D",
+      "transitionKind": "deterministic",
+      "branches": 1
+     },
+     {
+      "label": "R",
+      "transitionKind": "chance",
+      "branches": 1
+     }
+    ]
+   },
+   "chance": {
+    "chance": true,
+    "kind": "DEGENERATE_CHANCE_ONE_OUTCOME",
+    "branchCount": 1,
+    "probabilities": [
+     1
+    ],
+    "allPositive": true,
+    "sumWeights": 1
+   },
+   "dedupGroupId": "G2T8_LDDR_SHARED",
+   "reuse": null,
+   "identityMapping": {
+    "expected": "T2_EQUALS_T1_BY_FULL_STATE",
+    "matched": true
+   },
+   "plansEqualT2Source": true,
+   "proofsRunBeforeFreeze": false
+  },
+  {
+   "recordId": "T3",
+   "rootId": "G1T9",
+   "arm": "E1",
+   "planString": "RLLL",
+   "planChars": [
+    "R",
+    "L",
+    "L",
+    "L"
+   ],
+   "planHash": "07098f1281fbee0af50273c45e35dd9e945556ef4da3b85193ec974e1b7aef86",
+   "source": {
+    "kind": "T2_ATTEMPTED_CAP_EXCLUDED",
+    "path": "PPC-T2-PCV-RESCUE-01/CANDIDATE_PLANS.json",
+    "fileSha256": "8f5a3f9d99ac2f61c895255e72650b3761418cb58ff5152b7d5e94619f8fc3ed",
+    "stratum": "G1T9/E1",
+    "attemptedIndex": 3,
+    "attempted": {
+     "rootAction": "R",
+     "rootActionLegalIndex": 3,
+     "rootValue": -1300.1315789473683,
+     "rootValueBound": "exact",
+     "rootValueMate": null,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "boundary_chance",
+     "planString": "RLLL",
+     "planChars": [
+      "R",
+      "L",
+      "L",
+      "L"
+     ],
+     "firstStepDifferent": true,
+     "replayOk": true,
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "replayReason": null,
+     "bindingOk": true,
+     "postStateKeys": [
+      "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#1,5#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundaryKind": "DEGENERATE_CHANCE_ONE_OUTCOME",
+     "branches": 1,
+     "eligible": true,
+     "rejectReason": null
+    }
+   },
+   "rootStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__ec_e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#1,7#8,3#4#0#5,5#8,5:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+   "rootSnapshotSha256": "5639f7682d7c5f6f0aa78d2a7103374cd4d08b3326c21dcccadc188af54013cf",
+   "rootSnapshotSha256Recomputed": "5639f7682d7c5f6f0aa78d2a7103374cd4d08b3326c21dcccadc188af54013cf",
+   "rootKeyMatchesT2": true,
+   "postStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#1,5#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+   "postStateKeys": [
+    "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#1,5#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "postSnapshotSha256": "580665cbd9afc4c190109aac488206bc7e992331b9df148cb5ef7163e3dfb67e",
+   "postIdentityFields": {
+    "phase": "playing",
+    "currentPlayer": "mouse",
+    "cat": "1,5",
+    "mouse": "8,3",
+    "catMovesLeft": 0,
+    "mouseMovesLeft": 3,
+    "mouseHasButter": true,
+    "mouseSkillActive": false,
+    "butterPositions": [
+     "5,5",
+     "8,5"
+    ],
+    "pendingButterSpawns": [],
+    "pendingButterPlacementDebt": 0,
+    "trapPosition": "1,1",
+    "catTrapsRemaining": 0,
+    "blockedTunnels": []
+   },
+   "t2PostStateKeys": [
+    "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#1,5#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "postKeyMatchesT2": true,
+   "replay": {
+    "ok": true,
+    "status": "VALID_MOUSE_FRONTIER",
+    "reason": null,
+    "applyPrefixCrossCheck": true,
+    "bindingOk": true,
+    "steps": [
+     {
+      "label": "R",
+      "transitionKind": "deterministic",
+      "branches": 1
+     },
+     {
+      "label": "L",
+      "transitionKind": "deterministic",
+      "branches": 1
+     },
+     {
+      "label": "L",
+      "transitionKind": "deterministic",
+      "branches": 1
+     },
+     {
+      "label": "L",
+      "transitionKind": "chance",
+      "branches": 1
+     }
+    ]
+   },
+   "chance": {
+    "chance": true,
+    "kind": "DEGENERATE_CHANCE_ONE_OUTCOME",
+    "branchCount": 1,
+    "probabilities": [
+     1
+    ],
+    "allPositive": true,
+    "sumWeights": 1
+   },
+   "dedupGroupId": "G1T9_E1_RLLL",
+   "reuse": null,
+   "identityMapping": {
+    "expected": "T3_INDEPENDENT_NEW_FRONTIER",
+    "matched": true
+   },
+   "plansEqualT2Source": true,
+   "proofsRunBeforeFreeze": false
+  },
+  {
+   "recordId": "T4",
+   "rootId": "G1T9",
+   "arm": "H1",
+   "planString": "RDLD",
+   "planChars": [
+    "R",
+    "D",
+    "L",
+    "D"
+   ],
+   "planHash": "de3ed7b298cfb618a5fea46905da7eeca6aefece545520f2b24fd19e86b83bb2",
+   "source": {
+    "kind": "T2_ATTEMPTED_CAP_EXCLUDED",
+    "path": "PPC-T2-PCV-RESCUE-01/CANDIDATE_PLANS.json",
+    "fileSha256": "8f5a3f9d99ac2f61c895255e72650b3761418cb58ff5152b7d5e94619f8fc3ed",
+    "stratum": "G1T9/H1",
+    "attemptedIndex": 3,
+    "attempted": {
+     "rootAction": "R",
+     "rootActionLegalIndex": 3,
+     "rootValue": -1684.342105263158,
+     "rootValueBound": "exact",
+     "rootValueMate": null,
+     "continuationSource": "same_exact_d1_plan_branches",
+     "walkStopped": "boundary_chance",
+     "planString": "RDLD",
+     "planChars": [
+      "R",
+      "D",
+      "L",
+      "D"
+     ],
+     "firstStepDifferent": true,
+     "replayOk": true,
+     "replayStatus": "VALID_MOUSE_FRONTIER",
+     "replayReason": null,
+     "bindingOk": true,
+     "postStateKeys": [
+      "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__ec_b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,7#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+     ],
+     "boundaryKind": "DEGENERATE_CHANCE_ONE_OUTCOME",
+     "branches": 1,
+     "eligible": true,
+     "rejectReason": null
+    }
+   },
+   "rootStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__ec_e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#1,7#8,3#4#0#5,5#8,5:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+   "rootSnapshotSha256": "5639f7682d7c5f6f0aa78d2a7103374cd4d08b3326c21dcccadc188af54013cf",
+   "rootSnapshotSha256Recomputed": "5639f7682d7c5f6f0aa78d2a7103374cd4d08b3326c21dcccadc188af54013cf",
+   "rootKeyMatchesT2": true,
+   "postStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__ec_b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,7#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+   "postStateKeys": [
+    "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__ec_b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,7#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "postSnapshotSha256": "6ce748d9157b92783cf175e311a944a6698ca9bff57e173d6cbdfddc570d703f",
+   "postIdentityFields": {
+    "phase": "playing",
+    "currentPlayer": "mouse",
+    "cat": "3,7",
+    "mouse": "8,3",
+    "catMovesLeft": 0,
+    "mouseMovesLeft": 3,
+    "mouseHasButter": true,
+    "mouseSkillActive": false,
+    "butterPositions": [
+     "5,5",
+     "8,5"
+    ],
+    "pendingButterSpawns": [],
+    "pendingButterPlacementDebt": 0,
+    "trapPosition": "1,1",
+    "catTrapsRemaining": 0,
+    "blockedTunnels": []
+   },
+   "t2PostStateKeys": [
+    "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__ec_b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,7#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+   ],
+   "postKeyMatchesT2": true,
+   "replay": {
+    "ok": true,
+    "status": "VALID_MOUSE_FRONTIER",
+    "reason": null,
+    "applyPrefixCrossCheck": true,
+    "bindingOk": true,
+    "steps": [
+     {
+      "label": "R",
+      "transitionKind": "deterministic",
+      "branches": 1
+     },
+     {
+      "label": "D",
+      "transitionKind": "deterministic",
+      "branches": 1
+     },
+     {
+      "label": "L",
+      "transitionKind": "deterministic",
+      "branches": 1
+     },
+     {
+      "label": "D",
+      "transitionKind": "chance",
+      "branches": 1
+     }
+    ]
+   },
+   "chance": {
+    "chance": true,
+    "kind": "DEGENERATE_CHANCE_ONE_OUTCOME",
+    "branchCount": 1,
+    "probabilities": [
+     1
+    ],
+    "allPositive": true,
+    "sumWeights": 1
+   },
+   "dedupGroupId": "G1T9_H1_RDLD_REUSES_UDDD",
+   "reuse": {
+    "eligible": true,
+    "sourceCandidateId": "G1T9/H1/C2",
+    "sourcePlan": "UDDD",
+    "sourcePostStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__ec_b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,7#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+    "sourceCertHash": "14b106d703bd5b7977a6e6aee3acaaf92e275296f6273ec16c9552f64eb510f0",
+    "sourceProofStatus": "PROVEN",
+    "sourceValue": true,
+    "sourceTruncated": false,
+    "sourceVerifyVerdict": "PROVEN",
+    "sourcePolicyMisses": 0,
+    "sourcePolicySize": 81,
+    "sourcePostKeys": [
+     "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__ec_b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,7#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+    ],
+    "sourceRecordPath": "PPC-T2-PCV-RESCUE-01/ALTERNATIVE_PROOF_RESULTS.json",
+    "sourceRecordSha256": "3351036f445e843c876d3629ea7698abd1e56c704aaffadeca74151cd7ef050a",
+    "independentReverificationRequired": true,
+    "reSolveRequired": false
+   },
+   "identityMapping": {
+    "expected": "T4_EQUALS_T2_UDDD_BY_FULL_STATE",
+    "matched": true,
+    "t2SourceCandidateId": "G1T9/H1/C2",
+    "t2SourcePlan": "UDDD",
+    "t2SourcePostStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__ec_b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,7#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+    "replayedUdddPostStateKey": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__e__e__ec_b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,7#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+    "t2SourcePostKeyMatchesReplay": true,
+    "canonicalEqual": true,
+    "stateKeyEqual": true,
+    "differences": []
+   },
+   "plansEqualT2Source": true,
+   "proofsRunBeforeFreeze": false
+  }
+ ],
+ "groups": {
+  "G2T8_LDDR_SHARED": {
+   "groupId": "G2T8_LDDR_SHARED",
+   "sources": [
+    "T1",
+    "T2"
+   ],
+   "representative": "T1",
+   "newProofs": 1,
+   "shared": true
+  },
+  "G1T9_E1_RLLL": {
+   "groupId": "G1T9_E1_RLLL",
+   "sources": [
+    "T3"
+   ],
+   "representative": "T3",
+   "newProofs": 1,
+   "shared": false
+  },
+  "G1T9_H1_RDLD_REUSES_UDDD": {
+   "groupId": "G1T9_H1_RDLD_REUSES_UDDD",
+   "sources": [
+    "T4"
+   ],
+   "representative": "T4",
+   "newProofs": 0,
+   "shared": false,
+   "reuseFrom": "T2 G1T9/H1/C2 UDDD",
+   "matched": true
+  }
+ },
+ "uniqueProofGroups": [
+  "G2T8_LDDR_SHARED",
+  "G1T9_E1_RLLL"
+ ],
+ "summary": {
+  "originalRecords": 4,
+  "uniqueFrontiers": 2,
+  "reusedCertificates": 1,
+  "proofsRunBeforeFreeze": 0,
+  "actualMatchesExpected": true
+ }
+}

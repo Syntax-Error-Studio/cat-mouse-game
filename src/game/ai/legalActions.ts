@@ -1,8 +1,8 @@
 import type { GameEngineState } from '../engine';
-import { DIRECTIONS, GamePhase, PieceType } from '../types';
 import type { RuleSet, SearchAction } from './searchTypes';
 import { gameAffectingEqual } from './stateCompare';
 import { simulateSearchAction } from './simulator';
+import { enumerateSearchActionCandidates } from './preparedActions';
 
 /**
  * Generate the legal SearchActions for a given state.
@@ -21,6 +21,13 @@ import { simulateSearchAction } from './simulator';
  * candidate through the injected RuleSet and checking for a game-affecting
  * change (no-op => illegal), so the legal set can never silently diverge
  * from what the game would allow.
+ *
+ * PPC-P2-PREPARED-TRANSITION-01: the candidate enumeration (which actions, in
+ * which order, behind which precondition) now lives in `preparedActions.ts` so
+ * the search hot path can reuse the SAME enumeration and keep the transition it
+ * already paid for. This function's contract is unchanged — it still returns
+ * plain `SearchAction[]`, still simulates one candidate at a time, and still
+ * emits tunnel exits without a legality simulation.
  */
 export function generateLegalSearchActions(
   state: GameEngineState,
@@ -28,35 +35,9 @@ export function generateLegalSearchActions(
 ): SearchAction[] {
   const actions: SearchAction[] = [];
 
-  if (state.phase === GamePhase.CatWins || state.phase === GamePhase.MouseWins) {
-    return actions;
-  }
-
-  if (state.phase === GamePhase.ChoosingTunnelExit) {
-    for (const choice of state.tunnelExitChoices) {
-      actions.push({ type: 'chooseTunnel', r: choice.r, c: choice.c });
-    }
-    return actions;
-  }
-
-  // phase === Playing
-  if (state.currentPlayer === PieceType.Mouse) {
-    for (const d of DIRECTIONS) {
-      const cand: SearchAction = { type: 'mouseStep', direction: d };
-      if (isEffective(cand, state, rules)) actions.push(cand);
-    }
-    if (state.mouseHasButter && !state.mouseSkillActive) {
-      const cand: SearchAction = { type: 'mouseSkill' };
-      if (isEffective(cand, state, rules)) actions.push(cand);
-    }
-  } else {
-    for (const d of DIRECTIONS) {
-      const cand: SearchAction = { type: 'catStep', direction: d };
-      if (isEffective(cand, state, rules)) actions.push(cand);
-    }
-    if (state.trapPosition === null && state.catTrapsRemaining > 0) {
-      const cand: SearchAction = { type: 'catPlaceTrap' };
-      if (isEffective(cand, state, rules)) actions.push(cand);
+  for (const cand of enumerateSearchActionCandidates(state)) {
+    if (!cand.verifyEffectiveness || isEffective(cand.action, state, rules)) {
+      actions.push(cand.action);
     }
   }
 

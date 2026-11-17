@@ -1,6 +1,48 @@
 import type { GameEngineState } from '../engine';
+import type { CellType } from '../types';
 import type { SearchAction } from './searchTypes';
 import { pointSetKey, pendingSpawnsKey } from './stateCompare';
+
+/**
+ * PPC-P1-ID-01 — injective terrain code for state identity.
+ *
+ * The previous encoder used `cell.type[0]`, which is NOT injective over the
+ * CellType domain: `box`/`butter_spot` both produced `b` and `trap`/`tunnel`
+ * both produced `t`. Two genuinely different positions therefore shared one
+ * `stateKey`, and every keyed consumer (evalCache, TT, planBranches, path
+ * repetition, equalPrimaryGraph) could reuse a value computed for the other
+ * position.
+ *
+ * Properties required here:
+ *  - injective over `CellType` (9 distinct one-character codes);
+ *  - EXHAUSTIVE at compile time: the `const unknownTerrain: never = type`
+ *    assignment below fails to compile as soon as a new `CellType` member is
+ *    added without a corresponding case;
+ *  - FAIL CLOSED at runtime for unknown terrain. An exhaustive `switch` has no
+ *    property lookup at all, so inherited names (`toString`, `constructor`,
+ *    `__proto__`) can never be mistaken for a code — which is why this is
+ *    preferred over an `undefined`-only guard on a plain lookup object;
+ *  - the five default-map terrains (empty/box/pile/mouse_hole/tunnel) keep
+ *    their historical character, so the default random map's key is byte-for-
+ *    byte identical to the pre-fix key.
+ */
+function terrainKeyCode(type: CellType): string {
+  switch (type) {
+    case 'empty': return 'e';
+    case 'box': return 'b';
+    case 'trap': return 'r';
+    case 'tunnel': return 't';
+    case 'mouse_hole': return 'm';
+    case 'butter_spot': return 'u';
+    case 'pile': return 'p';
+    case 'wall': return 'w';
+    case 'void': return 'v';
+    default: {
+      const unknownTerrain: never = type;
+      throw new Error(`Unknown terrain in state identity: ${String(unknownTerrain)}`);
+    }
+  }
+}
 
 /**
  * Compact, order-independent cell signature (type + piece + butter flag).
@@ -15,7 +57,7 @@ function boardKey(board: GameEngineState['board']): string {
       const cell = row[c];
       const piece = cell.piece ?? '_';
       const butter = cell.hasButter ? 'B' : '_';
-      parts.push(`${cell.type[0]}${piece[0]}${butter}`);
+      parts.push(`${terrainKeyCode(cell.type)}${piece[0]}${butter}`);
     }
   }
   return parts.join('');
