@@ -13,9 +13,37 @@ import { MAX_CERTIFIABLE_CAT_MOVE_BUDGET } from './ai/planBound';
 export const BOARD_SIZE_MIN = 5;
 export const BOARD_SIZE_MAX = 20;
 
+/**
+ * Board sizes the MAP EDITOR can produce. A free-form editor map is not a
+ * formal generated opening, so it is not bound by the certified range above;
+ * these bounds are the editor's own drawing surface (one non-square side is
+ * padded with Void up to `max(rows, cols)`).
+ */
+export const EDITOR_MAP_MIN_SIZE = 4;
+export const EDITOR_MAP_MAX_SIZE = 24;
+
+/**
+ * Mouse-hole region.
+ *
+ * Formal configs describe the hole with the axis-aligned SQUARE `(r, c, size)`
+ * the engine has always used. Editor maps may draw ANY shape, so they may also
+ * carry the exact cell list; when `cells` is present it is AUTHORITATIVE and
+ * `r/c/size` are only the bounding box (kept for heuristics and logs).
+ *
+ * `size === 0` together with `cells: []` means "this map has NO mouse hole":
+ * the mouse then simply has no way to win. Such a map must never be given a
+ * fabricated hole — that would change movement/victory semantics.
+ */
+export interface MouseHole {
+  r: number;
+  c: number;
+  size: number;
+  cells?: { r: number; c: number }[];
+}
+
 export interface GameConfig {
   boardSize: number;
-  mouseHole: { r: number; c: number; size: number };
+  mouseHole: MouseHole;
   boxCount: number;
   boxPositions?: { r: number; c: number }[]; // 若提供则忽略 boxCount
   pileCount?: number;                         // 杂货堆数量
@@ -33,6 +61,13 @@ export interface GameConfig {
   // --- 自定义地图（编辑器产出）---
   customTerrain?: CellType[][];               // 若提供，直接作为棋盘（已含 箱/桩/通道/鼠洞/虚空），跳过随机生成
   tunnelCorners?: { r: number; c: number; label?: string }[]; // 自定义通道位置；空数组=无通道
+  /**
+   * 编辑器「试玩」专用标记。它只切换**开局结构校验**（见
+   * `validateCustomMapConfig`）：自由地图不要求“标准对局布局”，但仍然必须是
+   * 可安全解析的结构。正式对局 / 教程 / 关卡永远不会携带此标记，因此
+   * `validateGameConfig` 的冻结契约逐字不变。
+   */
+  customMapPlaytest?: boolean;
 }
 
 export const DEFAULT_CONFIG: GameConfig = {
@@ -341,6 +376,148 @@ export function validateGameConfig(config: GameConfig): GameConfigValidation {
           }
         }
       }
+    }
+  }
+
+  return { ok: issues.length === 0, issues };
+}
+
+const VALID_CELL_TYPES: ReadonlySet<string> = new Set<string>(Object.values(Cell));
+
+/**
+ * 编辑器自由地图的**结构**校验（`customMapPlaytest` 专用）。
+ *
+ * 与 `validateGameConfig` 的分工：
+ *  - `validateGameConfig` 是**正式对局**的开局契约（认证棋盘尺寸、不重叠的
+ *    标准布局等），一字不改；
+ *  - 本函数只回答“这份编辑结果能否被安全地解析成一张棋盘”：尺寸/地形数据/
+ *    单元格取值/坐标是否合法。缺鼠洞、缺黄油、通道未成对、角色被围住等
+ *    **玩法合理性**问题一律不在这里拒绝，它们只在编辑器里作为提示出现。
+ *
+ * 不修改入参，也不做任何“猜测式修补”。
+ */
+export function validateCustomMapConfig(config: GameConfig): GameConfigValidation {
+  const issues: ConfigIssue[] = [];
+  const S = config.boardSize;
+
+  if (!Number.isInteger(S) || S < EDITOR_MAP_MIN_SIZE || S > EDITOR_MAP_MAX_SIZE) {
+    issues.push({
+      kind: 'unsupported',
+      message: `编辑器地图的棋盘边长必须是 ${EDITOR_MAP_MIN_SIZE}～${EDITOR_MAP_MAX_SIZE} 之间的整数`
+        + `（当前 ${String(S)}）。`,
+    });
+    return { ok: false, issues };
+  }
+
+  // 同一个可精确表示的猫回合预算契约（与正式对局一致）。
+  const catBaseMoves = config.catBaseMoves as number;
+  if (!Number.isSafeInteger(catBaseMoves) || catBaseMoves < 1) {
+    issues.push({
+      kind: 'invalid',
+      message: `猫每回合的基础步数必须是不小于 1 的整数（当前 ${String(catBaseMoves)}）。`,
+    });
+  } else if (catBaseMoves > MAX_CERTIFIABLE_CAT_MOVE_BUDGET) {
+    issues.push({
+      kind: 'invalid',
+      message: `猫每回合的基础步数过大：计划上界必须是可精确表示的整数，`
+        + `因此上限为 ${MAX_CERTIFIABLE_CAT_MOVE_BUDGET}（当前 ${String(catBaseMoves)}）。`,
+    });
+  }
+
+  const inBounds = (p: { r: number; c: number } | undefined): boolean =>
+    !!p && Number.isInteger(p.r) && Number.isInteger(p.c)
+    && p.r >= 0 && p.r < S && p.c >= 0 && p.c < S;
+
+  // 地形：必须是 S×S 的合法单元格矩阵（编辑器已用 Void 补齐非正方形地图）。
+  const grid = config.customTerrain;
+  if (!grid || grid.length === 0) {
+    issues.push({ kind: 'invalid', message: '自定义地图缺少地形数据。' });
+  } else if (grid.length !== S) {
+    issues.push({
+      kind: 'invalid',
+      message: `自定义地图尺寸与棋盘大小不一致：棋盘 ${S}×${S}，地图 ${grid.length} 行。`,
+    });
+  } else {
+    let badCellReported = 0;
+    for (let r = 0; r < S; r++) {
+      const row = grid[r];
+      if (!Array.isArray(row) || row.length !== S) {
+        issues.push({
+          kind: 'invalid',
+          message: `自定义地图第 ${r} 行的列数与棋盘大小不一致（应为 ${S} 列）。`,
+        });
+        break;
+      }
+      for (let c = 0; c < S; c++) {
+        if (!VALID_CELL_TYPES.has(row[c] as string)) {
+          if (badCellReported < 3) {
+            issues.push({
+              kind: 'invalid',
+              message: `自定义地图存在无法识别的单元格类型（行 ${r}，列 ${c}：${String(row[c])}）。`,
+            });
+          }
+          badCellReported++;
+        }
+      }
+      if (badCellReported >= 3) break;
+    }
+    if (badCellReported > 3) {
+      issues.push({
+        kind: 'invalid',
+        message: `自定义地图共有 ${badCellReported} 个无法识别的单元格，仅列出前 3 个。`,
+      });
+    }
+  }
+
+  // 起点：只要求坐标本身合法（落在墙/虚空上属于玩法取舍，由编辑器提示）。
+  const starts = [
+    { label: '鼠', pos: config.mouseStart },
+    { label: '猫', pos: config.catStart },
+  ] as const;
+  for (const { label, pos } of starts) {
+    if (!inBounds(pos)) {
+      issues.push({
+        kind: 'invalid',
+        message: `${label}的初始位置无效：（行 ${pos?.r}，列 ${pos?.c}），棋盘范围是 0～${S - 1}。`,
+      });
+    }
+  }
+
+  // 鼠洞：允许“没有鼠洞”（size 0 / 空 cells），但坐标必须可解析。
+  const hole = config.mouseHole;
+  if (!hole) {
+    issues.push({ kind: 'invalid', message: '鼠洞配置缺失（没有鼠洞时请使用 size 0）。' });
+  } else if (hole.cells) {
+    if (!Array.isArray(hole.cells)) {
+      issues.push({ kind: 'invalid', message: '鼠洞格集合格式无效。' });
+    } else {
+      const bad = hole.cells.filter((p) => !inBounds(p));
+      if (bad.length > 0) {
+        issues.push({
+          kind: 'invalid',
+          message: `鼠洞格越界：${bad.length} 个格子不在 ${S}×${S} 棋盘内`
+            + `（例如 行 ${bad[0]?.r}，列 ${bad[0]?.c}）。`,
+        });
+      }
+    }
+  } else if (!Number.isInteger(hole.size) || hole.size < 0) {
+    issues.push({ kind: 'invalid', message: '鼠洞大小必须是不小于 0 的整数（0 表示没有鼠洞）。' });
+  } else if (hole.size > 0
+    && (!Number.isInteger(hole.r) || !Number.isInteger(hole.c)
+      || hole.r < 0 || hole.c < 0 || hole.r + hole.size > S || hole.c + hole.size > S)) {
+    issues.push({
+      kind: 'invalid',
+      message: `鼠洞区域越界：左上角（行 ${hole.r}，列 ${hole.c}），大小 ${hole.size}，棋盘 ${S}×${S}。`,
+    });
+  }
+
+  // 传送通道：允许空数组（= 没有通道）、允许奇数个/单个；只要求坐标合法。
+  for (const [i, corner] of (config.tunnelCorners ?? []).entries()) {
+    if (!inBounds(corner)) {
+      issues.push({
+        kind: 'invalid',
+        message: `传送通道位置越界：第 ${i + 1} 个通道（行 ${corner.r}，列 ${corner.c}）不在 ${S}×${S} 棋盘内。`,
+      });
     }
   }
 

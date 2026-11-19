@@ -1,5 +1,5 @@
 import type { GameEngineState } from '../engine';
-import type { GameConfig } from '../config';
+import type { GameConfig, MouseHole } from '../config';
 import { CellType, makeTunnelCorners, type TunnelCorner } from '../types';
 
 /**
@@ -24,12 +24,15 @@ import { CellType, makeTunnelCorners, type TunnelCorner } from '../types';
 export type Point = { r: number; c: number };
 
 /**
- * Resolve tunnel corners: custom map corners if provided, else the 4 board
- * corners. Empty array means "no tunnels". (Engine.getTunnelCorners delegates
- * here so runtime + evaluator + simulator share one resolution.)
+ * Resolve tunnel corners: custom map corners if the map DEFINES them, else the
+ * 4 board corners. An explicitly empty array means "this map has no tunnels" —
+ * it must NOT fall back to the board corners (that would invent exits nobody
+ * drew). Only an UNSET (`undefined`) array means "use the default corners".
+ * (Engine.getTunnelCorners delegates here so runtime + evaluator + simulator
+ * share one resolution.)
  */
 export function getTunnelCorners(config: GameConfig): TunnelCorner[] {
-  if (config.tunnelCorners && config.tunnelCorners.length > 0) {
+  if (config.tunnelCorners) {
     return config.tunnelCorners.map((t) => ({ r: t.r, c: t.c, label: t.label ?? '' }));
   }
   return makeTunnelCorners(config.boardSize);
@@ -52,8 +55,46 @@ export function hasButterAt(r: number, c: number, butters: Point[]): boolean {
   return butters.some((b) => b.r === r && b.c === c);
 }
 
-export function isMouseHoleCell(r: number, c: number, hole: { r: number; c: number; size: number }): boolean {
+/**
+ * Is (r,c) a mouse-hole cell?
+ *
+ * When the config carries an exact cell list (`hole.cells`, editor maps) that
+ * list is AUTHORITATIVE: a floor cell inside the bounding box is NOT a hole,
+ * and a drawn hole cell outside the largest square still is one. Formal
+ * configs have no `cells` and keep the historical square semantics verbatim.
+ */
+export function isMouseHoleCell(r: number, c: number, hole: MouseHole): boolean {
+  if (hole.cells) return hole.cells.some((p) => p.r === r && p.c === c);
+  if (!(hole.size > 0)) return false;
   return r >= hole.r && r < hole.r + hole.size && c >= hole.c && c < hole.c + hole.size;
+}
+
+/**
+ * Manhattan distance from (r,c) to the mouse hole, used by butter spawning and
+ * the cat AI's hole-distance heuristics.
+ *
+ * - Editor maps carry the exact cell list: distance is measured to the NEAREST
+ *   real hole cell. A scattered / non-rectangular hole therefore keeps a
+ *   correct exclusion ring around every drawn cell instead of a ring around the
+ *   bounding box's top-left corner.
+ * - `cells: []` means the map has NO hole: return Infinity so no cell is ever
+ *   excluded "because it is close to a hole that does not exist".
+ * - Formal configs never carry `cells` and always have `size >= 1` (enforced by
+ *   `validateGameConfig`), so they keep the historical top-left square formula
+ *   bit-for-bit.
+ */
+export function mouseHoleDistance(hole: MouseHole, r: number, c: number): number {
+  if (hole.cells) {
+    if (hole.cells.length === 0) return Infinity;
+    let best = Infinity;
+    for (const p of hole.cells) {
+      const d = Math.abs(r - p.r) + Math.abs(c - p.c);
+      if (d < best) best = d;
+    }
+    return best;
+  }
+  if (!(hole.size > 0)) return Infinity;
+  return Math.abs(r - hole.r) + Math.abs(c - hole.c);
 }
 
 /**
@@ -105,12 +146,19 @@ export function getTunnelExits(
   return exits;
 }
 
-/** All cells of the mouse hole (supports 2x2; generic over size). */
+/**
+ * All cells of the mouse hole. Exact cell list when the config provides one
+ * (editor maps, arbitrary shapes), otherwise the historical `size × size`
+ * square. Returns an EMPTY array when the map has no hole at all.
+ */
 export function getMouseHoleCells(config: GameConfig): Point[] {
+  const hole = config.mouseHole;
+  if (hole.cells) return hole.cells.map((p) => ({ r: p.r, c: p.c }));
   const cells: Point[] = [];
-  for (let dr = 0; dr < config.mouseHole.size; dr++) {
-    for (let dc = 0; dc < config.mouseHole.size; dc++) {
-      cells.push({ r: config.mouseHole.r + dr, c: config.mouseHole.c + dc });
+  if (!(hole.size > 0)) return cells;
+  for (let dr = 0; dr < hole.size; dr++) {
+    for (let dc = 0; dc < hole.size; dc++) {
+      cells.push({ r: hole.r + dr, c: hole.c + dc });
     }
   }
   return cells;
@@ -139,7 +187,9 @@ export function getMouseHoleGateCells(state: GameEngineState): Point[] {
       if (isTunnelCornerCell(r, c, corners)) continue;
       if (state.blockedTunnels.some((t) => t.r === r && t.c === c)) continue;
       if (board[r][c].type === CellType.Box) continue;
+      // 猫不能站上去的地形也不能当守洞位：墙 / 杂物堆 / 虚空（虚空不是地板）
       if (isFixedObstacle(board[r][c].type)) continue;
+      if (board[r][c].type === CellType.Void) continue;
       if (hasButterAt(r, c, state.butterPositions)) continue;
       const k = `${r},${c}`;
       if (seen.has(k)) continue;

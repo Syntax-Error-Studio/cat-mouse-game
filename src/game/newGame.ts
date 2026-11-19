@@ -14,7 +14,7 @@
 import type { GameEngineState } from './engine';
 import { createInitialState } from './engine';
 import type { GameConfig } from './config';
-import { validateGameConfig } from './config';
+import { validateCustomMapConfig, validateGameConfig } from './config';
 import type { GenerationOptions } from './openingFairness';
 import { generateFairOpening, isExplicitLayout } from './openingFairness';
 
@@ -57,7 +57,13 @@ const OPENING_FAILURE_DETAIL: Partial<Record<OpeningUnverifiedReason, string>> =
  * board and is never silently moved: it is rejected with actionable reasons.
  */
 export function createGameState(config: GameConfig, opts: GenerationOptions = {}): NewGameOpening {
-  const validation = validateGameConfig(config);
+  // 编辑器「试玩」只承诺一件事：这份编辑结果必须能被安全地解析成棋盘。
+  // 它是自由创作工具的产物，不参与正式对局的开局契约（认证尺寸 / 标准布局 /
+  // 猫鼠不同格等），因此换用结构校验；正式对局与教程不带该标记，仍走
+  // `validateGameConfig`，其语义逐字不变。
+  const validation = config.customMapPlaytest
+    ? validateCustomMapConfig(config)
+    : validateGameConfig(config);
   if (!validation.ok) {
     // Out-of-range board size keeps its historical UNSUPPORTED_CONFIG reason;
     // malformed coordinates get the new, more specific INVALID_CONFIG.

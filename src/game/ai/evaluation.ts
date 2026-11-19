@@ -6,6 +6,8 @@ import {
   isTunnelUsable,
   isMouseTunnelEntryAllowed,
   getMouseHoleGateCells,
+  getMouseHoleCells,
+  isMouseHoleCell,
 } from '../rules/tunnelRules';
 
 // ============================================================
@@ -41,9 +43,13 @@ const key = (p: RC): string => `${p.r},${p.c}`;
 const inBounds = (state: GameEngineState, r: number, c: number): boolean =>
   r >= 0 && r < state.config.boardSize && c >= 0 && c < state.config.boardSize;
 
-function isMouseHoleCell(state: GameEngineState, r: number, c: number): boolean {
-  const { r: hr, c: hc, size } = state.config.mouseHole;
-  return r >= hr && r < hr + size && c >= hc && c < hc + size;
+/**
+ * Is (r,c) a mouse-hole cell? Delegates to the shared geometry kernel so an
+ * editor map with an arbitrary hole shape is judged by its DRAWN cells, never
+ * by the bounding box of a square.
+ */
+function isMouseHoleCellAt(state: GameEngineState, r: number, c: number): boolean {
+  return isMouseHoleCell(r, c, state.config.mouseHole);
 }
 
 function hasButterAt(state: GameEngineState, r: number, c: number): boolean {
@@ -54,13 +60,13 @@ function isFixedObstacle(type: CellType): boolean {
   return type === CellType.Pile || type === CellType.Wall;
 }
 
-/** Mouse-hole cells (generic over size). */
+/**
+ * Mouse-hole cells — the shared geometry kernel's exact answer (arbitrary
+ * drawn cell set for editor maps, the historical square otherwise; empty for a
+ * map that has no hole at all).
+ */
 function mouseHoleCells(state: GameEngineState): RC[] {
-  const cells: RC[] = [];
-  const { r, c, size } = state.config.mouseHole;
-  for (let dr = 0; dr < size; dr++)
-    for (let dc = 0; dc < size; dc++) cells.push({ r: r + dr, c: c + dc });
-  return cells;
+  return getMouseHoleCells(state.config);
 }
 
 // ---------------------------------------------------------------------------
@@ -97,7 +103,7 @@ function mouseCanEnter(state: GameEngineState, r: number, c: number): boolean {
  */
 function catCanEnter(state: GameEngineState, r: number, c: number): boolean {
   const cell = state.board[r][c];
-  if (isMouseHoleCell(state, r, c)) return false;
+  if (isMouseHoleCellAt(state, r, c)) return false;
   if (cell.type === CellType.Tunnel) return false;
   if (hasButterAt(state, r, c)) return false;
   if (isFixedObstacle(cell.type)) return false;
@@ -461,7 +467,7 @@ function buildContext(state: GameEngineState, needCarry: boolean): EvaluationCon
     for (let c = 0; c < state.config.boardSize; c++) {
       const cell = state.board[r][c];
       if (cell.type === CellType.Tunnel) continue;
-      if (isMouseHoleCell(state, r, c)) continue;
+      if (isMouseHoleCellAt(state, r, c)) continue;
       if (cell.type === CellType.Box) continue;
       if (isFixedObstacle(cell.type)) continue;
       if (cell.type === CellType.Void) continue;
@@ -827,10 +833,12 @@ export function buildCatPushDistanceMap(state: GameEngineState): Map<string, num
         const destR = nr + d.dr;
         const destC = nc + d.dc;
         if (!inBounds(state, destR, destC)) continue;
-        if (isMouseHoleCell(state, destR, destC)) continue;
+        if (isMouseHoleCellAt(state, destR, destC)) continue;
         if (state.mousePosition.r === destR && state.mousePosition.c === destC) continue;
         if (board[destR][destC].type === CellType.Box) continue;
         if (isFixedObstacle(board[destR][destC].type)) continue;
+        // 虚空不是地板：与 catMove 的推箱落点判定保持一致
+        if (board[destR][destC].type === CellType.Void) continue;
         if (hasButterAt(state, destR, destC)) continue;
         if (state.trapPosition && state.trapPosition.r === destR && state.trapPosition.c === destC) continue;
         out.push({ r: nr, c: nc });

@@ -31,6 +31,8 @@ import {
   getTunnelExits,
   getMouseHoleGateCells,
   getMouseHoleCells,
+  isMouseHoleCell,
+  mouseHoleDistance,
 } from './rules/tunnelRules';
 // RULE-A (PPC-GAMEPLAY-01): the pure no-legal-spatial-move kernel. It imports
 // engine only as `import type` (erased), so this is a one-way runtime edge —
@@ -265,11 +267,14 @@ function isTunnelCorner(r: number, c: number, tunnelCorners: { r: number; c: num
   return isTunnelCornerCell(r, c, tunnelCorners);
 }
 
-function isMouseHole(r: number, c: number, mouseHole: { r: number; c: number; size: number }): boolean {
-  return (
-    r >= mouseHole.r && r < mouseHole.r + mouseHole.size &&
-    c >= mouseHole.c && c < mouseHole.c + mouseHole.size
-  );
+/**
+ * Is (r,c) a mouse-hole cell? Delegates to the shared tunnel-geometry kernel so
+ * the runtime, the Search Simulator, the evaluator and mobility all resolve the
+ * hole identically — including editor maps whose hole is an arbitrary cell set
+ * (`config.mouseHole.cells`) rather than a square.
+ */
+function isMouseHole(r: number, c: number, mouseHole: GameConfig['mouseHole']): boolean {
+  return isMouseHoleCell(r, c, mouseHole);
 }
 
 function isInBounds(r: number, c: number, boardSize: number): boolean {
@@ -288,6 +293,21 @@ function hasPile(r: number, c: number, board: Board): boolean {
 /** 固定障碍物：墙与杂物堆，均不可通行、不可被推动（与箱子不同）。 */
 function isFixedObstacle(type: CellType): boolean {
   return type === CellType.Pile || type === CellType.Wall;
+}
+
+/**
+ * 不可通行地形：墙、杂物堆、虚空。
+ *
+ * `catMove` / `applyMouseStepCore` 都明确禁止进入 `Void`（虚空 = 地图之外，
+ * 例如编辑器非正方形地图的补齐区）。所有"猫能不能站上去 / 走过去"的辅助
+ * 判断必须用同一个谓词，否则会出现「AI 规划走进虚空 → catMove 拒绝」的
+ * 死循环或原地不动。箱子不在内：箱子是可推动的，另由各调用点单独判断。
+ *
+ * 标准地图（正式对局 / 教程 / 关卡）不产生 Void，因此本谓词对它们的语义与
+ * 冻结 benchmark 结果没有任何影响。
+ */
+function isImpassableTerrain(type: CellType): boolean {
+  return isFixedObstacle(type) || type === CellType.Void;
 }
 
 function hasButterAt(r: number, c: number, butterPositions: { r: number; c: number }[]): boolean {
@@ -420,8 +440,8 @@ function generateButterPositions(
       // Distance from mouse and cat
       if (Math.abs(r - mousePos.r) + Math.abs(c - mousePos.c) < 3) continue;
       if (Math.abs(r - catPos.r) + Math.abs(c - catPos.c) < 3) continue;
-      // Keep butter away from mouse hole
-      const distToHole = Math.abs(r - config.mouseHole.r) + Math.abs(c - config.mouseHole.c);
+      // Keep butter away from mouse hole (nearest REAL hole cell; no hole ⇒ never excluded)
+      const distToHole = mouseHoleDistance(config.mouseHole, r, c);
       if (distToHole < 5) continue;
       positions.push({ r, c });
       break;
@@ -463,8 +483,8 @@ export function enumerateButterSpawns(
       if (existingButters.some(b => b.r === r && b.c === c)) continue;
       if (trapPos && r === trapPos.r && c === trapPos.c) continue;
       if (reserved.some(p => p.r === r && p.c === c)) continue;
-      // Non-initial: closer to hole is OK
-      const distToHole = Math.abs(r - config.mouseHole.r) + Math.abs(c - config.mouseHole.c);
+      // Non-initial: closer to hole is OK (measured to the nearest REAL hole cell)
+      const distToHole = mouseHoleDistance(config.mouseHole, r, c);
       if (distToHole < 3) continue;
       // Keep away from pieces
       if (Math.abs(r - mousePos.r) + Math.abs(c - mousePos.c) < 3) continue;
@@ -585,7 +605,7 @@ export function createInitialState(config: GameConfig = DEFAULT_CONFIG): GameEng
     butterPositions = generateButterPositions(config, board, tunnelCorners, mouseStart, catStart, null);
   }
 
-  return settleNoMoveLoss({
+  const raw: GameEngineState = {
     board,
     config,
     gameMode: config.gameMode,
@@ -610,7 +630,16 @@ export function createInitialState(config: GameConfig = DEFAULT_CONFIG): GameEng
     lastHardSearch: null,
     hardSearchHistory: [],
     hardProgressGuardMemory: null,
-  });
+  };
+
+  // 编辑器自由地图允许猫鼠从同一格出发（正式布局由 validateGameConfig 拒绝）。
+  // 这种情况套用引擎既有的“猫鼠同格 = 猫获胜”判定（checkCatWin）。顺序与真实
+  // 移动路径完全一致（checkCatWin 在前、无路可走结算在后），所以同格时不会再
+  // 写出一条 “winner=mouse” 的误导日志；非自定义地图仍然只有 settleNoMoveLoss。
+  if (config.customTerrain && config.customTerrain.length > 0) {
+    return settleNoMoveLoss(checkCatWin(raw));
+  }
+  return settleNoMoveLoss(raw);
 }
 
 // --- Mouse move ---
@@ -1549,7 +1578,7 @@ function bfsCatPathToStand(
       if (isTunnelCorner(nr, nc, tunnelCorners)) continue;
       if (state.blockedTunnels.some(t => t.r === nr && t.c === nc)) continue;
       if (state.board[nr][nc].type === CellType.Box) continue;
-      if (isFixedObstacle(state.board[nr][nc].type)) continue;
+      if (isImpassableTerrain(state.board[nr][nc].type)) continue;
       if (hasButterAt(nr, nc, state.butterPositions)) continue;
       if (state.mousePosition.r === nr && state.mousePosition.c === nc) continue;
 
@@ -1621,7 +1650,7 @@ function chooseHardTrapStandCell(
       if (isMouseHole(r, c, state.config.mouseHole)) continue;
       if (isTunnelCorner(r, c, tunnelCorners)) continue;
       if (state.board[r][c].type === CellType.Box) continue;
-      if (isFixedObstacle(state.board[r][c].type)) continue;
+      if (isImpassableTerrain(state.board[r][c].type)) continue;
       if (hasButterAt(r, c, state.butterPositions)) continue;
       if (r === state.mousePosition.r && c === state.mousePosition.c) continue;
       if (state.blockedTunnels.some(t => t.r === r && t.c === c)) continue;
@@ -1907,7 +1936,7 @@ function bfsDistanceAvoidPoint(
         if (isTunnelCorner(nr, nc, tunnelCorners)) continue;
         if (hasButterAt(nr, nc, butterPositions) && !isTarget) continue;
         if (cell.type === CellType.Box) continue;
-        if (isFixedObstacle(cell.type)) continue;
+        if (isImpassableTerrain(cell.type)) continue;
         if (blockedTunnels.some(t => t.r === nr && t.c === nc)) continue;
 
         visited.add(nk);
@@ -2040,7 +2069,7 @@ function findMouseHoleEntryGateFromPlan(plan: MousePlan, state: GameEngineState)
       if (isTunnelCorner(prev.r, prev.c, getTunnelCorners(state.config))) return null;
       if (state.blockedTunnels.some(t => t.r === prev.r && t.c === prev.c)) return null;
       if (state.board[prev.r][prev.c].type === CellType.Box) return null;
-      if (isFixedObstacle(state.board[prev.r][prev.c].type)) return null;
+      if (isImpassableTerrain(state.board[prev.r][prev.c].type)) return null;
       if (hasButterAt(prev.r, prev.c, state.butterPositions)) return null;
       return prev;
     }
@@ -2276,7 +2305,7 @@ function countOpenCorridors(r: number, c: number, board: Board, config: GameConf
     const nc = c + d.dc;
     if (!isInBounds(nr, nc, config.boardSize)) continue;
     if (board[nr][nc].type === CellType.Box) continue;
-    if (isFixedObstacle(board[nr][nc].type)) continue;
+    if (isImpassableTerrain(board[nr][nc].type)) continue;
     count++;
   }
   return count;
@@ -2290,6 +2319,8 @@ function countMouseEscapeRoutes(mousePos: Point, board: Board, config: GameConfi
     const nc = mousePos.c + d.dc;
     if (!isInBounds(nr, nc, config.boardSize)) continue;
     if (board[nr][nc].type === CellType.Box) continue;
+    // 虚空不是可以逃进去的地方（地图之外）；墙/杂物堆的既有计数语义保持不变
+    if (board[nr][nc].type === CellType.Void) continue;
     if (nr === catPos.r && nc === catPos.c) continue;
     count++;
   }
@@ -2348,7 +2379,7 @@ function simulateCatMove(
   if (mousePos.r === destR && mousePos.c === destC) return null;
   // Must match catMove exactly: cannot push into another box / pile / butter / trap.
   if (board[destR][destC].type === CellType.Box) return null;
-  if (isFixedObstacle(board[destR][destC].type)) return null;
+  if (isImpassableTerrain(board[destR][destC].type)) return null;
   if (hasButterAt(destR, destC, butterPositions)) return null;
   if (trapPosition && trapPosition.r === destR && trapPosition.c === destC) return null;
 
@@ -2385,7 +2416,7 @@ function computeCatBoxAdjacency(
     if (!isInBounds(destR, destC, config.boardSize)) continue;
     if (isMouseHole(destR, destC, config.mouseHole)) continue;
     if (board[destR][destC].type === CellType.Box) continue;
-    if (isFixedObstacle(board[destR][destC].type)) continue;
+    if (isImpassableTerrain(board[destR][destC].type)) continue;
     if (hasButterAt(destR, destC, butterPositions)) continue;
 
     pushable.push({ boxR: br, boxC: bc, pushDir: d, destR, destC });
@@ -2410,7 +2441,7 @@ function catAiEasy(state: GameEngineState): GameEngineState | null {
     if (isMouseHole(nr, nc, config.mouseHole)) return false;
     if (isTunnelCorner(nr, nc, tunnelCorners)) return false;
     if (hasButterAt(nr, nc, state.butterPositions)) return false;
-    if (isFixedObstacle(state.board[nr][nc].type)) return false;
+    if (isImpassableTerrain(state.board[nr][nc].type)) return false;
     return true;
   });
 
@@ -2472,7 +2503,7 @@ function catAiEasy(state: GameEngineState): GameEngineState | null {
     if (state.mousePosition.r === destR && state.mousePosition.c === destC) continue;
     if (state.board[destR][destC].type === CellType.Box &&
         !(state.mousePosition.r === destR && state.mousePosition.c === destC)) continue;
-    if (isFixedObstacle(state.board[destR][destC].type)) continue;
+    if (isImpassableTerrain(state.board[destR][destC].type)) continue;
     if (hasButterAt(destR, destC, state.butterPositions)) continue;
     if (state.trapPosition?.r === destR && state.trapPosition?.c === destC) continue;
     // Only consider pushes that get the cat closer to the mouse
@@ -2581,7 +2612,7 @@ export function catAiMedium(state: GameEngineState): GameEngineState | null {
     if (isMouseHole(nr, nc, config.mouseHole)) continue;
     if (isTunnelCorner(nr, nc, tunnelCorners)) continue;
     if (hasButterAt(nr, nc, state.butterPositions)) continue;
-    if (isFixedObstacle(state.board[nr][nc].type)) continue;
+    if (isImpassableTerrain(state.board[nr][nc].type)) continue;
 
     const sim = simulateCatMove(catPos, nr, nc, state.board, config, mousePos, state.butterPositions, state.trapPosition);
     if (!sim) continue;
@@ -2625,7 +2656,7 @@ export function catAiMedium(state: GameEngineState): GameEngineState | null {
       const tb = sim.pushedBoxTo;
       if (tunnelCorners.some(t => t.r === tb.r && t.c === tb.c) &&
           !state.blockedTunnels.some(bt => bt.r === tb.r && bt.c === tb.c)) {
-        const distToHole = Math.abs(tb.r - config.mouseHole.r) + Math.abs(tb.c - config.mouseHole.c);
+        const distToHole = mouseHoleDistance(config.mouseHole, tb.r, tb.c);
         score += 300 + Math.max(0, 40 - distToHole) * 15;
       }
     }
@@ -2652,7 +2683,7 @@ export function catAiMedium(state: GameEngineState): GameEngineState | null {
 
     // 7. Close to mouse hole when mouse has butter (cut off escape)
     if (state.mouseHasButter && !state.mouseSkillActive) {
-      const distToHole = Math.abs(simCatPos.r - config.mouseHole.r) + Math.abs(simCatPos.c - config.mouseHole.c);
+      const distToHole = mouseHoleDistance(config.mouseHole, simCatPos.r, simCatPos.c);
       score += Math.max(0, (boardSize - distToHole)) * 2;
     }
 
@@ -2681,7 +2712,7 @@ export function catAiMedium(state: GameEngineState): GameEngineState | null {
       if (isMouseHole(nr, nc, config.mouseHole)) continue;
       if (isTunnelCorner(nr, nc, tunnelCorners)) continue;
       if (hasButterAt(nr, nc, state.butterPositions)) continue;
-      if (isFixedObstacle(state.board[nr][nc].type)) continue;
+      if (isImpassableTerrain(state.board[nr][nc].type)) continue;
 
       // Penalize reversing last direction to prevent oscillation
       if (lastDir && (d.dr === -lastDir.dr && d.dc === -lastDir.dc)) continue;
@@ -3028,7 +3059,7 @@ function catAiHard(state: GameEngineState): GameEngineState | null {
     .map(tc => ({
       r: tc.r,
       c: tc.c,
-      value: Math.max(0, 60 - (Math.abs(tc.r - config.mouseHole.r) + Math.abs(tc.c - config.mouseHole.c)) * 8),
+      value: Math.max(0, 60 - mouseHoleDistance(config.mouseHole, tc.r, tc.c) * 8),
     }))
     .sort((a, b) => b.value - a.value);
 
@@ -3125,7 +3156,7 @@ function catAiHard(state: GameEngineState): GameEngineState | null {
     if (isMouseHole(nr, nc, config.mouseHole)) continue;
     if (isTunnelCorner(nr, nc, tunnelCorners)) continue;
     if (hasButterAt(nr, nc, state.butterPositions)) continue;
-    if (isFixedObstacle(state.board[nr][nc].type)) continue;
+    if (isImpassableTerrain(state.board[nr][nc].type)) continue;
 
     const sim = simulateCatMove(catPos, nr, nc, state.board, config, mousePos, state.butterPositions, state.trapPosition);
     if (!sim) continue;
@@ -3455,7 +3486,7 @@ function catAiHard(state: GameEngineState): GameEngineState | null {
           // Find the tunnel value
           const tunnel = tunnelCorners.find(t => t.r === pb.destR && t.c === pb.destC);
           if (tunnel) {
-            const distToHole = Math.abs(pb.destR - config.mouseHole.r) + Math.abs(pb.destC - config.mouseHole.c);
+            const distToHole = mouseHoleDistance(config.mouseHole, pb.destR, pb.destC);
             const tunnelVal = Math.max(0, 60 - distToHole * 8);
             score += tunnelVal + 400;
           }
@@ -3601,7 +3632,7 @@ function catAiHard(state: GameEngineState): GameEngineState | null {
 
     // 4c. Cut off mouse from hole (when mouse has butter)
     if (state.mouseHasButter && !state.mouseSkillActive) {
-      const distToHole = Math.abs(simCatPos.r - config.mouseHole.r) + Math.abs(simCatPos.c - config.mouseHole.c);
+      const distToHole = mouseHoleDistance(config.mouseHole, simCatPos.r, simCatPos.c);
       score += Math.max(0, (boardSize - distToHole)) * 3;
 
       // Emergency: if mouse is close to hole via path, prioritize gate cells.
@@ -3731,7 +3762,7 @@ function catAiHard(state: GameEngineState): GameEngineState | null {
       if (isMouseHole(nr, nc, config.mouseHole)) continue;
       if (isTunnelCorner(nr, nc, tunnelCorners)) continue;
       if (hasButterAt(nr, nc, state.butterPositions)) continue;
-      if (isFixedObstacle(state.board[nr][nc].type)) continue;
+      if (isImpassableTerrain(state.board[nr][nc].type)) continue;
 
       // Penalize reversing last direction to prevent oscillation
       if (lastDir && (d.dr === -lastDir.dr && d.dc === -lastDir.dc)) continue;
@@ -3979,7 +4010,7 @@ function isLegalCatDirection(state: GameEngineState, d: Direction): boolean {
   if (isMouseHole(nr, nc, config.mouseHole)) return false;
   if (isTunnelCorner(nr, nc, tunnelCorners)) return false;
   if (hasButterAt(nr, nc, state.butterPositions)) return false;
-  if (isFixedObstacle(state.board[nr][nc].type)) return false;
+  if (isImpassableTerrain(state.board[nr][nc].type)) return false;
 
   // If target is a box, check push destination is legal (mirrors catMove box-push logic)
   if (state.board[nr][nc].type === CellType.Box) {
@@ -3991,7 +4022,7 @@ function isLegalCatDirection(state: GameEngineState, d: Direction): boolean {
     if (isMouseHole(destR, destC, config.mouseHole)) return false;
     if (state.mousePosition.r === destR && state.mousePosition.c === destC) return false;
     if (hasBox(destR, destC, state.board)) return false;
-    if (hasPile(destR, destC, state.board)) return false;
+    if (isImpassableTerrain(state.board[destR][destC].type)) return false;
     if (hasButterAt(destR, destC, state.butterPositions)) return false;
     if (state.trapPosition?.r === destR && state.trapPosition?.c === destC) return false;
   }

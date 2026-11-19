@@ -140,9 +140,15 @@ export function GamePage() {
   const { config, setDifficulty } = useGame();
   // 若本次对局是从「地图编辑器」点试玩进入的，则提供返回编辑器的入口；
   // 试玩地图配置通过路由 state 传入（不再写全局 config，避免污染本地模式开局）。
-  const routeState = (location.state as { from?: string; config?: GameConfig } | null) ?? null;
+  const routeState = (location.state as {
+    from?: string;
+    config?: GameConfig;
+    warnings?: string[];
+  } | null) ?? null;
   const fromEditor = routeState?.from === 'editor';
   const editorConfig = routeState?.config;
+  /** 编辑器试玩带过来的“玩法合理性提示”（不阻止进入，只说明后果）。 */
+  const editorWarnings = fromEditor ? (routeState?.warnings ?? []) : [];
 
   // GamePage 是"模式无关"的棋盘壳：对局参数（含 gameMode）来自 context 或编辑器试玩 state。
   const effectiveConfig: GameConfig = editorConfig ?? config;
@@ -164,6 +170,8 @@ export function GamePage() {
   const [showDebug, setShowDebug] = useState(false);
   const [gameOverDismissed, setGameOverDismissed] = useState(false);
   const [paused, setPaused] = useState(false);
+  // 编辑器试玩的玩法提示：只提示，随时可以关掉。
+  const [warningsOpen, setWarningsOpen] = useState(true);
 
   // G0.3X — Human Hard Validation: 1-based game counter. Increments each time a
   // new game starts (restart), so the debug log can mark GAME 1 … GAME 10.
@@ -441,6 +449,36 @@ export function GamePage() {
           width="clamp(120px, 16vw, 200px)"
         />
       </div>
+
+      {/* 编辑器试玩：玩法合理性提示（不阻止对局，可关闭） */}
+      {editorWarnings.length > 0 && warningsOpen && (
+        <div style={{
+          width: '100%',
+          maxWidth: '600px',
+          backgroundColor: '#FFF3CD',
+          border: '1px solid #F0AD4E',
+          borderRadius: '0.75rem',
+          padding: '0.5rem 0.75rem',
+          color: '#8A6D3B',
+          fontSize: '0.85rem',
+          lineHeight: 1.5,
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8 }}>
+            <strong>自定义地图提示（不影响进入对局）</strong>
+            <button
+              onClick={() => setWarningsOpen(false)}
+              style={{
+                border: 'none', background: 'transparent', cursor: 'pointer',
+                color: '#8A6D3B', fontWeight: 'bold', fontSize: '0.9rem',
+              }}
+              aria-label="关闭提示"
+            >✕</button>
+          </div>
+          <ul style={{ margin: '0.25rem 0 0', paddingLeft: '1.1rem' }}>
+            {editorWarnings.map(w => <li key={w}>{w}</li>)}
+          </ul>
+        </div>
+      )}
 
       {/* 游戏控制按钮 */}
       <div style={{

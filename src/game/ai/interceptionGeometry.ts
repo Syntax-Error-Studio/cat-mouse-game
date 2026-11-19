@@ -22,14 +22,15 @@
  */
 import type { GameEngineState } from '../engine';
 import { CellType, DIRECTIONS, PieceType } from '../types';
+import { getMouseHoleCells, isMouseHoleCell } from '../rules/tunnelRules';
 import { mouseCarryingDistanceToHole } from './evaluation';
 import { finiteDeadline, type DeadlineContext } from './deadlineContext';
 
 type RC = { r: number; c: number };
 const key = (p: RC) => `${p.r},${p.c}`;
 const inBounds = (s: GameEngineState, r: number, c: number) => r >= 0 && r < s.config.boardSize && c >= 0 && c < s.config.boardSize;
-const isHoleCell = (s: GameEngineState, p: RC) => { const { r, c, size } = s.config.mouseHole; return p.r >= r && p.r < r + size && p.c >= c && p.c < c + size; };
-const holeCells = (s: GameEngineState): RC[] => { const { r, c, size } = s.config.mouseHole; const o: RC[] = []; for (let dr = 0; dr < size; dr++) for (let dc = 0; dc < size; dc++) o.push({ r: r + dr, c: c + dc }); return o; };
+const isHoleCell = (s: GameEngineState, p: RC) => isMouseHoleCell(p.r, p.c, s.config.mouseHole);
+const holeCells = (s: GameEngineState): RC[] => getMouseHoleCells(s.config);
 const isFixed = (t: CellType) => t === CellType.Pile || t === CellType.Wall;
 
 function mouseCarryingNeighbors(s: GameEngineState, p: RC): RC[] {

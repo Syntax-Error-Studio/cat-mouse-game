@@ -3,7 +3,13 @@
 // ============================================================
 
 import { CellType, type GameMode } from './types';
-import { mapDefinitionToGameConfig, type MapDefinition } from './mapDefinition';
+import {
+  MAP_MAX_SIZE,
+  MAP_MIN_SIZE,
+  mapDefinitionToGameConfig,
+  type MapDefinition,
+  type MapPoint,
+} from './mapDefinition';
 
 const STORAGE_KEY = 'catmouse_maps_v1';
 const DRAFT_KEY = 'catmouse_map_draft_v1';
@@ -29,8 +35,32 @@ function writeAll(maps: MapDefinition[]): void {
   }
 }
 
+/**
+ * 能否安全渲染 / 载入：尺寸在编辑器范围内、grid 与尺寸一致、起点是合法坐标。
+ * 只用于“读取时筛掉坏数据”，不会删除存储里的任何东西。
+ */
+function isRenderableMap(m: unknown): m is MapDefinition {
+  if (!m || typeof m !== 'object') return false;
+  const o = m as Record<string, unknown>;
+  const rows = o.rows;
+  const cols = o.cols;
+  const grid = o.grid;
+  if (!Number.isInteger(rows) || !Number.isInteger(cols)) return false;
+  const R = rows as number;
+  const C = cols as number;
+  if (R < MAP_MIN_SIZE || R > MAP_MAX_SIZE || C < MAP_MIN_SIZE || C > MAP_MAX_SIZE) return false;
+  if (!Array.isArray(grid) || grid.length !== R) return false;
+  if (!grid.every((row) => Array.isArray(row) && row.length === C)) return false;
+  const isPoint = (v: unknown): boolean => {
+    if (!v || typeof v !== 'object') return false;
+    const p = v as { r?: unknown; c?: unknown };
+    return Number.isInteger(p.r) && Number.isInteger(p.c);
+  };
+  return isPoint(o.catStart) && isPoint(o.mouseStart);
+}
+
 export function listMaps(): MapDefinition[] {
-  return readAll().sort((a, b) => (a.updatedAt < b.updatedAt ? 1 : -1));
+  return readAll().filter(isRenderableMap).sort((a, b) => (a.updatedAt < b.updatedAt ? 1 : -1));
 }
 
 export function getMap(id: string): MapDefinition | undefined {
@@ -56,28 +86,94 @@ export function exportMapToString(map: MapDefinition): string {
   return JSON.stringify(map, null, 2);
 }
 
-/** 从 JSON 字符串导入并做基本校验。 */
+/**
+ * 从 JSON 字符串导入一份地图。
+ *
+ * 结构性问题（不是 JSON / 缺 grid / 行不是数组 / 尺寸超出编辑器范围 /
+ * 起点越界）会抛出**明确的中文错误**，由编辑器显示，绝不把半坏的网格塞进
+ * 渲染层。轻微问题（未知单元格字符、行长度不一致）就地补成可安全渲染的
+ * 地形：未知 → 地板，缺失 → 虚空，不猜测作者的意图。
+ */
 export function importMapFromString(json: string): MapDefinition {
-  const obj = JSON.parse(json);
-  if (!obj || !Array.isArray(obj.grid) || typeof obj.rows !== 'number' || typeof obj.cols !== 'number') {
-    throw new Error('文件格式不正确：缺少 grid / rows / cols。');
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(json);
+  } catch {
+    throw new Error('文件不是有效的 JSON。');
   }
-  // 基础字段补全
+  if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+    throw new Error('文件格式不正确：顶层必须是一个地图对象。');
+  }
+  const obj = parsed as Record<string, unknown>;
+  const rawGrid = obj.grid;
+  if (!Array.isArray(rawGrid) || rawGrid.length === 0) {
+    throw new Error('文件格式不正确：缺少 grid 或 grid 为空。');
+  }
+
+  const rows = rawGrid.length;
+  let cols = 0;
+  for (let r = 0; r < rows; r++) {
+    const row = rawGrid[r];
+    if (!Array.isArray(row)) {
+      throw new Error(`文件格式不正确：第 ${r} 行不是数组。`);
+    }
+    cols = Math.max(cols, row.length);
+  }
+  if (cols === 0) {
+    throw new Error('文件格式不正确：grid 没有任何列。');
+  }
+  if (rows < MAP_MIN_SIZE || rows > MAP_MAX_SIZE || cols < MAP_MIN_SIZE || cols > MAP_MAX_SIZE) {
+    throw new Error(
+      `地图尺寸超出编辑器范围：${rows} × ${cols}，`
+      + `编辑器只支持 ${MAP_MIN_SIZE}～${MAP_MAX_SIZE} 行/列。`,
+    );
+  }
+
+  const grid: CellType[][] = [];
+  for (let r = 0; r < rows; r++) {
+    const src = rawGrid[r] as unknown[];
+    const row: CellType[] = [];
+    for (let c = 0; c < cols; c++) {
+      const t = src[c];
+      if (typeof t === 'string' && (Object.values(CellType) as string[]).includes(t)) {
+        row.push(t as CellType);
+      } else {
+        // 短行 = 该位置没有绘制 → 虚空；无法识别的值 → 地板（保持旧行为）。
+        row.push(t === undefined ? CellType.Void : CellType.Empty);
+      }
+    }
+    grid.push(row);
+  }
+
   const now = new Date().toISOString();
-  const safeGrid: CellType[][] = obj.grid.map((row: string[]) =>
-    row.map((t: string) => (Object.values(CellType).includes(t as CellType) ? (t as CellType) : CellType.Empty)),
-  );
+  const readStart = (key: 'catStart' | 'mouseStart', fallback: MapPoint): MapPoint => {
+    const raw = obj[key];
+    if (raw === undefined || raw === null) return fallback;
+    const p = raw as { r?: unknown; c?: unknown };
+    const r = p.r;
+    const c = p.c;
+    if (!Number.isInteger(r) || !Number.isInteger(c)) {
+      throw new Error(`文件格式不正确：${key} 的行/列必须是整数。`);
+    }
+    if ((r as number) < 0 || (r as number) >= rows || (c as number) < 0 || (c as number) >= cols) {
+      throw new Error(
+        `文件格式不正确：${key} 越界（行 ${String(r)}，列 ${String(c)}），地图为 ${rows} × ${cols}。`,
+      );
+    }
+    return { r: r as number, c: c as number };
+  };
+
   return {
     id: typeof obj.id === 'string' ? obj.id : crypto.randomUUID(),
     version: typeof obj.version === 'number' ? obj.version : 1,
     name: typeof obj.name === 'string' ? obj.name : '导入的地图',
-    createdAt: obj.createdAt ?? now,
+    createdAt: typeof obj.createdAt === 'string' ? obj.createdAt : now,
     updatedAt: now,
-    rows: obj.rows,
-    cols: obj.cols,
-    grid: safeGrid,
-    catStart: obj.catStart ?? { r: Math.floor(obj.rows / 2), c: 1 },
-    mouseStart: obj.mouseStart ?? { r: Math.floor(obj.rows / 2), c: obj.cols - 2 },
+    rows,
+    cols,
+    grid,
+    catStart: readStart('catStart', { r: Math.floor(rows / 2), c: 1 }),
+    mouseStart: readStart('mouseStart', { r: Math.floor(rows / 2), c: cols - 2 }),
   };
 }
 
@@ -99,14 +195,13 @@ export function saveDraft(map: MapDefinition): void {
   }
 }
 
-/** 读取草稿；没有则返回 null。 */
+/** 读取草稿；没有或草稿已经不可渲染时返回 null。 */
 export function loadDraft(): MapDefinition | null {
   try {
     const raw = localStorage.getItem(DRAFT_KEY);
     if (!raw) return null;
     const m = JSON.parse(raw);
-    if (!m || !Array.isArray(m.grid) || typeof m.rows !== 'number' || typeof m.cols !== 'number') return null;
-    return m as MapDefinition;
+    return isRenderableMap(m) ? m : null;
   } catch {
     return null;
   }

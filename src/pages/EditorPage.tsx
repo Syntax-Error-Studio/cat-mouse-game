@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { MenuButton } from '../components/MenuButton';
 import { CellType, GameMode } from '../game/types';
 import {
+  MAP_MAX_SIZE,
+  MAP_MIN_SIZE,
   createEmptyMap,
   validateMap,
   mapDefinitionToGameConfig,
@@ -20,8 +22,8 @@ import {
   clearDraft,
 } from '../game/mapStorage';
 
-const MIN = 4;
-const MAX = 24;
+const MIN = MAP_MIN_SIZE;
+const MAX = MAP_MAX_SIZE;
 
 type Tool = CellType | 'cat' | 'mouse';
 
@@ -157,6 +159,9 @@ export function EditorPage() {
     if (rows <= MIN) return;
     setGrid(prev => prev.slice(0, -1));
     setRows(rows - 1);
+    // 起点可能就画在最后一行：收缩后夹回棋盘内，避免变成“越界坐标”
+    setCatStart(s => ({ r: Math.min(s.r, rows - 2), c: s.c }));
+    setMouseStart(s => ({ r: Math.min(s.r, rows - 2), c: s.c }));
   }
   function addColLeft() {
     if (cols >= MAX) return;
@@ -181,6 +186,8 @@ export function EditorPage() {
     if (cols <= MIN) return;
     setGrid(prev => prev.map(row => row.slice(0, -1)));
     setCols(cols - 1);
+    setCatStart(s => ({ r: s.r, c: Math.min(s.c, cols - 2) }));
+    setMouseStart(s => ({ r: s.r, c: Math.min(s.c, cols - 2) }));
   }
 
   function clearGrid() {
@@ -214,12 +221,19 @@ export function EditorPage() {
   function handleSave() {
     const map = buildMap();
     const v = validateMap(map);
+    // 只有**结构性**问题才阻止保存：缺鼠洞 / 缺黄油 / 通道未成对 / 起点被围住
+    // 都是自由创作，不能作为“不能保存”的理由。
     if (!v.ok) {
       flash('err', '无法保存：' + v.errors[0]);
       return;
     }
     saveMap(map);
-    flash('ok', `已保存「${map.name}」。`);
+    flash(
+      'ok',
+      v.warnings.length
+        ? `已保存「${map.name}」（${v.warnings.length} 条玩法提示，见右侧地图检查）`
+        : `已保存「${map.name}」。`,
+    );
   }
 
   function openLoad() {
@@ -280,17 +294,17 @@ export function EditorPage() {
   function handleTestPlay() {
     const map = buildMap();
     const v = validateMap(map);
+    // 试玩只看结构：地图编辑器不替玩家判定“这局好不好玩 / 能不能赢”。
     if (!v.ok) {
       flash('err', '无法试玩：' + v.errors[0]);
       return;
     }
-    if (v.warnings.length) flash('warn', v.warnings[0]);
     // 试玩前先把当前编辑暂存为草稿，退出后即可回到编辑器继续改
     saveDraft(map);
     const cfg = mapDefinitionToGameConfig(map, playMode);
     // 试玩地图通过路由 state 传给 GamePage，不写入全局 config，
     // 避免编辑器残留污染后续本地模式/对局配置页的开局参数。
-    navigate('/game', { state: { from: 'editor', config: cfg } });
+    navigate('/game', { state: { from: 'editor', config: cfg, warnings: v.warnings } });
   }
 
   // ---------- 草稿：挂载时恢复 + 编辑时自动暂存 ----------
@@ -329,6 +343,22 @@ export function EditorPage() {
   );
 
   const cellPx = Math.max(18, Math.min(40, Math.floor(560 / Math.max(rows, cols))));
+
+  // 实时检查：结构问题（⛔，阻止保存/试玩）与玩法提示（💡，只提示）
+  const check = validateMap(buildMap());
+  const counts = (() => {
+    let hole = 0;
+    let butter = 0;
+    let tunnel = 0;
+    for (const row of grid) {
+      for (const t of row) {
+        if (t === CellType.MouseHole) hole++;
+        else if (t === CellType.ButterSpot) butter++;
+        else if (t === CellType.Tunnel) tunnel++;
+      }
+    }
+    return { hole, butter, tunnel };
+  })();
 
   return (
     <div style={{
@@ -489,7 +519,27 @@ export function EditorPage() {
             </div>
             <button style={{ ...btnStyle('#2e7d32'), width: '100%', marginTop: 10, fontSize: '1.05rem', fontWeight: 700 }} onClick={handleTestPlay}>▶ 开始试玩</button>
             <div style={{ fontSize: '0.8rem', color: '#6d4c41', marginTop: 6 }}>
-              提示：至少绘制一个鼠洞，并设置猫/鼠起点。快速通道成对放置才能传送。
+              提示：鼠洞、黄油、快速通道都可以不画，照样能保存和试玩；
+              只有地图数据损坏（尺寸/网格/坐标异常）时才会被拦下。
+            </div>
+          </div>
+
+          <div style={CARD_STYLE}>
+            <div style={{ fontWeight: 700, marginBottom: '0.4rem' }}>🔍 地图检查</div>
+            <div style={{ fontSize: '0.82rem', color: '#6d4c41', marginBottom: 6 }}>
+              鼠洞 {counts.hole} · 黄油 {counts.butter} · 快速通道 {counts.tunnel}
+            </div>
+            {check.errors.length === 0 && check.warnings.length === 0 && (
+              <div style={{ fontSize: '0.85rem', color: '#2e7d32' }}>结构正常，玩法要素齐全。</div>
+            )}
+            {check.errors.map(t => (
+              <div key={t} style={{ fontSize: '0.85rem', color: '#b71c1c', marginTop: 4 }}>⛔ {t}</div>
+            ))}
+            {check.warnings.map(t => (
+              <div key={t} style={{ fontSize: '0.85rem', color: '#8a6d3b', marginTop: 4 }}>💡 {t}</div>
+            ))}
+            <div style={{ fontSize: '0.78rem', color: '#8d6e63', marginTop: 8 }}>
+              ⛔ 结构问题会阻止保存与试玩；💡 只是玩法提示，不影响进入游戏。
             </div>
           </div>
         </div>
