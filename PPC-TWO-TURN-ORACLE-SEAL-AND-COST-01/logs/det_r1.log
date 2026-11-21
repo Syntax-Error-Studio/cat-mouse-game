@@ -1,0 +1,29 @@
+=== fresh process round 1 start 2026-11-20T21:08:37+08:00 ===
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90mF:/小猫小鼠[39m
+
+ [32m✓[39m PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/probe/g2_duud_proof.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 130245[2mms[22m[39m
+     [33m[2m✓[22m[39m DUUD: exact two-mouse-turn forced win, independently verified [33m 23912[2mms[22m[39m
+     [33m[2m✓[22m[39m UURR positive control: same instrument, same window, independent certificate [33m 25474[2mms[22m[39m
+     [33m[2m✓[22m[39m DRRR negative control: no forced win inside the window, and it is NOT inverted into cat survival [33m 10271[2mms[22m[39m
+     [33m[2m✓[22m[39m G1T9 root label: independently re-proved at the ROOT window and matched to the plan frontier [33m 70585[2mms[22m[39m
+ [32m✓[39m PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/probe/g3_counterexamples.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 40821[2mms[22m[39m
+     [33m[2m✓[22m[39m mixed CHANCE outcomes are AND: one winning branch never certifies a forced win [33m 9746[2mms[22m[39m
+     [33m[2m✓[22m[39m node cap yields UNKNOWN, never a silent verdict [33m 6064[2mms[22m[39m
+     [33m[2m✓[22m[39m H=1 at the same state is false while H=2 is true: the window is part of the question [33m 13468[2mms[22m[39m
+     [33m[2m✓[22m[39m NO_WIN is not auto-upgraded; the dual cat-survival question is asked separately and gets its own certificate [33m 11433[2mms[22m[39m
+ [32m✓[39m PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/probe/g4_cost_ablation.test.ts [2m([22m[2m1 test[22m[2m)[22m[33m 30897[2mms[22m[39m
+     [33m[2m✓[22m[39m splits proof-necessary cost from optional witness diagnostics [33m 30895[2mms[22m[39m
+ [32m✓[39m PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/probe/g0_identity.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 4243[2mms[22m[39m
+     [33m[2m✓[22m[39m passes the local resource gate and finds no duplicate heavy worker [33m 3939[2mms[22m[39m
+ [32m✓[39m PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/probe/g3b_rule_isolation.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/probe/g1_lineage.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m6 passed[39m[22m[90m (6)[39m
+[2m      Tests [22m [1m[32m27 passed[39m[22m[90m (27)[39m
+[2m   Start at [22m 21:08:38
+[2m   Duration [22m 209.06s[2m (transform 807ms, setup 0ms, import 1.99s, tests 206.22s, environment 0ms)[22m
+
+combined semantic digest: a1812b9daa81f350c93ba9c89ec7ef41479711241775081cc3f0063169fb8c5c
+performance keys: 43 (not hashed)
+=== round 1 done 2026-11-20T21:12:08+08:00 ===

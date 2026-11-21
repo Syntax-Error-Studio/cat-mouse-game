@@ -1,0 +1,22 @@
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/opt/ppc-bench/repo[39m
+
+[90mstdout[2m | PPC-G6T2-PLAN-CANDIDATE-FEASIBILITY-01/probe/enumeration.test.ts[2m > [22m[2mG2/G3 candidate enumeration (rep 3)[2m > [22m[2menumerates every legal complete cat turn and compares mechanisms
+[22m[39mrep 3: turns=110 expanded=46 uniqueFrontiers=110 elapsed=53ms projection=8903626d32ef43d0eefce9c616bde4dafec7535101e901e2e402777a76837673
+controls: UUDD:1 DUUD:1 LUDR:1 UURR:1 DRRR:1 DRDR:1
+
+ [32m✓[39m PPC-G6T2-PLAN-CANDIDATE-FEASIBILITY-01/probe/enumeration.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 239[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m   Start at [22m 21:42:33
+[2m   Duration [22m 2.75s[2m (transform 2.07s, setup 0ms, import 2.32s, tests 239ms, environment 0ms)[22m
+
+PHASE=enum_rep3
+RC=0
+ABORT=NONE
+WALL_MS=4247
+START_EPOCH_MS=1795095753135
+END_EPOCH_MS=1795095757382
+BASELINE_PSWPOUT=553823 BASELINE_OOM_KILL=3
+SAMPLES=4 MEMAVAIL_MIN_KB=2246616 MEMFREE_MIN_KB=819744 SWAPFREE_MIN_KB=3886772 PSWPOUT_MAX=553823 OOM_KILL_MAX=3 PEAK_JOB_TREE_RSS_KB=565652 LOAD1_MAX=0.43

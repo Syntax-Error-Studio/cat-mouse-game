@@ -1,0 +1,53 @@
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/opt/ppc-bench/repo[39m
+
+[90mstdout[2m | PPC-G6T2-SELECTION-CAUSE-01/probe/progress.test.ts[2m > [22m[2mG1 plan progress[2m > [22m[2mreplays UUDD/DUUD/LUDR and UURR/DRRR/DRDR from the frozen root
+[22m[39m--- G1 PLAN PROGRESS ---
+UUDD [D2_CANDIDATE] status=VALID_MOUSE_FRONTIER progress=STATE_ADVANCED final=t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard catReturned=true fullEqRoot=false snapEqRoot=false changed=["currentPlayer","catMovesLeft","mouseMovesLeft","butterPositions","pendingButterSpawns"] repeats=0
+   0:U type=catStep kind=deterministic branch=1 probSum=1 cat=2,3 mouse=1,6 boxesMoved=false trap=1,1->1,1
+   1:U type=catStep kind=deterministic branch=1 probSum=1 cat=1,3 mouse=1,6 boxesMoved=false trap=1,1->1,1
+   2:D type=catStep kind=deterministic branch=1 probSum=1 cat=2,3 mouse=1,6 boxesMoved=false trap=1,1->1,1
+   3:D type=catStep kind=chance branch=1 probSum=1 cat=3,3 mouse=1,6 boxesMoved=false trap=1,1->1,1
+DUUD [D2_CANDIDATE] status=VALID_MOUSE_FRONTIER progress=STATE_ADVANCED final=t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard catReturned=true fullEqRoot=false snapEqRoot=false changed=["currentPlayer","catMovesLeft","mouseMovesLeft","butterPositions","pendingButterSpawns"] repeats=0
+   0:D type=catStep kind=deterministic branch=1 probSum=1 cat=4,3 mouse=1,6 boxesMoved=false trap=1,1->1,1
+   1:U type=catStep kind=deterministic branch=1 probSum=1 cat=3,3 mouse=1,6 boxesMoved=false trap=1,1->1,1
+   2:U type=catStep kind=deterministic branch=1 probSum=1 cat=2,3 mouse=1,6 boxesMoved=false trap=1,1->1,1
+   3:D type=catStep kind=chance branch=1 probSum=1 cat=3,3 mouse=1,6 boxesMoved=false trap=1,1->1,1
+LUDR [D2_CANDIDATE] status=VALID_MOUSE_FRONTIER progress=STATE_ADVANCED final=t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard catReturned=true fullEqRoot=false snapEqRoot=false changed=["currentPlayer","catMovesLeft","mouseMovesLeft","butterPositions","pendingButterSpawns"] repeats=0
+   0:L type=catStep kind=deterministic branch=1 probSum=1 cat=3,2 mouse=1,6 boxesMoved=false trap=1,1->1,1
+   1:U type=catStep kind=deterministic branch=1 probSum=1 cat=2,2 mouse=1,6 boxesMoved=false trap=1,1->1,1
+   2:D type=catStep kind=deterministic branch=1 probSum=1 cat=3,2 mouse=1,6 boxesMoved=false trap=1,1->1,1
+   3:R type=catStep kind=chance branch=1 probSum=1 cat=3,3 mouse=1,6 boxesMoved=false trap=1,1->1,1
+UURR [HISTORICAL_CONTROL] status=VALID_MOUSE_FRONTIER progress=STATE_ADVANCED final=t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__ec_em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#1,5#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard catReturned=false fullEqRoot=false snapEqRoot=false changed=["currentPlayer","cat","catMovesLeft","mouseMovesLeft","butterPositions","pendingButterSpawns"] repeats=0
+   0:U type=catStep kind=deterministic branch=1 probSum=1 cat=2,3 mouse=1,6 boxesMoved=false trap=1,1->1,1
+   1:U type=catStep kind=deterministic branch=1 probSum=1 cat=1,3 mouse=1,6 boxesMoved=false trap=1,1->1,1
+   2:R type=catStep kind=deterministic branch=1 probSum=1 cat=1,4 mouse=1,6 boxesMoved=false trap=1,1->1,1
+   3:R type=catStep kind=chance branch=1 probSum=1 cat=1,5 mouse=1,6 boxesMoved=false trap=1,1->1,1
+DRRR [HISTORICAL_CONTROL] status=VALID_MOUSE_FRONTIER progress=STATE_ADVANCED final=t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__ec_e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#4,6#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard catReturned=false fullEqRoot=false snapEqRoot=false changed=["currentPlayer","cat","catMovesLeft","mouseMovesLeft","butterPositions","pendingButterSpawns"] repeats=0
+   0:D type=catStep kind=deterministic branch=1 probSum=1 cat=4,3 mouse=1,6 boxesMoved=false trap=1,1->1,1
+   1:R type=catStep kind=deterministic branch=1 probSum=1 cat=4,4 mouse=1,6 boxesMoved=false trap=1,1->1,1
+   2:R type=catStep kind=deterministic branch=1 probSum=1 cat=4,5 mouse=1,6 boxesMoved=false trap=1,1->1,1
+   3:R type=catStep kind=chance branch=1 probSum=1 cat=4,6 mouse=1,6 boxesMoved=false trap=1,1->1,1
+DRDR [HISTORICAL_CONTROL] status=VALID_MOUSE_FRONTIER progress=STATE_ADVANCED final=t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__ec_e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#5,5#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard catReturned=false fullEqRoot=false snapEqRoot=false changed=["currentPlayer","cat","catMovesLeft","mouseMovesLeft","butterPositions","pendingButterSpawns"] repeats=0
+   0:D type=catStep kind=deterministic branch=1 probSum=1 cat=4,3 mouse=1,6 boxesMoved=false trap=1,1->1,1
+   1:R type=catStep kind=deterministic branch=1 probSum=1 cat=4,4 mouse=1,6 boxesMoved=false trap=1,1->1,1
+   2:D type=catStep kind=deterministic branch=1 probSum=1 cat=5,4 mouse=1,6 boxesMoved=false trap=1,1->1,1
+   3:R type=catStep kind=chance branch=1 probSum=1 cat=5,5 mouse=1,6 boxesMoved=false trap=1,1->1,1
+D2 all same final: [33mtrue[39m d2 equals root: [33mfalse[39m
+--- END ---
+
+ [32m✓[39m PPC-G6T2-SELECTION-CAUSE-01/probe/progress.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 62[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m   Start at [22m 21:10:47
+[2m   Duration [22m 2.68s[2m (transform 2.16s, setup 0ms, import 2.43s, tests 62ms, environment 0ms)[22m
+
+PHASE=g1
+RC=0
+ABORT=NONE
+WALL_MS=3209
+START_EPOCH_MS=1795093847345
+END_EPOCH_MS=1795093850554
+BASELINE_PSWPOUT=553823 BASELINE_OOM_KILL=3
+SAMPLES=3 MEMAVAIL_MIN_KB=2481392 MEMFREE_MIN_KB=1069380 SWAPFREE_MIN_KB=3886772 PSWPOUT_MAX=553823 OOM_KILL_MAX=3 PEAK_JOB_TREE_RSS_KB=549328 LOAD1_MAX=0.14

@@ -1,0 +1,22 @@
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/opt/ppc-bench/repo[39m
+
+[90mstdout[2m | PPC-G6T2-PLAN-CANDIDATE-FEASIBILITY-01/probe/g0_identity.test.ts[2m > [22m[2mG0 identity[2m > [22m[2mverifies frozen closure, ledger and root identity
+[22m[39mG0 identity: 39/39 production sources match, ledger verified=21 missing=40
+root snapshot = 8ac26199c4ea45ac56194a6c2aa8de3f9be2631660be9129be114ae6d29446f5 stateKey = t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#3,3#1,6#4#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard
+
+ [32m✓[39m PPC-G6T2-PLAN-CANDIDATE-FEASIBILITY-01/probe/g0_identity.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 37[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m   Start at [22m 21:41:58
+[2m   Duration [22m 2.48s[2m (transform 2.00s, setup 0ms, import 2.27s, tests 37ms, environment 0ms)[22m
+
+PHASE=g0
+RC=0
+ABORT=NONE
+WALL_MS=3195
+START_EPOCH_MS=1795095718028
+END_EPOCH_MS=1795095721223
+BASELINE_PSWPOUT=553823 BASELINE_OOM_KILL=3
+SAMPLES=3 MEMAVAIL_MIN_KB=2492112 MEMFREE_MIN_KB=1072524 SWAPFREE_MIN_KB=3886772 PSWPOUT_MAX=553823 OOM_KILL_MAX=3 PEAK_JOB_TREE_RSS_KB=552632 LOAD1_MAX=0.01

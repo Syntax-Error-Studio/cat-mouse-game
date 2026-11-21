@@ -1,0 +1,23 @@
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/opt/ppc-bench/repo[39m
+
+[90mstdout[2m | PPC-G6T2-PLAN-CANDIDATE-FEASIBILITY-01/probe/decompose.test.ts[2m > [22m[2mG4 evaluation decomposition[2m > [22m[2mseparates spatial progress, D2 expectation and the H2 label
+[22m[39mDUUD depth-1 value = -658.2105263157898 (frozen -658.2105263157898); DRRR = -854 (frozen -854)
+static E1 at frontier: DUUD -561.8421052631579 DRRR -917.2368421052631
+
+ [32m✓[39m PPC-G6T2-PLAN-CANDIDATE-FEASIBILITY-01/probe/decompose.test.ts [2m([22m[2m1 test[22m[2m)[22m[33m 2481[2mms[22m[39m
+     [33m[2m✓[22m[39m separates spatial progress, D2 expectation and the H2 label [33m 2478[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m   Start at [22m 21:42:44
+[2m   Duration [22m 5.05s[2m (transform 2.08s, setup 0ms, import 2.36s, tests 2.48s, environment 0ms)[22m
+
+PHASE=decompose
+RC=0
+ABORT=NONE
+WALL_MS=6423
+START_EPOCH_MS=1795095764226
+END_EPOCH_MS=1795095770649
+BASELINE_PSWPOUT=553823 BASELINE_OOM_KILL=3
+SAMPLES=6 MEMAVAIL_MIN_KB=2217752 MEMFREE_MIN_KB=790832 SWAPFREE_MIN_KB=3886772 PSWPOUT_MAX=553823 OOM_KILL_MAX=3 PEAK_JOB_TREE_RSS_KB=787816 LOAD1_MAX=0.57

@@ -1,0 +1,25 @@
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/opt/ppc-bench/repo[39m
+
+[90mstdout[2m | PPC-G6T2-SELECTION-CAUSE-01/probe/verdict.test.ts[2m > [22m[2mG4 root-cause verdict[2m > [22m[2mclassifies the selection cause from measured evidence
+[22m[39m--- G4 VERDICT ---
+parity = [33mtrue[39m layers = ["A_D2_CHILD_VALUE_TIE","B_D2_EVALUATOR_PREFERS_OTHER","C_PLAN_EXTRACTION_MISMATCH"]
+A tie = [33mtrue[39m B evaluator = [33mtrue[39m C extraction = [33mtrue[39m D chance = [33mfalse[39m
+forced DRRR - DUUD = [33m-195.78947368421018[39m
+--- END ---
+
+ [32m✓[39m PPC-G6T2-SELECTION-CAUSE-01/probe/verdict.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 7[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m   Start at [22m 21:17:47
+[2m   Duration [22m 2.57s[2m (transform 2.11s, setup 0ms, import 2.38s, tests 7ms, environment 0ms)[22m
+
+PHASE=g4
+RC=0
+ABORT=NONE
+WALL_MS=3205
+START_EPOCH_MS=1795094267333
+END_EPOCH_MS=1795094270538
+BASELINE_PSWPOUT=553823 BASELINE_OOM_KILL=3
+SAMPLES=3 MEMAVAIL_MIN_KB=2479328 MEMFREE_MIN_KB=1063416 SWAPFREE_MIN_KB=3886772 PSWPOUT_MAX=553823 OOM_KILL_MAX=3 PEAK_JOB_TREE_RSS_KB=571684 LOAD1_MAX=0.29

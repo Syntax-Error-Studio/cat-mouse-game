@@ -1,0 +1,28 @@
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/opt/ppc-bench/repo[39m
+
+[90mstdout[2m | PPC-G6T2-SELECTION-CAUSE-01/probe/forced.test.ts[2m > [22m[2mG3 forced plan comparison[2m > [22m[2mcompares forced DUUD and DRRR at the same remaining depth
+[22m[39m--- G3 FORCED COMPARISON ---
+forced DUUD = [33m-658.2105263157898[39m frontier= [ [32m't__e__e__e__e__e'[39m ]
+forced DRRR = [33m-854[39m frontier= [ [32m't__e__e__e__e__e'[39m ]
+frozen root D = [33m-658.2105263157898[39m relDiff = [33m0[39m comparable = [33mtrue[39m
+same-context D-node U = [33m-658.2105263157898[39m R = [33m-658.2105263157898[39m delta = [33m0[39m
+comparison: {"status":"COMPARABLE","forcedDuud":-658.2105263157898,"forcedDrrr":-854,"deltaDrrrMinusDuud":-195.78947368421018,"drrrBetterUnderE1":false,"drrrWorseUnderE1":true}
+--- END ---
+
+ [32m✓[39m PPC-G6T2-SELECTION-CAUSE-01/probe/forced.test.ts [2m([22m[2m1 test[22m[2m)[22m[33m 2657[2mms[22m[39m
+     [33m[2m✓[22m[39m compares forced DUUD and DRRR at the same remaining depth [33m 2655[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m   Start at [22m 21:17:22
+[2m   Duration [22m 5.24s[2m (transform 2.14s, setup 0ms, import 2.41s, tests 2.66s, environment 0ms)[22m
+
+PHASE=g3
+RC=0
+ABORT=NONE
+WALL_MS=6435
+START_EPOCH_MS=1795094242006
+END_EPOCH_MS=1795094248441
+BASELINE_PSWPOUT=553823 BASELINE_OOM_KILL=3
+SAMPLES=6 MEMAVAIL_MIN_KB=2215588 MEMFREE_MIN_KB=792844 SWAPFREE_MIN_KB=3886772 PSWPOUT_MAX=553823 OOM_KILL_MAX=3 PEAK_JOB_TREE_RSS_KB=790424 LOAD1_MAX=0.41

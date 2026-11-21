@@ -1,0 +1,10 @@
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90mF:/小猫小鼠[39m
+
+ [32m✓[39m PPC-G6T2-DECISION-RISK-CAUSAL-01/probe/g2_causal.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 206[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m   Start at [22m 15:59:15
+[2m   Duration [22m 2.08s[2m (transform 1.40s, setup 0ms, import 1.63s, tests 206ms, environment 0ms)[22m
+

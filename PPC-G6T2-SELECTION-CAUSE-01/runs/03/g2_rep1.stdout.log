@@ -1,0 +1,31 @@
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/opt/ppc-bench/repo[39m
+
+[90mstdout[2m | PPC-G6T2-SELECTION-CAUSE-01/probe/instrumented.test.ts[2m > [22m[2mG2 instrumented D2 rep1[2m > [22m[2mreproduces the frozen D2 search and captures child values
+[22m[39m--- INSTRUMENTED REP1 ---
+nodes [33m1283054[39m leaf [33m2600863[39m chance [33m7889[39m elapsedMs [33m96413[39m value [33m-658.2105263157898[39m plan ULDR
+parity [33mtrue[39m {"NODES_MATCH":true,"LEAF_NODES_MATCH":true,"CHANCE_NODES_MATCH":true,"VALUE_EXACT_MATCH":true,"COMPLETED":true,"MATE_NULL":true,"BUDGET_CUTOFFS_ZERO":true,"DEADLINE_CUTOFFS_ZERO":true,"EXTENSION_ABORTS_ZERO":true,"ROOT_VALUES_EXACT":true,"PLANS_MATCH_FROZEN":true,"PRODUCTION_PLAN_REPLAY_OK":true,"REPETITIONS_ZERO":true,"NODE_CAP_NOT_HIT":true,"OBSERVATION_SINK_ACTIVE_OFF":true}
+rootValues [{"label":"U","value":-658.2105263157898,"mate":null,"bound":"exact"},{"label":"D","value":-658.2105263157898,"mate":null,"bound":"exact"},{"label":"L","value":-658.2105263157898,"mate":null,"bound":"exact"}]
+rootNode t__e__e__e__e__e__e__e__ choice U values [["U",-658.2105263157898,null,"exact"],["D",-658.2105263157898,null,"exact"],["L",-658.2105263157898,null,"exact"]]
+D-node [["U",-658.2105263157898,null,"exact"],["L",-658.2105263157898,null,"exact"],["R",-658.2105263157898,null,"exact"]] choice U deltaU-R [33m0[39m
+DR-node [["D",-745.4473684210526,"exact"],["L",-658.2105263157898,"exact"],["R",-745.4473684210526,"exact"]] choice L
+DRR-node [["D",-900.7105263157896,"exact"],["L",-745.4473684210526,"exact"],["R",-854,"exact"]] choice L
+projectionSha256 eecdfa47182e6070aec6d7df51103b31c9c679ed61ce85075f196d7c05f94c52
+--- END ---
+
+ [32m✓[39m PPC-G6T2-SELECTION-CAUSE-01/probe/instrumented.test.ts [2m([22m[2m1 test[22m[2m)[22m[33m 96500[2mms[22m[39m
+     [33m[2m✓[22m[39m reproduces the frozen D2 search and captures child values [33m 96498[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m   Start at [22m 21:10:58
+[2m   Duration [22m 99.08s[2m (transform 2.11s, setup 0ms, import 2.40s, tests 96.50s, environment 0ms)[22m
+
+PHASE=g2_rep1
+RC=0
+ABORT=NONE
+WALL_MS=100059
+START_EPOCH_MS=1795093858496
+END_EPOCH_MS=1795093958555
+BASELINE_PSWPOUT=553823 BASELINE_OOM_KILL=3
+SAMPLES=93 MEMAVAIL_MIN_KB=2103028 MEMFREE_MIN_KB=683652 SWAPFREE_MIN_KB=3886772 PSWPOUT_MAX=553823 OOM_KILL_MAX=3 PEAK_JOB_TREE_RSS_KB=919308 LOAD1_MAX=0.92

@@ -1,0 +1,82 @@
+=== rep 1: waiting for admission ===
+1827.3 / 1768.9 / 1861.2 / 1966.1 / 1986.2  floor=2560 REFUSED
+record: F:\小猫小鼠\PPC-ORACLE-HOTPATH-ATTRIBUTION-01\logs\admission_2026-11-20T14-12-02-846Z.json
+admission refused (attempt 1/25); waiting 60s
+2301.3 / 2317.6 / 2380.9 / 2391.1 / 2275.7  floor=2560 REFUSED
+record: F:\小猫小鼠\PPC-ORACLE-HOTPATH-ATTRIBUTION-01\logs\admission_2026-11-20T14-13-25-620Z.json
+admission refused (attempt 2/25); waiting 60s
+3262.1 / 3054.1 / 2756.8 / 2506.2 / 2507.4  floor=2560 REFUSED
+record: F:\小猫小鼠\PPC-ORACLE-HOTPATH-ATTRIBUTION-01\logs\admission_2026-11-20T14-14-47-026Z.json
+admission refused (attempt 3/25); waiting 60s
+2068.7 / 2152.5 / 2059.9 / 1967.6 / 2039  floor=2560 REFUSED
+record: F:\小猫小鼠\PPC-ORACLE-HOTPATH-ATTRIBUTION-01\logs\admission_2026-11-20T14-16-08-960Z.json
+admission refused (attempt 4/25); waiting 60s
+2255.3 / 2287.4 / 2260.6 / 2227.2 / 2073.1  floor=2560 REFUSED
+record: F:\小猫小鼠\PPC-ORACLE-HOTPATH-ATTRIBUTION-01\logs\admission_2026-11-20T14-17-31-655Z.json
+admission refused (attempt 5/25); waiting 60s
+2053.5 / 2164.5 / 2099.7 / 2120.9 / 2021.4  floor=2560 REFUSED
+record: F:\小猫小鼠\PPC-ORACLE-HOTPATH-ATTRIBUTION-01\logs\admission_2026-11-20T14-18-53-911Z.json
+admission refused (attempt 6/25); waiting 60s
+2348.8 / 2243.7 / 2039.8 / 1956 / 1940.6  floor=2560 REFUSED
+record: F:\小猫小鼠\PPC-ORACLE-HOTPATH-ATTRIBUTION-01\logs\admission_2026-11-20T14-20-16-216Z.json
+admission refused (attempt 7/25); waiting 60s
+2531.9 / 2545.4 / 2398.9 / 2435.8 / 2427.7  floor=2560 REFUSED
+record: F:\小猫小鼠\PPC-ORACLE-HOTPATH-ATTRIBUTION-01\logs\admission_2026-11-20T14-21-36-412Z.json
+admission refused (attempt 8/25); waiting 60s
+2473.5 / 2533.3 / 2547.7 / 2558.4 / 2523.7  floor=2560 REFUSED
+record: F:\小猫小鼠\PPC-ORACLE-HOTPATH-ATTRIBUTION-01\logs\admission_2026-11-20T14-22-58-548Z.json
+admission refused (attempt 9/25); waiting 60s
+2010.7 / 1862.9 / 1755.8 / 1558.7 / 1344.2  floor=2560 REFUSED
+record: F:\小猫小鼠\PPC-ORACLE-HOTPATH-ATTRIBUTION-01\logs\admission_2026-11-20T14-24-17-785Z.json
+admission refused (attempt 10/25); waiting 60s
+3039.1 / 3071 / 3097.8 / 3132.6 / 3130.8  floor=2560 ADMITTED
+record: F:\小猫小鼠\PPC-ORACLE-HOTPATH-ATTRIBUTION-01\logs\admission_2026-11-20T14-25-39-569Z.json
+=== rep 1: launching (fresh process) ===
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90mF:/小猫小鼠[39m
+
+ [32m✓[39m PPC-ORACLE-HOTPATH-ATTRIBUTION-01/probe/g4_parity_perf.test.ts [2m([22m[2m2 tests[22m[2m)[22m[33m 164608[2mms[22m[39m
+     [33m[2m✓[22m[39m cache changes no boolean, node count, transition count, policy label or certificate [33m 79927[2mms[22m[39m
+     [33m[2m✓[22m[39m ABBA per root measures the cache against an identical-work baseline [33m 84673[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[2m   Start at [22m 22:25:40
+[2m   Duration [22m 165.58s[2m (transform 700ms, setup 0ms, import 822ms, tests 164.61s, environment 0ms)[22m
+
+=== rep 1 done ===
+=== rep 2: waiting for admission ===
+2711 / 2675.5 / 2658.4 / 2687.7 / 2735.2  floor=2560 ADMITTED
+record: F:\小猫小鼠\PPC-ORACLE-HOTPATH-ATTRIBUTION-01\logs\admission_2026-11-20T14-28-49-901Z.json
+=== rep 2: launching (fresh process) ===
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90mF:/小猫小鼠[39m
+
+ [32m✓[39m PPC-ORACLE-HOTPATH-ATTRIBUTION-01/probe/g4_parity_perf.test.ts [2m([22m[2m2 tests[22m[2m)[22m[33m 149426[2mms[22m[39m
+     [33m[2m✓[22m[39m cache changes no boolean, node count, transition count, policy label or certificate [33m 75800[2mms[22m[39m
+     [33m[2m✓[22m[39m ABBA per root measures the cache against an identical-work baseline [33m 73614[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[2m   Start at [22m 22:28:51
+[2m   Duration [22m 150.63s[2m (transform 705ms, setup 0ms, import 827ms, tests 149.43s, environment 0ms)[22m
+
+=== rep 2 done ===
+=== rep 3: waiting for admission ===
+3734.9 / 3825.1 / 3757.9 / 3721.7 / 3485.3  floor=2560 ADMITTED
+record: F:\小猫小鼠\PPC-ORACLE-HOTPATH-ATTRIBUTION-01\logs\admission_2026-11-20T14-31-43-807Z.json
+=== rep 3: launching (fresh process) ===
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90mF:/小猫小鼠[39m
+
+ [32m✓[39m PPC-ORACLE-HOTPATH-ATTRIBUTION-01/probe/g4_parity_perf.test.ts [2m([22m[2m2 tests[22m[2m)[22m[33m 157027[2mms[22m[39m
+     [33m[2m✓[22m[39m cache changes no boolean, node count, transition count, policy label or certificate [33m 76642[2mms[22m[39m
+     [33m[2m✓[22m[39m ABBA per root measures the cache against an identical-work baseline [33m 80376[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[2m   Start at [22m 22:31:45
+[2m   Duration [22m 158.10s[2m (transform 690ms, setup 0ms, import 810ms, tests 157.03s, environment 0ms)[22m
+
+=== rep 3 done ===
+ALL_REPS_DONE
