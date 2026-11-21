@@ -1,0 +1,159 @@
+{
+  "round": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01",
+  "repetitions": 3,
+  "serialFreshProcesses": true,
+  "combined": [
+    "a1812b9daa81f350c93ba9c89ec7ef41479711241775081cc3f0063169fb8c5c",
+    "a1812b9daa81f350c93ba9c89ec7ef41479711241775081cc3f0063169fb8c5c",
+    "a1812b9daa81f350c93ba9c89ec7ef41479711241775081cc3f0063169fb8c5c"
+  ],
+  "verdict": "DETERMINISTIC",
+  "perFile": [
+    {
+      "file": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/DUUD_INDEPENDENT_PROOF.json",
+      "distinct": 1,
+      "hashes": [
+        "0067abb92d000bd7759ec6d72c115448c3f67c990f96c3ecc9d0dc9c8ca4ce46",
+        "0067abb92d000bd7759ec6d72c115448c3f67c990f96c3ecc9d0dc9c8ca4ce46",
+        "0067abb92d000bd7759ec6d72c115448c3f67c990f96c3ecc9d0dc9c8ca4ce46"
+      ]
+    },
+    {
+      "file": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/INDEPENDENT_VERIFIER_RESULT.json",
+      "distinct": 1,
+      "hashes": [
+        "0c1f46193fb6686e0d9924cc9d29dd77a6f448752f8b870944301a467c199cb0",
+        "0c1f46193fb6686e0d9924cc9d29dd77a6f448752f8b870944301a467c199cb0",
+        "0c1f46193fb6686e0d9924cc9d29dd77a6f448752f8b870944301a467c199cb0"
+      ]
+    },
+    {
+      "file": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/QUANTIFIER_COUNTEREXAMPLES.json",
+      "distinct": 1,
+      "hashes": [
+        "aa1cf26d3253eead34dedde8ce54ce9337200f1bf66b52199bf01cac0eec4705",
+        "aa1cf26d3253eead34dedde8ce54ce9337200f1bf66b52199bf01cac0eec4705",
+        "aa1cf26d3253eead34dedde8ce54ce9337200f1bf66b52199bf01cac0eec4705"
+      ]
+    },
+    {
+      "file": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/WITNESS_COST_ABLATION.json",
+      "distinct": 1,
+      "hashes": [
+        "b8372dd7bc77370ee39df1f325681f8f7b3a8b5e791856c62949501d53fb57a5",
+        "b8372dd7bc77370ee39df1f325681f8f7b3a8b5e791856c62949501d53fb57a5",
+        "b8372dd7bc77370ee39df1f325681f8f7b3a8b5e791856c62949501d53fb57a5"
+      ]
+    },
+    {
+      "file": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g0_identity.json",
+      "distinct": 1,
+      "hashes": [
+        "371edfe89601c6a8438639fc793c51be59baec61732038f5339f2218a29525f5",
+        "371edfe89601c6a8438639fc793c51be59baec61732038f5339f2218a29525f5",
+        "371edfe89601c6a8438639fc793c51be59baec61732038f5339f2218a29525f5"
+      ]
+    },
+    {
+      "file": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g0_count_separation.json",
+      "distinct": 1,
+      "hashes": [
+        "2c82704c61294e457411ce2f1422034e7cafa3cbcbbc3d947adc4947ac6092fe",
+        "2c82704c61294e457411ce2f1422034e7cafa3cbcbbc3d947adc4947ac6092fe",
+        "2c82704c61294e457411ce2f1422034e7cafa3cbcbbc3d947adc4947ac6092fe"
+      ]
+    },
+    {
+      "file": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g0_plan_set.json",
+      "distinct": 1,
+      "hashes": [
+        "87a581b845c37ece5fc8850ea526d3382dae2233d59cf920d27d234494ed552f",
+        "87a581b845c37ece5fc8850ea526d3382dae2233d59cf920d27d234494ed552f",
+        "87a581b845c37ece5fc8850ea526d3382dae2233d59cf920d27d234494ed552f"
+      ]
+    },
+    {
+      "file": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g1_lineage.json",
+      "distinct": 1,
+      "hashes": [
+        "f5cd1d78008208ac4e0773630443cfa7227fc73846e21333280baa5cc0f5ffe4",
+        "f5cd1d78008208ac4e0773630443cfa7227fc73846e21333280baa5cc0f5ffe4",
+        "f5cd1d78008208ac4e0773630443cfa7227fc73846e21333280baa5cc0f5ffe4"
+      ]
+    },
+    {
+      "file": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g1_g1t9_artifact.json",
+      "distinct": 1,
+      "hashes": [
+        "54cb4f1d2165d38ea5d47bbee77bdec604dbf459e5628250cd06395923781a73",
+        "54cb4f1d2165d38ea5d47bbee77bdec604dbf459e5628250cd06395923781a73",
+        "54cb4f1d2165d38ea5d47bbee77bdec604dbf459e5628250cd06395923781a73"
+      ]
+    },
+    {
+      "file": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g2_g1t9_root_equiv.json",
+      "distinct": 1,
+      "hashes": [
+        "7d6180c29643454c4a5755c83cfafc460496b4dc432623d1898849e3a0dfd131",
+        "7d6180c29643454c4a5755c83cfafc460496b4dc432623d1898849e3a0dfd131",
+        "7d6180c29643454c4a5755c83cfafc460496b4dc432623d1898849e3a0dfd131"
+      ]
+    },
+    {
+      "file": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g2_control_uud.json",
+      "distinct": 1,
+      "hashes": [
+        "df9421d17512fd0ee748af1fcbba69f8ea69f5e09d949878639c7223a85a6680",
+        "df9421d17512fd0ee748af1fcbba69f8ea69f5e09d949878639c7223a85a6680",
+        "df9421d17512fd0ee748af1fcbba69f8ea69f5e09d949878639c7223a85a6680"
+      ]
+    },
+    {
+      "file": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g2_control_drrr.json",
+      "distinct": 1,
+      "hashes": [
+        "5be6f37e42dc86a69f0bf215397e5baf10ab394c5a3c0e9d9014501d8ef042be",
+        "5be6f37e42dc86a69f0bf215397e5baf10ab394c5a3c0e9d9014501d8ef042be",
+        "5be6f37e42dc86a69f0bf215397e5baf10ab394c5a3c0e9d9014501d8ef042be"
+      ]
+    },
+    {
+      "file": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g3_truncation.json",
+      "distinct": 1,
+      "hashes": [
+        "807001fd5d19630f36ef2d8eddeec90e4c1001ebbc454a80e1e415306085bebf",
+        "807001fd5d19630f36ef2d8eddeec90e4c1001ebbc454a80e1e415306085bebf",
+        "807001fd5d19630f36ef2d8eddeec90e4c1001ebbc454a80e1e415306085bebf"
+      ]
+    },
+    {
+      "file": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g3_window_isolation.json",
+      "distinct": 1,
+      "hashes": [
+        "c0e8a43b1bb8ffc24b691041a1a7343c2b8cf16dade4148a654ae206fcbc3abe",
+        "c0e8a43b1bb8ffc24b691041a1a7343c2b8cf16dade4148a654ae206fcbc3abe",
+        "c0e8a43b1bb8ffc24b691041a1a7343c2b8cf16dade4148a654ae206fcbc3abe"
+      ]
+    },
+    {
+      "file": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g3_no_win_dual.json",
+      "distinct": 1,
+      "hashes": [
+        "f34b9e5cb501402c4f1af0d8f48b7b5e16dfea691164994fdc24997dd8b1a758",
+        "f34b9e5cb501402c4f1af0d8f48b7b5e16dfea691164994fdc24997dd8b1a758",
+        "f34b9e5cb501402c4f1af0d8f48b7b5e16dfea691164994fdc24997dd8b1a758"
+      ]
+    },
+    {
+      "file": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g3_rule_isolation.json",
+      "distinct": 1,
+      "hashes": [
+        "d756b00b63a4aef767af1891cf98dfd248eb2507b4cba95a893d305b0d13a4d4",
+        "d756b00b63a4aef767af1891cf98dfd248eb2507b4cba95a893d305b0d13a4d4",
+        "d756b00b63a4aef767af1891cf98dfd248eb2507b4cba95a893d305b0d13a4d4"
+      ]
+    }
+  ],
+  "driftFiles": [],
+  "scope": "semantic projection only; every time/RSS/host field is recorded in the per-round performance block and NEVER hashed"
+}

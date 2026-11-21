@@ -1,0 +1,28 @@
+{
+  "round": "PPC-G6T2-PLAN-CANDIDATE-FEASIBILITY-01",
+  "phase": "G2_G3_ENUMERATION_REP3",
+  "rep": 3,
+  "generatedAt": "2026-11-19T13:42:36.318Z",
+  "projectionSha256": "8903626d32ef43d0eefce9c616bde4dafec7535101e901e2e402777a76837673",
+  "elapsedMs": 53,
+  "memory": {
+    "rssBeforeMb": 129.7,
+    "rssAfterMb": 146.1,
+    "heapUsedAfterMb": 58.7,
+    "externalAfterMb": 3.4
+  },
+  "counts": {
+    "turns": 110,
+    "expandedStates": 46,
+    "uniqueFrontierSignatures": 110,
+    "uniqueSingleFrontierStates": 110,
+    "uniqueSnapshotSignatures": 18,
+    "uniqueSingleSnapshotStates": 18,
+    "zeroCostActions": 0,
+    "replayOk": 110,
+    "replayFrontierMismatch": 0,
+    "cyclePruned": 0
+  },
+  "projectionMatchesRep1": true,
+  "rep1ProjectionSha256": "8903626d32ef43d0eefce9c616bde4dafec7535101e901e2e402777a76837673"
+}

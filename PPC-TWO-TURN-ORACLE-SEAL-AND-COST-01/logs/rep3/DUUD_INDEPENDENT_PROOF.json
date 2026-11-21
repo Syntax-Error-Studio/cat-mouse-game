@@ -1,0 +1,126 @@
+{
+  "round": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01",
+  "question": "Does DUUD (frozen G6T2 plan) leave the mouse a forced win within two mouse turns?",
+  "identity": {
+    "root": "G6T2",
+    "plan": "DUUD",
+    "fixture": "src/game/ai/__tests__/fixtures/ppcId01-human-roots.json",
+    "rootSnapshotSha256": "PER_ROOT_FIXTURE_FIELD",
+    "frontierStateKeys": [
+      "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+    ],
+    "frontierState": {
+      "phase": "playing",
+      "currentPlayer": "mouse",
+      "cat": "3,3",
+      "mouse": "1,6",
+      "catMovesLeft": 0,
+      "mouseMovesLeft": 3,
+      "mouseHasButter": true,
+      "mouseSkillActive": false,
+      "butterPositions": [
+        "2,6",
+        "5,1"
+      ],
+      "pendingButterSpawns": [],
+      "pendingButterPlacementDebt": 0,
+      "trapPosition": "1,1",
+      "catTrapsRemaining": 0,
+      "blockedTunnels": []
+    },
+    "positiveChanceOutcomes": 1,
+    "totalChanceOutcomes": 1,
+    "weights": [
+      1
+    ]
+  },
+  "quantifier": {
+    "meaning": "∃ mouse strategy ∀ cat play ∀ positive-probability CHANCE outcome → MouseWins",
+    "H": 2,
+    "startIdx": 1,
+    "cap": 600000,
+    "window": "mouse(1) + cat(2) + mouse(3); cat node idx>=4 is outside"
+  },
+  "layer1": {
+    "H": 1,
+    "startIdx": 1,
+    "cap": 5000,
+    "value": false,
+    "truncated": false,
+    "nodes": 118,
+    "elapsedMs": 8.15809999999965,
+    "withinCheapBudget": true
+  },
+  "layer2": {
+    "value": true,
+    "truncated": false,
+    "nodes": 65585,
+    "transitions": 193117,
+    "chanceNodes": 2122,
+    "chanceOutcomes": 53766,
+    "memoHits": 58328,
+    "cutoffs": 10196,
+    "maxIdx": 3,
+    "elapsedMs": 2095,
+    "policySize": 9147
+  },
+  "verifier": {
+    "verdict": "PROVEN",
+    "ok": true,
+    "leaves": 110921,
+    "branches": 1012,
+    "chanceNodes": 865,
+    "maxDepth": 18,
+    "policyMisses": 0,
+    "counterexample": null,
+    "elapsedMs": 2404
+  },
+  "witnessLine": {
+    "line": [
+      "m:S",
+      "m:D(chance)",
+      "m:D",
+      "m:D",
+      "m:D",
+      "m:D",
+      "m:D",
+      "c:U",
+      "c:U",
+      "c:U",
+      "c:D(chance)",
+      "m:R",
+      "m:D",
+      "m:R"
+    ],
+    "finalPhase": "mouse_wins_by_reconstruction",
+    "ok": true,
+    "reason": null
+  },
+  "shadowReproduction": {
+    "two": {
+      "value": true,
+      "nodes": 65585,
+      "truncated": false,
+      "witnessMs": 0,
+      "elapsedMs": 1996.0043999999998
+    },
+    "one": {
+      "forcedWinThisTurn": false,
+      "existsWinningChanceOutcome": false,
+      "nodes": 1633,
+      "truncated": false,
+      "elapsedMs": 42.04849999999897
+    }
+  },
+  "verdict": "INDEPENDENTLY_VERIFIED",
+  "peakRssMB": 268,
+  "host": {
+    "totalMB": 16087.8,
+    "freeMB": 2426,
+    "vitestProcesses": 3,
+    "vitestOutOfTree": 0,
+    "foreignNodeProcesses": 1,
+    "duplicates": 0,
+    "freeFloorMB": 1200
+  }
+}

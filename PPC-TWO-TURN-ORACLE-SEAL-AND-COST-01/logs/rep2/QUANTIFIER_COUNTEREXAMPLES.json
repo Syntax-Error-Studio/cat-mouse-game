@@ -1,0 +1,306 @@
+{
+  "round": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01",
+  "instrument": "seal_lib.solve / verifyMouseCertificate over the real RuleSet",
+  "cases": {
+    "scanVisitedStates": 40000,
+    "mixedTerminalChanceNodes": 0,
+    "mixedLiveChanceNodes": 632,
+    "zeroWeightOutcomesSeen": 0,
+    "mixedTerminalCase": {
+      "status": "NOT_OBSERVED",
+      "note": "No chance node with terminal outcomes of both colors was reached inside the DUUD window; no synthetic state was fabricated."
+    },
+    "mixedLiveCase": {
+      "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "idx": 1,
+      "action": "D",
+      "outcomes": [
+        {
+          "key": "t__e__e__e__e__e",
+          "weight": 0.045454545454545456
+        },
+        {
+          "key": "t__e__e__e__e__e",
+          "weight": 0.045454545454545456
+        },
+        {
+          "key": "t__e__e__e__e__e",
+          "weight": 0.045454545454545456
+        },
+        {
+          "key": "t__e__e__e__e__e",
+          "weight": 0.045454545454545456
+        },
+        {
+          "key": "t__e__e__e__e__e",
+          "weight": 0.045454545454545456
+        },
+        {
+          "key": "t__e__e__e__e__e",
+          "weight": 0.045454545454545456
+        },
+        {
+          "key": "t__e__e__e__e__e",
+          "weight": 0.045454545454545456
+        },
+        {
+          "key": "t__e__e__e__e__e",
+          "weight": 0.045454545454545456
+        },
+        {
+          "key": "t__e__e__e__e__e",
+          "weight": 0.045454545454545456
+        },
+        {
+          "key": "t__e__e__e__e__e",
+          "weight": 0.045454545454545456
+        },
+        {
+          "key": "t__e__e__e__e__e",
+          "weight": 0.045454545454545456
+        },
+        {
+          "key": "t__e__e__e__e__e",
+          "weight": 0.045454545454545456
+        },
+        {
+          "key": "t__e__e__e__e__e",
+          "weight": 0.045454545454545456
+        },
+        {
+          "key": "t__e__e__e__e__e",
+          "weight": 0.045454545454545456
+        },
+        {
+          "key": "t__e__e__e__e__e",
+          "weight": 0.045454545454545456
+        },
+        {
+          "key": "t__e__e__e__e__e",
+          "weight": 0.045454545454545456
+        },
+        {
+          "key": "t__e__e__e__e__e",
+          "weight": 0.045454545454545456
+        },
+        {
+          "key": "t__e__e__e__e__e",
+          "weight": 0.045454545454545456
+        },
+        {
+          "key": "t__e__e__e__e__e",
+          "weight": 0.045454545454545456
+        },
+        {
+          "key": "t__e__e__e__e__e",
+          "weight": 0.045454545454545456
+        },
+        {
+          "key": "t__e__e__e__e__e",
+          "weight": 0.045454545454545456
+        },
+        {
+          "key": "t__e__e__e__e__e",
+          "weight": 0.045454545454545456
+        }
+      ],
+      "note": "Outcome states differ while both stay live — the solver must continue under EVERY one of them."
+    },
+    "pickupChanceVerdictMix": {
+      "action": "D",
+      "parentH1Value": false,
+      "outcomes": 22,
+      "outcomeVerdicts": [
+        {
+          "outcome": 1,
+          "weight": 0.045454545454545456,
+          "childIdx": 1,
+          "childStateKey": "t__e__e__e__e__e__e__e__",
+          "oneTurnForcedWin": false,
+          "truncated": false
+        },
+        {
+          "outcome": 2,
+          "weight": 0.045454545454545456,
+          "childIdx": 1,
+          "childStateKey": "t__e__e__e__e__e__e__e__",
+          "oneTurnForcedWin": false,
+          "truncated": false
+        },
+        {
+          "outcome": 3,
+          "weight": 0.045454545454545456,
+          "childIdx": 1,
+          "childStateKey": "t__e__e__e__e__e__e__e__",
+          "oneTurnForcedWin": false,
+          "truncated": false
+        },
+        {
+          "outcome": 4,
+          "weight": 0.045454545454545456,
+          "childIdx": 1,
+          "childStateKey": "t__e__e__e__e__e__e__e__",
+          "oneTurnForcedWin": false,
+          "truncated": false
+        },
+        {
+          "outcome": 5,
+          "weight": 0.045454545454545456,
+          "childIdx": 1,
+          "childStateKey": "t__e__e__e__e__e__e__e__",
+          "oneTurnForcedWin": false,
+          "truncated": false
+        },
+        {
+          "outcome": 6,
+          "weight": 0.045454545454545456,
+          "childIdx": 1,
+          "childStateKey": "t__e__e__e__e__e__e__e__",
+          "oneTurnForcedWin": false,
+          "truncated": false
+        },
+        {
+          "outcome": 7,
+          "weight": 0.045454545454545456,
+          "childIdx": 1,
+          "childStateKey": "t__e__e__e__e__e__e__e__",
+          "oneTurnForcedWin": false,
+          "truncated": false
+        },
+        {
+          "outcome": 8,
+          "weight": 0.045454545454545456,
+          "childIdx": 1,
+          "childStateKey": "t__e__e__e__e__e__e__e__",
+          "oneTurnForcedWin": false,
+          "truncated": false
+        },
+        {
+          "outcome": 9,
+          "weight": 0.045454545454545456,
+          "childIdx": 1,
+          "childStateKey": "t__e__e__e__e__e__e__e__",
+          "oneTurnForcedWin": false,
+          "truncated": false
+        },
+        {
+          "outcome": 10,
+          "weight": 0.045454545454545456,
+          "childIdx": 1,
+          "childStateKey": "t__e__e__e__e__e__e__e__",
+          "oneTurnForcedWin": false,
+          "truncated": false
+        },
+        {
+          "outcome": 11,
+          "weight": 0.045454545454545456,
+          "childIdx": 1,
+          "childStateKey": "t__e__e__e__e__e__e__e__",
+          "oneTurnForcedWin": false,
+          "truncated": false
+        },
+        {
+          "outcome": 12,
+          "weight": 0.045454545454545456,
+          "childIdx": 1,
+          "childStateKey": "t__e__e__e__e__e__e__e__",
+          "oneTurnForcedWin": false,
+          "truncated": false
+        },
+        {
+          "outcome": 13,
+          "weight": 0.045454545454545456,
+          "childIdx": 1,
+          "childStateKey": "t__e__e__e__e__e__e__e__",
+          "oneTurnForcedWin": false,
+          "truncated": false
+        },
+        {
+          "outcome": 14,
+          "weight": 0.045454545454545456,
+          "childIdx": 1,
+          "childStateKey": "t__e__e__e__e__e__e__e__",
+          "oneTurnForcedWin": false,
+          "truncated": false
+        },
+        {
+          "outcome": 15,
+          "weight": 0.045454545454545456,
+          "childIdx": 1,
+          "childStateKey": "t__e__e__e__e__e__e__e__",
+          "oneTurnForcedWin": false,
+          "truncated": false
+        },
+        {
+          "outcome": 16,
+          "weight": 0.045454545454545456,
+          "childIdx": 1,
+          "childStateKey": "t__e__e__e__e__e__e__e__",
+          "oneTurnForcedWin": false,
+          "truncated": false
+        },
+        {
+          "outcome": 17,
+          "weight": 0.045454545454545456,
+          "childIdx": 1,
+          "childStateKey": "t__e__e__e__e__e__e__e__",
+          "oneTurnForcedWin": false,
+          "truncated": false
+        },
+        {
+          "outcome": 18,
+          "weight": 0.045454545454545456,
+          "childIdx": 1,
+          "childStateKey": "t__e__e__e__e__e__e__e__",
+          "oneTurnForcedWin": false,
+          "truncated": false
+        },
+        {
+          "outcome": 19,
+          "weight": 0.045454545454545456,
+          "childIdx": 1,
+          "childStateKey": "t__e__e__e__e__e__e__e__",
+          "oneTurnForcedWin": false,
+          "truncated": false
+        },
+        {
+          "outcome": 20,
+          "weight": 0.045454545454545456,
+          "childIdx": 1,
+          "childStateKey": "t__e__e__e__e__e__e__e__",
+          "oneTurnForcedWin": false,
+          "truncated": false
+        },
+        {
+          "outcome": 21,
+          "weight": 0.045454545454545456,
+          "childIdx": 1,
+          "childStateKey": "t__e__e__e__e__e__e__e__",
+          "oneTurnForcedWin": false,
+          "truncated": false
+        },
+        {
+          "outcome": 22,
+          "weight": 0.045454545454545456,
+          "childIdx": 1,
+          "childStateKey": "t__e__e__e__e__e__e__e__",
+          "oneTurnForcedWin": false,
+          "truncated": false
+        }
+      ],
+      "verdictsDisagree": false,
+      "reading": "All outcome subtrees share the same one-turn verdict; the AND/OR difference is then unobservable on this node, which is reported as measured rather than assumed.",
+      "partialCertificate": {
+        "policySize": 1,
+        "verdict": "FAILED",
+        "reason": "POLICY_MISSING",
+        "policyMisses": 1,
+        "counterexampleHead": [
+          "m:D~chance#1",
+          "POLICY_MISSING:1|t__e__e__e__e__e__e__e"
+        ],
+        "reading": "A one-branch certificate is rejected by the verifier — it must cover every positive-probability outcome and every cat reply."
+      }
+    }
+  }
+}

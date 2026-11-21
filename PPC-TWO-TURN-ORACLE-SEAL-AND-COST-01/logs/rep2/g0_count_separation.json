@@ -1,0 +1,27 @@
+{
+  "round": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01",
+  "readings": {
+    "srcClosure36": {
+      "source": "PPC-G6T2-DECISION-RISK-CAUSAL-01/logs/g0_src_closure.json",
+      "count": 36,
+      "drift": 0,
+      "allUnderSrc": true
+    },
+    "dependencyClosure39": {
+      "source": "PPC-D2-PCV-COUNTERLINE-02/SOURCE_MANIFEST.json productionSources",
+      "count": 39,
+      "src": 35,
+      "harness": [
+        "PPC-CAT-STRATEGY-SEAL-01/probe/seal_lib.ts",
+        "PPC-CAT-STRATEGY-SEAL-01/probe/seal_util.ts",
+        "PPC-D2-PCV-COUNTERLINE-02/probe/g0_replay.test.ts",
+        "PPC-T1-PCV-01/probe/pcv_lib.ts"
+      ]
+    },
+    "certificateBound37": {
+      "source": "NOT_FOUND",
+      "status": "THIRD_COUNT_SOURCE_NOT_FOUND",
+      "note": "No round artifact declares a 37-file certificate-bound set. 39-2 (dropping the two research harness files) and 36+1 both happen to equal 37, but neither decomposition is evidenced by any artifact and neither may be used as a count."
+    }
+  }
+}

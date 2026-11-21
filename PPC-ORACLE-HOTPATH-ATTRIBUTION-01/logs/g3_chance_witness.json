@@ -1,0 +1,101 @@
+{
+  "plan": "DUUD",
+  "label": "D",
+  "positiveOutcomes": 22,
+  "totalOutcomes": 22,
+  "outcomes": [
+    {
+      "weight": 0.045454545454545456,
+      "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__em_b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#2,6#0#2#5,1#1,4:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+    },
+    {
+      "weight": 0.045454545454545456,
+      "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__em_b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#2,6#0#2#5,1#1,8:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+    },
+    {
+      "weight": 0.045454545454545456,
+      "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__em_b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#2,6#0#2#5,1#2,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+    },
+    {
+      "weight": 0.045454545454545456,
+      "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__em_b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#2,6#0#2#5,1#4,5:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+    },
+    {
+      "weight": 0.045454545454545456,
+      "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__em_b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#2,6#0#2#5,1#4,7:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+    },
+    {
+      "weight": 0.045454545454545456,
+      "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__em_b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#2,6#0#2#5,1#4,8:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+    },
+    {
+      "weight": 0.045454545454545456,
+      "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__em_b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#2,6#0#2#5,1#5,2:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+    },
+    {
+      "weight": 0.045454545454545456,
+      "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__em_b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#2,6#0#2#5,1#5,4:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+    },
+    {
+      "weight": 0.045454545454545456,
+      "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__em_b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#2,6#0#2#5,1#5,5:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+    },
+    {
+      "weight": 0.045454545454545456,
+      "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__em_b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#2,6#0#2#5,1#5,6:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+    },
+    {
+      "weight": 0.045454545454545456,
+      "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__em_b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#2,6#0#2#5,1#5,7:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+    },
+    {
+      "weight": 0.045454545454545456,
+      "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__em_b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#2,6#0#2#5,1#6,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+    },
+    {
+      "weight": 0.045454545454545456,
+      "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__em_b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#2,6#0#2#5,1#6,2:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+    },
+    {
+      "weight": 0.045454545454545456,
+      "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__em_b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#2,6#0#2#5,1#6,4:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+    },
+    {
+      "weight": 0.045454545454545456,
+      "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__em_b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#2,6#0#2#5,1#6,6:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+    },
+    {
+      "weight": 0.045454545454545456,
+      "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__em_b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#2,6#0#2#5,1#7,2:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+    },
+    {
+      "weight": 0.045454545454545456,
+      "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__em_b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#2,6#0#2#5,1#7,3:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+    },
+    {
+      "weight": 0.045454545454545456,
+      "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__em_b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#2,6#0#2#5,1#7,4:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+    },
+    {
+      "weight": 0.045454545454545456,
+      "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__em_b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#2,6#0#2#5,1#7,5:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+    },
+    {
+      "weight": 0.045454545454545456,
+      "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__em_b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#2,6#0#2#5,1#8,2:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+    },
+    {
+      "weight": 0.045454545454545456,
+      "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__em_b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#2,6#0#2#5,1#8,4:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+    },
+    {
+      "weight": 0.045454545454545456,
+      "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__b__b__em_b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#2,6#0#2#5,1#8,5:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+    }
+  ],
+  "shadow": {
+    "checks": 1,
+    "chanceChecks": 1,
+    "mismatches": 0
+  }
+}

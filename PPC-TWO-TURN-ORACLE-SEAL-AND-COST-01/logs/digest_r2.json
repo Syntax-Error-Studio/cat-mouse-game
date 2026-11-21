@@ -1,0 +1,132 @@
+{
+  "round": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01",
+  "files": {
+    "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/DUUD_INDEPENDENT_PROOF.json": "0067abb92d000bd7759ec6d72c115448c3f67c990f96c3ecc9d0dc9c8ca4ce46",
+    "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/INDEPENDENT_VERIFIER_RESULT.json": "0c1f46193fb6686e0d9924cc9d29dd77a6f448752f8b870944301a467c199cb0",
+    "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/QUANTIFIER_COUNTEREXAMPLES.json": "aa1cf26d3253eead34dedde8ce54ce9337200f1bf66b52199bf01cac0eec4705",
+    "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/WITNESS_COST_ABLATION.json": "b8372dd7bc77370ee39df1f325681f8f7b3a8b5e791856c62949501d53fb57a5",
+    "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g0_identity.json": "371edfe89601c6a8438639fc793c51be59baec61732038f5339f2218a29525f5",
+    "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g0_count_separation.json": "2c82704c61294e457411ce2f1422034e7cafa3cbcbbc3d947adc4947ac6092fe",
+    "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g0_plan_set.json": "87a581b845c37ece5fc8850ea526d3382dae2233d59cf920d27d234494ed552f",
+    "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g1_lineage.json": "f5cd1d78008208ac4e0773630443cfa7227fc73846e21333280baa5cc0f5ffe4",
+    "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g1_g1t9_artifact.json": "54cb4f1d2165d38ea5d47bbee77bdec604dbf459e5628250cd06395923781a73",
+    "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g2_g1t9_root_equiv.json": "7d6180c29643454c4a5755c83cfafc460496b4dc432623d1898849e3a0dfd131",
+    "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g2_control_uud.json": "df9421d17512fd0ee748af1fcbba69f8ea69f5e09d949878639c7223a85a6680",
+    "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g2_control_drrr.json": "5be6f37e42dc86a69f0bf215397e5baf10ab394c5a3c0e9d9014501d8ef042be",
+    "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g3_truncation.json": "807001fd5d19630f36ef2d8eddeec90e4c1001ebbc454a80e1e415306085bebf",
+    "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g3_window_isolation.json": "c0e8a43b1bb8ffc24b691041a1a7343c2b8cf16dade4148a654ae206fcbc3abe",
+    "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g3_no_win_dual.json": "f34b9e5cb501402c4f1af0d8f48b7b5e16dfea691164994fdc24997dd8b1a758",
+    "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g3_rule_isolation.json": "d756b00b63a4aef767af1891cf98dfd248eb2507b4cba95a893d305b0d13a4d4"
+  },
+  "combined": "a1812b9daa81f350c93ba9c89ec7ef41479711241775081cc3f0063169fb8c5c",
+  "performance": {
+    "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/DUUD_INDEPENDENT_PROOF.json": {
+      "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/DUUD_INDEPENDENT_PROOF.json.layer1.elapsedMs": 26.137399999999616,
+      "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/DUUD_INDEPENDENT_PROOF.json.layer1.withinCheapBudget": false,
+      "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/DUUD_INDEPENDENT_PROOF.json.layer2.elapsedMs": 6264,
+      "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/DUUD_INDEPENDENT_PROOF.json.verifier.elapsedMs": 7294,
+      "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/DUUD_INDEPENDENT_PROOF.json.shadowReproduction.two.witnessMs": 0,
+      "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/DUUD_INDEPENDENT_PROOF.json.shadowReproduction.two.elapsedMs": 5714.785600000003,
+      "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/DUUD_INDEPENDENT_PROOF.json.shadowReproduction.one.elapsedMs": 100.73769999999786,
+      "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/DUUD_INDEPENDENT_PROOF.json.peakRssMB": 266.2,
+      "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/DUUD_INDEPENDENT_PROOF.json.host": {
+        "totalMB": 16087.8,
+        "freeMB": 3409,
+        "vitestProcesses": 3,
+        "vitestOutOfTree": 0,
+        "foreignNodeProcesses": 1,
+        "duplicates": 0,
+        "freeFloorMB": 1200
+      }
+    },
+    "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/INDEPENDENT_VERIFIER_RESULT.json": {
+      "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/INDEPENDENT_VERIFIER_RESULT.json.result.elapsedMs": 7294
+    },
+    "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/QUANTIFIER_COUNTEREXAMPLES.json": {},
+    "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/WITNESS_COST_ABLATION.json": {
+      "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/WITNESS_COST_ABLATION.json.layers.L0_cheapOneTurn.elapsedMs": 7.947799999999916,
+      "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/WITNESS_COST_ABLATION.json.layers.L0_cheapOneTurn.withinCheapBudget": true,
+      "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/WITNESS_COST_ABLATION.json.layers.L0_cheapOneTurn.peakRssMB": 107,
+      "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/WITNESS_COST_ABLATION.json.layers.L1_coreProofOnly.elapsedMs": 2038,
+      "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/WITNESS_COST_ABLATION.json.layers.L1_coreProofOnly.peakRssMB": 261.9,
+      "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/WITNESS_COST_ABLATION.json.layers.L2_corePlusVerifier.verify.elapsedMs": 2424,
+      "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/WITNESS_COST_ABLATION.json.layers.L2_corePlusVerifier.elapsedMs": 4405,
+      "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/WITNESS_COST_ABLATION.json.layers.L2_corePlusVerifier.peakRssMB": 304.1,
+      "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/WITNESS_COST_ABLATION.json.layers.L3_plusWitnessLine.elapsedMs": 28,
+      "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/WITNESS_COST_ABLATION.json.layers.L3_plusWitnessLine.peakRssMB": 304.6,
+      "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/WITNESS_COST_ABLATION.json.layers.D1_staticReach.elapsedMs": 568,
+      "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/WITNESS_COST_ABLATION.json.layers.D1_staticReach.peakRssMB": 313,
+      "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/WITNESS_COST_ABLATION.json.layers.D2_witnessSearchOnNoWin.proofElapsedMs": 108,
+      "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/WITNESS_COST_ABLATION.json.layers.D2_witnessSearchOnNoWin.shadowTotalMs": 1969,
+      "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/WITNESS_COST_ABLATION.json.layers.D2_witnessSearchOnNoWin.shadowWitnessMs": 1863,
+      "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/WITNESS_COST_ABLATION.json.answers.proofNecessaryMs": 2038,
+      "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/WITNESS_COST_ABLATION.json.answers.certificateMs": 4405,
+      "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/WITNESS_COST_ABLATION.json.answers.optionalDiagnosticsMs": {
+        "witnessLine": 28,
+        "staticReach": 568,
+        "noWinWitnessSearchPriorRound": 5868
+      },
+      "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/WITNESS_COST_ABLATION.json.host": {
+        "totalMB": 16087.8,
+        "freeMB": 2812.6,
+        "vitestProcesses": 3,
+        "vitestOutOfTree": 0,
+        "foreignNodeProcesses": 1
+      }
+    },
+    "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g0_identity.json": {},
+    "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g0_count_separation.json": {},
+    "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g0_plan_set.json": {},
+    "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g1_lineage.json": {},
+    "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g1_g1t9_artifact.json": {},
+    "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g2_g1t9_root_equiv.json": {
+      "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g2_g1t9_root_equiv.json.rootWindow.elapsedMs": 12750,
+      "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g2_g1t9_root_equiv.json.host": {
+        "totalMB": 16087.8,
+        "freeMB": 2993.6,
+        "vitestProcesses": 3,
+        "vitestOutOfTree": 0,
+        "foreignNodeProcesses": 1,
+        "duplicates": 0,
+        "freeFloorMB": 1200
+      }
+    },
+    "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g2_control_uud.json": {
+      "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g2_control_uud.json.proof.elapsedMs": 7191,
+      "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g2_control_uud.json.proof.verify.elapsedMs": 7670,
+      "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g2_control_uud.json.shadow.two.witnessMs": 0,
+      "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g2_control_uud.json.shadow.two.elapsedMs": 7663.106699999997,
+      "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g2_control_uud.json.shadow.one.elapsedMs": 138.42069999999512,
+      "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g2_control_uud.json.host": {
+        "totalMB": 16087.8,
+        "freeMB": 2941.8,
+        "vitestProcesses": 3,
+        "vitestOutOfTree": 0,
+        "foreignNodeProcesses": 1,
+        "duplicates": 0,
+        "freeFloorMB": 1200
+      }
+    },
+    "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g2_control_drrr.json": {
+      "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g2_control_drrr.json.proof.elapsedMs": 282,
+      "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g2_control_drrr.json.shadow.two.witnessMs": 5554.2477,
+      "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g2_control_drrr.json.shadow.two.elapsedMs": 5851.505400000002,
+      "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g2_control_drrr.json.shadow.one.elapsedMs": 98.71710000000166,
+      "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g2_control_drrr.json.host": {
+        "totalMB": 16087.8,
+        "freeMB": 2894.3,
+        "vitestProcesses": 3,
+        "vitestOutOfTree": 0,
+        "foreignNodeProcesses": 1,
+        "duplicates": 0,
+        "freeFloorMB": 1200
+      }
+    },
+    "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g3_truncation.json": {},
+    "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g3_window_isolation.json": {},
+    "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g3_no_win_dual.json": {
+      "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g3_no_win_dual.json.dualCatSurvive.elapsedMs": 2851
+    },
+    "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g3_rule_isolation.json": {}
+  }
+}

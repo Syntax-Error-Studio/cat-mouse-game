@@ -1,0 +1,152 @@
+{
+  "round": "PPC-G6T2-PLAN-CANDIDATE-FEASIBILITY-01",
+  "phase": "G0_IDENTITY",
+  "generatedAt": "2026-11-19T13:42:00.912Z",
+  "rootId": "G6T2",
+  "arm": "E1",
+  "previousClosure": {
+    "manifest": {
+      "path": "PPC-G6T2-PLAN-CANDIDATE-FEASIBILITY-01/reference/PPC-G6T2-SELECTION-CAUSE-01.SOURCE_MANIFEST.json",
+      "sha256": "e9e2a1aa5be0e8aa3aa63258a2bd164694dddf150f7b922d78cd9758dc0dfd70",
+      "available": true
+    },
+    "productionSources": 39,
+    "allRecomputedMatch": true,
+    "byClass": {
+      "IDENTICAL_RAW": 39
+    },
+    "unresolved": []
+  },
+  "round01Ledger": {
+    "available": true,
+    "verified": 21,
+    "missingOnHost": 40,
+    "missing": [
+      "logs/cloud_equivalence.txt",
+      "probe/emit_manifest03.mjs",
+      "REPORT.md",
+      "RESOURCE_SAFETY_LOG.md",
+      "runs/03/g0.admission.txt",
+      "runs/03/g0.precheck.txt",
+      "runs/03/g0.result.txt",
+      "runs/03/g0.samples.csv",
+      "runs/03/g0.stdout.log",
+      "runs/03/g1.admission.txt",
+      "runs/03/g1.precheck.txt",
+      "runs/03/g1.result.txt",
+      "runs/03/g1.samples.csv",
+      "runs/03/g1.stdout.log",
+      "runs/03/g2_rep1.admission.txt",
+      "runs/03/g2_rep1.precheck.txt",
+      "runs/03/g2_rep1.result.txt",
+      "runs/03/g2_rep1.samples.csv",
+      "runs/03/g2_rep1.stdout.log",
+      "runs/03/g2_rep2.admission.txt",
+      "runs/03/g2_rep2.precheck.txt",
+      "runs/03/g2_rep2.result.txt",
+      "runs/03/g2_rep2.samples.csv",
+      "runs/03/g2_rep2.stdout.log",
+      "runs/03/g2_rep3.admission.txt",
+      "runs/03/g2_rep3.precheck.txt",
+      "runs/03/g2_rep3.result.txt",
+      "runs/03/g2_rep3.samples.csv",
+      "runs/03/g2_rep3.stdout.log",
+      "runs/03/g3.admission.txt",
+      "runs/03/g3.precheck.txt",
+      "runs/03/g3.result.txt",
+      "runs/03/g3.samples.csv",
+      "runs/03/g3.stdout.log",
+      "runs/03/g4.admission.txt",
+      "runs/03/g4.precheck.txt",
+      "runs/03/g4.result.txt",
+      "runs/03/g4.samples.csv",
+      "runs/03/g4.stdout.log",
+      "SOURCE_MANIFEST.json"
+    ],
+    "mismatch": 0,
+    "note": "every ledger entry present on this host recomputed byte-for-byte; absent entries are local-worktree-only deliverables"
+  },
+  "identity": {
+    "fixture": {
+      "path": "src/game/ai/__tests__/fixtures/ppcId01-human-roots.json",
+      "sha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09"
+    },
+    "kernel": {
+      "path": "PPC-CAT-STRATEGY-SEAL-01/probe/seal_lib.ts",
+      "sha256": "453915d3fd3a69bda5d113dd7e5732d20424a7f97cff739cf9b0aeee576a779b"
+    },
+    "root": {
+      "id": "G6T2",
+      "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#3,3#1,6#4#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "previousRoundStateKey": null,
+      "canonicalSnapshotSha256": "30a54a57fbf5747d0e1f0f073420809653fb58f9ef2f89e608042ffbc4446656",
+      "currentSummarySha256": "8ac26199c4ea45ac56194a6c2aa8de3f9be2631660be9129be114ae6d29446f5",
+      "summaryMatchesHistorical": false,
+      "sealUtilSummarySha256": "8ac26199c4ea45ac56194a6c2aa8de3f9be2631660be9129be114ae6d29446f5",
+      "summary": {
+        "phase": "playing",
+        "currentPlayer": "cat",
+        "cat": "3,3",
+        "mouse": "1,6",
+        "catMovesLeft": 4,
+        "mouseMovesLeft": 0,
+        "mouseHasButter": true,
+        "mouseSkillActive": false,
+        "butterPositions": [
+          "2,6"
+        ],
+        "pendingButterSpawns": [
+          "5,1:0"
+        ],
+        "pendingButterPlacementDebt": 0,
+        "trapPosition": "1,1",
+        "catTrapsRemaining": 0,
+        "blockedTunnels": []
+      }
+    }
+  },
+  "frozenTargets": {
+    "artifactsAvailable": false,
+    "d2": {
+      "nodes": 1283054,
+      "leafNodes": 2600863,
+      "chanceNodes": 7889,
+      "value": -658.2105263157898,
+      "plans": [
+        "UUDD",
+        "DUUD",
+        "LUDR"
+      ]
+    },
+    "forcedComparison": {
+      "duud": -658.2105263157898,
+      "drrr": -854,
+      "delta": -195.78947368421018,
+      "label": "round-01 forced-DUUD vs forced-DRRR comparison, NOT re-run this round"
+    }
+  },
+  "offlineLabels": {
+    "source": "PPC-CAT-STRATEGY-SEAL-01/G6T2_RECERTIFICATION.json",
+    "frozenStatus": "FROZEN_POSITIVE_CONTROLS_NOT_RERUN",
+    "labels": {
+      "UUDD": "UNLABELED",
+      "DUUD": "UNLABELED",
+      "LUDR": "UNLABELED",
+      "UURR": "MOUSE_FORCED_WIN_PROVEN",
+      "DRRR": "CAT_SURVIVAL_PROVEN_H2",
+      "DRDR": "UNLABELED"
+    },
+    "drrrCertificate": {
+      "verdict": "PROVEN",
+      "ok": true,
+      "leaves": 117382,
+      "branches": 31236,
+      "chanceNodes": 549,
+      "policyMisses": 0,
+      "reason": null,
+      "counterexample": null
+    },
+    "note": "Labels are recorded for OFFLINE adjudication only; enumeration and any ordering must never read them."
+  },
+  "productionUnchanged": true
+}

@@ -1,0 +1,2929 @@
+{
+  "round": "PPC-G6T2-SELECTION-CAUSE-01",
+  "phase": "G1_PLAN_PROGRESS_AUDIT",
+  "generatedAt": "2026-11-19T13:10:50.444Z",
+  "rootId": "G6T2",
+  "arm": "E1",
+  "depthTurns": 2,
+  "method": "real rules only (generatePreparedSearchActions + transition), no search, no leaf evaluator",
+  "noProgressCriterion": "full canonical state SHA256 (all game-affecting fields incl. board cells) equal to the settled root, and/or state-key revisit; cat-position return alone is recorded but never accepted as proof",
+  "root": {
+    "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#3,3#1,6#4#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+    "fullStateSha256": "628f941f8969428e6da64360589d4b2b25327cea0bfd756a89394f9f8d23913e",
+    "snapshotSha256": "8ac26199c4ea45ac56194a6c2aa8de3f9be2631660be9129be114ae6d29446f5",
+    "player": "cat",
+    "summary": {
+      "phase": "playing",
+      "currentPlayer": "cat",
+      "cat": "3,3",
+      "mouse": "1,6",
+      "catMovesLeft": 4,
+      "mouseMovesLeft": 0,
+      "mouseHasButter": true,
+      "mouseSkillActive": false,
+      "butterPositions": [
+        "2,6"
+      ],
+      "pendingButterSpawns": [
+        "5,1:0"
+      ],
+      "pendingButterPlacementDebt": 0,
+      "trapPosition": "1,1",
+      "catTrapsRemaining": 0,
+      "blockedTunnels": []
+    },
+    "boxes": [
+      "1,2",
+      "2,4",
+      "2,5",
+      "2,7",
+      "3,4",
+      "3,8",
+      "5,3",
+      "6,3",
+      "6,5",
+      "7,1",
+      "8,3",
+      "8,6"
+    ]
+  },
+  "plans": [
+    {
+      "plan": "UUDD",
+      "source": "D2_CANDIDATE",
+      "legalIndex": 0,
+      "rootAction": "U",
+      "ok": true,
+      "failure": null,
+      "steps": [
+        {
+          "step": 0,
+          "label": "U",
+          "actionTypes": [
+            "catStep"
+          ],
+          "chance": false,
+          "probabilitySum": 1,
+          "branchCount": 1,
+          "branches": [
+            {
+              "fromStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#3,3#1,6#4#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+              "action": {
+                "label": "U",
+                "type": "catStep",
+                "direction": "ArrowUp",
+                "r": null,
+                "c": null
+              },
+              "transitionKind": "deterministic",
+              "weightIn": 1,
+              "preparedLabels": [
+                "U",
+                "D",
+                "L"
+              ],
+              "boxesBefore": [
+                "1,2",
+                "2,4",
+                "2,5",
+                "2,7",
+                "3,4",
+                "3,8",
+                "5,3",
+                "6,3",
+                "6,5",
+                "7,1",
+                "8,3",
+                "8,6"
+              ],
+              "blockedTunnelsBefore": [],
+              "trapBefore": "1,1",
+              "butterBefore": [
+                "2,6"
+              ],
+              "outcomes": [
+                {
+                  "weight": 1,
+                  "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__ec_b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#2,3#1,6#3#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+                  "fullStateSha256": "d498082a971fca3a3741aa3e0df8b6e192b4a46696e82adcd64b380052565238",
+                  "snapshotSha256": "8aaed52e0358676083924922d9b64610fb6d0bb33399eb9677b2d6ec9dfe97dc",
+                  "player": "cat",
+                  "playerChanged": false,
+                  "cat": "2,3",
+                  "mouse": "1,6",
+                  "catMovesLeft": 3,
+                  "mouseMovesLeft": 0,
+                  "boxesAfter": [
+                    "1,2",
+                    "2,4",
+                    "2,5",
+                    "2,7",
+                    "3,4",
+                    "3,8",
+                    "5,3",
+                    "6,3",
+                    "6,5",
+                    "7,1",
+                    "8,3",
+                    "8,6"
+                  ],
+                  "boxesMoved": false,
+                  "boxesRemoved": [],
+                  "boxesAdded": [],
+                  "blockedTunnelsAfter": [],
+                  "trapBefore": "1,1",
+                  "trapAfter": "1,1",
+                  "butterBefore": [
+                    "2,6"
+                  ],
+                  "butterAfter": [
+                    "2,6"
+                  ],
+                  "summary": {
+                    "phase": "playing",
+                    "currentPlayer": "cat",
+                    "cat": "2,3",
+                    "mouse": "1,6",
+                    "catMovesLeft": 3,
+                    "mouseMovesLeft": 0,
+                    "mouseHasButter": true,
+                    "mouseSkillActive": false,
+                    "butterPositions": [
+                      "2,6"
+                    ],
+                    "pendingButterSpawns": [
+                      "5,1:0"
+                    ],
+                    "pendingButterPlacementDebt": 0,
+                    "trapPosition": "1,1",
+                    "catTrapsRemaining": 0,
+                    "blockedTunnels": []
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "step": 1,
+          "label": "U",
+          "actionTypes": [
+            "catStep"
+          ],
+          "chance": false,
+          "probabilitySum": 1,
+          "branchCount": 1,
+          "branches": [
+            {
+              "fromStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__ec_b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#2,3#1,6#3#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+              "action": {
+                "label": "U",
+                "type": "catStep",
+                "direction": "ArrowUp",
+                "r": null,
+                "c": null
+              },
+              "transitionKind": "deterministic",
+              "weightIn": 1,
+              "preparedLabels": [
+                "U",
+                "D",
+                "L"
+              ],
+              "boxesBefore": [
+                "1,2",
+                "2,4",
+                "2,5",
+                "2,7",
+                "3,4",
+                "3,8",
+                "5,3",
+                "6,3",
+                "6,5",
+                "7,1",
+                "8,3",
+                "8,6"
+              ],
+              "blockedTunnelsBefore": [],
+              "trapBefore": "1,1",
+              "butterBefore": [
+                "2,6"
+              ],
+              "outcomes": [
+                {
+                  "weight": 1,
+                  "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__ec_e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#1,3#1,6#2#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+                  "fullStateSha256": "a451b74ca12522213f1831c1a1be58eeaf39ce0647455f62b4f08a603949787e",
+                  "snapshotSha256": "2b063373574dfeb5058e68f1a480369ae6c953bb93f231bee832e18c3d6f85c3",
+                  "player": "cat",
+                  "playerChanged": false,
+                  "cat": "1,3",
+                  "mouse": "1,6",
+                  "catMovesLeft": 2,
+                  "mouseMovesLeft": 0,
+                  "boxesAfter": [
+                    "1,2",
+                    "2,4",
+                    "2,5",
+                    "2,7",
+                    "3,4",
+                    "3,8",
+                    "5,3",
+                    "6,3",
+                    "6,5",
+                    "7,1",
+                    "8,3",
+                    "8,6"
+                  ],
+                  "boxesMoved": false,
+                  "boxesRemoved": [],
+                  "boxesAdded": [],
+                  "blockedTunnelsAfter": [],
+                  "trapBefore": "1,1",
+                  "trapAfter": "1,1",
+                  "butterBefore": [
+                    "2,6"
+                  ],
+                  "butterAfter": [
+                    "2,6"
+                  ],
+                  "summary": {
+                    "phase": "playing",
+                    "currentPlayer": "cat",
+                    "cat": "1,3",
+                    "mouse": "1,6",
+                    "catMovesLeft": 2,
+                    "mouseMovesLeft": 0,
+                    "mouseHasButter": true,
+                    "mouseSkillActive": false,
+                    "butterPositions": [
+                      "2,6"
+                    ],
+                    "pendingButterSpawns": [
+                      "5,1:0"
+                    ],
+                    "pendingButterPlacementDebt": 0,
+                    "trapPosition": "1,1",
+                    "catTrapsRemaining": 0,
+                    "blockedTunnels": []
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "label": "D",
+          "actionTypes": [
+            "catStep"
+          ],
+          "chance": false,
+          "probabilitySum": 1,
+          "branchCount": 1,
+          "branches": [
+            {
+              "fromStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__ec_e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#1,3#1,6#2#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+              "action": {
+                "label": "D",
+                "type": "catStep",
+                "direction": "ArrowDown",
+                "r": null,
+                "c": null
+              },
+              "transitionKind": "deterministic",
+              "weightIn": 1,
+              "preparedLabels": [
+                "U",
+                "D",
+                "R"
+              ],
+              "boxesBefore": [
+                "1,2",
+                "2,4",
+                "2,5",
+                "2,7",
+                "3,4",
+                "3,8",
+                "5,3",
+                "6,3",
+                "6,5",
+                "7,1",
+                "8,3",
+                "8,6"
+              ],
+              "blockedTunnelsBefore": [],
+              "trapBefore": "1,1",
+              "butterBefore": [
+                "2,6"
+              ],
+              "outcomes": [
+                {
+                  "weight": 1,
+                  "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__ec_b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#2,3#1,6#1#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+                  "fullStateSha256": "49187a71a83fcd90b1193cdcfcf651cd8c8fcb334eb1048cca2beec8f0eab935",
+                  "snapshotSha256": "1761b216339ae7d457b59a6c7ccd24323b15cdc4a2c30fb7d6a0fd65578c9249",
+                  "player": "cat",
+                  "playerChanged": false,
+                  "cat": "2,3",
+                  "mouse": "1,6",
+                  "catMovesLeft": 1,
+                  "mouseMovesLeft": 0,
+                  "boxesAfter": [
+                    "1,2",
+                    "2,4",
+                    "2,5",
+                    "2,7",
+                    "3,4",
+                    "3,8",
+                    "5,3",
+                    "6,3",
+                    "6,5",
+                    "7,1",
+                    "8,3",
+                    "8,6"
+                  ],
+                  "boxesMoved": false,
+                  "boxesRemoved": [],
+                  "boxesAdded": [],
+                  "blockedTunnelsAfter": [],
+                  "trapBefore": "1,1",
+                  "trapAfter": "1,1",
+                  "butterBefore": [
+                    "2,6"
+                  ],
+                  "butterAfter": [
+                    "2,6"
+                  ],
+                  "summary": {
+                    "phase": "playing",
+                    "currentPlayer": "cat",
+                    "cat": "2,3",
+                    "mouse": "1,6",
+                    "catMovesLeft": 1,
+                    "mouseMovesLeft": 0,
+                    "mouseHasButter": true,
+                    "mouseSkillActive": false,
+                    "butterPositions": [
+                      "2,6"
+                    ],
+                    "pendingButterSpawns": [
+                      "5,1:0"
+                    ],
+                    "pendingButterPlacementDebt": 0,
+                    "trapPosition": "1,1",
+                    "catTrapsRemaining": 0,
+                    "blockedTunnels": []
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "step": 3,
+          "label": "D",
+          "actionTypes": [
+            "catStep"
+          ],
+          "chance": true,
+          "probabilitySum": 1,
+          "branchCount": 1,
+          "branches": [
+            {
+              "fromStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__ec_b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#2,3#1,6#1#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+              "action": {
+                "label": "D",
+                "type": "catStep",
+                "direction": "ArrowDown",
+                "r": null,
+                "c": null
+              },
+              "transitionKind": "chance",
+              "weightIn": 1,
+              "preparedLabels": [
+                "U",
+                "D",
+                "L"
+              ],
+              "boxesBefore": [
+                "1,2",
+                "2,4",
+                "2,5",
+                "2,7",
+                "3,4",
+                "3,8",
+                "5,3",
+                "6,3",
+                "6,5",
+                "7,1",
+                "8,3",
+                "8,6"
+              ],
+              "blockedTunnelsBefore": [],
+              "trapBefore": "1,1",
+              "butterBefore": [
+                "2,6"
+              ],
+              "outcomes": [
+                {
+                  "weight": 1,
+                  "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+                  "fullStateSha256": "eddd776e5530fa4d559d2dd27f9ac099bf7da7d2ca124cbf66e80b61d19a5a8c",
+                  "snapshotSha256": "ad7fbf62e8e5353fb6c4b8a954499609680d07da6424e12c63b25f6a83868b50",
+                  "player": "mouse",
+                  "playerChanged": true,
+                  "cat": "3,3",
+                  "mouse": "1,6",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 3,
+                  "boxesAfter": [
+                    "1,2",
+                    "2,4",
+                    "2,5",
+                    "2,7",
+                    "3,4",
+                    "3,8",
+                    "5,3",
+                    "6,3",
+                    "6,5",
+                    "7,1",
+                    "8,3",
+                    "8,6"
+                  ],
+                  "boxesMoved": false,
+                  "boxesRemoved": [],
+                  "boxesAdded": [],
+                  "blockedTunnelsAfter": [],
+                  "trapBefore": "1,1",
+                  "trapAfter": "1,1",
+                  "butterBefore": [
+                    "2,6"
+                  ],
+                  "butterAfter": [
+                    "2,6",
+                    "5,1"
+                  ],
+                  "summary": {
+                    "phase": "playing",
+                    "currentPlayer": "mouse",
+                    "cat": "3,3",
+                    "mouse": "1,6",
+                    "catMovesLeft": 0,
+                    "mouseMovesLeft": 3,
+                    "mouseHasButter": true,
+                    "mouseSkillActive": false,
+                    "butterPositions": [
+                      "2,6",
+                      "5,1"
+                    ],
+                    "pendingButterSpawns": [],
+                    "pendingButterPlacementDebt": 0,
+                    "trapPosition": "1,1",
+                    "catTrapsRemaining": 0,
+                    "blockedTunnels": []
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "frontierStatus": "VALID_MOUSE_FRONTIER",
+        "keys": [
+          "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+        ],
+        "fullStateSha256": [
+          "eddd776e5530fa4d559d2dd27f9ac099bf7da7d2ca124cbf66e80b61d19a5a8c"
+        ],
+        "snapshotSha256": [
+          "ad7fbf62e8e5353fb6c4b8a954499609680d07da6424e12c63b25f6a83868b50"
+        ],
+        "catReturnedToStart": true,
+        "fullStateEqualsRoot": false,
+        "snapshotEqualsRoot": false,
+        "catReturnedButStateChanged": true,
+        "changedFieldsVsRoot": [
+          "currentPlayer",
+          "catMovesLeft",
+          "mouseMovesLeft",
+          "butterPositions",
+          "pendingButterSpawns"
+        ],
+        "repeatedStates": [],
+        "rootStateVisitedAgain": false,
+        "probabilitySum": 1
+      },
+      "progress": "STATE_ADVANCED"
+    },
+    {
+      "plan": "DUUD",
+      "source": "D2_CANDIDATE",
+      "legalIndex": 1,
+      "rootAction": "D",
+      "ok": true,
+      "failure": null,
+      "steps": [
+        {
+          "step": 0,
+          "label": "D",
+          "actionTypes": [
+            "catStep"
+          ],
+          "chance": false,
+          "probabilitySum": 1,
+          "branchCount": 1,
+          "branches": [
+            {
+              "fromStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#3,3#1,6#4#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+              "action": {
+                "label": "D",
+                "type": "catStep",
+                "direction": "ArrowDown",
+                "r": null,
+                "c": null
+              },
+              "transitionKind": "deterministic",
+              "weightIn": 1,
+              "preparedLabels": [
+                "U",
+                "D",
+                "L"
+              ],
+              "boxesBefore": [
+                "1,2",
+                "2,4",
+                "2,5",
+                "2,7",
+                "3,4",
+                "3,8",
+                "5,3",
+                "6,3",
+                "6,5",
+                "7,1",
+                "8,3",
+                "8,6"
+              ],
+              "blockedTunnelsBefore": [],
+              "trapBefore": "1,1",
+              "butterBefore": [
+                "2,6"
+              ],
+              "outcomes": [
+                {
+                  "weight": 1,
+                  "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#4,3#1,6#3#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+                  "fullStateSha256": "ea9e84b8b403b7e58f42bbfc06e7e4c8fff541563e2bc416407bc4bacf2b23d5",
+                  "snapshotSha256": "6374ff27c79c3dc74eb6420db72987781111f5d78b36d7fb19ef4de841ff953c",
+                  "player": "cat",
+                  "playerChanged": false,
+                  "cat": "4,3",
+                  "mouse": "1,6",
+                  "catMovesLeft": 3,
+                  "mouseMovesLeft": 0,
+                  "boxesAfter": [
+                    "1,2",
+                    "2,4",
+                    "2,5",
+                    "2,7",
+                    "3,4",
+                    "3,8",
+                    "5,3",
+                    "6,3",
+                    "6,5",
+                    "7,1",
+                    "8,3",
+                    "8,6"
+                  ],
+                  "boxesMoved": false,
+                  "boxesRemoved": [],
+                  "boxesAdded": [],
+                  "blockedTunnelsAfter": [],
+                  "trapBefore": "1,1",
+                  "trapAfter": "1,1",
+                  "butterBefore": [
+                    "2,6"
+                  ],
+                  "butterAfter": [
+                    "2,6"
+                  ],
+                  "summary": {
+                    "phase": "playing",
+                    "currentPlayer": "cat",
+                    "cat": "4,3",
+                    "mouse": "1,6",
+                    "catMovesLeft": 3,
+                    "mouseMovesLeft": 0,
+                    "mouseHasButter": true,
+                    "mouseSkillActive": false,
+                    "butterPositions": [
+                      "2,6"
+                    ],
+                    "pendingButterSpawns": [
+                      "5,1:0"
+                    ],
+                    "pendingButterPlacementDebt": 0,
+                    "trapPosition": "1,1",
+                    "catTrapsRemaining": 0,
+                    "blockedTunnels": []
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "step": 1,
+          "label": "U",
+          "actionTypes": [
+            "catStep"
+          ],
+          "chance": false,
+          "probabilitySum": 1,
+          "branchCount": 1,
+          "branches": [
+            {
+              "fromStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#4,3#1,6#3#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+              "action": {
+                "label": "U",
+                "type": "catStep",
+                "direction": "ArrowUp",
+                "r": null,
+                "c": null
+              },
+              "transitionKind": "deterministic",
+              "weightIn": 1,
+              "preparedLabels": [
+                "U",
+                "L",
+                "R"
+              ],
+              "boxesBefore": [
+                "1,2",
+                "2,4",
+                "2,5",
+                "2,7",
+                "3,4",
+                "3,8",
+                "5,3",
+                "6,3",
+                "6,5",
+                "7,1",
+                "8,3",
+                "8,6"
+              ],
+              "blockedTunnelsBefore": [],
+              "trapBefore": "1,1",
+              "butterBefore": [
+                "2,6"
+              ],
+              "outcomes": [
+                {
+                  "weight": 1,
+                  "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#3,3#1,6#2#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+                  "fullStateSha256": "f7240e759638e72c842a7459cc2729fbfea05bb78b064d26d0d2e48c7627da52",
+                  "snapshotSha256": "5f202371b8b0027990aa9eb71eb6b560981b1e1181c4c27b9423c7f9e22b8761",
+                  "player": "cat",
+                  "playerChanged": false,
+                  "cat": "3,3",
+                  "mouse": "1,6",
+                  "catMovesLeft": 2,
+                  "mouseMovesLeft": 0,
+                  "boxesAfter": [
+                    "1,2",
+                    "2,4",
+                    "2,5",
+                    "2,7",
+                    "3,4",
+                    "3,8",
+                    "5,3",
+                    "6,3",
+                    "6,5",
+                    "7,1",
+                    "8,3",
+                    "8,6"
+                  ],
+                  "boxesMoved": false,
+                  "boxesRemoved": [],
+                  "boxesAdded": [],
+                  "blockedTunnelsAfter": [],
+                  "trapBefore": "1,1",
+                  "trapAfter": "1,1",
+                  "butterBefore": [
+                    "2,6"
+                  ],
+                  "butterAfter": [
+                    "2,6"
+                  ],
+                  "summary": {
+                    "phase": "playing",
+                    "currentPlayer": "cat",
+                    "cat": "3,3",
+                    "mouse": "1,6",
+                    "catMovesLeft": 2,
+                    "mouseMovesLeft": 0,
+                    "mouseHasButter": true,
+                    "mouseSkillActive": false,
+                    "butterPositions": [
+                      "2,6"
+                    ],
+                    "pendingButterSpawns": [
+                      "5,1:0"
+                    ],
+                    "pendingButterPlacementDebt": 0,
+                    "trapPosition": "1,1",
+                    "catTrapsRemaining": 0,
+                    "blockedTunnels": []
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "label": "U",
+          "actionTypes": [
+            "catStep"
+          ],
+          "chance": false,
+          "probabilitySum": 1,
+          "branchCount": 1,
+          "branches": [
+            {
+              "fromStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#3,3#1,6#2#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+              "action": {
+                "label": "U",
+                "type": "catStep",
+                "direction": "ArrowUp",
+                "r": null,
+                "c": null
+              },
+              "transitionKind": "deterministic",
+              "weightIn": 1,
+              "preparedLabels": [
+                "U",
+                "D",
+                "L"
+              ],
+              "boxesBefore": [
+                "1,2",
+                "2,4",
+                "2,5",
+                "2,7",
+                "3,4",
+                "3,8",
+                "5,3",
+                "6,3",
+                "6,5",
+                "7,1",
+                "8,3",
+                "8,6"
+              ],
+              "blockedTunnelsBefore": [],
+              "trapBefore": "1,1",
+              "butterBefore": [
+                "2,6"
+              ],
+              "outcomes": [
+                {
+                  "weight": 1,
+                  "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__ec_b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#2,3#1,6#1#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+                  "fullStateSha256": "89c23f5517a7ad5673e1da0ad78d2c2db2786864eb16494821df48f469a2d9b9",
+                  "snapshotSha256": "1761b216339ae7d457b59a6c7ccd24323b15cdc4a2c30fb7d6a0fd65578c9249",
+                  "player": "cat",
+                  "playerChanged": false,
+                  "cat": "2,3",
+                  "mouse": "1,6",
+                  "catMovesLeft": 1,
+                  "mouseMovesLeft": 0,
+                  "boxesAfter": [
+                    "1,2",
+                    "2,4",
+                    "2,5",
+                    "2,7",
+                    "3,4",
+                    "3,8",
+                    "5,3",
+                    "6,3",
+                    "6,5",
+                    "7,1",
+                    "8,3",
+                    "8,6"
+                  ],
+                  "boxesMoved": false,
+                  "boxesRemoved": [],
+                  "boxesAdded": [],
+                  "blockedTunnelsAfter": [],
+                  "trapBefore": "1,1",
+                  "trapAfter": "1,1",
+                  "butterBefore": [
+                    "2,6"
+                  ],
+                  "butterAfter": [
+                    "2,6"
+                  ],
+                  "summary": {
+                    "phase": "playing",
+                    "currentPlayer": "cat",
+                    "cat": "2,3",
+                    "mouse": "1,6",
+                    "catMovesLeft": 1,
+                    "mouseMovesLeft": 0,
+                    "mouseHasButter": true,
+                    "mouseSkillActive": false,
+                    "butterPositions": [
+                      "2,6"
+                    ],
+                    "pendingButterSpawns": [
+                      "5,1:0"
+                    ],
+                    "pendingButterPlacementDebt": 0,
+                    "trapPosition": "1,1",
+                    "catTrapsRemaining": 0,
+                    "blockedTunnels": []
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "step": 3,
+          "label": "D",
+          "actionTypes": [
+            "catStep"
+          ],
+          "chance": true,
+          "probabilitySum": 1,
+          "branchCount": 1,
+          "branches": [
+            {
+              "fromStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__ec_b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#2,3#1,6#1#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+              "action": {
+                "label": "D",
+                "type": "catStep",
+                "direction": "ArrowDown",
+                "r": null,
+                "c": null
+              },
+              "transitionKind": "chance",
+              "weightIn": 1,
+              "preparedLabels": [
+                "U",
+                "D",
+                "L"
+              ],
+              "boxesBefore": [
+                "1,2",
+                "2,4",
+                "2,5",
+                "2,7",
+                "3,4",
+                "3,8",
+                "5,3",
+                "6,3",
+                "6,5",
+                "7,1",
+                "8,3",
+                "8,6"
+              ],
+              "blockedTunnelsBefore": [],
+              "trapBefore": "1,1",
+              "butterBefore": [
+                "2,6"
+              ],
+              "outcomes": [
+                {
+                  "weight": 1,
+                  "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+                  "fullStateSha256": "51b3773e6da58d7d101af76a65f3956b8eff585bda1e06db8f1797c9148a129b",
+                  "snapshotSha256": "ad7fbf62e8e5353fb6c4b8a954499609680d07da6424e12c63b25f6a83868b50",
+                  "player": "mouse",
+                  "playerChanged": true,
+                  "cat": "3,3",
+                  "mouse": "1,6",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 3,
+                  "boxesAfter": [
+                    "1,2",
+                    "2,4",
+                    "2,5",
+                    "2,7",
+                    "3,4",
+                    "3,8",
+                    "5,3",
+                    "6,3",
+                    "6,5",
+                    "7,1",
+                    "8,3",
+                    "8,6"
+                  ],
+                  "boxesMoved": false,
+                  "boxesRemoved": [],
+                  "boxesAdded": [],
+                  "blockedTunnelsAfter": [],
+                  "trapBefore": "1,1",
+                  "trapAfter": "1,1",
+                  "butterBefore": [
+                    "2,6"
+                  ],
+                  "butterAfter": [
+                    "2,6",
+                    "5,1"
+                  ],
+                  "summary": {
+                    "phase": "playing",
+                    "currentPlayer": "mouse",
+                    "cat": "3,3",
+                    "mouse": "1,6",
+                    "catMovesLeft": 0,
+                    "mouseMovesLeft": 3,
+                    "mouseHasButter": true,
+                    "mouseSkillActive": false,
+                    "butterPositions": [
+                      "2,6",
+                      "5,1"
+                    ],
+                    "pendingButterSpawns": [],
+                    "pendingButterPlacementDebt": 0,
+                    "trapPosition": "1,1",
+                    "catTrapsRemaining": 0,
+                    "blockedTunnels": []
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "frontierStatus": "VALID_MOUSE_FRONTIER",
+        "keys": [
+          "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+        ],
+        "fullStateSha256": [
+          "51b3773e6da58d7d101af76a65f3956b8eff585bda1e06db8f1797c9148a129b"
+        ],
+        "snapshotSha256": [
+          "ad7fbf62e8e5353fb6c4b8a954499609680d07da6424e12c63b25f6a83868b50"
+        ],
+        "catReturnedToStart": true,
+        "fullStateEqualsRoot": false,
+        "snapshotEqualsRoot": false,
+        "catReturnedButStateChanged": true,
+        "changedFieldsVsRoot": [
+          "currentPlayer",
+          "catMovesLeft",
+          "mouseMovesLeft",
+          "butterPositions",
+          "pendingButterSpawns"
+        ],
+        "repeatedStates": [],
+        "rootStateVisitedAgain": false,
+        "probabilitySum": 1
+      },
+      "progress": "STATE_ADVANCED"
+    },
+    {
+      "plan": "LUDR",
+      "source": "D2_CANDIDATE",
+      "legalIndex": 2,
+      "rootAction": "L",
+      "ok": true,
+      "failure": null,
+      "steps": [
+        {
+          "step": 0,
+          "label": "L",
+          "actionTypes": [
+            "catStep"
+          ],
+          "chance": false,
+          "probabilitySum": 1,
+          "branchCount": 1,
+          "branches": [
+            {
+              "fromStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#3,3#1,6#4#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+              "action": {
+                "label": "L",
+                "type": "catStep",
+                "direction": "ArrowLeft",
+                "r": null,
+                "c": null
+              },
+              "transitionKind": "deterministic",
+              "weightIn": 1,
+              "preparedLabels": [
+                "U",
+                "D",
+                "L"
+              ],
+              "boxesBefore": [
+                "1,2",
+                "2,4",
+                "2,5",
+                "2,7",
+                "3,4",
+                "3,8",
+                "5,3",
+                "6,3",
+                "6,5",
+                "7,1",
+                "8,3",
+                "8,6"
+              ],
+              "blockedTunnelsBefore": [],
+              "trapBefore": "1,1",
+              "butterBefore": [
+                "2,6"
+              ],
+              "outcomes": [
+                {
+                  "weight": 1,
+                  "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__ec_e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#3,2#1,6#3#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+                  "fullStateSha256": "cd5725ceadd1ead975a3e496ef09d4015065a65f6e703f4a047b4c7fd117a9ff",
+                  "snapshotSha256": "344b2d2e1cab91e4ecb982327668ae51625e6023f66334d8228bcf94490e8c46",
+                  "player": "cat",
+                  "playerChanged": false,
+                  "cat": "3,2",
+                  "mouse": "1,6",
+                  "catMovesLeft": 3,
+                  "mouseMovesLeft": 0,
+                  "boxesAfter": [
+                    "1,2",
+                    "2,4",
+                    "2,5",
+                    "2,7",
+                    "3,4",
+                    "3,8",
+                    "5,3",
+                    "6,3",
+                    "6,5",
+                    "7,1",
+                    "8,3",
+                    "8,6"
+                  ],
+                  "boxesMoved": false,
+                  "boxesRemoved": [],
+                  "boxesAdded": [],
+                  "blockedTunnelsAfter": [],
+                  "trapBefore": "1,1",
+                  "trapAfter": "1,1",
+                  "butterBefore": [
+                    "2,6"
+                  ],
+                  "butterAfter": [
+                    "2,6"
+                  ],
+                  "summary": {
+                    "phase": "playing",
+                    "currentPlayer": "cat",
+                    "cat": "3,2",
+                    "mouse": "1,6",
+                    "catMovesLeft": 3,
+                    "mouseMovesLeft": 0,
+                    "mouseHasButter": true,
+                    "mouseSkillActive": false,
+                    "butterPositions": [
+                      "2,6"
+                    ],
+                    "pendingButterSpawns": [
+                      "5,1:0"
+                    ],
+                    "pendingButterPlacementDebt": 0,
+                    "trapPosition": "1,1",
+                    "catTrapsRemaining": 0,
+                    "blockedTunnels": []
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "step": 1,
+          "label": "U",
+          "actionTypes": [
+            "catStep"
+          ],
+          "chance": false,
+          "probabilitySum": 1,
+          "branchCount": 1,
+          "branches": [
+            {
+              "fromStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__ec_e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#3,2#1,6#3#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+              "action": {
+                "label": "U",
+                "type": "catStep",
+                "direction": "ArrowUp",
+                "r": null,
+                "c": null
+              },
+              "transitionKind": "deterministic",
+              "weightIn": 1,
+              "preparedLabels": [
+                "U",
+                "D",
+                "L",
+                "R"
+              ],
+              "boxesBefore": [
+                "1,2",
+                "2,4",
+                "2,5",
+                "2,7",
+                "3,4",
+                "3,8",
+                "5,3",
+                "6,3",
+                "6,5",
+                "7,1",
+                "8,3",
+                "8,6"
+              ],
+              "blockedTunnelsBefore": [],
+              "trapBefore": "1,1",
+              "butterBefore": [
+                "2,6"
+              ],
+              "outcomes": [
+                {
+                  "weight": 1,
+                  "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__ec_e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#2,2#1,6#2#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+                  "fullStateSha256": "a32028132025c7ab89b721d735a08648f0bfddbd66f4d9dfc2fcfc423eea73c0",
+                  "snapshotSha256": "8aa69c4f5e64fe006cf9150163c927a9b9c84f4aafef2a50405719ca84095dea",
+                  "player": "cat",
+                  "playerChanged": false,
+                  "cat": "2,2",
+                  "mouse": "1,6",
+                  "catMovesLeft": 2,
+                  "mouseMovesLeft": 0,
+                  "boxesAfter": [
+                    "1,2",
+                    "2,4",
+                    "2,5",
+                    "2,7",
+                    "3,4",
+                    "3,8",
+                    "5,3",
+                    "6,3",
+                    "6,5",
+                    "7,1",
+                    "8,3",
+                    "8,6"
+                  ],
+                  "boxesMoved": false,
+                  "boxesRemoved": [],
+                  "boxesAdded": [],
+                  "blockedTunnelsAfter": [],
+                  "trapBefore": "1,1",
+                  "trapAfter": "1,1",
+                  "butterBefore": [
+                    "2,6"
+                  ],
+                  "butterAfter": [
+                    "2,6"
+                  ],
+                  "summary": {
+                    "phase": "playing",
+                    "currentPlayer": "cat",
+                    "cat": "2,2",
+                    "mouse": "1,6",
+                    "catMovesLeft": 2,
+                    "mouseMovesLeft": 0,
+                    "mouseHasButter": true,
+                    "mouseSkillActive": false,
+                    "butterPositions": [
+                      "2,6"
+                    ],
+                    "pendingButterSpawns": [
+                      "5,1:0"
+                    ],
+                    "pendingButterPlacementDebt": 0,
+                    "trapPosition": "1,1",
+                    "catTrapsRemaining": 0,
+                    "blockedTunnels": []
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "label": "D",
+          "actionTypes": [
+            "catStep"
+          ],
+          "chance": false,
+          "probabilitySum": 1,
+          "branchCount": 1,
+          "branches": [
+            {
+              "fromStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__ec_e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#2,2#1,6#2#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+              "action": {
+                "label": "D",
+                "type": "catStep",
+                "direction": "ArrowDown",
+                "r": null,
+                "c": null
+              },
+              "transitionKind": "deterministic",
+              "weightIn": 1,
+              "preparedLabels": [
+                "U",
+                "D",
+                "L",
+                "R"
+              ],
+              "boxesBefore": [
+                "1,2",
+                "2,4",
+                "2,5",
+                "2,7",
+                "3,4",
+                "3,8",
+                "5,3",
+                "6,3",
+                "6,5",
+                "7,1",
+                "8,3",
+                "8,6"
+              ],
+              "blockedTunnelsBefore": [],
+              "trapBefore": "1,1",
+              "butterBefore": [
+                "2,6"
+              ],
+              "outcomes": [
+                {
+                  "weight": 1,
+                  "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__ec_e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#3,2#1,6#1#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+                  "fullStateSha256": "0d43030c1f42c22d022650f7592c356487c5ef04c8671045cd9fa23f56ece788",
+                  "snapshotSha256": "72b7ad74171e4aabeef107a3dac779e89a1be4e264434be489ff6db2784ef2cd",
+                  "player": "cat",
+                  "playerChanged": false,
+                  "cat": "3,2",
+                  "mouse": "1,6",
+                  "catMovesLeft": 1,
+                  "mouseMovesLeft": 0,
+                  "boxesAfter": [
+                    "1,2",
+                    "2,4",
+                    "2,5",
+                    "2,7",
+                    "3,4",
+                    "3,8",
+                    "5,3",
+                    "6,3",
+                    "6,5",
+                    "7,1",
+                    "8,3",
+                    "8,6"
+                  ],
+                  "boxesMoved": false,
+                  "boxesRemoved": [],
+                  "boxesAdded": [],
+                  "blockedTunnelsAfter": [],
+                  "trapBefore": "1,1",
+                  "trapAfter": "1,1",
+                  "butterBefore": [
+                    "2,6"
+                  ],
+                  "butterAfter": [
+                    "2,6"
+                  ],
+                  "summary": {
+                    "phase": "playing",
+                    "currentPlayer": "cat",
+                    "cat": "3,2",
+                    "mouse": "1,6",
+                    "catMovesLeft": 1,
+                    "mouseMovesLeft": 0,
+                    "mouseHasButter": true,
+                    "mouseSkillActive": false,
+                    "butterPositions": [
+                      "2,6"
+                    ],
+                    "pendingButterSpawns": [
+                      "5,1:0"
+                    ],
+                    "pendingButterPlacementDebt": 0,
+                    "trapPosition": "1,1",
+                    "catTrapsRemaining": 0,
+                    "blockedTunnels": []
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "step": 3,
+          "label": "R",
+          "actionTypes": [
+            "catStep"
+          ],
+          "chance": true,
+          "probabilitySum": 1,
+          "branchCount": 1,
+          "branches": [
+            {
+              "fromStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__ec_e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#3,2#1,6#1#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+              "action": {
+                "label": "R",
+                "type": "catStep",
+                "direction": "ArrowRight",
+                "r": null,
+                "c": null
+              },
+              "transitionKind": "chance",
+              "weightIn": 1,
+              "preparedLabels": [
+                "U",
+                "D",
+                "L",
+                "R"
+              ],
+              "boxesBefore": [
+                "1,2",
+                "2,4",
+                "2,5",
+                "2,7",
+                "3,4",
+                "3,8",
+                "5,3",
+                "6,3",
+                "6,5",
+                "7,1",
+                "8,3",
+                "8,6"
+              ],
+              "blockedTunnelsBefore": [],
+              "trapBefore": "1,1",
+              "butterBefore": [
+                "2,6"
+              ],
+              "outcomes": [
+                {
+                  "weight": 1,
+                  "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+                  "fullStateSha256": "d9ba7799573f1d232df76c1e52f37140e7b1e707c8c6481cf46cddb4e68af921",
+                  "snapshotSha256": "ad7fbf62e8e5353fb6c4b8a954499609680d07da6424e12c63b25f6a83868b50",
+                  "player": "mouse",
+                  "playerChanged": true,
+                  "cat": "3,3",
+                  "mouse": "1,6",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 3,
+                  "boxesAfter": [
+                    "1,2",
+                    "2,4",
+                    "2,5",
+                    "2,7",
+                    "3,4",
+                    "3,8",
+                    "5,3",
+                    "6,3",
+                    "6,5",
+                    "7,1",
+                    "8,3",
+                    "8,6"
+                  ],
+                  "boxesMoved": false,
+                  "boxesRemoved": [],
+                  "boxesAdded": [],
+                  "blockedTunnelsAfter": [],
+                  "trapBefore": "1,1",
+                  "trapAfter": "1,1",
+                  "butterBefore": [
+                    "2,6"
+                  ],
+                  "butterAfter": [
+                    "2,6",
+                    "5,1"
+                  ],
+                  "summary": {
+                    "phase": "playing",
+                    "currentPlayer": "mouse",
+                    "cat": "3,3",
+                    "mouse": "1,6",
+                    "catMovesLeft": 0,
+                    "mouseMovesLeft": 3,
+                    "mouseHasButter": true,
+                    "mouseSkillActive": false,
+                    "butterPositions": [
+                      "2,6",
+                      "5,1"
+                    ],
+                    "pendingButterSpawns": [],
+                    "pendingButterPlacementDebt": 0,
+                    "trapPosition": "1,1",
+                    "catTrapsRemaining": 0,
+                    "blockedTunnels": []
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "frontierStatus": "VALID_MOUSE_FRONTIER",
+        "keys": [
+          "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+        ],
+        "fullStateSha256": [
+          "d9ba7799573f1d232df76c1e52f37140e7b1e707c8c6481cf46cddb4e68af921"
+        ],
+        "snapshotSha256": [
+          "ad7fbf62e8e5353fb6c4b8a954499609680d07da6424e12c63b25f6a83868b50"
+        ],
+        "catReturnedToStart": true,
+        "fullStateEqualsRoot": false,
+        "snapshotEqualsRoot": false,
+        "catReturnedButStateChanged": true,
+        "changedFieldsVsRoot": [
+          "currentPlayer",
+          "catMovesLeft",
+          "mouseMovesLeft",
+          "butterPositions",
+          "pendingButterSpawns"
+        ],
+        "repeatedStates": [],
+        "rootStateVisitedAgain": false,
+        "probabilitySum": 1
+      },
+      "progress": "STATE_ADVANCED"
+    },
+    {
+      "plan": "UURR",
+      "source": "HISTORICAL_CONTROL",
+      "legalIndex": null,
+      "rootAction": "U",
+      "ok": true,
+      "failure": null,
+      "steps": [
+        {
+          "step": 0,
+          "label": "U",
+          "actionTypes": [
+            "catStep"
+          ],
+          "chance": false,
+          "probabilitySum": 1,
+          "branchCount": 1,
+          "branches": [
+            {
+              "fromStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#3,3#1,6#4#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+              "action": {
+                "label": "U",
+                "type": "catStep",
+                "direction": "ArrowUp",
+                "r": null,
+                "c": null
+              },
+              "transitionKind": "deterministic",
+              "weightIn": 1,
+              "preparedLabels": [
+                "U",
+                "D",
+                "L"
+              ],
+              "boxesBefore": [
+                "1,2",
+                "2,4",
+                "2,5",
+                "2,7",
+                "3,4",
+                "3,8",
+                "5,3",
+                "6,3",
+                "6,5",
+                "7,1",
+                "8,3",
+                "8,6"
+              ],
+              "blockedTunnelsBefore": [],
+              "trapBefore": "1,1",
+              "butterBefore": [
+                "2,6"
+              ],
+              "outcomes": [
+                {
+                  "weight": 1,
+                  "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__ec_b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#2,3#1,6#3#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+                  "fullStateSha256": "d498082a971fca3a3741aa3e0df8b6e192b4a46696e82adcd64b380052565238",
+                  "snapshotSha256": "8aaed52e0358676083924922d9b64610fb6d0bb33399eb9677b2d6ec9dfe97dc",
+                  "player": "cat",
+                  "playerChanged": false,
+                  "cat": "2,3",
+                  "mouse": "1,6",
+                  "catMovesLeft": 3,
+                  "mouseMovesLeft": 0,
+                  "boxesAfter": [
+                    "1,2",
+                    "2,4",
+                    "2,5",
+                    "2,7",
+                    "3,4",
+                    "3,8",
+                    "5,3",
+                    "6,3",
+                    "6,5",
+                    "7,1",
+                    "8,3",
+                    "8,6"
+                  ],
+                  "boxesMoved": false,
+                  "boxesRemoved": [],
+                  "boxesAdded": [],
+                  "blockedTunnelsAfter": [],
+                  "trapBefore": "1,1",
+                  "trapAfter": "1,1",
+                  "butterBefore": [
+                    "2,6"
+                  ],
+                  "butterAfter": [
+                    "2,6"
+                  ],
+                  "summary": {
+                    "phase": "playing",
+                    "currentPlayer": "cat",
+                    "cat": "2,3",
+                    "mouse": "1,6",
+                    "catMovesLeft": 3,
+                    "mouseMovesLeft": 0,
+                    "mouseHasButter": true,
+                    "mouseSkillActive": false,
+                    "butterPositions": [
+                      "2,6"
+                    ],
+                    "pendingButterSpawns": [
+                      "5,1:0"
+                    ],
+                    "pendingButterPlacementDebt": 0,
+                    "trapPosition": "1,1",
+                    "catTrapsRemaining": 0,
+                    "blockedTunnels": []
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "step": 1,
+          "label": "U",
+          "actionTypes": [
+            "catStep"
+          ],
+          "chance": false,
+          "probabilitySum": 1,
+          "branchCount": 1,
+          "branches": [
+            {
+              "fromStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__ec_b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#2,3#1,6#3#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+              "action": {
+                "label": "U",
+                "type": "catStep",
+                "direction": "ArrowUp",
+                "r": null,
+                "c": null
+              },
+              "transitionKind": "deterministic",
+              "weightIn": 1,
+              "preparedLabels": [
+                "U",
+                "D",
+                "L"
+              ],
+              "boxesBefore": [
+                "1,2",
+                "2,4",
+                "2,5",
+                "2,7",
+                "3,4",
+                "3,8",
+                "5,3",
+                "6,3",
+                "6,5",
+                "7,1",
+                "8,3",
+                "8,6"
+              ],
+              "blockedTunnelsBefore": [],
+              "trapBefore": "1,1",
+              "butterBefore": [
+                "2,6"
+              ],
+              "outcomes": [
+                {
+                  "weight": 1,
+                  "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__ec_e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#1,3#1,6#2#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+                  "fullStateSha256": "a451b74ca12522213f1831c1a1be58eeaf39ce0647455f62b4f08a603949787e",
+                  "snapshotSha256": "2b063373574dfeb5058e68f1a480369ae6c953bb93f231bee832e18c3d6f85c3",
+                  "player": "cat",
+                  "playerChanged": false,
+                  "cat": "1,3",
+                  "mouse": "1,6",
+                  "catMovesLeft": 2,
+                  "mouseMovesLeft": 0,
+                  "boxesAfter": [
+                    "1,2",
+                    "2,4",
+                    "2,5",
+                    "2,7",
+                    "3,4",
+                    "3,8",
+                    "5,3",
+                    "6,3",
+                    "6,5",
+                    "7,1",
+                    "8,3",
+                    "8,6"
+                  ],
+                  "boxesMoved": false,
+                  "boxesRemoved": [],
+                  "boxesAdded": [],
+                  "blockedTunnelsAfter": [],
+                  "trapBefore": "1,1",
+                  "trapAfter": "1,1",
+                  "butterBefore": [
+                    "2,6"
+                  ],
+                  "butterAfter": [
+                    "2,6"
+                  ],
+                  "summary": {
+                    "phase": "playing",
+                    "currentPlayer": "cat",
+                    "cat": "1,3",
+                    "mouse": "1,6",
+                    "catMovesLeft": 2,
+                    "mouseMovesLeft": 0,
+                    "mouseHasButter": true,
+                    "mouseSkillActive": false,
+                    "butterPositions": [
+                      "2,6"
+                    ],
+                    "pendingButterSpawns": [
+                      "5,1:0"
+                    ],
+                    "pendingButterPlacementDebt": 0,
+                    "trapPosition": "1,1",
+                    "catTrapsRemaining": 0,
+                    "blockedTunnels": []
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "label": "R",
+          "actionTypes": [
+            "catStep"
+          ],
+          "chance": false,
+          "probabilitySum": 1,
+          "branchCount": 1,
+          "branches": [
+            {
+              "fromStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__ec_e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#1,3#1,6#2#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+              "action": {
+                "label": "R",
+                "type": "catStep",
+                "direction": "ArrowRight",
+                "r": null,
+                "c": null
+              },
+              "transitionKind": "deterministic",
+              "weightIn": 1,
+              "preparedLabels": [
+                "U",
+                "D",
+                "R"
+              ],
+              "boxesBefore": [
+                "1,2",
+                "2,4",
+                "2,5",
+                "2,7",
+                "3,4",
+                "3,8",
+                "5,3",
+                "6,3",
+                "6,5",
+                "7,1",
+                "8,3",
+                "8,6"
+              ],
+              "blockedTunnelsBefore": [],
+              "trapBefore": "1,1",
+              "butterBefore": [
+                "2,6"
+              ],
+              "outcomes": [
+                {
+                  "weight": 1,
+                  "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__ec_e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#1,4#1,6#1#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+                  "fullStateSha256": "0fb0b933fd9b6218f82e7193292f1ae698f5320e32d4c9e6580df7f0569b910c",
+                  "snapshotSha256": "b87ec0d72627e8c935586e6982450b4b4eaf2c56ddec2b780b72c77eb5a124ef",
+                  "player": "cat",
+                  "playerChanged": false,
+                  "cat": "1,4",
+                  "mouse": "1,6",
+                  "catMovesLeft": 1,
+                  "mouseMovesLeft": 0,
+                  "boxesAfter": [
+                    "1,2",
+                    "2,4",
+                    "2,5",
+                    "2,7",
+                    "3,4",
+                    "3,8",
+                    "5,3",
+                    "6,3",
+                    "6,5",
+                    "7,1",
+                    "8,3",
+                    "8,6"
+                  ],
+                  "boxesMoved": false,
+                  "boxesRemoved": [],
+                  "boxesAdded": [],
+                  "blockedTunnelsAfter": [],
+                  "trapBefore": "1,1",
+                  "trapAfter": "1,1",
+                  "butterBefore": [
+                    "2,6"
+                  ],
+                  "butterAfter": [
+                    "2,6"
+                  ],
+                  "summary": {
+                    "phase": "playing",
+                    "currentPlayer": "cat",
+                    "cat": "1,4",
+                    "mouse": "1,6",
+                    "catMovesLeft": 1,
+                    "mouseMovesLeft": 0,
+                    "mouseHasButter": true,
+                    "mouseSkillActive": false,
+                    "butterPositions": [
+                      "2,6"
+                    ],
+                    "pendingButterSpawns": [
+                      "5,1:0"
+                    ],
+                    "pendingButterPlacementDebt": 0,
+                    "trapPosition": "1,1",
+                    "catTrapsRemaining": 0,
+                    "blockedTunnels": []
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "step": 3,
+          "label": "R",
+          "actionTypes": [
+            "catStep"
+          ],
+          "chance": true,
+          "probabilitySum": 1,
+          "branchCount": 1,
+          "branches": [
+            {
+              "fromStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__ec_e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#1,4#1,6#1#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+              "action": {
+                "label": "R",
+                "type": "catStep",
+                "direction": "ArrowRight",
+                "r": null,
+                "c": null
+              },
+              "transitionKind": "chance",
+              "weightIn": 1,
+              "preparedLabels": [
+                "U",
+                "L",
+                "R"
+              ],
+              "boxesBefore": [
+                "1,2",
+                "2,4",
+                "2,5",
+                "2,7",
+                "3,4",
+                "3,8",
+                "5,3",
+                "6,3",
+                "6,5",
+                "7,1",
+                "8,3",
+                "8,6"
+              ],
+              "blockedTunnelsBefore": [],
+              "trapBefore": "1,1",
+              "butterBefore": [
+                "2,6"
+              ],
+              "outcomes": [
+                {
+                  "weight": 1,
+                  "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__ec_em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#1,5#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+                  "fullStateSha256": "e954daae154e2b017bdf2e00c8c274353fdeb1c435d9fa2c8252d408de5d9aed",
+                  "snapshotSha256": "6e6d14c3120cc97796a06bd4f2443c158d8479300e9d31c60884398868d97150",
+                  "player": "mouse",
+                  "playerChanged": true,
+                  "cat": "1,5",
+                  "mouse": "1,6",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 3,
+                  "boxesAfter": [
+                    "1,2",
+                    "2,4",
+                    "2,5",
+                    "2,7",
+                    "3,4",
+                    "3,8",
+                    "5,3",
+                    "6,3",
+                    "6,5",
+                    "7,1",
+                    "8,3",
+                    "8,6"
+                  ],
+                  "boxesMoved": false,
+                  "boxesRemoved": [],
+                  "boxesAdded": [],
+                  "blockedTunnelsAfter": [],
+                  "trapBefore": "1,1",
+                  "trapAfter": "1,1",
+                  "butterBefore": [
+                    "2,6"
+                  ],
+                  "butterAfter": [
+                    "2,6",
+                    "5,1"
+                  ],
+                  "summary": {
+                    "phase": "playing",
+                    "currentPlayer": "mouse",
+                    "cat": "1,5",
+                    "mouse": "1,6",
+                    "catMovesLeft": 0,
+                    "mouseMovesLeft": 3,
+                    "mouseHasButter": true,
+                    "mouseSkillActive": false,
+                    "butterPositions": [
+                      "2,6",
+                      "5,1"
+                    ],
+                    "pendingButterSpawns": [],
+                    "pendingButterPlacementDebt": 0,
+                    "trapPosition": "1,1",
+                    "catTrapsRemaining": 0,
+                    "blockedTunnels": []
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "frontierStatus": "VALID_MOUSE_FRONTIER",
+        "keys": [
+          "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__ec_em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#1,5#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+        ],
+        "fullStateSha256": [
+          "e954daae154e2b017bdf2e00c8c274353fdeb1c435d9fa2c8252d408de5d9aed"
+        ],
+        "snapshotSha256": [
+          "6e6d14c3120cc97796a06bd4f2443c158d8479300e9d31c60884398868d97150"
+        ],
+        "catReturnedToStart": false,
+        "fullStateEqualsRoot": false,
+        "snapshotEqualsRoot": false,
+        "catReturnedButStateChanged": false,
+        "changedFieldsVsRoot": [
+          "currentPlayer",
+          "cat",
+          "catMovesLeft",
+          "mouseMovesLeft",
+          "butterPositions",
+          "pendingButterSpawns"
+        ],
+        "repeatedStates": [],
+        "rootStateVisitedAgain": false,
+        "probabilitySum": 1
+      },
+      "progress": "STATE_ADVANCED"
+    },
+    {
+      "plan": "DRRR",
+      "source": "HISTORICAL_CONTROL",
+      "legalIndex": null,
+      "rootAction": "D",
+      "ok": true,
+      "failure": null,
+      "steps": [
+        {
+          "step": 0,
+          "label": "D",
+          "actionTypes": [
+            "catStep"
+          ],
+          "chance": false,
+          "probabilitySum": 1,
+          "branchCount": 1,
+          "branches": [
+            {
+              "fromStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#3,3#1,6#4#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+              "action": {
+                "label": "D",
+                "type": "catStep",
+                "direction": "ArrowDown",
+                "r": null,
+                "c": null
+              },
+              "transitionKind": "deterministic",
+              "weightIn": 1,
+              "preparedLabels": [
+                "U",
+                "D",
+                "L"
+              ],
+              "boxesBefore": [
+                "1,2",
+                "2,4",
+                "2,5",
+                "2,7",
+                "3,4",
+                "3,8",
+                "5,3",
+                "6,3",
+                "6,5",
+                "7,1",
+                "8,3",
+                "8,6"
+              ],
+              "blockedTunnelsBefore": [],
+              "trapBefore": "1,1",
+              "butterBefore": [
+                "2,6"
+              ],
+              "outcomes": [
+                {
+                  "weight": 1,
+                  "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#4,3#1,6#3#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+                  "fullStateSha256": "ea9e84b8b403b7e58f42bbfc06e7e4c8fff541563e2bc416407bc4bacf2b23d5",
+                  "snapshotSha256": "6374ff27c79c3dc74eb6420db72987781111f5d78b36d7fb19ef4de841ff953c",
+                  "player": "cat",
+                  "playerChanged": false,
+                  "cat": "4,3",
+                  "mouse": "1,6",
+                  "catMovesLeft": 3,
+                  "mouseMovesLeft": 0,
+                  "boxesAfter": [
+                    "1,2",
+                    "2,4",
+                    "2,5",
+                    "2,7",
+                    "3,4",
+                    "3,8",
+                    "5,3",
+                    "6,3",
+                    "6,5",
+                    "7,1",
+                    "8,3",
+                    "8,6"
+                  ],
+                  "boxesMoved": false,
+                  "boxesRemoved": [],
+                  "boxesAdded": [],
+                  "blockedTunnelsAfter": [],
+                  "trapBefore": "1,1",
+                  "trapAfter": "1,1",
+                  "butterBefore": [
+                    "2,6"
+                  ],
+                  "butterAfter": [
+                    "2,6"
+                  ],
+                  "summary": {
+                    "phase": "playing",
+                    "currentPlayer": "cat",
+                    "cat": "4,3",
+                    "mouse": "1,6",
+                    "catMovesLeft": 3,
+                    "mouseMovesLeft": 0,
+                    "mouseHasButter": true,
+                    "mouseSkillActive": false,
+                    "butterPositions": [
+                      "2,6"
+                    ],
+                    "pendingButterSpawns": [
+                      "5,1:0"
+                    ],
+                    "pendingButterPlacementDebt": 0,
+                    "trapPosition": "1,1",
+                    "catTrapsRemaining": 0,
+                    "blockedTunnels": []
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "step": 1,
+          "label": "R",
+          "actionTypes": [
+            "catStep"
+          ],
+          "chance": false,
+          "probabilitySum": 1,
+          "branchCount": 1,
+          "branches": [
+            {
+              "fromStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#4,3#1,6#3#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+              "action": {
+                "label": "R",
+                "type": "catStep",
+                "direction": "ArrowRight",
+                "r": null,
+                "c": null
+              },
+              "transitionKind": "deterministic",
+              "weightIn": 1,
+              "preparedLabels": [
+                "U",
+                "L",
+                "R"
+              ],
+              "boxesBefore": [
+                "1,2",
+                "2,4",
+                "2,5",
+                "2,7",
+                "3,4",
+                "3,8",
+                "5,3",
+                "6,3",
+                "6,5",
+                "7,1",
+                "8,3",
+                "8,6"
+              ],
+              "blockedTunnelsBefore": [],
+              "trapBefore": "1,1",
+              "butterBefore": [
+                "2,6"
+              ],
+              "outcomes": [
+                {
+                  "weight": 1,
+                  "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__ec_e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#4,4#1,6#2#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+                  "fullStateSha256": "51a9b2fa09b441eb1bd6cd4e7432275368a0ddf5f6e2dbf1772740888d37b878",
+                  "snapshotSha256": "c8a3b637f6f8221eb3acb6affa0ef1fe183d8dedc2324831c55a7b3421167a0c",
+                  "player": "cat",
+                  "playerChanged": false,
+                  "cat": "4,4",
+                  "mouse": "1,6",
+                  "catMovesLeft": 2,
+                  "mouseMovesLeft": 0,
+                  "boxesAfter": [
+                    "1,2",
+                    "2,4",
+                    "2,5",
+                    "2,7",
+                    "3,4",
+                    "3,8",
+                    "5,3",
+                    "6,3",
+                    "6,5",
+                    "7,1",
+                    "8,3",
+                    "8,6"
+                  ],
+                  "boxesMoved": false,
+                  "boxesRemoved": [],
+                  "boxesAdded": [],
+                  "blockedTunnelsAfter": [],
+                  "trapBefore": "1,1",
+                  "trapAfter": "1,1",
+                  "butterBefore": [
+                    "2,6"
+                  ],
+                  "butterAfter": [
+                    "2,6"
+                  ],
+                  "summary": {
+                    "phase": "playing",
+                    "currentPlayer": "cat",
+                    "cat": "4,4",
+                    "mouse": "1,6",
+                    "catMovesLeft": 2,
+                    "mouseMovesLeft": 0,
+                    "mouseHasButter": true,
+                    "mouseSkillActive": false,
+                    "butterPositions": [
+                      "2,6"
+                    ],
+                    "pendingButterSpawns": [
+                      "5,1:0"
+                    ],
+                    "pendingButterPlacementDebt": 0,
+                    "trapPosition": "1,1",
+                    "catTrapsRemaining": 0,
+                    "blockedTunnels": []
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "label": "R",
+          "actionTypes": [
+            "catStep"
+          ],
+          "chance": false,
+          "probabilitySum": 1,
+          "branchCount": 1,
+          "branches": [
+            {
+              "fromStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__ec_e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#4,4#1,6#2#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+              "action": {
+                "label": "R",
+                "type": "catStep",
+                "direction": "ArrowRight",
+                "r": null,
+                "c": null
+              },
+              "transitionKind": "deterministic",
+              "weightIn": 1,
+              "preparedLabels": [
+                "D",
+                "L",
+                "R"
+              ],
+              "boxesBefore": [
+                "1,2",
+                "2,4",
+                "2,5",
+                "2,7",
+                "3,4",
+                "3,8",
+                "5,3",
+                "6,3",
+                "6,5",
+                "7,1",
+                "8,3",
+                "8,6"
+              ],
+              "blockedTunnelsBefore": [],
+              "trapBefore": "1,1",
+              "butterBefore": [
+                "2,6"
+              ],
+              "outcomes": [
+                {
+                  "weight": 1,
+                  "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__ec_e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#4,5#1,6#1#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+                  "fullStateSha256": "bc43a2bc16c548d29fff93f27c1b96fe6effbddd434ae6a8061407741bf7863c",
+                  "snapshotSha256": "eb2b9e88889c2c98a678a38fd460f60f4abaec5db272c3ae4b798318c51f3918",
+                  "player": "cat",
+                  "playerChanged": false,
+                  "cat": "4,5",
+                  "mouse": "1,6",
+                  "catMovesLeft": 1,
+                  "mouseMovesLeft": 0,
+                  "boxesAfter": [
+                    "1,2",
+                    "2,4",
+                    "2,5",
+                    "2,7",
+                    "3,4",
+                    "3,8",
+                    "5,3",
+                    "6,3",
+                    "6,5",
+                    "7,1",
+                    "8,3",
+                    "8,6"
+                  ],
+                  "boxesMoved": false,
+                  "boxesRemoved": [],
+                  "boxesAdded": [],
+                  "blockedTunnelsAfter": [],
+                  "trapBefore": "1,1",
+                  "trapAfter": "1,1",
+                  "butterBefore": [
+                    "2,6"
+                  ],
+                  "butterAfter": [
+                    "2,6"
+                  ],
+                  "summary": {
+                    "phase": "playing",
+                    "currentPlayer": "cat",
+                    "cat": "4,5",
+                    "mouse": "1,6",
+                    "catMovesLeft": 1,
+                    "mouseMovesLeft": 0,
+                    "mouseHasButter": true,
+                    "mouseSkillActive": false,
+                    "butterPositions": [
+                      "2,6"
+                    ],
+                    "pendingButterSpawns": [
+                      "5,1:0"
+                    ],
+                    "pendingButterPlacementDebt": 0,
+                    "trapPosition": "1,1",
+                    "catTrapsRemaining": 0,
+                    "blockedTunnels": []
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "step": 3,
+          "label": "R",
+          "actionTypes": [
+            "catStep"
+          ],
+          "chance": true,
+          "probabilitySum": 1,
+          "branchCount": 1,
+          "branches": [
+            {
+              "fromStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__ec_e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#4,5#1,6#1#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+              "action": {
+                "label": "R",
+                "type": "catStep",
+                "direction": "ArrowRight",
+                "r": null,
+                "c": null
+              },
+              "transitionKind": "chance",
+              "weightIn": 1,
+              "preparedLabels": [
+                "D",
+                "L",
+                "R"
+              ],
+              "boxesBefore": [
+                "1,2",
+                "2,4",
+                "2,5",
+                "2,7",
+                "3,4",
+                "3,8",
+                "5,3",
+                "6,3",
+                "6,5",
+                "7,1",
+                "8,3",
+                "8,6"
+              ],
+              "blockedTunnelsBefore": [],
+              "trapBefore": "1,1",
+              "butterBefore": [
+                "2,6"
+              ],
+              "outcomes": [
+                {
+                  "weight": 1,
+                  "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__ec_e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#4,6#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+                  "fullStateSha256": "253033ff26cd72033a9dcd33c5553cea2baabe3bee81c20138a01a88d40cd94b",
+                  "snapshotSha256": "900e9f86ff3fd9ae1b6b3b94e5bd5838d7fc4332789a81ea6022bd5962903749",
+                  "player": "mouse",
+                  "playerChanged": true,
+                  "cat": "4,6",
+                  "mouse": "1,6",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 3,
+                  "boxesAfter": [
+                    "1,2",
+                    "2,4",
+                    "2,5",
+                    "2,7",
+                    "3,4",
+                    "3,8",
+                    "5,3",
+                    "6,3",
+                    "6,5",
+                    "7,1",
+                    "8,3",
+                    "8,6"
+                  ],
+                  "boxesMoved": false,
+                  "boxesRemoved": [],
+                  "boxesAdded": [],
+                  "blockedTunnelsAfter": [],
+                  "trapBefore": "1,1",
+                  "trapAfter": "1,1",
+                  "butterBefore": [
+                    "2,6"
+                  ],
+                  "butterAfter": [
+                    "2,6",
+                    "5,1"
+                  ],
+                  "summary": {
+                    "phase": "playing",
+                    "currentPlayer": "mouse",
+                    "cat": "4,6",
+                    "mouse": "1,6",
+                    "catMovesLeft": 0,
+                    "mouseMovesLeft": 3,
+                    "mouseHasButter": true,
+                    "mouseSkillActive": false,
+                    "butterPositions": [
+                      "2,6",
+                      "5,1"
+                    ],
+                    "pendingButterSpawns": [],
+                    "pendingButterPlacementDebt": 0,
+                    "trapPosition": "1,1",
+                    "catTrapsRemaining": 0,
+                    "blockedTunnels": []
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "frontierStatus": "VALID_MOUSE_FRONTIER",
+        "keys": [
+          "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__ec_e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#4,6#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+        ],
+        "fullStateSha256": [
+          "253033ff26cd72033a9dcd33c5553cea2baabe3bee81c20138a01a88d40cd94b"
+        ],
+        "snapshotSha256": [
+          "900e9f86ff3fd9ae1b6b3b94e5bd5838d7fc4332789a81ea6022bd5962903749"
+        ],
+        "catReturnedToStart": false,
+        "fullStateEqualsRoot": false,
+        "snapshotEqualsRoot": false,
+        "catReturnedButStateChanged": false,
+        "changedFieldsVsRoot": [
+          "currentPlayer",
+          "cat",
+          "catMovesLeft",
+          "mouseMovesLeft",
+          "butterPositions",
+          "pendingButterSpawns"
+        ],
+        "repeatedStates": [],
+        "rootStateVisitedAgain": false,
+        "probabilitySum": 1
+      },
+      "progress": "STATE_ADVANCED"
+    },
+    {
+      "plan": "DRDR",
+      "source": "HISTORICAL_CONTROL",
+      "legalIndex": null,
+      "rootAction": "D",
+      "ok": true,
+      "failure": null,
+      "steps": [
+        {
+          "step": 0,
+          "label": "D",
+          "actionTypes": [
+            "catStep"
+          ],
+          "chance": false,
+          "probabilitySum": 1,
+          "branchCount": 1,
+          "branches": [
+            {
+              "fromStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#3,3#1,6#4#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+              "action": {
+                "label": "D",
+                "type": "catStep",
+                "direction": "ArrowDown",
+                "r": null,
+                "c": null
+              },
+              "transitionKind": "deterministic",
+              "weightIn": 1,
+              "preparedLabels": [
+                "U",
+                "D",
+                "L"
+              ],
+              "boxesBefore": [
+                "1,2",
+                "2,4",
+                "2,5",
+                "2,7",
+                "3,4",
+                "3,8",
+                "5,3",
+                "6,3",
+                "6,5",
+                "7,1",
+                "8,3",
+                "8,6"
+              ],
+              "blockedTunnelsBefore": [],
+              "trapBefore": "1,1",
+              "butterBefore": [
+                "2,6"
+              ],
+              "outcomes": [
+                {
+                  "weight": 1,
+                  "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#4,3#1,6#3#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+                  "fullStateSha256": "ea9e84b8b403b7e58f42bbfc06e7e4c8fff541563e2bc416407bc4bacf2b23d5",
+                  "snapshotSha256": "6374ff27c79c3dc74eb6420db72987781111f5d78b36d7fb19ef4de841ff953c",
+                  "player": "cat",
+                  "playerChanged": false,
+                  "cat": "4,3",
+                  "mouse": "1,6",
+                  "catMovesLeft": 3,
+                  "mouseMovesLeft": 0,
+                  "boxesAfter": [
+                    "1,2",
+                    "2,4",
+                    "2,5",
+                    "2,7",
+                    "3,4",
+                    "3,8",
+                    "5,3",
+                    "6,3",
+                    "6,5",
+                    "7,1",
+                    "8,3",
+                    "8,6"
+                  ],
+                  "boxesMoved": false,
+                  "boxesRemoved": [],
+                  "boxesAdded": [],
+                  "blockedTunnelsAfter": [],
+                  "trapBefore": "1,1",
+                  "trapAfter": "1,1",
+                  "butterBefore": [
+                    "2,6"
+                  ],
+                  "butterAfter": [
+                    "2,6"
+                  ],
+                  "summary": {
+                    "phase": "playing",
+                    "currentPlayer": "cat",
+                    "cat": "4,3",
+                    "mouse": "1,6",
+                    "catMovesLeft": 3,
+                    "mouseMovesLeft": 0,
+                    "mouseHasButter": true,
+                    "mouseSkillActive": false,
+                    "butterPositions": [
+                      "2,6"
+                    ],
+                    "pendingButterSpawns": [
+                      "5,1:0"
+                    ],
+                    "pendingButterPlacementDebt": 0,
+                    "trapPosition": "1,1",
+                    "catTrapsRemaining": 0,
+                    "blockedTunnels": []
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "step": 1,
+          "label": "R",
+          "actionTypes": [
+            "catStep"
+          ],
+          "chance": false,
+          "probabilitySum": 1,
+          "branchCount": 1,
+          "branches": [
+            {
+              "fromStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#4,3#1,6#3#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+              "action": {
+                "label": "R",
+                "type": "catStep",
+                "direction": "ArrowRight",
+                "r": null,
+                "c": null
+              },
+              "transitionKind": "deterministic",
+              "weightIn": 1,
+              "preparedLabels": [
+                "U",
+                "L",
+                "R"
+              ],
+              "boxesBefore": [
+                "1,2",
+                "2,4",
+                "2,5",
+                "2,7",
+                "3,4",
+                "3,8",
+                "5,3",
+                "6,3",
+                "6,5",
+                "7,1",
+                "8,3",
+                "8,6"
+              ],
+              "blockedTunnelsBefore": [],
+              "trapBefore": "1,1",
+              "butterBefore": [
+                "2,6"
+              ],
+              "outcomes": [
+                {
+                  "weight": 1,
+                  "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__ec_e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#4,4#1,6#2#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+                  "fullStateSha256": "51a9b2fa09b441eb1bd6cd4e7432275368a0ddf5f6e2dbf1772740888d37b878",
+                  "snapshotSha256": "c8a3b637f6f8221eb3acb6affa0ef1fe183d8dedc2324831c55a7b3421167a0c",
+                  "player": "cat",
+                  "playerChanged": false,
+                  "cat": "4,4",
+                  "mouse": "1,6",
+                  "catMovesLeft": 2,
+                  "mouseMovesLeft": 0,
+                  "boxesAfter": [
+                    "1,2",
+                    "2,4",
+                    "2,5",
+                    "2,7",
+                    "3,4",
+                    "3,8",
+                    "5,3",
+                    "6,3",
+                    "6,5",
+                    "7,1",
+                    "8,3",
+                    "8,6"
+                  ],
+                  "boxesMoved": false,
+                  "boxesRemoved": [],
+                  "boxesAdded": [],
+                  "blockedTunnelsAfter": [],
+                  "trapBefore": "1,1",
+                  "trapAfter": "1,1",
+                  "butterBefore": [
+                    "2,6"
+                  ],
+                  "butterAfter": [
+                    "2,6"
+                  ],
+                  "summary": {
+                    "phase": "playing",
+                    "currentPlayer": "cat",
+                    "cat": "4,4",
+                    "mouse": "1,6",
+                    "catMovesLeft": 2,
+                    "mouseMovesLeft": 0,
+                    "mouseHasButter": true,
+                    "mouseSkillActive": false,
+                    "butterPositions": [
+                      "2,6"
+                    ],
+                    "pendingButterSpawns": [
+                      "5,1:0"
+                    ],
+                    "pendingButterPlacementDebt": 0,
+                    "trapPosition": "1,1",
+                    "catTrapsRemaining": 0,
+                    "blockedTunnels": []
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "label": "D",
+          "actionTypes": [
+            "catStep"
+          ],
+          "chance": false,
+          "probabilitySum": 1,
+          "branchCount": 1,
+          "branches": [
+            {
+              "fromStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__ec_e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#4,4#1,6#2#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+              "action": {
+                "label": "D",
+                "type": "catStep",
+                "direction": "ArrowDown",
+                "r": null,
+                "c": null
+              },
+              "transitionKind": "deterministic",
+              "weightIn": 1,
+              "preparedLabels": [
+                "D",
+                "L",
+                "R"
+              ],
+              "boxesBefore": [
+                "1,2",
+                "2,4",
+                "2,5",
+                "2,7",
+                "3,4",
+                "3,8",
+                "5,3",
+                "6,3",
+                "6,5",
+                "7,1",
+                "8,3",
+                "8,6"
+              ],
+              "blockedTunnelsBefore": [],
+              "trapBefore": "1,1",
+              "butterBefore": [
+                "2,6"
+              ],
+              "outcomes": [
+                {
+                  "weight": 1,
+                  "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__ec_e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#5,4#1,6#1#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+                  "fullStateSha256": "e3f783155d7351a6720915af9c55c7f2975ef0765ed1c4533acb2998c5e6f819",
+                  "snapshotSha256": "be28bb88a29e4b7c4a4a711e51c2206761464c24a4ae8508a37db2875118df16",
+                  "player": "cat",
+                  "playerChanged": false,
+                  "cat": "5,4",
+                  "mouse": "1,6",
+                  "catMovesLeft": 1,
+                  "mouseMovesLeft": 0,
+                  "boxesAfter": [
+                    "1,2",
+                    "2,4",
+                    "2,5",
+                    "2,7",
+                    "3,4",
+                    "3,8",
+                    "5,3",
+                    "6,3",
+                    "6,5",
+                    "7,1",
+                    "8,3",
+                    "8,6"
+                  ],
+                  "boxesMoved": false,
+                  "boxesRemoved": [],
+                  "boxesAdded": [],
+                  "blockedTunnelsAfter": [],
+                  "trapBefore": "1,1",
+                  "trapAfter": "1,1",
+                  "butterBefore": [
+                    "2,6"
+                  ],
+                  "butterAfter": [
+                    "2,6"
+                  ],
+                  "summary": {
+                    "phase": "playing",
+                    "currentPlayer": "cat",
+                    "cat": "5,4",
+                    "mouse": "1,6",
+                    "catMovesLeft": 1,
+                    "mouseMovesLeft": 0,
+                    "mouseHasButter": true,
+                    "mouseSkillActive": false,
+                    "butterPositions": [
+                      "2,6"
+                    ],
+                    "pendingButterSpawns": [
+                      "5,1:0"
+                    ],
+                    "pendingButterPlacementDebt": 0,
+                    "trapPosition": "1,1",
+                    "catTrapsRemaining": 0,
+                    "blockedTunnels": []
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "step": 3,
+          "label": "R",
+          "actionTypes": [
+            "catStep"
+          ],
+          "chance": true,
+          "probabilitySum": 1,
+          "branchCount": 1,
+          "branches": [
+            {
+              "fromStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__ec_e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#5,4#1,6#1#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+              "action": {
+                "label": "R",
+                "type": "catStep",
+                "direction": "ArrowRight",
+                "r": null,
+                "c": null
+              },
+              "transitionKind": "chance",
+              "weightIn": 1,
+              "preparedLabels": [
+                "U",
+                "D",
+                "L",
+                "R"
+              ],
+              "boxesBefore": [
+                "1,2",
+                "2,4",
+                "2,5",
+                "2,7",
+                "3,4",
+                "3,8",
+                "5,3",
+                "6,3",
+                "6,5",
+                "7,1",
+                "8,3",
+                "8,6"
+              ],
+              "blockedTunnelsBefore": [],
+              "trapBefore": "1,1",
+              "butterBefore": [
+                "2,6"
+              ],
+              "outcomes": [
+                {
+                  "weight": 1,
+                  "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__ec_e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#5,5#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+                  "fullStateSha256": "ad15efecfaf42215fc094b4548b12ad9e08c503c3470c012280ac4714652f613",
+                  "snapshotSha256": "2d9484086b0dc4b4dc516c4392fab900522730c7fab91b55c614d25597e1bfe5",
+                  "player": "mouse",
+                  "playerChanged": true,
+                  "cat": "5,5",
+                  "mouse": "1,6",
+                  "catMovesLeft": 0,
+                  "mouseMovesLeft": 3,
+                  "boxesAfter": [
+                    "1,2",
+                    "2,4",
+                    "2,5",
+                    "2,7",
+                    "3,4",
+                    "3,8",
+                    "5,3",
+                    "6,3",
+                    "6,5",
+                    "7,1",
+                    "8,3",
+                    "8,6"
+                  ],
+                  "boxesMoved": false,
+                  "boxesRemoved": [],
+                  "boxesAdded": [],
+                  "blockedTunnelsAfter": [],
+                  "trapBefore": "1,1",
+                  "trapAfter": "1,1",
+                  "butterBefore": [
+                    "2,6"
+                  ],
+                  "butterAfter": [
+                    "2,6",
+                    "5,1"
+                  ],
+                  "summary": {
+                    "phase": "playing",
+                    "currentPlayer": "mouse",
+                    "cat": "5,5",
+                    "mouse": "1,6",
+                    "catMovesLeft": 0,
+                    "mouseMovesLeft": 3,
+                    "mouseHasButter": true,
+                    "mouseSkillActive": false,
+                    "butterPositions": [
+                      "2,6",
+                      "5,1"
+                    ],
+                    "pendingButterSpawns": [],
+                    "pendingButterPlacementDebt": 0,
+                    "trapPosition": "1,1",
+                    "catTrapsRemaining": 0,
+                    "blockedTunnels": []
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "frontierStatus": "VALID_MOUSE_FRONTIER",
+        "keys": [
+          "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__ec_e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#5,5#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+        ],
+        "fullStateSha256": [
+          "ad15efecfaf42215fc094b4548b12ad9e08c503c3470c012280ac4714652f613"
+        ],
+        "snapshotSha256": [
+          "2d9484086b0dc4b4dc516c4392fab900522730c7fab91b55c614d25597e1bfe5"
+        ],
+        "catReturnedToStart": false,
+        "fullStateEqualsRoot": false,
+        "snapshotEqualsRoot": false,
+        "catReturnedButStateChanged": false,
+        "changedFieldsVsRoot": [
+          "currentPlayer",
+          "cat",
+          "catMovesLeft",
+          "mouseMovesLeft",
+          "butterPositions",
+          "pendingButterSpawns"
+        ],
+        "repeatedStates": [],
+        "rootStateVisitedAgain": false,
+        "probabilitySum": 1
+      },
+      "progress": "STATE_ADVANCED"
+    }
+  ],
+  "crossPlan": {
+    "d2FinalKeysIdentical": true,
+    "d2FinalFullStateEqualsRoot": false,
+    "d2FinalSnapshotsIdentical": true,
+    "duplicatedFinalStates": [
+      {
+        "plans": [
+          "UUDD",
+          "DUUD"
+        ],
+        "key": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "fullStateSha256": "51b3773e6da58d7d101af76a65f3956b8eff585bda1e06db8f1797c9148a129b"
+      },
+      {
+        "plans": [
+          "UUDD",
+          "LUDR"
+        ],
+        "key": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "fullStateSha256": "d9ba7799573f1d232df76c1e52f37140e7b1e707c8c6481cf46cddb4e68af921"
+      }
+    ],
+    "controlFinalKeys": [
+      {
+        "plan": "UURR",
+        "keys": [
+          "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__ec_em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#1,5#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+        ],
+        "fullState": [
+          "e954daae154e2b017bdf2e00c8c274353fdeb1c435d9fa2c8252d408de5d9aed"
+        ]
+      },
+      {
+        "plan": "DRRR",
+        "keys": [
+          "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__ec_e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#4,6#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+        ],
+        "fullState": [
+          "253033ff26cd72033a9dcd33c5553cea2baabe3bee81c20138a01a88d40cd94b"
+        ]
+      },
+      {
+        "plan": "DRDR",
+        "keys": [
+          "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__ec_e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#5,5#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+        ],
+        "fullState": [
+          "ad15efecfaf42215fc094b4548b12ad9e08c503c3470c012280ac4714652f613"
+        ]
+      }
+    ]
+  },
+  "verdicts": {
+    "D2_PLANS_TRULY_NON_PROGRESSING": false,
+    "note": "set from full-state evidence only; see plans[].final"
+  }
+}

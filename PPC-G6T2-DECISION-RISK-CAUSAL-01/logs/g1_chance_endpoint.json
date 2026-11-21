@@ -1,0 +1,1331 @@
+{
+  "plans": 110,
+  "plansEndingInChance": 110,
+  "plansWithMultiplePositiveOutcomes": 0,
+  "plansWithDisagreeingOutcomeCells": 0,
+  "plansWithDisagreeingOutcomeStateKeys": 0,
+  "issue": "CHANCE_ENDPOINT_SEMANTICS",
+  "registration": "Independent of revisit/uniqueProgress: 43/110 plans differ only because the final hand-off cell is included in production and excluded in the research feature; endpoint fields must never read outcomes[0].",
+  "rows": [
+    {
+      "plan": "UUUD",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "UUUL",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "UUUR",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "UUDU",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "UUDD",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "UUDL",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "UURU",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "UURL",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "UURR",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "UDUU",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "UDUD",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "UDUL",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "UDDU",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "UDDL",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "UDDR",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "UDLU",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "UDLD",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "UDLL",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "UDLR",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "ULUD",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "ULUL",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "ULUR",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "ULDU",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "ULDD",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "ULDL",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "ULDR",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "ULLU",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "ULLD",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "ULLL",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "ULLR",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "ULRU",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "ULRD",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "ULRL",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "DUUU",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "DUUD",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "DUUL",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "DUDU",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "DUDL",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "DUDR",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "DULU",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "DULD",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "DULL",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "DULR",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "DLUU",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "DLUD",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "DLUL",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "DLUR",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "DLDU",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "DLDD",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "DLDL",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "DLDR",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "DLRU",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "DLRL",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "DLRR",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "DRDU",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "DRDD",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "DRDL",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "DRDR",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "DRLU",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "DRLL",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "DRLR",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "DRRD",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "DRRL",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "DRRR",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LUUD",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LUUL",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LUUR",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LUDU",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LUDD",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LUDL",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LUDR",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LULU",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LULD",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LULL",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LULR",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LURU",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LURD",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LURL",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LDUU",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LDUD",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LDUL",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LDUR",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LDDU",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LDDD",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LDDL",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LDDR",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LDRU",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LDRL",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LDRR",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LLUU",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LLUD",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LLUL",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LLUR",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LLLU",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LLLD",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LLLR",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LLRU",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LLRD",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LLRL",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LLRR",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LRUU",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LRUD",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LRUL",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LRDU",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LRDL",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LRDR",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LRLU",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LRLD",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LRLL",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    },
+    {
+      "plan": "LRLR",
+      "chance": true,
+      "outcomes": 1,
+      "weights": [
+        1
+      ],
+      "cellAgreement": true,
+      "keyAgreement": true,
+      "researchEndReads": "outcomes[0]",
+      "productionEndReads": "weighted expectation over all outcomes"
+    }
+  ]
+}

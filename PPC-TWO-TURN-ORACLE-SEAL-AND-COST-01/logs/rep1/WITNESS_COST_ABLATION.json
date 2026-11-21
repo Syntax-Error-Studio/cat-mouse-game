@@ -1,0 +1,95 @@
+{
+  "round": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01",
+  "input": {
+    "plan": "DUUD",
+    "frontierStateKeys": [
+      "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+    ],
+    "sameInputForAllLayers": true
+  },
+  "layers": {
+    "L0_cheapOneTurn": {
+      "H": 1,
+      "startIdx": 1,
+      "cap": 5000,
+      "value": false,
+      "truncated": false,
+      "nodes": 118,
+      "elapsedMs": 16.76379999999972,
+      "withinCheapBudget": true,
+      "peakRssMB": 106.4,
+      "role": "fast H1 check only; cannot see the two-turn win"
+    },
+    "L1_coreProofOnly": {
+      "value": true,
+      "truncated": false,
+      "nodes": 65585,
+      "chanceNodes": 2122,
+      "chanceOutcomes": 53766,
+      "policySize": 9147,
+      "elapsedMs": 5783,
+      "peakRssMB": 260.6,
+      "verified": false
+    },
+    "L2_corePlusVerifier": {
+      "value": true,
+      "nodes": 65585,
+      "policySize": 9147,
+      "verify": {
+        "verdict": "PROVEN",
+        "leaves": 110921,
+        "branches": 1012,
+        "chanceNodes": 865,
+        "maxDepth": 18,
+        "elapsedMs": 7146
+      },
+      "elapsedMs": 12872,
+      "peakRssMB": 301.8
+    },
+    "L3_plusWitnessLine": {
+      "witnessSteps": 14,
+      "elapsedMs": 90,
+      "peakRssMB": 302.4
+    },
+    "D1_staticReach": {
+      "nodes": 19612,
+      "truncated": false,
+      "elapsedMs": 1704,
+      "peakRssMB": 311.2
+    },
+    "D2_witnessSearchOnNoWin": {
+      "plan": "DRRR",
+      "value": false,
+      "nodes": 3513,
+      "proofElapsedMs": 335,
+      "shadowTotalMs": 5996,
+      "shadowWitnessMs": 5658,
+      "note": "On NO_WIN the shadow tool additionally runs an existential witness search. That search is diagnostic only and never changes the verdict."
+    }
+  },
+  "answers": {
+    "isReductionCoreOrOptional": "The witness line, static reach and existential witness search are OPTIONAL diagnostics. The proof is L1 and the certificate is L2; neither reads any of them.",
+    "verdictsByteIdentical": true,
+    "costStillAbove100ms": true,
+    "proofNecessaryMs": 5783,
+    "certificateMs": 12872,
+    "optionalDiagnosticsMs": {
+      "witnessLine": 90,
+      "staticReach": 1704,
+      "noWinWitnessSearchPriorRound": 5868
+    },
+    "hotspots": [
+      "generatePreparedSearchActions is rebuilt at every node: ~93-230 microseconds per node, which is the dominant term (65585 nodes => ~6 s).",
+      "stateKey + `${idx}|${key}` string building happens for every visited and memo-hit state (58328 memo hits).",
+      "The independent verifier has no memo and re-walks the ∀-tree: 110921 leaves for 65585 unique nodes; at the G1T9 root this exceeds the 600k leaf cap.",
+      "The shadow witness search is an independent second traversal (only when NO_WIN); it is the ~5.9 s tail in the prior round."
+    ]
+  },
+  "host": {
+    "totalMB": 16087.8,
+    "freeMB": 3883.3,
+    "vitestProcesses": 3,
+    "vitestOutOfTree": 0,
+    "foreignNodeProcesses": 1
+  }
+}

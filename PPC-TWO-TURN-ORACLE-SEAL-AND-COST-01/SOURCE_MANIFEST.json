@@ -1,0 +1,250 @@
+{
+  "round": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01",
+  "generatedBy": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/scripts/manifest.mjs",
+  "identity": {
+    "head": "d533c8fb1e9c8b1822e84e737253f7ea73d3dbb1",
+    "branch": "ppc/p1-id-state-identity-fix",
+    "fixture": {
+      "path": "src/game/ai/__tests__/fixtures/ppcId01-human-roots.json",
+      "sha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09"
+    },
+    "sealKernel": {
+      "path": "PPC-CAT-STRATEGY-SEAL-01/probe/seal_lib.ts",
+      "sha256": "453915d3fd3a69bda5d113dd7e5732d20424a7f97cff739cf9b0aeee576a779b"
+    },
+    "strategyKernel": {
+      "path": "PPC-CAT-STRATEGY-01/probe/lib.ts",
+      "sha256": "f8cae0ac4fca93330d170fa3fe2e072729b402fc18442016ce069f80f8ee0264"
+    },
+    "shadowLib": {
+      "path": "PPC-G6T2-DECISION-RISK-CAUSAL-01/probe/dr_lib.ts",
+      "sha256": "e0780fff270f45e17c32406261e51f55480feb4824af4112a902353bf6e7a654"
+    },
+    "gameplay": {
+      "path": "GAMEPLAY.md",
+      "sha256": "e000778b114bea02ef09634085172ea435be143335721aa0cd04114afb2afd34"
+    },
+    "preparedActions": {
+      "path": "src/game/ai/preparedActions.ts",
+      "sha256": "67b76ad3de53fee6d3d32f9bc8ab9a02b52234857b23b7fc9091bd92011ad764"
+    }
+  },
+  "parameters": {
+    "oracle": "seal_lib.solve + verifyMouseCertificate (frozen, read-only)",
+    "H": 2,
+    "startIdx": 1,
+    "cap": 600000,
+    "cheapCap": 5000,
+    "cheapWallMs": 20,
+    "modes": [
+      "mouseForce",
+      "catSurvive(dual only, separately labelled)"
+    ],
+    "repetitions": 3,
+    "serialFreshProcesses": true,
+    "heavyWorkerConcurrency": 1,
+    "neverReusedAcrossRoots": true
+  },
+  "scope": {
+    "productionWiring": "NO",
+    "commit": "NO",
+    "push": "NO",
+    "merge": "NO",
+    "cloud": "not contacted (8787/8788 untouched)",
+    "frozenArtifactsOverwritten": false,
+    "priorRoundReportCorrection": "gloss only; frozen JSON untouched"
+  },
+  "counts": {
+    "srcClosure36": 36,
+    "dependencyClosure39": 39,
+    "certificateBound37": "THIRD_COUNT_SOURCE_NOT_FOUND"
+  },
+  "files": [
+    {
+      "path": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/REPORT.md",
+      "sha256": "f48fe6886c89330527dd41a14add6a2e04ee3e61ca023ad09f63b5c222f4918e",
+      "bytes": 18433
+    },
+    {
+      "path": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/WINDOW_AND_LABEL_LINEAGE.md",
+      "sha256": "89df4ecbfbb5eea94047e39482c8c77a47c75feda046015eb829894ed3f68348",
+      "bytes": 5565
+    },
+    {
+      "path": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/DUUD_INDEPENDENT_PROOF.json",
+      "sha256": "2336fab3fa1b9b261724a9ef120dbb1d09a50151e0196f731287c775e3eeda9c",
+      "bytes": 3198
+    },
+    {
+      "path": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/INDEPENDENT_VERIFIER_RESULT.json",
+      "sha256": "e5fd83c419a4f95023e1c17fa92680ee2ba1d683cd8d469207365a6ee05da982",
+      "bytes": 1119
+    },
+    {
+      "path": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/QUANTIFIER_COUNTEREXAMPLES.json",
+      "sha256": "f8b0da8b8f47f49150b7ce04ed426c4de623aafa7d059b0f8d3d499d346e7fd7",
+      "bytes": 9204
+    },
+    {
+      "path": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/WITNESS_COST_ABLATION.json",
+      "sha256": "bebf7e3e87334ca4a8ccc4ccef35af53d139be0eeca8286b39642667bbfe3767",
+      "bytes": 3260
+    },
+    {
+      "path": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/RESOURCE_SAFETY_LOG.md",
+      "sha256": "4f0a67ac120bdca96c4862439ce2b3f7584f37c2bfd7d0582d57355969f9bea3",
+      "bytes": 1814
+    },
+    {
+      "path": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/probe/digest.mjs",
+      "sha256": "12edc960f14ecce690c9653752c37ab7e44d166e2f768da11ce989b20c29cc2a",
+      "bytes": 2710
+    },
+    {
+      "path": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/probe/g0_identity.test.ts",
+      "sha256": "a479a197831280628faa967b9e746dee4c1ba2a4ddf8ecf7a8ae5b2c95687bac",
+      "bytes": 6149
+    },
+    {
+      "path": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/probe/g1_lineage.test.ts",
+      "sha256": "623b7b8b923f1bdb90b53096064e7275d948db8a3ee73394a5fbf62bfae70a09",
+      "bytes": 8316
+    },
+    {
+      "path": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/probe/g2_duud_proof.test.ts",
+      "sha256": "bce2dcc1e0e7a58d9fd6ddfdf1c8504138019c6543c762513c3af1b9d1ae2bba",
+      "bytes": 11349
+    },
+    {
+      "path": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/probe/g3_counterexamples.test.ts",
+      "sha256": "129b9692332be40b71f2ffc3a7cc83db9d46457a7a4d68ac1f30b63212353796",
+      "bytes": 13907
+    },
+    {
+      "path": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/probe/g3b_rule_isolation.test.ts",
+      "sha256": "c95b6ffbe5273ba708539272f5fc5f2a14a69bf68f4d32709d8cddd9722ecd0a",
+      "bytes": 10876
+    },
+    {
+      "path": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/probe/g4_cost_ablation.test.ts",
+      "sha256": "7939376b687462a71e1829f934ea4789a972280fe8367acd33a11db4bb261e80",
+      "bytes": 6424
+    },
+    {
+      "path": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/probe/ttor_lib.ts",
+      "sha256": "81c0196611cc286d8ed8d699ee5db1b05db32bd980f5c5942ee02c461f97090a",
+      "bytes": 13503
+    },
+    {
+      "path": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/probe/vitest.config.mts",
+      "sha256": "0948015add7af68ec3b65c76613a6138a50ccabb03f1862b727ef371b4fafcdb",
+      "bytes": 354
+    },
+    {
+      "path": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/scripts/host_probe.ps1",
+      "sha256": "bb2aa59893397402eae4e60615bb68901571544ef3c5dce5b7f41a32140bc80c",
+      "bytes": 1164
+    },
+    {
+      "path": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/scripts/manifest.mjs",
+      "sha256": "8b7f896f1c69c6c34ae98f9b2e27ed52f3f13ee999ab4f43c78905b5340b8f50",
+      "bytes": 3548
+    },
+    {
+      "path": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/scripts/run_round.sh",
+      "sha256": "667dc4dcb0a40c979c6edf223ec3825aa3f08bfdc6da02fa40c9208b1b7e372d",
+      "bytes": 1416
+    },
+    {
+      "path": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/scripts/summary.mjs",
+      "sha256": "b048ec9d479617470a6853663dde48043dfc877c3333a93b777c594cb8bfa7ee",
+      "bytes": 1066
+    },
+    {
+      "path": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/scripts/verify_ledger.sh",
+      "sha256": "4fe310bf25378e61f7a35b09669fa07e7fd8019d621af94471e9b7ba76dd6938",
+      "bytes": 465
+    },
+    {
+      "path": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/determinism_summary.json",
+      "sha256": "55a5f3fdb5ecd60578458e1ac66dd331dbb543a64058f7c39bbde47655b7e1f2",
+      "bytes": 6425
+    },
+    {
+      "path": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/digest.json",
+      "sha256": "4e1aa4cda8d5d86836cfa06e8db6be123c4d4330c4320633b8f3ffe0d9cbd643",
+      "bytes": 9305
+    },
+    {
+      "path": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g0_admission.json",
+      "sha256": "af955ffc0b7b2144c1c01b63df3b7b82bcef2d5e1af463000d893533f462fed5",
+      "bytes": 403
+    },
+    {
+      "path": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g0_count_separation.json",
+      "sha256": "d45a582caf835bffc16055dcb75dc4722a8c77db6b6eb13a40c64f4283407e37",
+      "bytes": 996
+    },
+    {
+      "path": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g0_identity.json",
+      "sha256": "a7dd8f4332d6f388b751dfad239875b601e673dd5283222741f054cacf5763dd",
+      "bytes": 1189
+    },
+    {
+      "path": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g0_plan_set.json",
+      "sha256": "34da054db470143552f0f8307b2fd97ff261059368f9435a0883f99ac49d5341",
+      "bytes": 582
+    },
+    {
+      "path": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g1_g1t9_artifact.json",
+      "sha256": "87e2b08381be2c801366be6b3436df9fbd06c11ff7921bd9634ec83f0234dda2",
+      "bytes": 715
+    },
+    {
+      "path": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g1_lineage.json",
+      "sha256": "6edde22dc14f441e0af98aa9522fc8f238e6ee6131e3fe3eebb5810cefdeb0b1",
+      "bytes": 6507
+    },
+    {
+      "path": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g2_control_drrr.json",
+      "sha256": "378ed8288a4b8dc30ccc99bc7c97303e550ac3d42e7ac3e9211f3d19e68c8953",
+      "bytes": 1714
+    },
+    {
+      "path": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g2_control_uud.json",
+      "sha256": "859ad3d2153dfb4df3f68c9f8b6bbd485b1473c08d6be7638f4e648cea118509",
+      "bytes": 1747
+    },
+    {
+      "path": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g2_g1t9_root_equiv.json",
+      "sha256": "da14994a38fe78eb7b4f464dde40233cf912536b5973b6b88d72b948238db04d",
+      "bytes": 2219
+    },
+    {
+      "path": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g3_no_win_dual.json",
+      "sha256": "5f5a9185826662a62fb1bd130a699fcc213b2c55569135e4f424d10780ddcd6f",
+      "bytes": 632
+    },
+    {
+      "path": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g3_rule_isolation.json",
+      "sha256": "d5c4f706ceadb68ed21cda14a3180525377bfafa0a1caef86350e016de7154f6",
+      "bytes": 2163
+    },
+    {
+      "path": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g3_truncation.json",
+      "sha256": "cc7397ca11a041e76ab25cbd2106c3511782e1e1fc5c57bc5b3953fb6ff306be",
+      "bytes": 408
+    },
+    {
+      "path": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01/logs/g3_window_isolation.json",
+      "sha256": "104365b356ec34f99ff23e5fc639fede67b645d646328a32e187147ab17f449b",
+      "bytes": 708
+    }
+  ],
+  "exclusions": [
+    "logs/rep*/ (forensic copies)",
+    "logs/det_*.log",
+    "logs/digest_r*.json",
+    "logs/digest.json is included"
+  ]
+}

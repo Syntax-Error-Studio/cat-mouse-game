@@ -1,0 +1,56 @@
+{
+  "floorMB": 2560,
+  "records": [
+    {
+      "probe": 1,
+      "totalMB": 16087.8,
+      "freeMB": 1827.3,
+      "vitestProcesses": 0,
+      "vitestOutOfTree": 0,
+      "foreignNodeProcesses": 2,
+      "duplicates": 0,
+      "at": "2026-11-20T14:11:43.927Z"
+    },
+    {
+      "probe": 2,
+      "totalMB": 16087.8,
+      "freeMB": 1768.9,
+      "vitestProcesses": 0,
+      "vitestOutOfTree": 0,
+      "foreignNodeProcesses": 2,
+      "duplicates": 0,
+      "at": "2026-11-20T14:11:48.758Z"
+    },
+    {
+      "probe": 3,
+      "totalMB": 16087.8,
+      "freeMB": 1861.2,
+      "vitestProcesses": 0,
+      "vitestOutOfTree": 0,
+      "foreignNodeProcesses": 2,
+      "duplicates": 0,
+      "at": "2026-11-20T14:11:53.119Z"
+    },
+    {
+      "probe": 4,
+      "totalMB": 16087.8,
+      "freeMB": 1966.1,
+      "vitestProcesses": 0,
+      "vitestOutOfTree": 0,
+      "foreignNodeProcesses": 2,
+      "duplicates": 0,
+      "at": "2026-11-20T14:11:57.531Z"
+    },
+    {
+      "probe": 5,
+      "totalMB": 16087.8,
+      "freeMB": 1986.2,
+      "vitestProcesses": 0,
+      "vitestOutOfTree": 0,
+      "foreignNodeProcesses": 3,
+      "duplicates": 0,
+      "at": "2026-11-20T14:12:01.838Z"
+    }
+  ],
+  "admitted": false
+}

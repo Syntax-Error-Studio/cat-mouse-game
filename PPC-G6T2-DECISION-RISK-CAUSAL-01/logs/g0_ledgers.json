@@ -1,0 +1,55 @@
+{
+  "PPC-PRODUCTION-HISTORY-CONTRACT-P0-02": {
+    "ok": 65,
+    "bad": [],
+    "missing": [],
+    "format": "sha256sum",
+    "knownDrift": []
+  },
+  "PPC-G6T2-SELECTION-CAUSE-01": {
+    "ok": 61,
+    "bad": [],
+    "missing": [],
+    "format": "sha256+size+path",
+    "knownDrift": []
+  },
+  "PPC-G6T2-PLAN-CANDIDATE-FEASIBILITY-01": {
+    "ok": 48,
+    "bad": [],
+    "missing": [],
+    "format": "sha256+size+path",
+    "knownDrift": []
+  },
+  "PPC-D2-PCV-COUNTERLINE-02": {
+    "ok": 160,
+    "bad": [],
+    "missing": [],
+    "format": "sha256+size+path",
+    "knownDrift": []
+  },
+  "PPC-D2-PCV-COUNTERLINE-01": {
+    "ok": 50,
+    "bad": [
+      "PPC-D2-PCV-COUNTERLINE-01/REPORT.md"
+    ],
+    "missing": [],
+    "format": "sha256sum",
+    "knownDrift": [
+      "PPC-D2-PCV-COUNTERLINE-01/REPORT.md"
+    ]
+  },
+  "PPC-CANDIDATE-SELECTOR-SCOPING-01": {
+    "ok": 157,
+    "bad": [],
+    "missing": [],
+    "format": "sha256+size+path",
+    "knownDrift": []
+  },
+  "PPC-CAT-STRATEGY-SEAL-01": {
+    "ok": 25,
+    "bad": [],
+    "missing": [],
+    "format": "sha256+size+path",
+    "knownDrift": []
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "root": "DUUD/mouseForce",
+  "cacheCap": 20000,
+  "cacheHits": 59,
+  "cacheSize": 20000,
+  "uncached": {
+    "wallMs": 2839.2,
+    "elapsedMs": 2839,
+    "selfMs": 2812,
+    "gc": {
+      "runs": 0,
+      "pauseMs": 0
+    }
+  },
+  "cached": {
+    "wallMs": 8056.1,
+    "elapsedMs": 8056,
+    "selfMs": 7992,
+    "gc": {
+      "runs": 0,
+      "pauseMs": 0
+    }
+  },
+  "heapMB": {
+    "before": 54,
+    "afterUncached": 149,
+    "afterCached": 1234
+  },
+  "rssMB": {
+    "before": 104,
+    "afterUncached": 286,
+    "afterCached": 1397
+  },
+  "note": "Non-deterministic GC timing; interpreted only as a direction, never as a gate."
+}

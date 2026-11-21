@@ -1,0 +1,279 @@
+{
+  "round": "PPC-G6T2-DECISION-RISK-CAUSAL-01",
+  "phase": "G5_PROVENANCE_RESOURCE",
+  "generatedAt": "2026-11-20T08:24:01.880Z",
+  "environment": {
+    "platform": "win32",
+    "arch": "x64",
+    "osRelease": "10.0.26200",
+    "node": "v24.13.0",
+    "cpu": "Intel(R) Core(TM) i7-14650HX",
+    "cpuCount": 24,
+    "totalMemMB": 16088,
+    "freeMemMBAtStart": 2510,
+    "measurementSource": "WINDOWS_LOCAL_WORKSTATION",
+    "cloud": false,
+    "provenanceNote": "All timings in this round come from a local Windows workstation process. They are NOT cloud measurements and must never be used as proof that the shadow instrument fits inside the Windows 100ms production budget."
+  },
+  "caps": {
+    "twoTurn": 300000,
+    "oneTurn": 50000,
+    "witness": 120000,
+    "staticReach": 20000,
+    "source": "probe/dr_lib.ts RISK + mouseStaticGoalReach"
+  },
+  "totals": {
+    "plansEvaluated": 10,
+    "g6t2Plans": 4,
+    "crossRootPlans": 6,
+    "totalRiskMs": 61966.630000000005,
+    "maxTwoTurnNodes": 78839,
+    "maxTwoTurnMs": 6943.9722,
+    "peakRssMB": 393.859375
+  },
+  "overBudgetBehavior": {
+    "anyTwoTurnTruncated": false,
+    "anyOneTurnTruncated": false,
+    "anyStaticReachTruncated": true,
+    "rule": "A cap hit yields null/UNKNOWN, never a silent partial verdict; layer 1 and layer 2 report truncation explicitly."
+  },
+  "perPlan": [
+    {
+      "rootId": "G6T2",
+      "plan": "UURR",
+      "twoTurnLabel": "PROVEN_FORCED_WIN",
+      "twoTurnNodes": 78839,
+      "twoTurnWitnessMs": 0,
+      "twoTurnTruncated": false,
+      "oneTurnNodes": 1896,
+      "oneTurnTruncated": false,
+      "staticReachTruncated": true,
+      "staticReachReachable": null,
+      "cost": {
+        "enumerateMs": 23.090400000000045,
+        "oneTurnMs": 83.36869999999999,
+        "staticReachMs": 693.6305,
+        "twoTurnMs": 6202.040999999999,
+        "riskMs": 6979.2846,
+        "rssBeforeMB": 126.3515625,
+        "rssAfterMB": 289.40625,
+        "peakRssMB": 289.34765625
+      }
+    },
+    {
+      "rootId": "G6T2",
+      "plan": "DRRR",
+      "twoTurnLabel": "NO_WIN_WITHIN_TESTED_HORIZON",
+      "twoTurnNodes": 3513,
+      "twoTurnWitnessMs": 5868.563,
+      "twoTurnTruncated": false,
+      "oneTurnNodes": 1384,
+      "oneTurnTruncated": false,
+      "staticReachTruncated": false,
+      "staticReachReachable": true,
+      "cost": {
+        "enumerateMs": 23.090400000000045,
+        "oneTurnMs": 108.76170000000002,
+        "staticReachMs": 951.5196999999989,
+        "twoTurnMs": 6155.3343,
+        "riskMs": 7215.877100000001,
+        "rssBeforeMB": 289.59765625,
+        "rssAfterMB": 336.21484375,
+        "peakRssMB": 335.5
+      }
+    },
+    {
+      "rootId": "G6T2",
+      "plan": "DUUD",
+      "twoTurnLabel": "PROVEN_FORCED_WIN",
+      "twoTurnNodes": 65585,
+      "twoTurnWitnessMs": 0,
+      "twoTurnTruncated": false,
+      "oneTurnNodes": 1633,
+      "oneTurnTruncated": false,
+      "staticReachTruncated": false,
+      "staticReachReachable": true,
+      "cost": {
+        "enumerateMs": 23.090400000000045,
+        "oneTurnMs": 132.1849000000002,
+        "staticReachMs": 1899.5951999999997,
+        "twoTurnMs": 6813.234199999999,
+        "riskMs": 8845.062999999998,
+        "rssBeforeMB": 336.21484375,
+        "rssAfterMB": 389.6796875,
+        "peakRssMB": 386.17578125
+      }
+    },
+    {
+      "rootId": "G6T2",
+      "plan": "DRDR",
+      "twoTurnLabel": "NO_WIN_WITHIN_TESTED_HORIZON",
+      "twoTurnNodes": 6369,
+      "twoTurnWitnessMs": 6306.5965,
+      "twoTurnTruncated": false,
+      "oneTurnNodes": 1590,
+      "oneTurnTruncated": false,
+      "staticReachTruncated": false,
+      "staticReachReachable": true,
+      "cost": {
+        "enumerateMs": 23.090400000000045,
+        "oneTurnMs": 108.16670000000158,
+        "staticReachMs": 1825.5095999999976,
+        "twoTurnMs": 6943.9722,
+        "riskMs": 8877.685400000002,
+        "rssBeforeMB": 390.203125,
+        "rssAfterMB": 376.4140625,
+        "peakRssMB": 390.203125
+      }
+    },
+    {
+      "rootId": "G1T9",
+      "plan": "LLLD",
+      "twoTurnLabel": "PROVEN_FORCED_WIN",
+      "twoTurnNodes": 24075,
+      "twoTurnWitnessMs": 0,
+      "twoTurnTruncated": false,
+      "oneTurnNodes": 1662,
+      "oneTurnTruncated": null,
+      "staticReachTruncated": false,
+      "staticReachReachable": true,
+      "cost": {
+        "enumerateMs": 33.20820000000003,
+        "oneTurnMs": 89.14139999999998,
+        "staticReachMs": 5.085700000000088,
+        "twoTurnMs": 1112.8484999999998,
+        "riskMs": 1207.3879,
+        "rssBeforeMB": 165.24609375,
+        "rssAfterMB": 234.02734375,
+        "peakRssMB": 179.80078125,
+        "oneTurnNodes": 1662
+      }
+    },
+    {
+      "rootId": "G1T9",
+      "plan": "UDUD",
+      "twoTurnLabel": "PROVEN_FORCED_WIN",
+      "twoTurnNodes": 13675,
+      "twoTurnWitnessMs": 0,
+      "twoTurnTruncated": false,
+      "oneTurnNodes": 1887,
+      "oneTurnTruncated": null,
+      "staticReachTruncated": false,
+      "staticReachReachable": true,
+      "cost": {
+        "enumerateMs": 33.20820000000003,
+        "oneTurnMs": 73.37039999999979,
+        "staticReachMs": 3.6507000000001426,
+        "twoTurnMs": 1023.4959000000003,
+        "riskMs": 1100.542,
+        "rssBeforeMB": 234.9375,
+        "rssAfterMB": 255.8125,
+        "peakRssMB": 255.10546875,
+        "oneTurnNodes": 1887
+      }
+    },
+    {
+      "rootId": "G1T8",
+      "plan": "LDRL",
+      "twoTurnLabel": "NO_WIN_WITHIN_TESTED_HORIZON",
+      "twoTurnNodes": 548,
+      "twoTurnWitnessMs": 5844.6546,
+      "twoTurnTruncated": false,
+      "oneTurnNodes": 641,
+      "oneTurnTruncated": null,
+      "staticReachTruncated": false,
+      "staticReachReachable": false,
+      "cost": {
+        "enumerateMs": 43.9670000000001,
+        "oneTurnMs": 66.40079999999989,
+        "staticReachMs": 1651.3962000000001,
+        "twoTurnMs": 5906.0465,
+        "riskMs": 7623.891599999999,
+        "rssBeforeMB": 257.9296875,
+        "rssAfterMB": 295.0703125,
+        "peakRssMB": 294.49609375,
+        "oneTurnNodes": 641
+      }
+    },
+    {
+      "rootId": "G1T8",
+      "plan": "UUDU",
+      "twoTurnLabel": "NO_WIN_WITHIN_TESTED_HORIZON",
+      "twoTurnNodes": 544,
+      "twoTurnWitnessMs": 5839.667299999999,
+      "twoTurnTruncated": false,
+      "oneTurnNodes": 791,
+      "oneTurnTruncated": null,
+      "staticReachTruncated": true,
+      "staticReachReachable": null,
+      "cost": {
+        "enumerateMs": 43.9670000000001,
+        "oneTurnMs": 80.38340000000062,
+        "staticReachMs": 1920.4789,
+        "twoTurnMs": 5893.768000000002,
+        "riskMs": 7894.663699999999,
+        "rssBeforeMB": 295.0703125,
+        "rssAfterMB": 334.8984375,
+        "peakRssMB": 334.8984375,
+        "oneTurnNodes": 791
+      }
+    },
+    {
+      "rootId": "G1T4",
+      "plan": "LLLL",
+      "twoTurnLabel": "NO_WIN_WITHIN_TESTED_HORIZON",
+      "twoTurnNodes": 223,
+      "twoTurnWitnessMs": 5136.4504000000015,
+      "twoTurnTruncated": false,
+      "oneTurnNodes": 16,
+      "oneTurnTruncated": null,
+      "staticReachTruncated": false,
+      "staticReachReachable": false,
+      "cost": {
+        "enumerateMs": 41.65769999999975,
+        "oneTurnMs": 2.2893000000003667,
+        "staticReachMs": 889.3054999999986,
+        "twoTurnMs": 5156.4427,
+        "riskMs": 6048.068900000002,
+        "rssBeforeMB": 337.328125,
+        "rssAfterMB": 367.40625,
+        "peakRssMB": 367.34375,
+        "oneTurnNodes": 16
+      }
+    },
+    {
+      "rootId": "G1T4",
+      "plan": "UDUD",
+      "twoTurnLabel": "NO_WIN_WITHIN_TESTED_HORIZON",
+      "twoTurnNodes": 225,
+      "twoTurnWitnessMs": 5068.518,
+      "twoTurnTruncated": false,
+      "oneTurnNodes": 16,
+      "oneTurnTruncated": null,
+      "staticReachTruncated": false,
+      "staticReachReachable": false,
+      "cost": {
+        "enumerateMs": 41.65769999999975,
+        "oneTurnMs": 1.0593000000008033,
+        "staticReachMs": 1081.3287999999993,
+        "twoTurnMs": 5091.7461,
+        "riskMs": 6174.1658000000025,
+        "rssBeforeMB": 367.40625,
+        "rssAfterMB": 376.421875,
+        "peakRssMB": 393.859375,
+        "oneTurnNodes": 16
+      }
+    }
+  ],
+  "processes": [
+    "probe-unavailable"
+  ],
+  "processNote": "heavy worker concurrency = 1; every phase ran in its own fresh vitest process, strictly serial.",
+  "sources": {
+    "probe/dr_lib.ts": "e0780fff270f45e17c32406261e51f55480feb4824af4112a902353bf6e7a654",
+    "probe/g3_risk.test.ts": "386cb83f6023fb19d916a916f459fbabf661e041b6ac98dc7b0ab2c44581a881",
+    "probe/g4_cross_root.test.ts": "9998f80dfaee59be974183e4eab5f52f95bd35f5373711abe2400bb52a867488",
+    "probe/g5_env.test.ts": "d3aed03ce72aa57fc85024b8c1290b9254fbf8dd4beffaf367b4c7961daa3a82",
+    "probe/digest.mjs": "3f1c829485a80797cf493bd271c156c7658c9c474fa480feb2d88bf23f97e47f"
+  }
+}

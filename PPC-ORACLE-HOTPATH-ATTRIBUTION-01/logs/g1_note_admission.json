@@ -1,0 +1,4 @@
+{
+  "gate": "PPC-ORACLE-HOTPATH-ATTRIBUTION-01/scripts/admission.mjs (five consecutive probes, floor 2560 MB, pre-launch)",
+  "why": "A running vitest worker allocates ~0.3–0.5 GB; sampling free memory inside it would fail a floor its own parent already passed."
+}

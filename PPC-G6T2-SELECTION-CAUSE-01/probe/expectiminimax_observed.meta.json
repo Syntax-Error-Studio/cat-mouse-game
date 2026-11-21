@@ -1,0 +1,77 @@
+{
+  "round": "PPC-G6T2-SELECTION-CAUSE-01",
+  "phase": "G2_OBSERVED_COPY_META",
+  "sourcePath": "src/game/ai/expectiminimax.ts",
+  "sourceSha256Raw": "50d27da5e9d0d47a1ad70efb542a3ec1510507fd14b825a52729ebb90f6d690c",
+  "observedPath": "PPC-G6T2-SELECTION-CAUSE-01/probe/expectiminimax_observed.ts",
+  "observedSha256Raw": "8ffeae59bd06d8dab93dd37712ce8fabcbc27c86f854e88ab3b8436f326593cc",
+  "transformation": {
+    "importsRewritten": [
+      {
+        "line": 1,
+        "source": "import type { GameEngineState } from '../engine';"
+      },
+      {
+        "line": 2,
+        "source": "import { GamePhase, PieceType } from '../types';"
+      },
+      {
+        "line": 3,
+        "source": "import type { RuleSet, SearchAction, SearchTransitionResult } from './searchTypes';"
+      },
+      {
+        "line": 4,
+        "source": "import { generatePreparedSearchActions, type PreparedSearchAction } from './preparedActions';"
+      },
+      {
+        "line": 5,
+        "source": "import { simulateSearchAction } from './simulator';"
+      },
+      {
+        "line": 6,
+        "source": "import { stateKey, TranspositionTable } from './transposition';"
+      },
+      {
+        "line": 7,
+        "source": "import type { TTEntry } from './transposition';"
+      },
+      {
+        "line": 8,
+        "source": "import { forcedLossTieBreak } from './forcedLossTieBreak';"
+      },
+      {
+        "line": 9,
+        "source": "import { extractBestCatTurnPlan, type EqualPrimaryGraph } from './planQuality';"
+      },
+      {
+        "line": 10,
+        "source": "import { hasCertifiableCatMoveBudget, maxCatTurnPlanActions } from './planBound';"
+      },
+      {
+        "line": 11,
+        "source": "import { classifyGoalThreat } from './threatClassifier';"
+      },
+      {
+        "line": 12,
+        "source": "import { computeInterception } from './interceptionGeometry';"
+      }
+    ],
+    "addedImport": "import { observeCandidate, observeChoice } from './observe';",
+    "hookLines": [
+      {
+        "line": 13,
+        "source": "import { observeCandidate, observeChoice } from './observe';"
+      },
+      {
+        "line": 1343,
+        "source": "    if (ctx.capturePlan && ply <= 3) { observeCandidate(key, depthTurns, ply, pa.action, pa.originalIndex, candidate); }"
+      },
+      {
+        "line": 1476,
+        "source": "  if (ctx.capturePlan && ply <= 3) { observeChoice(key, depthTurns, ply, bestAction, result); }"
+      }
+    ],
+    "rule": "no other line may differ; verified by re-applying transform() to the production source"
+  },
+  "productionSourceModified": false
+}

@@ -1,0 +1,3663 @@
+{
+  "round": "PPC-G6T2-PLAN-CANDIDATE-FEASIBILITY-01",
+  "phase": "G2_FULL_CAT_TURN_CANDIDATES",
+  "generatedAt": "2026-11-19T13:42:12.578Z",
+  "rootId": "G6T2",
+  "method": "generatePreparedSearchActions (production enumeration + simulator), pure cat turn walk, no search/eval",
+  "maxActions": 12,
+  "counts": {
+    "turns": 110,
+    "expandedStates": 46,
+    "uniqueFrontierSignatures": 110,
+    "uniqueSingleFrontierStates": 110,
+    "uniqueSnapshotSignatures": 18,
+    "uniqueSingleSnapshotStates": 18,
+    "zeroCostActions": 0,
+    "replayOk": 110,
+    "replayFrontierMismatch": 0,
+    "cyclePruned": 0
+  },
+  "timingAndMemory": {
+    "elapsedMs": 55,
+    "rssBeforeMb": 129.5,
+    "rssAfterMb": 146.2,
+    "heapUsedAfterMb": 58.8,
+    "externalAfterMb": 3.4
+  },
+  "skippedNonCat": [],
+  "plans": [
+    {
+      "index": 0,
+      "planKey": "catStep:ArrowUp>catStep:ArrowUp>catStep:ArrowUp>catStep:ArrowDown",
+      "labels": "UUUD",
+      "frontierFullStateSha256": [
+        "254ea54d15f7730f89d593695bbc242168592c5f1e3065ea05d52a4b60386e00"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 3,
+        "distanceDelta": 2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "1,3",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 1,
+      "planKey": "catStep:ArrowUp>catStep:ArrowUp>catStep:ArrowUp>catStep:ArrowLeft",
+      "labels": "UUUL",
+      "frontierFullStateSha256": [
+        "1ccb59567c34e4b247d448d3543a320b4c3f250083d43eb94fa36e049488fedf"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "0,2",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 2,
+      "planKey": "catStep:ArrowUp>catStep:ArrowUp>catStep:ArrowUp>catStep:ArrowRight",
+      "labels": "UUUR",
+      "frontierFullStateSha256": [
+        "70b1445cafa5526d93a95645f1937020f3d4db55bcef715076f4403011a447ae"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 3,
+        "distanceDelta": 2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "0,4",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 3,
+      "planKey": "catStep:ArrowUp>catStep:ArrowUp>catStep:ArrowDown>catStep:ArrowUp",
+      "labels": "UUDU",
+      "frontierFullStateSha256": [
+        "daa2c57e7e411ca3d0fc103ffd9c8adae23b851038a9b3282fb377e9ef48fb15"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 3,
+        "distanceDelta": 2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "1,3",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 4,
+      "planKey": "catStep:ArrowUp>catStep:ArrowUp>catStep:ArrowDown>catStep:ArrowDown",
+      "labels": "UUDD",
+      "frontierFullStateSha256": [
+        "eddd776e5530fa4d559d2dd27f9ac099bf7da7d2ca124cbf66e80b61d19a5a8c"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "3,3",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 5,
+      "planKey": "catStep:ArrowUp>catStep:ArrowUp>catStep:ArrowDown>catStep:ArrowLeft",
+      "labels": "UUDL",
+      "frontierFullStateSha256": [
+        "afde029fd91771a24c13d1cd73e5ee95e9127b5d4f442751adde9ec8db265fc6"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "2,2",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 6,
+      "planKey": "catStep:ArrowUp>catStep:ArrowUp>catStep:ArrowRight>catStep:ArrowUp",
+      "labels": "UURU",
+      "frontierFullStateSha256": [
+        "3460ca8fccf2c5da795e142e2afa81b6a38ab4d2e58fb6e4013ffa2163ae55b3"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 3,
+        "distanceDelta": 2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "0,4",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 7,
+      "planKey": "catStep:ArrowUp>catStep:ArrowUp>catStep:ArrowRight>catStep:ArrowLeft",
+      "labels": "UURL",
+      "frontierFullStateSha256": [
+        "7e586394b993544da986bed265d56000c1cf4a5f8178e4f29cc6217c9f9ea5f0"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 3,
+        "distanceDelta": 2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "1,3",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 8,
+      "planKey": "catStep:ArrowUp>catStep:ArrowUp>catStep:ArrowRight>catStep:ArrowRight",
+      "labels": "UURR",
+      "frontierFullStateSha256": [
+        "e954daae154e2b017bdf2e00c8c274353fdeb1c435d9fa2c8252d408de5d9aed"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 1,
+        "distanceDelta": 4,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "1,5",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 9,
+      "planKey": "catStep:ArrowUp>catStep:ArrowDown>catStep:ArrowUp>catStep:ArrowUp",
+      "labels": "UDUU",
+      "frontierFullStateSha256": [
+        "6d71d4e3f47127df45fd63ad9e692c9cfa9d02e31c0b203855a9dc438d3eff4f"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 1,
+        "revisitCount": 2,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 3,
+        "distanceDelta": 2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "1,3",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 10,
+      "planKey": "catStep:ArrowUp>catStep:ArrowDown>catStep:ArrowUp>catStep:ArrowDown",
+      "labels": "UDUD",
+      "frontierFullStateSha256": [
+        "64431f4438100739cd90344f0e7aff607bfebd80d50a63af95b326c3b4828c55"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 1,
+        "revisitCount": 2,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "3,3",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 11,
+      "planKey": "catStep:ArrowUp>catStep:ArrowDown>catStep:ArrowUp>catStep:ArrowLeft",
+      "labels": "UDUL",
+      "frontierFullStateSha256": [
+        "337823f0146020048862cdf1f707af1a9ac018083bceb3dec0c9a6686c6afbc1"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 1,
+        "revisitCount": 2,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "2,2",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 12,
+      "planKey": "catStep:ArrowUp>catStep:ArrowDown>catStep:ArrowDown>catStep:ArrowUp",
+      "labels": "UDDU",
+      "frontierFullStateSha256": [
+        "a9322b719bad6a51e4cca2c33901ef1151353db40f6207f789719ea5c3168619"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "3,3",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 13,
+      "planKey": "catStep:ArrowUp>catStep:ArrowDown>catStep:ArrowDown>catStep:ArrowLeft",
+      "labels": "UDDL",
+      "frontierFullStateSha256": [
+        "d0d0419f33358980d26d5bcb9bb5b8536be6461a785e4a6e1bd527f4c7c1ec99"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 7,
+        "distanceDelta": -2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "4,2",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 14,
+      "planKey": "catStep:ArrowUp>catStep:ArrowDown>catStep:ArrowDown>catStep:ArrowRight",
+      "labels": "UDDR",
+      "frontierFullStateSha256": [
+        "cfdcc8ba22863db2a0c485a88f25bca4b98cf1d41522a2911bf839cb7f63340e"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "4,4",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 15,
+      "planKey": "catStep:ArrowUp>catStep:ArrowDown>catStep:ArrowLeft>catStep:ArrowUp",
+      "labels": "UDLU",
+      "frontierFullStateSha256": [
+        "4ec5d2bae6b1a2dd547503e2cbfba505bc3abc9f4798e28a240736f86709051f"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "2,2",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 16,
+      "planKey": "catStep:ArrowUp>catStep:ArrowDown>catStep:ArrowLeft>catStep:ArrowDown",
+      "labels": "UDLD",
+      "frontierFullStateSha256": [
+        "8e6166c366e6a04423e0baabca46ff2397f59c3cdd80442deae07bebedeb1f88"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 7,
+        "distanceDelta": -2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "4,2",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 17,
+      "planKey": "catStep:ArrowUp>catStep:ArrowDown>catStep:ArrowLeft>catStep:ArrowLeft",
+      "labels": "UDLL",
+      "frontierFullStateSha256": [
+        "b0f2cc981b32329ef224b386054d406af11342446c45748c2201ab142e179f06"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 7,
+        "distanceDelta": -2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "3,1",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 18,
+      "planKey": "catStep:ArrowUp>catStep:ArrowDown>catStep:ArrowLeft>catStep:ArrowRight",
+      "labels": "UDLR",
+      "frontierFullStateSha256": [
+        "dd791dbfff2f80c2f3a460d68fbc225645b58dcf1e2394698eded4e5a0c0ed8c"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "3,3",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 19,
+      "planKey": "catStep:ArrowUp>catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowDown",
+      "labels": "ULUD",
+      "frontierFullStateSha256": [
+        "c0b174a8068ff82f6cee309ac5dc6c809d506984eedd668c5d4f6b2c7f26695e"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 2,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "2,2",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 20,
+      "planKey": "catStep:ArrowUp>catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowLeft",
+      "labels": "ULUL",
+      "frontierFullStateSha256": [
+        "46a8489dfc99cc436ecd2d2fe7f2f8d234fc46a4709ac2993ee8e1b24ebd5404"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 2,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "1,1",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 21,
+      "planKey": "catStep:ArrowUp>catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowRight",
+      "labels": "ULUR",
+      "frontierFullStateSha256": [
+        "6ce4cd611eba0ad41261dcce539cbca7fc23aec7748bb4c1931ace212b4f24b6"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 2,
+        "distanceStart": 5,
+        "distanceEnd": 3,
+        "distanceDelta": 2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "1,3",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 22,
+      "planKey": "catStep:ArrowUp>catStep:ArrowLeft>catStep:ArrowDown>catStep:ArrowUp",
+      "labels": "ULDU",
+      "frontierFullStateSha256": [
+        "4013b87518f80c36cb9898e26833e2415240527787a4e2021e039877302dbad1"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "2,2",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 23,
+      "planKey": "catStep:ArrowUp>catStep:ArrowLeft>catStep:ArrowDown>catStep:ArrowDown",
+      "labels": "ULDD",
+      "frontierFullStateSha256": [
+        "8f59195212d3a7a317c5f8e350c5da4fcc01ed80c72626c40b4be2e08c73a360"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 7,
+        "distanceDelta": -2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "4,2",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 24,
+      "planKey": "catStep:ArrowUp>catStep:ArrowLeft>catStep:ArrowDown>catStep:ArrowLeft",
+      "labels": "ULDL",
+      "frontierFullStateSha256": [
+        "5ac1b546754e1ebb41fce5e7eebb709b230d3182b627b1a786e4c9d82521fe17"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 7,
+        "distanceDelta": -2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "3,1",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 25,
+      "planKey": "catStep:ArrowUp>catStep:ArrowLeft>catStep:ArrowDown>catStep:ArrowRight",
+      "labels": "ULDR",
+      "frontierFullStateSha256": [
+        "8d352f2bf38cf8a157d077a0222e096e3673bda762afdb5992653ced9b3c74d7"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "3,3",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 26,
+      "planKey": "catStep:ArrowUp>catStep:ArrowLeft>catStep:ArrowLeft>catStep:ArrowUp",
+      "labels": "ULLU",
+      "frontierFullStateSha256": [
+        "24ec06fcf6c9d8f99534a4d5fde835ca8d8bab99f44c20608f8d286528974a0c"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "1,1",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 27,
+      "planKey": "catStep:ArrowUp>catStep:ArrowLeft>catStep:ArrowLeft>catStep:ArrowDown",
+      "labels": "ULLD",
+      "frontierFullStateSha256": [
+        "c609deca8828559aed1943f1555d0879ee8c078686e1b33b43b4dfcbf87d704f"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 7,
+        "distanceDelta": -2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "3,1",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 28,
+      "planKey": "catStep:ArrowUp>catStep:ArrowLeft>catStep:ArrowLeft>catStep:ArrowLeft",
+      "labels": "ULLL",
+      "frontierFullStateSha256": [
+        "e94f2c5004593d66d3ddb9db9e6102dc5eda790591395ac3356b96cd4ecb3766"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 7,
+        "distanceDelta": -2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "2,0",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 29,
+      "planKey": "catStep:ArrowUp>catStep:ArrowLeft>catStep:ArrowLeft>catStep:ArrowRight",
+      "labels": "ULLR",
+      "frontierFullStateSha256": [
+        "239938a9ac6160ce8d4e2ac6157d6c2e9b9b3e9ec5e2363b2d85b628e5355040"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "2,2",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 30,
+      "planKey": "catStep:ArrowUp>catStep:ArrowLeft>catStep:ArrowRight>catStep:ArrowUp",
+      "labels": "ULRU",
+      "frontierFullStateSha256": [
+        "dec97b96d2e8fab93ab1db0c018f02676741cfb6758d3d0f5b0f8bf3aed2de33"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 3,
+        "distanceDelta": 2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "1,3",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 31,
+      "planKey": "catStep:ArrowUp>catStep:ArrowLeft>catStep:ArrowRight>catStep:ArrowDown",
+      "labels": "ULRD",
+      "frontierFullStateSha256": [
+        "d9371b3315dc79f48ef2d7d7e54ab25e52ea25d9610b24086c63ea7027ec867b"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "3,3",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 32,
+      "planKey": "catStep:ArrowUp>catStep:ArrowLeft>catStep:ArrowRight>catStep:ArrowLeft",
+      "labels": "ULRL",
+      "frontierFullStateSha256": [
+        "903a904e77cd87440157b3606cabb626b0eeb274700dd2d1043e0ff5362995f1"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "2,2",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 33,
+      "planKey": "catStep:ArrowDown>catStep:ArrowUp>catStep:ArrowUp>catStep:ArrowUp",
+      "labels": "DUUU",
+      "frontierFullStateSha256": [
+        "a94550695a3cd407332e6b297fb5b613c1c8477b0de2c6ed428f80e7b8402e36"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 3,
+        "distanceDelta": 2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "1,3",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 34,
+      "planKey": "catStep:ArrowDown>catStep:ArrowUp>catStep:ArrowUp>catStep:ArrowDown",
+      "labels": "DUUD",
+      "frontierFullStateSha256": [
+        "51b3773e6da58d7d101af76a65f3956b8eff585bda1e06db8f1797c9148a129b"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "3,3",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 35,
+      "planKey": "catStep:ArrowDown>catStep:ArrowUp>catStep:ArrowUp>catStep:ArrowLeft",
+      "labels": "DUUL",
+      "frontierFullStateSha256": [
+        "ed5b7a8b64ace0a661f2fd3bbf512fa2c50e1bbf37a90f65b97a117efb39eb49"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "2,2",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 36,
+      "planKey": "catStep:ArrowDown>catStep:ArrowUp>catStep:ArrowDown>catStep:ArrowUp",
+      "labels": "DUDU",
+      "frontierFullStateSha256": [
+        "94931c1b56b4db9319eacf56195320af110617867ad6581b41431cb551a7e0aa"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 1,
+        "revisitCount": 2,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "3,3",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 37,
+      "planKey": "catStep:ArrowDown>catStep:ArrowUp>catStep:ArrowDown>catStep:ArrowLeft",
+      "labels": "DUDL",
+      "frontierFullStateSha256": [
+        "2e38d01232f0bf9e3ce1dcd844c01a27a5b5ac2a3953c938b0e9cc9495456d7e"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 1,
+        "revisitCount": 2,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 7,
+        "distanceDelta": -2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "4,2",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 38,
+      "planKey": "catStep:ArrowDown>catStep:ArrowUp>catStep:ArrowDown>catStep:ArrowRight",
+      "labels": "DUDR",
+      "frontierFullStateSha256": [
+        "f0e026747c313699cdbbdbf64c69ff0df226551c6fd329e8b189b6795cc6500e"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 1,
+        "revisitCount": 2,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "4,4",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 39,
+      "planKey": "catStep:ArrowDown>catStep:ArrowUp>catStep:ArrowLeft>catStep:ArrowUp",
+      "labels": "DULU",
+      "frontierFullStateSha256": [
+        "aa4a227d95ea3e8ec5c78f02dbcf56f13f94a7fdd449efc0e901abf62ad2e495"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "2,2",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 40,
+      "planKey": "catStep:ArrowDown>catStep:ArrowUp>catStep:ArrowLeft>catStep:ArrowDown",
+      "labels": "DULD",
+      "frontierFullStateSha256": [
+        "8e81f3ce274e2a95b21bf8d72d1659182c7b131665a277231426fcff93d40bf0"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 7,
+        "distanceDelta": -2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "4,2",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 41,
+      "planKey": "catStep:ArrowDown>catStep:ArrowUp>catStep:ArrowLeft>catStep:ArrowLeft",
+      "labels": "DULL",
+      "frontierFullStateSha256": [
+        "67eabe8cc236ea822d75a56843a088dbef603e0957b5174ada434733adc7d51f"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 7,
+        "distanceDelta": -2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "3,1",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 42,
+      "planKey": "catStep:ArrowDown>catStep:ArrowUp>catStep:ArrowLeft>catStep:ArrowRight",
+      "labels": "DULR",
+      "frontierFullStateSha256": [
+        "ffd85ec095df998fd0a12db87a09c5a336b848f19040d4c90c9dc173180b167d"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "3,3",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 43,
+      "planKey": "catStep:ArrowDown>catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowUp",
+      "labels": "DLUU",
+      "frontierFullStateSha256": [
+        "78dc6ea35181493f049eaed0ecf02a9ec3adebc25367dfc355b9f82f63b6310e"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "2,2",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 44,
+      "planKey": "catStep:ArrowDown>catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowDown",
+      "labels": "DLUD",
+      "frontierFullStateSha256": [
+        "e9c9ab2e34c9cf901687daf9bcf7fcdea7a19a63f84b066bf48d8e3b0baf69dc"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 7,
+        "distanceDelta": -2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "4,2",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 45,
+      "planKey": "catStep:ArrowDown>catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowLeft",
+      "labels": "DLUL",
+      "frontierFullStateSha256": [
+        "570b00c04f33ea13e7c0fe4e6a1c814fbde0138fc77fdd943bdf2ffc8bbccae9"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 7,
+        "distanceDelta": -2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "3,1",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 46,
+      "planKey": "catStep:ArrowDown>catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowRight",
+      "labels": "DLUR",
+      "frontierFullStateSha256": [
+        "2125151e002281bbcc4e8fe127b00918b05d2d9b750a47e1773beaff41997b3a"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "3,3",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 47,
+      "planKey": "catStep:ArrowDown>catStep:ArrowLeft>catStep:ArrowDown>catStep:ArrowUp",
+      "labels": "DLDU",
+      "frontierFullStateSha256": [
+        "f94abcf339ddf404cf3651c15bcc42ea458a66ec80e672a431cada43b8f69002"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 7,
+        "distanceDelta": -2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "4,2",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 48,
+      "planKey": "catStep:ArrowDown>catStep:ArrowLeft>catStep:ArrowDown>catStep:ArrowDown",
+      "labels": "DLDD",
+      "frontierFullStateSha256": [
+        "5e0ead29f1c222098704efd03071b8d1c0996cf06c8aa44323637d3137a9c115"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 9,
+        "distanceDelta": -4,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "6,2",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 49,
+      "planKey": "catStep:ArrowDown>catStep:ArrowLeft>catStep:ArrowDown>catStep:ArrowLeft",
+      "labels": "DLDL",
+      "frontierFullStateSha256": [
+        "f28c6eb6eb5f264f4c2dc111449dbf2b60ea6d52fd90fe27e3fbdfdda54607ac"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 9,
+        "distanceDelta": -4,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "5,1",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 50,
+      "planKey": "catStep:ArrowDown>catStep:ArrowLeft>catStep:ArrowDown>catStep:ArrowRight",
+      "labels": "DLDR",
+      "frontierFullStateSha256": [
+        "616508809797e00f1d2d9e83c30d4e2662c16c361e114647b8136a4a5bd6a30d"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 2,
+        "distanceStart": 5,
+        "distanceEnd": 7,
+        "distanceDelta": -2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "5,3",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 51,
+      "planKey": "catStep:ArrowDown>catStep:ArrowLeft>catStep:ArrowRight>catStep:ArrowUp",
+      "labels": "DLRU",
+      "frontierFullStateSha256": [
+        "362e6d651820ed21c14b4d39c262eef9d48146bff4a495c0f0b40e7251f1a0cc"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "3,3",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 52,
+      "planKey": "catStep:ArrowDown>catStep:ArrowLeft>catStep:ArrowRight>catStep:ArrowLeft",
+      "labels": "DLRL",
+      "frontierFullStateSha256": [
+        "26d52035223e418383919eea4b3d42806e4f15a21c7ba5305022801aa65f896c"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 7,
+        "distanceDelta": -2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "4,2",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 53,
+      "planKey": "catStep:ArrowDown>catStep:ArrowLeft>catStep:ArrowRight>catStep:ArrowRight",
+      "labels": "DLRR",
+      "frontierFullStateSha256": [
+        "d01db7c8a7311f4a47c9879fac3cfceb4a50588e95c7965034262977e7debf76"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "4,4",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 54,
+      "planKey": "catStep:ArrowDown>catStep:ArrowRight>catStep:ArrowDown>catStep:ArrowUp",
+      "labels": "DRDU",
+      "frontierFullStateSha256": [
+        "999a954247667e0321f57e7b1051c36175eeb77f2f4e588790f19549e663b2d9"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "4,4",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 55,
+      "planKey": "catStep:ArrowDown>catStep:ArrowRight>catStep:ArrowDown>catStep:ArrowDown",
+      "labels": "DRDD",
+      "frontierFullStateSha256": [
+        "5824e342d2aafaa83f2566f2b196ab12b0a7cf2c95030d763cca7a13dcc889bf"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 7,
+        "distanceDelta": -2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "6,4",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 56,
+      "planKey": "catStep:ArrowDown>catStep:ArrowRight>catStep:ArrowDown>catStep:ArrowLeft",
+      "labels": "DRDL",
+      "frontierFullStateSha256": [
+        "56a780e5bd2aa5a5e85ae216e5ea6b2665bfd61d65117e94741fc4981d903e82"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 2,
+        "distanceStart": 5,
+        "distanceEnd": 7,
+        "distanceDelta": -2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "5,3",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 57,
+      "planKey": "catStep:ArrowDown>catStep:ArrowRight>catStep:ArrowDown>catStep:ArrowRight",
+      "labels": "DRDR",
+      "frontierFullStateSha256": [
+        "ad15efecfaf42215fc094b4548b12ad9e08c503c3470c012280ac4714652f613"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "5,5",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 58,
+      "planKey": "catStep:ArrowDown>catStep:ArrowRight>catStep:ArrowLeft>catStep:ArrowUp",
+      "labels": "DRLU",
+      "frontierFullStateSha256": [
+        "facda54be6a8f7d6db0bb10dd3926ec343c02b694d3ff5184c3e247d1b72dfac"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "3,3",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 59,
+      "planKey": "catStep:ArrowDown>catStep:ArrowRight>catStep:ArrowLeft>catStep:ArrowLeft",
+      "labels": "DRLL",
+      "frontierFullStateSha256": [
+        "989d926dd1d0887405205a703316c26c6fce94c61014711673f1d5ce4d8d3bb7"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 7,
+        "distanceDelta": -2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "4,2",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 60,
+      "planKey": "catStep:ArrowDown>catStep:ArrowRight>catStep:ArrowLeft>catStep:ArrowRight",
+      "labels": "DRLR",
+      "frontierFullStateSha256": [
+        "1d4e5f6574219c7a0cbad67058430e8b719a88c160499ebed30a94c45e775b2a"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "4,4",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 61,
+      "planKey": "catStep:ArrowDown>catStep:ArrowRight>catStep:ArrowRight>catStep:ArrowDown",
+      "labels": "DRRD",
+      "frontierFullStateSha256": [
+        "3ee1c6868d99f9a01156c1855f117f924074455f447cf5ca4757a51c71c82e29"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "5,5",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 62,
+      "planKey": "catStep:ArrowDown>catStep:ArrowRight>catStep:ArrowRight>catStep:ArrowLeft",
+      "labels": "DRRL",
+      "frontierFullStateSha256": [
+        "58f289632deb8840cc5b08c3351504fc46a881c596d3c47addfeda456fdbf536"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "4,4",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 63,
+      "planKey": "catStep:ArrowDown>catStep:ArrowRight>catStep:ArrowRight>catStep:ArrowRight",
+      "labels": "DRRR",
+      "frontierFullStateSha256": [
+        "253033ff26cd72033a9dcd33c5553cea2baabe3bee81c20138a01a88d40cd94b"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 3,
+        "distanceDelta": 2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "4,6",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 64,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowUp>catStep:ArrowDown",
+      "labels": "LUUD",
+      "frontierFullStateSha256": [
+        "c190b82260b6a83077739fde10d5df0ef78e7b44204ffedd7265b0a1b26afa01"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 2,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "2,2",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 65,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowUp>catStep:ArrowLeft",
+      "labels": "LUUL",
+      "frontierFullStateSha256": [
+        "f78b4c30973cfb4d44734e4b2198ece9759f6542dac14e9725e1f80c6bde455b"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 2,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "1,1",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 66,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowUp>catStep:ArrowRight",
+      "labels": "LUUR",
+      "frontierFullStateSha256": [
+        "2d26a046d9966ff403e34087bb939a72e0ccca18d583f11e5c2ca5fd507b36ef"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 2,
+        "distanceStart": 5,
+        "distanceEnd": 3,
+        "distanceDelta": 2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "1,3",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 67,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowDown>catStep:ArrowUp",
+      "labels": "LUDU",
+      "frontierFullStateSha256": [
+        "61f9603fce90e580a538bde45dbb0f30076664fa664937e58ad32c4c90e86ed1"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "2,2",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 68,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowDown>catStep:ArrowDown",
+      "labels": "LUDD",
+      "frontierFullStateSha256": [
+        "8f105191e7bc6c20ee5080923a2e030c9953f7720d9b31b3658e82366eaab1c0"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 7,
+        "distanceDelta": -2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "4,2",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 69,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowDown>catStep:ArrowLeft",
+      "labels": "LUDL",
+      "frontierFullStateSha256": [
+        "2d96b2306b6ce58826cc7f561de0f9f49c2157ad5186c7bfd95004a4dd984484"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 7,
+        "distanceDelta": -2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "3,1",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 70,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowDown>catStep:ArrowRight",
+      "labels": "LUDR",
+      "frontierFullStateSha256": [
+        "d9ba7799573f1d232df76c1e52f37140e7b1e707c8c6481cf46cddb4e68af921"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "3,3",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 71,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowLeft>catStep:ArrowUp",
+      "labels": "LULU",
+      "frontierFullStateSha256": [
+        "2a8713afb389d553824af902bc03bf6c3798ef6a249ce138d7c9e0fffacd36a1"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "1,1",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 72,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowLeft>catStep:ArrowDown",
+      "labels": "LULD",
+      "frontierFullStateSha256": [
+        "7e9aeeb47481294709674c9c82ca1e8a5248d402e1385a22cb63f012ec414c7a"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 7,
+        "distanceDelta": -2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "3,1",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 73,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowLeft>catStep:ArrowLeft",
+      "labels": "LULL",
+      "frontierFullStateSha256": [
+        "6f5eae217da5f8c149949c5c057c15321ff7129fa69935c9000b79c34a8a21aa"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 7,
+        "distanceDelta": -2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "2,0",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 74,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowLeft>catStep:ArrowRight",
+      "labels": "LULR",
+      "frontierFullStateSha256": [
+        "d1bc04645fd58cb6dbcdeb1aef8ab99910001426157302034092bae5a7ff6174"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "2,2",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 75,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowRight>catStep:ArrowUp",
+      "labels": "LURU",
+      "frontierFullStateSha256": [
+        "8aae2912f6c424cb3d1d6d5c49d06a30d4e9c286fba363144620ff448f785152"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 3,
+        "distanceDelta": 2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "1,3",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 76,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowRight>catStep:ArrowDown",
+      "labels": "LURD",
+      "frontierFullStateSha256": [
+        "ea911096ac82a107d0ad4b8528db589cca7e96561387b9a945ed7499f85b1305"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "3,3",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 77,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowRight>catStep:ArrowLeft",
+      "labels": "LURL",
+      "frontierFullStateSha256": [
+        "a99f85a89c3880a5af11939690805c6ec567c7cbf9db5a1f9195e252322e53a7"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "2,2",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 78,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowDown>catStep:ArrowUp>catStep:ArrowUp",
+      "labels": "LDUU",
+      "frontierFullStateSha256": [
+        "98d15920de5a72e16043204198f3f2b2d23bb8b5e00ed1979b2425972e675b7b"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "2,2",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 79,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowDown>catStep:ArrowUp>catStep:ArrowDown",
+      "labels": "LDUD",
+      "frontierFullStateSha256": [
+        "ab7f816be1208c992afcbd8d14e1036078ee20022b1693484248a367212eb243"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 7,
+        "distanceDelta": -2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "4,2",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 80,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowDown>catStep:ArrowUp>catStep:ArrowLeft",
+      "labels": "LDUL",
+      "frontierFullStateSha256": [
+        "42c2cf7a46cb27dcf4f2accdf9ab3a1bd31c06a105ec4ddf1e0393f7caa3987e"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 7,
+        "distanceDelta": -2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "3,1",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 81,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowDown>catStep:ArrowUp>catStep:ArrowRight",
+      "labels": "LDUR",
+      "frontierFullStateSha256": [
+        "92700e83a70a8bc8bcaeb972b7bdcd820cbeb961ca998701df862c2e5e2fdb47"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "3,3",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 82,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowDown>catStep:ArrowDown>catStep:ArrowUp",
+      "labels": "LDDU",
+      "frontierFullStateSha256": [
+        "f8247e7641b7744e4a3a9c57d0c7143fc451b3800da222d4289bed8b2af41b3a"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 7,
+        "distanceDelta": -2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "4,2",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 83,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowDown>catStep:ArrowDown>catStep:ArrowDown",
+      "labels": "LDDD",
+      "frontierFullStateSha256": [
+        "879e5a9e5e9d925d3b6e2a342148fd343adbdc30417e633f54f2938c407a7e8b"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 9,
+        "distanceDelta": -4,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "6,2",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 84,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowDown>catStep:ArrowDown>catStep:ArrowLeft",
+      "labels": "LDDL",
+      "frontierFullStateSha256": [
+        "42a4ab93e348bd5958adb06a291815184b948f3bf95e755b64084df3ffd4fe50"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 9,
+        "distanceDelta": -4,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "5,1",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 85,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowDown>catStep:ArrowDown>catStep:ArrowRight",
+      "labels": "LDDR",
+      "frontierFullStateSha256": [
+        "90709754b92e49b42c1380ba144a40cb96790b81a6e02833f70d099d1481a34a"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 2,
+        "distanceStart": 5,
+        "distanceEnd": 7,
+        "distanceDelta": -2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "5,3",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 86,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowDown>catStep:ArrowRight>catStep:ArrowUp",
+      "labels": "LDRU",
+      "frontierFullStateSha256": [
+        "53aab7cf8fcecbf9781ab0bffa58eee0e751b31762ef06ea95b4e430c34c169f"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "3,3",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 87,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowDown>catStep:ArrowRight>catStep:ArrowLeft",
+      "labels": "LDRL",
+      "frontierFullStateSha256": [
+        "eed563f4aab6509dbce5c4c08f9d1311ffc323a790575fb63ec8b680f66d1191"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 7,
+        "distanceDelta": -2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "4,2",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 88,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowDown>catStep:ArrowRight>catStep:ArrowRight",
+      "labels": "LDRR",
+      "frontierFullStateSha256": [
+        "c07b3c761a90e3d442ac94222f61cef4951c178a12087103011b2bc9a2a09869"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "4,4",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 89,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowUp",
+      "labels": "LLUU",
+      "frontierFullStateSha256": [
+        "807bbcf72da8c3b112064344187229f40467483ec50d2cd86a7d873ef1671d52"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "1,1",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 90,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowDown",
+      "labels": "LLUD",
+      "frontierFullStateSha256": [
+        "6b546bdc340978b2a3878c0aaf5176729087741b55fa948bf4b47d979ca44a7b"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 7,
+        "distanceDelta": -2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "3,1",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 91,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowLeft",
+      "labels": "LLUL",
+      "frontierFullStateSha256": [
+        "7da414f900d4649cc06a4ce063522cd669eb77e62329029a674d58af300b5822"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 7,
+        "distanceDelta": -2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "2,0",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 92,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowRight",
+      "labels": "LLUR",
+      "frontierFullStateSha256": [
+        "8ef2195c0464faf6c03e045c5e1a18cfa0729257c4ae28df1defa8aa95eb047b"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "2,2",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 93,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowLeft>catStep:ArrowLeft>catStep:ArrowUp",
+      "labels": "LLLU",
+      "frontierFullStateSha256": [
+        "55bba58ca0654ec3a7de2bd3ea981e7222abdda7cbecbe1b0b40bb967fd0f12c"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 7,
+        "distanceDelta": -2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "2,0",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 94,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowLeft>catStep:ArrowLeft>catStep:ArrowDown",
+      "labels": "LLLD",
+      "frontierFullStateSha256": [
+        "5a7c5fce38d8226063a6e0bba6682dbf9c27a21d4f6e27d8f0efccc485e7b49d"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 9,
+        "distanceDelta": -4,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "4,0",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 95,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowLeft>catStep:ArrowLeft>catStep:ArrowRight",
+      "labels": "LLLR",
+      "frontierFullStateSha256": [
+        "663c152a768d23c8b1bdce6ce88cb3f592e819f24631489b12fb0a2eea120e4d"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 7,
+        "distanceDelta": -2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "3,1",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 96,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowLeft>catStep:ArrowRight>catStep:ArrowUp",
+      "labels": "LLRU",
+      "frontierFullStateSha256": [
+        "ba03f9bfa51238bc54a25b9905b402b3ee4fe27ce435aba8e11ff56cff0d8a5c"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "2,2",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 97,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowLeft>catStep:ArrowRight>catStep:ArrowDown",
+      "labels": "LLRD",
+      "frontierFullStateSha256": [
+        "30b9c16c47ed8b5bc3b4c5c42360ed76860070e84c3fdbd7e4be8e80933c7735"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 7,
+        "distanceDelta": -2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "4,2",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 98,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowLeft>catStep:ArrowRight>catStep:ArrowLeft",
+      "labels": "LLRL",
+      "frontierFullStateSha256": [
+        "c339227f90ad93da0b910cbf74784e1f17809ea73bdcb84c810d72180a4f649a"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 7,
+        "distanceDelta": -2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "3,1",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 99,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowLeft>catStep:ArrowRight>catStep:ArrowRight",
+      "labels": "LLRR",
+      "frontierFullStateSha256": [
+        "d3988b78d536d7efdb82ed75365077bbe943e49a6ac8d1cf3c1f7ffd0ed7ca38"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "3,3",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 100,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowRight>catStep:ArrowUp>catStep:ArrowUp",
+      "labels": "LRUU",
+      "frontierFullStateSha256": [
+        "e624e2cd1ff246557a18d26236fb34bf12930d9dc344380934fa0c39c01196dd"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 3,
+        "distanceDelta": 2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "1,3",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 101,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowRight>catStep:ArrowUp>catStep:ArrowDown",
+      "labels": "LRUD",
+      "frontierFullStateSha256": [
+        "ef7a0dbc181cf75c32945d33c62c866ce1070da6a4e728009a27ab78e0196528"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "3,3",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 102,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowRight>catStep:ArrowUp>catStep:ArrowLeft",
+      "labels": "LRUL",
+      "frontierFullStateSha256": [
+        "a5589c835e8b824f2b8b1800d91ba8c6bcd0418e3d5e53af060fe42b8da0d842"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "2,2",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 103,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowRight>catStep:ArrowDown>catStep:ArrowUp",
+      "labels": "LRDU",
+      "frontierFullStateSha256": [
+        "15b195928ccf256310f0bd5545b1485ad732e7f63b578b6eb371617809011d10"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "3,3",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 104,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowRight>catStep:ArrowDown>catStep:ArrowLeft",
+      "labels": "LRDL",
+      "frontierFullStateSha256": [
+        "2654d6b1f598609cb13c6814913bca50f4cb9774247236a406938bb76f7a805c"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 7,
+        "distanceDelta": -2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "4,2",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 105,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowRight>catStep:ArrowDown>catStep:ArrowRight",
+      "labels": "LRDR",
+      "frontierFullStateSha256": [
+        "16afbf146dd913f6f5e30ab5a7eda51fe2aa9e10ec7c4b34791da8234df108e2"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "4,4",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 106,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowRight>catStep:ArrowLeft>catStep:ArrowUp",
+      "labels": "LRLU",
+      "frontierFullStateSha256": [
+        "6214313b5f74475f1aad661b6c4c401124cff3ed46380b5f0d0897e2de9e0107"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 1,
+        "revisitCount": 2,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "2,2",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 107,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowRight>catStep:ArrowLeft>catStep:ArrowDown",
+      "labels": "LRLD",
+      "frontierFullStateSha256": [
+        "668080e91fa74404da170f7291fe03100cd7b168889f375fb5e83ef463903027"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 1,
+        "revisitCount": 2,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 7,
+        "distanceDelta": -2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "4,2",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 108,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowRight>catStep:ArrowLeft>catStep:ArrowLeft",
+      "labels": "LRLL",
+      "frontierFullStateSha256": [
+        "b01be67bcf9f24facba2057a2e87f8a69427a103e9f3d522b16b7877041effaa"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 1,
+        "revisitCount": 2,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 7,
+        "distanceDelta": -2,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "3,1",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    },
+    {
+      "index": 109,
+      "planKey": "catStep:ArrowLeft>catStep:ArrowRight>catStep:ArrowLeft>catStep:ArrowRight",
+      "labels": "LRLR",
+      "frontierFullStateSha256": [
+        "2e2fa59d0b9e7fca46cf5ebf41a432f1539fd66dd7fdec3c65c52f722955c4eb"
+      ],
+      "endKind": "chance",
+      "features": {
+        "uniqueProgress": 1,
+        "revisitCount": 2,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "frontierCount": 1,
+        "chanceOutcomes": 1,
+        "probabilitySum": 1,
+        "endKind": "chance",
+        "finalCat": "3,3",
+        "finalMouse": "1,6",
+        "terminal": null
+      }
+    }
+  ],
+  "planToState": [
+    {
+      "plan": "catStep:ArrowUp>catStep:ArrowUp>catStep:ArrowUp>catStep:ArrowDown",
+      "labels": "UUUD",
+      "frontier": [
+        "254ea54d15f7730f89d593695bbc242168592c5f1e3065ea05d52a4b60386e00"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowUp>catStep:ArrowUp>catStep:ArrowUp>catStep:ArrowLeft",
+      "labels": "UUUL",
+      "frontier": [
+        "1ccb59567c34e4b247d448d3543a320b4c3f250083d43eb94fa36e049488fedf"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowUp>catStep:ArrowUp>catStep:ArrowUp>catStep:ArrowRight",
+      "labels": "UUUR",
+      "frontier": [
+        "70b1445cafa5526d93a95645f1937020f3d4db55bcef715076f4403011a447ae"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowUp>catStep:ArrowUp>catStep:ArrowDown>catStep:ArrowUp",
+      "labels": "UUDU",
+      "frontier": [
+        "daa2c57e7e411ca3d0fc103ffd9c8adae23b851038a9b3282fb377e9ef48fb15"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowUp>catStep:ArrowUp>catStep:ArrowDown>catStep:ArrowDown",
+      "labels": "UUDD",
+      "frontier": [
+        "eddd776e5530fa4d559d2dd27f9ac099bf7da7d2ca124cbf66e80b61d19a5a8c"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowUp>catStep:ArrowUp>catStep:ArrowDown>catStep:ArrowLeft",
+      "labels": "UUDL",
+      "frontier": [
+        "afde029fd91771a24c13d1cd73e5ee95e9127b5d4f442751adde9ec8db265fc6"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowUp>catStep:ArrowUp>catStep:ArrowRight>catStep:ArrowUp",
+      "labels": "UURU",
+      "frontier": [
+        "3460ca8fccf2c5da795e142e2afa81b6a38ab4d2e58fb6e4013ffa2163ae55b3"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowUp>catStep:ArrowUp>catStep:ArrowRight>catStep:ArrowLeft",
+      "labels": "UURL",
+      "frontier": [
+        "7e586394b993544da986bed265d56000c1cf4a5f8178e4f29cc6217c9f9ea5f0"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowUp>catStep:ArrowUp>catStep:ArrowRight>catStep:ArrowRight",
+      "labels": "UURR",
+      "frontier": [
+        "e954daae154e2b017bdf2e00c8c274353fdeb1c435d9fa2c8252d408de5d9aed"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowUp>catStep:ArrowDown>catStep:ArrowUp>catStep:ArrowUp",
+      "labels": "UDUU",
+      "frontier": [
+        "6d71d4e3f47127df45fd63ad9e692c9cfa9d02e31c0b203855a9dc438d3eff4f"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowUp>catStep:ArrowDown>catStep:ArrowUp>catStep:ArrowDown",
+      "labels": "UDUD",
+      "frontier": [
+        "64431f4438100739cd90344f0e7aff607bfebd80d50a63af95b326c3b4828c55"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowUp>catStep:ArrowDown>catStep:ArrowUp>catStep:ArrowLeft",
+      "labels": "UDUL",
+      "frontier": [
+        "337823f0146020048862cdf1f707af1a9ac018083bceb3dec0c9a6686c6afbc1"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowUp>catStep:ArrowDown>catStep:ArrowDown>catStep:ArrowUp",
+      "labels": "UDDU",
+      "frontier": [
+        "a9322b719bad6a51e4cca2c33901ef1151353db40f6207f789719ea5c3168619"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowUp>catStep:ArrowDown>catStep:ArrowDown>catStep:ArrowLeft",
+      "labels": "UDDL",
+      "frontier": [
+        "d0d0419f33358980d26d5bcb9bb5b8536be6461a785e4a6e1bd527f4c7c1ec99"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowUp>catStep:ArrowDown>catStep:ArrowDown>catStep:ArrowRight",
+      "labels": "UDDR",
+      "frontier": [
+        "cfdcc8ba22863db2a0c485a88f25bca4b98cf1d41522a2911bf839cb7f63340e"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowUp>catStep:ArrowDown>catStep:ArrowLeft>catStep:ArrowUp",
+      "labels": "UDLU",
+      "frontier": [
+        "4ec5d2bae6b1a2dd547503e2cbfba505bc3abc9f4798e28a240736f86709051f"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowUp>catStep:ArrowDown>catStep:ArrowLeft>catStep:ArrowDown",
+      "labels": "UDLD",
+      "frontier": [
+        "8e6166c366e6a04423e0baabca46ff2397f59c3cdd80442deae07bebedeb1f88"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowUp>catStep:ArrowDown>catStep:ArrowLeft>catStep:ArrowLeft",
+      "labels": "UDLL",
+      "frontier": [
+        "b0f2cc981b32329ef224b386054d406af11342446c45748c2201ab142e179f06"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowUp>catStep:ArrowDown>catStep:ArrowLeft>catStep:ArrowRight",
+      "labels": "UDLR",
+      "frontier": [
+        "dd791dbfff2f80c2f3a460d68fbc225645b58dcf1e2394698eded4e5a0c0ed8c"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowUp>catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowDown",
+      "labels": "ULUD",
+      "frontier": [
+        "c0b174a8068ff82f6cee309ac5dc6c809d506984eedd668c5d4f6b2c7f26695e"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowUp>catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowLeft",
+      "labels": "ULUL",
+      "frontier": [
+        "46a8489dfc99cc436ecd2d2fe7f2f8d234fc46a4709ac2993ee8e1b24ebd5404"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowUp>catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowRight",
+      "labels": "ULUR",
+      "frontier": [
+        "6ce4cd611eba0ad41261dcce539cbca7fc23aec7748bb4c1931ace212b4f24b6"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowUp>catStep:ArrowLeft>catStep:ArrowDown>catStep:ArrowUp",
+      "labels": "ULDU",
+      "frontier": [
+        "4013b87518f80c36cb9898e26833e2415240527787a4e2021e039877302dbad1"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowUp>catStep:ArrowLeft>catStep:ArrowDown>catStep:ArrowDown",
+      "labels": "ULDD",
+      "frontier": [
+        "8f59195212d3a7a317c5f8e350c5da4fcc01ed80c72626c40b4be2e08c73a360"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowUp>catStep:ArrowLeft>catStep:ArrowDown>catStep:ArrowLeft",
+      "labels": "ULDL",
+      "frontier": [
+        "5ac1b546754e1ebb41fce5e7eebb709b230d3182b627b1a786e4c9d82521fe17"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowUp>catStep:ArrowLeft>catStep:ArrowDown>catStep:ArrowRight",
+      "labels": "ULDR",
+      "frontier": [
+        "8d352f2bf38cf8a157d077a0222e096e3673bda762afdb5992653ced9b3c74d7"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowUp>catStep:ArrowLeft>catStep:ArrowLeft>catStep:ArrowUp",
+      "labels": "ULLU",
+      "frontier": [
+        "24ec06fcf6c9d8f99534a4d5fde835ca8d8bab99f44c20608f8d286528974a0c"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowUp>catStep:ArrowLeft>catStep:ArrowLeft>catStep:ArrowDown",
+      "labels": "ULLD",
+      "frontier": [
+        "c609deca8828559aed1943f1555d0879ee8c078686e1b33b43b4dfcbf87d704f"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowUp>catStep:ArrowLeft>catStep:ArrowLeft>catStep:ArrowLeft",
+      "labels": "ULLL",
+      "frontier": [
+        "e94f2c5004593d66d3ddb9db9e6102dc5eda790591395ac3356b96cd4ecb3766"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowUp>catStep:ArrowLeft>catStep:ArrowLeft>catStep:ArrowRight",
+      "labels": "ULLR",
+      "frontier": [
+        "239938a9ac6160ce8d4e2ac6157d6c2e9b9b3e9ec5e2363b2d85b628e5355040"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowUp>catStep:ArrowLeft>catStep:ArrowRight>catStep:ArrowUp",
+      "labels": "ULRU",
+      "frontier": [
+        "dec97b96d2e8fab93ab1db0c018f02676741cfb6758d3d0f5b0f8bf3aed2de33"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowUp>catStep:ArrowLeft>catStep:ArrowRight>catStep:ArrowDown",
+      "labels": "ULRD",
+      "frontier": [
+        "d9371b3315dc79f48ef2d7d7e54ab25e52ea25d9610b24086c63ea7027ec867b"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowUp>catStep:ArrowLeft>catStep:ArrowRight>catStep:ArrowLeft",
+      "labels": "ULRL",
+      "frontier": [
+        "903a904e77cd87440157b3606cabb626b0eeb274700dd2d1043e0ff5362995f1"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowDown>catStep:ArrowUp>catStep:ArrowUp>catStep:ArrowUp",
+      "labels": "DUUU",
+      "frontier": [
+        "a94550695a3cd407332e6b297fb5b613c1c8477b0de2c6ed428f80e7b8402e36"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowDown>catStep:ArrowUp>catStep:ArrowUp>catStep:ArrowDown",
+      "labels": "DUUD",
+      "frontier": [
+        "51b3773e6da58d7d101af76a65f3956b8eff585bda1e06db8f1797c9148a129b"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowDown>catStep:ArrowUp>catStep:ArrowUp>catStep:ArrowLeft",
+      "labels": "DUUL",
+      "frontier": [
+        "ed5b7a8b64ace0a661f2fd3bbf512fa2c50e1bbf37a90f65b97a117efb39eb49"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowDown>catStep:ArrowUp>catStep:ArrowDown>catStep:ArrowUp",
+      "labels": "DUDU",
+      "frontier": [
+        "94931c1b56b4db9319eacf56195320af110617867ad6581b41431cb551a7e0aa"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowDown>catStep:ArrowUp>catStep:ArrowDown>catStep:ArrowLeft",
+      "labels": "DUDL",
+      "frontier": [
+        "2e38d01232f0bf9e3ce1dcd844c01a27a5b5ac2a3953c938b0e9cc9495456d7e"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowDown>catStep:ArrowUp>catStep:ArrowDown>catStep:ArrowRight",
+      "labels": "DUDR",
+      "frontier": [
+        "f0e026747c313699cdbbdbf64c69ff0df226551c6fd329e8b189b6795cc6500e"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowDown>catStep:ArrowUp>catStep:ArrowLeft>catStep:ArrowUp",
+      "labels": "DULU",
+      "frontier": [
+        "aa4a227d95ea3e8ec5c78f02dbcf56f13f94a7fdd449efc0e901abf62ad2e495"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowDown>catStep:ArrowUp>catStep:ArrowLeft>catStep:ArrowDown",
+      "labels": "DULD",
+      "frontier": [
+        "8e81f3ce274e2a95b21bf8d72d1659182c7b131665a277231426fcff93d40bf0"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowDown>catStep:ArrowUp>catStep:ArrowLeft>catStep:ArrowLeft",
+      "labels": "DULL",
+      "frontier": [
+        "67eabe8cc236ea822d75a56843a088dbef603e0957b5174ada434733adc7d51f"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowDown>catStep:ArrowUp>catStep:ArrowLeft>catStep:ArrowRight",
+      "labels": "DULR",
+      "frontier": [
+        "ffd85ec095df998fd0a12db87a09c5a336b848f19040d4c90c9dc173180b167d"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowDown>catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowUp",
+      "labels": "DLUU",
+      "frontier": [
+        "78dc6ea35181493f049eaed0ecf02a9ec3adebc25367dfc355b9f82f63b6310e"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowDown>catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowDown",
+      "labels": "DLUD",
+      "frontier": [
+        "e9c9ab2e34c9cf901687daf9bcf7fcdea7a19a63f84b066bf48d8e3b0baf69dc"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowDown>catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowLeft",
+      "labels": "DLUL",
+      "frontier": [
+        "570b00c04f33ea13e7c0fe4e6a1c814fbde0138fc77fdd943bdf2ffc8bbccae9"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowDown>catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowRight",
+      "labels": "DLUR",
+      "frontier": [
+        "2125151e002281bbcc4e8fe127b00918b05d2d9b750a47e1773beaff41997b3a"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowDown>catStep:ArrowLeft>catStep:ArrowDown>catStep:ArrowUp",
+      "labels": "DLDU",
+      "frontier": [
+        "f94abcf339ddf404cf3651c15bcc42ea458a66ec80e672a431cada43b8f69002"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowDown>catStep:ArrowLeft>catStep:ArrowDown>catStep:ArrowDown",
+      "labels": "DLDD",
+      "frontier": [
+        "5e0ead29f1c222098704efd03071b8d1c0996cf06c8aa44323637d3137a9c115"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowDown>catStep:ArrowLeft>catStep:ArrowDown>catStep:ArrowLeft",
+      "labels": "DLDL",
+      "frontier": [
+        "f28c6eb6eb5f264f4c2dc111449dbf2b60ea6d52fd90fe27e3fbdfdda54607ac"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowDown>catStep:ArrowLeft>catStep:ArrowDown>catStep:ArrowRight",
+      "labels": "DLDR",
+      "frontier": [
+        "616508809797e00f1d2d9e83c30d4e2662c16c361e114647b8136a4a5bd6a30d"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowDown>catStep:ArrowLeft>catStep:ArrowRight>catStep:ArrowUp",
+      "labels": "DLRU",
+      "frontier": [
+        "362e6d651820ed21c14b4d39c262eef9d48146bff4a495c0f0b40e7251f1a0cc"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowDown>catStep:ArrowLeft>catStep:ArrowRight>catStep:ArrowLeft",
+      "labels": "DLRL",
+      "frontier": [
+        "26d52035223e418383919eea4b3d42806e4f15a21c7ba5305022801aa65f896c"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowDown>catStep:ArrowLeft>catStep:ArrowRight>catStep:ArrowRight",
+      "labels": "DLRR",
+      "frontier": [
+        "d01db7c8a7311f4a47c9879fac3cfceb4a50588e95c7965034262977e7debf76"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowDown>catStep:ArrowRight>catStep:ArrowDown>catStep:ArrowUp",
+      "labels": "DRDU",
+      "frontier": [
+        "999a954247667e0321f57e7b1051c36175eeb77f2f4e588790f19549e663b2d9"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowDown>catStep:ArrowRight>catStep:ArrowDown>catStep:ArrowDown",
+      "labels": "DRDD",
+      "frontier": [
+        "5824e342d2aafaa83f2566f2b196ab12b0a7cf2c95030d763cca7a13dcc889bf"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowDown>catStep:ArrowRight>catStep:ArrowDown>catStep:ArrowLeft",
+      "labels": "DRDL",
+      "frontier": [
+        "56a780e5bd2aa5a5e85ae216e5ea6b2665bfd61d65117e94741fc4981d903e82"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowDown>catStep:ArrowRight>catStep:ArrowDown>catStep:ArrowRight",
+      "labels": "DRDR",
+      "frontier": [
+        "ad15efecfaf42215fc094b4548b12ad9e08c503c3470c012280ac4714652f613"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowDown>catStep:ArrowRight>catStep:ArrowLeft>catStep:ArrowUp",
+      "labels": "DRLU",
+      "frontier": [
+        "facda54be6a8f7d6db0bb10dd3926ec343c02b694d3ff5184c3e247d1b72dfac"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowDown>catStep:ArrowRight>catStep:ArrowLeft>catStep:ArrowLeft",
+      "labels": "DRLL",
+      "frontier": [
+        "989d926dd1d0887405205a703316c26c6fce94c61014711673f1d5ce4d8d3bb7"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowDown>catStep:ArrowRight>catStep:ArrowLeft>catStep:ArrowRight",
+      "labels": "DRLR",
+      "frontier": [
+        "1d4e5f6574219c7a0cbad67058430e8b719a88c160499ebed30a94c45e775b2a"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowDown>catStep:ArrowRight>catStep:ArrowRight>catStep:ArrowDown",
+      "labels": "DRRD",
+      "frontier": [
+        "3ee1c6868d99f9a01156c1855f117f924074455f447cf5ca4757a51c71c82e29"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowDown>catStep:ArrowRight>catStep:ArrowRight>catStep:ArrowLeft",
+      "labels": "DRRL",
+      "frontier": [
+        "58f289632deb8840cc5b08c3351504fc46a881c596d3c47addfeda456fdbf536"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowDown>catStep:ArrowRight>catStep:ArrowRight>catStep:ArrowRight",
+      "labels": "DRRR",
+      "frontier": [
+        "253033ff26cd72033a9dcd33c5553cea2baabe3bee81c20138a01a88d40cd94b"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowUp>catStep:ArrowDown",
+      "labels": "LUUD",
+      "frontier": [
+        "c190b82260b6a83077739fde10d5df0ef78e7b44204ffedd7265b0a1b26afa01"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowUp>catStep:ArrowLeft",
+      "labels": "LUUL",
+      "frontier": [
+        "f78b4c30973cfb4d44734e4b2198ece9759f6542dac14e9725e1f80c6bde455b"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowUp>catStep:ArrowRight",
+      "labels": "LUUR",
+      "frontier": [
+        "2d26a046d9966ff403e34087bb939a72e0ccca18d583f11e5c2ca5fd507b36ef"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowDown>catStep:ArrowUp",
+      "labels": "LUDU",
+      "frontier": [
+        "61f9603fce90e580a538bde45dbb0f30076664fa664937e58ad32c4c90e86ed1"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowDown>catStep:ArrowDown",
+      "labels": "LUDD",
+      "frontier": [
+        "8f105191e7bc6c20ee5080923a2e030c9953f7720d9b31b3658e82366eaab1c0"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowDown>catStep:ArrowLeft",
+      "labels": "LUDL",
+      "frontier": [
+        "2d96b2306b6ce58826cc7f561de0f9f49c2157ad5186c7bfd95004a4dd984484"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowDown>catStep:ArrowRight",
+      "labels": "LUDR",
+      "frontier": [
+        "d9ba7799573f1d232df76c1e52f37140e7b1e707c8c6481cf46cddb4e68af921"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowLeft>catStep:ArrowUp",
+      "labels": "LULU",
+      "frontier": [
+        "2a8713afb389d553824af902bc03bf6c3798ef6a249ce138d7c9e0fffacd36a1"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowLeft>catStep:ArrowDown",
+      "labels": "LULD",
+      "frontier": [
+        "7e9aeeb47481294709674c9c82ca1e8a5248d402e1385a22cb63f012ec414c7a"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowLeft>catStep:ArrowLeft",
+      "labels": "LULL",
+      "frontier": [
+        "6f5eae217da5f8c149949c5c057c15321ff7129fa69935c9000b79c34a8a21aa"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowLeft>catStep:ArrowRight",
+      "labels": "LULR",
+      "frontier": [
+        "d1bc04645fd58cb6dbcdeb1aef8ab99910001426157302034092bae5a7ff6174"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowRight>catStep:ArrowUp",
+      "labels": "LURU",
+      "frontier": [
+        "8aae2912f6c424cb3d1d6d5c49d06a30d4e9c286fba363144620ff448f785152"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowRight>catStep:ArrowDown",
+      "labels": "LURD",
+      "frontier": [
+        "ea911096ac82a107d0ad4b8528db589cca7e96561387b9a945ed7499f85b1305"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowRight>catStep:ArrowLeft",
+      "labels": "LURL",
+      "frontier": [
+        "a99f85a89c3880a5af11939690805c6ec567c7cbf9db5a1f9195e252322e53a7"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowDown>catStep:ArrowUp>catStep:ArrowUp",
+      "labels": "LDUU",
+      "frontier": [
+        "98d15920de5a72e16043204198f3f2b2d23bb8b5e00ed1979b2425972e675b7b"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowDown>catStep:ArrowUp>catStep:ArrowDown",
+      "labels": "LDUD",
+      "frontier": [
+        "ab7f816be1208c992afcbd8d14e1036078ee20022b1693484248a367212eb243"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowDown>catStep:ArrowUp>catStep:ArrowLeft",
+      "labels": "LDUL",
+      "frontier": [
+        "42c2cf7a46cb27dcf4f2accdf9ab3a1bd31c06a105ec4ddf1e0393f7caa3987e"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowDown>catStep:ArrowUp>catStep:ArrowRight",
+      "labels": "LDUR",
+      "frontier": [
+        "92700e83a70a8bc8bcaeb972b7bdcd820cbeb961ca998701df862c2e5e2fdb47"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowDown>catStep:ArrowDown>catStep:ArrowUp",
+      "labels": "LDDU",
+      "frontier": [
+        "f8247e7641b7744e4a3a9c57d0c7143fc451b3800da222d4289bed8b2af41b3a"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowDown>catStep:ArrowDown>catStep:ArrowDown",
+      "labels": "LDDD",
+      "frontier": [
+        "879e5a9e5e9d925d3b6e2a342148fd343adbdc30417e633f54f2938c407a7e8b"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowDown>catStep:ArrowDown>catStep:ArrowLeft",
+      "labels": "LDDL",
+      "frontier": [
+        "42a4ab93e348bd5958adb06a291815184b948f3bf95e755b64084df3ffd4fe50"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowDown>catStep:ArrowDown>catStep:ArrowRight",
+      "labels": "LDDR",
+      "frontier": [
+        "90709754b92e49b42c1380ba144a40cb96790b81a6e02833f70d099d1481a34a"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowDown>catStep:ArrowRight>catStep:ArrowUp",
+      "labels": "LDRU",
+      "frontier": [
+        "53aab7cf8fcecbf9781ab0bffa58eee0e751b31762ef06ea95b4e430c34c169f"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowDown>catStep:ArrowRight>catStep:ArrowLeft",
+      "labels": "LDRL",
+      "frontier": [
+        "eed563f4aab6509dbce5c4c08f9d1311ffc323a790575fb63ec8b680f66d1191"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowDown>catStep:ArrowRight>catStep:ArrowRight",
+      "labels": "LDRR",
+      "frontier": [
+        "c07b3c761a90e3d442ac94222f61cef4951c178a12087103011b2bc9a2a09869"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowUp",
+      "labels": "LLUU",
+      "frontier": [
+        "807bbcf72da8c3b112064344187229f40467483ec50d2cd86a7d873ef1671d52"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowDown",
+      "labels": "LLUD",
+      "frontier": [
+        "6b546bdc340978b2a3878c0aaf5176729087741b55fa948bf4b47d979ca44a7b"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowLeft",
+      "labels": "LLUL",
+      "frontier": [
+        "7da414f900d4649cc06a4ce063522cd669eb77e62329029a674d58af300b5822"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowLeft>catStep:ArrowUp>catStep:ArrowRight",
+      "labels": "LLUR",
+      "frontier": [
+        "8ef2195c0464faf6c03e045c5e1a18cfa0729257c4ae28df1defa8aa95eb047b"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowLeft>catStep:ArrowLeft>catStep:ArrowUp",
+      "labels": "LLLU",
+      "frontier": [
+        "55bba58ca0654ec3a7de2bd3ea981e7222abdda7cbecbe1b0b40bb967fd0f12c"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowLeft>catStep:ArrowLeft>catStep:ArrowDown",
+      "labels": "LLLD",
+      "frontier": [
+        "5a7c5fce38d8226063a6e0bba6682dbf9c27a21d4f6e27d8f0efccc485e7b49d"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowLeft>catStep:ArrowLeft>catStep:ArrowRight",
+      "labels": "LLLR",
+      "frontier": [
+        "663c152a768d23c8b1bdce6ce88cb3f592e819f24631489b12fb0a2eea120e4d"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowLeft>catStep:ArrowRight>catStep:ArrowUp",
+      "labels": "LLRU",
+      "frontier": [
+        "ba03f9bfa51238bc54a25b9905b402b3ee4fe27ce435aba8e11ff56cff0d8a5c"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowLeft>catStep:ArrowRight>catStep:ArrowDown",
+      "labels": "LLRD",
+      "frontier": [
+        "30b9c16c47ed8b5bc3b4c5c42360ed76860070e84c3fdbd7e4be8e80933c7735"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowLeft>catStep:ArrowRight>catStep:ArrowLeft",
+      "labels": "LLRL",
+      "frontier": [
+        "c339227f90ad93da0b910cbf74784e1f17809ea73bdcb84c810d72180a4f649a"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowLeft>catStep:ArrowRight>catStep:ArrowRight",
+      "labels": "LLRR",
+      "frontier": [
+        "d3988b78d536d7efdb82ed75365077bbe943e49a6ac8d1cf3c1f7ffd0ed7ca38"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowRight>catStep:ArrowUp>catStep:ArrowUp",
+      "labels": "LRUU",
+      "frontier": [
+        "e624e2cd1ff246557a18d26236fb34bf12930d9dc344380934fa0c39c01196dd"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowRight>catStep:ArrowUp>catStep:ArrowDown",
+      "labels": "LRUD",
+      "frontier": [
+        "ef7a0dbc181cf75c32945d33c62c866ce1070da6a4e728009a27ab78e0196528"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowRight>catStep:ArrowUp>catStep:ArrowLeft",
+      "labels": "LRUL",
+      "frontier": [
+        "a5589c835e8b824f2b8b1800d91ba8c6bcd0418e3d5e53af060fe42b8da0d842"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowRight>catStep:ArrowDown>catStep:ArrowUp",
+      "labels": "LRDU",
+      "frontier": [
+        "15b195928ccf256310f0bd5545b1485ad732e7f63b578b6eb371617809011d10"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowRight>catStep:ArrowDown>catStep:ArrowLeft",
+      "labels": "LRDL",
+      "frontier": [
+        "2654d6b1f598609cb13c6814913bca50f4cb9774247236a406938bb76f7a805c"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowRight>catStep:ArrowDown>catStep:ArrowRight",
+      "labels": "LRDR",
+      "frontier": [
+        "16afbf146dd913f6f5e30ab5a7eda51fe2aa9e10ec7c4b34791da8234df108e2"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowRight>catStep:ArrowLeft>catStep:ArrowUp",
+      "labels": "LRLU",
+      "frontier": [
+        "6214313b5f74475f1aad661b6c4c401124cff3ed46380b5f0d0897e2de9e0107"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowRight>catStep:ArrowLeft>catStep:ArrowDown",
+      "labels": "LRLD",
+      "frontier": [
+        "668080e91fa74404da170f7291fe03100cd7b168889f375fb5e83ef463903027"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowRight>catStep:ArrowLeft>catStep:ArrowLeft",
+      "labels": "LRLL",
+      "frontier": [
+        "b01be67bcf9f24facba2057a2e87f8a69427a103e9f3d522b16b7877041effaa"
+      ]
+    },
+    {
+      "plan": "catStep:ArrowLeft>catStep:ArrowRight>catStep:ArrowLeft>catStep:ArrowRight",
+      "labels": "LRLR",
+      "frontier": [
+        "2e2fa59d0b9e7fca46cf5ebf41a432f1539fd66dd7fdec3c65c52f722955c4eb"
+      ]
+    }
+  ],
+  "projectionSha256": "8903626d32ef43d0eefce9c616bde4dafec7535101e901e2e402777a76837673"
+}

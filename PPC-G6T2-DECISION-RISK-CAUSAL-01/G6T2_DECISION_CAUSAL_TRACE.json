@@ -1,0 +1,277 @@
+{
+  "round": "PPC-G6T2-DECISION-RISK-CAUSAL-01",
+  "phase": "G2_CAUSAL_TRACE",
+  "generatedAt": "2026-11-20T07:59:25.762Z",
+  "identity": {
+    "rootId": "G6T2",
+    "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#3,3#1,6#4#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+    "rootSnapshotSha256": "8ac26199c4ea45ac56194a6c2aa8de3f9be2631660be9129be114ae6d29446f5",
+    "fixtureCanonicalSnapshotSha256": "30a54a57fbf5747d0e1f0f073420809653fb58f9ef2f89e608042ffbc4446656",
+    "completeCatTurns": 110,
+    "expandedStates": 46,
+    "enumerationElapsedMs": 36.51219999999989,
+    "controlPlanIndices": {
+      "UUDD": 4,
+      "DUUD": 34,
+      "LUDR": 70,
+      "UURR": 8,
+      "DRRR": 63,
+      "DRDR": 57
+    }
+  },
+  "contemporaneousRuntime": {
+    "protocol": "planHardCatTurn({ timeBudgetMs: 100, maxDepthTurns: 4, refutation: { enabled: true, totalTurnBudgetMs: 150 } })",
+    "freshProcessRepetitions": 3,
+    "runs": [
+      {
+        "rootId": "G6T2",
+        "planString": "UURR",
+        "bestAction": "U",
+        "value": -247.23684210526318,
+        "mate": null,
+        "completedDepth": 1,
+        "attemptedDepth": 2,
+        "hasSolution": true,
+        "deadlineFired": true,
+        "budgetFired": false,
+        "nodes": 201,
+        "elapsedMs": 151.27319999999986,
+        "planStatus": "planned",
+        "fallbackOccurred": false,
+        "rootActions": [
+          {
+            "action": "U",
+            "value": -247.23684210526318,
+            "mate": null,
+            "bound": "exact"
+          },
+          {
+            "action": "D",
+            "value": -345,
+            "mate": null,
+            "bound": "exact"
+          },
+          {
+            "action": "L",
+            "value": -345,
+            "mate": null,
+            "bound": "exact"
+          }
+        ],
+        "refutationTriggered": true,
+        "refutationSelectedPlanSource": "baseline",
+        "rep": 1,
+        "capturedAt": "2026-11-20T07:59:17.796Z",
+        "nodesFrozenReference": 211,
+        "completedDepthFrozenReference": 1,
+        "planFrozenReference": "UURR",
+        "deadlineFiredFrozenReference": true
+      },
+      {
+        "rootId": "G6T2",
+        "planString": "UURR",
+        "bestAction": "U",
+        "value": -247.23684210526318,
+        "mate": null,
+        "completedDepth": 1,
+        "attemptedDepth": 2,
+        "hasSolution": true,
+        "deadlineFired": true,
+        "budgetFired": false,
+        "nodes": 250,
+        "elapsedMs": 151.04739999999993,
+        "planStatus": "planned",
+        "fallbackOccurred": false,
+        "rootActions": [
+          {
+            "action": "U",
+            "value": -247.23684210526318,
+            "mate": null,
+            "bound": "exact"
+          },
+          {
+            "action": "D",
+            "value": -345,
+            "mate": null,
+            "bound": "exact"
+          },
+          {
+            "action": "L",
+            "value": -345,
+            "mate": null,
+            "bound": "exact"
+          }
+        ],
+        "refutationTriggered": true,
+        "refutationSelectedPlanSource": "baseline",
+        "rep": 2,
+        "capturedAt": "2026-11-20T07:59:22.294Z",
+        "nodesFrozenReference": 211,
+        "completedDepthFrozenReference": 1,
+        "planFrozenReference": "UURR",
+        "deadlineFiredFrozenReference": true
+      },
+      {
+        "rootId": "G6T2",
+        "planString": "UURR",
+        "bestAction": "U",
+        "value": -247.23684210526318,
+        "mate": null,
+        "completedDepth": 1,
+        "attemptedDepth": 2,
+        "hasSolution": true,
+        "deadlineFired": true,
+        "budgetFired": false,
+        "nodes": 247,
+        "elapsedMs": 151.53179999999998,
+        "planStatus": "planned",
+        "fallbackOccurred": false,
+        "rootActions": [
+          {
+            "action": "U",
+            "value": -247.23684210526318,
+            "mate": null,
+            "bound": "exact"
+          },
+          {
+            "action": "D",
+            "value": -345,
+            "mate": null,
+            "bound": "exact"
+          },
+          {
+            "action": "L",
+            "value": -345,
+            "mate": null,
+            "bound": "exact"
+          }
+        ],
+        "refutationTriggered": true,
+        "refutationSelectedPlanSource": "baseline",
+        "rep": 3,
+        "capturedAt": "2026-11-20T07:59:25.759Z",
+        "nodesFrozenReference": 211,
+        "completedDepthFrozenReference": 1,
+        "planFrozenReference": "UURR",
+        "deadlineFiredFrozenReference": true
+      }
+    ],
+    "frozenReferenceFrom_2026_11_19": {
+      "planString": "UURR",
+      "value": -247.237,
+      "completedDepth": 1,
+      "nodes": 211,
+      "deadlineFired": true,
+      "source": "PPC-CAT-STRATEGY-01/PLANNER_D1_DECISION_AUDIT.json (PROD-100ms row)"
+    },
+    "determinismVerdict": "STABLE_ACROSS_LOCAL_REPS"
+  },
+  "frozenAfterSearchTrace": {
+    "d2Protocol": "ARM E1, depthTurns=2, production write path, 1,283,054 nodes",
+    "rootValues": [
+      {
+        "action": "U",
+        "value": -658.2105263157898,
+        "mate": null,
+        "bound": "exact"
+      },
+      {
+        "action": "D",
+        "value": -658.2105263157898,
+        "mate": null,
+        "bound": "exact"
+      },
+      {
+        "action": "L",
+        "value": -658.2105263157898,
+        "mate": null,
+        "bound": "exact"
+      }
+    ],
+    "afterD": {
+      "U": -658.2105263157898,
+      "L": -658.2105263157898,
+      "R": -658.2105263157898,
+      "chosen": "U",
+      "rule": "strict improvement; exact tie keeps the smaller original legal index"
+    },
+    "drNode": {
+      "L": -658.2105263157898,
+      "R": -745.4473684210526,
+      "chosen": "L"
+    },
+    "drrNode": {
+      "L": -745.4473684210526,
+      "R": -854,
+      "D": -900.7105263157896,
+      "chosen": "L"
+    },
+    "forcedComparison": {
+      "duud": -658.2105263157898,
+      "drrr": -854,
+      "delta": -195.78947368421018
+    },
+    "extraction": {
+      "productionCatTurnPlan": "ULDR",
+      "planBranchesWalk": "UUDD",
+      "reproducible": true,
+      "sameFinalState": true
+    },
+    "certifiedLabels": {
+      "UURR": "mouse forced win (frozen certificate)",
+      "DRRR": "cat survives (frozen H2, window=2, cap=600000)",
+      "DRDR": "no certificate"
+    },
+    "sources": [
+      "PPC-G6T2-SELECTION-CAUSE-01/ROOT_CAUSE_VERDICT.json",
+      "PPC-G6T2-SELECTION-CAUSE-01/FORCED_PLAN_COMPARISON.json",
+      "PPC-G6T2-SELECTION-CAUSE-01/D2_CHILD_VALUE_AUDIT.json",
+      "PPC-G6T2-PLAN-CANDIDATE-FEASIBILITY-01/EVALUATION_DECOMPOSITION.json"
+    ]
+  },
+  "fiveCauses": {
+    "1_CANDIDATE_NEVER_GENERATED": {
+      "supported": true,
+      "scope": "DRRR",
+      "evidence": "Production candidate pool = 3 principals {UUDD, DUUD, LUDR}; the 110-plan complete enumeration contains DRRR exactly once at 0-based index 63. Reordering principals cannot add a pool-external plan."
+    },
+    "2_GENERATED_BUT_SCORED_LOW": {
+      "supported": true,
+      "scope": "the R step after DR and DRR",
+      "evidence": "R is generated at those nodes and is strictly lower under E1: DR {L -658.2105, R -745.4474}; DRR {L -745.4474, R -854}. The forced complete DRRR scores -854 vs forced DUUD -658.2105."
+    },
+    "3_EQUAL_SCORE_EXTRACTION_DIVERGED": {
+      "supported": true,
+      "scope": "root U/D/L tie and the D-node U/L/R tie",
+      "evidence": "Root U=D=L bit-identical; after D, U=L=R bit-identical; stable legal order keeps U. Independent publication divergence: searchBestAction catTurnPlan=ULDR vs planBranches walk UUDD."
+    },
+    "4_DEPTH_CANNOT_SEE_MOUSE_WIN": {
+      "supported": true,
+      "scope": "E1 horizon blindness at D1 and the surviving exact tie at D2",
+      "evidence": "Fixed D1 (E1) root values U -247.237, D -345, L -345 → picks U. UURR is a certified mouse forced win. At D2 the three root values collapse to an exact tie, so added depth without a threat term still cannot prefer D."
+    },
+    "5_DEADLINE_CUTOFF_OR_FALLBACK_CHANGED_ACTION": {
+      "supported": true,
+      "kind": "DEADLINE_LIMITED_DEPTH (not a fallback, not an invalid action)",
+      "evidence": "Local 100ms runs: rep1=UURR/d1/hasSolution=true/deadline=true; rep2=UURR/d1/hasSolution=true/deadline=true; rep3=UURR/d1/hasSolution=true/deadline=true. Frozen 2026-11-19 run selected UURR at completedDepth=1, deadlineFired=true, hasSolution=true. No fallback and no invalid action occurred, so the action change is the deadline bounding the search to depth 1."
+    }
+  },
+  "decisionChain": {
+    "actualProduction100ms": "root → completedDepth 1 (deadline) → E1 root scores → principal UURR → executed UURR → mouse skill + 6 steps → cat RDDD → mouse enters hole",
+    "frozenD2Counterfactual": "root → depth 2 completed → U=D=L exact tie → stable order keeps U → plan publication ULDR/UUDD closed loop; DRRR never in the principal pool",
+    "mouseResponseProvenance": "PPC-CAT-STRATEGY-01 Q1 (real-rule replay, finalPhase=mouse_wins; 29/29 ghost-butter outcomes still mouse forced win)"
+  },
+  "verdict": {
+    "primaryCause": "E1_HORIZON_BLINDNESS_EXPRESSED_AS_TIE_AND_TIE_BREAK",
+    "productionFailureClass": "TACTICAL_THREAT_NOT_REPRESENTED (search completed; no execution bug)",
+    "excludedMainHypothesis": "history pollution (P0-02: D_HISTORY_DEPENDENCE=INTENTIONAL, PRODUCTION_EXECUTION_BUG=NOT_EVIDENCED)",
+    "note": "The 100ms action is a depth-limited decision; the D2 tie shows that raising depth alone does not fix it. Both are consequences of the same missing mouse-threat quantity."
+  },
+  "prohibitions": {
+    "retrained": false,
+    "productionWiring": false,
+    "budgetChanged": false,
+    "heavyRerun": false,
+    "certificateTransplantedAcrossRoots": false
+  }
+}

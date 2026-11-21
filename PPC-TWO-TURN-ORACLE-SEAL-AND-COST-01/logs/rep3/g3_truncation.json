@@ -1,0 +1,19 @@
+{
+  "solveCap10": {
+    "value": null,
+    "truncated": true,
+    "nodes": 11,
+    "proofStatus": "UNKNOWN"
+  },
+  "verifierCap200": {
+    "value": true,
+    "nodes": 65585,
+    "verify": {
+      "verdict": "UNRESOLVED",
+      "reason": "NODE_CAP",
+      "leaves": 201
+    },
+    "proofStatus": "UNKNOWN"
+  },
+  "rule": "UNKNOWN on truncation; a true boolean with UNRESOLVED verifier never becomes PROVEN."
+}

@@ -1,0 +1,419 @@
+{
+  "round": "PPC-G6T2-SELECTION-CAUSE-01",
+  "phase": "G3_FORCED_PLAN_COMPARISON",
+  "generatedAt": "2026-11-19T13:17:27.763Z",
+  "rootId": "G6T2",
+  "arm": "E1",
+  "depthTurns": 2,
+  "method": {
+    "forcedPrefix": "real rules, all four cat steps, all positive-probability CHANCE successors retained",
+    "frontierEvaluation": "searchBestAction(mouseState, 1, ctx) with the SAME E1 leaf evaluator (evaluateForCat) and no TT/ordering/alpha-beta, matching the boundary depth used inside the D2 root search",
+    "depthRationale": "the D2 search switches to the mouse at depthTurns 2 -> 1 after the cat turn; the frontier node is searched there, not at depth 2",
+    "remainingDepth": 1,
+    "relativeTolerance": 1e-9
+  },
+  "baselineCheck": {
+    "forcedDuud": -658.2105263157898,
+    "frozenRootActionD": -658.2105263157898,
+    "relativeDifference": 0,
+    "exactEquality": true
+  },
+  "comparable": true,
+  "sameContextSelectionEvidence": {
+    "source": "D2_CHILD_VALUE_AUDIT (values inside the single root search)",
+    "afterD_U": {
+      "label": "U",
+      "type": "catStep",
+      "originalIndex": 0,
+      "value": -658.2105263157898,
+      "mate": null,
+      "bound": "exact",
+      "completed": true,
+      "cacheable": true
+    },
+    "afterD_R": {
+      "label": "R",
+      "type": "catStep",
+      "originalIndex": 2,
+      "value": -658.2105263157898,
+      "mate": null,
+      "bound": "exact",
+      "completed": true,
+      "cacheable": true
+    },
+    "deltaUminusR": 0,
+    "uEqualsRExactly": true
+  },
+  "valueComparison": {
+    "status": "COMPARABLE",
+    "forcedDuud": -658.2105263157898,
+    "forcedDrrr": -854,
+    "deltaDrrrMinusDuud": -195.78947368421018,
+    "drrrBetterUnderE1": false,
+    "drrrWorseUnderE1": true
+  },
+  "duud": {
+    "plan": "DUUD",
+    "ok": true,
+    "failure": null,
+    "steps": [
+      {
+        "step": 0,
+        "label": "D",
+        "type": "catStep",
+        "kind": "deterministic",
+        "branchCount": 1,
+        "probabilitySum": 1,
+        "branches": [
+          {
+            "fromKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#3,3#1,6#4#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+            "weightIn": 1,
+            "cat": "3,3",
+            "mouse": "1,6",
+            "outcomes": [
+              {
+                "weight": 1,
+                "key": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#4,3#1,6#3#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+                "player": "cat",
+                "cat": "4,3",
+                "mouse": "1,6",
+                "catMovesLeft": 3,
+                "mouseMovesLeft": 0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "step": 1,
+        "label": "U",
+        "type": "catStep",
+        "kind": "deterministic",
+        "branchCount": 1,
+        "probabilitySum": 1,
+        "branches": [
+          {
+            "fromKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#4,3#1,6#3#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+            "weightIn": 1,
+            "cat": "4,3",
+            "mouse": "1,6",
+            "outcomes": [
+              {
+                "weight": 1,
+                "key": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#3,3#1,6#2#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+                "player": "cat",
+                "cat": "3,3",
+                "mouse": "1,6",
+                "catMovesLeft": 2,
+                "mouseMovesLeft": 0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "step": 2,
+        "label": "U",
+        "type": "catStep",
+        "kind": "deterministic",
+        "branchCount": 1,
+        "probabilitySum": 1,
+        "branches": [
+          {
+            "fromKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#3,3#1,6#2#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+            "weightIn": 1,
+            "cat": "3,3",
+            "mouse": "1,6",
+            "outcomes": [
+              {
+                "weight": 1,
+                "key": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__ec_b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#2,3#1,6#1#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+                "player": "cat",
+                "cat": "2,3",
+                "mouse": "1,6",
+                "catMovesLeft": 1,
+                "mouseMovesLeft": 0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "step": 3,
+        "label": "D",
+        "type": "catStep",
+        "kind": "chance",
+        "branchCount": 1,
+        "probabilitySum": 1,
+        "branches": [
+          {
+            "fromKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__ec_b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#2,3#1,6#1#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+            "weightIn": 1,
+            "cat": "2,3",
+            "mouse": "1,6",
+            "outcomes": [
+              {
+                "weight": 1,
+                "key": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+                "player": "mouse",
+                "cat": "3,3",
+                "mouse": "1,6",
+                "catMovesLeft": 0,
+                "mouseMovesLeft": 3
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "frontier": [
+      {
+        "key": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "weight": 1,
+        "player": "mouse",
+        "catMovesLeft": 0,
+        "detailReturned": {
+          "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+          "fullStateSha256": "51b3773e6da58d7d101af76a65f3956b8eff585bda1e06db8f1797c9148a129b",
+          "snapshotSha256": "ad7fbf62e8e5353fb6c4b8a954499609680d07da6424e12c63b25f6a83868b50",
+          "player": "mouse",
+          "summary": {
+            "phase": "playing",
+            "currentPlayer": "mouse",
+            "cat": "3,3",
+            "mouse": "1,6",
+            "catMovesLeft": 0,
+            "mouseMovesLeft": 3,
+            "mouseHasButter": true,
+            "mouseSkillActive": false,
+            "butterPositions": [
+              "2,6",
+              "5,1"
+            ],
+            "pendingButterSpawns": [],
+            "pendingButterPlacementDebt": 0,
+            "trapPosition": "1,1",
+            "catTrapsRemaining": 0,
+            "blockedTunnels": []
+          },
+          "boxes": [
+            "1,2",
+            "2,4",
+            "2,5",
+            "2,7",
+            "3,4",
+            "3,8",
+            "5,3",
+            "6,3",
+            "6,5",
+            "7,1",
+            "8,3",
+            "8,6"
+          ]
+        }
+      }
+    ],
+    "valuePerFrontier": [
+      {
+        "key": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "weight": 1,
+        "value": -658.2105263157898,
+        "mate": null,
+        "completed": true,
+        "nodes": 10964
+      }
+    ],
+    "conditionalExpectation": -658.2105263157898,
+    "completed": true
+  },
+  "drrr": {
+    "plan": "DRRR",
+    "ok": true,
+    "failure": null,
+    "steps": [
+      {
+        "step": 0,
+        "label": "D",
+        "type": "catStep",
+        "kind": "deterministic",
+        "branchCount": 1,
+        "probabilitySum": 1,
+        "branches": [
+          {
+            "fromKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#3,3#1,6#4#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+            "weightIn": 1,
+            "cat": "3,3",
+            "mouse": "1,6",
+            "outcomes": [
+              {
+                "weight": 1,
+                "key": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#4,3#1,6#3#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+                "player": "cat",
+                "cat": "4,3",
+                "mouse": "1,6",
+                "catMovesLeft": 3,
+                "mouseMovesLeft": 0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "step": 1,
+        "label": "R",
+        "type": "catStep",
+        "kind": "deterministic",
+        "branchCount": 1,
+        "probabilitySum": 1,
+        "branches": [
+          {
+            "fromKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#4,3#1,6#3#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+            "weightIn": 1,
+            "cat": "4,3",
+            "mouse": "1,6",
+            "outcomes": [
+              {
+                "weight": 1,
+                "key": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__ec_e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#4,4#1,6#2#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+                "player": "cat",
+                "cat": "4,4",
+                "mouse": "1,6",
+                "catMovesLeft": 2,
+                "mouseMovesLeft": 0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "step": 2,
+        "label": "R",
+        "type": "catStep",
+        "kind": "deterministic",
+        "branchCount": 1,
+        "probabilitySum": 1,
+        "branches": [
+          {
+            "fromKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__ec_e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#4,4#1,6#2#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+            "weightIn": 1,
+            "cat": "4,4",
+            "mouse": "1,6",
+            "outcomes": [
+              {
+                "weight": 1,
+                "key": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__ec_e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#4,5#1,6#1#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+                "player": "cat",
+                "cat": "4,5",
+                "mouse": "1,6",
+                "catMovesLeft": 1,
+                "mouseMovesLeft": 0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "step": 3,
+        "label": "R",
+        "type": "catStep",
+        "kind": "chance",
+        "branchCount": 1,
+        "probabilitySum": 1,
+        "branches": [
+          {
+            "fromKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__ec_e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#4,5#1,6#1#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+            "weightIn": 1,
+            "cat": "4,5",
+            "mouse": "1,6",
+            "outcomes": [
+              {
+                "weight": 1,
+                "key": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__ec_e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#4,6#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+                "player": "mouse",
+                "cat": "4,6",
+                "mouse": "1,6",
+                "catMovesLeft": 0,
+                "mouseMovesLeft": 3
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "frontier": [
+      {
+        "key": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__ec_e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#4,6#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "weight": 1,
+        "player": "mouse",
+        "catMovesLeft": 0,
+        "detailReturned": {
+          "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__ec_e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#4,6#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+          "fullStateSha256": "253033ff26cd72033a9dcd33c5553cea2baabe3bee81c20138a01a88d40cd94b",
+          "snapshotSha256": "900e9f86ff3fd9ae1b6b3b94e5bd5838d7fc4332789a81ea6022bd5962903749",
+          "player": "mouse",
+          "summary": {
+            "phase": "playing",
+            "currentPlayer": "mouse",
+            "cat": "4,6",
+            "mouse": "1,6",
+            "catMovesLeft": 0,
+            "mouseMovesLeft": 3,
+            "mouseHasButter": true,
+            "mouseSkillActive": false,
+            "butterPositions": [
+              "2,6",
+              "5,1"
+            ],
+            "pendingButterSpawns": [],
+            "pendingButterPlacementDebt": 0,
+            "trapPosition": "1,1",
+            "catTrapsRemaining": 0,
+            "blockedTunnels": []
+          },
+          "boxes": [
+            "1,2",
+            "2,4",
+            "2,5",
+            "2,7",
+            "3,4",
+            "3,8",
+            "5,3",
+            "6,3",
+            "6,5",
+            "7,1",
+            "8,3",
+            "8,6"
+          ]
+        }
+      }
+    ],
+    "valuePerFrontier": [
+      {
+        "key": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__ec_e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#4,6#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "weight": 1,
+        "value": -854,
+        "mate": null,
+        "completed": true,
+        "nodes": 9615
+      }
+    ],
+    "conditionalExpectation": -854,
+    "completed": true
+  },
+  "labelSeparation": {
+    "d2ExpectedValue": "valueComparison.forced* (this file)",
+    "h2CatSurvivalCertificate": {
+      "source": "PPC-CAT-STRATEGY-SEAL-01/G6T2_RECERTIFICATION.json (frozen positive control, NOT re-run)",
+      "horizon": "H2",
+      "cap": 600000,
+      "status": "PROVEN for DRRR",
+      "note": "a survival proof, not a numeric score, and never mixed into the expectation"
+    },
+    "h1Status": {
+      "horizon": "H1",
+      "cap": 5000,
+      "status": "UNRESOLVED for every plan",
+      "note": "not evidence of anything and not mixed in"
+    }
+  }
+}

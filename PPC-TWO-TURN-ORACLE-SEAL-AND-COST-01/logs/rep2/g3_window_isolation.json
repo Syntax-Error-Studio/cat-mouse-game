@@ -1,0 +1,13 @@
+{
+  "sameFrontierStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+  "H1": {
+    "value": false,
+    "nodes": 118
+  },
+  "H2": {
+    "value": true,
+    "nodes": 65585
+  },
+  "memoKeyContract": "idx|stateKey in both kernels (quoted from source)",
+  "reading": "The base stateKey is identical; only H/startIdx differ. Window context must never be memoized away."
+}

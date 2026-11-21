@@ -1,0 +1,391 @@
+{
+  "round": "PPC-G6T2-SELECTION-CAUSE-01",
+  "phase": "G4_ROOT_CAUSE_VERDICT",
+  "generatedAt": "2026-11-19T13:17:50.322Z",
+  "rootId": "G6T2",
+  "arm": "E1",
+  "depthTurns": 2,
+  "instrumentationParity": true,
+  "gate": "SCORES_ADMISSIBLE",
+  "cases": {
+    "A": {
+      "supported": true,
+      "evidence": {
+        "parity": true,
+        "rootValues": [
+          {
+            "action": "U",
+            "value": -658.2105263157898,
+            "mate": null,
+            "bound": "exact"
+          },
+          {
+            "action": "D",
+            "value": -658.2105263157898,
+            "mate": null,
+            "bound": "exact"
+          },
+          {
+            "action": "L",
+            "value": -658.2105263157898,
+            "mate": null,
+            "bound": "exact"
+          }
+        ],
+        "afterD": {
+          "U": -658.2105263157898,
+          "L": -658.2105263157898,
+          "R": -658.2105263157898,
+          "deltaUminusR": 0,
+          "choice": "U",
+          "tieBreakRule": "strict improvement wins; on an exact tie the smaller original legal index is kept (stable order), with a certified-before-uncertified upgrade rule"
+        }
+      },
+      "interpretation": "at the D node all three continuations (U, L, R) carry the identical exact value; the strict-improvement rule cannot prefer R, and the stable legal-order rule keeps the smaller original index (U), so R is not eliminated by value - it is eliminated by the tie-break."
+    },
+    "B": {
+      "supported": true,
+      "evidence": {
+        "forcedDuud": -658.2105263157898,
+        "forcedDrrr": -854,
+        "deltaDrrrMinusDuud": -195.78947368421018,
+        "drNode": {
+          "R": -745.4473684210526,
+          "L": -658.2105263157898,
+          "chosen": "L",
+          "strictPreferenceForL": true
+        },
+        "drrNode": {
+          "R": -854,
+          "L": -745.4473684210526,
+          "chosen": "L",
+          "strictPreferenceForL": true
+        }
+      },
+      "interpretation": "once the DR prefix is fixed the search does not consider R equal any more: R is strictly worse than L at both DR and DRR, and the fully forced DRRR plan scores 195.79 lower than the forced DUUD plan under the same E1 leaf evaluator and the same remaining depth. The evaluator itself prefers the loop, not the RRR line."
+    },
+    "C": {
+      "supported": true,
+      "evidence": {
+        "directWalkPlans": [
+          {
+            "legalIndex": 0,
+            "rootAction": "U",
+            "directWalkPlan": "UUDD",
+            "candidatePlan": "UUDD"
+          },
+          {
+            "legalIndex": 1,
+            "rootAction": "D",
+            "directWalkPlan": "DUUD",
+            "candidatePlan": "DUUD"
+          },
+          {
+            "legalIndex": 2,
+            "rootAction": "L",
+            "directWalkPlan": "LUDR",
+            "candidatePlan": "LUDR"
+          }
+        ],
+        "productionCatTurnPlan": "ULDR",
+        "productionPlanReplay": {
+          "ok": true,
+          "frontierStatus": "VALID_MOUSE_FRONTIER",
+          "finalKeys": [
+            "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+          ],
+          "finalFullStateEqualsRoot": false,
+          "catReturnedButStateChanged": true
+        },
+        "reproducibility": "both channels are deterministic functions of the SAME post-search ctx; the observed copy is byte-equal to transform(production) and parity re-verified nodes/leaf/chance/value/root values exactly"
+      },
+      "interpretation": "the production searchBestAction() returns catTurnPlan ULDR while the per-root planBranches walk (the channel the D2 round published as candidates) yields UUDD. This is a real, reproducible extraction divergence at the plan-publication layer, but it does not create the D->R decision: that decision is the exact tie in CASE A."
+    },
+    "D": {
+      "supported": false,
+      "evidence": {
+        "chanceStepsInAllSixPlans": 6,
+        "everyChanceProbabilitySumIsOne": true,
+        "singleSuccessorPerChanceStep": true,
+        "forcedBaselineExact": true
+      },
+      "interpretation": "every CHANCE step in these six plans has one positive-probability successor and probability sum 1, and the forced DUUD baseline reproduces the frozen D2 branch value exactly; there is no measured expectation gap to attribute the selection to. Not supported as a cause (it remains a modelling factor only if other chance branches are ever examined)."
+    },
+    "E": {
+      "supported": false,
+      "interpretation": "not needed: at least one layer is supported by measurement; H1/5000 UNRESOLVED is a certificate status, not this verdict"
+    }
+  },
+  "layers": [
+    "A_D2_CHILD_VALUE_TIE",
+    "B_D2_EVALUATOR_PREFERS_OTHER",
+    "C_PLAN_EXTRACTION_MISMATCH"
+  ],
+  "primaryCause": "A_D2_CHILD_VALUE_TIE",
+  "answers": {
+    "q1_plans_non_progressing": {
+      "answer": "They are closed cat loops, not byte-identical boards. In all three plans the cat returns to (3,3) with the mouse still at (1,6); terrain, boxes, trap and blocked tunnels are unchanged. The final state differs from the settled root ONLY by the turn handoff, the move counters, and the already-pending butter spawn materialising. So: no positional/terrain progress, but not \"the whole state is unchanged\".",
+      "evidence": {
+        "d2FinalKeysIdentical": true,
+        "d2FinalFullStateEqualsRoot": false,
+        "d2FinalSnapshotsIdentical": true,
+        "duplicatedFinalStates": [
+          {
+            "plans": [
+              "UUDD",
+              "DUUD"
+            ],
+            "key": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+            "fullStateSha256": "51b3773e6da58d7d101af76a65f3956b8eff585bda1e06db8f1797c9148a129b"
+          },
+          {
+            "plans": [
+              "UUDD",
+              "LUDR"
+            ],
+            "key": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+            "fullStateSha256": "d9ba7799573f1d232df76c1e52f37140e7b1e707c8c6481cf46cddb4e68af921"
+          }
+        ],
+        "controlFinalKeys": [
+          {
+            "plan": "UURR",
+            "keys": [
+              "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__ec_em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#1,5#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+            ],
+            "fullState": [
+              "e954daae154e2b017bdf2e00c8c274353fdeb1c435d9fa2c8252d408de5d9aed"
+            ]
+          },
+          {
+            "plan": "DRRR",
+            "keys": [
+              "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__ec_e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#4,6#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+            ],
+            "fullState": [
+              "253033ff26cd72033a9dcd33c5553cea2baabe3bee81c20138a01a88d40cd94b"
+            ]
+          },
+          {
+            "plan": "DRDR",
+            "keys": [
+              "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__ec_e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#5,5#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+            ],
+            "fullState": [
+              "ad15efecfaf42215fc094b4548b12ad9e08c503c3470c012280ac4714652f613"
+            ]
+          }
+        ]
+      }
+    },
+    "q2_why_not_R_after_D": {
+      "answer": "At the D node the three values are EXACTLY equal (U=L=R=-658.2105263157898). R is not rejected by value; the strict-improvement rule finds no improvement and the stable legal-order rule keeps U (original index 0 < L 1 < R 2). Further, after DR the R step is strictly worse than L (DR: -745.447 vs -658.211; DRR: -854 vs -745.447), so the RRR line is not a tie at deeper layers either.",
+      "evidence": {
+        "afterD": {
+          "depthTurns": 2,
+          "U": {
+            "label": "U",
+            "type": "catStep",
+            "originalIndex": 0,
+            "value": -658.2105263157898,
+            "mate": null,
+            "bound": "exact",
+            "completed": true,
+            "cacheable": true
+          },
+          "R": {
+            "label": "R",
+            "type": "catStep",
+            "originalIndex": 2,
+            "value": -658.2105263157898,
+            "mate": null,
+            "bound": "exact",
+            "completed": true,
+            "cacheable": true
+          },
+          "L": {
+            "label": "L",
+            "type": "catStep",
+            "originalIndex": 1,
+            "value": -658.2105263157898,
+            "mate": null,
+            "bound": "exact",
+            "completed": true,
+            "cacheable": true
+          },
+          "deltaUminusR": 0,
+          "uEqualsRExactly": true,
+          "chosen": "U",
+          "nodeValue": -658.2105263157898,
+          "legalActionCount": 3
+        },
+        "dr": {
+          "R": -745.4473684210526,
+          "L": -658.2105263157898
+        },
+        "drr": {
+          "R": -854,
+          "L": -745.4473684210526
+        }
+      }
+    },
+    "q3_safe_DRRR_rank": {
+      "answer": "At DRR the exact values are D -900.7105, L -745.4474, R -854.0 (higher is better for the cat), so R ranks second of three - ahead of D but strictly behind L. The forced complete DRRR plan scores -854.0 against the chosen DUUD -658.2105, a measured penalty of 195.7895 under the same evaluator and remaining depth. The \"safe\" label is a survival certificate (H2), not a value advantage.",
+      "evidence": {
+        "drrActions": [
+          {
+            "label": "D",
+            "type": "catStep",
+            "originalIndex": 0,
+            "value": -900.7105263157896,
+            "mate": null,
+            "bound": "exact",
+            "completed": true,
+            "cacheable": true
+          },
+          {
+            "label": "L",
+            "type": "catStep",
+            "originalIndex": 1,
+            "value": -745.4473684210526,
+            "mate": null,
+            "bound": "exact",
+            "completed": true,
+            "cacheable": true
+          },
+          {
+            "label": "R",
+            "type": "catStep",
+            "originalIndex": 2,
+            "value": -854,
+            "mate": null,
+            "bound": "exact",
+            "completed": true,
+            "cacheable": true
+          }
+        ],
+        "forced": {
+          "status": "COMPARABLE",
+          "forcedDuud": -658.2105263157898,
+          "forcedDrrr": -854,
+          "deltaDrrrMinusDuud": -195.78947368421018,
+          "drrrBetterUnderE1": false,
+          "drrrWorseUnderE1": true
+        }
+      }
+    },
+    "q4_why_root_values_tied": {
+      "answer": "The three root actions reach (or are scored as) the same exact expectiminimax value under E1 at depth 2: every root child is a cat-to-move node whose own subtree ends in the same closed-loop frontier class, so the exact arithmetic returns the identical rational (-658.2105263157898) with bound=exact and mate=null. This is a genuine value tie, not a rounding artifact (all three are bit-identical).",
+      "evidence": [
+        {
+          "label": "U",
+          "value": -658.2105263157898,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "label": "D",
+          "value": -658.2105263157898,
+          "mate": null,
+          "bound": "exact"
+        },
+        {
+          "label": "L",
+          "value": -658.2105263157898,
+          "mate": null,
+          "bound": "exact"
+        }
+      ]
+    },
+    "q5_failure_location": {
+      "answer": "It is not search horizon (completed=true, 1,283,054 nodes, 0 cutoffs), not a budget/tie-rule defect (the tie rule behaved exactly as specified), and not chance expectation (single successor, weight sum 1, forced baseline exact). The selection cause is the interaction of (a) an exact value tie at the D fork resolved by legal order, (b) an evaluator that strictly disprefers the RRR line once the prefix is fixed, and (c) a plan-extraction divergence at the publication layer (production ULDR vs published D2 UUDD).",
+      "evidence": {
+        "parity": {
+          "NODES_MATCH": true,
+          "LEAF_NODES_MATCH": true,
+          "CHANCE_NODES_MATCH": true,
+          "VALUE_EXACT_MATCH": true,
+          "COMPLETED": true,
+          "MATE_NULL": true,
+          "BUDGET_CUTOFFS_ZERO": true,
+          "DEADLINE_CUTOFFS_ZERO": true,
+          "EXTENSION_ABORTS_ZERO": true,
+          "ROOT_VALUES_EXACT": true,
+          "PLANS_MATCH_FROZEN": true,
+          "PRODUCTION_PLAN_REPLAY_OK": true,
+          "REPETITIONS_ZERO": true,
+          "NODE_CAP_NOT_HIT": true,
+          "OBSERVATION_SINK_ACTIVE_OFF": true
+        },
+        "forced": {
+          "status": "COMPARABLE",
+          "forcedDuud": -658.2105263157898,
+          "forcedDrrr": -854,
+          "deltaDrrrMinusDuud": -195.78947368421018,
+          "drrrBetterUnderE1": false,
+          "drrrWorseUnderE1": true
+        },
+        "plans": {
+          "publishedD2Candidates": [
+            "UUDD",
+            "DUUD",
+            "LUDR"
+          ],
+          "directWalkPlans": [
+            {
+              "legalIndex": 0,
+              "rootAction": "U",
+              "directWalkPlan": "UUDD",
+              "candidatePlan": "UUDD"
+            },
+            {
+              "legalIndex": 1,
+              "rootAction": "D",
+              "directWalkPlan": "DUUD",
+              "candidatePlan": "DUUD"
+            },
+            {
+              "legalIndex": 2,
+              "rootAction": "L",
+              "directWalkPlan": "LUDR",
+              "candidatePlan": "LUDR"
+            }
+          ],
+          "directWalkStrings": [
+            "UUDD",
+            "DUUD",
+            "LUDR"
+          ],
+          "productionCatTurnPlan": "ULDR",
+          "productionPlanReplay": {
+            "ok": true,
+            "frontierStatus": "VALID_MOUSE_FRONTIER",
+            "finalKeys": [
+              "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+            ],
+            "finalFullStateEqualsRoot": false,
+            "catReturnedButStateChanged": true
+          },
+          "extractionDivergence": true,
+          "note": "directWalkPlan = buildPlanForFirstAction (planBranches walk, the D2 candidate channel); productionCatTurnPlan = searchBestAction().catTurnPlan (context-aware extractor). A difference is a real extraction divergence, reported as CASE C evidence."
+        }
+      }
+    },
+    "q6_next_tactical_mechanism": {
+      "answer": "For the 100ms/150ms production budget the next mechanism should not be \"raise depth\". What this evidence supports is an explicit, cheap tactical tie-break layer between equal exact values that scores safety/progress separately from E1: (i) prefer continuations with a monotone progress measure (no closed loops: distinct cat cells visited, distance-to-mouse monotonicity, box/trap/tunnel edges), (ii) treat the H2 survival certificate as a hard filter rather than a value, and (iii) fix the extraction channel so the published plan is the plan the search actually decided (single source of truth). All three are offline-provable and do not change search math or budgets.",
+      "evidence": {
+        "notes": "design recommendation only; not implemented this round"
+      }
+    }
+  },
+  "prohibitions": {
+    "productionSourceModified": false,
+    "commit": false,
+    "push": false,
+    "merge": false,
+    "searchMathChanged": false,
+    "budgetChanged": false,
+    "selfPlayOrFullRootGrid": false
+  },
+  "stopForChatGPTReview": true
+}

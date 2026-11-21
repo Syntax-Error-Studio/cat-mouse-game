@@ -1,0 +1,67 @@
+{
+  "key": "stateKey(s) (idx excluded; transitions do not read idx/H/mode)",
+  "method": "for every expansion whose stateKey was expanded before in the same solve, the newly generated transition list is serialized as label[weight:childStateKey,...] and compared with the first occurrence",
+  "totalRepeats": 475,
+  "targets": {
+    "DUUD/mouseForce": {
+      "value": true,
+      "expansions": 65585,
+      "distinctKeys": 65451,
+      "repeats": 134,
+      "repeatsSameIdx": 0,
+      "repeatsDiffIdx": 134,
+      "potentialHitRate": 0.002,
+      "signatureChecks": 134,
+      "signatureMismatches": 0,
+      "firstMismatch": null
+    },
+    "UURR/mouseForce": {
+      "value": true,
+      "expansions": 78839,
+      "distinctKeys": 78634,
+      "repeats": 205,
+      "repeatsSameIdx": 0,
+      "repeatsDiffIdx": 205,
+      "potentialHitRate": 0.0026,
+      "signatureChecks": 205,
+      "signatureMismatches": 0,
+      "firstMismatch": null
+    },
+    "DRRR/mouseForce": {
+      "value": false,
+      "expansions": 3513,
+      "distinctKeys": 3511,
+      "repeats": 2,
+      "repeatsSameIdx": 0,
+      "repeatsDiffIdx": 2,
+      "potentialHitRate": 0.0006,
+      "signatureChecks": 2,
+      "signatureMismatches": 0,
+      "firstMismatch": null
+    },
+    "DRRR/catSurvive": {
+      "value": true,
+      "expansions": 92963,
+      "distinctKeys": 92829,
+      "repeats": 134,
+      "repeatsSameIdx": 0,
+      "repeatsDiffIdx": 134,
+      "potentialHitRate": 0.0014,
+      "signatureChecks": 134,
+      "signatureMismatches": 0,
+      "firstMismatch": null
+    },
+    "LLLD/mouseForce": {
+      "value": true,
+      "expansions": 24075,
+      "distinctKeys": 24075,
+      "repeats": 0,
+      "repeatsSameIdx": 0,
+      "repeatsDiffIdx": 0,
+      "potentialHitRate": 0,
+      "signatureChecks": 0,
+      "signatureMismatches": 0,
+      "firstMismatch": null
+    }
+  }
+}

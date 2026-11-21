@@ -1,0 +1,396 @@
+{
+  "design": "ABBA (A,B,B,A) inside one fresh process per repetition; ratio = (B1+B2)/(A1+A2) cancels linear drift; A = uncached instrumented kernel, B = same kernel + solve-local action cache (cap 20,000, guard-memory states bypass).",
+  "repetitions": 3,
+  "serialFreshProcesses": true,
+  "roots": [
+    "DUUD/mouseForce",
+    "UURR/mouseForce",
+    "DRRR/mouseForce",
+    "LLLD/mouseForce"
+  ],
+  "perPlan": {
+    "DUUD/mouseForce": {
+      "ratiosPerRep": [
+        1.396,
+        1.4681,
+        1.272
+      ],
+      "medianRatio": 1.396,
+      "minRatio": 1.272,
+      "maxRatio": 1.4681,
+      "improvementsPct": [
+        -39.6,
+        -46.81,
+        -27.2
+      ],
+      "baselineMsPerRep": [
+        [
+          6253.4,
+          6633.9
+        ],
+        [
+          5711.5,
+          6370.9
+        ],
+        [
+          6461.4,
+          6471.5
+        ]
+      ],
+      "prototypeMsPerRep": [
+        [
+          9437.8,
+          8552.6
+        ],
+        [
+          8633.4,
+          9104.2
+        ],
+        [
+          8727.5,
+          7723.4
+        ]
+      ],
+      "nodes": 65585,
+      "pids": [
+        2136,
+        6344,
+        37520
+      ]
+    },
+    "UURR/mouseForce": {
+      "ratiosPerRep": [
+        1.3586,
+        1.0033,
+        1.3073
+      ],
+      "medianRatio": 1.3073,
+      "minRatio": 1.0033,
+      "maxRatio": 1.3586,
+      "improvementsPct": [
+        -35.86,
+        -0.33,
+        -30.73
+      ],
+      "baselineMsPerRep": [
+        [
+          8028.3,
+          8754.8
+        ],
+        [
+          8067.9,
+          7556.5
+        ],
+        [
+          8016,
+          8398.3
+        ]
+      ],
+      "prototypeMsPerRep": [
+        [
+          11238.4,
+          11562.5
+        ],
+        [
+          8678.4,
+          6997.4
+        ],
+        [
+          11554.5,
+          9903.2
+        ]
+      ],
+      "nodes": 78839,
+      "pids": [
+        2136,
+        6344,
+        37520
+      ]
+    },
+    "DRRR/mouseForce": {
+      "ratiosPerRep": [
+        1.2264,
+        1.0076,
+        1.157
+      ],
+      "medianRatio": 1.157,
+      "minRatio": 1.0076,
+      "maxRatio": 1.2264,
+      "improvementsPct": [
+        -22.64,
+        -0.76,
+        -15.7
+      ],
+      "baselineMsPerRep": [
+        [
+          382.9,
+          327.5
+        ],
+        [
+          394,
+          353.8
+        ],
+        [
+          323.2,
+          407.4
+        ]
+      ],
+      "prototypeMsPerRep": [
+        [
+          417.2,
+          454
+        ],
+        [
+          367,
+          386.5
+        ],
+        [
+          390.8,
+          454.5
+        ]
+      ],
+      "nodes": 3513,
+      "pids": [
+        2136,
+        6344,
+        37520
+      ]
+    },
+    "LLLD/mouseForce": {
+      "ratiosPerRep": [
+        1.2422,
+        1.2681,
+        1.2011
+      ],
+      "medianRatio": 1.2422,
+      "minRatio": 1.2011,
+      "maxRatio": 1.2681,
+      "improvementsPct": [
+        -24.22,
+        -26.81,
+        -20.11
+      ],
+      "baselineMsPerRep": [
+        [
+          2875.3,
+          2747.9
+        ],
+        [
+          2125.9,
+          2709.7
+        ],
+        [
+          2525.9,
+          2711.1
+        ]
+      ],
+      "prototypeMsPerRep": [
+        [
+          3630.6,
+          3354.6
+        ],
+        [
+          2883.6,
+          3248.6
+        ],
+        [
+          3155.8,
+          3134.6
+        ]
+      ],
+      "nodes": 24075,
+      "pids": [
+        2136,
+        6344,
+        37520
+      ]
+    }
+  },
+  "summary": {
+    "improvementPctPerPlanMean": {
+      "DUUD/mouseForce": -37.9,
+      "UURR/mouseForce": -22.3,
+      "DRRR/mouseForce": -13,
+      "LLLD/mouseForce": -23.7
+    },
+    "bestPlan": "DRRR/mouseForce",
+    "worstPlan": "DUUD/mouseForce",
+    "interpretation": "The cache never reduced wall time: all 12 plan x rep ratios are >= 1.0 (median about 1.25). Map bookkeeping itself costs ~3 ms total (cache_wiring_microbench), so the slowdown comes from retention: holding 20,000 Transition[] lists keeps the whole successor state graph alive (heap 149 -> 1234 MB on DUUD), which is a property of caching action lists, not of this implementation detail."
+  },
+  "hitUpperBound": {
+    "question": "After the existing idx|stateKey memo, how many expansions still regenerate an action list that this solve already generated for the same state identity?",
+    "denominator": "expansions that required generatePreparedSearchActions (memo hits excluded)",
+    "cacheLifetimeAssumed": "one solve() call; no cross-root, cross-plan, cross-turn or cross-rule reuse",
+    "perPlan": {
+      "DUUD": {
+        "mouseForce": {
+          "value": true,
+          "nodes": 65585,
+          "expansions": 65585,
+          "distinctExpansionKeys": 65451,
+          "repeatSameIdx": 0,
+          "repeatDiffIdx": 134,
+          "potentialActionCacheHitRate": 0.002,
+          "transitions": 193117,
+          "genMsPerExpansion": 0.054,
+          "selfMs": 6419.8,
+          "genMs": 3516.9,
+          "elapsedMs": 6483.9
+        },
+        "catSurvive": {
+          "value": false,
+          "nodes": 23041,
+          "expansions": 23041,
+          "distinctExpansionKeys": 23040,
+          "repeatSameIdx": 0,
+          "repeatDiffIdx": 1,
+          "potentialActionCacheHitRate": 0,
+          "transitions": 73164,
+          "genMsPerExpansion": 0.05,
+          "selfMs": 2113.4,
+          "genMs": 1160.3,
+          "elapsedMs": 2135.7
+        }
+      },
+      "UURR": {
+        "mouseForce": {
+          "value": true,
+          "nodes": 78839,
+          "expansions": 78839,
+          "distinctExpansionKeys": 78634,
+          "repeatSameIdx": 0,
+          "repeatDiffIdx": 205,
+          "potentialActionCacheHitRate": 0.0026,
+          "transitions": 234646,
+          "genMsPerExpansion": 0.054,
+          "selfMs": 7780,
+          "genMs": 4275.4,
+          "elapsedMs": 7853.4
+        },
+        "catSurvive": {
+          "value": false,
+          "nodes": 48142,
+          "expansions": 48142,
+          "distinctExpansionKeys": 48041,
+          "repeatSameIdx": 0,
+          "repeatDiffIdx": 101,
+          "potentialActionCacheHitRate": 0.0021,
+          "transitions": 150726,
+          "genMsPerExpansion": 0.053,
+          "selfMs": 4824.4,
+          "genMs": 2548.5,
+          "elapsedMs": 4875.2
+        }
+      },
+      "DRRR": {
+        "mouseForce": {
+          "value": false,
+          "nodes": 3513,
+          "expansions": 3513,
+          "distinctExpansionKeys": 3511,
+          "repeatSameIdx": 0,
+          "repeatDiffIdx": 2,
+          "potentialActionCacheHitRate": 0.0006,
+          "transitions": 10461,
+          "genMsPerExpansion": 0.051,
+          "selfMs": 338,
+          "genMs": 180.8,
+          "elapsedMs": 341.2
+        },
+        "catSurvive": {
+          "value": true,
+          "nodes": 92963,
+          "expansions": 92963,
+          "distinctExpansionKeys": 92829,
+          "repeatSameIdx": 0,
+          "repeatDiffIdx": 134,
+          "potentialActionCacheHitRate": 0.0014,
+          "transitions": 279110,
+          "genMsPerExpansion": 0.052,
+          "selfMs": 9032.2,
+          "genMs": 4815.8,
+          "elapsedMs": 9121.4
+        }
+      },
+      "LLLD": {
+        "mouseForce": {
+          "value": true,
+          "nodes": 24075,
+          "expansions": 24075,
+          "distinctExpansionKeys": 24075,
+          "repeatSameIdx": 0,
+          "repeatDiffIdx": 0,
+          "potentialActionCacheHitRate": 0,
+          "transitions": 83078,
+          "genMsPerExpansion": 0.07,
+          "selfMs": 2701.3,
+          "genMs": 1693.2,
+          "elapsedMs": 2725.9
+        },
+        "catSurvive": {
+          "value": false,
+          "nodes": 4822,
+          "expansions": 4822,
+          "distinctExpansionKeys": 4822,
+          "repeatSameIdx": 0,
+          "repeatDiffIdx": 0,
+          "potentialActionCacheHitRate": 0,
+          "transitions": 17516,
+          "genMsPerExpansion": 0.077,
+          "selfMs": 651.4,
+          "genMs": 369.1,
+          "elapsedMs": 659.5
+        }
+      }
+    },
+    "values": {
+      "DUUD": {
+        "mouseForce": true,
+        "catSurvive": false
+      },
+      "UURR": {
+        "mouseForce": true,
+        "catSurvive": false
+      },
+      "DRRR": {
+        "mouseForce": false,
+        "catSurvive": true
+      },
+      "LLLD": {
+        "mouseForce": true,
+        "catSurvive": false
+      }
+    },
+    "crossRootKeyIntersectionsOfflineOnly": {
+      "DUUD ∩ DUUD/catSurvive": 5581,
+      "DUUD ∩ UURR": 19361,
+      "DUUD ∩ UURR/catSurvive": 5535,
+      "DUUD ∩ DRRR": 17,
+      "DUUD ∩ DRRR/catSurvive": 3760,
+      "DUUD ∩ LLLD": 0,
+      "DUUD ∩ LLLD/catSurvive": 0,
+      "DUUD/catSurvive ∩ UURR": 1920,
+      "DUUD/catSurvive ∩ UURR/catSurvive": 5752,
+      "DUUD/catSurvive ∩ DRRR": 14,
+      "DUUD/catSurvive ∩ DRRR/catSurvive": 258,
+      "DUUD/catSurvive ∩ LLLD": 0,
+      "DUUD/catSurvive ∩ LLLD/catSurvive": 0,
+      "UURR ∩ UURR/catSurvive": 16268,
+      "UURR ∩ DRRR": 22,
+      "UURR ∩ DRRR/catSurvive": 10447,
+      "UURR ∩ LLLD": 0,
+      "UURR ∩ LLLD/catSurvive": 0,
+      "UURR/catSurvive ∩ DRRR": 19,
+      "UURR/catSurvive ∩ DRRR/catSurvive": 2515,
+      "UURR/catSurvive ∩ LLLD": 0,
+      "UURR/catSurvive ∩ LLLD/catSurvive": 0,
+      "DRRR ∩ DRRR/catSurvive": 3511,
+      "DRRR ∩ LLLD": 0,
+      "DRRR ∩ LLLD/catSurvive": 0,
+      "DRRR/catSurvive ∩ LLLD": 0,
+      "DRRR/catSurvive ∩ LLLD/catSurvive": 0,
+      "LLLD ∩ LLLD/catSurvive": 4822
+    },
+    "note": "Cross-root/cross-plan intersections are recorded for offline statistics only and are FORBIDDEN as a cache basis for the prototype."
+  }
+}

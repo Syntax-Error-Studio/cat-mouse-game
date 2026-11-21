@@ -1,0 +1,39 @@
+{
+  "round": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01",
+  "verifier": "PPC-CAT-STRATEGY-SEAL-01/probe/seal_lib.ts verifyMouseCertificate (frozen, read-only)",
+  "properties": {
+    "existentialSide": "mouse: policy map `${idx}|${stateKey}` -> action label",
+    "universalSide": "cat: every legal action is re-enumerated from the real RuleSet",
+    "chance": "every positive-probability outcome is re-enumerated; zero-weight outcomes skipped",
+    "pruning": "none",
+    "terminalAndCut": "terminal before horizon; a cat node at idx>=2H is outside",
+    "policyMissTotal": 0,
+    "nodeCap": 600000
+  },
+  "result": {
+    "verdict": "PROVEN",
+    "ok": true,
+    "leaves": 110921,
+    "branches": 1012,
+    "chanceNodes": 865,
+    "maxDepth": 18,
+    "counterexample": null,
+    "reason": null,
+    "elapsedMs": 7294
+  },
+  "witnessLine": {
+    "steps": 14,
+    "head": [
+      "m:S",
+      "m:D(chance)",
+      "m:D",
+      "m:D",
+      "m:D",
+      "m:D",
+      "m:D",
+      "c:U"
+    ],
+    "ok": true
+  },
+  "claimScope": "Two mouse turns from the DUUD post-plan frontier. Never reusable on another root or frontier."
+}

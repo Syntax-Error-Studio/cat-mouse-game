@@ -1,0 +1,66 @@
+{
+  "control": "UURR",
+  "identity": {
+    "frontierStateKeys": [
+      "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__ec_em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#1,5#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+    ],
+    "state": {
+      "phase": "playing",
+      "currentPlayer": "mouse",
+      "cat": "1,5",
+      "mouse": "1,6",
+      "catMovesLeft": 0,
+      "mouseMovesLeft": 3,
+      "mouseHasButter": true,
+      "mouseSkillActive": false,
+      "butterPositions": [
+        "2,6",
+        "5,1"
+      ],
+      "pendingButterSpawns": [],
+      "pendingButterPlacementDebt": 0,
+      "trapPosition": "1,1",
+      "catTrapsRemaining": 0,
+      "blockedTunnels": []
+    }
+  },
+  "proof": {
+    "value": true,
+    "truncated": false,
+    "nodes": 78839,
+    "elapsedMs": 2399,
+    "policySize": 10018,
+    "verify": {
+      "verdict": "PROVEN",
+      "leaves": 118305,
+      "policyMisses": 0,
+      "counterexample": null,
+      "elapsedMs": 2559
+    }
+  },
+  "shadow": {
+    "two": {
+      "value": true,
+      "nodes": 78839,
+      "truncated": false,
+      "witnessMs": 0,
+      "elapsedMs": 2448.345699999998
+    },
+    "one": {
+      "forcedWinThisTurn": false,
+      "existsWinningChanceOutcome": false,
+      "nodes": 1896,
+      "truncated": false,
+      "elapsedMs": 49.900399999998626
+    }
+  },
+  "host": {
+    "totalMB": 16087.8,
+    "freeMB": 2570.7,
+    "vitestProcesses": 3,
+    "vitestOutOfTree": 0,
+    "foreignNodeProcesses": 1,
+    "duplicates": 0,
+    "freeFloorMB": 1200
+  }
+}

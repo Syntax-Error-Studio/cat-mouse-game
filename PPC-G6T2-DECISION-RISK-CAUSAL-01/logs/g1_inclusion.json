@@ -1,0 +1,132 @@
+{
+  "plans": 110,
+  "productionIncludesFinalCatMove": 110,
+  "researchIncludesFinalCatMove": 0,
+  "productionCellsEqualResearchPlusFinal": 110,
+  "samplePlans": [
+    {
+      "plan": "UUUD",
+      "endKind": "chance",
+      "productionCells": [
+        "3,3",
+        "2,3",
+        "1,3",
+        "0,3",
+        "1,3"
+      ],
+      "researchCells": [
+        "3,3",
+        "2,3",
+        "1,3",
+        "0,3"
+      ],
+      "finalCell": "1,3",
+      "productionIncludesFinalCatMove": true,
+      "researchIncludesFinalCatMove": false
+    },
+    {
+      "plan": "UUUL",
+      "endKind": "chance",
+      "productionCells": [
+        "3,3",
+        "2,3",
+        "1,3",
+        "0,3",
+        "0,2"
+      ],
+      "researchCells": [
+        "3,3",
+        "2,3",
+        "1,3",
+        "0,3"
+      ],
+      "finalCell": "0,2",
+      "productionIncludesFinalCatMove": true,
+      "researchIncludesFinalCatMove": false
+    },
+    {
+      "plan": "UUUR",
+      "endKind": "chance",
+      "productionCells": [
+        "3,3",
+        "2,3",
+        "1,3",
+        "0,3",
+        "0,4"
+      ],
+      "researchCells": [
+        "3,3",
+        "2,3",
+        "1,3",
+        "0,3"
+      ],
+      "finalCell": "0,4",
+      "productionIncludesFinalCatMove": true,
+      "researchIncludesFinalCatMove": false
+    },
+    {
+      "plan": "UURR",
+      "endKind": "chance",
+      "productionCells": [
+        "3,3",
+        "2,3",
+        "1,3",
+        "1,4",
+        "1,5"
+      ],
+      "researchCells": [
+        "3,3",
+        "2,3",
+        "1,3",
+        "1,4"
+      ],
+      "finalCell": "1,5",
+      "productionIncludesFinalCatMove": true,
+      "researchIncludesFinalCatMove": false
+    },
+    {
+      "plan": "DUUD",
+      "endKind": "chance",
+      "productionCells": [
+        "3,3",
+        "4,3",
+        "3,3",
+        "2,3",
+        "3,3"
+      ],
+      "researchCells": [
+        "3,3",
+        "4,3",
+        "3,3",
+        "2,3"
+      ],
+      "finalCell": "3,3",
+      "productionIncludesFinalCatMove": true,
+      "researchIncludesFinalCatMove": false
+    },
+    {
+      "plan": "DRRR",
+      "endKind": "chance",
+      "productionCells": [
+        "3,3",
+        "4,3",
+        "4,4",
+        "4,5",
+        "4,6"
+      ],
+      "researchCells": [
+        "3,3",
+        "4,3",
+        "4,4",
+        "4,5"
+      ],
+      "finalCell": "4,6",
+      "productionIncludesFinalCatMove": true,
+      "researchIncludesFinalCatMove": false
+    }
+  ],
+  "semantics": {
+    "production": "FINAL_CAT_MOVE_INCLUDED (chance hand-off cell appended when all outcomes agree)",
+    "research": "FINAL_CAT_MOVE_EXCLUDED (loop stops before the chance hand-off cell)"
+  }
+}

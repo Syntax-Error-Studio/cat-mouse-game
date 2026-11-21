@@ -1,0 +1,528 @@
+{
+  "round": "PPC-G6T2-DECISION-RISK-CAUSAL-01",
+  "phase": "G4_CROSS_ROOT_SHADOW_RESULTS",
+  "generatedAt": "2026-11-20T08:20:50.114Z",
+  "instrument": {
+    "name": "TURN_AWARE_MOUSE_GOAL_RISK",
+    "wiredToDecision": false,
+    "horizon": "TWO_MOUSE_TURNS",
+    "caps": {
+      "twoTurn": 300000,
+      "oneTurn": 50000
+    }
+  },
+  "roots": [
+    "G1T9",
+    "G1T8",
+    "G1T4"
+  ],
+  "summaries": {
+    "G1T9": {
+      "completeCatTurns": 166,
+      "expandedStates": 66,
+      "enumerationMs": 33.32400000000007,
+      "production100ms": {
+        "planString": "LLLD",
+        "legalCompleteTurn": true,
+        "completedDepth": 1,
+        "deadlineFired": true,
+        "hasSolution": true,
+        "refutationSelectedPlanSource": "baseline"
+      },
+      "rootSnapshotSha256": "1a6f31b022ca32ec5c43b97e5678ffa84517ee1a6aba10a3e2b6cd5b3bc4094a",
+      "rootStateKeyHead": "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__",
+      "labels": {
+        "LLLD": "PROVEN_FORCED_WIN",
+        "UDUD": "PROVEN_FORCED_WIN"
+      },
+      "rootFrozenLabel": {
+        "classification": "MOUSE_FORCED_WIN_WITHIN_H1",
+        "h1Window": "cat turn + mouse turn",
+        "source": "PPC-CAT-STRATEGY-01/ROOT_CLASSIFICATION.json"
+      }
+    },
+    "G1T8": {
+      "completeCatTurns": 121,
+      "expandedStates": 49,
+      "enumerationMs": 15.296599999999671,
+      "production100ms": {
+        "planString": "LDRL",
+        "legalCompleteTurn": true,
+        "completedDepth": 1,
+        "deadlineFired": true,
+        "hasSolution": true,
+        "refutationSelectedPlanSource": "baseline"
+      },
+      "rootSnapshotSha256": "9e532ecd5d2fc1a28ef192547c396399617cf7c6217f1328cbc1ffa95159423f",
+      "rootStateKeyHead": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__",
+      "labels": {
+        "LDRL": "NO_WIN_WITHIN_TESTED_HORIZON",
+        "UUDU": "NO_WIN_WITHIN_TESTED_HORIZON"
+      },
+      "rootFrozenLabel": {
+        "classification": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+        "h1Window": "cat turn + mouse turn",
+        "source": "PPC-CAT-STRATEGY-01/ROOT_CLASSIFICATION.json"
+      }
+    },
+    "G1T4": {
+      "completeCatTurns": 117,
+      "expandedStates": 56,
+      "enumerationMs": 40.71389999999883,
+      "production100ms": {
+        "planString": "LLLL",
+        "legalCompleteTurn": true,
+        "completedDepth": 2,
+        "deadlineFired": true,
+        "hasSolution": true,
+        "refutationSelectedPlanSource": "baseline"
+      },
+      "rootSnapshotSha256": "7c872c4596dfd9bdc871c6ec41ad4765fa7fe793bf74ea4b8edcbb30cd3fdca8",
+      "rootStateKeyHead": "t__e__e__e__e__e__e__e__e__tm_e__e__b__e__e__e__",
+      "labels": {
+        "LLLL": "NO_WIN_WITHIN_TESTED_HORIZON",
+        "UDUD": "NO_WIN_WITHIN_TESTED_HORIZON"
+      },
+      "rootFrozenLabel": {
+        "classification": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+        "h1Window": "cat turn + mouse turn",
+        "source": "PPC-CAT-STRATEGY-01/ROOT_CLASSIFICATION.json"
+      }
+    }
+  },
+  "rows": [
+    {
+      "rootId": "G1T9",
+      "source": "production_100ms",
+      "plan": "LLLD",
+      "legal": true,
+      "completePlanInEnumeration": true,
+      "endKind": "chance",
+      "chanceSuccessorCount": 1,
+      "chanceWeights": [
+        1
+      ],
+      "chanceProbabilitySum": 1,
+      "nextMouseTurnRisk": {
+        "forcedWinThisTurn": false,
+        "existsWinningChanceOutcome": true,
+        "chanceOutcomesVisited": 1557
+      },
+      "twoTurn": {
+        "label": "PROVEN_FORCED_WIN",
+        "value": true,
+        "truncated": false,
+        "nodes": 24075,
+        "elapsedMs": 932.7949999999998,
+        "witnessMs": 0,
+        "witness": [
+          "m:U",
+          "m:D",
+          "m:U",
+          "c:U",
+          "c:U",
+          "c:D",
+          "c:U",
+          "m:D",
+          "m:R",
+          "m:S",
+          "m:R(chance)",
+          "m:R",
+          "m:R",
+          "m:R"
+        ],
+        "witnessOnly": null
+      },
+      "staticReach": {
+        "reachable": true,
+        "nodes": 80,
+        "truncated": false,
+        "elapsedMs": 4.177700000000186,
+        "line": [
+          "m:U",
+          "m:D",
+          "m:U",
+          "m:D",
+          "m:R",
+          "m:S",
+          "m:R",
+          "m:R",
+          "m:R",
+          "m:R"
+        ],
+        "caveat": "HEURISTIC: the cat never moves and no cat reply is quantified"
+      },
+      "e1Frontier": -1004.3421052631579,
+      "frozenLabel": null,
+      "frozenLabelScope": "per-plan; no per-plan frozen label exists for these control roots",
+      "rootFrozenLabel": "MOUSE_FORCED_WIN_WITHIN_H1",
+      "rootFrozenLabelWindow": "cat turn + mouse turn",
+      "rootFrozenLabelSource": "PPC-CAT-STRATEGY-01/ROOT_CLASSIFICATION.json",
+      "windowComparison": "rootFrozenLabelWindow (cat+mouse) is SHORTER than this instrument horizon (2 mouse turns); a CAT_SURVIVAL label at H1 does not bound this window and a NO_WIN here does not contradict it",
+      "safeClaim": null,
+      "safeClaimNote": "Root-level frozen label is window-scoped (PPC-CAT-STRATEGY-01 H1) and is NOT a per-plan safety certificate; NO_WIN within the tested horizon is not cat safety either.",
+      "cost": {
+        "enumerateMs": 33.32400000000007,
+        "oneTurnMs": 62.25630000000001,
+        "staticReachMs": 4.317600000000084,
+        "twoTurnMs": 932.7949999999998,
+        "riskMs": 999.5264999999999,
+        "rssBeforeMB": 164.41015625,
+        "rssAfterMB": 246.3046875,
+        "peakRssMB": 179.59765625,
+        "oneTurnNodes": 1662
+      }
+    },
+    {
+      "rootId": "G1T9",
+      "source": "first_complete_turn",
+      "plan": "UDUD",
+      "legal": true,
+      "completePlanInEnumeration": true,
+      "endKind": "chance",
+      "chanceSuccessorCount": 1,
+      "chanceWeights": [
+        1
+      ],
+      "chanceProbabilitySum": 1,
+      "nextMouseTurnRisk": {
+        "forcedWinThisTurn": false,
+        "existsWinningChanceOutcome": true,
+        "chanceOutcomesVisited": 1801
+      },
+      "twoTurn": {
+        "label": "PROVEN_FORCED_WIN",
+        "value": true,
+        "truncated": false,
+        "nodes": 13675,
+        "elapsedMs": 490.6639,
+        "witnessMs": 0,
+        "witness": [
+          "m:U",
+          "m:D",
+          "m:U",
+          "c:U",
+          "c:D",
+          "c:U",
+          "c:D",
+          "m:D",
+          "m:R",
+          "m:S",
+          "m:R(chance)",
+          "m:R",
+          "m:R",
+          "m:R"
+        ],
+        "witnessOnly": null
+      },
+      "staticReach": {
+        "reachable": true,
+        "nodes": 83,
+        "truncated": false,
+        "elapsedMs": 3.4827000000000226,
+        "line": [
+          "m:U",
+          "m:D",
+          "m:U",
+          "m:D",
+          "m:R",
+          "m:S",
+          "m:R",
+          "m:R",
+          "m:R",
+          "m:R"
+        ],
+        "caveat": "HEURISTIC: the cat never moves and no cat reply is quantified"
+      },
+      "e1Frontier": -1533.421052631579,
+      "frozenLabel": null,
+      "frozenLabelScope": "per-plan; no per-plan frozen label exists for these control roots",
+      "rootFrozenLabel": "MOUSE_FORCED_WIN_WITHIN_H1",
+      "rootFrozenLabelWindow": "cat turn + mouse turn",
+      "rootFrozenLabelSource": "PPC-CAT-STRATEGY-01/ROOT_CLASSIFICATION.json",
+      "windowComparison": "rootFrozenLabelWindow (cat+mouse) is SHORTER than this instrument horizon (2 mouse turns); a CAT_SURVIVAL label at H1 does not bound this window and a NO_WIN here does not contradict it",
+      "safeClaim": null,
+      "safeClaimNote": "Root-level frozen label is window-scoped (PPC-CAT-STRATEGY-01 H1) and is NOT a per-plan safety certificate; NO_WIN within the tested horizon is not cat safety either.",
+      "cost": {
+        "enumerateMs": 33.32400000000007,
+        "oneTurnMs": 61.85640000000012,
+        "staticReachMs": 3.486199999999826,
+        "twoTurnMs": 490.6639,
+        "riskMs": 556.0230999999999,
+        "rssBeforeMB": 246.7265625,
+        "rssAfterMB": 254.0078125,
+        "peakRssMB": 253.25,
+        "oneTurnNodes": 1887
+      }
+    },
+    {
+      "rootId": "G1T8",
+      "source": "production_100ms",
+      "plan": "LDRL",
+      "legal": true,
+      "completePlanInEnumeration": true,
+      "endKind": "handoff",
+      "chanceSuccessorCount": 1,
+      "chanceWeights": [
+        1
+      ],
+      "chanceProbabilitySum": 1,
+      "nextMouseTurnRisk": {
+        "forcedWinThisTurn": false,
+        "existsWinningChanceOutcome": false,
+        "chanceOutcomesVisited": 50
+      },
+      "twoTurn": {
+        "label": "NO_WIN_WITHIN_TESTED_HORIZON",
+        "value": false,
+        "truncated": false,
+        "nodes": 548,
+        "elapsedMs": 5811.259099999999,
+        "witnessMs": 5747.3625,
+        "witness": null,
+        "witnessOnly": null
+      },
+      "staticReach": {
+        "reachable": false,
+        "nodes": 16836,
+        "truncated": false,
+        "elapsedMs": 1608.1313999999998,
+        "line": null,
+        "caveat": "HEURISTIC: the cat never moves and no cat reply is quantified"
+      },
+      "e1Frontier": -1121.7368421052631,
+      "frozenLabel": null,
+      "frozenLabelScope": "per-plan; no per-plan frozen label exists for these control roots",
+      "rootFrozenLabel": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "rootFrozenLabelWindow": "cat turn + mouse turn",
+      "rootFrozenLabelSource": "PPC-CAT-STRATEGY-01/ROOT_CLASSIFICATION.json",
+      "windowComparison": "rootFrozenLabelWindow (cat+mouse) is SHORTER than this instrument horizon (2 mouse turns); a CAT_SURVIVAL label at H1 does not bound this window and a NO_WIN here does not contradict it",
+      "safeClaim": null,
+      "safeClaimNote": "Root-level frozen label is window-scoped (PPC-CAT-STRATEGY-01 H1) and is NOT a per-plan safety certificate; NO_WIN within the tested horizon is not cat safety either.",
+      "cost": {
+        "enumerateMs": 15.296599999999671,
+        "oneTurnMs": 59.29480000000012,
+        "staticReachMs": 1608.1437000000005,
+        "twoTurnMs": 5811.259099999999,
+        "riskMs": 7478.7464,
+        "rssBeforeMB": 255.7421875,
+        "rssAfterMB": 294.125,
+        "peakRssMB": 293.62109375,
+        "oneTurnNodes": 641
+      }
+    },
+    {
+      "rootId": "G1T8",
+      "source": "first_complete_turn",
+      "plan": "UUDU",
+      "legal": true,
+      "completePlanInEnumeration": true,
+      "endKind": "handoff",
+      "chanceSuccessorCount": 1,
+      "chanceWeights": [
+        1
+      ],
+      "chanceProbabilitySum": 1,
+      "nextMouseTurnRisk": {
+        "forcedWinThisTurn": false,
+        "existsWinningChanceOutcome": false,
+        "chanceOutcomesVisited": 62
+      },
+      "twoTurn": {
+        "label": "NO_WIN_WITHIN_TESTED_HORIZON",
+        "value": false,
+        "truncated": false,
+        "nodes": 544,
+        "elapsedMs": 5886.7559,
+        "witnessMs": 5835.937799999998,
+        "witness": null,
+        "witnessOnly": null
+      },
+      "staticReach": {
+        "reachable": null,
+        "nodes": 20020,
+        "truncated": true,
+        "elapsedMs": 1854.1528999999991,
+        "line": null,
+        "caveat": "HEURISTIC: the cat never moves and no cat reply is quantified"
+      },
+      "e1Frontier": -1455.842105263158,
+      "frozenLabel": null,
+      "frozenLabelScope": "per-plan; no per-plan frozen label exists for these control roots",
+      "rootFrozenLabel": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "rootFrozenLabelWindow": "cat turn + mouse turn",
+      "rootFrozenLabelSource": "PPC-CAT-STRATEGY-01/ROOT_CLASSIFICATION.json",
+      "windowComparison": "rootFrozenLabelWindow (cat+mouse) is SHORTER than this instrument horizon (2 mouse turns); a CAT_SURVIVAL label at H1 does not bound this window and a NO_WIN here does not contradict it",
+      "safeClaim": null,
+      "safeClaimNote": "Root-level frozen label is window-scoped (PPC-CAT-STRATEGY-01 H1) and is NOT a per-plan safety certificate; NO_WIN within the tested horizon is not cat safety either.",
+      "cost": {
+        "enumerateMs": 15.296599999999671,
+        "oneTurnMs": 78.96450000000004,
+        "staticReachMs": 1854.166000000001,
+        "twoTurnMs": 5886.7559,
+        "riskMs": 7819.915000000001,
+        "rssBeforeMB": 294.125,
+        "rssAfterMB": 334.43359375,
+        "peakRssMB": 334.43359375,
+        "oneTurnNodes": 791
+      }
+    },
+    {
+      "rootId": "G1T4",
+      "source": "production_100ms",
+      "plan": "LLLL",
+      "legal": true,
+      "completePlanInEnumeration": true,
+      "endKind": "handoff",
+      "chanceSuccessorCount": 1,
+      "chanceWeights": [
+        1
+      ],
+      "chanceProbabilitySum": 1,
+      "nextMouseTurnRisk": {
+        "forcedWinThisTurn": false,
+        "existsWinningChanceOutcome": false,
+        "chanceOutcomesVisited": 0
+      },
+      "twoTurn": {
+        "label": "NO_WIN_WITHIN_TESTED_HORIZON",
+        "value": false,
+        "truncated": false,
+        "nodes": 223,
+        "elapsedMs": 5168.9905,
+        "witnessMs": 5145.375100000001,
+        "witness": null,
+        "witnessOnly": null
+      },
+      "staticReach": {
+        "reachable": false,
+        "nodes": 8107,
+        "truncated": false,
+        "elapsedMs": 895.5650999999998,
+        "line": null,
+        "caveat": "HEURISTIC: the cat never moves and no cat reply is quantified"
+      },
+      "e1Frontier": -1181.3684210526317,
+      "frozenLabel": null,
+      "frozenLabelScope": "per-plan; no per-plan frozen label exists for these control roots",
+      "rootFrozenLabel": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "rootFrozenLabelWindow": "cat turn + mouse turn",
+      "rootFrozenLabelSource": "PPC-CAT-STRATEGY-01/ROOT_CLASSIFICATION.json",
+      "windowComparison": "rootFrozenLabelWindow (cat+mouse) is SHORTER than this instrument horizon (2 mouse turns); a CAT_SURVIVAL label at H1 does not bound this window and a NO_WIN here does not contradict it",
+      "safeClaim": null,
+      "safeClaimNote": "Root-level frozen label is window-scoped (PPC-CAT-STRATEGY-01 H1) and is NOT a per-plan safety certificate; NO_WIN within the tested horizon is not cat safety either.",
+      "cost": {
+        "enumerateMs": 40.71389999999883,
+        "oneTurnMs": 1.6082000000023982,
+        "staticReachMs": 895.575499999999,
+        "twoTurnMs": 5168.9905,
+        "riskMs": 6066.2011999999995,
+        "rssBeforeMB": 335.58203125,
+        "rssAfterMB": 365.3125,
+        "peakRssMB": 364.87109375,
+        "oneTurnNodes": 16
+      }
+    },
+    {
+      "rootId": "G1T4",
+      "source": "first_complete_turn",
+      "plan": "UDUD",
+      "legal": true,
+      "completePlanInEnumeration": true,
+      "endKind": "handoff",
+      "chanceSuccessorCount": 1,
+      "chanceWeights": [
+        1
+      ],
+      "chanceProbabilitySum": 1,
+      "nextMouseTurnRisk": {
+        "forcedWinThisTurn": false,
+        "existsWinningChanceOutcome": false,
+        "chanceOutcomesVisited": 0
+      },
+      "twoTurn": {
+        "label": "NO_WIN_WITHIN_TESTED_HORIZON",
+        "value": false,
+        "truncated": false,
+        "nodes": 225,
+        "elapsedMs": 5229.456099999999,
+        "witnessMs": 5209.2294,
+        "witness": null,
+        "witnessOnly": null
+      },
+      "staticReach": {
+        "reachable": false,
+        "nodes": 10242,
+        "truncated": false,
+        "elapsedMs": 1115.3474999999999,
+        "line": null,
+        "caveat": "HEURISTIC: the cat never moves and no cat reply is quantified"
+      },
+      "e1Frontier": -1507.6842105263158,
+      "frozenLabel": null,
+      "frozenLabelScope": "per-plan; no per-plan frozen label exists for these control roots",
+      "rootFrozenLabel": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+      "rootFrozenLabelWindow": "cat turn + mouse turn",
+      "rootFrozenLabelSource": "PPC-CAT-STRATEGY-01/ROOT_CLASSIFICATION.json",
+      "windowComparison": "rootFrozenLabelWindow (cat+mouse) is SHORTER than this instrument horizon (2 mouse turns); a CAT_SURVIVAL label at H1 does not bound this window and a NO_WIN here does not contradict it",
+      "safeClaim": null,
+      "safeClaimNote": "Root-level frozen label is window-scoped (PPC-CAT-STRATEGY-01 H1) and is NOT a per-plan safety certificate; NO_WIN within the tested horizon is not cat safety either.",
+      "cost": {
+        "enumerateMs": 40.71389999999883,
+        "oneTurnMs": 1.66990000000078,
+        "staticReachMs": 1115.363300000001,
+        "twoTurnMs": 5229.456099999999,
+        "riskMs": 6346.5219,
+        "rssBeforeMB": 365.3125,
+        "rssAfterMB": 374.7734375,
+        "peakRssMB": 391.828125,
+        "oneTurnNodes": 16
+      }
+    }
+  ],
+  "g6t2Reference": {
+    "source": "TACTICAL_RISK_WITNESSES.json",
+    "UURR": "PROVEN_FORCED_WIN",
+    "DRRR": "NO_WIN_WITHIN_TESTED_HORIZON (frozen cat-survives H2)",
+    "DUUD": "PROVEN_FORCED_WIN (production D2 preferred family)",
+    "DRDR": "NO_WIN_WITHIN_TESTED_HORIZON"
+  },
+  "frozenRootLabels": {
+    "source": "PPC-CAT-STRATEGY-01/ROOT_CLASSIFICATION.json",
+    "note": "Root-level labels use the H1 window (cat turn + mouse turn). They are structural controls, not per-plan certificates, and are NOT transplanted onto this round's plan verdicts.",
+    "consistency": [
+      {
+        "rootId": "G1T9",
+        "classification": "MOUSE_FORCED_WIN_WITHIN_H1",
+        "planLabels": [
+          "PROVEN_FORCED_WIN",
+          "PROVEN_FORCED_WIN"
+        ],
+        "relation": "CONSISTENT_DIRECTION: root already lost at H1; the stronger two-mouse-turn instrument also fires"
+      },
+      {
+        "rootId": "G1T8",
+        "classification": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+        "planLabels": [
+          "NO_WIN_WITHIN_TESTED_HORIZON",
+          "NO_WIN_WITHIN_TESTED_HORIZON"
+        ],
+        "relation": "CONSISTENT_NO_CONTRADICTION: longer-window instrument also found no forced win (still not a proof at this window)"
+      },
+      {
+        "rootId": "G1T4",
+        "classification": "CAT_SURVIVAL_CERTIFIED_WITHIN_H1",
+        "planLabels": [
+          "NO_WIN_WITHIN_TESTED_HORIZON",
+          "NO_WIN_WITHIN_TESTED_HORIZON"
+        ],
+        "relation": "CONSISTENT_NO_CONTRADICTION: longer-window instrument also found no forced win (still not a proof at this window)"
+      }
+    ]
+  },
+  "verdictPolicy": {
+    "discrimination": "A signal is usable only if it separates the certified-bad UURR from the certified-safe DRRR and does not fire on frozen-safe labels.",
+    "noFitting": "No threshold, weight or parameter was tuned on these roots.",
+    "noSafetyFromSilence": "Uncertified roots are reported as UNKNOWN_SAFETY regardless of the shadow verdict."
+  }
+}

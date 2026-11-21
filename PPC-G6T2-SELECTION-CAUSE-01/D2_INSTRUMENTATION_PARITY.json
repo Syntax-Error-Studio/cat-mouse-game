@@ -1,0 +1,79 @@
+{
+  "round": "PPC-G6T2-SELECTION-CAUSE-01",
+  "phase": "G2_INSTRUMENTATION_PARITY",
+  "generatedAt": "2026-11-19T13:12:37.925Z",
+  "rep": 1,
+  "pid": 3816330,
+  "parity": true,
+  "checks": {
+    "NODES_MATCH": true,
+    "LEAF_NODES_MATCH": true,
+    "CHANCE_NODES_MATCH": true,
+    "VALUE_EXACT_MATCH": true,
+    "COMPLETED": true,
+    "MATE_NULL": true,
+    "BUDGET_CUTOFFS_ZERO": true,
+    "DEADLINE_CUTOFFS_ZERO": true,
+    "EXTENSION_ABORTS_ZERO": true,
+    "ROOT_VALUES_EXACT": true,
+    "PLANS_MATCH_FROZEN": true,
+    "PRODUCTION_PLAN_REPLAY_OK": true,
+    "REPETITIONS_ZERO": true,
+    "NODE_CAP_NOT_HIT": true,
+    "OBSERVATION_SINK_ACTIVE_OFF": true
+  },
+  "expected": {
+    "nodes": 1283054,
+    "leafNodes": 2600863,
+    "chanceNodes": 7889,
+    "value": -658.2105263157898,
+    "planBranchEntries": 39462,
+    "plans": [
+      "UUDD",
+      "DUUD",
+      "LUDR"
+    ],
+    "rootValues": {
+      "U": -658.2105263157898,
+      "D": -658.2105263157898,
+      "L": -658.2105263157898
+    }
+  },
+  "actual": {
+    "nodes": 1283054,
+    "leafNodes": 2600863,
+    "chanceNodes": 7889,
+    "value": -658.2105263157898,
+    "mate": null,
+    "completed": true,
+    "bestAction": "U",
+    "catTurnPlan": [
+      "U",
+      "L",
+      "D",
+      "R"
+    ],
+    "rootValues": [
+      {
+        "label": "U",
+        "value": -658.2105263157898,
+        "mate": null,
+        "bound": "exact"
+      },
+      {
+        "label": "D",
+        "value": -658.2105263157898,
+        "mate": null,
+        "bound": "exact"
+      },
+      {
+        "label": "L",
+        "value": -658.2105263157898,
+        "mate": null,
+        "bound": "exact"
+      }
+    ]
+  },
+  "verdict": "PARITY_PASS",
+  "note": "scores from this search are admissible"
+}

@@ -1,0 +1,27 @@
+{
+  "rootId": "G6T2",
+  "stateKeyHead": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__",
+  "canonicalSnapshotSha256": "8ac26199c4ea45ac56194a6c2aa8de3f9be2631660be9129be114ae6d29446f5",
+  "fullStateSha256": "628f941f8969428e6da64360589d4b2b25327cea0bfd756a89394f9f8d23913e",
+  "fixtureCanonicalSnapshotSha256": "30a54a57fbf5747d0e1f0f073420809653fb58f9ef2f89e608042ffbc4446656",
+  "summary": {
+    "phase": "playing",
+    "currentPlayer": "cat",
+    "cat": "3,3",
+    "mouse": "1,6",
+    "catMovesLeft": 4,
+    "mouseMovesLeft": 0,
+    "mouseHasButter": true,
+    "mouseSkillActive": false,
+    "butterPositions": [
+      "2,6"
+    ],
+    "pendingButterSpawns": [
+      "5,1:0"
+    ],
+    "pendingButterPlacementDebt": 0,
+    "trapPosition": "1,1",
+    "catTrapsRemaining": 0,
+    "blockedTunnels": []
+  }
+}

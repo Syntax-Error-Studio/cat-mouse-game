@@ -1,0 +1,150 @@
+{
+  "entries": 36,
+  "drift": [],
+  "entriesList": [
+    {
+      "path": "src/game/ai/a0ExpectedReturnLeaf.ts",
+      "sha256": "cdbb0b5faba821820f025105ca5fa4dffdaf82c946ff4bab3d7171f3a6452db6"
+    },
+    {
+      "path": "src/game/ai/a0FrozenModel.ts",
+      "sha256": "27e74cab77a6a0cd09db4203497a627772411cb1de20c7b61393229ad44eabde"
+    },
+    {
+      "path": "src/game/ai/boundedPlanRefutation.ts",
+      "sha256": "42423439390a39b02c99ea2b23bd739a58e065dbd8ac92d1f0300f7a1add4d80"
+    },
+    {
+      "path": "src/game/ai/correctedHoleLeaf.ts",
+      "sha256": "f1403d3d945b425f98aa76deac9b6c44d81c317adf88a4b72f17d47b499d9a8a"
+    },
+    {
+      "path": "src/game/ai/deadlineContext.ts",
+      "sha256": "ced449445d70d1ba88cb20d88415b3c641d670aa886536fcacefa36b4aa50235"
+    },
+    {
+      "path": "src/game/ai/evaluation.ts",
+      "sha256": "91808f5cfb36aca2f5181ac74c6e761db560fd82faec1ef262aab155939bbd18"
+    },
+    {
+      "path": "src/game/ai/expectiminimax.ts",
+      "sha256": "50d27da5e9d0d47a1ad70efb542a3ec1510507fd14b825a52729ebb90f6d690c"
+    },
+    {
+      "path": "src/game/ai/forcedLossTieBreak.ts",
+      "sha256": "a27c91f90adbb1e415b5350668304d0d85036f5091b1b648693e72ac88b2cf03"
+    },
+    {
+      "path": "src/game/ai/gateRaceLeaf.ts",
+      "sha256": "fb0732d559945d8942108272ec0eeee457739827acbcd52ceda032e7b68a4f5e"
+    },
+    {
+      "path": "src/game/ai/hardHistory.ts",
+      "sha256": "acf1371c8180236723eef85f4ad70c8923c923fac30d3342f2fad943385da031"
+    },
+    {
+      "path": "src/game/ai/hardTurnPlanner.ts",
+      "sha256": "27b1ce6dc62234d0c822b2b0b6341205ac189b5f76d7662a5d29d9e17ded75ff"
+    },
+    {
+      "path": "src/game/ai/hybridLeaf.ts",
+      "sha256": "5b93f09ebe3443c6627ece9cbdd5c2296c9159688cdcef1d318de0505597e326"
+    },
+    {
+      "path": "src/game/ai/hybridRouteLeaf.ts",
+      "sha256": "518779f24934d51ca95b19f12c3c871509d3deeb78e05efb0ff39ee819fac0cd"
+    },
+    {
+      "path": "src/game/ai/hybridWeights.ts",
+      "sha256": "70b1e09e6a8d667861c1156e0bba445e401e2ede37f8d0bcba43d8050f8f7be6"
+    },
+    {
+      "path": "src/game/ai/interceptionGeometry.ts",
+      "sha256": "5b234f2287b1b2b680e724ce832a9083f5e3806d59224d06fe1d96d67f0a30d5"
+    },
+    {
+      "path": "src/game/ai/legalActions.ts",
+      "sha256": "27ae2f468d19043425326c2fc42923aeae894a5f84d2e0684ee374808b50eb22"
+    },
+    {
+      "path": "src/game/ai/planBound.ts",
+      "sha256": "4a212b75de6b5c47b6402c0745593169f6271a06d0f91fed99b7479f679b3dab"
+    },
+    {
+      "path": "src/game/ai/planQuality.ts",
+      "sha256": "46979485d568dfff12e2f998353cda95616502a7433ac84c3d31801726090952"
+    },
+    {
+      "path": "src/game/ai/preparedActions.ts",
+      "sha256": "67b76ad3de53fee6d3d32f9bc8ab9a02b52234857b23b7fc9091bd92011ad764"
+    },
+    {
+      "path": "src/game/ai/progressGuard.ts",
+      "sha256": "619a012572f2aefba5400c7bbddb17e4d4f608d897816278e44ed8ccde922914"
+    },
+    {
+      "path": "src/game/ai/searchConfig.ts",
+      "sha256": "0c960794de784785b8f12ac39fabf141bc1e82afd4cf8dc8d5788de12cabcd5c"
+    },
+    {
+      "path": "src/game/ai/searchTypes.ts",
+      "sha256": "bf62aec54e3cbf7d5387c473ae66fa071158a509c4cdbe5c991be4e6f44d6355"
+    },
+    {
+      "path": "src/game/ai/simulator.ts",
+      "sha256": "6d24d4f36d9f7e076fa36c9460ec51c674f1006f9cae00f7f5fb64771516df32"
+    },
+    {
+      "path": "src/game/ai/stateCompare.ts",
+      "sha256": "7c6339357b7eb0d2687aa4cb2842a7a4f0d51f5b0ab288851b13901e536ad017"
+    },
+    {
+      "path": "src/game/ai/threatClassifier.ts",
+      "sha256": "298cce31747a8bf4d8fc78a74321f5565738ac672d5b1cc016575595c3936f1b"
+    },
+    {
+      "path": "src/game/ai/transposition.ts",
+      "sha256": "7b4aa8eb3fab994a4abc77fdf38800ab2a5f9da57d5eb33a1b37075e106c2d64"
+    },
+    {
+      "path": "src/game/ai/turnBoundary.ts",
+      "sha256": "5295091cd02097d8508e058f1a8dfcc73bc383ee930f2d6fadbab0581af4d0bc"
+    },
+    {
+      "path": "src/game/ai/turnExecutionStatus.ts",
+      "sha256": "300472a0db1c8792bdacd739a89f6c3b2ed0017d5d3c21eddd3274b959bae36e"
+    },
+    {
+      "path": "src/game/config.ts",
+      "sha256": "880ac87df53a2134134e37ad11b92f944b79c87201f1c849b15d8d95fc2a516a"
+    },
+    {
+      "path": "src/game/engine.ts",
+      "sha256": "ad9b22df0c067d084a22157ed6e62123fb9adb22ed2cf7110b20f404f73eb100"
+    },
+    {
+      "path": "src/game/openingFairness.ts",
+      "sha256": "9d19279cafefe545ea6fd2d49cd2d412986c0002977c7b37cf3e72787efd7908"
+    },
+    {
+      "path": "src/game/rules/mobility.ts",
+      "sha256": "db177cf7fd9be9d3e95eee995bb22763c40c122ac97c97b94a5a3b1ff5bc3f8e"
+    },
+    {
+      "path": "src/game/rules/tunnelRules.ts",
+      "sha256": "d7eb708ef2477bf5bd240c2eb79c9796cc8bf34bcea406d0661fbcd28c03f509"
+    },
+    {
+      "path": "src/game/rules/tunnels.ts",
+      "sha256": "b7eda66b79cf0090161892cb26bc6e4334ee6ed429de9598bc46e2033c960109"
+    },
+    {
+      "path": "src/game/types.ts",
+      "sha256": "bd1b18c952964c880d9ebed0b2532ec3d021fd5b9d9d70a75fd600eca084a620"
+    },
+    {
+      "path": "src/game/ai/__tests__/fixtures/ppcId01-human-roots.json",
+      "sha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09"
+    }
+  ]
+}

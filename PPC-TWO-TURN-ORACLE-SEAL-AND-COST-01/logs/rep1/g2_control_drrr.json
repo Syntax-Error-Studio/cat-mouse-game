@@ -1,0 +1,59 @@
+{
+  "control": "DRRR",
+  "identity": {
+    "frontierStateKeys": [
+      "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__e__ec_e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#4,6#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+    ],
+    "state": {
+      "phase": "playing",
+      "currentPlayer": "mouse",
+      "cat": "4,6",
+      "mouse": "1,6",
+      "catMovesLeft": 0,
+      "mouseMovesLeft": 3,
+      "mouseHasButter": true,
+      "mouseSkillActive": false,
+      "butterPositions": [
+        "2,6",
+        "5,1"
+      ],
+      "pendingButterSpawns": [],
+      "pendingButterPlacementDebt": 0,
+      "trapPosition": "1,1",
+      "catTrapsRemaining": 0,
+      "blockedTunnels": []
+    }
+  },
+  "proof": {
+    "value": false,
+    "truncated": false,
+    "nodes": 3513,
+    "elapsedMs": 307
+  },
+  "interpretation": "NO_WIN is window-scoped (two mouse turns). It is NOT a cat-survival certificate and must never be reported as one.",
+  "shadow": {
+    "two": {
+      "value": false,
+      "nodes": 3513,
+      "truncated": false,
+      "witnessMs": 5565.125199999995,
+      "elapsedMs": 5905.450100000002
+    },
+    "one": {
+      "forcedWinThisTurn": false,
+      "existsWinningChanceOutcome": false,
+      "nodes": 1384,
+      "truncated": false,
+      "elapsedMs": 81.11610000000655
+    }
+  },
+  "host": {
+    "totalMB": 16087.8,
+    "freeMB": 2482.1,
+    "vitestProcesses": 3,
+    "vitestOutOfTree": 0,
+    "foreignNodeProcesses": 1,
+    "duplicates": 0,
+    "freeFloorMB": 1200
+  }
+}

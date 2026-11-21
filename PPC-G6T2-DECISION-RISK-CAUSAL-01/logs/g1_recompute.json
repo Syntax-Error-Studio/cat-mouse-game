@@ -1,0 +1,348 @@
+{
+  "round": "PPC-G6T2-DECISION-RISK-CAUSAL-01",
+  "phase": "G1_CACHE_CONTRACT_RECOMPUTE",
+  "plans": 110,
+  "agree": 67,
+  "disagree": 43,
+  "disagreeChanceEndKind": 43,
+  "endKindDistribution": {
+    "chance": 110
+  },
+  "productionRevisitDistribution": {
+    "0": 36,
+    "1": 44,
+    "2": 27,
+    "3": 3
+  },
+  "researchRevisitDistribution": {
+    "0": 56,
+    "1": 44,
+    "2": 10
+  },
+  "productionRevisitMax": 3,
+  "uniqueProgressDeltaDistribution": {
+    "0": 43,
+    "1": 67
+  },
+  "diffs": [
+    {
+      "plan": "UUUD",
+      "endKind": "chance",
+      "productionRevisit": 1,
+      "researchRevisit": 0,
+      "delta": 1
+    },
+    {
+      "plan": "UUDU",
+      "endKind": "chance",
+      "productionRevisit": 2,
+      "researchRevisit": 1,
+      "delta": 1
+    },
+    {
+      "plan": "UUDD",
+      "endKind": "chance",
+      "productionRevisit": 2,
+      "researchRevisit": 1,
+      "delta": 1
+    },
+    {
+      "plan": "UURL",
+      "endKind": "chance",
+      "productionRevisit": 1,
+      "researchRevisit": 0,
+      "delta": 1
+    },
+    {
+      "plan": "UDUD",
+      "endKind": "chance",
+      "productionRevisit": 3,
+      "researchRevisit": 2,
+      "delta": 1
+    },
+    {
+      "plan": "UDDU",
+      "endKind": "chance",
+      "productionRevisit": 2,
+      "researchRevisit": 1,
+      "delta": 1
+    },
+    {
+      "plan": "UDLR",
+      "endKind": "chance",
+      "productionRevisit": 2,
+      "researchRevisit": 1,
+      "delta": 1
+    },
+    {
+      "plan": "ULUD",
+      "endKind": "chance",
+      "productionRevisit": 1,
+      "researchRevisit": 0,
+      "delta": 1
+    },
+    {
+      "plan": "ULDU",
+      "endKind": "chance",
+      "productionRevisit": 1,
+      "researchRevisit": 0,
+      "delta": 1
+    },
+    {
+      "plan": "ULDR",
+      "endKind": "chance",
+      "productionRevisit": 1,
+      "researchRevisit": 0,
+      "delta": 1
+    },
+    {
+      "plan": "ULLR",
+      "endKind": "chance",
+      "productionRevisit": 1,
+      "researchRevisit": 0,
+      "delta": 1
+    },
+    {
+      "plan": "ULRD",
+      "endKind": "chance",
+      "productionRevisit": 2,
+      "researchRevisit": 1,
+      "delta": 1
+    },
+    {
+      "plan": "ULRL",
+      "endKind": "chance",
+      "productionRevisit": 2,
+      "researchRevisit": 1,
+      "delta": 1
+    },
+    {
+      "plan": "DUUD",
+      "endKind": "chance",
+      "productionRevisit": 2,
+      "researchRevisit": 1,
+      "delta": 1
+    },
+    {
+      "plan": "DUDU",
+      "endKind": "chance",
+      "productionRevisit": 3,
+      "researchRevisit": 2,
+      "delta": 1
+    },
+    {
+      "plan": "DULR",
+      "endKind": "chance",
+      "productionRevisit": 2,
+      "researchRevisit": 1,
+      "delta": 1
+    },
+    {
+      "plan": "DLUD",
+      "endKind": "chance",
+      "productionRevisit": 1,
+      "researchRevisit": 0,
+      "delta": 1
+    },
+    {
+      "plan": "DLUR",
+      "endKind": "chance",
+      "productionRevisit": 1,
+      "researchRevisit": 0,
+      "delta": 1
+    },
+    {
+      "plan": "DLDU",
+      "endKind": "chance",
+      "productionRevisit": 1,
+      "researchRevisit": 0,
+      "delta": 1
+    },
+    {
+      "plan": "DLRU",
+      "endKind": "chance",
+      "productionRevisit": 2,
+      "researchRevisit": 1,
+      "delta": 1
+    },
+    {
+      "plan": "DLRL",
+      "endKind": "chance",
+      "productionRevisit": 2,
+      "researchRevisit": 1,
+      "delta": 1
+    },
+    {
+      "plan": "DRDU",
+      "endKind": "chance",
+      "productionRevisit": 1,
+      "researchRevisit": 0,
+      "delta": 1
+    },
+    {
+      "plan": "DRLU",
+      "endKind": "chance",
+      "productionRevisit": 2,
+      "researchRevisit": 1,
+      "delta": 1
+    },
+    {
+      "plan": "DRLR",
+      "endKind": "chance",
+      "productionRevisit": 2,
+      "researchRevisit": 1,
+      "delta": 1
+    },
+    {
+      "plan": "DRRL",
+      "endKind": "chance",
+      "productionRevisit": 1,
+      "researchRevisit": 0,
+      "delta": 1
+    },
+    {
+      "plan": "LUUD",
+      "endKind": "chance",
+      "productionRevisit": 1,
+      "researchRevisit": 0,
+      "delta": 1
+    },
+    {
+      "plan": "LUDU",
+      "endKind": "chance",
+      "productionRevisit": 2,
+      "researchRevisit": 1,
+      "delta": 1
+    },
+    {
+      "plan": "LUDR",
+      "endKind": "chance",
+      "productionRevisit": 2,
+      "researchRevisit": 1,
+      "delta": 1
+    },
+    {
+      "plan": "LULR",
+      "endKind": "chance",
+      "productionRevisit": 1,
+      "researchRevisit": 0,
+      "delta": 1
+    },
+    {
+      "plan": "LURD",
+      "endKind": "chance",
+      "productionRevisit": 1,
+      "researchRevisit": 0,
+      "delta": 1
+    },
+    {
+      "plan": "LURL",
+      "endKind": "chance",
+      "productionRevisit": 1,
+      "researchRevisit": 0,
+      "delta": 1
+    },
+    {
+      "plan": "LDUD",
+      "endKind": "chance",
+      "productionRevisit": 2,
+      "researchRevisit": 1,
+      "delta": 1
+    },
+    {
+      "plan": "LDUR",
+      "endKind": "chance",
+      "productionRevisit": 2,
+      "researchRevisit": 1,
+      "delta": 1
+    },
+    {
+      "plan": "LDDU",
+      "endKind": "chance",
+      "productionRevisit": 1,
+      "researchRevisit": 0,
+      "delta": 1
+    },
+    {
+      "plan": "LDRU",
+      "endKind": "chance",
+      "productionRevisit": 1,
+      "researchRevisit": 0,
+      "delta": 1
+    },
+    {
+      "plan": "LDRL",
+      "endKind": "chance",
+      "productionRevisit": 1,
+      "researchRevisit": 0,
+      "delta": 1
+    },
+    {
+      "plan": "LLUD",
+      "endKind": "chance",
+      "productionRevisit": 1,
+      "researchRevisit": 0,
+      "delta": 1
+    },
+    {
+      "plan": "LLLR",
+      "endKind": "chance",
+      "productionRevisit": 1,
+      "researchRevisit": 0,
+      "delta": 1
+    },
+    {
+      "plan": "LLRL",
+      "endKind": "chance",
+      "productionRevisit": 2,
+      "researchRevisit": 1,
+      "delta": 1
+    },
+    {
+      "plan": "LLRR",
+      "endKind": "chance",
+      "productionRevisit": 2,
+      "researchRevisit": 1,
+      "delta": 1
+    },
+    {
+      "plan": "LRUD",
+      "endKind": "chance",
+      "productionRevisit": 2,
+      "researchRevisit": 1,
+      "delta": 1
+    },
+    {
+      "plan": "LRDU",
+      "endKind": "chance",
+      "productionRevisit": 2,
+      "researchRevisit": 1,
+      "delta": 1
+    },
+    {
+      "plan": "LRLR",
+      "endKind": "chance",
+      "productionRevisit": 3,
+      "researchRevisit": 2,
+      "delta": 1
+    }
+  ],
+  "frozenReference": {
+    "agree": 67,
+    "disagree": 43,
+    "allChance": true,
+    "deltaPlusOne": true,
+    "productionDistribution": {
+      "0": 36,
+      "1": 44,
+      "2": 27,
+      "3": 3
+    },
+    "researchDistribution": {
+      "0": 56,
+      "1": 44,
+      "2": 10
+    }
+  },
+  "verdict": "FROZEN_67_43_REPRODUCED"
+}

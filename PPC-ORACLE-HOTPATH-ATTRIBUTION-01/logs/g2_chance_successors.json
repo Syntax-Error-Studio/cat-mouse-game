@@ -1,0 +1,13 @@
+{
+  "root": "G6T2/DUUD",
+  "expansions": 65585,
+  "transitions": 193117,
+  "chanceNodes": 2122,
+  "chanceOutcomes": 53766,
+  "outcomeKeyCalls": 244761,
+  "distinctSuccessorKeys": 107932,
+  "duplicateSuccessorKeys": 136829,
+  "duplicateSuccessorRate": 0.559,
+  "outcomeKeyMs": 3577.6,
+  "elapsedMs": 10114.5
+}

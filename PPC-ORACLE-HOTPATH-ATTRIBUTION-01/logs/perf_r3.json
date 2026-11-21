@@ -1,0 +1,113 @@
+{
+  "rep": 3,
+  "design": "ABBA within one fresh process per root; ratio = (B1+B2)/(A1+A2) cancels linear drift",
+  "A": "baseline instrumented kernel (no cache)",
+  "B": "same kernel + solve-local action cache (cap 20,000)",
+  "pid": 37520,
+  "rows": {
+    "DUUD/mouseForce": {
+      "order": "ABBA",
+      "timesMs": {
+        "A": [
+          6461.4,
+          6471.5
+        ],
+        "B": [
+          8727.5,
+          7723.4
+        ]
+      },
+      "rssMB": {
+        "A": [
+          1593,
+          2247
+        ],
+        "B": [
+          2214,
+          2233
+        ]
+      },
+      "nodes": 65585,
+      "ratioBoverA": 1.272,
+      "improvementPct": -27.2
+    },
+    "UURR/mouseForce": {
+      "order": "ABBA",
+      "timesMs": {
+        "A": [
+          8016,
+          8398.3
+        ],
+        "B": [
+          11554.5,
+          9903.2
+        ]
+      },
+      "rssMB": {
+        "A": [
+          2270,
+          2277
+        ],
+        "B": [
+          2276,
+          2277
+        ]
+      },
+      "nodes": 78839,
+      "ratioBoverA": 1.3073,
+      "improvementPct": -30.73
+    },
+    "DRRR/mouseForce": {
+      "order": "ABBA",
+      "timesMs": {
+        "A": [
+          323.2,
+          407.4
+        ],
+        "B": [
+          390.8,
+          454.5
+        ]
+      },
+      "rssMB": {
+        "A": [
+          1980,
+          1998
+        ],
+        "B": [
+          1987,
+          1997
+        ]
+      },
+      "nodes": 3513,
+      "ratioBoverA": 1.157,
+      "improvementPct": -15.7
+    },
+    "LLLD/mouseForce": {
+      "order": "ABBA",
+      "timesMs": {
+        "A": [
+          2525.9,
+          2711.1
+        ],
+        "B": [
+          3155.8,
+          3134.6
+        ]
+      },
+      "rssMB": {
+        "A": [
+          2009,
+          2115
+        ],
+        "B": [
+          2112,
+          2112
+        ]
+      },
+      "nodes": 24075,
+      "ratioBoverA": 1.2011,
+      "improvementPct": -20.11
+    }
+  }
+}

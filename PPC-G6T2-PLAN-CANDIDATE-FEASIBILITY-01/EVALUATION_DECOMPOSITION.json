@@ -1,0 +1,241 @@
+{
+  "round": "PPC-G6T2-PLAN-CANDIDATE-FEASIBILITY-01",
+  "phase": "G4_EVALUATION_DECOMPOSITION",
+  "generatedAt": "2026-11-19T13:43:46.241Z",
+  "rootId": "G6T2",
+  "e1Source": "src/game/ai/evaluation.ts evaluateForCatDetailed (unmodified, read-only)",
+  "separation": {
+    "spatialProgressOfCompleteCatTurn": {
+      "UUDD": {
+        "planLabels": "UUDD",
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "finalCat": "3,3",
+        "finalMouse": "1,6",
+        "endKind": "chance",
+        "endFullStateSha256": "eddd776e5530fa4d559d2dd27f9ac099bf7da7d2ca124cbf66e80b61d19a5a8c"
+      },
+      "DUUD": {
+        "planLabels": "DUUD",
+        "uniqueProgress": 2,
+        "revisitCount": 1,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 5,
+        "distanceDelta": 0,
+        "finalCat": "3,3",
+        "finalMouse": "1,6",
+        "endKind": "chance",
+        "endFullStateSha256": "51b3773e6da58d7d101af76a65f3956b8eff585bda1e06db8f1797c9148a129b"
+      },
+      "DRRR": {
+        "planLabels": "DRRR",
+        "uniqueProgress": 3,
+        "revisitCount": 0,
+        "zeroCostActions": 0,
+        "boardChangedVsRoot": true,
+        "boxesMovedVsRoot": 0,
+        "distanceStart": 5,
+        "distanceEnd": 3,
+        "distanceDelta": 2,
+        "finalCat": "4,6",
+        "finalMouse": "1,6",
+        "endKind": "chance",
+        "endFullStateSha256": "253033ff26cd72033a9dcd33c5553cea2baabe3bee81c20138a01a88d40cd94b"
+      }
+    },
+    "d2ExpectationAfterMouseTurn": {
+      "DUUD": {
+        "frontier": "DUUD",
+        "frontierFullStateSha256": "51b3773e6da58d7d101af76a65f3956b8eff585bda1e06db8f1797c9148a129b",
+        "value": -658.2105263157898,
+        "expectedFrozenValue": -658.2105263157898,
+        "matchesFrozen": true,
+        "absoluteDifference": 0,
+        "mate": null,
+        "completed": true,
+        "nodesVisited": 10964,
+        "leafNodes": 22270,
+        "chanceNodes": 71,
+        "leafCalls": 1036,
+        "leafTotals": {
+          "min": -658.2105263157895,
+          "max": 842.921052631579,
+          "mean": 10.998471484373818
+        },
+        "leafMeanContributions": {
+          "capturePressure": -493.95752895752895,
+          "mouseGoalThreat": -109.13970092541531,
+          "butterRace": 230.67567567567568,
+          "confinement": -65.49034749034749,
+          "mobility": 1.6288610038610039,
+          "trapControl": 202.06563706563708,
+          "tunnelControl": -168.94029233314947,
+          "holeControl": 160.27992277992277,
+          "voronoiBalance": 53.87624466571872,
+          "tempo": 200
+        },
+        "clampedLeafCalls": 0
+      },
+      "DRRR": {
+        "frontier": "DRRR",
+        "frontierFullStateSha256": "253033ff26cd72033a9dcd33c5553cea2baabe3bee81c20138a01a88d40cd94b",
+        "value": -854,
+        "expectedFrozenValue": -854,
+        "matchesFrozen": true,
+        "absoluteDifference": 0,
+        "mate": null,
+        "completed": true,
+        "nodesVisited": 9615,
+        "leafNodes": 18113,
+        "chanceNodes": 71,
+        "leafCalls": 876,
+        "leafTotals": {
+          "min": -854,
+          "max": 998.0526315789475,
+          "mean": 98.64082914668685
+        },
+        "leafMeanContributions": {
+          "capturePressure": -397.0890410958904,
+          "mouseGoalThreat": -101.91173805899837,
+          "butterRace": 261.3013698630137,
+          "confinement": -65.96232876712328,
+          "mobility": 69.27796803652969,
+          "trapControl": 207.26027397260273,
+          "tunnelControl": -194.6183953033268,
+          "holeControl": -41.32420091324201,
+          "voronoiBalance": 161.70692141312213,
+          "tempo": 200
+        },
+        "clampedLeafCalls": 0
+      },
+      "frozenReference": {
+        "duud": -658.2105263157898,
+        "drrr": -854,
+        "delta": -195.78947368421018,
+        "source": "round-01 forced-DUUD vs forced-DRRR comparison (not re-run)"
+      }
+    },
+    "h2SurvivalWindow": {
+      "DRRR": {
+        "catSurvive": true,
+        "window": 2,
+        "horizonField": {
+          "H0": 1,
+          "H1": 2,
+          "cut": "cat node idx >= 2*H"
+        },
+        "cap": 600000,
+        "certificate": {
+          "verdict": "PROVEN",
+          "ok": true,
+          "leaves": 117382,
+          "branches": 31236,
+          "chanceNodes": 549,
+          "policyMisses": 0,
+          "reason": null,
+          "counterexample": null
+        },
+        "recomputed": false
+      },
+      "UURR": {
+        "mouseForcedWin": true,
+        "recomputed": false
+      },
+      "status": "FROZEN_HISTORICAL_CERTIFICATE_OFFLINE_LABEL_ONLY"
+    }
+  },
+  "e1StaticAtFrontier": {
+    "UUDD": {
+      "total": -561.8421052631579,
+      "rawSum": -561.8421052631579,
+      "clamped": false,
+      "contributions": {
+        "capturePressure": -450,
+        "mouseGoalThreat": -137.5,
+        "butterRace": 0,
+        "confinement": -55.00000000000005,
+        "mobility": -62.5,
+        "trapControl": 180.00000000000003,
+        "tunnelControl": 0,
+        "holeControl": 50,
+        "voronoiBalance": 63.1578947368421,
+        "tempo": -150
+      }
+    },
+    "DUUD": {
+      "total": -561.8421052631579,
+      "rawSum": -561.8421052631579,
+      "clamped": false,
+      "contributions": {
+        "capturePressure": -450,
+        "mouseGoalThreat": -137.5,
+        "butterRace": 0,
+        "confinement": -55.00000000000005,
+        "mobility": -62.5,
+        "trapControl": 180.00000000000003,
+        "tunnelControl": 0,
+        "holeControl": 50,
+        "voronoiBalance": 63.1578947368421,
+        "tempo": -150
+      }
+    },
+    "DRRR": {
+      "total": -917.2368421052631,
+      "rawSum": -917.2368421052631,
+      "clamped": false,
+      "contributions": {
+        "capturePressure": -810,
+        "mouseGoalThreat": -137.5,
+        "butterRace": 0,
+        "confinement": -55.00000000000005,
+        "mobility": 0,
+        "trapControl": 180.00000000000003,
+        "tunnelControl": 0,
+        "holeControl": -150,
+        "voronoiBalance": 205.26315789473685,
+        "tempo": -150
+      }
+    },
+    "gapDuudMinusDrrr": {
+      "capturePressure": 360,
+      "mouseGoalThreat": 0,
+      "butterRace": 0,
+      "confinement": 0,
+      "mobility": -62.5,
+      "trapControl": 0,
+      "tunnelControl": 0,
+      "holeControl": 200,
+      "voronoiBalance": -142.10526315789474,
+      "tempo": 0
+    },
+    "totalGapDuudMinusDrrr": 355.3947368421052
+  },
+  "e1LeafAggregateGapAfterMouseTurn": {
+    "capturePressure": -96.86848786163853,
+    "mouseGoalThreat": -7.227962866416945,
+    "butterRace": -30.625694187338013,
+    "confinement": 0.47198127677579294,
+    "mobility": -67.64910703266868,
+    "trapControl": -5.1946369069656555,
+    "tunnelControl": 25.67810297017732,
+    "holeControl": 201.60412369316478,
+    "voronoiBalance": -107.8306767474034,
+    "tempo": 0
+  },
+  "limits": [
+    "leafMeanContributions aggregate the VISITED leaves of a pruned alpha-beta tree with transposition lookups; they are not an exact expectation decomposition of the D2 value.",
+    "static E1 at the frontier is a cat-perspective static score of a mouse-to-move state; it is not the D2 value and must not be merged with it.",
+    "the H2 survival proof is a frozen finite-window certificate; it is not recomputed and not converted into any numeric input.",
+    "no composite safety score is formed: spatial features, D2 expectation and the H2 label are reported side by side."
+  ],
+  "projectionSha256": "{\"e1LeafAggregateGapAfterMouseTurn\":{\"butterRace\":-30.625694187338013,\"capturePressure\":-96.86848786163853,\"confinement\":0.47198127677579294,\"holeControl\":201.60412369316478,\"mobility\":-67.64910703266868,\"mouseGoalThreat\":-7.227962866416945,\"tempo\":0,\"trapControl\":-5.1946369069656555,\"tunnelControl\":25.67810297017732,\"voronoiBalance\":-107.8306767474034},\"e1Source\":\"src/game/ai/evaluation.ts evaluateForCatDetailed (unmodified, read-only)\",\"e1StaticAtFrontier\":{\"DRRR\":{\"clamped\":false,\"contributions\":{\"butterRace\":0,\"capturePressure\":-810,\"confinement\":-55.00000000000005,\"holeControl\":-150,\"mobility\":0,\"mouseGoalThreat\":-137.5,\"tempo\":-150,\"trapControl\":180.00000000000003,\"tunnelControl\":0,\"voronoiBalance\":205.26315789473685},\"rawSum\":-917.2368421052631,\"total\":-917.2368421052631},\"DUUD\":{\"clamped\":false,\"contributions\":{\"butterRace\":0,\"capturePressure\":-450,\"confinement\":-55.00000000000005,\"holeControl\":50,\"mobility\":-62.5,\"mouseGoalThreat\":-137.5,\"tempo\":-150,\"trapControl\":180.00000000000003,\"tunnelControl\":0,\"voronoiBalance\":63.1578947368421},\"rawSum\":-561.8421052631579,\"total\":-561.8421052631579},\"UUDD\":{\"clamped\":false,\"contributions\":{\"butterRace\":0,\"capturePressure\":-450,\"confinement\":-55.00000000000005,\"holeControl\":50,\"mobility\":-62.5,\"mouseGoalThreat\":-137.5,\"tempo\":-150,\"trapControl\":180.00000000000003,\"tunnelControl\":0,\"voronoiBalance\":63.1578947368421},\"rawSum\":-561.8421052631579,\"total\":-561.8421052631579},\"gapDuudMinusDrrr\":{\"butterRace\":0,\"capturePressure\":360,\"confinement\":0,\"holeControl\":200,\"mobility\":-62.5,\"mouseGoalThreat\":0,\"tempo\":0,\"trapControl\":0,\"tunnelControl\":0,\"voronoiBalance\":-142.10526315789474},\"totalGapDuudMinusDrrr\":355.3947368421052},\"limits\":[\"leafMeanContributions aggregate the VISITED leaves of a pruned alpha-beta tree with transposition lookups; they are not an exact expectation decomposition of the D2 value.\",\"static E1 at the frontier is a cat-perspective static score of a mouse-to-move state; it is not the D2 value and must not be merged with it.\",\"the H2 survival proof is a frozen finite-window certificate; it is not recomputed and not converted into any numeric input.\",\"no composite safety score is formed: spatial features, D2 expectation and the H2 label are reported side by side.\"],\"phase\":\"G4_EVALUATION_DECOMPOSITION\",\"rootId\":\"G6T2\",\"round\":\"PPC-G6T2-PLAN-CANDIDATE-FEASIBILITY-01\",\"separation\":{\"d2ExpectationAfterMouseTurn\":{\"DRRR\":{\"absoluteDifference\":0,\"chanceNodes\":71,\"clampedLeafCalls\":0,\"completed\":true,\"expectedFrozenValue\":-854,\"frontier\":\"DRRR\",\"frontierFullStateSha256\":\"253033ff26cd72033a9dcd33c5553cea2baabe3bee81c20138a01a88d40cd94b\",\"leafCalls\":876,\"leafMeanContributions\":{\"butterRace\":261.3013698630137,\"capturePressure\":-397.0890410958904,\"confinement\":-65.96232876712328,\"holeControl\":-41.32420091324201,\"mobility\":69.27796803652969,\"mouseGoalThreat\":-101.91173805899837,\"tempo\":200,\"trapControl\":207.26027397260273,\"tunnelControl\":-194.6183953033268,\"voronoiBalance\":161.70692141312213},\"leafNodes\":18113,\"leafTotals\":{\"max\":998.0526315789475,\"mean\":98.64082914668685,\"min\":-854},\"matchesFrozen\":true,\"mate\":null,\"nodesVisited\":9615,\"value\":-854},\"DUUD\":{\"absoluteDifference\":0,\"chanceNodes\":71,\"clampedLeafCalls\":0,\"completed\":true,\"expectedFrozenValue\":-658.2105263157898,\"frontier\":\"DUUD\",\"frontierFullStateSha256\":\"51b3773e6da58d7d101af76a65f3956b8eff585bda1e06db8f1797c9148a129b\",\"leafCalls\":1036,\"leafMeanContributions\":{\"butterRace\":230.67567567567568,\"capturePressure\":-493.95752895752895,\"confinement\":-65.49034749034749,\"holeControl\":160.27992277992277,\"mobility\":1.6288610038610039,\"mouseGoalThreat\":-109.13970092541531,\"tempo\":200,\"trapControl\":202.06563706563708,\"tunnelControl\":-168.94029233314947,\"voronoiBalance\":53.87624466571872},\"leafNodes\":22270,\"leafTotals\":{\"max\":842.921052631579,\"mean\":10.998471484373818,\"min\":-658.2105263157895},\"matchesFrozen\":true,\"mate\":null,\"nodesVisited\":10964,\"value\":-658.2105263157898},\"frozenReference\":{\"delta\":-195.78947368421018,\"drrr\":-854,\"duud\":-658.2105263157898,\"source\":\"round-01 forced-DUUD vs forced-DRRR comparison (not re-run)\"}},\"h2SurvivalWindow\":{\"DRRR\":{\"cap\":600000,\"catSurvive\":true,\"certificate\":{\"branches\":31236,\"chanceNodes\":549,\"counterexample\":null,\"leaves\":117382,\"ok\":true,\"policyMisses\":0,\"reason\":null,\"verdict\":\"PROVEN\"},\"horizonField\":{\"H0\":1,\"H1\":2,\"cut\":\"cat node idx >= 2*H\"},\"recomputed\":false,\"window\":2},\"UURR\":{\"mouseForcedWin\":true,\"recomputed\":false},\"status\":\"FROZEN_HISTORICAL_CERTIFICATE_OFFLINE_LABEL_ONLY\"},\"spatialProgressOfCompleteCatTurn\":{\"DRRR\":{\"boardChangedVsRoot\":true,\"boxesMovedVsRoot\":0,\"distanceDelta\":2,\"distanceEnd\":3,\"distanceStart\":5,\"endFullStateSha256\":\"253033ff26cd72033a9dcd33c5553cea2baabe3bee81c20138a01a88d40cd94b\",\"endKind\":\"chance\",\"finalCat\":\"4,6\",\"finalMouse\":\"1,6\",\"planLabels\":\"DRRR\",\"revisitCount\":0,\"uniqueProgress\":3,\"zeroCostActions\":0},\"DUUD\":{\"boardChangedVsRoot\":true,\"boxesMovedVsRoot\":0,\"distanceDelta\":0,\"distanceEnd\":5,\"distanceStart\":5,\"endFullStateSha256\":\"51b3773e6da58d7d101af76a65f3956b8eff585bda1e06db8f1797c9148a129b\",\"endKind\":\"chance\",\"finalCat\":\"3,3\",\"finalMouse\":\"1,6\",\"planLabels\":\"DUUD\",\"revisitCount\":1,\"uniqueProgress\":2,\"zeroCostActions\":0},\"UUDD\":{\"boardChangedVsRoot\":true,\"boxesMovedVsRoot\":0,\"distanceDelta\":0,\"distanceEnd\":5,\"distanceStart\":5,\"endFullStateSha256\":\"eddd776e5530fa4d559d2dd27f9ac099bf7da7d2ca124cbf66e80b61d19a5a8c\",\"endKind\":\"chance\",\"finalCat\":\"3,3\",\"finalMouse\":\"1,6\",\"planLabels\":\"UUDD\",\"revisitCount\":1,\"uniqueProgress\":2,\"zeroCostActions\":0}}}}"
+}

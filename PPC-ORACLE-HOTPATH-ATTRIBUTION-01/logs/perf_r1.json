@@ -1,0 +1,113 @@
+{
+  "rep": 1,
+  "design": "ABBA within one fresh process per root; ratio = (B1+B2)/(A1+A2) cancels linear drift",
+  "A": "baseline instrumented kernel (no cache)",
+  "B": "same kernel + solve-local action cache (cap 20,000)",
+  "pid": 2136,
+  "rows": {
+    "DUUD/mouseForce": {
+      "order": "ABBA",
+      "timesMs": {
+        "A": [
+          6253.4,
+          6633.9
+        ],
+        "B": [
+          9437.8,
+          8552.6
+        ]
+      },
+      "rssMB": {
+        "A": [
+          2104,
+          1856
+        ],
+        "B": [
+          2104,
+          1856
+        ]
+      },
+      "nodes": 65585,
+      "ratioBoverA": 1.396,
+      "improvementPct": -39.6
+    },
+    "UURR/mouseForce": {
+      "order": "ABBA",
+      "timesMs": {
+        "A": [
+          8028.3,
+          8754.8
+        ],
+        "B": [
+          11238.4,
+          11562.5
+        ]
+      },
+      "rssMB": {
+        "A": [
+          1848,
+          1822
+        ],
+        "B": [
+          2002,
+          2002
+        ]
+      },
+      "nodes": 78839,
+      "ratioBoverA": 1.3586,
+      "improvementPct": -35.86
+    },
+    "DRRR/mouseForce": {
+      "order": "ABBA",
+      "timesMs": {
+        "A": [
+          382.9,
+          327.5
+        ],
+        "B": [
+          417.2,
+          454
+        ]
+      },
+      "rssMB": {
+        "A": [
+          1824,
+          1855
+        ],
+        "B": [
+          1833,
+          1855
+        ]
+      },
+      "nodes": 3513,
+      "ratioBoverA": 1.2264,
+      "improvementPct": -22.64
+    },
+    "LLLD/mouseForce": {
+      "order": "ABBA",
+      "timesMs": {
+        "A": [
+          2875.3,
+          2747.9
+        ],
+        "B": [
+          3630.6,
+          3354.6
+        ]
+      },
+      "rssMB": {
+        "A": [
+          1816,
+          1392
+        ],
+        "B": [
+          1857,
+          1857
+        ]
+      },
+      "nodes": 24075,
+      "ratioBoverA": 1.2422,
+      "improvementPct": -24.22
+    }
+  }
+}

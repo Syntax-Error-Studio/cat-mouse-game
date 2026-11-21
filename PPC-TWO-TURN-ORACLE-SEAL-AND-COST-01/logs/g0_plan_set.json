@@ -1,0 +1,10 @@
+{
+  "rootId": "G6T2",
+  "rootStateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#3,3#1,6#4#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+  "planCount": 110,
+  "duud": {
+    "labels": "DUUD",
+    "endKind": "chance"
+  },
+  "source": "PPC-G6T2-DECISION-RISK-CAUSAL-01/probe/dr_lib.enumerateRoot"
+}

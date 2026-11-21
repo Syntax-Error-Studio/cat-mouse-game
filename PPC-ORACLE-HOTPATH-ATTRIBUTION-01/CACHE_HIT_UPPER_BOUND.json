@@ -1,0 +1,176 @@
+{
+  "question": "After the existing idx|stateKey memo, how many expansions still regenerate an action list that this solve already generated for the same state identity?",
+  "denominator": "expansions that required generatePreparedSearchActions (memo hits excluded)",
+  "cacheLifetimeAssumed": "one solve() call; no cross-root, cross-plan, cross-turn or cross-rule reuse",
+  "perPlan": {
+    "DUUD": {
+      "mouseForce": {
+        "value": true,
+        "nodes": 65585,
+        "expansions": 65585,
+        "distinctExpansionKeys": 65451,
+        "repeatSameIdx": 0,
+        "repeatDiffIdx": 134,
+        "potentialActionCacheHitRate": 0.002,
+        "transitions": 193117,
+        "genMsPerExpansion": 0.054,
+        "selfMs": 6419.8,
+        "genMs": 3516.9,
+        "elapsedMs": 6483.9
+      },
+      "catSurvive": {
+        "value": false,
+        "nodes": 23041,
+        "expansions": 23041,
+        "distinctExpansionKeys": 23040,
+        "repeatSameIdx": 0,
+        "repeatDiffIdx": 1,
+        "potentialActionCacheHitRate": 0,
+        "transitions": 73164,
+        "genMsPerExpansion": 0.05,
+        "selfMs": 2113.4,
+        "genMs": 1160.3,
+        "elapsedMs": 2135.7
+      }
+    },
+    "UURR": {
+      "mouseForce": {
+        "value": true,
+        "nodes": 78839,
+        "expansions": 78839,
+        "distinctExpansionKeys": 78634,
+        "repeatSameIdx": 0,
+        "repeatDiffIdx": 205,
+        "potentialActionCacheHitRate": 0.0026,
+        "transitions": 234646,
+        "genMsPerExpansion": 0.054,
+        "selfMs": 7780,
+        "genMs": 4275.4,
+        "elapsedMs": 7853.4
+      },
+      "catSurvive": {
+        "value": false,
+        "nodes": 48142,
+        "expansions": 48142,
+        "distinctExpansionKeys": 48041,
+        "repeatSameIdx": 0,
+        "repeatDiffIdx": 101,
+        "potentialActionCacheHitRate": 0.0021,
+        "transitions": 150726,
+        "genMsPerExpansion": 0.053,
+        "selfMs": 4824.4,
+        "genMs": 2548.5,
+        "elapsedMs": 4875.2
+      }
+    },
+    "DRRR": {
+      "mouseForce": {
+        "value": false,
+        "nodes": 3513,
+        "expansions": 3513,
+        "distinctExpansionKeys": 3511,
+        "repeatSameIdx": 0,
+        "repeatDiffIdx": 2,
+        "potentialActionCacheHitRate": 0.0006,
+        "transitions": 10461,
+        "genMsPerExpansion": 0.051,
+        "selfMs": 338,
+        "genMs": 180.8,
+        "elapsedMs": 341.2
+      },
+      "catSurvive": {
+        "value": true,
+        "nodes": 92963,
+        "expansions": 92963,
+        "distinctExpansionKeys": 92829,
+        "repeatSameIdx": 0,
+        "repeatDiffIdx": 134,
+        "potentialActionCacheHitRate": 0.0014,
+        "transitions": 279110,
+        "genMsPerExpansion": 0.052,
+        "selfMs": 9032.2,
+        "genMs": 4815.8,
+        "elapsedMs": 9121.4
+      }
+    },
+    "LLLD": {
+      "mouseForce": {
+        "value": true,
+        "nodes": 24075,
+        "expansions": 24075,
+        "distinctExpansionKeys": 24075,
+        "repeatSameIdx": 0,
+        "repeatDiffIdx": 0,
+        "potentialActionCacheHitRate": 0,
+        "transitions": 83078,
+        "genMsPerExpansion": 0.07,
+        "selfMs": 2701.3,
+        "genMs": 1693.2,
+        "elapsedMs": 2725.9
+      },
+      "catSurvive": {
+        "value": false,
+        "nodes": 4822,
+        "expansions": 4822,
+        "distinctExpansionKeys": 4822,
+        "repeatSameIdx": 0,
+        "repeatDiffIdx": 0,
+        "potentialActionCacheHitRate": 0,
+        "transitions": 17516,
+        "genMsPerExpansion": 0.077,
+        "selfMs": 651.4,
+        "genMs": 369.1,
+        "elapsedMs": 659.5
+      }
+    }
+  },
+  "values": {
+    "DUUD": {
+      "mouseForce": true,
+      "catSurvive": false
+    },
+    "UURR": {
+      "mouseForce": true,
+      "catSurvive": false
+    },
+    "DRRR": {
+      "mouseForce": false,
+      "catSurvive": true
+    },
+    "LLLD": {
+      "mouseForce": true,
+      "catSurvive": false
+    }
+  },
+  "crossRootKeyIntersectionsOfflineOnly": {
+    "DUUD ∩ DUUD/catSurvive": 5581,
+    "DUUD ∩ UURR": 19361,
+    "DUUD ∩ UURR/catSurvive": 5535,
+    "DUUD ∩ DRRR": 17,
+    "DUUD ∩ DRRR/catSurvive": 3760,
+    "DUUD ∩ LLLD": 0,
+    "DUUD ∩ LLLD/catSurvive": 0,
+    "DUUD/catSurvive ∩ UURR": 1920,
+    "DUUD/catSurvive ∩ UURR/catSurvive": 5752,
+    "DUUD/catSurvive ∩ DRRR": 14,
+    "DUUD/catSurvive ∩ DRRR/catSurvive": 258,
+    "DUUD/catSurvive ∩ LLLD": 0,
+    "DUUD/catSurvive ∩ LLLD/catSurvive": 0,
+    "UURR ∩ UURR/catSurvive": 16268,
+    "UURR ∩ DRRR": 22,
+    "UURR ∩ DRRR/catSurvive": 10447,
+    "UURR ∩ LLLD": 0,
+    "UURR ∩ LLLD/catSurvive": 0,
+    "UURR/catSurvive ∩ DRRR": 19,
+    "UURR/catSurvive ∩ DRRR/catSurvive": 2515,
+    "UURR/catSurvive ∩ LLLD": 0,
+    "UURR/catSurvive ∩ LLLD/catSurvive": 0,
+    "DRRR ∩ DRRR/catSurvive": 3511,
+    "DRRR ∩ LLLD": 0,
+    "DRRR ∩ LLLD/catSurvive": 0,
+    "DRRR/catSurvive ∩ LLLD": 0,
+    "DRRR/catSurvive ∩ LLLD/catSurvive": 0,
+    "LLLD ∩ LLLD/catSurvive": 4822
+  },
+  "note": "Cross-root/cross-plan intersections are recorded for offline statistics only and are FORBIDDEN as a cache basis for the prototype."
+}

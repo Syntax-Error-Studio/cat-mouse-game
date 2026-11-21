@@ -1,0 +1,12 @@
+{
+  "rounds": 3,
+  "combined": [
+    "5ceafd4c811a2e10a431feeaa3ef9510e58c22df8791b93c8ecf332511734233"
+  ],
+  "perFileDistinctCounts": {
+    "TACTICAL_RISK_WITNESSES.json": 1,
+    "CROSS_ROOT_SHADOW_RESULTS.json": 1,
+    "G6T2_DECISION_CAUSAL_TRACE.json": 1
+  },
+  "verdict": "DETERMINISTIC"
+}

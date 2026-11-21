@@ -1,0 +1,113 @@
+{
+  "rep": 2,
+  "design": "ABBA within one fresh process per root; ratio = (B1+B2)/(A1+A2) cancels linear drift",
+  "A": "baseline instrumented kernel (no cache)",
+  "B": "same kernel + solve-local action cache (cap 20,000)",
+  "pid": 6344,
+  "rows": {
+    "DUUD/mouseForce": {
+      "order": "ABBA",
+      "timesMs": {
+        "A": [
+          5711.5,
+          6370.9
+        ],
+        "B": [
+          8633.4,
+          9104.2
+        ]
+      },
+      "rssMB": {
+        "A": [
+          859,
+          2302
+        ],
+        "B": [
+          1143,
+          2287
+        ]
+      },
+      "nodes": 65585,
+      "ratioBoverA": 1.4681,
+      "improvementPct": -46.81
+    },
+    "UURR/mouseForce": {
+      "order": "ABBA",
+      "timesMs": {
+        "A": [
+          8067.9,
+          7556.5
+        ],
+        "B": [
+          8678.4,
+          6997.4
+        ]
+      },
+      "rssMB": {
+        "A": [
+          2327,
+          2239
+        ],
+        "B": [
+          2327,
+          2306
+        ]
+      },
+      "nodes": 78839,
+      "ratioBoverA": 1.0033,
+      "improvementPct": -0.33
+    },
+    "DRRR/mouseForce": {
+      "order": "ABBA",
+      "timesMs": {
+        "A": [
+          394,
+          353.8
+        ],
+        "B": [
+          367,
+          386.5
+        ]
+      },
+      "rssMB": {
+        "A": [
+          2234,
+          2247
+        ],
+        "B": [
+          2239,
+          2244
+        ]
+      },
+      "nodes": 3513,
+      "ratioBoverA": 1.0076,
+      "improvementPct": -0.76
+    },
+    "LLLD/mouseForce": {
+      "order": "ABBA",
+      "timesMs": {
+        "A": [
+          2125.9,
+          2709.7
+        ],
+        "B": [
+          2883.6,
+          3248.6
+        ]
+      },
+      "rssMB": {
+        "A": [
+          2247,
+          1403
+        ],
+        "B": [
+          757,
+          1347
+        ]
+      },
+      "nodes": 24075,
+      "ratioBoverA": 1.2681,
+      "improvementPct": -26.81
+    }
+  }
+}

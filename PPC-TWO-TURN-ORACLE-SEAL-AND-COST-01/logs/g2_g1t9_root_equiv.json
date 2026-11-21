@@ -1,0 +1,49 @@
+{
+  "purpose": "test whether the root-level STRATEGY label and the post-plan frontier window are the same mouse question",
+  "rootWindow": {
+    "call": "mouseForcesWinSeal(root, H=2, startIdx=0)",
+    "value": true,
+    "nodes": 229158,
+    "truncated": false,
+    "elapsedMs": 7738,
+    "frozenCrossKernelNodes": {
+      "source": "PPC-CAT-STRATEGY-01/ROOT_CLASSIFICATION.json G1T9.evidence.h1Nodes",
+      "value": 66749,
+      "sealValue": 229158,
+      "identical": false,
+      "why": "STRATEGY kernel prunes mouse nodes with cannotReachHoleInHorizon and evaluates a value search; SEAL is a plain boolean quantifier. Same verdict, different trace."
+    },
+    "verify": {
+      "verdict": "UNRESOLVED",
+      "reason": "NODE_CAP",
+      "leaves": 600001,
+      "policyMisses": 0,
+      "cap": 600000
+    }
+  },
+  "planWindow": {
+    "plan": "LLLD",
+    "frontierStateKeys": [
+      "t__e__e__e__e__e__b__e__e__t__e__e__b__e__e__e__e__e__e__e__e__e__e__e__ec_b__e__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__b__e__e__b__e__e__b__e__e__e__e__b__b__e__p__e__p__e__e__e__e__b__e__e__b__p__b__e__e__e__e__e__e__e__e__p__m__m__e__e__e__em_e__e__e__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#2,4#8,3#0#3#5,5|8,5##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+    ],
+    "call": "mouseForcesWinSeal(frontier, H=2, startIdx=1)",
+    "value": true,
+    "nodes": 24075,
+    "truncated": false,
+    "verify": {
+      "verdict": "PROVEN",
+      "leaves": 24999
+    }
+  },
+  "conclusion": "The root label is SOLVE-corroborated by a second kernel: same boolean true, but the SEAL trace visits 229158 nodes vs the frozen STRATEGY artifact 66749 (prune + value search), so node counts are NOT identical. The root certificate EXCEEDS the frozen 600k verifier leaf cap. It is therefore NOT counted as independently verified; the plan-window certificate (LLLD frontier) IS verified. The label is not a window contradiction with the plan-level layer-1 false.",
+  "status": "ROOT_LABEL_SOLVE_CORROBORATED_CERT_UNRESOLVED_AT_CAP",
+  "host": {
+    "totalMB": 16087.8,
+    "freeMB": 2370.1,
+    "vitestProcesses": 3,
+    "vitestOutOfTree": 0,
+    "foreignNodeProcesses": 1,
+    "duplicates": 0,
+    "freeFloorMB": 1200
+  }
+}

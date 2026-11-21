@@ -1,0 +1,23 @@
+{
+  "mouseForce": {
+    "value": false,
+    "truncated": false,
+    "nodes": 3513,
+    "certificate": null
+  },
+  "dualCatSurvive": {
+    "call": "catSurvivesSeal(frontier, H=2, startIdx=1)",
+    "value": true,
+    "truncated": false,
+    "nodes": 92963,
+    "elapsedMs": 2851,
+    "verify": {
+      "verdict": "PROVEN",
+      "leaves": 117382,
+      "policyMisses": 0,
+      "counterexample": null
+    },
+    "labelled": "DUAL_QUESTION_ASKED_SEPARATELY"
+  },
+  "rule": "The shadow tool must not turn NO_WIN into survival; the survival claim shown here (if proven) comes from a separate cat quantifier and a separate certificate."
+}

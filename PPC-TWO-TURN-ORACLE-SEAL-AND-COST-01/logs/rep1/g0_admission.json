@@ -1,0 +1,12 @@
+{
+  "totalMB": 16087.8,
+  "freeMB": 3903.2,
+  "vitestProcesses": 3,
+  "vitestOutOfTree": 0,
+  "foreignNodeProcesses": 1,
+  "duplicateHeavyWorkers": 0,
+  "requiredFreeMB": 1200,
+  "heavyConcurrency": 1,
+  "admission": "LOCAL_ADMITTED",
+  "note": "Heaviest planned job is one vitest process over a 600k-cap exact H2 quantifier; last round peak RSS was 393.9 MB. No cloud service (8787/8788) is contacted."
+}

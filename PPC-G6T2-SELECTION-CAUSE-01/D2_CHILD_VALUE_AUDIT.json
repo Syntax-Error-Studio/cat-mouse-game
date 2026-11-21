@@ -1,0 +1,543 @@
+{
+  "round": "PPC-G6T2-SELECTION-CAUSE-01",
+  "phase": "G2_D2_CHILD_VALUE_AUDIT",
+  "generatedAt": "2026-11-19T13:12:37.923Z",
+  "rep": 1,
+  "pid": 3816330,
+  "rootId": "G6T2",
+  "arm": "E1",
+  "depthTurns": 2,
+  "maxNodes": 8000000,
+  "searchMode": "FIXED_DEPTH_D2",
+  "instrumentation": {
+    "source": "src/game/ai/expectiminimax.ts",
+    "sourceSha256Raw": "50d27da5e9d0d47a1ad70efb542a3ec1510507fd14b825a52729ebb90f6d690c",
+    "observedPath": "PPC-G6T2-SELECTION-CAUSE-01/probe/expectiminimax_observed.ts",
+    "observedSha256Raw": "8ffeae59bd06d8dab93dd37712ce8fabcbc27c86f854e88ab3b8436f326593cc",
+    "metaSourceSha256Raw": "50d27da5e9d0d47a1ad70efb542a3ec1510507fd14b825a52729ebb90f6d690c",
+    "metaObservedSha256Raw": "8ffeae59bd06d8dab93dd37712ce8fabcbc27c86f854e88ab3b8436f326593cc",
+    "byteEqualToTransform": true,
+    "hooks": [
+      {
+        "line": 13,
+        "source": "import { observeCandidate, observeChoice } from './observe';"
+      },
+      {
+        "line": 1343,
+        "source": "    if (ctx.capturePlan && ply <= 3) { observeCandidate(key, depthTurns, ply, pa.action, pa.originalIndex, candidate); }"
+      },
+      {
+        "line": 1476,
+        "source": "  if (ctx.capturePlan && ply <= 3) { observeChoice(key, depthTurns, ply, bestAction, result); }"
+      }
+    ],
+    "scope": "observe-only; records candidate values and decided actions at ply <= 3 inside the SAME search; no change to control flow, arithmetic, ordering, pruning or leaf evaluation",
+    "observedNodeCount": 21
+  },
+  "search": {
+    "elapsedMs": 96413,
+    "nodes": 1283054,
+    "leafNodes": 2600863,
+    "chanceNodes": 7889,
+    "maxDepthReached": 12,
+    "repetitions": 0,
+    "value": -658.2105263157898,
+    "mate": null,
+    "completed": true,
+    "bestAction": "U",
+    "catTurnPlan": [
+      "U",
+      "L",
+      "D",
+      "R"
+    ],
+    "rootValues": [
+      {
+        "label": "U",
+        "value": -658.2105263157898,
+        "mate": null,
+        "bound": "exact"
+      },
+      {
+        "label": "D",
+        "value": -658.2105263157898,
+        "mate": null,
+        "bound": "exact"
+      },
+      {
+        "label": "L",
+        "value": -658.2105263157898,
+        "mate": null,
+        "bound": "exact"
+      }
+    ],
+    "equalRootActions": [
+      "U",
+      "D",
+      "L"
+    ],
+    "diagnostics": {
+      "nodes": 1283054,
+      "chanceNodes": 7889,
+      "maxDepthReached": 12,
+      "repetitions": 0,
+      "terminalNodes": 0,
+      "leafNodes": 2600863,
+      "budgetCutoffs": 0,
+      "deadlineCutoffs": 0,
+      "noLegalActionNodes": 0,
+      "ttProbes": 0,
+      "ttHits": 0,
+      "ttDepthMismatches": 0,
+      "ttExactHits": 0,
+      "ttStores": 0,
+      "alphaBetaCutoffs": 0,
+      "alphaBetaMaxCutoffs": 0,
+      "alphaBetaMinCutoffs": 0,
+      "fullWindowChanceSearches": 7889,
+      "orderedNodes": 0,
+      "ttFirstMoveCount": 0,
+      "tacticalFirstMoveCount": 0,
+      "orderingChangedFirstMove": 0,
+      "firstMoveCutoffCount": 0,
+      "extensionsTriggered": 0,
+      "extendedNodes": 0,
+      "criticalLeaves": 0,
+      "extensionAbortCount": 0,
+      "extensionDepthReached": 0,
+      "interceptionTriggerChecks": 0,
+      "interceptionGeometryCalls": 0,
+      "interceptionTriggeredLeaves": 0,
+      "interceptionExtendedLeaves": 0,
+      "interceptionExtraNodes": 0,
+      "interceptionMaxExtraDepth": 0
+    },
+    "plans": {
+      "publishedD2Candidates": [
+        "UUDD",
+        "DUUD",
+        "LUDR"
+      ],
+      "directWalkPlans": [
+        {
+          "legalIndex": 0,
+          "rootAction": "U",
+          "directWalkPlan": "UUDD",
+          "candidatePlan": "UUDD"
+        },
+        {
+          "legalIndex": 1,
+          "rootAction": "D",
+          "directWalkPlan": "DUUD",
+          "candidatePlan": "DUUD"
+        },
+        {
+          "legalIndex": 2,
+          "rootAction": "L",
+          "directWalkPlan": "LUDR",
+          "candidatePlan": "LUDR"
+        }
+      ],
+      "directWalkStrings": [
+        "UUDD",
+        "DUUD",
+        "LUDR"
+      ],
+      "productionCatTurnPlan": "ULDR",
+      "productionPlanReplay": {
+        "ok": true,
+        "frontierStatus": "VALID_MOUSE_FRONTIER",
+        "finalKeys": [
+          "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#mouse#3,3#1,6#0#3#2,6|5,1##0#1#0#1,1#0###10:4:3:3:4:2:single:hard"
+        ],
+        "finalFullStateEqualsRoot": false,
+        "catReturnedButStateChanged": true
+      },
+      "extractionDivergence": true,
+      "note": "directWalkPlan = buildPlanForFirstAction (planBranches walk, the D2 candidate channel); productionCatTurnPlan = searchBestAction().catTurnPlan (context-aware extractor). A difference is a real extraction divergence, reported as CASE C evidence."
+    }
+  },
+  "parityChecks": {
+    "NODES_MATCH": true,
+    "LEAF_NODES_MATCH": true,
+    "CHANCE_NODES_MATCH": true,
+    "VALUE_EXACT_MATCH": true,
+    "COMPLETED": true,
+    "MATE_NULL": true,
+    "BUDGET_CUTOFFS_ZERO": true,
+    "DEADLINE_CUTOFFS_ZERO": true,
+    "EXTENSION_ABORTS_ZERO": true,
+    "ROOT_VALUES_EXACT": true,
+    "PLANS_MATCH_FROZEN": true,
+    "PRODUCTION_PLAN_REPLAY_OK": true,
+    "REPETITIONS_ZERO": true,
+    "NODE_CAP_NOT_HIT": true,
+    "OBSERVATION_SINK_ACTIVE_OFF": true
+  },
+  "parity": true,
+  "nodes": {
+    "root": {
+      "key": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#3,3#1,6#4#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "depthTurns": 2,
+      "ply": 0,
+      "legalActionCount": 3,
+      "actions": [
+        {
+          "label": "U",
+          "type": "catStep",
+          "originalIndex": 0,
+          "value": -658.2105263157898,
+          "mate": null,
+          "bound": "exact",
+          "completed": true,
+          "cacheable": true
+        },
+        {
+          "label": "D",
+          "type": "catStep",
+          "originalIndex": 1,
+          "value": -658.2105263157898,
+          "mate": null,
+          "bound": "exact",
+          "completed": true,
+          "cacheable": true
+        },
+        {
+          "label": "L",
+          "type": "catStep",
+          "originalIndex": 2,
+          "value": -658.2105263157898,
+          "mate": null,
+          "bound": "exact",
+          "completed": true,
+          "cacheable": true
+        }
+      ],
+      "choiceLabel": "U",
+      "choiceOriginalIndex": 0,
+      "resultValue": -658.2105263157898,
+      "resultMate": null,
+      "resultBound": "exact",
+      "exactTieLabels": [
+        "U",
+        "D",
+        "L"
+      ],
+      "tieBreakRule": "strict improvement wins; on an exact tie the smaller original legal index is kept (stable order), with a certified-before-uncertified upgrade rule",
+      "distinctValueCount": 1
+    },
+    "afterD": {
+      "key": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#4,3#1,6#3#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "depthTurns": 2,
+      "ply": 1,
+      "legalActionCount": 3,
+      "actions": [
+        {
+          "label": "U",
+          "type": "catStep",
+          "originalIndex": 0,
+          "value": -658.2105263157898,
+          "mate": null,
+          "bound": "exact",
+          "completed": true,
+          "cacheable": true
+        },
+        {
+          "label": "L",
+          "type": "catStep",
+          "originalIndex": 1,
+          "value": -658.2105263157898,
+          "mate": null,
+          "bound": "exact",
+          "completed": true,
+          "cacheable": true
+        },
+        {
+          "label": "R",
+          "type": "catStep",
+          "originalIndex": 2,
+          "value": -658.2105263157898,
+          "mate": null,
+          "bound": "exact",
+          "completed": true,
+          "cacheable": true
+        }
+      ],
+      "choiceLabel": "U",
+      "choiceOriginalIndex": 0,
+      "resultValue": -658.2105263157898,
+      "resultMate": null,
+      "resultBound": "exact",
+      "exactTieLabels": [
+        "U",
+        "L",
+        "R"
+      ],
+      "tieBreakRule": "strict improvement wins; on an exact tie the smaller original legal index is kept (stable order), with a certified-before-uncertified upgrade rule",
+      "distinctValueCount": 1
+    },
+    "afterDR": {
+      "key": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__ec_e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#4,4#1,6#2#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "depthTurns": 2,
+      "ply": 2,
+      "legalActionCount": 3,
+      "actions": [
+        {
+          "label": "D",
+          "type": "catStep",
+          "originalIndex": 0,
+          "value": -745.4473684210526,
+          "mate": null,
+          "bound": "exact",
+          "completed": true,
+          "cacheable": true
+        },
+        {
+          "label": "L",
+          "type": "catStep",
+          "originalIndex": 1,
+          "value": -658.2105263157898,
+          "mate": null,
+          "bound": "exact",
+          "completed": true,
+          "cacheable": true
+        },
+        {
+          "label": "R",
+          "type": "catStep",
+          "originalIndex": 2,
+          "value": -745.4473684210526,
+          "mate": null,
+          "bound": "exact",
+          "completed": true,
+          "cacheable": true
+        }
+      ],
+      "choiceLabel": "L",
+      "choiceOriginalIndex": 1,
+      "resultValue": -658.2105263157898,
+      "resultMate": null,
+      "resultBound": "exact",
+      "exactTieLabels": [
+        "L"
+      ],
+      "tieBreakRule": "strict improvement wins; on an exact tie the smaller original legal index is kept (stable order), with a certified-before-uncertified upgrade rule",
+      "distinctValueCount": 2
+    },
+    "afterDRR": {
+      "key": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__ec_e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#4,5#1,6#1#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+      "depthTurns": 2,
+      "ply": 3,
+      "legalActionCount": 3,
+      "actions": [
+        {
+          "label": "D",
+          "type": "catStep",
+          "originalIndex": 0,
+          "value": -900.7105263157896,
+          "mate": null,
+          "bound": "exact",
+          "completed": true,
+          "cacheable": true
+        },
+        {
+          "label": "L",
+          "type": "catStep",
+          "originalIndex": 1,
+          "value": -745.4473684210526,
+          "mate": null,
+          "bound": "exact",
+          "completed": true,
+          "cacheable": true
+        },
+        {
+          "label": "R",
+          "type": "catStep",
+          "originalIndex": 2,
+          "value": -854,
+          "mate": null,
+          "bound": "exact",
+          "completed": true,
+          "cacheable": true
+        }
+      ],
+      "choiceLabel": "L",
+      "choiceOriginalIndex": 1,
+      "resultValue": -745.4473684210526,
+      "resultMate": null,
+      "resultBound": "exact",
+      "exactTieLabels": [
+        "L"
+      ],
+      "tieBreakRule": "strict improvement wins; on an exact tie the smaller original legal index is kept (stable order), with a certified-before-uncertified upgrade rule",
+      "distinctValueCount": 3
+    },
+    "prefixKeys": {
+      "root": {
+        "key": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__ec_b__p__e__e__b__e__e__p__e__e__e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#3,3#1,6#4#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "fullStateSha256": "628f941f8969428e6da64360589d4b2b25327cea0bfd756a89394f9f8d23913e"
+      },
+      "afterD": {
+        "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__ec_e__e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#4,3#1,6#3#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "fullStateSha256": "ea9e84b8b403b7e58f42bbfc06e7e4c8fff541563e2bc416407bc4bacf2b23d5",
+        "snapshotSha256": "6374ff27c79c3dc74eb6420db72987781111f5d78b36d7fb19ef4de841ff953c",
+        "player": "cat",
+        "summary": {
+          "phase": "playing",
+          "currentPlayer": "cat",
+          "cat": "4,3",
+          "mouse": "1,6",
+          "catMovesLeft": 3,
+          "mouseMovesLeft": 0,
+          "mouseHasButter": true,
+          "mouseSkillActive": false,
+          "butterPositions": [
+            "2,6"
+          ],
+          "pendingButterSpawns": [
+            "5,1:0"
+          ],
+          "pendingButterPlacementDebt": 0,
+          "trapPosition": "1,1",
+          "catTrapsRemaining": 0,
+          "blockedTunnels": []
+        },
+        "boxes": [
+          "1,2",
+          "2,4",
+          "2,5",
+          "2,7",
+          "3,4",
+          "3,8",
+          "5,3",
+          "6,3",
+          "6,5",
+          "7,1",
+          "8,3",
+          "8,6"
+        ]
+      },
+      "afterDR": {
+        "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__ec_e__e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#4,4#1,6#2#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "fullStateSha256": "51a9b2fa09b441eb1bd6cd4e7432275368a0ddf5f6e2dbf1772740888d37b878",
+        "snapshotSha256": "c8a3b637f6f8221eb3acb6affa0ef1fe183d8dedc2324831c55a7b3421167a0c",
+        "player": "cat",
+        "summary": {
+          "phase": "playing",
+          "currentPlayer": "cat",
+          "cat": "4,4",
+          "mouse": "1,6",
+          "catMovesLeft": 2,
+          "mouseMovesLeft": 0,
+          "mouseHasButter": true,
+          "mouseSkillActive": false,
+          "butterPositions": [
+            "2,6"
+          ],
+          "pendingButterSpawns": [
+            "5,1:0"
+          ],
+          "pendingButterPlacementDebt": 0,
+          "trapPosition": "1,1",
+          "catTrapsRemaining": 0,
+          "blockedTunnels": []
+        },
+        "boxes": [
+          "1,2",
+          "2,4",
+          "2,5",
+          "2,7",
+          "3,4",
+          "3,8",
+          "5,3",
+          "6,3",
+          "6,5",
+          "7,1",
+          "8,3",
+          "8,6"
+        ]
+      },
+      "afterDRR": {
+        "stateKey": "t__e__e__e__e__e__e__e__e__t__e__e__b__e__e__e__em_e__e__e__e__e__e__e__b__b__e__b__e__e__e__e__e__e__b__p__e__e__b__e__e__p__e__e__e__ec_e__e__e__e__e__e__e__b__e__e__e__e__e__e__e__e__e__b__e__b__e__e__p__e__e__b__e__e__e__e__e__e__m__m__e__p__e__b__e__e__b__e__m__m__t__e__e__e__e__e__e__e__e__t__#single#playing#cat#4,5#1,6#1#0#2,6#5,1:0#0#1#0#1,1#0###10:4:3:3:4:2:single:hard",
+        "fullStateSha256": "bc43a2bc16c548d29fff93f27c1b96fe6effbddd434ae6a8061407741bf7863c",
+        "snapshotSha256": "eb2b9e88889c2c98a678a38fd460f60f4abaec5db272c3ae4b798318c51f3918",
+        "player": "cat",
+        "summary": {
+          "phase": "playing",
+          "currentPlayer": "cat",
+          "cat": "4,5",
+          "mouse": "1,6",
+          "catMovesLeft": 1,
+          "mouseMovesLeft": 0,
+          "mouseHasButter": true,
+          "mouseSkillActive": false,
+          "butterPositions": [
+            "2,6"
+          ],
+          "pendingButterSpawns": [
+            "5,1:0"
+          ],
+          "pendingButterPlacementDebt": 0,
+          "trapPosition": "1,1",
+          "catTrapsRemaining": 0,
+          "blockedTunnels": []
+        },
+        "boxes": [
+          "1,2",
+          "2,4",
+          "2,5",
+          "2,7",
+          "3,4",
+          "3,8",
+          "5,3",
+          "6,3",
+          "6,5",
+          "7,1",
+          "8,3",
+          "8,6"
+        ]
+      }
+    }
+  },
+  "childValueEvidence": {
+    "note": "All values below are produced INSIDE the one root search, at the same depthTurns, with the same E1 leaf evaluator and the same node budget.",
+    "afterD": {
+      "depthTurns": 2,
+      "U": {
+        "label": "U",
+        "type": "catStep",
+        "originalIndex": 0,
+        "value": -658.2105263157898,
+        "mate": null,
+        "bound": "exact",
+        "completed": true,
+        "cacheable": true
+      },
+      "R": {
+        "label": "R",
+        "type": "catStep",
+        "originalIndex": 2,
+        "value": -658.2105263157898,
+        "mate": null,
+        "bound": "exact",
+        "completed": true,
+        "cacheable": true
+      },
+      "L": {
+        "label": "L",
+        "type": "catStep",
+        "originalIndex": 1,
+        "value": -658.2105263157898,
+        "mate": null,
+        "bound": "exact",
+        "completed": true,
+        "cacheable": true
+      },
+      "deltaUminusR": 0,
+      "uEqualsRExactly": true,
+      "chosen": "U",
+      "nodeValue": -658.2105263157898,
+      "legalActionCount": 3
+    }
+  }
+}

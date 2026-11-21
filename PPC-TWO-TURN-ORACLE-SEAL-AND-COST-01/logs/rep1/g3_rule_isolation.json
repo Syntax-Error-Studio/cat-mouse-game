@@ -1,0 +1,82 @@
+{
+  "round": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01",
+  "instrument": "real RuleSet: mouseStepDeterministic / mouseSkill / catPlaceTrap / resolveGhostBoundaryCore / enumerateGhost*Outcomes",
+  "terrain": "real G6T2 map from ppcId01-human-roots.json; only piece/butter/trap placements are set by the test",
+  "cases": {
+    "butterPickup": {
+      "hasButterAfter": true,
+      "butterLeft": 0,
+      "movesSpent": 1,
+      "catMovesLeftUnchanged": 0
+    },
+    "butterConsumeSkill": {
+      "movesBefore": 2,
+      "movesAfter": 5,
+      "extra": 3,
+      "skillActive": true
+    },
+    "tunnelWithButter": {
+      "moved": false,
+      "movesUnchanged": 4
+    },
+    "tunnelInSkillState": {
+      "phase": "choosing_tunnel_exit",
+      "exits": 4
+    },
+    "holeWithoutButter": {
+      "phase": "playing",
+      "movesLeft": 2
+    },
+    "catPlaceTrap": {
+      "movesBefore": 3,
+      "movesAfter": 3,
+      "trapAt": {
+        "r": 3,
+        "c": 3
+      },
+      "trapsRemaining": 0
+    },
+    "normalHandoff": {
+      "nextPlayer": "cat",
+      "catMoves": 4,
+      "mouseSkillReset": true
+    },
+    "ghostAnnouncement": {
+      "outcomes": 25,
+      "uniformWeight": 0.04,
+      "pendingEach": 1,
+      "noCandidate": {
+        "outcomes": 1,
+        "debt": 1
+      }
+    },
+    "ghostBoundary": {
+      "materialize": {
+        "butter": [
+          {
+            "r": 1,
+            "c": 7
+          }
+        ],
+        "pending": 0
+      },
+      "blockedOnce": [
+        {
+          "r": 2,
+          "c": 4,
+          "blockedMaterializations": 1
+        }
+      ],
+      "rerollPlacements": 1,
+      "rerollBoundaryOutcomes": 25
+    },
+    "pendingDebt": {
+      "outcomes": 1,
+      "debt": 1
+    }
+  },
+  "notObservable": {
+    "zeroWeightChanceOutcome": "No zero-weight outcome was produced or reached (40k-state scan: zeroWeightOutcomesSeen=0); the kernel still filters weight<=0 by source.",
+    "mixedVerdictChanceOutcomes": "No reachable CHANCE node was observed whose positive-probability outcomes disagree in verdict; the AND coverage is instead demonstrated by rejecting a one-branch certificate (QUANTIFIER_COUNTEREXAMPLES.json)."
+  }
+}

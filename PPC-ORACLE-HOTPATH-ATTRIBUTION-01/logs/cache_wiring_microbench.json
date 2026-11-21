@@ -1,0 +1,11 @@
+{
+  "note": "NON_EVIDENCE for engine work; measures only the generic Map+string cost a cache must pay.",
+  "keyBytes": 1200,
+  "entries": 20000,
+  "ops": 65585,
+  "modeledHits": 134,
+  "mapMs": 3.1,
+  "perOpUs": 0.05,
+  "lengthOnlyRefMs": 0.6,
+  "sink": 732859756
+}

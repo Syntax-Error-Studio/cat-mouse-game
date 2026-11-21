@@ -1,0 +1,130 @@
+{
+  "note": "Every cached-hit transition list was item-by-item compared in G3 (shadow gate); this file compares full solve artifacts.",
+  "targets": {
+    "DUUD/mouseForce": {
+      "value": true,
+      "identicalCounters": true,
+      "policyDigest": "85eee90fad92b156ffbda51fbc0202c9faad9feec32b4c968ca54544f4aaed86",
+      "certificate": {
+        "verdict": "PROVEN",
+        "leaves": 110921,
+        "policyMisses": 0,
+        "counterexample": null
+      },
+      "cache": {
+        "hits": 59,
+        "misses": 65526,
+        "evictions": 45526,
+        "size": 20000,
+        "hitRate": 0.0009
+      },
+      "base": {
+        "selfMs": 2561.7,
+        "elapsedMs": 2585.6
+      },
+      "proto": {
+        "selfMs": 8353.1,
+        "elapsedMs": 8418.2
+      }
+    },
+    "UURR/mouseForce": {
+      "value": true,
+      "identicalCounters": true,
+      "policyDigest": "d825cab3b49dbc599ddbf1dfc5a826ddc3c97f048812430075312056690e242f",
+      "certificate": {
+        "verdict": "PROVEN",
+        "leaves": 118305,
+        "policyMisses": 0,
+        "counterexample": null
+      },
+      "cache": {
+        "hits": 111,
+        "misses": 78728,
+        "evictions": 58728,
+        "size": 20000,
+        "hitRate": 0.0014
+      },
+      "base": {
+        "selfMs": 7326.9,
+        "elapsedMs": 7392.1
+      },
+      "proto": {
+        "selfMs": 11844.2,
+        "elapsedMs": 11914.1
+      }
+    },
+    "DRRR/mouseForce": {
+      "value": false,
+      "identicalCounters": true,
+      "policyDigest": "0007002f1e56e70a7ced9b4b1502a1e2d1b3424dc1050ec7e0d405bd22376f06",
+      "certificate": null,
+      "cache": {
+        "hits": 2,
+        "misses": 3511,
+        "evictions": 0,
+        "size": 3511,
+        "hitRate": 0.0006
+      },
+      "base": {
+        "selfMs": 361.7,
+        "elapsedMs": 364.8
+      },
+      "proto": {
+        "selfMs": 388.8,
+        "elapsedMs": 391.6
+      }
+    },
+    "DRRR/catSurvive": {
+      "value": true,
+      "identicalCounters": true,
+      "policyDigest": "f044dadb3f31ecb63a77dc6323e8bc4bd275547e71d82c61039b5a3e16c5244f",
+      "certificate": {
+        "verdict": "PROVEN",
+        "leaves": 117382,
+        "policyMisses": 0,
+        "counterexample": null
+      },
+      "cache": {
+        "hits": 46,
+        "misses": 92917,
+        "evictions": 72917,
+        "size": 20000,
+        "hitRate": 0.0005
+      },
+      "base": {
+        "selfMs": 8843,
+        "elapsedMs": 8928.6
+      },
+      "proto": {
+        "selfMs": 11796.2,
+        "elapsedMs": 11894.5
+      }
+    },
+    "LLLD/mouseForce": {
+      "value": true,
+      "identicalCounters": true,
+      "policyDigest": "c99ad81daeb1d734b7044a8ebf65c6b89286d87dec5620e64b410c72f6786bef",
+      "certificate": {
+        "verdict": "PROVEN",
+        "leaves": 24999,
+        "policyMisses": 0,
+        "counterexample": null
+      },
+      "cache": {
+        "hits": 0,
+        "misses": 24075,
+        "evictions": 4075,
+        "size": 20000,
+        "hitRate": 0
+      },
+      "base": {
+        "selfMs": 2301.1,
+        "elapsedMs": 2321.9
+      },
+      "proto": {
+        "selfMs": 3579.2,
+        "elapsedMs": 3601.8
+      }
+    }
+  }
+}

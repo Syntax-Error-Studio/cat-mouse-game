@@ -1,0 +1,328 @@
+{
+  "round": "PPC-G6T2-DECISION-RISK-CAUSAL-01",
+  "phase": "G3_TACTICAL_RISK_WITNESSES",
+  "generatedAt": "2026-11-20T08:19:06.296Z",
+  "root": {
+    "rootId": "G6T2",
+    "stateKeySha256": "8ac26199c4ea45ac56194a6c2aa8de3f9be2631660be9129be114ae6d29446f5",
+    "snapshotSha256": "8ac26199c4ea45ac56194a6c2aa8de3f9be2631660be9129be114ae6d29446f5",
+    "completeCatTurns": 110,
+    "expandedStates": 46,
+    "enumerationMs": 24.595800000000054
+  },
+  "prototype": {
+    "name": "TURN_AWARE_MOUSE_GOAL_RISK",
+    "wiredToDecision": false,
+    "horizon": "TWO_MOUSE_TURNS (mouse, cat reply, mouse)",
+    "layer1": "exhaustive mouse-turn win (all legal actions incl. skill; CHANCE forced=AND, exists=OR)",
+    "layer2": "bounded quantifier over real RuleSet transitions; one witness recorded"
+  },
+  "plans": [
+    {
+      "rootId": "G6T2",
+      "plan": "UURR",
+      "legal": true,
+      "endKind": "chance",
+      "frontierCount": 1,
+      "chanceWeights": [
+        1
+      ],
+      "e1Frontier": -247.23684210526318,
+      "oneTurn": {
+        "forcedWinThisTurn": false,
+        "existsWinningChanceOutcome": false,
+        "forcedWinningActions": [],
+        "existentialWinningActions": [],
+        "chanceOutcomesVisited": 145,
+        "nodes": 1896,
+        "truncated": false
+      },
+      "twoTurn": {
+        "label": "PROVEN_FORCED_WIN",
+        "value": true,
+        "nodes": 78839,
+        "truncated": false,
+        "elapsedMs": 6319.0848000000005,
+        "witnessMs": 0,
+        "witness": [
+          "m:S",
+          "m:D(chance)",
+          "m:D",
+          "m:D",
+          "m:D",
+          "m:D",
+          "m:D",
+          "c:U",
+          "c:D",
+          "c:U",
+          "c:D",
+          "m:R",
+          "m:D",
+          "m:R"
+        ],
+        "witnessOnly": null
+      },
+      "staticReach": {
+        "reachable": null,
+        "nodes": 20029,
+        "truncated": true,
+        "elapsedMs": 708.1665999999998,
+        "line": null,
+        "caveat": "HEURISTIC: the cat never moves and no cat reply is quantified"
+      },
+      "frozenLabel": {
+        "label": "MOUSE_FORCED_WIN (frozen certificate)",
+        "source": "PPC-CAT-STRATEGY-01 Q5 / Q3; PPC-D2-PCV-COUNTERLINE-02 HISTORICAL_CERT_BINDING"
+      },
+      "cost": {
+        "enumerateMs": 24.595800000000054,
+        "oneTurnMs": 81.42660000000001,
+        "staticReachMs": 708.3098,
+        "twoTurnMs": 6319.0848000000005,
+        "riskMs": 7109.0641,
+        "rssBeforeMB": 126.2734375,
+        "rssAfterMB": 289.4921875,
+        "peakRssMB": 289.4296875
+      }
+    },
+    {
+      "rootId": "G6T2",
+      "plan": "DRRR",
+      "legal": true,
+      "endKind": "chance",
+      "frontierCount": 1,
+      "chanceWeights": [
+        1
+      ],
+      "e1Frontier": -917.2368421052631,
+      "oneTurn": {
+        "forcedWinThisTurn": false,
+        "existsWinningChanceOutcome": false,
+        "forcedWinningActions": [],
+        "existentialWinningActions": [],
+        "chanceOutcomesVisited": 115,
+        "nodes": 1384,
+        "truncated": false
+      },
+      "twoTurn": {
+        "label": "NO_WIN_WITHIN_TESTED_HORIZON",
+        "value": false,
+        "nodes": 3513,
+        "truncated": false,
+        "elapsedMs": 6538.527399999999,
+        "witnessMs": 6190.091900000001,
+        "witness": null,
+        "witnessOnly": null
+      },
+      "staticReach": {
+        "reachable": true,
+        "nodes": 10515,
+        "truncated": false,
+        "elapsedMs": 1011.7747999999992,
+        "line": [
+          "m:S",
+          "m:D",
+          "m:D",
+          "m:R",
+          "m:D",
+          "m:D",
+          "m:D",
+          "m:D",
+          "m:D",
+          "m:R"
+        ],
+        "caveat": "HEURISTIC: the cat never moves and no cat reply is quantified"
+      },
+      "frozenLabel": {
+        "label": "CAT_SURVIVES (frozen H2 certificate, window=2, cap=600000)",
+        "source": "PPC-D2-PCV-COUNTERLINE-02 HISTORICAL_CERT_BINDING; PPC-G6T2-SELECTION-CAUSE-01"
+      },
+      "cost": {
+        "enumerateMs": 24.595800000000054,
+        "oneTurnMs": 102.96270000000004,
+        "staticReachMs": 1011.7870000000003,
+        "twoTurnMs": 6538.527399999999,
+        "riskMs": 7653.488300000001,
+        "rssBeforeMB": 289.66015625,
+        "rssAfterMB": 163.82421875,
+        "peakRssMB": 328.63671875
+      }
+    },
+    {
+      "rootId": "G6T2",
+      "plan": "DUUD",
+      "legal": true,
+      "endKind": "chance",
+      "frontierCount": 1,
+      "chanceWeights": [
+        1
+      ],
+      "e1Frontier": -561.8421052631579,
+      "oneTurn": {
+        "forcedWinThisTurn": false,
+        "existsWinningChanceOutcome": false,
+        "forcedWinningActions": [],
+        "existentialWinningActions": [],
+        "chanceOutcomesVisited": 110,
+        "nodes": 1633,
+        "truncated": false
+      },
+      "twoTurn": {
+        "label": "PROVEN_FORCED_WIN",
+        "value": true,
+        "nodes": 65585,
+        "truncated": false,
+        "elapsedMs": 6379.3694,
+        "witnessMs": 0,
+        "witness": [
+          "m:S",
+          "m:D(chance)",
+          "m:D",
+          "m:D",
+          "m:D",
+          "m:D",
+          "m:D",
+          "c:U",
+          "c:U",
+          "c:U",
+          "c:D",
+          "m:R",
+          "m:D",
+          "m:R"
+        ],
+        "witnessOnly": null
+      },
+      "staticReach": {
+        "reachable": true,
+        "nodes": 19612,
+        "truncated": false,
+        "elapsedMs": 2430.5768000000007,
+        "line": [
+          "m:S",
+          "m:D",
+          "m:D",
+          "m:D",
+          "m:D",
+          "m:D",
+          "m:D",
+          "m:R",
+          "m:D",
+          "m:R"
+        ],
+        "caveat": "HEURISTIC: the cat never moves and no cat reply is quantified"
+      },
+      "frozenLabel": {
+        "label": "NO_CERTIFICATE",
+        "source": "PPC-G6T2-PLAN-CANDIDATE-FEASIBILITY-01"
+      },
+      "cost": {
+        "enumerateMs": 24.595800000000054,
+        "oneTurnMs": 156.42170000000078,
+        "staticReachMs": 2431.1973,
+        "twoTurnMs": 6379.3694,
+        "riskMs": 8967.023299999999,
+        "rssBeforeMB": 167.08984375,
+        "rssAfterMB": 225.33203125,
+        "peakRssMB": 221.734375
+      }
+    },
+    {
+      "rootId": "G6T2",
+      "plan": "DRDR",
+      "legal": true,
+      "endKind": "chance",
+      "frontierCount": 1,
+      "chanceWeights": [
+        1
+      ],
+      "e1Frontier": -1027.1052631578948,
+      "oneTurn": {
+        "forcedWinThisTurn": false,
+        "existsWinningChanceOutcome": false,
+        "forcedWinningActions": [],
+        "existentialWinningActions": [],
+        "chanceOutcomesVisited": 110,
+        "nodes": 1590,
+        "truncated": false
+      },
+      "twoTurn": {
+        "label": "NO_WIN_WITHIN_TESTED_HORIZON",
+        "value": false,
+        "nodes": 6369,
+        "truncated": false,
+        "elapsedMs": 6974.377400000001,
+        "witnessMs": 6363.596799999996,
+        "witness": null,
+        "witnessOnly": null
+      },
+      "staticReach": {
+        "reachable": true,
+        "nodes": 18914,
+        "truncated": false,
+        "elapsedMs": 1703.2903000000006,
+        "line": [
+          "m:S",
+          "m:D",
+          "m:D",
+          "m:D",
+          "m:D",
+          "m:D",
+          "m:D",
+          "m:R",
+          "m:D",
+          "m:R"
+        ],
+        "caveat": "HEURISTIC: the cat never moves and no cat reply is quantified"
+      },
+      "frozenLabel": {
+        "label": "NO_CERTIFICATE",
+        "source": "PPC-CAT-STRATEGY-01 (no proof label)"
+      },
+      "cost": {
+        "enumerateMs": 24.595800000000054,
+        "oneTurnMs": 127.59519999999975,
+        "staticReachMs": 1703.3013000000028,
+        "twoTurnMs": 6974.377400000001,
+        "riskMs": 8805.3108,
+        "rssBeforeMB": 224.6484375,
+        "rssAfterMB": 251.484375,
+        "peakRssMB": 251.484375
+      }
+    }
+  ],
+  "frozenLabelCrossCheck": {
+    "UURR": {
+      "label": "MOUSE_FORCED_WIN (frozen certificate)",
+      "source": "PPC-CAT-STRATEGY-01 Q5 / Q3; PPC-D2-PCV-COUNTERLINE-02 HISTORICAL_CERT_BINDING"
+    },
+    "DRRR": {
+      "label": "CAT_SURVIVES (frozen H2 certificate, window=2, cap=600000)",
+      "source": "PPC-D2-PCV-COUNTERLINE-02 HISTORICAL_CERT_BINDING; PPC-G6T2-SELECTION-CAUSE-01"
+    },
+    "DUUD": {
+      "label": "NO_CERTIFICATE",
+      "source": "PPC-G6T2-PLAN-CANDIDATE-FEASIBILITY-01"
+    },
+    "DRDR": {
+      "label": "NO_CERTIFICATE",
+      "source": "PPC-CAT-STRATEGY-01 (no proof label)"
+    }
+  },
+  "calibration": {
+    "expected": {
+      "UURR_twoTurn": "PROVEN_FORCED_WIN (matches frozen mouse-forced-win certificate)",
+      "DRRR_twoTurn": "NO_WIN_WITHIN_TESTED_HORIZON (matches frozen cat-survives H2 label)"
+    },
+    "observed": {
+      "UURR": "PROVEN_FORCED_WIN",
+      "DRRR": "NO_WIN_WITHIN_TESTED_HORIZON",
+      "DUUD": "PROVEN_FORCED_WIN",
+      "DRDR": "NO_WIN_WITHIN_TESTED_HORIZON"
+    }
+  },
+  "honesty": {
+    "noWinIsNotSafety": "NO_WIN_WITHIN_TESTED_HORIZON is not a cat-safety certificate; only the frozen H2 label says DRRR survives that specific window.",
+    "witnessIsNotProof": "WITNESS_ONLY is one concrete line under one cat reply / one chance branch.",
+    "unknownIsReported": "A node-cap hit yields UNKNOWN with no claim."
+  }
+}

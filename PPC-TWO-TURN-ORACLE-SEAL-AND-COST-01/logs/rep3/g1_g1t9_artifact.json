@@ -1,0 +1,16 @@
+{
+  "artifact": "PPC-CAT-STRATEGY-01/ROOT_CLASSIFICATION.json",
+  "sha256": "c2d38f3528fbed7cc139297e9c88d62744b3ad47fd9241c4111e2ae0b47dea94",
+  "schemeSource": "PPC-CAT-STRATEGY-01/probe/tactical_tree.test.ts lines 14-20 (horizon naming) and 86-112 (classification)",
+  "g1t9": {
+    "classification": "MOUSE_FORCED_WIN_WITHIN_H1",
+    "evidence": {
+      "h0MouseForcedWin": false,
+      "h1MouseForcedWin": true,
+      "h1CatForcedWin": false,
+      "h1Nodes": 66749,
+      "h1ElapsedMs": 6662
+    }
+  },
+  "reading": "H0 (one mouse turn) is false and H1 (two mouse turns) is true at the ROOT — consistent with the plan-level layer-1 false / layer-2 true pattern once the prior report's gloss is corrected."
+}

@@ -1,0 +1,302 @@
+{
+  "round": "PPC-G6T2-DECISION-RISK-CAUSAL-01",
+  "generatedAt": "2026-11-20T08:25:54.589Z",
+  "selfDigestNote": "This manifest cannot contain its own hash; SHA256SUMS.txt covers SOURCE_MANIFEST.json. Verify with scripts/verify_ledger.sh (recompute) or `sha256sum -c` on the 3-column ledger parse.",
+  "files": [
+    {
+      "path": "CACHE_CONTRACT_FINAL_ERRATA.md",
+      "role": "G1 cache contract errata",
+      "sha256": "42badf5fe28253cb7386ca179879c1782fb55f8504d4ae532d9427b4b0146e64",
+      "bytes": 4890
+    },
+    {
+      "path": "CROSS_ROOT_SHADOW_RESULTS.json",
+      "role": "G4 cross-root results",
+      "sha256": "8526e39a0949bb98612b569bf954723d18a19e26850b3aa14c52aab07a123c02",
+      "bytes": 18544
+    },
+    {
+      "path": "G6T2_DECISION_CAUSAL_TRACE.json",
+      "role": "G2 causal trace artifact",
+      "sha256": "4b8c9096b82b9d7beee9a8c35b6aba62ffbcee00d48bcedad0ccf077e71adb0c",
+      "bytes": 10058
+    },
+    {
+      "path": "logs/det_r1_g1_cache_errata.log",
+      "role": "evidence log",
+      "sha256": "c82dfa0b3af4599946ee727d576a5b115f7d95fbc85cef9d3e64b9c7181eb4bb",
+      "bytes": 492
+    },
+    {
+      "path": "logs/det_r1_g3_risk.log",
+      "role": "evidence log",
+      "sha256": "093a790aadeb21e990c4ebdc3d7d4a0fcce3b2cc66567428b57b130febc5c9a4",
+      "bytes": 611
+    },
+    {
+      "path": "logs/det_r1_g4_cross_root.log",
+      "role": "evidence log",
+      "sha256": "0f228ca1068c7f35cbec73f27205d7f2997934f29ebadd1255582d6182479f3a",
+      "bytes": 603
+    },
+    {
+      "path": "logs/det_r2_g1_cache_errata.log",
+      "role": "evidence log",
+      "sha256": "e3233d95b53a0d9f0bbd3555c7abca3ea49792388dc462010b6a9861c19d293d",
+      "bytes": 492
+    },
+    {
+      "path": "logs/det_r2_g3_risk.log",
+      "role": "evidence log",
+      "sha256": "f06ccbd69319adf6f81d53fbb8905fde75d000b62f3fe5224cc6fac1d1a72474",
+      "bytes": 611
+    },
+    {
+      "path": "logs/det_r2_g4_cross_root.log",
+      "role": "evidence log",
+      "sha256": "d64bcb23880695cb6f6fdbe24d397c72196d8a39ce33dfde097ca1844e807a13",
+      "bytes": 603
+    },
+    {
+      "path": "logs/det_r3_g1_cache_errata.log",
+      "role": "evidence log",
+      "sha256": "7518a1eeb496c2e46457153625496970445dab79f65592a0ad91933788158683",
+      "bytes": 492
+    },
+    {
+      "path": "logs/det_r3_g3_risk.log",
+      "role": "evidence log",
+      "sha256": "19d64977c1ac92122107a2a2fcd257582202781f591d7fc62992d629979adcd9",
+      "bytes": 611
+    },
+    {
+      "path": "logs/det_r3_g4_cross_root.log",
+      "role": "evidence log",
+      "sha256": "6fa96b7c70e038f0d030944c52bc81457b4c9fa9bc418d5f985b8484f65e0051",
+      "bytes": 603
+    },
+    {
+      "path": "logs/determinism_summary.json",
+      "role": "evidence log",
+      "sha256": "68bada1a63bd3428b6a6a4127e490911664bf2ee3bd604bd14853a0c00a132a9",
+      "bytes": 294
+    },
+    {
+      "path": "logs/digest_r1.json",
+      "role": "evidence log",
+      "sha256": "688dd63d6afc04662e355fecc16af3a1c92d894f59adfd8b153646169be6bdd5",
+      "bytes": 398
+    },
+    {
+      "path": "logs/digest_r2.json",
+      "role": "evidence log",
+      "sha256": "688dd63d6afc04662e355fecc16af3a1c92d894f59adfd8b153646169be6bdd5",
+      "bytes": 398
+    },
+    {
+      "path": "logs/digest_r3.json",
+      "role": "evidence log",
+      "sha256": "688dd63d6afc04662e355fecc16af3a1c92d894f59adfd8b153646169be6bdd5",
+      "bytes": 398
+    },
+    {
+      "path": "logs/g0_g6t2_root.json",
+      "role": "evidence log",
+      "sha256": "f3b8fa70751d4f21505ad503a7ae415628b4666a33bc9dbb52bd22649ebaadc9",
+      "bytes": 811
+    },
+    {
+      "path": "logs/g0_ledgers.json",
+      "role": "evidence log",
+      "sha256": "28e129abc1df5938588d3d8f900e5e9b862037c5e7aaa6096ec02763098859b4",
+      "bytes": 1110
+    },
+    {
+      "path": "logs/g0_processes.json",
+      "role": "evidence log",
+      "sha256": "5e99ba71b68ebc120d0b11a092886a58b589d3e506400977c5992e460892aedd",
+      "bytes": 85
+    },
+    {
+      "path": "logs/g0_src_closure.json",
+      "role": "evidence log",
+      "sha256": "9778d1b7a07560b907175455413a776d02e8d6da4e3dc7ed3f5c4f60f942b2fb",
+      "bytes": 5185
+    },
+    {
+      "path": "logs/g0_worktree.json",
+      "role": "evidence log",
+      "sha256": "ab0969139793520d21bbc8b23e6d79fc5652566af7f60fb5b660fe983f72ad0e",
+      "bytes": 6067
+    },
+    {
+      "path": "logs/g1_chance_endpoint.json",
+      "role": "evidence log",
+      "sha256": "50958e0b33efca81cfab857acf7240b3be4a557256ba698bcd9bf1028103afc6",
+      "bytes": 31589
+    },
+    {
+      "path": "logs/g1_inclusion.json",
+      "role": "evidence log",
+      "sha256": "cb61e042c0477d7527daa9ec2da5a0ed173c111ea0e7ae34b419e8d0454528da",
+      "bytes": 2664
+    },
+    {
+      "path": "logs/g1_recompute.json",
+      "role": "evidence log",
+      "sha256": "2c0efd932ed7593f0b907530fc712b703301125713d3a38891c9c92e9da5687f",
+      "bytes": 6729
+    },
+    {
+      "path": "logs/g5_env.json",
+      "role": "evidence log",
+      "sha256": "debe81e18e119fbe8810309be9ecb54f1e413f0f875f8a632b2ed9bb439787d4",
+      "bytes": 8794
+    },
+    {
+      "path": "logs/prod_100ms_rep1.json",
+      "role": "evidence log",
+      "sha256": "1fd144c5ab09b15ffe9a5452fdee02aa3eca0dc3602a56c5f56476ce49a0ec93",
+      "bytes": 948
+    },
+    {
+      "path": "logs/prod_100ms_rep2.json",
+      "role": "evidence log",
+      "sha256": "03293b670cea96a9c18d6db0ed28933a148aa5b4a4cb0ed92d1c3f74864c5618",
+      "bytes": 948
+    },
+    {
+      "path": "logs/prod_100ms_rep3.json",
+      "role": "evidence log",
+      "sha256": "ff2900dfa3057df37fb4e6be1b78bd962f6aef14dea994d3b792d96322429f45",
+      "bytes": 948
+    },
+    {
+      "path": "probe/digest_diff.mjs",
+      "role": "diagnostic canonical diff",
+      "sha256": "98d5b71c82a88c7804d60c52d3c81fe039e662a72813c15b7afe53064df1b77d",
+      "bytes": 2165
+    },
+    {
+      "path": "probe/digest.mjs",
+      "role": "normalized artifact digest",
+      "sha256": "3f1c829485a80797cf493bd271c156c7658c9c474fa480feb2d88bf23f97e47f",
+      "bytes": 2172
+    },
+    {
+      "path": "probe/dr_lib.ts",
+      "role": "shared shadow harness (read-only imports of production)",
+      "sha256": "e0780fff270f45e17c32406261e51f55480feb4824af4112a902353bf6e7a654",
+      "bytes": 23251
+    },
+    {
+      "path": "probe/g0_identity.test.ts",
+      "role": "G0 identity/ledger audit",
+      "sha256": "15fa9d334c89dd6556f8741d1fda5a7c84f8d1f609bb898ed45c745f039c9ec0",
+      "bytes": 6593
+    },
+    {
+      "path": "probe/g1_cache_errata.test.ts",
+      "role": "G1 recompute",
+      "sha256": "0af124630bd8bce40045c4a2dc68886baf8e9f0029210fcc0400d350bc39dfa2",
+      "bytes": 10706
+    },
+    {
+      "path": "probe/g2_causal.test.ts",
+      "role": "G2 causal trace",
+      "sha256": "e97ded46b84235d3ebe4928e22916992e56cd6b5de1250963d1e3c8623eae23b",
+      "bytes": 8160
+    },
+    {
+      "path": "probe/g3_risk.test.ts",
+      "role": "G3 calibration",
+      "sha256": "386cb83f6023fb19d916a916f459fbabf661e041b6ac98dc7b0ab2c44581a881",
+      "bytes": 4497
+    },
+    {
+      "path": "probe/g4_cross_root.test.ts",
+      "role": "G4 cross-root controls",
+      "sha256": "9998f80dfaee59be974183e4eab5f52f95bd35f5373711abe2400bb52a867488",
+      "bytes": 8056
+    },
+    {
+      "path": "probe/g5_env.test.ts",
+      "role": "G5 provenance/resource",
+      "sha256": "d3aed03ce72aa57fc85024b8c1290b9254fbf8dd4beffaf367b4c7961daa3a82",
+      "bytes": 5447
+    },
+    {
+      "path": "probe/vitest.config.mts",
+      "role": "isolated vitest config (serial, 1 worker)",
+      "sha256": "68528f8abafa111359f3e214732a89d498886a8975a744de7c37ca6c4f31c1e1",
+      "bytes": 350
+    },
+    {
+      "path": "REPORT.md",
+      "role": "human report (Chinese, PASS/FAIL)",
+      "sha256": "21b078d947773b01c57486fe8afac06996c10350365b6f88df08d76b486f5a86",
+      "bytes": 12661
+    },
+    {
+      "path": "RESOURCE_SAFETY_LOG.md",
+      "role": "G5 provenance/resource log",
+      "sha256": "a46d625d8c3e05f113f3cca0d655788b4483b61c4d0f101f6ba699b8926424a0",
+      "bytes": 4498
+    },
+    {
+      "path": "scripts/determinism.sh",
+      "role": "3 serial fresh-process rounds + digest",
+      "sha256": "e4b0798e8d33f9a01b4b05c00de67be58f4ad4bde3abe0fefdc327c438e8e02b",
+      "bytes": 1614
+    },
+    {
+      "path": "scripts/manifest.mjs",
+      "role": "artifact",
+      "sha256": "7bf12a06e2343ed37c9288415081341608b3f08df9683b958815e5be80973520",
+      "bytes": 4002
+    },
+    {
+      "path": "scripts/run.sh",
+      "role": "one fresh process per phase",
+      "sha256": "5ed3ab4c69dca3d98403aea40fc47d199c486aaa1ae92664154e31fa967f628f",
+      "bytes": 559
+    },
+    {
+      "path": "scripts/verify_ledger.sh",
+      "role": "artifact",
+      "sha256": "4b7975b77fae7a1088441b3591f48557bb680ea45f3f879ae94ae0d288ac6e4c",
+      "bytes": 550
+    },
+    {
+      "path": "TACTICAL_RISK_WITNESSES.json",
+      "role": "G3 per-plan witnesses",
+      "sha256": "9c66b11308947a935b742a7858c0f252605c7c60aa1729c0b7decd304fff850b",
+      "bytes": 9197
+    },
+    {
+      "path": "TURN_AWARE_MOUSE_GOAL_RISK_SPEC.md",
+      "role": "shadow prototype spec",
+      "sha256": "8cd9c06b79a4de7ad63e3819045ffda67a063cd521292e9a6e5cc741105fd16e",
+      "bytes": 6500
+    }
+  ],
+  "frozenInputs": {
+    "src/game/ai/__tests__/fixtures/ppcId01-human-roots.json": {
+      "sha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09",
+      "note": "root fixture (read-only)"
+    },
+    "PPC-CAT-STRATEGY-SEAL-01/probe/seal_lib.ts": {
+      "sha256": "453915d3fd3a69bda5d113dd7e5732d20424a7f97cff739cf9b0aeee576a779b",
+      "note": "quantifier kernel (read-only)"
+    }
+  },
+  "excluded": [
+    "logs/*.stdout.log (vitest console output)",
+    "logs/snap_r*/ (per-round copies of the two regenerated artifacts)"
+  ],
+  "provenance": {
+    "measurementSource": "WINDOWS_LOCAL_WORKSTATION",
+    "node": "v24.13.0",
+    "note": "Timings are local Windows measurements and are not evidence for the 100ms production budget."
+  }
+}

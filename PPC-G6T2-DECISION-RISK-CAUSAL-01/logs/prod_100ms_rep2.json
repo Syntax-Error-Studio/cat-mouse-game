@@ -1,0 +1,44 @@
+{
+  "rootId": "G6T2",
+  "planString": "UURR",
+  "bestAction": "U",
+  "value": -247.23684210526318,
+  "mate": null,
+  "completedDepth": 1,
+  "attemptedDepth": 2,
+  "hasSolution": true,
+  "deadlineFired": true,
+  "budgetFired": false,
+  "nodes": 250,
+  "elapsedMs": 151.04739999999993,
+  "planStatus": "planned",
+  "fallbackOccurred": false,
+  "rootActions": [
+    {
+      "action": "U",
+      "value": -247.23684210526318,
+      "mate": null,
+      "bound": "exact"
+    },
+    {
+      "action": "D",
+      "value": -345,
+      "mate": null,
+      "bound": "exact"
+    },
+    {
+      "action": "L",
+      "value": -345,
+      "mate": null,
+      "bound": "exact"
+    }
+  ],
+  "refutationTriggered": true,
+  "refutationSelectedPlanSource": "baseline",
+  "rep": 2,
+  "capturedAt": "2026-11-20T07:59:22.294Z",
+  "nodesFrozenReference": 211,
+  "completedDepthFrozenReference": 1,
+  "planFrozenReference": "UURR",
+  "deadlineFiredFrozenReference": true
+}

@@ -1,0 +1,31 @@
+{
+  "round": "PPC-TWO-TURN-ORACLE-SEAL-AND-COST-01",
+  "head": "d533c8fb1e9c8b1822e84e737253f7ea73d3dbb1",
+  "branch": "ppc/p1-id-state-identity-fix",
+  "protectedDirtyFiles": [
+    " M src/game/mapDefinition.ts",
+    " M src/pages/EditorPage.tsx",
+    " M src/pages/GamePage.tsx"
+  ],
+  "dirtyCount": 110,
+  "hashes": {
+    "fixture": {
+      "path": "src/game/ai/__tests__/fixtures/ppcId01-human-roots.json",
+      "sha256": "1a59787adb6669e1cf287d019313dadf4636a4310eed7b3de5236f4778e0db09"
+    },
+    "sealKernel": {
+      "path": "PPC-CAT-STRATEGY-SEAL-01/probe/seal_lib.ts",
+      "sha256": "453915d3fd3a69bda5d113dd7e5732d20424a7f97cff739cf9b0aeee576a779b"
+    },
+    "strategyKernel": {
+      "path": "PPC-CAT-STRATEGY-01/probe/lib.ts",
+      "sha256": "f8cae0ac4fca93330d170fa3fe2e072729b402fc18442016ce069f80f8ee0264"
+    },
+    "shadowLib": {
+      "path": "PPC-G6T2-DECISION-RISK-CAUSAL-01/probe/dr_lib.ts",
+      "sha256": "e0780fff270f45e17c32406261e51f55480feb4824af4112a902353bf6e7a654"
+    },
+    "gameplay": "e000778b114bea02ef09634085172ea435be143335721aa0cd04114afb2afd34",
+    "preparedActions": "67b76ad3de53fee6d3d32f9bc8ab9a02b52234857b23b7fc9091bd92011ad764"
+  }
+}

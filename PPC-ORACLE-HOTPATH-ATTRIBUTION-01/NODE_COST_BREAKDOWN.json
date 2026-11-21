@@ -1,0 +1,89 @@
+{
+  "identity": "instrumented copy reproduces frozen counters exactly (see g1_duud parity and g4 parity)",
+  "caveat": "Absolute ms come from the instrumented run: per-call timers and expansion bookkeeping roughly triple wall time (overheadRatio). SHARES are directional; the microbench section gives overhead-free per-call costs measured outside the solve on 131 sampled expansion states.",
+  "duud": {
+    "frozenMs": 2031.5,
+    "instrumentedMs": 6656.8,
+    "overheadRatio": 3.28,
+    "counts": {
+      "nodes": 65585,
+      "expansions": 65585,
+      "transitions": 193117,
+      "chanceNodes": 2122,
+      "chanceOutcomes": 53766,
+      "memoHits": 58328,
+      "keyCalls": 123913,
+      "settleCalls": 392062,
+      "playerCalls": 391052,
+      "distinctExpansionKeys": 65451,
+      "repeatDiffIdx": 134,
+      "repeatSameIdx": 0
+    },
+    "measuredComponentsMs": {
+      "generation": 3684.471300000059,
+      "stateKey": 1722.2935000001812,
+      "memoGet": 342.3612999997854,
+      "settle": 233.68749999990632,
+      "terminal": 33.4422000003874,
+      "player": 56.23439999984976,
+      "memoSet": 64.77620000017805,
+      "policySet": 12.405100000034963
+    },
+    "measuredSharesOfSelf": {
+      "generation": 0.5587,
+      "stateKey": 0.2612,
+      "memoGet": 0.0519,
+      "settle": 0.0354,
+      "terminal": 0.0051,
+      "player": 0.0085,
+      "memoSet": 0.0098,
+      "policySet": 0.0019
+    },
+    "unaccountedShare": 0.0675,
+    "microbench": {
+      "sampledStates": 131,
+      "genPerCallMs": 0.05877226463104289,
+      "keyPerCallMs": 0.013849160305341219,
+      "settlePerCallMs": 0.0007361832061046664,
+      "terminalPerCallMs": 0.0001946564885476188,
+      "playerPerCallMs": 0.00017236641221386487,
+      "equalPerCallMs": 0.0044671111111108785,
+      "legalPerExpansion": 2.8625954198473282,
+      "estimatedTotalsMs": {
+        "generation": 3854.578975826948,
+        "stateKey": 1716.0910009157465,
+        "settle": 288.62946015180773,
+        "terminal": 38.72593511410602,
+        "player": 67.40423022905628,
+        "equalityInsideGeneration": 838.6702735368519
+      },
+      "frozenTotalMs": 2031.5096000000003
+    }
+  },
+  "generationSplitFromLLLD": {
+    "root": "G1T9/LLLD",
+    "splitMs": {
+      "enumMs": 19.4,
+      "simMs": 1169.1,
+      "compareMs": 443.5,
+      "mapLabelMs": 34.2,
+      "candidates": 96663,
+      "simCalls": 96663,
+      "legalActions": 83328,
+      "simPerLegal": 0.014,
+      "validateChecks": 400,
+      "validateMismatches": 0
+    },
+    "shares": {
+      "enumerateCandidates": 0.0116,
+      "simulateLegality": 0.7017,
+      "gameAffectingEqual": 0.2662,
+      "mapAndLabel": 0.0205
+    },
+    "note": "profileGen re-implementation passed 400/400 signature checks against the real generator."
+  },
+  "answers": {
+    "whereTimeGoes": "Generation of legal actions and their successors dominates (~55% of instrumented self time), with stateKey construction second (~26%) and hash-map memo operations third (~5–6%). CHANCE recursion itself is counted as subtree walk, not as generation.",
+    "chanceNote": "CHANCE makes the tree wide (DUUD: 2,122 chance transitions → 53,766 outcomes), so successors are generated/visited many times while the PARENT action lists are almost never regenerated (0.2% repeat keys)."
+  }
+}
